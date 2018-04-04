@@ -1,0 +1,102 @@
+### how to debug
+%MAVEN_HOME%/bin/mvnDebug
+
+===Java web project:===
+	mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.smava.onsite -DartifactId=soap-calculator -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+
+	for create Eclipse Web project:
+		mvn eclipse:eclipse -Dwtpversion=2.0
+		( change packaging to "war" )
+
+===Java Vaadin project:===
+mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=7.2.5 -DgroupId=com.cherkashyn.vitalii.tools.barcode.ui -DartifactId=BarCodeUtilsUI -Dversion=1.0 -Dpackaging=war
+
+===Java console application===
+mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.akka.web -DartifactId=akka-web -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.testtask.kaufland -DartifactId=anagrams -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+===Java OSGi bundle===
+mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.3.5 -DgroupId=com.cherkashyn.vitalii.osgi.test.listener -DartifactId=osgi-service-listener -Dversion=1.0.0-SNAPSHOT
+
+===Java OSGi Blueprint bundle===
+mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-blueprint-archetype -DarchetypeVersion=2.3.5 -DgroupId=com.cherkashyn.vitalii.osgi.test -DartifactId=osgi-blueprint-consumer -Dversion=1.0.0-SNAPSHOT
+
+===Java OSGi Karaf bundle===
+mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.2.8 -DgroupId=com.mycompany -DartifactId=KarafExample -Dversion=1.0-SNAPSHOT -Dpackage=com.mycompany.bundle
+
+==================================
+=== Download Sources and JavaDoc
+-DdownloadSources=true -DdownloadJavadocs=true
+==================================
+
+mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.startup.searchcorrector -DartifactId=searchcorrector -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.startup.searchcorrector -DartifactId=workplace -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+
+--------------maven addition settings -------------------
+
+	<build>
+		<plugins>
+			<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.1</version>
+			<configuration>
+				<source>1.6</source>
+				<target>1.6</target>
+			</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+--------------maven exec plugin -------------------
+( mvn exec:java )
+
+<build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.4.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>org.cherkashyn.vitalii.test.App</mainClass>
+          <arguments>
+            <argument>argument1</argument>
+          </arguments>
+          <systemProperties>
+            <systemProperty>
+              <key>myproperty</key>
+              <value>myvalue</value>
+            </systemProperty>
+          </systemProperties>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+--------------maven additional resources -------------------
+  <resources>
+    <resource>
+      <directory>src/main/java</directory>
+      <includes>
+        <include> **/*.java </include>
+        <include> **/*.properties </include>
+        <include> **/*.xml </include>
+      </includes>
+    </resource>
+    <resource>
+      <directory>src/test/java</directory>
+      <includes>
+        <include> **/*.java </include>
+        <include> **/*.properties </include>
+        <include> **/*.xml </include>
+      </includes>
+    </resource>
+  </resources>

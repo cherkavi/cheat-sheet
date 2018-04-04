@@ -1,0 +1,217 @@
+## Linux
+
+### sudo reboot
+
+### sort, order
+sort <filename>
+
+### unique lines (duplications) into file
+#### add count
+uniq -c
+#### duplicates
+uniq -d
+#### unique
+uniq -u
+
+### print column from file
+cut --delimiter "," --fields 2,3,4 test1.csv
+
+### log information
+/var/log/messages
+/var/log/syslog
+
+### bash reading content of the file to command-line parameter
+--extra-vars 'rpm_version=$(cat version.txt)'
+
+### auto execute during startup
+folder: etc/rc1.d ( rc2.d ... )
+contains links to ../init.d/<name of bash script>
+should understand next options: start, stop, restart
+
+### mc color, midnight commander
+file:~/.mc/ini
+[Colors]
+base_color=normal=brightgray,black:marked=brightcyan,black:selected=black,lightgray:directory=white,black:errors=red,black:executable=brightgreen,black:link=brightblue,black:stalelink=red,black:device=brightmagenta,black:special=brightcyan,black:core=lightgray,black:menu=white,black:menuhot=brightgreen,black:menusel=black,white:editnormal=brightgray,black:editmarked=black,brightgreen:editbold=brightred,cyan
+mc --nocolor
+
+### find files by mask
+locate -ir "brand-reader*"
+locate -b "brand-reader"
+
+### find file by last update time
+find / -mmin 2
+
+### find files/folders by name and older than 240 min
+find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs sudo rm -r {} \; >/dev/null 2>&1
+
+### find files/folders by regexp and older than 240 min
+find /tmp -maxdepth 1 -mmin +240 -iname "[0-9]*\-[0-9]" | xargs sudo rm -r {} \; >/dev/null 2>&1
+
+### yum ( app search )
+yum list <pattern>
+( example: yum list python33 )
+yum install <package name>
+yum repolist all
+yum info <package name>
+yumdb info <package name>
+
+### rpm (http://ftp.rpm.org/max-rpm/ch-rpm-query.html)
+#### print all packages and sort according last updated on top
+rpm -qa --last
+
+#### information about package ( help page, how to execute ... )
+rpm -qai
+
+#### information about package with configuration
+rpm -qaic
+rpm -qi wd-tomcat8-app-brandserver
+
+
+### jobs
+fg, bg, jobs
+
+### postponed execution
+at <date and time>
+> "write commands"
+^D
+
+### find process by name
+ps -fC firefox
+
+### kill -3
+output to log stop process
+
+### cron
+crontab -l
+
+### grep line before
+grep -B 4
+
+### grep line after
+grep -A 4
+
+### grep text into files
+grep -rn '.' -e '@Table'
+grep -ilR "@Table" .
+
+### find inside zip file(s), grep zip, zip grep
+zgrep "message_gateway_integration" /var/lib/brand-server/cache/zip/*.zip
+
+### grep zip, find inside zip, inside specific file line of text
+ls -1 *.zip | xargs -I{} unzip -p {} brand.xml  | grep instant-limit | grep "\\."
+
+### grep not included
+cat file.txt | grep -v "not-include-string"
+
+### vi
+vi wrap( :set wrap, :set nowrap )
+/ forward find
+? backward find
+n next occurence
+N previous occurence
+
+### command prompt, change console prompt
+export PROMPT_COMMAND="echo -n \[\$(date +%H:%M:%S)\]\ "
+
+### last executed exit code
+echo $?
+
+### memory dump
+cat /proc/meminfo
+
+### max open files
+cat /proc/sys/fs/file-max
+
+### wget to console
+wget -O- http://q-horus-app01.wirecard.sys:8500/wd-only/getBrandXml.jsp?brand=229099017 > /dev/null  2>&1
+
+### wget to specific file
+wget -O out.zip http://q-brands-app02:9000/published/resources/10050001.zip
+
+### zip files, zip all files
+zip -r bcm-1003.zip *
+
+### awk another delimiter
+awk -F '<new delimiter>'
+example of multi delimiter:
+awk -F '[/, ]'
+
+### awk print last column
+awk '{print $NF}'
+
+### awk example of applying function and conditions
+( https://www.gnu.org/software/gawk/manual/html_node/ )
+ps -aux | awk '{if(index($1,"a.vcherk")>0){print $0}}'
+ps -aux | awk '{print substr($0,1,20)}'
+
+### awk one column output to two column separated comma
+awk 'BEGIN{a=""}{if(a==""){a=$NF}else{print a","$NF; a=""}}'
+
+### awk execute script from file
+awk -f <filename>
+
+### awk complex search, print line below
+BEGIN{
+	need_to_print = 0
+}
+{
+    if(need_to_print >0){
+        print $N
+        need_to_print = need_to_print - 1
+    }else{
+		if( index($N, "Exception")>0 && index($N, "WrongException")==0 )  {
+			if(index($N,"[ERROR")==1 || index($N,"[WARN")==1){
+				print $N
+				need_to_print = 3
+			}
+		}
+    }
+}
+
+### sed, replace
+"name : " with "nomen" string
+sed 's/"name" : "/nomen/g'
+
+### print line by number from output, line from pipeline
+locate -ir "/zip$" | sed -n '2p'
+
+
+### calculate amount of strings
+ps -aux | awk 'BEGIN{a=0}{a=a+1}END{print a}'
+
+### bash
+[-n "$variable"] - non zero
+[-z "$variable"] - zero
+
+### last changed files, last updated file
+find -cmin -2
+
+### curl PUT example with file
+curl -X PUT -H "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charset=ISO-8859-1" -H "x-username: cherkavi" -d @put-request.data http://q-brands-app01.wirecard.sys:9000/draft/brands/229099017/model/country-configurations
+
+### curl without progress
+curl -s -X GET http://google.com
+curl --silent -X GET http://google.com
+curl  http://google.com 2>/dev/null
+
+### chmod recursively
+chmod -R +x <folder name>
+
+### execute command with environment variable, new environment variable for command
+ONE="this is a test"; echo $ONE
+
+### system log file
+/var/log/syslog
+
+### remove service ( kubernetes )
+sudo invoke-rc.d localkube stop
+sudo invoke-rc.d localkube status
+( sudo service localkube status )
+
+sudo update-rc.d -f localkube remove
+
+sudo grep -ir /etc -e "kube"
+rm -rf /etc/kubernetes
+rm -rf /etc/systemd/system/localkube.service
+
+vi /var/log/syslog
