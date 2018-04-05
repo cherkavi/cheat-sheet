@@ -5,6 +5,9 @@ git clean -f -q
 ### restore
 git reset --hard
 
+### remove last commit and put HEAD to previous one
+git reset --hard HEAD~1
+
 ### checkout with tracking
 git checkout -t origin/develop
 
