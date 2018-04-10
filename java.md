@@ -4,7 +4,29 @@ use Optional.absent
 ### locking
 Reentrant lock == Semaphore
 
-### Log4j debug from console, log4j command line
+### log4j configuration key for JVM 
+-Dlog4j.configuration={path to file}
+
+### log4j override configuration from code
+Properties props = new Properties();
+props.put("log4j.rootLogger", level+", stdlog");
+props.put("log4j.appender.stdlog", "org.apache.log4j.ConsoleAppender");
+props.put("log4j.appender.stdlog.target", "System.out");
+props.put("log4j.appender.stdlog.layout", "org.apache.log4j.PatternLayout");
+props.put("log4j.appender.stdlog.layout.ConversionPattern","%d{HH:mm:ss} %-5p %-25c{1} :: %m%n");
+// Execution logging
+props.put("log4j.logger.com.hp.specific", level);
+// Everything else 
+props.put("log4j.logger.com.hp", level);
+LogManager.resetConfiguration();
+PropertyConfigurator.configure(props);
+
+### log4j update configuration during runtime, refresh configuration
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30">
+...
+</Configuration>
+
 
 ### liquibase
 ####  liquibase print sql scripts ( update sql )
