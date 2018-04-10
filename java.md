@@ -104,7 +104,9 @@ name of the declared method
 ### spring boot actuator, spring boot list of all elements
 http://localhost:8808/actuator
 
-
+### set system properties
+System.getProperties().put("http.proxyHost", "someProxyURL");
+System.getProperties().put("http.proxyPort", "someProxyPort");
 
 ## Jenkins
 ### Script how to find all accessible methods
