@@ -4,6 +4,9 @@ use Optional.absent
 ### locking
 Reentrant lock == Semaphore
 
+### print loaded classes during start application
+java -verbose app
+
 ### log4j configuration key for JVM 
 -Dlog4j.configuration={path to file}
 
