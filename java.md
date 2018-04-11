@@ -4,6 +4,17 @@ use Optional.absent
 ### locking
 Reentrant lock == Semaphore
 
+## jshell
+### print import
+/!
+
+### help
+/help
+/?
+
+### exit
+/exit
+
 ### print loaded classes during start application
 java -verbose app
 
