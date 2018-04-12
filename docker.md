@@ -147,6 +147,7 @@ docker inspect <CONTAINER ID> | grep -i NETWORK
 docker pull portainer/portainer
 docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
 > https://portainer.readthedocs.io
+login/pass: admin/12345678
 
 Examples
 ------
