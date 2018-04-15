@@ -1,5 +1,36 @@
 ## Plugins:
 
+### vert.x project 
+> mvn vertx:run
+
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-dependencies</artifactId>
+                <version>${vertx.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>vertx-maven-plugin</artifactId>
+                <version>${vertx-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>vmp</id>
+                        <goals>
+                            <goal>initialize</goal>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <redeploy>true</redeploy>
+                    <jvmArgs>-Djava.net.preferIPv4Stack=true</jvmArgs>
+                </configuration>
+            </plugin>
+
+
 ### spring boot project 
 > mvn spring-boot:run
 
@@ -18,6 +49,54 @@
           <jvmArguments>-Djava.net.preferIPv4Stack=true -Dserver.port=9000 -Dspring.cloud.kubernetes.enabled=false</jvmArguments>
         </configuration>
       </plugin>
+
+
+### fabric8 with Vert.x deployment
+> mvn fabric8
+> mvn fabric8:deploy
+> mvn fabric8:undeploy
+
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>fabric8-maven-plugin</artifactId>
+                <version>${fabric8.maven.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>resource</goal>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <resources>
+                        <labels>
+                            <all>
+                                <property>
+                                    <name>app</name>
+                                    <value>{app-name}</value>
+                                </property>
+                            </all>
+                        </labels>
+                    </resources>
+                    <enricher>
+                        <excludes>
+                            <exclude>vertx-health-check</exclude>
+                        </excludes>
+                    </enricher>
+                    <generator>
+                        <includes>
+                            <include>vertx</include>
+                        </includes>
+                        <config>
+                            <vertx>
+                                <from>registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.1</from>
+                            </vertx>
+                        </config>
+                    </generator>
+                </configuration>
+            </plugin>
 
 
 ### fabric8 with SpringBoot deployment
