@@ -2,6 +2,7 @@
 
 ### wildfly project
 > mvn wildfly-swarm:run
+
       <plugin>
         <groupId>org.wildfly.swarm</groupId>
         <artifactId>wildfly-swarm-plugin</artifactId>
@@ -21,10 +22,11 @@
         </configuration>
       </plugin>
 
-### fabric8 with wildfly
+### fabric8 with WildFly, openshift with WildFly, WildFly Swarm
 > mvn fabric8
 > mvn fabric8:deploy
 > mvn fabric8:undeploy
+
       <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>fabric8-maven-plugin</artifactId>
@@ -92,55 +94,58 @@
 
 
 ### maven exec plugin
-mvn exec:java
-<build>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.4.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>java</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <mainClass>org.cherkashyn.vitalii.test.App</mainClass>
-          <arguments>
-            <argument>argument1</argument>
-          </arguments>
-          <systemProperties>
-            <systemProperty>
-              <key>myproperty</key>
-              <value>myvalue</value>
-            </systemProperty>
-          </systemProperties>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+> mvn exec:java
+
+    <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.4.0</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>java</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <mainClass>org.cherkashyn.vitalii.test.App</mainClass>
+              <arguments>
+                <argument>argument1</argument>
+              </arguments>
+              <systemProperties>
+                <systemProperty>
+                  <key>myproperty</key>
+                  <value>myvalue</value>
+                </systemProperty>
+              </systemProperties>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
 
 ### copy into package additional resources 
-  <resources>
-    <resource>
-      <directory>src/main/java</directory>
-      <includes>
-        <include> **/*.java </include>
-        <include> **/*.properties </include>
-        <include> **/*.xml </include>
-      </includes>
-    </resource>
-    <resource>
-      <directory>src/test/java</directory>
-      <includes>
-        <include> **/*.java </include>
-        <include> **/*.properties </include>
-        <include> **/*.xml </include>
-      </includes>
-    </resource>
-  </resources>
+
+
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include> **/*.java </include>
+          <include> **/*.properties </include>
+          <include> **/*.xml </include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/test/java</directory>
+        <includes>
+          <include> **/*.java </include>
+          <include> **/*.properties </include>
+          <include> **/*.xml </include>
+        </includes>
+      </resource>
+    </resources>
 
 
 ## create project
@@ -174,9 +179,8 @@ mvn exec:java
 > mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.2.8 -DgroupId=com.mycompany -DartifactId=KarafExample -Dversion=1.0-SNAPSHOT -Dpackage=com.mycompany.bundle
 
 ## Tools:
-
 ### how to debug
-%MAVEN_HOME%/bin/mvnDebug
+> %MAVEN_HOME%/bin/mvnDebug
 
 ### Download Sources and JavaDoc
--DdownloadSources=true -DdownloadJavadocs=true
+> -DdownloadSources=true -DdownloadJavadocs=true
