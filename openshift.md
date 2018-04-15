@@ -16,6 +16,9 @@
 ### show namespace, all applications, url to service, status of all services
 > oc status
 
+### show route to service, show url to application
+> oc get routes {app name / service name}
+
 ## get all information about current project, show all resources
 > oc get all
 
@@ -28,7 +31,11 @@
 ### project select, select project
 > oc project {project name}
 
-### create app
+### [create app](https://access.redhat.com/documentation/en-us/openshift_enterprise/3.0/html/developer_guide/dev-guide-new-app)
+
+#### new app with "default" container 
+> oc new-app {/local/folder/to_source}
+
 #### new app with "default" container from GIT
 > oc new-app https://github.com/openshift/ruby-ex.git
 
