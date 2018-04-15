@@ -51,7 +51,7 @@
       </plugin>
 
 
-### fabric8 with Vert.x deployment
+### fabric8 with Vert.x deployment ( Source-to-Image S2I )
 > mvn fabric8
 > mvn fabric8:deploy
 > mvn fabric8:undeploy
@@ -99,7 +99,7 @@
             </plugin>
 
 
-### fabric8 with SpringBoot deployment
+### fabric8 with SpringBoot deployment ( Source-to-Image S2I )
 > mvn fabric8
 > mvn fabric8:deploy
 > mvn fabric8:undeploy
@@ -169,7 +169,7 @@
       </plugin>
 
 
-### fabric8 with WildFly, openshift with WildFly, WildFly Swarm
+### fabric8 with WildFly, openshift with WildFly, WildFly Swarm ( Source-to-Image S2I )
 > mvn fabric8
 > mvn fabric8:deploy
 > mvn fabric8:undeploy
