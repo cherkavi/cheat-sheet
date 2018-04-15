@@ -1,5 +1,72 @@
 ## Plugins:
 
+### spring boot project 
+> mvn spring-boot:run
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <jvmArguments>-Djava.net.preferIPv4Stack=true -Dserver.port=9000 -Dspring.cloud.kubernetes.enabled=false</jvmArguments>
+        </configuration>
+      </plugin>
+
+
+### fabric8 with SpringBoot deployment
+> mvn fabric8
+> mvn fabric8:deploy
+> mvn fabric8:undeploy
+
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>fabric8-maven-plugin</artifactId>
+        <version>${fabric8.maven.plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>resource</goal>
+              <goal>build</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <resources>
+              <labels>
+                  <all>
+                      <property>
+                          <name>app</name>
+                          <value>{app-name}</value>
+                      </property>
+                  </all>
+              </labels>
+          </resources>
+          <enricher>
+            <excludes>
+              <exclude>spring-boot-health-check</exclude>
+            </excludes>
+          </enricher>
+          <generator>
+            <includes>
+              <include>spring-boot</include>
+            </includes>
+            <config>
+              <spring-boot>
+                <from>registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.1</from>
+              </spring-boot>
+            </config>
+          </generator>
+        </configuration>
+      </plugin>
+
+
 ### wildfly project
 > mvn wildfly-swarm:run
 
@@ -21,6 +88,7 @@
           <jvmArguments>-Dswarm.http.port=9001</jvmArguments>
         </configuration>
       </plugin>
+
 
 ### fabric8 with WildFly, openshift with WildFly, WildFly Swarm
 > mvn fabric8
