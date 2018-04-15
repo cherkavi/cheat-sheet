@@ -64,6 +64,11 @@ for windows:
 set "JAVA_OPTS=%JAVA_OPTS% -Dcatalina.log.level=INFO -Xmx1024m -Duser.timezone=UTC -Dspring.config.location=C:\soft\tomcat\apache-tomcat-8.0.41-brandserver\conf\brand-application-cherkavi.yml"
 set "CATALINA_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9009 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
 
+### Tomcat & Apache
+httpd.conf - main config file
+mod_jk.conf, workers.properties, alias.properties - communication files between Tomcat & Apache ( url route, port to be listen ... )
+
+
 ### java application debug
 -Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.port=9010
