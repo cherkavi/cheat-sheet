@@ -52,6 +52,7 @@
 
 
 ### fabric8 with Vert.x deployment ( Source-to-Image S2I )
+[fabric8 source code and examples](https://github.com/fabric8io/fabric8-maven-plugin/tree/master/samples)
 > mvn fabric8
 > mvn fabric8:deploy
 > mvn fabric8:undeploy
