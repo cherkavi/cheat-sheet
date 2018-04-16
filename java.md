@@ -76,6 +76,10 @@ mod_jk.conf, workers.properties, alias.properties - communication files between 
 -Dcom.sun.management.jmxremote.authenticate=false
 -Dcom.sun.management.jmxremote.ssl=false
 
+## WildFly
+### check health of application
+<host:port>/<application>/node
+
 ## Java Testing
 ### insert private fields
 ReflectionUtils.makeAccessible(id);
@@ -127,6 +131,9 @@ name of the declared method
 
 ### spring boot actuator, spring boot list of all elements
 http://localhost:8808/actuator
+
+### health check of SpringBoot application
+<url:port>/<application>/health
 
 ### set system properties
 System.getProperties().put("http.proxyHost", "someProxyURL");
