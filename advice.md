@@ -27,18 +27,5 @@ run command: shell:startup
 move into opened window just created shortcut
 
 
-## slack
-### generate token
-https://api.slack.com/custom-integrations/legacy-tokens
-
-### how to write message
-https://api.slack.com/docs/messages/builder
-
-### send message using web api
-curl -X POST -H "Content-type: application/json" -H "Authorization: Bearer xoxp-283316862324-xxxxxx" --data @data.json https://wirecard-issuing.slack.com/api/chat.postMessage
-{"text":"another message from tech user", "channel":"team-brand-server"}
-!!! for Windows need to escape " symbol
-
-
 ## URL
 [web sequence diagrams](https://www.websequencediagrams.com/)
