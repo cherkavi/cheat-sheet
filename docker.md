@@ -6,9 +6,9 @@ docker info
 
 
 ### how to skip typing "sudo" each time
-1. groupadd docker
-2. usermod -aG docker {username}
-3. service docker restart
+1. sudo groupadd docker
+2. sudo usermod -aG docker $USER
+3. sudo service docker restart
 
 
 Images
