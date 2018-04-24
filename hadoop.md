@@ -9,6 +9,7 @@
 > docker run -v /tmp:/home/root/tmp --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -t -i sequenceiq/hadoop-docker 
 
 
+
 ## HDFS common commands
 
 ### help ( Distributed File System )
@@ -71,7 +72,7 @@ show all sub-folders
 > hdfs dfs -ls -r 
 
 ### standard command for hdsf
--cat (-text), -tail, -mkdir, -chmod, - chown, count, test ....
+-touchz, -cat (-text), -tail, -mkdir, -chmod, -chown, -count ....
 
 
 
@@ -83,9 +84,16 @@ show all sub-folders
 ### file system check, reporting, file system information
 > hdfs fsck /
 
-### balancer for distributed file system
+### balancer for distributed file system, necessary after failing/removing/eliminating some DataNode(s)
 > hdfs balancer
 
 ### administration of the filesystem
 > hdfs dfsadmin -help
+show statistic
+> hdfs dfsadmin -report
+HDFS to "read-only" mode for external users
+> hdfs dfsadmin -safemode
+> hdfs dfsadmin -upgrade
+> hdfs dfsadmin -backup
+
 
