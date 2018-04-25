@@ -41,3 +41,30 @@ output example:
 ### administration of the filesystem
 ./hdfs dfsadmin -help
 
+
+## Hortonworks sandbox
+[tutorial.credentials](https://hortonworks.com/tutorial/learning-the-ropes-of-the-hortonworks-sandbox)
+
+### Web SSH 
+localhost:4200
+root/hadoop
+
+### SSH access
+ssh root@localhost -p 2222
+
+
+### ambari password reset
+* shell web client (aka shell-in-a-box): 
+localhost:4200 
+root / hadoop
+* ambari-admin-password-reset
+* ambari-agent restart
+* login into ambari:
+localhost:8080
+admin/{your password}
+
+
+### Zeppelin UI
+http://localhost:9995
+
+
