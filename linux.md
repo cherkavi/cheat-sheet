@@ -206,6 +206,15 @@ ONE="this is a test"; echo $ONE
 ### Debian update package
 sudo apt-get install --only-upgrade {packagename}
 
+### Debian list of packages
+sudo apt list
+
+### Debian list the versions available in your repo
+sudo apt-cache madison {package name}
+
+### Debian install new version of package with specific version 
+sudo apt-get install {package name}={version}
+
 ### remove service ( kubernetes )
 sudo invoke-rc.d localkube stop
 sudo invoke-rc.d localkube status
