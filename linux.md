@@ -215,6 +215,10 @@ sudo apt-cache madison {package name}
 ### Debian install new version of package with specific version 
 sudo apt-get install {package name}={version}
 
+### Debian system cleanup
+sudo apt-get clean
+sudo apt-get autoremove --purge
+
 ### remove service ( kubernetes )
 sudo invoke-rc.d localkube stop
 sudo invoke-rc.d localkube status
