@@ -203,6 +203,9 @@ ONE="this is a test"; echo $ONE
 ### system log file
 /var/log/syslog
 
+### Debian update package
+sudo apt-get install --only-upgrade {packagename}
+
 ### remove service ( kubernetes )
 sudo invoke-rc.d localkube stop
 sudo invoke-rc.d localkube status
