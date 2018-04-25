@@ -43,3 +43,4 @@
 | Ctrl-x o   |       chOwn dialog
 | Ctrl-x s   |       create Symlink dialog
 | Ctrl-x l   |       create hard Link dialog
+| sh link    |       sh://user@host:port/path/into/remote/machine
