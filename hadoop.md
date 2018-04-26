@@ -56,6 +56,9 @@ output example:
 ### remove data from HDFS
 > hdfs rm -r -skipTrash /path/to/hdfs-folder
 
+### clean up trash bin
+> hdfs dfs -expunge
+
 ### file info ( disk usage )
 > hdfs dfs -du -h /path/to/hdfs-folder
 
