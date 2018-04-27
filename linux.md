@@ -48,6 +48,7 @@ mc --nocolor
 ### find files by mask
 locate -ir "brand-reader*"
 locate -b "brand-reader"
+which "program-name"
 
 ### find file by last update time
 find / -mmin 2
