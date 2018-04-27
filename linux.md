@@ -263,3 +263,6 @@ rm -rf /etc/kubernetes
 rm -rf /etc/systemd/system/localkube.service
 
 vi /var/log/syslog
+
+### remove VMWare player
+sudo vmware-installer -u vmware-player
