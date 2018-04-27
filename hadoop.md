@@ -99,4 +99,6 @@ HDFS to "read-only" mode for external users
 > hdfs dfsadmin -upgrade
 > hdfs dfsadmin -backup
 
-
+### job execution
+> hadoop jar {path to jar} {classname}
+> jarn jar {path to jar} {classname}
