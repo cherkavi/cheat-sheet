@@ -1,5 +1,16 @@
 ## Linux
 
+### connect to remote machine via ssh without credentials
+ssh-keygen -t rsa
+
+( check created file /home/{user}/.ssh/id_rsa )
+
+ssh-copy-id {username}@{machine ip}:{port}
+
+the same, but manually:
+.ssh/id_rsa.pub | ssh {username}@{ip}:{port} "cat >> ~/.ssh/authorized_keys"
+
+
 ### sudo reboot
 
 ### sort, order
@@ -48,12 +59,17 @@ find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs sudo rm -r {} 
 find /tmp -maxdepth 1 -mmin +240 -iname "[0-9]*\-[0-9]" | xargs sudo rm -r {} \; >/dev/null 2>&1
 
 ### yum ( app search )
-yum list <pattern>
+yum list {pattern}
+
 ( example: yum list python33 )
-yum install <package name>
+
+yum install {package name}
+
 yum repolist all
-yum info <package name>
-yumdb info <package name>
+
+yum info {package name}
+	
+yumdb info {package name}
 
 ### rpm (http://ftp.rpm.org/max-rpm/ch-rpm-query.html)
 #### print all packages and sort according last updated on top
@@ -64,6 +80,7 @@ rpm -qai
 
 #### information about package with configuration
 rpm -qaic
+
 rpm -qi wd-tomcat8-app-brandserver
 
 
@@ -105,9 +122,13 @@ cat file.txt | grep -v "not-include-string"
 
 ### vi
 vi wrap( :set wrap, :set nowrap )
+
 / forward find
+
 ? backward find
+
 n next occurence
+
 N previous occurence
 
 ### command prompt, change console prompt
@@ -141,7 +162,9 @@ awk '{print $NF}'
 
 ### awk example of applying function and conditions
 ( https://www.gnu.org/software/gawk/manual/html_node/ )
+
 ps -aux | awk '{if(index($1,"a.vcherk")>0){print $0}}'
+
 ps -aux | awk '{print substr($0,1,20)}'
 
 ### awk one column output to two column separated comma
@@ -191,7 +214,9 @@ curl -X PUT -H "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charse
 
 ### curl without progress
 curl -s -X GET http://google.com
+
 curl --silent -X GET http://google.com
+
 curl  http://google.com 2>/dev/null
 
 ### chmod recursively
@@ -203,15 +228,37 @@ ONE="this is a test"; echo $ONE
 ### system log file
 /var/log/syslog
 
+### Debian update package
+sudo apt-get install --only-upgrade {packagename}
+
+### Debian list of packages
+sudo apt list
+
+### Debian list the versions available in your repo
+sudo apt-cache madison {package name}
+
+### Debian install new version of package with specific version 
+sudo apt-get install {package name}={version}
+
+### Debian system cleanup
+sudo apt-get clean
+
+sudo apt-get autoremove --purge
+
 ### remove service ( kubernetes )
 sudo invoke-rc.d localkube stop
+
 sudo invoke-rc.d localkube status
+
 ( sudo service localkube status )
 
 sudo update-rc.d -f localkube remove
 
+
 sudo grep -ir /etc -e "kube"
+
 rm -rf /etc/kubernetes
+
 rm -rf /etc/systemd/system/localkube.service
 
 vi /var/log/syslog

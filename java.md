@@ -20,6 +20,13 @@ Reentrant lock == Semaphore
 ### exit
 /exit
 
+## JAR
+### create jar based on compiled files
+jar cf WC2.jar *.class
+
+### take a look into jar
+jar tf WC2.jar
+
 ### print loaded classes during start application
 java -verbose app
 
