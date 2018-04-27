@@ -234,6 +234,7 @@ sudo apt-get install --only-upgrade {packagename}
 
 ### Debian list of packages
 sudo apt list
+sudo dpkg -l
 
 ### Debian list the versions available in your repo
 sudo apt-cache madison {package name}
