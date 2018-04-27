@@ -43,10 +43,25 @@ docker volume ls
 * -d=true
 
 ### run image with specific name
-docker run --name my_specific_name <name of image>
+docker run --name my_specific_name {name of image}
 
 ### start stopped previously container
-docker start <CONTAINER ID>
+docker start {CONTAINER ID}
+
+## Volumes
+### create volume
+docker volume create {volume name}
+
+### inspect volume, check volume
+docker volume inspect {volume name}
+( "Mountpoint" will show real position )
+
+### list of all volumes
+docker volume ls
+
+### using volume
+docker run {name of image} -v {volume name}:/folder/inside/container
+docker run {name of image} -mount source={volume name},target=/folder/inside/container
 
 
 Inspection
