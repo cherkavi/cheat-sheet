@@ -100,7 +100,7 @@ docker inspect
 docker inspect -f '{{.HostConfig.PortBindings}}' {CONTAINER ID}
 
 
-Save
+## Save
 ------
 ### docker save/commit
 docker commit {CONTAINER ID} <new image name>
@@ -112,7 +112,7 @@ docker tag {CONTAINER ID} <TAG NAME[:TAG VERSION]>
 docker save --output <output file name>.tar {CONTAINER ID}
 
 
-Stop and Pause
+## Stop and Pause
 ------
 
 ### wait until container will be stopped
@@ -133,7 +133,7 @@ docker kill {CONTAINER ID}
 just kill the terminal
 
 
-Remove and Clean
+## Remove and Clean
 ------
 ### remove all containers
 docker rm `docker ps -a | awk -F ' ' '{print $1}'`
@@ -164,6 +164,9 @@ docker network create --subnet=172.18.0.0/16 docker.local.network
 docker run --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -it {CONTAINER ID} /bin/bash
 * check network
 docker inspect {CONTAINER ID} | grep -i NETWORK
+
+### shares the host network stack and has access to the /etc/hosts for network communication
+--net=host 
 
 ### UI manager
 docker pull portainer/portainer
