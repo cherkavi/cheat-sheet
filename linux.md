@@ -235,13 +235,14 @@ sudo apt-get install --only-upgrade {packagename}
 ### Debian list of packages
 sudo apt list
 sudo dpkg -l
+
 | First letter | desired package state ("selection state")|
 ----|------------------------
 | u | unknown | 
 | i | install | 
 | r | remove/deinstall | 
 | p |  purge (remove including config files) | 
-| h |  hold
+| h |  hold |
 
 | Second letter | current package state |
 ---|---------
