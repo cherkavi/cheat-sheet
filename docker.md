@@ -78,8 +78,7 @@ docker ps -a
 ### join to executed container
 docker attach {CONTAINER ID}
 
-### docker log of container
-### console output
+### docker log of container, console output
 docker logs --follow --tail 25 {CONTAINER ID}
 
 ### show processes from container
