@@ -47,7 +47,10 @@ mc --nocolor
 
 ### find files by mask
 locate -ir "brand-reader*"
+
 locate -b "brand-reader"
+
+### where is program placed, location of executable file
 which "program-name"
 
 ### find file by last update time
@@ -295,4 +298,6 @@ sudo vmware-installer -u vmware-player
 lsb_release -a
 cat /etc/system-release
 
-
+### print all networks
+ip -4 a
+ip -6 a
