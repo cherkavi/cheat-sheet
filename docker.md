@@ -43,6 +43,7 @@ docker volume ls
 ### run container in detached ( background ) mode, without console attachment to running process
 * --detach
 * -d=true
+* -d
 
 ### run image with specific name
 docker run --name my_specific_name {name of image}
