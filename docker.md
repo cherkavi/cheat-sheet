@@ -47,6 +47,9 @@ docker volume ls
 ### run image with specific name
 docker run --name my_specific_name {name of image}
 
+### run image with specific user ( when you have issue with rights for mounting external folders )
+docker run --user root {name of image}
+
 ### start stopped previously container
 docker start {CONTAINER ID}
 
