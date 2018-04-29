@@ -290,3 +290,9 @@ vi /var/log/syslog
 
 ### remove VMWare player
 sudo vmware-installer -u vmware-player
+
+### version of OS, linux version
+lsb_release -a
+cat /etc/system-release
+
+
