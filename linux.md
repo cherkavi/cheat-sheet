@@ -301,3 +301,9 @@ cat /etc/system-release
 ### print all networks
 ip -4 a
 ip -6 a
+
+### add user into special group
+adduser {username} {destination group name}
+
+* edit file /etc/group
+* add :{username} to the end of line with {groupname}:x:999
