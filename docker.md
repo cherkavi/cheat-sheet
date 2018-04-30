@@ -11,6 +11,39 @@ docker info
 ( add current user into docker group )
 3. sudo service docker restart
 
+### proxy set up:
+* ~/.docker/config.json
+{
+ "proxies":
+ {
+   "default":
+   {
+     "httpProxy": "http://127.0.0.1:3001",
+     "noProxy": "*.test.example.com,.example2.com"
+   }
+ }
+}
+
+* docker run --env-file environment.file {image name}
+> ( or via -e variables )
+
+HTTP_PROXY=http://webproxy.host:3128
+
+http_proxy=http://webproxy.host:3128
+
+HTTPS_PROXY=http://webproxy.host:3128
+
+https_proxy=http://webproxy.host:3128
+
+NO_PROXY="localhost,127.0.0.1,.host.de,.viola.local"
+
+no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
+
+
+* /etc/systemd/system/docker.service.d/http-proxy.conf
+
+[Service]    
+Environment="HTTP_PROXY=http://webproxy.host.de:3128/" "NO_PROXY=localhost,127.0.0.1,.host.de,.viola.local,.local"
 
 
 Images
@@ -176,6 +209,7 @@ docker pull portainer/portainer
 docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
 > https://portainer.readthedocs.io
 login/pass: admin/12345678
+
 
 Examples
 ------
