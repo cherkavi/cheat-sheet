@@ -12,6 +12,11 @@ docker info
 3. sudo service docker restart
 
 ### proxy set up:
+* /etc/default/docker
+
+export http_proxy="http://host:3128/"
+
+
 * ~/.docker/config.json
 {
  "proxies":
@@ -23,6 +28,7 @@ docker info
    }
  }
 }
+
 
 * docker run --env-file environment.file {image name}
 > ( or via -e variables )
