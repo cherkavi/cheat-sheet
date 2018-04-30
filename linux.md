@@ -302,8 +302,30 @@ cat /etc/system-release
 ip -4 a
 ip -6 a
 
+
 ### add user into special group
 adduser {username} {destination group name}
 
 * edit file /etc/group
 * add :{username} to the end of line with {groupname}:x:999
+
+
+### proxy
+* /etc/profile.d/proxy.sh
+export HTTP_PROXY=http://webproxy.host:3128
+
+export http_proxy=http://webproxy.host:3128
+
+export HTTPS_PROXY=http://webproxy.host:3128
+
+export https_proxy=http://webproxy.host:3128
+
+export NO_PROXY="localhost,127.0.0.1,.host,.viola.local"
+
+export no_proxy="localhost,127.0.0.1,.host,.viola.local"
+
+* /etc/environment 
+
+http_proxy=http://webproxy.host:3128
+
+no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
