@@ -15,4 +15,8 @@
 * sudo systemctl start jenkins
 * sudo systemctl status jenkins
 
+### manual start
+java -jar jenkins.war --httpPort=8080 --useJmx 
+> ~/.jenkins/secrets/
+
 ### plugins
