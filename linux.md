@@ -14,6 +14,9 @@ the same, but manually:
 sudo apt get ssh
 sudo service ssh start
 
+### mount cdrom ( for virtual machine )
+sudo mount /dev/cdrom /mnt
+
 ### sudo reboot
 
 ### sort, order
