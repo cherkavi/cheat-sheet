@@ -18,5 +18,6 @@
 ### manual start
 java -jar jenkins.war --httpPort=8080 --useJmx 
 > ~/.jenkins/secrets/
+> [manual](https://wiki.jenkins.io/display/JENKINS/Starting+and+Accessing+Jenkins)
 
 ### plugins
