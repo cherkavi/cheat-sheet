@@ -87,3 +87,6 @@ git --git-dir C:\project\horus\.git  branch --all
 
 ### clone only files without history
 git clone --depth 1 https://github.com/kubernetes/minikube
+
+### download single file from repo
+git archive --remote=ssh://https://github.com/cherkavi/cheat-sheet HEAD jenkins.md
