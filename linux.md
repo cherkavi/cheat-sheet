@@ -10,6 +10,9 @@ ssh-copy-id {username}@{machine ip}:{port}
 the same, but manually:
 .ssh/id_rsa.pub | ssh {username}@{ip}:{port} "cat >> ~/.ssh/authorized_keys"
 
+### install ssh
+sudo apt get ssh
+sudo service ssh start
 
 ### sudo reboot
 
