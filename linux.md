@@ -119,16 +119,24 @@ grep -A 4
 
 ### grep text into files
 grep -rn '.' -e '@Table'
+
 grep -ilR "@Table" .
+
+
+### grep OR operation
+cat file.txt | grep -e "occurence1" -e "occurence2"
+
+### grep AND operation
+cat file.txt | grep -e "occurence1" | grep -e "occurence2"
+
+### grep not included, grep NOT
+cat file.txt | grep -v "not-include-string"
 
 ### find inside zip file(s), grep zip, zip grep
 zgrep "message_gateway_integration" /var/lib/brand-server/cache/zip/*.zip
 
 ### grep zip, find inside zip, inside specific file line of text
 ls -1 *.zip | xargs -I{} unzip -p {} brand.xml  | grep instant-limit | grep "\\."
-
-### grep not included
-cat file.txt | grep -v "not-include-string"
 
 ### vi
 vi wrap( :set wrap, :set nowrap )
