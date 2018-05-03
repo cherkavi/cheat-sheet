@@ -310,7 +310,10 @@ sudo vmware-installer -u vmware-player
 
 ### version of OS, linux version
 lsb_release -a
+
 cat /etc/system-release
+
+uname -a
 
 ### print all networks
 ip -4 a
