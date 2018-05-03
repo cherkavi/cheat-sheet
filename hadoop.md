@@ -131,3 +131,7 @@ http://localhost:9995
 
 ### install jupyter for spark
 https://hortonworks.com/hadoop-tutorial/using-ipython-notebook-with-apache-spark/
+> PARK_MAJOR_VERSION is set to 2, using Spark2
+> Error in pyspark startup:
+> IPYTHON and IPYTHON_OPTS are removed in Spark 2.0+. Remove these from the environment and set PYSPARK_DRIVER_PYTHON and PYSPARK_DRIVER_PYTHON_OPTS instead.
+just set variable to using Spart1 inside script: SPARK_MAJOR_VERSION=1
