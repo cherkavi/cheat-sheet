@@ -129,4 +129,5 @@ admin/{your password}
 ### Zeppelin UI
 http://localhost:9995
 
-
+### install jupyter for spark
+https://hortonworks.com/hadoop-tutorial/using-ipython-notebook-with-apache-spark/
