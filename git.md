@@ -90,3 +90,13 @@ git clone --depth 1 https://github.com/kubernetes/minikube
 
 ### download single file from repo
 git archive --remote=ssh://https://github.com/cherkavi/cheat-sheet HEAD jenkins.md
+
+### configuration for proxy server, proxy configuration
+#### set proxy, using proxy
+git config --global http.proxy 139.7.95.74:8080
+git config --global https.proxy 139.7.95.74:8080
+#### check proxy, get proxy
+git config --global --get http.proxy
+#### remove proxy configuration, unset proxy
+git config --global --unset http.proxy
+
