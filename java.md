@@ -151,12 +151,3 @@ http://localhost:8808/actuator
 System.getProperties().put("http.proxyHost", "someProxyURL");
 System.getProperties().put("http.proxyPort", "someProxyPort");
 
-## Jenkins
-### Script how to find all accessible methods
-
-### Script Console ( Manage Jenkins )
-Thread.getAllStackTraces().keySet().each() {
-  t -> if (t.getName()=="YOUR THREAD NAME" ) {   t.interrupt();  }
-}
-Jenkins.instance.getItemByFullName("Brand Server/develop").getBuildByNumber(614).finish(hudson.model.Result.ABORTED, new java.io.IOException("Aborting build"));
-Jenkins.instance.getItemByFullName("Brand Server/develop").getBuildByNumber(614).doKill();
