@@ -19,7 +19,8 @@
 * * check {TOMCAT_HOST}:{TOMCAT_PORT}/manager/html with your username/password
 
 ### maven plugin for tomcat:
-see previous post about "manager" application 
+see previous post about "manager" application, 
+see [documentation](http://tomcat.apache.org/maven-plugin-trunk/tomcat7-maven-plugin/redeploy-mojo.html)
 ``` 
 mvn  org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy -Dmaven.test.skip -Dmaven.tomcat.url=http://{host}:8080/manager/text -Dtomcat.username=root -Dtomcat.password=root
 ```
