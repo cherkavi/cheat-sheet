@@ -1,4 +1,21 @@
+### describe plugin 
+
+mvn help:describe -Dplugin=org.apache.tomcat.maven:tomcat7-maven-plugin
+
 ## Plugins:
+
+### maven tomcat plugin 
+mvn  org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy -Dmaven.test.skip -Dmaven.tomcat.url=http://host:8080/manager/text -Dtomcat.username=manager -Dtomcat.password=manager
+
+%TOMCAT%/conf/tomcat-users.xml:
+  <role rolename="manager-gui"/>
+  <role rolename="manager-script"/>
+  <role rolename="manager-jmx"/>
+  <role rolename="manager-status"/>
+  <role rolename="admin-gui"/>
+  <role rolename="admin-script"/>
+  <user username="manager" password="manager" roles="manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script"></user>
+
 
 ### vert.x project 
 > mvn vertx:run
