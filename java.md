@@ -88,6 +88,25 @@ mod_jk.conf, workers.properties, alias.properties - communication files between 
 -Dcom.sun.management.jmxremote.authenticate=false
 -Dcom.sun.management.jmxremote.ssl=false
 
+### JNDI datasource examples:
+   <Resource name="ds/JDBCDataSource" auth="Container"
+              type="javax.sql.DataSource" 
+              driverClassName="org.h2.Driver"
+              url="jdbc:h2:~/testdb;Mode=Oracle"
+              username="sa" 
+              password="" maxActive="20" maxIdle="10"
+              maxWait="-1"/>
+
+   <Resource name="ds/JDBCDataSource" auth="Container"
+              type="javax.sql.DataSource" 
+              driverClassName="org.hsqldb.jdbc.JDBCDriver"
+              url="jdbc:hsqldb:mem:test;sql.syntax_ora=true"
+              username="sa" 
+              password="sa" maxActive="20" maxIdle="10"
+              maxWait="-1"/>
+
+
+
 ## WildFly
 ### check health of application
 <host:port>/<application>/node
