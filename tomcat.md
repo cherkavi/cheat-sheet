@@ -18,7 +18,6 @@
 * * file:webapps/manager/META-INF/context.xml XML:Context/Valve@allow - maybe need to comment 
 * * check {TOMCAT_HOST}:{TOMCAT_PORT}/manager/html with your username/password
 
-
 ### maven plugin for tomcat:
 see previous post about "manager" application 
 ``` 
@@ -45,3 +44,9 @@ set "CATALINA_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote
 * mod_jk.conf
 * workers.properties
 * alias.properties
+
+
+### Issue
+```[INFO] I/O exception (java.net.SocketException) caught when processing request: Connection reset by peer: socket write error ```
+check "manager" application, username/password
+
