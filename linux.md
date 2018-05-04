@@ -68,6 +68,10 @@ find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs sudo rm -r {} 
 ### find files/folders by regexp and older than 240 min
 find /tmp -maxdepth 1 -mmin +240 -iname "[0-9]*\-[0-9]" | xargs sudo rm -r {} \; >/dev/null 2>&1
 
+### find large files
+find . -type f -size +50000k -exec ls -lh {} \;
+find . -type f -size +50000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }' 
+
 ### yum ( app search )
 yum list {pattern}
 
