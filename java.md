@@ -59,6 +59,11 @@ spring.datasource.platform=h2
 spring.jpa.hibernate.ddl-auto=none
 spring.datasource.continue-on-error=true
 
+### hsqldb Oracle dialect
+driverClassName="org.hsqldb.jdbc.JDBCDriver"
+url="jdbc:hsqldb:mem:test;sql.syntax_ora=true"
+username="sa" password=""
+
 ### liquibase
 ####  liquibase print sql scripts ( update sql )
 java -jar C:\soft\maven-repo\org\liquibase\liquibase-core\3.4.1\liquibase-core-3.4.1.jar  \
@@ -67,18 +72,6 @@ java -jar C:\soft\maven-repo\org\liquibase\liquibase-core\3.4.1\liquibase-core-3
 --contexts="default" \
 --url=jdbc:oracle:thin:@q-ora-db-scan.wirecard.sys:1521/stx11de.wirecard --username=horus_user_cherkavi --password=horus_user_cherkavi \
  updateSQL > script.sql
-
-
-### Tomcat debug
-file: setenv.sh
-export CATALINA_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9009 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
-for windows:
-set "JAVA_OPTS=%JAVA_OPTS% -Dcatalina.log.level=INFO -Xmx1024m -Duser.timezone=UTC -Dspring.config.location=C:\soft\tomcat\apache-tomcat-8.0.41-brandserver\conf\brand-application-cherkavi.yml"
-set "CATALINA_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9009 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
-
-### Tomcat & Apache
-httpd.conf - main config file
-mod_jk.conf, workers.properties, alias.properties - communication files between Tomcat & Apache ( url route, port to be listen ... )
 
 
 ### java application debug
