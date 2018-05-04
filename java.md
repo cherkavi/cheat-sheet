@@ -53,6 +53,11 @@ PropertyConfigurator.configure(props);
 ...
 </Configuration>
 
+### h2 Oracle dialect
+spring.datasource.url=jdbc:h2:mem:testdb;Mode=Oracle
+spring.datasource.platform=h2
+spring.jpa.hibernate.ddl-auto=none
+spring.datasource.continue-on-error=true
 
 ### liquibase
 ####  liquibase print sql scripts ( update sql )
