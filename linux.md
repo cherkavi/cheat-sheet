@@ -1,201 +1,297 @@
 ## Linux
 
 ### connect to remote machine via ssh without credentials
+```
 ssh-keygen -t rsa
-
+```
 ( check created file /home/{user}/.ssh/id_rsa )
 
+```
 ssh-copy-id {username}@{machine ip}:{port}
+```
 
 the same, but manually:
+```
 .ssh/id_rsa.pub | ssh {username}@{ip}:{port} "cat >> ~/.ssh/authorized_keys"
+```
 
 ### install ssh
+```
 sudo apt get ssh
 sudo service ssh start
+```
 
 ### mount cdrom ( for virtual machine )
+```
 sudo mount /dev/cdrom /mnt
+```
 
 ### sudo reboot
+``` 
+shutdown -r now
+```
 
 ### sort, order
+```
 sort <filename>
+```
 
 ### unique lines (duplications) into file
 #### add count
+```
 uniq -c
+```
+
 #### duplicates
+```
 uniq -d
+```
+
 #### unique
+```
 uniq -u
+```
 
 ### print column from file
+```
 cut --delimiter "," --fields 2,3,4 test1.csv
+```
 
 ### log information
+```
 /var/log/messages
 /var/log/syslog
+```
 
 ### bash reading content of the file to command-line parameter
+```
 --extra-vars 'rpm_version=$(cat version.txt)'
+```
 
 ### auto execute during startup
+```
 folder: etc/rc1.d ( rc2.d ... )
 contains links to ../init.d/<name of bash script>
 should understand next options: start, stop, restart
+```
 
 ### mc color, midnight commander
 file:~/.mc/ini
+```
 [Colors]
 base_color=normal=brightgray,black:marked=brightcyan,black:selected=black,lightgray:directory=white,black:errors=red,black:executable=brightgreen,black:link=brightblue,black:stalelink=red,black:device=brightmagenta,black:special=brightcyan,black:core=lightgray,black:menu=white,black:menuhot=brightgreen,black:menusel=black,white:editnormal=brightgray,black:editmarked=black,brightgreen:editbold=brightred,cyan
+```
 mc --nocolor
 
 ### find files by mask
+```
 locate -ir "brand-reader*"
-
 locate -b "brand-reader"
+```
 
 ### where is program placed, location of executable file
+```
 which "program-name"
+```
 
 ### find file by last update time
+```
 find / -mmin 2
+```
 
 ### find files/folders by name and older than 240 min
+```
 find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs sudo rm -r {} \; >/dev/null 2>&1
+```
 
 ### find files/folders by regexp and older than 240 min
+```
 find /tmp -maxdepth 1 -mmin +240 -iname "[0-9]*\-[0-9]" | xargs sudo rm -r {} \; >/dev/null 2>&1
+```
 
 ### find large files
+```
 find . -type f -size +50000k -exec ls -lh {} \;
 find . -type f -size +50000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }' 
+```
 
 ### yum ( app search )
+```
 yum list {pattern}
-
+```
 ( example: yum list python33 )
-
+```
 yum install {package name}
-
 yum repolist all
-
 yum info {package name}
-	
 yumdb info {package name}
+```
 
 ### rpm (http://ftp.rpm.org/max-rpm/ch-rpm-query.html)
 #### print all packages and sort according last updated on top
+```
 rpm -qa --last
+```
 
 #### information about package ( help page, how to execute ... )
+```
 rpm -qai
+```
 
 #### information about package with configuration
+```
 rpm -qaic
-
 rpm -qi wd-tomcat8-app-brandserver
-
+```
 
 ### jobs
+```
 fg, bg, jobs
+```
 
 ### postponed execution
+```
 at <date and time>
 > "write commands"
 ^D
+```
 
 ### find process by name
+```
 ps -fC firefox
+```
 
 ### kill -3
+```
 output to log stop process
+```
 
 ### cron
+```
 crontab -l
+```
 
 ### grep line before
+```
 grep -B 4
+```
 
 ### grep line after
+```
 grep -A 4
+```
 
 ### grep text into files
+```
 grep -rn '.' -e '@Table'
-
 grep -ilR "@Table" .
-
+```
 
 ### grep OR operation
+```
 cat file.txt | grep -e "occurence1" -e "occurence2"
+```
 
 ### grep AND operation
+```
 cat file.txt | grep -e "occurence1" | grep -e "occurence2"
+```
 
 ### grep not included, grep NOT
+```
 cat file.txt | grep -v "not-include-string"
+```
 
 ### find inside zip file(s), grep zip, zip grep
+```
 zgrep "message_gateway_integration" /var/lib/brand-server/cache/zip/*.zip
+```
 
 ### grep zip, find inside zip, inside specific file line of text
+```
 ls -1 *.zip | xargs -I{} unzip -p {} brand.xml  | grep instant-limit | grep "\\."
+```
 
 ### vi
+```
 vi wrap( :set wrap, :set nowrap )
-
-/ forward find
-
-? backward find
-
-n next occurence
-
-N previous occurence
+```
+| shortcut |   description   |
+|----------|-----------------|
+|     /    |  search forward | 
+|     ?    | search backward |
+|     n    | next occurence  |
+|     N    | prev occurence  |
 
 ### command prompt, change console prompt
+```
 export PROMPT_COMMAND="echo -n \[\$(date +%H:%M:%S)\]\ "
+```
 
 ### last executed exit code
+```
 echo $?
+```
 
 ### memory dump
+```
 cat /proc/meminfo
+```
 
 ### max open files
+```
 cat /proc/sys/fs/file-max
+```
 
 ### wget to console
-wget -O- http://q-horus-app01.wirecard.sys:8500/wd-only/getBrandXml.jsp?brand=229099017 > /dev/null  2>&1
+```
+wget -O- http://{host}:8500/wd-only/getBrandXml.jsp?brand=229099017 > /dev/null  2>&1
+```
 
 ### wget to specific file
-wget -O out.zip http://q-brands-app02:9000/published/resources/10050001.zip
+```
+wget -O out.zip http://{host}:9000/published/resources/10050001.zip
+```
 
 ### zip files, zip all files
+```
 zip -r bcm-1003.zip *
+```
+
+## AWK
 
 ### awk another delimiter
+```
 awk -F '<new delimiter>'
+```
 example of multi delimiter:
+```
 awk -F '[/, ]'
+```
 
 ### awk print last column
+```
 awk '{print $NF}'
+```
 
-### awk example of applying function and conditions
-( https://www.gnu.org/software/gawk/manual/html_node/ )
-
+### [awk example of applying function and conditions](https://www.gnu.org/software/gawk/manual/html_node/)
+```
 ps -aux | awk '{if(index($1,"a.vcherk")>0){print $0}}'
-
 ps -aux | awk '{print substr($0,1,20)}'
+```
 
 ### awk one column output to two column separated comma
+```
 awk 'BEGIN{a=""}{if(a==""){a=$NF}else{print a","$NF; a=""}}'
+```
 
 ### awk execute script from file
+```
 awk -f <filename>
+```
 
 ### awk complex search, print line below
+```
 BEGIN{
 	need_to_print = 0
 }
@@ -212,50 +308,70 @@ BEGIN{
 		}
     }
 }
+```
 
 ### sed, replace
+```
 "name : " with "nomen" string
 sed 's/"name" : "/nomen/g'
+```
 
 ### print line by number from output, line from pipeline
+```
 locate -ir "/zip$" | sed -n '2p'
-
+```
 
 ### calculate amount of strings
+```
 ps -aux | awk 'BEGIN{a=0}{a=a+1}END{print a}'
+```
 
 ### bash
+```
 [-n "$variable"] - non zero
 [-z "$variable"] - zero
+```
 
 ### last changed files, last updated file
+```
 find -cmin -2
+```
 
 ### curl PUT example with file
+```
 curl -X PUT -H "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charset=ISO-8859-1" -H "x-username: cherkavi" -d @put-request.data http://q-brands-app01.wirecard.sys:9000/draft/brands/229099017/model/country-configurations
+```
 
 ### curl without progress
-curl -s -X GET http://google.com
-
-curl --silent -X GET http://google.com
-
-curl  http://google.com 2>/dev/null
+* curl -s -X GET http://google.com
+* curl --silent -X GET http://google.com
+* curl  http://google.com 2>/dev/null
 
 ### chmod recursively
+```
 chmod -R +x <folder name>
+```
 
 ### execute command with environment variable, new environment variable for command
+```
 ONE="this is a test"; echo $ONE
+```
 
 ### system log file
+```
 /var/log/syslog
+```
 
 ### Debian update package
+```
 sudo apt-get install --only-upgrade {packagename}
+```
 
 ### Debian list of packages
+```
 sudo apt list
 sudo dpkg -l
+```
 
 | First letter | desired package state ("selection state")|
 ----|------------------------
@@ -277,47 +393,45 @@ sudo dpkg -l
 | t | triggers-pending (package has been triggered) |
 
 |  Third letter | error state (you normally shouldn't see a third letter, but a space, instead)|
----|---------
+|---|---------
 |  R |  reinst-required (package broken, reinstallation required)|
 
 ### Debian list the versions available in your repo
+```
 sudo apt-cache madison {package name}
+```
 
 ### Debian install new version of package with specific version 
+```
 sudo apt-get install {package name}={version}
+```
 
 ### Debian system cleanup
+```
 sudo apt-get clean
-
 sudo apt-get autoremove --purge
 
+```
+
 ### remove service ( kubernetes )
-sudo invoke-rc.d localkube stop
-
-sudo invoke-rc.d localkube status
-
+* sudo invoke-rc.d localkube stop
+* sudo invoke-rc.d localkube status
 ( sudo service localkube status )
-
-sudo update-rc.d -f localkube remove
-
-
-sudo grep -ir /etc -e "kube"
-
-rm -rf /etc/kubernetes
-
-rm -rf /etc/systemd/system/localkube.service
-
-vi /var/log/syslog
+* sudo update-rc.d -f localkube remove
+* sudo grep -ir /etc -e "kube"
+* rm -rf /etc/kubernetes
+* rm -rf /etc/systemd/system/localkube.service
+* vi /var/log/syslog
 
 ### remove VMWare player
+```
 sudo vmware-installer -u vmware-player
+```
 
 ### version of OS, linux version
-lsb_release -a
-
-cat /etc/system-release
-
-uname -a
+* lsb_release -a
+* cat /etc/system-release
+* uname -a
 
 ### print all networks
 ip -4 a
@@ -325,28 +439,26 @@ ip -6 a
 
 
 ### add user into special group
-adduser {username} {destination group name}
-
+* adduser {username} {destination group name}
 * edit file /etc/group
-* add :{username} to the end of line with {groupname}:x:999
+```
+add :{username} to the end of line with {groupname}:x:999
+```
 
 
 ### proxy
 * /etc/profile.d/proxy.sh
+```
 export HTTP_PROXY=http://webproxy.host:3128
-
 export http_proxy=http://webproxy.host:3128
-
 export HTTPS_PROXY=http://webproxy.host:3128
-
 export https_proxy=http://webproxy.host:3128
-
 export NO_PROXY="localhost,127.0.0.1,.host,.viola.local"
-
 export no_proxy="localhost,127.0.0.1,.host,.viola.local"
+```
 
 * /etc/environment 
-
+```
 http_proxy=http://webproxy.host:3128
-
 no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
+```
