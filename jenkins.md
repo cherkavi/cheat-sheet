@@ -28,11 +28,21 @@
 ### stop jenkins
 > {jenkins-url}/exit
 
+### Script how to find all accessible methods
+
+### Script Console ( Manage Jenkins )
+Thread.getAllStackTraces().keySet().each() {
+  t -> if (t.getName()=="YOUR THREAD NAME" ) {   t.interrupt();  }
+}
+Jenkins.instance.getItemByFullName("Brand Server/develop").getBuildByNumber(614).finish(hudson.model.Result.ABORTED, new java.io.IOException("Aborting build"));
+Jenkins.instance.getItemByFullName("Brand Server/develop").getBuildByNumber(614).doKill();
+
 ### plugin manual installation
 copy jpi/hpi file into {JENKINS_HOME/plugins}
 
 ### plugin manual removing
 copy jpi/hpi file into {JENKINS_HOME/plugins}
+
 
 ### plugins
 
