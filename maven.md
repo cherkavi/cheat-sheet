@@ -1,3 +1,6 @@
+### maven debug from IDE, IDE debug
+-DforkCount=0 -DreuseForks=false -DforkMode=never 
+
 ### describe plugin 
 
 mvn help:describe -Dplugin=org.apache.tomcat.maven:tomcat7-maven-plugin
