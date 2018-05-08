@@ -70,3 +70,11 @@ maven with name "mvn-325" should be configured: http://localhost:9090/configureT
 plugin should be present
 http://localhost:9090/configfiles/
 ```
+
+> RSA key fingerprint is SHA256:xxxxxx
+> Are you sure you want to continue connecting (yes/no) ?
+> ssh://git@webgit.xxxxxx.de:7999/pportal/commons.git
+```
+change 
+gitHostUrl = "https://user@webgit.xxxx.de/scm"
+```
