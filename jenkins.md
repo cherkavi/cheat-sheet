@@ -14,6 +14,10 @@
 * sudo systemctl start jenkins
 * sudo systemctl status jenkins
 
+### manual clean up
+rm -rf .jenkins/caches/*
+rm -rf .jenkins/workspace/*
+
 ### manual start
 [manual](https://wiki.jenkins.io/display/JENKINS/Starting+and+Accessing+Jenkins)
 ```
