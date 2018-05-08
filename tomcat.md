@@ -29,7 +29,7 @@ mvn  org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy -Dmaven.test.skip
 > update file: setenv.sh
 * for linux:
 ```
-export "JAVA_OPTS=%JAVA_OPTS% -Dcatalina.log.level=INFO -Xmx1024m -Duser.timezone=UTC -Dspring.config.location=apache-tomcat-8.0.41-brandserver/conf/application-cherkavi.yml"
+export "JAVA_OPTS=$JAVA_OPTS -Dcatalina.log.level=INFO -Xmx1024m -Duser.timezone=UTC -Dspring.config.location=apache-tomcat-8.0.41-brandserver/conf/application-cherkavi.yml"
 export CATALINA_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9009 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
 ```
 * for windows:
