@@ -1,7 +1,7 @@
 ### maven debug from IDE, IDE debug
 ```-DforkCount=0 -DreuseForks=false -DforkMode=never ```
 
-### eclude sub-library from dependency lib
+### exclude sub-library from dependency lib
             <dependency>
                 <groupId>org.quartz-scheduler</groupId>
                 <artifactId>quartz</artifactId>
