@@ -23,6 +23,12 @@ mvn help:describe  -DgroupId=org.springframework.boot -DartifactId=spring-boot-m
 
 ## Plugins:
 
+### release plugin
+```
+mvn -f ../pom.xml versions:set -DnewVersion=%1
+mvn -f ../pom.xml -N versions:update-child-modules
+```
+
 ### maven tomcat plugin 
 ```
 mvn  org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy -Dmaven.test.skip -Dmaven.tomcat.url=http://host:8080/manager/text -Dtomcat.username=manager -Dtomcat.password=manager
