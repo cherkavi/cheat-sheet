@@ -18,6 +18,7 @@
 ### describe plugin 
 ```
 mvn help:describe -Dplugin=org.apache.tomcat.maven:tomcat7-maven-plugin
+mvn help:describe  -DgroupId=org.springframework.boot -DartifactId=spring-boot-maven-plugin -Ddetail=true
 ```
 
 ## Plugins:
