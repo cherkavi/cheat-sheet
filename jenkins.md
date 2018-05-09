@@ -5,7 +5,7 @@
 * [pipeline](https://jenkins.io/solutions/pipeline/)
 * [user handbook](https://jenkins.io/user-handbook.pdf)
 * [BlueOcean](https://jenkins.io/doc/book/blueocean/)
-* [jenkins dsl plugin documentation](https://jenkinsci.github.io/job-dsl-plugin/)
+* [jenkins plugin documentation](https://jenkinsci.github.io/job-dsl-plugin/)
 
 ### installation on debian
 * wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
@@ -55,6 +55,34 @@ copy jpi/hpi file into {JENKINS_HOME/plugins}
 copy jpi/hpi file into {JENKINS_HOME/plugins}
 ```
 
+### jenkins job DSL user input, build with parameters
+```
+
+		if (isGitBranch('OPM-integration-test')) {
+            stage('candidate-git-label') {
+                lastCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+                print(lastCommit)
+                def newVersion = readVersion()
+                print("this is new version: $newVersion")
+            }
+            stage('candidate-deploy') {
+                mvn('org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy -Dmaven.tomcat.url=http://host:9090/manager/text -Dtomcat.username=root -Dtomcat.password=root -DskipTests ')
+            }
+		}
+
+--------------
+def readVersion() {
+  try {
+    timeout(time: 20, unit: 'MINUTES') {
+        def keep = input message: 'New version of application:',
+                    parameters: [stringParam(defaultValue: "2018.06.00.00-SNAPSHOT", description: 'new application version', name: 'currentBuildVersion')]
+        return keep
+    }
+  } catch(e) {
+    return "2018.06.00.00-SNAPSHOT"
+  }
+}
+```
 
 ### plugins
 
