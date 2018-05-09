@@ -214,6 +214,10 @@ http://localhost:8808/actuator
 ```
 <url:port>/<application>/health
 ```
+### spring boot another http port, change http port, change server port
+```
+mvn spring-boot:run -Dserver.port=8090
+```
 
 ### set system properties
 ```
