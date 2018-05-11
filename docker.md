@@ -151,6 +151,7 @@ docker attach {CONTAINER ID}
 ### docker log of container, console output
 ```
 docker logs --follow --tail 25 {CONTAINER ID}
+docker logs {CONTAINER ID}
 ```
 
 ### show processes from container
