@@ -84,6 +84,11 @@ def readVersion() {
 }
 ```
 
+### print all accessible variables
+```
+echo sh(returnStdout: true, script: 'env')
+```
+
 ### plugins
 
 ## Issues
