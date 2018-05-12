@@ -4,6 +4,7 @@ Docker
 ### information about docker itself
 ```
 docker info
+docker system info
 ```
 
 
@@ -253,6 +254,16 @@ docker network rm $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
 
 Additional management
 ------
+### disk usage infomration
+```
+docker system df
+```
+
+### remove unused data
+```
+docker system prune
+```
+
 ### assign static hostname to container (map hostname)
 * create network
 ```
