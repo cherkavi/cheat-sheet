@@ -1,3 +1,9 @@
+### set proxy system properties
+```
+System.getProperties().put("http.proxyHost", "someProxyURL");
+System.getProperties().put("http.proxyPort", "someProxyPort");
+```
+
 ## source code links
 * [useful links](http://www.programcreek.com/2012/11/top-100-java-developers-blogs/)
 * [source code examples](http://www.javased.com/)
@@ -219,8 +225,23 @@ http://localhost:8808/actuator
 mvn spring-boot:run -Dserver.port=8090
 ```
 
-### set system properties
+## Vaadin
+### [custom components](https://vaadin.com/directory)
+
+### [horizontal stepper, human progress line, to-do list](http://mekaso.rocks/material-vaadin)
+
+### show frame 
 ```
-System.getProperties().put("http.proxyHost", "someProxyURL");
-System.getProperties().put("http.proxyPort", "someProxyPort");
+    void showFrame(File file){
+        Window window = new Window();
+        window.setWidth("90%");
+        window.setHeight("90%");
+        BrowserFrame e = new BrowserFrame("PDF File", new FileResource(file));
+        e.setWidth("100%");
+        e.setHeight("100%");
+        window.setContent(e);
+        window.center();
+        window.setModal(true);
+        UI.getCurrent().addWindow(window);
+    }
 ```
