@@ -199,7 +199,7 @@ docker commit {CONTAINER ID} <new image name>
 docker tag {CONTAINER ID} <TAG NAME[:TAG VERSION]>
 ```
 
-### docker export
+### docker export - image without history, without layers
 ```
 docker save --output <output file name>.tar {CONTAINER ID}
 ```
