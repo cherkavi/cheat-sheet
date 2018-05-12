@@ -199,9 +199,14 @@ docker commit {CONTAINER ID} <new image name>
 docker tag {CONTAINER ID} <TAG NAME[:TAG VERSION]>
 ```
 
-### docker export - image without history, without layers
+### docker save - with layers and history
 ```
 docker save --output <output file name>.tar {CONTAINER ID}
+```
+
+### docker export - image WITHOUT history, without layers
+```
+docker export --output <output file name>.tar {CONTAINER ID}
 ```
 
 ## Load
