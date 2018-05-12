@@ -204,6 +204,13 @@ docker tag {CONTAINER ID} <TAG NAME[:TAG VERSION]>
 docker save --output <output file name>.tar {CONTAINER ID}
 ```
 
+## Load
+------
+### load full image into 'images'
+```
+docker load -i {filename of archive}
+```
+
 ## Stop and Pause
 ------
 ### wait until container will be stopped
