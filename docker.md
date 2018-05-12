@@ -180,12 +180,6 @@ docker history --no-trunc {CONTAINER ID}
 docker inspect
 docker inspect -f '{{.HostConfig.PortBindings}}' {CONTAINER ID}
 ```
-## Build
-
-### build from file
-```
-docker build -t {name of my own image}:latest {name of docker file | . }
-```
 
 ## Save
 ------
@@ -311,6 +305,33 @@ docker pull portainer/portainer
 docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
 ```
 login/pass: admin/12345678
+
+## Build
+
+### build from file
+```
+docker build -t {name of my own image}:latest {name of docker file | . }
+```
+
+### build useful commands
+| command |   description |
+|---------|---------------|
+| FROM | Sets the base image for subsequent|
+| MAINTAINER  | Sets the author field of the generated images|
+| RUN |  Execute commands in a new layer on top of the current image and commit the results|
+| CMD |  Allowed only once (if many then last one takes effect)|
+| LABEL |  Adds metadata to an image|
+| EXPOSE |  Informs container runtime that the container listens on the specified network ports at runtime|
+| ENV |  Sets an environment variable|
+| ADD |  Copy new files, directories, or remote file URLs from into the filesystem of the container|
+| COPY |  Copy new files or directories into the filesystem of the container|
+| ENTRYPOINT |  Allows you to configure a container that will run as an executable|
+| VOLUME |  Creates a mount point and marks it as holding externally mounted volumes from native host or other containers|
+| USER |  Sets the username or UID to use when running the image|
+| WORKDIR |  Sets the working directory for any RUN, CMD, ENTRYPOINT, COPY, ADD commands|
+| ARG |  Defines a variable that users can pass at build-time to the builder using --build-arg|
+| ONBUILD |  Adds an instruction to be executed later, when the image is used as the base for another build|
+| STOPSIGNAL |  Sets the system call signal that will be sent to the container to exit|
 
 
 Examples
