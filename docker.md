@@ -180,7 +180,12 @@ docker history --no-trunc {CONTAINER ID}
 docker inspect
 docker inspect -f '{{.HostConfig.PortBindings}}' {CONTAINER ID}
 ```
+## Build
 
+### build from file
+```
+docker build -t {name of my own image}:latest {name of docker file | . }
+```
 
 ## Save
 ------
