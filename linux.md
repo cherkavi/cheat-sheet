@@ -428,6 +428,11 @@ sudo apt-get autoremove --purge
 sudo vmware-installer -u vmware-player
 ```
 
+### pdf watermark, merge pdf files into one
+```
+pdftk original.pdf stamp watermark.pdf output output.pdf
+```
+
 ### version of OS, linux version
 * lsb_release -a
 * cat /etc/system-release
