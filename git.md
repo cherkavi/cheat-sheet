@@ -59,6 +59,9 @@ git fetch --all --prune
 ### find by comment
 git log --all --grep "BCM-642"
 
+### current comment
+git rev-parse HEAD
+
 ### find file into log
 git log --all -- "**db-update.py"
 git log --all -- db-scripts/src/main/python/db-diff/db-update.py
