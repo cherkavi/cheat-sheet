@@ -55,6 +55,11 @@ copy jpi/hpi file into {JENKINS_HOME/plugins}
 copy jpi/hpi file into {JENKINS_HOME/plugins}
 ```
 
+### list all accessible plugins
+```
+https://{jenkins-url}/pluginManager/api/xml?depth=1
+```
+
 ### jenkins job DSL user input, build with parameters
 ```
 
