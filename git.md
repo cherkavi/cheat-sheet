@@ -27,6 +27,7 @@ git remote prone origin
 ### remove branches that exist locally only ( not remotely )
 ```
 git gc --pune=now
+git fetch --prune
 ```
 
 ### remove local branch only
