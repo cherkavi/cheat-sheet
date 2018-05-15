@@ -245,3 +245,6 @@ mvn spring-boot:run -Dserver.port=8090
         UI.getCurrent().addWindow(window);
     }
 ```
+
+## Activiti
+### [eclipse plugin](http://www.activiti.org/designer/update)
