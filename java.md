@@ -85,6 +85,7 @@ PropertyConfigurator.configure(props);
 ```
 spring.datasource.url=jdbc:h2:mem:testdb;Mode=Oracle
 spring.datasource.platform=h2
+spring.datasource.driver-class-name=org.h2.Driver
 spring.jpa.hibernate.ddl-auto=none
 spring.datasource.continue-on-error=true
 ```
