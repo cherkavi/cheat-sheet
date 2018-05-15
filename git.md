@@ -24,7 +24,17 @@ git checkout -t origin/develop
 git remote prone origin
 ```
 
-### remove branches that exist locally only ( not remotely )
+### delete local branch, remove branch, remove local branch
+```
+git branch -D origin/release/2018.05.00.12-test
+```
+
+### delete remote branch, remove remote, remove remote branch
+```
+git push origin --delete release/2018.05.00.12-test
+```
+
+### remove branches, delete branches that exist locally only ( not remotely )
 ```
 git gc --pune=now
 git fetch --prune
