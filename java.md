@@ -249,3 +249,4 @@ mvn spring-boot:run -Dserver.port=8090
 
 ## Activiti
 ### [eclipse plugin](http://www.activiti.org/designer/update)
+### [additional documentation](https://docs.camunda.org/manual/7.5/user-guide/process-engine/process-engine-concepts/)
