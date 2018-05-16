@@ -28,6 +28,27 @@ mvn help:describe  -DgroupId=org.springframework.boot -DartifactId=spring-boot-m
 mvn -f ../pom.xml versions:set -DnewVersion=%1
 mvn -f ../pom.xml -N versions:update-child-modules
 ```
+### jgitflow plugin
+```
+                <plugin>
+                    <groupId>external.atlassian.jgitflow</groupId>
+                    <artifactId>jgitflow-maven-plugin</artifactId>
+                    <version>1.0-m5.1</version>
+                    <configuration>
+                        <enableSshAgent>true</enableSshAgent>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <allowSnapshots>true</allowSnapshots>
+                        <releaseBranchVersionSuffix>RC</releaseBranchVersionSuffix>
+                        <pushReleases>true</pushReleases>
+                        <noDeploy>true</noDeploy>
+                    </configuration>
+                </plugin>
+```
+```
+mvn jgitflow:release-start
+mvn jgitflow:release-finish -Dmaven.javadoc.skip=true -DskipTests=true -Dsquash=false -DpullMaster=true
+```
+if you have issue with 'conflict with master...' - just merge *master* to *develop*
 
 ### maven tomcat plugin 
 ```
