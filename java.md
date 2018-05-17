@@ -216,6 +216,8 @@ for custom queries only
 ```
 
 ## Spring
+### [application.properties](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
+
 ### bean post processor
 ```
 @Bean public BeanPostProcessor{return new BeanPostProcessor(){}}
@@ -232,6 +234,11 @@ name of the declared method
 @Qualifier
 ```
 
+### using bean by name
+```
+@Resource(name="${<name of the value>}")
+```
+
 ### refresh context for testing
 ```
 @DirtiesContext
@@ -240,11 +247,6 @@ name of the declared method
 ### for starting context
 ```
 @SpringBootTest instead of @BootstrapWith
-```
-
-### using bean by name
-```
-@Resource(name="${<name of the value>}")
 ```
 
 ### spring boot actuator, spring boot list of all elements
@@ -259,6 +261,13 @@ http://localhost:8808/actuator
 ### spring boot another http port, change http port, change server port
 ```
 mvn spring-boot:run -Dserver.port=8090
+```
+
+### logging level
+```
+logging:
+  level:
+    ROOT: DEBUG
 ```
 
 ## Vaadin
