@@ -27,6 +27,12 @@ java -jar jenkins.war --httpPort=8080 --useJmx
 ~/.jenkins/secrets/
 ```
 
+### how to know version
+(/var/lib/jenkins)
+(/opt/webconf/var/lib/jenkins)
+config.xml
+<version>1.599</version>
+
 ### restart jenkins
 * {jenkins-url}/safeRestart
 * {jenkins-url}/restart
