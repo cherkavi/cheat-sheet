@@ -33,7 +33,10 @@ mvn -f ../pom.xml -N versions:update-child-modules
 ```
 mvn javadoc:javadoc
 ```
-
+```
+ -Dmaven.javadoc.skip=true
+ ```
+ 
 ### jgitflow plugin
 ```
                 <plugin>
