@@ -90,6 +90,41 @@ spring.jpa.hibernate.ddl-auto=none
 spring.datasource.continue-on-error=true
 ```
 
+### h2 yaml version
+```
+###
+#   Database Settings
+###
+spring:
+  datasource:
+    # url: jdbc:h2:mem:user-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:~/user-manager.h2;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: false
+        use_sql_comments: true
+        format_sql: true
+
+###
+#   H2 Settings
+###
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
+```
+
 ### hsqldb Oracle dialect
 ```
 driverClassName="org.hsqldb.jdbc.JDBCDriver"
