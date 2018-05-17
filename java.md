@@ -81,6 +81,8 @@ PropertyConfigurator.configure(props);
 </Configuration>
 ```
 
+### [h2 cheat sheet](http://www.h2database.com/html/cheatSheet.html)
+
 ### h2 Oracle dialect
 ```
 spring.datasource.url=jdbc:h2:mem:testdb;Mode=Oracle
