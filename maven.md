@@ -38,6 +38,7 @@ mvn javadoc:javadoc
  ```
  
 ### jgitflow plugin
+[official documentation](https://bitbucket.org/atlassian/jgit-flow/wiki/Home)
 ```
                 <plugin>
                     <groupId>external.atlassian.jgitflow</groupId>
