@@ -280,7 +280,7 @@ logging:
 
 ## Vaadin
 ### [custom components](https://vaadin.com/directory)
-
+### [spring integration](https://docs.camunda.org/manual/7.4/user-guide/spring-framework-integration/configuration/)
 ### [horizontal stepper, human progress line, to-do list](http://mekaso.rocks/material-vaadin)
 
 ### show frame 
