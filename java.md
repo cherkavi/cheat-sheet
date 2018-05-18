@@ -303,3 +303,8 @@ logging:
 ### [user guide](https://www.activiti.org/userguide)
 ### [eclipse plugin](http://www.activiti.org/designer/update)
 ### [additional documentation](https://docs.camunda.org/manual/7.5/user-guide/process-engine/process-engine-concepts/)
+
+### create/init DB
+```
+activiti-engine-x.x.x.jar/org/activiti/db/create/activiti.create.sql
+```
