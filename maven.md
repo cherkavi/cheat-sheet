@@ -39,6 +39,7 @@ mvn javadoc:javadoc
  
 ### jgitflow plugin
 [official documentation](https://bitbucket.org/atlassian/jgit-flow/wiki/Home)
+[configuration description](https://bitbucket.org/atlassian/jgit-flow/wiki/goals.wiki#!common-parameters)
 ```
                 <plugin>
                     <groupId>external.atlassian.jgitflow</groupId>
@@ -49,6 +50,7 @@ mvn javadoc:javadoc
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <allowSnapshots>true</allowSnapshots>
                         <releaseBranchVersionSuffix>RC</releaseBranchVersionSuffix>
+			<developBranchName>wave3_1.1</developBranchName>
                         <pushReleases>true</pushReleases>
                         <noDeploy>true</noDeploy>
                     </configuration>
