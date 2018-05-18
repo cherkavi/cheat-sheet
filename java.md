@@ -300,5 +300,6 @@ logging:
 ```
 
 ## Activiti
+### [user guide](https://www.activiti.org/userguide)
 ### [eclipse plugin](http://www.activiti.org/designer/update)
 ### [additional documentation](https://docs.camunda.org/manual/7.5/user-guide/process-engine/process-engine-concepts/)
