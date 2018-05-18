@@ -220,6 +220,16 @@ for custom queries only
 ## Spring
 ### [application.properties](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
 
+### command line argument to specify external file with configuration
+```
+-Dspring.config.location=your/config/dir/application.properties
+```
+
+### spring boot another http port, change http port, change server port
+```
+mvn spring-boot:run -Dserver.port=8090
+```
+
 ### bean post processor
 ```
 @Bean public BeanPostProcessor{return new BeanPostProcessor(){}}
@@ -259,10 +269,6 @@ http://localhost:8808/actuator
 ### health check of SpringBoot application
 ```
 <url:port>/<application>/health
-```
-### spring boot another http port, change http port, change server port
-```
-mvn spring-boot:run -Dserver.port=8090
 ```
 
 ### logging level
