@@ -220,6 +220,17 @@ for custom queries only
 ## Spring
 ### [application.properties](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
 ### [datasource settings](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html)
+example of initialization during the start app
+properties:
+```
+spring.datasource.initialization-mode = h2
+spring.datasource.platform = never
+```
+files: 
+```
+schema.sql
+schema-${platform}.sql 
+```
 
 ### command line argument to specify external file with configuration
 ```
