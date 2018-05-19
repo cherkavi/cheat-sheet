@@ -428,6 +428,11 @@ sudo apt-get autoremove --purge
 sudo vmware-installer -u vmware-player
 ```
 
+### pdf watermark, merge pdf files into one
+```
+pdftk original.pdf stamp watermark.pdf output output.pdf
+```
+
 ### version of OS, linux version
 * lsb_release -a
 * cat /etc/system-release
@@ -462,3 +467,7 @@ export no_proxy="localhost,127.0.0.1,.host,.viola.local"
 http_proxy=http://webproxy.host:3128
 no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ```
+
+### tools:
+- [ETL](www.talend.com)
+- [ETL](https://hekad.readthedocs.io)

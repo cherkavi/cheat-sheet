@@ -6,6 +6,7 @@
 * [user handbook](https://jenkins.io/user-handbook.pdf)
 * [BlueOcean](https://jenkins.io/doc/book/blueocean/)
 * [jenkins plugin documentation](https://jenkinsci.github.io/job-dsl-plugin/)
+* [pipeline examples](https://github.com/jenkinsci/pipeline-examples)
 
 ### installation on debian
 * wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
@@ -25,6 +26,12 @@ rm -rf .jenkins/workspace/*
 java -jar jenkins.war --httpPort=8080 --useJmx 
 ~/.jenkins/secrets/
 ```
+
+### how to know version
+(/var/lib/jenkins)
+(/opt/webconf/var/lib/jenkins)
+config.xml
+<version>1.599</version>
 
 ### restart jenkins
 * {jenkins-url}/safeRestart
@@ -53,6 +60,11 @@ copy jpi/hpi file into {JENKINS_HOME/plugins}
 ### plugin manual removing
 ```
 copy jpi/hpi file into {JENKINS_HOME/plugins}
+```
+
+### list all accessible plugins
+```
+https://{jenkins-url}/pluginManager/api/xml?depth=1
 ```
 
 ### jenkins job DSL user input, build with parameters

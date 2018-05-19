@@ -340,3 +340,12 @@ Examples
 * docker exec -it high_mclean /bin/bash
 * docker run -v /tmp:/home/root/tmp --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -t -i  -p  50075:50075/tcp  -p 50090:50090/tcp sequenceiq/hadoop-docker /etc/bootstrap.sh -bash
 * docker run --detach --env MYSQL_ROOT_PASSWORD=root --env MYSQL_USER=root --env MYSQL_PASSWORD=root --env MYSQL_DATABASE=technik_db --name golang_mysql --publish 3306:3306 mysql;
+* MariaDB
+```
+docker run --name mysql-container --volume /my/local/folder/with/data:/var/lib/mysql --volume /my/local/folder/with/init/scripts:/docker-entrypoint-initdb.d --publish 3306:3306 --env MYSQL_DATABASE=activitidb --env MYSQL_ROOT_PASSWORD=root --detach mariadb --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+```
+
+* MariaDB sql dump creation:
+```
+docker exec mysql-container sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql
+```

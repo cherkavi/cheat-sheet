@@ -29,6 +29,39 @@ mvn -f ../pom.xml versions:set -DnewVersion=%1
 mvn -f ../pom.xml -N versions:update-child-modules
 ```
 
+### javadoc
+```
+mvn javadoc:javadoc
+```
+```
+ -Dmaven.javadoc.skip=true
+ ```
+ 
+### jgitflow plugin
+[official documentation](https://bitbucket.org/atlassian/jgit-flow/wiki/Home)
+[configuration description](https://bitbucket.org/atlassian/jgit-flow/wiki/goals.wiki#!common-parameters)
+```
+                <plugin>
+                    <groupId>external.atlassian.jgitflow</groupId>
+                    <artifactId>jgitflow-maven-plugin</artifactId>
+                    <version>1.0-m5.1</version>
+                    <configuration>
+                        <enableSshAgent>true</enableSshAgent>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <allowSnapshots>true</allowSnapshots>
+                        <releaseBranchVersionSuffix>RC</releaseBranchVersionSuffix>
+			<developBranchName>wave3_1.1</developBranchName>
+                        <pushReleases>true</pushReleases>
+                        <noDeploy>true</noDeploy>
+                    </configuration>
+                </plugin>
+```
+```
+mvn jgitflow:release-start
+mvn jgitflow:release-finish -Dmaven.javadoc.skip=true -DskipTests=true -Dsquash=false -DpullMaster=true
+```
+if you have issue with 'conflict with master...' - just merge *master* to *develop*
+
 ### maven tomcat plugin 
 ```
 mvn  org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy -Dmaven.test.skip -Dmaven.tomcat.url=http://host:8080/manager/text -Dtomcat.username=manager -Dtomcat.password=manager
@@ -352,43 +385,53 @@ mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.startup.searchcorrector 
 ```
 
 ### example of creating project
-``` mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.startup.searchcorrector -DartifactId=workplace -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+``` 
+mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.startup.searchcorrector -DartifactId=workplace -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
 ```
 
 ### maven create Java web project
-``` mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.smava.onsite -DartifactId=soap-calculator -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+``` 
+mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.smava.onsite -DartifactId=soap-calculator -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
 ```
 
 ### for creating Eclipse Web project ( change pom.xml:packaging to "war" ) :
-``` mvn eclipse:eclipse -Dwtpversion=2.0
+``` 
+mvn eclipse:eclipse -Dwtpversion=2.0
 ```
 
 ### Java Vaadin project
-``` mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=7.2.5 -DgroupId=com.cherkashyn.vitalii.tools.barcode.ui -DartifactId=BarCodeUtilsUI -Dversion=1.0 -Dpackaging=war
+``` 
+mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=7.2.5 -DgroupId=com.cherkashyn.vitalii.tools.barcode.ui -DartifactId=BarCodeUtilsUI -Dversion=1.0 -Dpackaging=war
 ```
 
 ### Java console application
-``` mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.akka.web -DartifactId=akka-web -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+``` 
+mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.akka.web -DartifactId=akka-web -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
  mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.testtask.kaufland -DartifactId=anagrams -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
  ```
 
 ### Java OSGi bundle
-``` mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.3.5 -DgroupId=com.cherkashyn.vitalii.osgi.test.listener -DartifactId=osgi-service-listener -Dversion=1.0.0-SNAPSHOT
+``` 
+mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.3.5 -DgroupId=com.cherkashyn.vitalii.osgi.test.listener -DartifactId=osgi-service-listener -Dversion=1.0.0-SNAPSHOT
 ```
 
 ### Java OSGi Blueprint bundle
-``` mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-blueprint-archetype -DarchetypeVersion=2.3.5 -DgroupId=com.cherkashyn.vitalii.osgi.test -DartifactId=osgi-blueprint-consumer -Dversion=1.0.0-SNAPSHOT
+``` 
+mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-blueprint-archetype -DarchetypeVersion=2.3.5 -DgroupId=com.cherkashyn.vitalii.osgi.test -DartifactId=osgi-blueprint-consumer -Dversion=1.0.0-SNAPSHOT
 ```
 
 ### Java OSGi Karaf bundle
-``` mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.2.8 -DgroupId=com.mycompany -DartifactId=KarafExample -Dversion=1.0-SNAPSHOT -Dpackage=com.mycompany.bundle
+``` 
+mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.2.8 -DgroupId=com.mycompany -DartifactId=KarafExample -Dversion=1.0-SNAPSHOT -Dpackage=com.mycompany.bundle
 ```
 
 ## Tools:
 ### how to debug
-``` %MAVEN_HOME%/bin/mvnDebug
+``` 
+%MAVEN_HOME%/bin/mvnDebug
 ```
 
 ### Download Sources and JavaDoc
-``` -DdownloadSources=true -DdownloadJavadocs=true
+``` 
+-DdownloadSources=true -DdownloadJavadocs=true
 ```

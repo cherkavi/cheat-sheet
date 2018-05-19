@@ -81,12 +81,50 @@ PropertyConfigurator.configure(props);
 </Configuration>
 ```
 
+### [h2 cheat sheet](http://www.h2database.com/html/cheatSheet.html)
+
 ### h2 Oracle dialect
 ```
 spring.datasource.url=jdbc:h2:mem:testdb;Mode=Oracle
 spring.datasource.platform=h2
+spring.datasource.driver-class-name=org.h2.Driver
 spring.jpa.hibernate.ddl-auto=none
 spring.datasource.continue-on-error=true
+```
+
+### h2 yaml version
+```
+###
+#   Database Settings
+###
+spring:
+  datasource:
+    # url: jdbc:h2:mem:user-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:~/user-manager.h2;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: false
+        use_sql_comments: true
+        format_sql: true
+
+###
+#   H2 Settings
+###
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
 ```
 
 ### hsqldb Oracle dialect
@@ -180,6 +218,30 @@ for custom queries only
 ```
 
 ## Spring
+### [application.properties](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
+### [datasource settings](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html)
+example of initialization during the start app
+properties:
+```
+spring.datasource.initialization-mode = h2
+spring.datasource.platform = never
+```
+files: 
+```
+schema.sql
+schema-${platform}.sql 
+```
+
+### command line argument to specify external file with configuration
+```
+-Dspring.config.location=your/config/dir/application.properties
+```
+
+### spring boot another http port, change http port, change server port
+```
+mvn spring-boot:run -Dserver.port=8090
+```
+
 ### bean post processor
 ```
 @Bean public BeanPostProcessor{return new BeanPostProcessor(){}}
@@ -196,6 +258,11 @@ name of the declared method
 @Qualifier
 ```
 
+### using bean by name
+```
+@Resource(name="${<name of the value>}")
+```
+
 ### refresh context for testing
 ```
 @DirtiesContext
@@ -204,11 +271,6 @@ name of the declared method
 ### for starting context
 ```
 @SpringBootTest instead of @BootstrapWith
-```
-
-### using bean by name
-```
-@Resource(name="${<name of the value>}")
 ```
 
 ### spring boot actuator, spring boot list of all elements
@@ -220,14 +282,17 @@ http://localhost:8808/actuator
 ```
 <url:port>/<application>/health
 ```
-### spring boot another http port, change http port, change server port
+
+### logging level
 ```
-mvn spring-boot:run -Dserver.port=8090
+logging:
+  level:
+    ROOT: DEBUG
 ```
 
 ## Vaadin
 ### [custom components](https://vaadin.com/directory)
-
+### [spring integration](https://docs.camunda.org/manual/7.4/user-guide/spring-framework-integration/configuration/)
 ### [horizontal stepper, human progress line, to-do list](http://mekaso.rocks/material-vaadin)
 
 ### show frame 
@@ -244,4 +309,14 @@ mvn spring-boot:run -Dserver.port=8090
         window.setModal(true);
         UI.getCurrent().addWindow(window);
     }
+```
+
+## Activiti
+### [user guide](https://www.activiti.org/userguide)
+### [eclipse plugin](http://www.activiti.org/designer/update)
+### [additional documentation](https://docs.camunda.org/manual/7.5/user-guide/process-engine/process-engine-concepts/)
+
+### create/init DB
+```
+activiti-engine-x.x.x.jar/org/activiti/db/create/activiti.create.sql
 ```
