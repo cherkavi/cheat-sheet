@@ -23,6 +23,16 @@ mysql --user=root --password=root
 docker exec -it mysql-container  /usr/bin/mysql  --user=root --password=root
 ```
 
+###execute sql file with mysqltool
+* inside mysql 
+```
+source /path/to/file.sql
+```
+* shell command
+```
+mysql -h hostname -u user database < path/to/test.sql
+```
+
 ### show databases and switch to one of them:
 ```
 show databases;
@@ -41,15 +51,15 @@ ds.setJdbcUrl("jdbc:mariadb://localhost:3306/db");
 ds.addDataSourceProperty("user", "root");
 ds.addDataSourceProperty("password", "myPassword");
 ds.setAutoCommit(false);
+jdbc.dialect:
+  org.hibernate.dialect.MariaDBDialect
+  org.hibernate.dialect.MariaDB53Dialect
 ```
 
 * MySQL
 ```
 jdbc.driver: com.mysql.jdbc.Driver
-jdbc.dialect:
-	MariaDBDialect
-	MariaDB53Dialect
-	org.hibernate.dialect.MySQL57InnoDBDialect
+jdbc.dialect: org.hibernate.dialect.MySQL57InnoDBDialect
 jdbc:mysql://localhost:3306/bpmnui?serverTimezone=Europe/Brussels
 ```
 
@@ -81,14 +91,3 @@ CREATE DATABASE {databasename}
   CHARACTER SET = 'utf8'
   COLLATE = 'utf8_general_ci';
 ```
-
-###execute sql file 
-'db.dialect' : 'org.hibernate.dialect.MySQL57InnoDBDialect',
-'jdbc.driver': 'com.mysql.jdbc.Driver',
-'jdbc.user' : 'hibernate_orm_test',
-'jdbc.pass' : 'hibernate_orm_test',
-'jdbc.url' : 'jdbc:mysql://127.0.0.1/hibernate_orm_test'
-
-
-create during startup:
-MYSQL_DATABASE=activitidb
