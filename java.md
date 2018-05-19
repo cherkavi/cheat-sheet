@@ -219,6 +219,7 @@ for custom queries only
 
 ## Spring
 ### [application.properties](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
+### [datasource settings](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html)
 
 ### command line argument to specify external file with configuration
 ```
