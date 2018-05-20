@@ -81,6 +81,30 @@ PropertyConfigurator.configure(props);
 </Configuration>
 ```
 
+## Monitoring
+### [Crash](http://www.crashub.org/1.3/reference.html)
+```
+crash.sh {Process ID}
+```
+```
+		<dependency>
+			<groupId>org.crashub</groupId>
+			<artifactId>crash.embed.spring</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.crashub</groupId>
+			<artifactId>crash.connectors.ssh</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+```
+```
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-remote-shell</artifactId>
+		</dependency>
+```
+
 ### [h2 cheat sheet](http://www.h2database.com/html/cheatSheet.html)
 
 ### h2 Oracle dialect
