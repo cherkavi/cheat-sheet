@@ -104,6 +104,35 @@ crash.sh {Process ID}
 			<artifactId>spring-boot-starter-remote-shell</artifactId>
 		</dependency>
 ```
+### spring-shell
+maven dependency
+```
+        <dependency>
+            <groupId>org.springframework.shell</groupId>
+            <artifactId>spring-shell-starter</artifactId>
+            <version>2.0.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.shell</groupId>
+            <artifactId>spring-shell</artifactId>
+            <!-- <version>2.0.0.RELEASE</version> -->
+        </dependency>
+```
+At leas one ShellComponent MUST present !!!
+```
+import org.springframework.shell.standard.ShellComponent;
+import org.springframework.shell.standard.ShellMethod;
+
+@ShellComponent
+public class HelloClass {
+    @ShellMethod("hello")
+    public String hello(){
+        return "jello";
+    }
+}
+
+```
+skip commands
 ```
   public static void main(String[] args) throws Exception {
                 String[] disabledCommands = {"--spring.shell.command.help.enabled=false"}; 
