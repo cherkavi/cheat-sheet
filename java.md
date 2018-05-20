@@ -104,6 +104,13 @@ crash.sh {Process ID}
 			<artifactId>spring-boot-starter-remote-shell</artifactId>
 		</dependency>
 ```
+```
+  public static void main(String[] args) throws Exception {
+                String[] disabledCommands = {"--spring.shell.command.help.enabled=false"}; 
+                String[] fullArgs = StringUtils.concatenateStringArrays(args, disabledCommands);
+                SpringApplication.run(MyApp.class, fullArgs);
+        }
+```	
 
 ### [h2 cheat sheet](http://www.h2database.com/html/cheatSheet.html)
 
