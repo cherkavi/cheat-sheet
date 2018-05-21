@@ -309,6 +309,10 @@ BEGIN{
     }
 }
 ```
+### calculcate size of files by type
+```
+find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
+```
 
 ### sed, replace
 ```
