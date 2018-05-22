@@ -349,6 +349,26 @@ logging:
   level:
     ROOT: DEBUG
 ```
+### springboot h2, h2 console, spring-boot h2
+```
+import org.h2.server.web.WebServlet;
+
+    @Bean
+    @Conditional(OpmGuiConfiguration.H2Contidion.class)
+    ServletRegistrationBean h2servletRegistration(){
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean( new WebServlet());
+        registrationBean.addUrlMappings("/h2-console/*");
+        return registrationBean;
+    }
+
+    public static class H2Contidion implements Condition{
+        @Override
+        public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
+            return Arrays.asList(conditionContext.getEnvironment().getActiveProfiles()).contains("h2");
+        }
+    }
+
+```
 
 ## Vaadin
 ### [custom components](https://vaadin.com/directory)
