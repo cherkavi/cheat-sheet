@@ -81,6 +81,11 @@ PropertyConfigurator.configure(props);
 </Configuration>
 ```
 
+### logging level, loglevel, springboot logging
+```
+java -jar myapp.jar --debug
+```
+
 ## Monitoring
 ### [Crash](http://www.crashub.org/1.3/reference.html)
 ```
