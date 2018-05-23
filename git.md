@@ -36,7 +36,7 @@ git push origin --delete release/2018.05.00.12-test
 
 ### remove branches, delete branches that exist locally only ( not remotely )
 ```
-git gc --pune=now
+git gc --prune=now
 git fetch --prune
 ```
 
