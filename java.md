@@ -372,7 +372,15 @@ import org.h2.server.web.WebServlet;
             return Arrays.asList(conditionContext.getEnvironment().getActiveProfiles()).contains("h2");
         }
     }
-
+```
+```
+<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <version>1.4.197</version>
+    <scope>test</scope>
+</dependency>
 ```
 
 ## Vaadin
