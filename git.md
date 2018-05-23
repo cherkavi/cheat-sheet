@@ -53,8 +53,13 @@ git rev-parse "remotes/origin/release-6.0.0"
 ### check all branches for certain commit ( git contains, git commit )
 ```
 git branch --all --contains 0ff27c79738a6ed718baae3e18c74ba87f16a314
+git branch --all --contains {name-of-the-branch}
 git branch --all --merged 0ff27c79738a6ed718baae3e18c74ba87f16a314
-git log -1 develop
+```
+
+### check last commits for specific branch
+```
+git log -5 develop
 ```
 
 ### show no-merged branches
