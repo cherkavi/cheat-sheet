@@ -184,3 +184,5 @@ git config --global --get http.proxy
 #### remove proxy configuration, unset proxy
 git config --global --unset http.proxy
 
+### using additional command before 'fetch' 'push', custom fetch/push
+git config core.sshCommand 'ssh -i private_key_file'
