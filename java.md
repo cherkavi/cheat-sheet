@@ -110,7 +110,7 @@ crash.sh {Process ID}
 		</dependency>
 ```
 ### spring-shell
-maven dependency
+#### maven dependency
 ```
         <dependency>
             <groupId>org.springframework.shell</groupId>
@@ -137,14 +137,18 @@ public class HelloClass {
 }
 
 ```
-skip commands
+#### skip commands
 ```
   public static void main(String[] args) throws Exception {
                 String[] disabledCommands = {"--spring.shell.command.help.enabled=false"}; 
                 String[] fullArgs = StringUtils.concatenateStringArrays(args, disabledCommands);
                 SpringApplication.run(MyApp.class, fullArgs);
         }
-```	
+```
+#### disable interactive collaboration, disable spring shell
+```
+spring.shell.interactive.enabled=false
+```
 
 ### [h2 cheat sheet](http://www.h2database.com/html/cheatSheet.html)
 
