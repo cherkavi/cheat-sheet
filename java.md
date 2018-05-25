@@ -145,6 +145,10 @@ public class HelloClass {
                 SpringApplication.run(MyApp.class, fullArgs);
         }
 ```
+#### skip command exit, skip close sprintshell
+```
+String[] disabledCommands = {"--spring.shell.command.quit.enabled=false"};
+```
 #### disable interactive collaboration, disable spring shell
 ```
 spring.shell.interactive.enabled=false
