@@ -412,6 +412,11 @@ import org.h2.server.web.WebServlet;
     }
 ```
 
+### debug window
+```
+http://localhost:8090/?debug
+```
+
 ## Activiti
 ### [user guide](https://www.activiti.org/userguide)
 ### [eclipse plugin](http://www.activiti.org/designer/update)
