@@ -362,6 +362,16 @@ java -Dspring.profiles.active={name of profile} -jar {path to jar/war with sprin
 @Bean public BeanPostProcessor{return new BeanPostProcessor(){}}
 ```
 
+### application event listener
+[accessible events](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-application-events-and-listeners)
+```
+    @EventListener
+    public void applicationPidFileWriter(ApplicationPreparedEvent event){
+        ApplicationPreparedEvent surrogateEvent = new ApplicationPreparedEvent(event.getSpringApplication(), new String[]{}, event.getApplicationContext());
+        new ApplicationPidFileWriter().onApplicationEvent(surrogateEvent);
+    }
+```
+
 ### default name of annotated @Bean
 ```
 class name
