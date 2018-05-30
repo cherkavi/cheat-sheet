@@ -352,6 +352,11 @@ schema-${platform}.sql
 mvn spring-boot:run -Dserver.port=8090
 ```
 
+### spring boot start application with specific profile
+```
+java -jar {path to jar/war with spring-boot inside} -Dspring.profiles.active={name of profile}
+```
+
 ### bean post processor
 ```
 @Bean public BeanPostProcessor{return new BeanPostProcessor(){}}
