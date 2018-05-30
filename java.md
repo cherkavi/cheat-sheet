@@ -433,6 +433,21 @@ import org.h2.server.web.WebServlet;
 </dependency>
 ```
 
+### Spring boot issues
+
+#### error during start standalone web application
+```
+Unable to start web server; nested exception is org.springframework.context.ApplicationContextException: 
+Unable to start ServletWebServerApplicationContext due to missing ServletWebServerFactory bean.
+```
+just update pom.xml
+```
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+```
+
 ## Vaadin
 ### [custom components](https://vaadin.com/directory)
 ### [spring integration](https://docs.camunda.org/manual/7.4/user-guide/spring-framework-integration/configuration/)
