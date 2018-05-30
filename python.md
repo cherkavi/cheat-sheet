@@ -27,6 +27,7 @@ pip freeze
 
 ### using pip from interpreter ( install wheels package)
 ```
+import pip
 pip.main("install", "wheels")
 ```
 
