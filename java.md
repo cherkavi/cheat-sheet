@@ -200,6 +200,39 @@ spring:
         web-allow-others: false
 ```
 
+### Server mode start, web console start
+```
+java -jar h2-1.4.192.jar  -webAllowOthers -webPort 9108 -tcpAllowOthers -tcpPort 9101 -tcpPassword sa
+```
+connection
+!!! file placed into the same folder when application was started
+!!! path with current folder - mandatory
+```
+jdbc:h2:tcp://localhost:9101/./user-manager.h2
+```
+
+### Server mode start, web console start, with specifying folder where file with data placed
+```
+java -jar h2-1.4.192.jar  -webAllowOthers -webPort 9108 -tcpAllowOthers -tcpPort 9101 -tcpPassword sa -baseDir C:\project\h2-server 
+```
+connection to server
+```
+jdbc:h2:tcp://localhost:9101/user-manager.h2
+```
+connection to server with database creation
+```
+jdbc:h2:tcp://localhost:9101/new-database-
+```
+
+
+### Server mode connection 
+!!! file placed into the same folder when application was started
+!!! path with current folder - mandatory
+```
+jdbc:h2:tcp://localhost:9101/./user-manager.h2
+```
+
+
 ### hsqldb Oracle dialect
 ```
 driverClassName="org.hsqldb.jdbc.JDBCDriver"
