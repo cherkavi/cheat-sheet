@@ -81,7 +81,7 @@ PropertyConfigurator.configure(props);
 </Configuration>
 ```
 
-### logging level, loglevel, springboot logging
+### logging level, loglevel, spring boot logging
 ```
 java -jar myapp.jar --debug
 ```
@@ -354,7 +354,7 @@ mvn spring-boot:run -Dserver.port=8090
 
 ### spring boot start application with specific profile
 ```
-java -jar {path to jar/war with spring-boot inside} -Dspring.profiles.active={name of profile}
+java -Dspring.profiles.active={name of profile} -jar {path to jar/war with spring-boot inside} 
 ```
 
 ### bean post processor
@@ -393,7 +393,7 @@ name of the declared method
 http://localhost:8808/actuator
 ```
 
-### health check of SpringBoot application
+### health check of Spring Boot application
 ```
 <url:port>/<application>/health
 ```
@@ -404,7 +404,7 @@ logging:
   level:
     ROOT: DEBUG
 ```
-### springboot h2, h2 console, spring-boot h2
+### Spring Boot h2, h2 console, Spring Boot h2
 ```
 import org.h2.server.web.WebServlet;
 
