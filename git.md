@@ -173,6 +173,16 @@ git archive --remote=ssh://https://github.com/cherkavi/cheat-sheet HEAD jenkins.
 git remote update origin --prune
 ```
 
+### create tag 
+```
+git tag -a $newVersion -m 'deployment_jenkins_job' 
+```
+
+### push tags only 
+```
+git push --tags $remoteUrl
+```
+
 ### configuration for proxy server, proxy configuration
 #### set proxy, using proxy
 ```
