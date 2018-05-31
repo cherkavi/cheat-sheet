@@ -328,6 +328,7 @@ for custom queries only
 ```
 
 ## Spring
+### [examples](https://github.com/spring-guides/)
 ### [application.properties](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
 ### [datasource settings](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html)
 example of initialization during the start app
