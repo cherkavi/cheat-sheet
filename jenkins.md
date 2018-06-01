@@ -70,7 +70,7 @@ https://{jenkins-url}/pluginManager/api/xml?depth=1
 ### jenkins job DSL user input, build with parameters
 ```
 
-		if (isGitBranch('OPM-integration-test')) {
+	if (isGitBranch('OPM-integration-test')) {
             stage('candidate-git-label') {
                 lastCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
                 print(lastCommit)
@@ -94,6 +94,79 @@ def readVersion() {
     return "2018.06.00.00-SNAPSHOT"
   }
 }
+```
+
+### jenkins job DSL frame for env.BRANCH_NAME<->build step
+```
+	needToExecuteStage('build', {
+            mvn('-U clean package -Dmaven.javadoc.skip=true')
+	})
+
+        needToExecuteStage('deploy nexus', {
+            mvn('-U deploy -Dmaven.javadoc.skip=true -Dbuild.number=${GIT_BRANCH}-#${BUILD_NUMBER}')
+	})
+
+        needToExecuteStage('sonar', {
+            mvn('sonar:sonar -Psonar-test')
+	})
+
+        needToExecuteStage('integration tests', {
+            mvn('install -DskipTests -DskipITs=false -Pintegration-tests,dev -Dheadless=1')
+        })
+
+        needToExecuteStage('git label', {
+            def newVersion = readVersion()
+            print(">-> deploy application with new version: $newVersion")
+            sh( script: "git checkout $BRANCH_NAME ")
+            def remoteUrl = sh(returnStdout: true, script: "git config --get remote.origin.url ")
+            sh( script: "git remote set-url origin $remoteUrl ")
+            sh(script: "echo $newVersion > opm-gui/src/main/webapp/META-INF/commit ")
+            sh(script: "git rev-parse HEAD >> opm-gui/src/main/webapp/META-INF/commit ")
+            sh( script: "git tag -a $newVersion -m 'deployment_jenkins_job' ")
+            sshagent (credentials: ['git_jenkins']) {
+                 sh("git push --tags $remoteUrl")
+            }
+            mvn ("versions:set -DnewVersion=$newVersion")
+            mvn ("-N versions:update-child-modules")
+            mvn ("clean install -DskipTests=true")
+		})
+
+        needToExecuteStage('deploy tomcat', {
+            mvn('org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy -Dmaven.tomcat.url=http://v337:9090/manager/text -Dtomcat.username=root -Dtomcat.password=root -DskipTests ')
+        })
+
+// -------------------------------------------
+def executeStage(needToExecute, stageName, func){
+    if(needToExecute){
+        stage(stageName){
+            func()
+        }
+    }
+}
+
+def needToExecuteStage(stageName, func){
+    def decisionTable = [
+             'release' : ["build": true,  "deploy nexus": true,  "sonar": false, "integration tests": true,  "git label": true,  "deploy tomcat": false]
+            ,'develop' : ["build": true,  "deploy nexus": true,  "sonar": true,  "integration tests": true,  "git label": false, "deploy tomcat": true ]
+            ,'feature' : ["build": true,  "deploy nexus": false, "sonar": false, "integration tests": true,  "git label": false, "deploy tomcat": false]
+            ,'master'  : ["build": true,  "deploy nexus": true,  "sonar": false, "integration tests": true,  "git label": false, "deploy tomcat": false]
+,'integration-test': ["build": true,  "deploy nexus": true,  "sonar": false, "integration tests": true,  "git label": false, "deploy tomcat": false]
+    ]
+
+    def branchName = env.BRANCH_NAME
+    if(decisionTable[branchName]!=null){
+        executeStage(decisionTable[branchName][stageName], stageName, func)
+        return
+    }
+
+    for ( def key in decisionTable.keySet()){
+        if(branchName.startsWith(key)){
+            executeStage(decisionTable[key][stageName], stageName, func)
+            return
+        }
+    }
+}
+
 ```
 
 ### print all accessible variables
