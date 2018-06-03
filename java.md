@@ -3,6 +3,7 @@
 * [source code examples](http://www.javased.com/)
 * [source code examples](https://searchcode.com)
 * [java 8 json](https://habr.com/company/luxoft/blog/280782/)
+* [java links](https://github.com/Vedenin/useful-java-links)
 
 ### set proxy system properties
 ```
