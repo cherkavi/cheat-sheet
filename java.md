@@ -1,13 +1,14 @@
+## source code links
+* [useful links](http://www.programcreek.com/2012/11/top-100-java-developers-blogs/)
+* [source code examples](http://www.javased.com/)
+* [source code examples](https://searchcode.com)
+* [java 8 json](https://habr.com/company/luxoft/blog/280782/)
+
 ### set proxy system properties
 ```
 System.getProperties().put("http.proxyHost", "someProxyURL");
 System.getProperties().put("http.proxyPort", "someProxyPort");
 ```
-
-## source code links
-* [useful links](http://www.programcreek.com/2012/11/top-100-java-developers-blogs/)
-* [source code examples](http://www.javased.com/)
-* [source code examples](https://searchcode.com)
 
 ### @Null
 ```
