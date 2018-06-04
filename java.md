@@ -339,6 +339,9 @@ logging:
   level:
     ROOT: DEBUG
 ```
+```
+-Dlogging.level.root=debug
+```
 ### Spring Boot h2, h2 console, Spring Boot h2
 ```
 import org.h2.server.web.WebServlet;
