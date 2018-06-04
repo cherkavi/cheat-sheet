@@ -386,6 +386,17 @@ just update pom.xml
     </dependency>
 ```
 
+#### multipart upload
+```
+"status":400,"error":"Bad Request","message":"Required request part 'file' is not present","path":"/"
+```
+application.properties
+```
+spring.servlet.multipart.max-file-size=128MB
+spring.servlet.multipart.max-request-size=128MB
+spring.servlet.multipart.enabled=true
+```
+
 ## Vaadin
 ### [custom components](https://vaadin.com/directory)
 ### [spring integration](https://docs.camunda.org/manual/7.4/user-guide/spring-framework-integration/configuration/)
