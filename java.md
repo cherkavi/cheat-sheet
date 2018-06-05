@@ -88,6 +88,12 @@ PropertyConfigurator.configure(props);
 java -jar myapp.jar --debug
 ```
 
+### set home directory for jar, working directory, current directory
+```
+java -Duser.dir=/tmp/app-folder -jar myapp.jar --debug
+
+```
+
 ## Monitoring
 ### [Crash](http://www.crashub.org/1.3/reference.html)
 ```
