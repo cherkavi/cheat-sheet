@@ -11,6 +11,22 @@ System.getProperties().put("http.proxyHost", "someProxyURL");
 System.getProperties().put("http.proxyPort", "someProxyPort");
 ```
 
+### execute application from java, execute sub-process, start program
+#### start and waiting for finish
+```
+new ProcessExecutor().commandSplit(executeLine).execute();
+```
+
+#### start in separate process without waiting
+```
+new ProcessExecutor().commandSplit(executeLine).start();
+```
+
+#### with specific directory
+```
+new ProcessExecutor().commandSplit(executeLine).directory(executableFile.getParentFile()).start();
+```
+
 ### @Null
 ```
 use Optional.absent
@@ -86,12 +102,6 @@ PropertyConfigurator.configure(props);
 ### logging level, loglevel, spring boot logging
 ```
 java -jar myapp.jar --debug
-```
-
-### set home directory for jar, working directory, current directory
-```
-java -Duser.dir=/tmp/app-folder -jar myapp.jar --debug
-
 ```
 
 ## Monitoring
