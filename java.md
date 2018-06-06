@@ -198,6 +198,9 @@ java -jar liquibase-core-3.5.5.jar  --driver=org.h2.Driver --classpath=h2-1.4.19
 
 ### java application debug, remote debug
 ```
+-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9010
+```
+```
 -Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.port=9010
 -Dcom.sun.management.jmxremote.local.only=false
