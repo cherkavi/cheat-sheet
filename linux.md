@@ -454,6 +454,17 @@ ip -6 a
 add :{username} to the end of line with {groupname}:x:999
 ```
 
+### issue with ssh, ssh connection issue
+when you see message:
+```
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+```
+use this:
+```
+ssh-keygen -R <host>
+```
 
 ### proxy
 * /etc/profile.d/proxy.sh
