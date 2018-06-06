@@ -343,6 +343,7 @@ name of the declared method
 ```
 
 ### spring boot actuator, spring boot list of all elements
+[endpoints](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html)
 ```
 http://localhost:8808/actuator
 ```
