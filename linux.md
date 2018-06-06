@@ -88,6 +88,10 @@ mc --nocolor
 locate -ir "brand-reader*"
 locate -b "brand-reader"
 ```
+### full path to file 
+```
+readlink -f {file}
+```
 
 ### where is program placed, location of executable file
 ```
