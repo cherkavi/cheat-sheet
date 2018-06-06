@@ -196,7 +196,7 @@ java -jar C:\soft\maven-repo\org\liquibase\liquibase-core\3.4.1\liquibase-core-3
 java -jar liquibase-core-3.5.5.jar  --driver=org.h2.Driver --classpath=h2-1.4.197.jar --changeLogFile=C:\project\opm\opm-persistence\src\main\resources\db\changelog\changes.xml --url=jdbc:h2:mem:testdb;Mode=Oracle --username=sa --password=  update
 ```
 
-### java application debug
+### java application debug, remote debug
 ```
 -Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.port=9010
