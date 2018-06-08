@@ -15,7 +15,7 @@ chmod +x %pgsql%/bin/*
 ./initdb -U postgres -A password -E utf8 -W -D /dev/shm/pgsql-data/data
 ```
 The command line parameters of the initdb command are described in following:
-* -U postgres means that the superuser account of your database is called ‘postgres’.
+* -U postgres means that the superuser account of your database is called â€˜postgresâ€™.
 * -A password means that password authentication is used.
 * -E utf8 means that the default encoding will be UTF-8.
 * -W means that you will enter the superuser password manually.
@@ -43,4 +43,26 @@ must work:
 ### stop DB
 ```
 ./pg_ctl -D "/dev/shm/pgsql-data/data" -l "/dev/shm/pgsql-log/pgsql.log" stop
+```
+
+### list of all db
+```
+./psql --username postgres --list
+```
+
+### jdbc url
+```
+url:
+    jdbc:postgresql:database
+    jdbc:postgresql://host/database
+    jdbc:postgresql://host:port/database
+```
+
+### [jdbc driver](https://jdbc.postgresql.org/download.html)
+```
+<dependency>
+    <groupId>postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>9.1-901-1.jdbc4</version>
+</dependency>
 ```
