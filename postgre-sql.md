@@ -51,12 +51,16 @@ must work:
 ```
 
 ### change access from external addresses
-```
 find /dev/shm/pgsql-data/data -name "postgresql.conf"
-```
 ```
 listen_addresses = '*'
 ```
+find /dev/shm/pgsql-data/data -name "pg_hba.conf"
+```
+host    all             all              0.0.0.0/0                       md5
+host    all             all              ::/0                            md5
+```
+
 
 ### jdbc url
 ```
