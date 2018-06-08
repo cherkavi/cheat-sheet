@@ -222,6 +222,42 @@ for custom queries only
 http://localhost:8090/?debug
 ```
 
+## Derby
+* [tutorial](https://db.apache.org/derby/papers/DerbyTut/ns_intro.html#start_ns)
+* [admin page](http://db.apache.org/derby/docs/10.10/adminguide/tadmincbdjhhfd.html)
+
+into 'bin' folder add two variables for all scripts:
+```
+ export DERBY_INSTALL=/dev/shm/db/db-derby-10.14.2.0-bin/ 
+ export DERBY_HOME=/dev/shm/db/db-derby-10.14.2.0-bin/ 
+```
+
+start with listening all incoming request ( not from localhost )
+```
+./startNetworkServer -h vldn338
+```
+create DB before using, from jdbc url
+```
+jdbc:derby://vldn338:1527/testDB;create=true
+```
+
+maven dependency
+```
+<dependency>
+    <groupId>org.apache.derby</groupId>
+    <artifactId>derbyclient</artifactId>
+    <version>10.14.2.0</version>
+</dependency>
+```
+
+jdbc
+```
+Driver: org.apache.derby.jdbc.ClientDriver
+jdbc: jdbc:derby://vldn338:1527/dbName
+user: <empty>
+pass: <empty>
+```
+
 ## Activiti
 ### [user guide](https://www.activiti.org/userguide)
 ### [eclipse plugin](http://www.activiti.org/designer/update)
