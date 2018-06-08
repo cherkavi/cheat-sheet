@@ -1,9 +1,15 @@
 ## Linux
 
-### tunnel, port forwarding
+### tunnel, port forwarding from local machine to outside
 ```
- ssh -L <localport>:<remote host>:<remote port> <hostname>
+ssh -L <localport>:<remote host>:<remote port> <hostname>
 ssh -L 28010:vldn337:8010 localhost
+```
+
+### tunnel, port forwarding from outside to localmachine
+```
+ssh -R <remoteport>:<local host name>:<local port> <hostname>
+ssh -R 9020:127.0.0.1:9092 localhost
 ```
 
 ### connect to remote machine via ssh without credentials
