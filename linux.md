@@ -1,5 +1,11 @@
 ## Linux
 
+### tunnel, port forwarding
+```
+ ssh -L <localport>:<remote host>:<remote port> <hostname>
+ssh -L 28010:vldn337:8010 localhost
+```
+
 ### connect to remote machine via ssh without credentials
 ```
 ssh-keygen -t rsa
