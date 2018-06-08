@@ -50,6 +50,14 @@ must work:
 ./psql --username postgres --list
 ```
 
+### change access from external addresses
+```
+find /dev/shm/pgsql-data/data -name "postgresql.conf"
+```
+```
+listen_addresses = '*'
+```
+
 ### jdbc url
 ```
 url:
