@@ -267,3 +267,13 @@ pass: <empty>
 ```
 activiti-engine-x.x.x.jar/org/activiti/db/create/activiti.create.sql
 ```
+
+## email, e-mail, smtp emulator
+[FakeSMTP](http://nilhcem.com/FakeSMTP/)
+```
+java -jar fakeSMTP.jar --help
+```
+run example:
+```
+java -jar fakeSMTP.jar -s -b -p 2525 -a 127.0.0.1  -o output_directory_name 
+```
