@@ -39,6 +39,31 @@ mvn javadoc:javadoc
 
 ### uber jar plugin, fat jar, jar with all dependencies, shade plugin
 ```
+<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.5.4</version>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifestFile>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+					</archive>
+					<!-- Remove the "-jar-with-dependencies" at the end of the file -->
+					<appendAssemblyId>false</appendAssemblyId>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>attached</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+```
+```
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
