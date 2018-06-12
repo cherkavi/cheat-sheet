@@ -10,6 +10,11 @@ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
 ```
 
+### upgrade pip
+```
+pip install -U pip
+```
+
 ### install certain version of artifact
 ```
 pip install tornado==2.1.1
