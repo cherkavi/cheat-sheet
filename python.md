@@ -20,6 +20,12 @@ pip install -U pip
 pip install tornado==2.1.1
 ```
 
+### install package to specific folder
+```
+pip install --target=/home/user/my/python/packages package_name
+export PYTHONPATH=$PYTHONPATH:"/home/user/my/python/packages"
+```
+
 ### update package
 ```
 pip install tornado --update
