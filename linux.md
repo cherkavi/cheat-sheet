@@ -499,6 +499,11 @@ http_proxy=http://webproxy.host:3128
 no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ```
 
+### vagrant
+[download](https://releases.hashicorp.com/vagrant/)
+[reestr](https://www.vagrantup.com/docs/boxes.html)
+
+
 ### tools:
 - [ETL](www.talend.com)
 - [ETL](https://hekad.readthedocs.io)
