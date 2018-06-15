@@ -459,9 +459,34 @@ pdftk original.pdf stamp watermark.pdf output output.pdf
 * uname -a
 
 ### print all networks
+```
 ip -4 a
 ip -6 a
+```
 
+### print all network interfaces
+```
+interfaces
+```
+
+### switch on and off network interface 
+```
+sudo ifdown lo && sudo ifup lo
+```
+
+### restart network, switch off all interfaces
+```
+sudo service network-manager restart
+```
+
+### DNS 
+```
+systemd-resolve --status
+```
+```
+dig {hostname}
+
+```
 
 ### add user into special group
 * adduser {username} {destination group name}
@@ -498,11 +523,6 @@ export no_proxy="localhost,127.0.0.1,.host,.viola.local"
 http_proxy=http://webproxy.host:3128
 no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ```
-
-### vagrant
-[download](https://releases.hashicorp.com/vagrant/)
-[reestr](https://www.vagrantup.com/docs/boxes.html)
-
 
 ### tools:
 - [ETL](www.talend.com)
