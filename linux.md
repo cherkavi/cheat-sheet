@@ -524,6 +524,9 @@ http_proxy=http://webproxy.host:3128
 no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ```
 
+### apache 
+[manage httpd](https://httpd.apache.org/docs/current/stopping.html)
+
 ### tools:
 - [ETL](www.talend.com)
 - [ETL](https://hekad.readthedocs.io)
