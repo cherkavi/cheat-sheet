@@ -9,6 +9,8 @@
 ```
 System.getProperties().put("http.proxyHost", "someProxyURL");
 System.getProperties().put("http.proxyPort", "someProxyPort");
+
+-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=3129
 ```
 
 ### execute application from java, execute sub-process, start program
