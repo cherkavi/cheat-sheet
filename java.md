@@ -279,3 +279,9 @@ run example:
 ```
 java -jar fakeSMTP.jar -s -b -p 2525 -a 127.0.0.1  -o output_directory_name 
 ```
+
+## e-mail server smtp, pop3, imap with SSL
+[MailServer](http://www.icegreen.com/greenmail/)
+```
+java -Dgreenmail.smtp.hostname=0.0.0.0 -Dgreenmail.smtp.port=2525 -Dgreenmail.pop3.hostname=0.0.0.0 -Dgreenmail.pop3.port=8443 -Dgreenmail.users=Vitali.Cherkashyn:vitali@localhost.com,user:password@localhost.com -jar  greenmail-standalone-1.5.7.jar 
+```
