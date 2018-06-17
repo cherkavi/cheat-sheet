@@ -20,6 +20,15 @@ pip install -U pip
 pip install tornado==2.1.1
 ```
 
+### install from git
+```
+pip install git+https://github.com/django-extensions/django-extensions
+pip install git+https://github.com/django-extensions/django-extensions.git
+pip install -e git+https://github.com/django-extensions/django-extensions.git#egg=django-extensions
+pip install https://github.com/django/django/archive/stable/1.7.x.zip
+pip install git+ssh://git@github.com/myuser/foo.git@my_version
+```
+
 ### install package to specific folder
 ```
 pip install --target=/home/user/my/python/packages package_name
