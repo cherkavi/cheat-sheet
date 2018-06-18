@@ -77,7 +77,7 @@ config.vm.provision "ansible_local" do |ansible|
 end
 ```
 
-### ip address inside network, connection from one box to another
+### ip address inside network, connection from one box to another, [vm network](https://www.barrykooij.com/connect-mysql-vagrant-machine/)
 part of the Vagrantfile
 ```
   config.vm.network "private_network", type: "dhcp"
