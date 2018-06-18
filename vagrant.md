@@ -68,6 +68,18 @@ config.proxy.no_proxy = "localhost,127.0.0.1"
 
 ## cookbook
 
+### install ansible
+```
+  config.vm.provision "shell", inline: <<-SHELL
+	sudo apt update
+	sudo apt install -y python
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+	sudo python get-pip.py
+	sudo pip install ansible
+	rm get-pip.py
+  SHELL
+```
+
 ### start ansible 
 ```
 config.vm.provision "ansible_local" do |ansible|
