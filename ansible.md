@@ -8,7 +8,7 @@ apt install ansible
 ```
 pip install ansible 
 ```
-remote machine must have 'python' !!!
+remote machine should have 'python' - 'gather_facts: False' otherwise
 
 ## [ansible examples](https://github.com/ansible/ansible-examples)
 
