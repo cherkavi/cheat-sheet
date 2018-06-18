@@ -63,6 +63,16 @@ ansible remote* -i inventory.ini -a "hostname"
         - "stop-all.sh"
 ```
 
+## repeat execution
+```
+--limit {playbookfile}.retry
+```
+
+## start with task, execute from task
+```
+ansible-playbook playbook.yml --start-at-task="name of the start to be started from"
+```
+
 ## conditions "when"
 TBD
 
