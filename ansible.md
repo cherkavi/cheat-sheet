@@ -12,10 +12,10 @@ pip install ansible
 ## [ansible examples](https://github.com/ansible/ansible-examples)
 
 
-## inventory file
+## inventory file, [rules](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
 ```
-172.17.0.2 label_ssh_example ansible_host=ansible_connection=ssh ansible_user=user ansible_password=secret
-172.17.0.3 label_ssh_example ansible_host=ansible_connection=ssh ansible_user=user ansible_password=secret
+[remote_ssh]
+172.28.128.3     ansible_connection=ssh   ansible_port=22   ansible_user=tc     ansible_password=tc
 ```
 
 ## inventory file with variables ( python Jinja templating)
