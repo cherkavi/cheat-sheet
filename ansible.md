@@ -34,6 +34,11 @@ playbook usage:
 '{{http_port}}'
 ```
 
+## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters
+```
+ansible-playbook -i inventory.ini playbook.yml --extra-vars "$*"
+```
+
 ## check is it working, ad-hoc command
 ```
 ansible remote* -i inventory.ini -m "ping"
