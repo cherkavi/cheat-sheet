@@ -74,3 +74,15 @@ TBD
 
 
 # [ansible awx](https://github.com/ansible/awx)
+
+# issues
+
+## fingerprint checking
+```
+fatal: [172.28.128.4]: FAILED! => {"msg": "Using a SSH password instead of a key is not possible because Host Key checking is enabled and sshpass does not support this.  Please add this host's fingerprint to your known_hosts file to manage this host."}
+```
+resolution
+```
+export ANSIBLE_HOST_KEY_CHECKING=False
+ansible-playbook -i inventory.ini playbook-directory.yml
+```
