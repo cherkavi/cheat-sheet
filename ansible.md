@@ -34,7 +34,7 @@ playbook usage:
 '{{http_port}}'
 ```
 
-## check working, ad-hoc command
+## check is it working, ad-hoc command
 ```
 ansible remote* -i inventory.ini -m "ping"
 ansible remote* -i inventory.ini --module-name "ping"
@@ -45,8 +45,23 @@ ansible remote* -i inventory.ini -a "hostname"
 
 ## [all modules](https://docs.ansible.com/ansible/devel/modules/list_of_all_modules.html)
 
+## loop example
+```
+    - name: scripts {{ item }}
+      template:
+        mode: 0777 
+        src: "templates/{{ item }}" 
+        dest: "{{ root_folder }}/{{ item }}" 
+      loop:
+        - "start-all.sh"
+        - "status.sh"
+        - "stop-all.sh"
+```
+
 ## conditions "when"
 TBD
+
+
 
 ## modules
 TBD
@@ -57,7 +72,5 @@ TBD
 * cloud
 * windows
 
-## ad-hoc commands
-TBD
 
 # [ansible awx](https://github.com/ansible/awx)
