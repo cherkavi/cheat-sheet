@@ -77,3 +77,12 @@ config.vm.provision "ansible_local" do |ansible|
 end
 ```
 
+### ip address inside network, connection from one box to another
+part of the Vagrantfile
+```
+  config.vm.network "private_network", type: "dhcp"
+```
+command inside box
+```
+ifconfig
+```
