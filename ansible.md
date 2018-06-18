@@ -18,7 +18,7 @@ remote machine must have 'python' !!!
 * ~/ansible.cfg
 * /etc/ansible/ansible.cfg
 
-## inventory file, [rules](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
+## inventory file, inventory file with variables, [rules](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
 ```
 [remote_ssh]
 172.28.128.3     ansible_connection=ssh   ansible_port=22   ansible_user=tc     ansible_password=tc
@@ -26,13 +26,21 @@ remote machine must have 'python' !!!
 
 ## inventory file with variables ( python Jinja templating)
 ```
-172.17.0.2 label_ssh_example ansible_host=ansible_connection=ssh ansible_user=user ansible_password=secret http_port=8090
-172.17.0.3 label_ssh_example ansible_host=ansible_connection=ssh ansible_user=user ansible_password=secret http_port=8090
+[remote_ssh]
+172.28.128.3     ansible_connection=ssh   ansible_port=22   ansible_user=tc     ansible_password=tc   http_port=8090
 ```
-
 playbook usage:
 ```
 '{{http_port}}'
+```
+
+## check working, ad-hoc command
+```
+ansible remote* -i inventory.ini -m "ping"
+ansible remote* -i inventory.ini --module-name "ping"
+```
+```
+ansible remote* -i inventory.ini -a "hostname"
 ```
 
 ## conditions "when"
