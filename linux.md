@@ -490,3 +490,8 @@ no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ### tools:
 - [ETL](www.talend.com)
 - [ETL](https://hekad.readthedocs.io)
+- web management - atomicproject.io, cockpit
+  * [install](https://cockpit-project.org/running#ubuntu)
+  * [guide](https://cockpit-project.org/guide/latest/)
+  * [https://127.0.0.1:9090](after installation)
+  * use your own user/password
