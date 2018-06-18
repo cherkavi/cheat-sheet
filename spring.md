@@ -23,7 +23,11 @@ schema-${platform}.sql
 ```
 java -jar myapp.jar --debug
 ```
-
+### logging to file, log to file
+```
+-Dlogging.file 	
+-Dlogging.path
+```
 
 ### spring boot another http port, change http port, change server port
 ```

@@ -9,6 +9,8 @@
 ```
 System.getProperties().put("http.proxyHost", "someProxyURL");
 System.getProperties().put("http.proxyPort", "someProxyPort");
+
+-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=3129
 ```
 
 ### execute application from java, execute sub-process, start program
@@ -222,6 +224,42 @@ for custom queries only
 http://localhost:8090/?debug
 ```
 
+## Derby
+* [tutorial](https://db.apache.org/derby/papers/DerbyTut/ns_intro.html#start_ns)
+* [admin page](http://db.apache.org/derby/docs/10.10/adminguide/tadmincbdjhhfd.html)
+
+into 'bin' folder add two variables for all scripts:
+```
+ export DERBY_INSTALL=/dev/shm/db/db-derby-10.14.2.0-bin/ 
+ export DERBY_HOME=/dev/shm/db/db-derby-10.14.2.0-bin/ 
+```
+
+start with listening all incoming request ( not from localhost )
+```
+./startNetworkServer -h vldn338
+```
+create DB before using, from jdbc url
+```
+jdbc:derby://vldn338:1527/testDB;create=true
+```
+
+maven dependency
+```
+<dependency>
+    <groupId>org.apache.derby</groupId>
+    <artifactId>derbyclient</artifactId>
+    <version>10.14.2.0</version>
+</dependency>
+```
+
+jdbc
+```
+Driver: org.apache.derby.jdbc.ClientDriver
+jdbc: jdbc:derby://vldn338:1527/dbName
+user: <empty>
+pass: <empty>
+```
+
 ## Activiti
 ### [user guide](https://www.activiti.org/userguide)
 ### [eclipse plugin](http://www.activiti.org/designer/update)
@@ -230,4 +268,20 @@ http://localhost:8090/?debug
 ### create/init DB
 ```
 activiti-engine-x.x.x.jar/org/activiti/db/create/activiti.create.sql
+```
+
+## email, e-mail, smtp emulator
+[FakeSMTP](http://nilhcem.com/FakeSMTP/)
+```
+java -jar fakeSMTP.jar --help
+```
+run example:
+```
+java -jar fakeSMTP.jar -s -b -p 2525 -a 127.0.0.1  -o output_directory_name 
+```
+
+## e-mail server smtp, pop3, imap with SSL
+[MailServer](http://www.icegreen.com/greenmail/)
+```
+java -Dgreenmail.smtp.hostname=0.0.0.0 -Dgreenmail.smtp.port=2525 -Dgreenmail.pop3.hostname=0.0.0.0 -Dgreenmail.pop3.port=8443 -Dgreenmail.users=Vitali.Cherkashyn:vitali@localhost.com,user:password@localhost.com -jar  greenmail-standalone-1.5.7.jar 
 ```

@@ -1,5 +1,17 @@
 ## Linux
 
+### tunnel, port forwarding from local machine to outside
+```
+ssh -L <localport>:<remote host>:<remote port> <hostname>
+ssh -L 28010:vldn337:8010 localhost
+```
+
+### tunnel, port forwarding from outside to localmachine
+```
+ssh -R <remoteport>:<local host name>:<local port> <hostname>
+ssh -R 9020:127.0.0.1:9092 localhost
+```
+
 ### connect to remote machine via ssh without credentials
 ```
 ssh-keygen -t rsa
@@ -447,9 +459,34 @@ pdftk original.pdf stamp watermark.pdf output output.pdf
 * uname -a
 
 ### print all networks
+```
 ip -4 a
 ip -6 a
+```
 
+### print all network interfaces
+```
+interfaces
+```
+
+### switch on and off network interface 
+```
+sudo ifdown lo && sudo ifup lo
+```
+
+### restart network, switch off all interfaces
+```
+sudo service network-manager restart
+```
+
+### DNS 
+```
+systemd-resolve --status
+```
+```
+dig {hostname}
+
+```
 
 ### add user into special group
 * adduser {username} {destination group name}
@@ -487,6 +524,9 @@ http_proxy=http://webproxy.host:3128
 no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ```
 
+### apache 
+[manage httpd](https://httpd.apache.org/docs/current/stopping.html)
+
 ### tools:
 - [ETL](www.talend.com)
 - [ETL](https://hekad.readthedocs.io)
@@ -495,3 +535,7 @@ no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
   * [guide](https://cockpit-project.org/guide/latest/)
   * [https://127.0.0.1:9090](after installation)
   * use your own user/password
+
+### virtual machines
+* [images](osboxes.org)
+* [app with infrastructure](https://bitnami.com/stacks)
