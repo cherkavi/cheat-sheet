@@ -43,6 +43,8 @@ ansible remote* -i inventory.ini --module-name "ping"
 ansible remote* -i inventory.ini -a "hostname"
 ```
 
+## [all modules](https://docs.ansible.com/ansible/devel/modules/list_of_all_modules.html)
+
 ## conditions "when"
 TBD
 
