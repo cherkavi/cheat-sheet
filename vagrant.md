@@ -1,6 +1,6 @@
 # vagrant
 * [download](https://releases.hashicorp.com/vagrant/)
-* [reestr](https://www.vagrantup.com/docs/boxes.html)
+* [reestr](https://app.vagrantup.com/boxes/search)
 
 ## init project
 ```
