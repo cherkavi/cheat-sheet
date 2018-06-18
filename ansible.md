@@ -12,6 +12,11 @@ remote machine must have 'python' !!!
 
 ## [ansible examples](https://github.com/ansible/ansible-examples)
 
+## ansible configuration places
+* path variable $Ansible_Config
+* ./ansible.cfg
+* ~/ansible.cfg
+* /etc/ansible/ansible.cfg
 
 ## inventory file, [rules](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
 ```
