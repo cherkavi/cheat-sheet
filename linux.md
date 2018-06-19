@@ -506,6 +506,10 @@ use this:
 ```
 ssh-keygen -R <host>
 ```
+or
+```
+rm ~/.ssh/known_hosts 
+```
 
 ### proxy
 * /etc/profile.d/proxy.sh
