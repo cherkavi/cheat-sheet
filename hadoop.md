@@ -191,3 +191,15 @@ Error in pyspark startup:
 IPYTHON and IPYTHON_OPTS are removed in Spark 2.0+. Remove these from the environment and set PYSPARK_DRIVER_PYTHON and PYSPARK_DRIVER_PYTHON_OPTS instead.
 just set variable to using Spart1 inside script: SPARK_MAJOR_VERSION=1
 ```
+
+### Cascading
+TBD
+
+### Hadoop streaming
+TBD
+
+### Pig Latin
+TBD
+
+### Scalding
+TBD
