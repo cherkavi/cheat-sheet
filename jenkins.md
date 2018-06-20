@@ -7,6 +7,7 @@
 * [BlueOcean](https://jenkins.io/doc/book/blueocean/)
 * [jenkins plugin documentation](https://jenkinsci.github.io/job-dsl-plugin/)
 * [pipeline examples](https://github.com/jenkinsci/pipeline-examples)
+* [jenkins dsl source code](https://github.com/jenkinsci/job-dsl-plugin)
 
 ### installation on debian
 * wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
