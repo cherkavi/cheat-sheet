@@ -228,6 +228,15 @@ String[] disabledCommands = {"--spring.shell.command.quit.enabled=false"};
 ```
 spring.shell.interactive.enabled=false
 ```
+# spring boot maven plugin for building fat jar, uber jar, jar with all dependencies
+```
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+```
 
 # spring boot admin
 [source code](https://github.com/codecentric/spring-boot-admin)
