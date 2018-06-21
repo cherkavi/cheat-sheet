@@ -226,7 +226,7 @@ spring.shell.interactive.enabled=false
 # spring boot admin
 [source code](https://github.com/codecentric/spring-boot-admin)
 [doc](http://codecentric.github.io/spring-boot-admin/2.0.0/)
-maven dependency
+### maven dependency
 ```
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -248,7 +248,7 @@ maven dependency
   </dependencies>
 ```
 
-register client on server side
+### register client on server side
 ```
     @Bean
     CommandLineRunner registerClient(InstanceRegistry registry){
@@ -268,4 +268,24 @@ register client on server side
             }
         };
     }
+```
+
+### curl request to register new instance
+```
+curl -X POST -H "content-type:application/json;charset=UTF-8" -d "@register-host.json" http://localhost:8080/instances
+```
+```
+{
+	"name":"new host",
+	"healthUrl": "http://v337:9001/health",
+	"serviceUrl": "http://v337:9001",
+	"metadata": {
+		"version":"1"
+		"controlUrl":"my-own-manager:8080"
+	}
+}
+```
+### curl delete instance
+```
+curl -X DELETE -H "content-type:application/json;charset=UTF-8" http://localhost:8080/instances/bbe42fdc3e6a
 ```
