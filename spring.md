@@ -223,4 +223,49 @@ String[] disabledCommands = {"--spring.shell.command.quit.enabled=false"};
 spring.shell.interactive.enabled=false
 ```
 
+# spring boot admin
+[source code](https://github.com/codecentric/spring-boot-admin)
+[doc](http://codecentric.github.io/spring-boot-admin/2.0.0/)
+maven dependency
+```
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.0.2.RELEASE</version>
+    <relativePath/> 
+  </parent>
+  
+  <dependencies>
+    <dependency>
+        <groupId>de.codecentric</groupId>
+        <artifactId>spring-boot-admin-starter-server</artifactId>
+        <version>2.0.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+  </dependencies>
+```
 
+register client on server side
+```
+    @Bean
+    CommandLineRunner registerClient(InstanceRegistry registry){
+        return new CommandLineRunner() {
+            @Override
+            public void run(String... args) throws Exception {
+                Registration build = Registration.builder()
+                        .name("sit")
+                        // .managementUrl("http://v337:9001/env")
+                        .healthUrl(    "http://v337:9001/health")
+                        .serviceUrl(   "http://v337:9001")
+                        // .source(       "http://v337:9001")
+                        .build();
+
+                Mono<InstanceId> response = registry.register(build);
+                System.out.println(response.block());
+            }
+        };
+    }
+```
