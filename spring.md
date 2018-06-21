@@ -100,7 +100,7 @@ logging:
 ```
 -Dlogging.level.root=debug
 ```
-### Spring Boot h2, h2 console, Spring Boot h2
+### Spring Boot h2, h2 console, Spring Boot h2, conditional bean
 ```
 import org.h2.server.web.WebServlet;
 
@@ -127,6 +127,12 @@ import org.h2.server.web.WebServlet;
     <version>1.4.197</version>
     <scope>test</scope>
 </dependency>
+```
+
+### conditional bean, bean with specific methods 
+```
+    @Bean(initMethod = "start", destroyMethod = "stop")
+    @ConditionalOnMissingBean(InstanceRepository.class)
 ```
 
 ### Spring boot issues
