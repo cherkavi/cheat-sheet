@@ -163,6 +163,14 @@ spring.servlet.multipart.max-file-size=128MB
 spring.servlet.multipart.max-request-size=128MB
 spring.servlet.multipart.enabled=true
 ```
+#### No serialization found for class
+```
+HttpEntity<String> request = new HttpEntity<>(new ObjectMapper().writeValueAsString(registration), headers);
+    or
+ObjectMapper mapper = new ObjectMapper();
+mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+HttpEntity<String> request = new HttpEntity<>(mapper.writeValueAsString(registration), headers);
+```
 
 ## Monitoring
 ### [Crash](http://www.crashub.org/1.3/reference.html)
