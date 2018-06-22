@@ -23,10 +23,22 @@ schema-${platform}.sql
 ```
 java -jar myapp.jar --debug
 ```
+```
+logging:
+  level:
+    ROOT: DEBUG
+```
+```
+-Dlogging.level.root=debug
+```
+
 ### logging to file, log to file
 ```
 -Dlogging.file 	
 -Dlogging.path
+```
+```
+-Dlogging.file=deployer.log -Dlogging.path=/dev/deployer/deployer.log -Dlogging.level.root=info
 ```
 
 ### spring boot another http port, change http port, change server port
@@ -91,15 +103,6 @@ http://localhost:8808/actuator
 <url:port>/<application>/health
 ```
 
-### logging level
-```
-logging:
-  level:
-    ROOT: DEBUG
-```
-```
--Dlogging.level.root=debug
-```
 ### Spring Boot h2, h2 console, Spring Boot h2, conditional bean
 ```
 import org.h2.server.web.WebServlet;
