@@ -82,7 +82,7 @@ TBD
 ### [apt](https://docs.ansible.com/ansible/latest/modules/apt_module.html), python installation 
 ```
 - name: example of apt install 
-  apt: name '{{item}}' 
+  apt: name='{{ item }}' state=installed
   with_items:
     - python
     - python-setuptools
