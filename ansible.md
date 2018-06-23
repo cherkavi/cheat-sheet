@@ -79,7 +79,7 @@ TBD
 
 
 ## modules
-### apt, python installation 
+### [apt](https://docs.ansible.com/ansible/latest/modules/apt_module.html), python installation 
 ```
 - name: example of apt install 
   apt: name '{{item}}' 
