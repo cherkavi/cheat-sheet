@@ -76,8 +76,6 @@ ansible-playbook playbook.yml --start-at-task="name of the start to be started f
 ## conditions "when"
 TBD
 
-
-
 ## modules
 ### [apt](https://docs.ansible.com/ansible/latest/modules/apt_module.html), python installation 
 ```
@@ -99,7 +97,7 @@ TBD
     enabled: yes
 ```
 
-### pip
+### [pip](https://docs.ansible.com/ansible/latest/modules/pip_module.html)
 ```
 - name: manage python packages via pip 
   pip:
