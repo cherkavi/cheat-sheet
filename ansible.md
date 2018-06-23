@@ -79,10 +79,36 @@ TBD
 
 
 ## modules
-TBD
+### apt, python installation 
+```
+- name: example of apt install 
+  apt: name '{{item}}' 
+  with_items:
+    - python
+    - python-setuptools
+    - python-dev
+    - build-essential
+    - python-pip
+```
+### service
+```
+- name: example of start unix service
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+```
+
+### pip
+```
+- name: manage python packages via pip 
+  pip:
+    name: flask
+```
+
+### TBD
 * system
 * commands
-* files
 * database
 * cloud
 * windows
