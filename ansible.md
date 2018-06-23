@@ -90,7 +90,7 @@ TBD
     - build-essential
     - python-pip
 ```
-### service
+### [service](https://docs.ansible.com/ansible/latest/modules/service_module.html)
 ```
 - name: example of start unix service
   service:
