@@ -163,11 +163,16 @@ replace value from file with special format
 172.28.128.3     ansible_connection=ssh   ansible_port=22   ansible_user=tc     ansible_password=tc
 ```
 ## dynamic inventory
-python script (with 'py' extension) instead of txt
+python inventory.py (with 'py' extension) instead of txt
 ```
 import json
 data = {"databases": {"hosts": ["host1", "host2"], "vars": {"ansible_ssh_host":"192.168.10.12", "ansible_ssh_pass":"Passw0rd"} }}
 print(json.dumps(data))
+```
+also next logic should be present
+```
+inventory.py --list
+inventory.py --host databases
 ```
 
 ## inventory file with variables ( python Jinja templating)
