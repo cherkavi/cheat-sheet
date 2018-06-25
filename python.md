@@ -56,6 +56,14 @@ pip.main("install", "wheels")
 target = __import__("data-migration")
 ```
 
+### import package in protected block
+```
+try:
+    import json
+except ImportError:
+    import simplejson as json
+```
+
 ### execute string as commands
 ```
 a=10
