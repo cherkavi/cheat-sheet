@@ -115,7 +115,9 @@ playbook usage:
 ```
 '{{http_port}}'
 ```
+
 # strategy
+---
 ```
   strategy: linear
 ```
@@ -123,6 +125,22 @@ playbook usage:
 *after each step waiting for all servers*
 * free
 *independently for all servers - someone can finish installation significantly earlier than others*
+
+additional parameter - specify amount of servers to be executed at the time ( for default strategy only )
+```
+  serial: 3
+```
+```
+  serial: 20%
+```
+```
+  serial: [5,15,20]
+```
+
+default value "serial" into configuration **ansible.cfg**
+```
+forks = 5
+```
 
 # roles
 ---
