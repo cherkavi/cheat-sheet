@@ -251,3 +251,12 @@ TBD
 - Knox ( REST API for hadoop )
 - Ranger 
 
+# Data storage, NoSQL
+* HBase
+distributed, column-oriented persistent multidimensional sorted map 
+```
+data is sparse - a lot of column has null values
+fast retrieving data by 'key of the row' + 'column name'
+contains from: (HBase HMaster) *---> (HBase Region Server)
+```
+* Accumulo
