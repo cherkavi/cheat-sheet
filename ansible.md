@@ -324,6 +324,8 @@ ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_
 
 # modules
 [list of all modules](https://docs.ansible.com/ansible/devel/modules/list_of_all_modules.html)
+[custom module playground](https://ansible-playable.com)
+[custom module creation doc](docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html)
 
 ### [apt](https://docs.ansible.com/ansible/latest/modules/apt_module.html), python installation 
 ```
