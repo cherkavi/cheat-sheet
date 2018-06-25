@@ -10,7 +10,9 @@ pip install ansible
 ```
 remote machine should have 'python' - 'gather_facts: False' otherwise
 
-## [ansible examples](https://github.com/ansible/ansible-examples)
+## [examples](https://github.com/ansible/ansible-examples)
+## [examples 2](https://github.com/mmumshad/ansible-training-answer-keys)
+## [examples 3](https://github.com/mmumshad/ansible-training-answer-keys-2)
 
 ## ansible configuration places
 * path variable $Ansible_Config
@@ -94,6 +96,11 @@ code ( should be aligned properly )
 ```
         db_user: my_user
         db_password: my_password
+```
+
+## move code to separate file, tasks into file
+```
+
 ```
 
 ## conditions "when"
