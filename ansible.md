@@ -68,9 +68,32 @@ ansible remote* -i inventory.ini -a "hostname"
 --limit {playbookfile}.retry
 ```
 
-## start with task, execute from task
+## start with task, execute from task, begin with task, skip previous tasks
 ```
 ansible-playbook playbook.yml --start-at-task="name of the start to be started from"
+```
+
+## replace variables inside file to dedicated file, move vars to separate file
+* before
+```
+   vars:
+      db_user: my_user
+      db_password: my_password
+```
+* after 
+*( 'vars' block is empty )*
+filepath: 
+```
+./host_vars/id_of_the_server
+```
+or groupvars:
+```
+./group_vars/id_of_the_group_into_square_brakets
+```
+code ( should be aligned properly )
+```
+        db_user: my_user
+        db_password: my_password
 ```
 
 ## conditions "when"
