@@ -98,6 +98,29 @@ approprate file should be created:
 ## conditions "when"
 TBD
 
+# error handling, try catch
+---
+## stop execution of steps (of playbook) when at least one server will throw error
+```
+  any_errors_fatal:true
+```
+
+## not to throw error for one certain task
+```
+ - mail:
+     to: 1@yahoo.com
+     subject: info
+     body: das ist information
+   ignore_errors: yes
+```
+
+## fail when, fail by condition, parse log file for errors
+```
+  - command: cat /var/log/server.log
+    register: server_log_file
+    failed_when : "'ERROR' in server_log_file.stdout"
+```
+
 # inventory file
 ---
 ## inventory file, inventory file with variables, [rules](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
