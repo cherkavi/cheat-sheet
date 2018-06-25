@@ -1,6 +1,9 @@
 # Hadoop 
 
 ## Hadoop into Docker container 
+* MapR
+* Hortonworks
+* Cloudera
 
 ### [couldera container start](https://www.cloudera.com/documentation/enterprise/latest/topics/quickstart_docker_container.html#cloudera_docker_container)
 ```
@@ -242,3 +245,10 @@ TBD
 
 ### Scalding
 TBD
+
+# Security
+- File permissions ( posix attributes )
+- Hive ( grant revoke )
+- Knox ( REST API for hadoop )
+- Ranger 
+
