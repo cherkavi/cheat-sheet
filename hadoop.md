@@ -117,7 +117,7 @@ hdfs dfs -ls -r
 ```
 
 ## Hadoop governance, administration
-### filesystem capacity
+### filesystem capacity, disk usage in human readable format
 ```
 hdfs dfs -df -h
 ```
