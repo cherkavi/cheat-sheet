@@ -20,22 +20,6 @@ remote machine should have 'python' - 'gather_facts: False' otherwise
 * ~/ansible.cfg
 * /etc/ansible/ansible.cfg
 
-## inventory file, inventory file with variables, [rules](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
-```
-[remote_ssh]
-172.28.128.3     ansible_connection=ssh   ansible_port=22   ansible_user=tc     ansible_password=tc
-```
-
-## inventory file with variables ( python Jinja templating)
-```
-[remote_ssh]
-172.28.128.3     ansible_connection=ssh   ansible_port=22   ansible_user=tc     ansible_password=tc   http_port=8090
-```
-playbook usage:
-```
-'{{http_port}}'
-```
-
 ## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters
 ```
 ansible-playbook -i inventory.ini playbook.yml --extra-vars "$*"
@@ -49,8 +33,6 @@ ansible remote* -i inventory.ini --module-name "ping"
 ```
 ansible remote* -i inventory.ini -a "hostname"
 ```
-
-## [all modules](https://docs.ansible.com/ansible/devel/modules/list_of_all_modules.html)
 
 ## loop example
 ```
@@ -81,6 +63,8 @@ ansible-playbook playbook.yml --start-at-task="name of the start to be started f
    vars:
       db_user: my_user
       db_password: my_password
+      ansible_ssh_pass: my_ssh_password 
+      ansible_host: 192.168.1.14
 ```
 * after 
 *( 'vars' block is empty )*
@@ -92,21 +76,86 @@ or groupvars:
 ```
 ./group_vars/id_of_the_group_into_square_brakets
 ```
-code ( should be aligned properly )
+code
 ```
-        db_user: my_user
-        db_password: my_password
+db_user: my_user
+db_password: my_password
+ansible_ssh_pass: my_ssh_password 
+ansible_host: 192.168.1.14
 ```
 
 ## move code to separate file, tasks into file
+cut code from original file and paste it into separate file ( with appropriate alignment !!! ),
+write instead of the code:
 ```
-
+    - include: path_to_folder/path_to_file
+```
+approprate file should be created:
+```
+./path_to_folder/path_to_file
 ```
 
 ## conditions "when"
 TBD
 
-## modules
+# Inventory file
+---
+## inventory file, inventory file with variables, [rules](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
+```
+[remote_ssh]
+172.28.128.3     ansible_connection=ssh   ansible_port=22   ansible_user=tc     ansible_password=tc
+```
+
+## inventory file with variables ( python Jinja templating)
+```
+[remote_ssh]
+172.28.128.3     ansible_connection=ssh   ansible_port=22   ansible_user=tc     ansible_password=tc   http_port=8090
+```
+playbook usage:
+```
+'{{http_port}}'
+```
+
+# Roles
+---
+## init project ansible-galaxy, create new role, init role
+execute code into your project folder './roles'
+```
+ansible-galaxy init {project/role name}
+```
+result:
+```
+./roles/{project/role name}
+    /defaults
+    /handlers
+    /meta
+    /tasks
+    /tests
+    /vars
+```
+insert into code
+```
+  roles:
+  - {project/role name}
+```
+all folders of the created project will be applied to your project ( tasks, vars, defaults )
+*in case of manual creation - only necessary folders can be created*
+
+## import existing roles from [ansible galaxy](https://galaxy.ansible.com/list)
+```
+cd roles
+ansible-galaxy import {name of the project/role}
+```
+insert into code
+```
+  roles:
+  - {project/role name}
+```
+all folders of the imported project will be applied to your project ( tasks, vars, defaults )
+
+# modules
+[list of all modules](https://docs.ansible.com/ansible/devel/modules/list_of_all_modules.html)
+
 ### [apt](https://docs.ansible.com/ansible/latest/modules/apt_module.html), python installation 
 ```
 - name: example of apt install 
