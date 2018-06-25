@@ -180,7 +180,7 @@ localhost:8080
 admin/{your password}
 
 
-### Zeppelin UI
+## Zeppelin UI
 http://localhost:9995
 
 ### install jupyter for spark
@@ -192,20 +192,28 @@ IPYTHON and IPYTHON_OPTS are removed in Spark 2.0+. Remove these from the enviro
 just set variable to using Spart1 inside script: SPARK_MAJOR_VERSION=1
 ```
 
-### Sqoop ( SQl to hadOOP )
+## Sqoop ( SQl to hadOOP )
 import 
 ```
 sqoop import --connect jdbc:mysql://127.0.0.1/crm?user=michael --table customers --target-dir /crm/users/michael.csv --as-textfile --fields-terminated-by ','
 ```
 
-### Hive
+## Hive
 *not supported SQL"
 - transactions
 - materialized view
 - update
 - non-equality joins
 
-### SQL engines
+### hive command line interfaces
+- hive
+- beeline ( recommended )
+
+### hive html gui
+- ambari
+- hue
+
+## SQL engines
 - Impala
 - Phoenix ( HBase )
 - Drill ( schema-less sql )
