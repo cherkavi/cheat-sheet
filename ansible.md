@@ -141,6 +141,11 @@ insert into code
 all folders of the created project will be applied to your project ( tasks, vars, defaults )
 *in case of manual creation - only necessary folders can be created*
 
+## ansible search for existing role
+```
+ansible-galaxy search {project/role name}
+```
+
 ## import existing roles from [ansible galaxy](https://galaxy.ansible.com/list)
 ```
 cd roles
