@@ -223,14 +223,13 @@ sqoop import --connect jdbc:mysql://127.0.0.1/crm?user=michael --table customers
 - BigSQL ( PostgreSQL + Hadoop )
 - Spark
 
-### [Oozie](https://oozie.apache.org/)
+## [Oozie](https://oozie.apache.org/)
 workflow scheduler
-TBD
+```
+START -> ACTION -> OK | ERROR
+```
 
-### Cascading
-TBD
-
-## Hadoop streaming. Spark
+## Cascading
 TBD
 
 # Hadoop streaming. 
