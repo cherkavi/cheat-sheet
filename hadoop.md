@@ -260,3 +260,7 @@ fast retrieving data by 'key of the row' + 'column name'
 contains from: (HBase HMaster) *---> (HBase Region Server)
 ```
 * Accumulo
+
+# Cluster management
+* ambari
+* cloudera manager
