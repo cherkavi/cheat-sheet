@@ -230,8 +230,12 @@ TBD
 ## Hadoop streaming. Spark
 TBD
 
-## Hadoop streaming. Storm
-TBD
+# Hadoop streaming. 
+- Storm ( real time streaming solution )
+- Spark ( near real time streaming, uses microbatching )
+- Samza ( streaming on top of Kafka )
+- Flink ( common approach to batch and stream code development )
+
 
 ### Pig Latin
 TBD
