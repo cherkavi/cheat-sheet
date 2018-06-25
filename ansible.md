@@ -126,6 +126,35 @@ TBD
     failed_when : "'ERROR' in server_log_file.stdout"
 ```
 
+# template, Jinja2 templating
+default value
+```
+default path is {{ my_custom_path | default("/opt/program/script.sh") }}
+```
+operation with list
+```
+{{ [1,2,3] | min }}
+{{ [1,2,3] | max }}
+{{ [1,2,3] | first }}
+{{ [1,2,3] | last }}
+{{ [1,2,3,2,3,] | unique }}
+{{ [1,2,3] | union([1,2]) }}
+{{ [1,2,3] | intersect([3]) }}
+{{ 100 | random }}
+{{ ["space", "separated", "value"] | join(" ") }}
+```
+file name from path (return 'script.sh')
+```
+{{ "/etc/program/script.sh" | basename }}
+```
+
+## lookup
+replace value from file with special format
+```
+{{ lookup('csvfile', 'web_server file=credentials.csv delimiter=,') }}
+{{ lookup('ini', 'password section=web_server file=credentials.ini') }}
+```
+
 # inventory file
 ---
 ## inventory file, inventory file with variables, [rules](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
