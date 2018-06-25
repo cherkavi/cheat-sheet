@@ -98,7 +98,7 @@ approprate file should be created:
 ## conditions "when"
 TBD
 
-# Inventory file
+# inventory file
 ---
 ## inventory file, inventory file with variables, [rules](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
 ```
@@ -115,8 +115,16 @@ playbook usage:
 ```
 '{{http_port}}'
 ```
+# strategy
+```
+  strategy: linear
+```
+* linear ( default )
+*after each step waiting for all servers*
+* free
+*independently for all servers - someone can finish installation significantly earlier than others*
 
-# Roles
+# roles
 ---
 ## init project ansible-galaxy, create new role, init role
 execute code into your project folder './roles'
