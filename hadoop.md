@@ -198,10 +198,17 @@ import
 sqoop import --connect jdbc:mysql://127.0.0.1/crm?user=michael --table customers --target-dir /crm/users/michael.csv --as-textfile --fields-terminated-by ','
 ```
 
+### [Oozie](https://oozie.apache.org/)
+workflow scheduler
+TBD
+
 ### Cascading
 TBD
 
-### Hadoop streaming
+## Hadoop streaming. Spark
+TBD
+
+## Hadoop streaming. Storm
 TBD
 
 ### Pig Latin
