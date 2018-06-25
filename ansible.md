@@ -153,6 +153,12 @@ insert into code
 ```
 all folders of the imported project will be applied to your project ( tasks, vars, defaults )
 
+## export 
+create/update file:
+```
+./roles/{project/role name}/meta/main.yml
+```
+
 ## console output with applied roles should looks like
 ```
 TASK [{project/role name}: {task name}] ***********************************
