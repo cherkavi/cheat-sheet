@@ -198,6 +198,20 @@ import
 sqoop import --connect jdbc:mysql://127.0.0.1/crm?user=michael --table customers --target-dir /crm/users/michael.csv --as-textfile --fields-terminated-by ','
 ```
 
+### Hive
+*not supported SQL"
+- transactions
+- materialized view
+- update
+- non-equality joins
+
+### SQL engines
+- Impala
+- Phoenix ( HBase )
+- Drill ( schema-less sql )
+- BigSQL ( PostgreSQL + Hadoop )
+- Spark
+
 ### [Oozie](https://oozie.apache.org/)
 workflow scheduler
 TBD
