@@ -290,6 +290,24 @@ for example
 ```
 TASK [java : install java with jdbc libraries] ***********************************
 ```
+# file encryption, vault
+```
+ansible-vault encrypt inventory.txt
+ansible-vault view inventory.txt
+ansible-vault create inventory.txt
+```
+ask password via command line
+```
+ansible-playbook playbook.yml -i inventory.txt -ask-vault-pass
+```
+file should contain the password
+```
+ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_pass.txt
+```
+script should return password
+```
+ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_pass.py
+```
 
 # modules
 [list of all modules](https://docs.ansible.com/ansible/devel/modules/list_of_all_modules.html)
