@@ -174,6 +174,7 @@ also next logic should be present
 inventory.py --list
 inventory.py --host databases
 ```
+[prepared scripts](https://github.com/ansible/ansible/tree/devel/contrib/inventory)
 
 ## inventory file with variables ( python Jinja templating)
 ```
