@@ -94,6 +94,11 @@ approprate file should be created:
 ```
 ./path_to_folder/path_to_file
 ```
+## debug module
+```
+  - debug:
+      msg: "print variable: {{  my_own_var }}"
+```
 
 ## conditions "when"
 TBD
