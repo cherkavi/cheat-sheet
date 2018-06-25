@@ -166,6 +166,7 @@ forks = 5
 ```
 
 # async execution, nowait task, command execution
+**not all modules support this operation**
 execute command in asynchronous mode ( with preliminary estimation 120 sec ), 
 with default pool result of the command - 10 ( seconds )
 ```
