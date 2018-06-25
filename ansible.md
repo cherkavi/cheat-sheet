@@ -165,6 +165,40 @@ default value "serial" into configuration **ansible.cfg**
 forks = 5
 ```
 
+# async execution, nowait task, command execution
+execute command in asynchronous mode ( with preliminary estimation 120 sec ), 
+with default pool result of the command - 10 ( seconds )
+```
+  async: 120
+```
+execute command in asynchronous mode ( with preliminary estimation 120 sec ), 
+with pool result of the command - 60 ( seconds )
+```
+  async: 120
+  pool: 60
+```
+execute command and forget, not to wait for execution
+```
+  async: 120
+  pool: 0
+```
+execute command in asynchronous mode, 
+register result
+checking result at the end of the file
+```
+- command: /opt/my_personal_long_run_command.sh
+  async: 120
+  pool: 0
+  register: custom_command_result
+  
+- name: check status result
+  async_status: jid={{ custom_command_result.ansible_job_id }}
+  register: command_result
+  until: command_result.finished
+  retries: 20
+```
+
+
 # roles
 ---
 ## init project ansible-galaxy, create new role, init role
