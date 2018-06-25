@@ -153,6 +153,15 @@ insert into code
 ```
 all folders of the imported project will be applied to your project ( tasks, vars, defaults )
 
+## console output with applied roles should looks like
+```
+TASK [{project/role name}: {task name}] ***********************************
+```
+for example
+```
+TASK [java : install java with jdbc libraries] ***********************************
+```
+
 # modules
 [list of all modules](https://docs.ansible.com/ansible/devel/modules/list_of_all_modules.html)
 
