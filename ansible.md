@@ -148,6 +148,26 @@ file name from path (return 'script.sh')
 {{ "/etc/program/script.sh" | basename }}
 ```
 
+# plugins
+example of plugin
+```
+{{ list_of_values | average }}
+```
+python code for plugin
+```
+dev average(list):
+    return sum(list) / float(len(list))
+    
+class AverageModule(object):
+    def filters(self):
+        return {'average': average}
+```
+execution
+```
+export ANSIBLE_FILTER_PLUGINS=/full/path/to/folder/with/plugin
+ansible-playbook playbook.yml
+```
+
 ## lookup
 replace value from file with special format
 ```
