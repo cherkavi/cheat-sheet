@@ -148,7 +148,7 @@ file name from path (return 'script.sh')
 {{ "/etc/program/script.sh" | basename }}
 ```
 
-# plugins
+# [plugins](https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/)
 example of plugin
 ```
 {{ list_of_values | average }}
