@@ -51,6 +51,11 @@ mvn spring-boot:run -Dserver.port=8090
 java -Dspring.profiles.active={name of profile} -jar {path to jar/war with spring-boot inside} 
 ```
 
+### spring boot update DB schema, database update, hibernate update
+```
+-Dspring.jpa.hibernate.ddl-auto=update
+```
+
 ### bean post processor
 ```
 @Bean public BeanPostProcessor{return new BeanPostProcessor(){}}
