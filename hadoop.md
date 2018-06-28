@@ -169,7 +169,7 @@ ssh root@localhost -p 2222
 ```
 
 
-### ambari password reset
+### setup after installation, init, ambari password reset
 * shell web client (aka shell-in-a-box): 
 localhost:4200 
 root / hadoop
