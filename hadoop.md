@@ -160,6 +160,7 @@ jarn jar {path to jar} {classname}
 ## Hortonworks sandbox
 [tutorial.credentials](https://hortonworks.com/tutorial/learning-the-ropes-of-the-hortonworks-sandbox)
 
+
 ### Web SSH 
 ```
 localhost:4200
@@ -183,8 +184,11 @@ localhost:8080
 admin/{your password}
 
 
-## Zeppelin UI
+### Zeppelin UI
 http://localhost:9995
+user: maria_dev
+pass: maria_dev
+
 
 ### install jupyter for spark
 https://hortonworks.com/hadoop-tutorial/using-ipython-notebook-with-apache-spark/
@@ -232,6 +236,17 @@ START -> ACTION -> OK | ERROR
 ## Cascading
 TBD
 
+### Scalding
+TBD
+
+## Hive
+TBD
+
+
+## Pig Latin
+TBD
+
+
 # Hadoop streaming. 
 - Storm ( real time streaming solution )
 - Spark ( near real time streaming, uses microbatching )
@@ -239,17 +254,12 @@ TBD
 - Flink ( common approach to batch and stream code development )
 
 
-### Pig Latin
-TBD
-
-### Scalding
-TBD
-
 # Security
 - File permissions ( posix attributes )
 - Hive ( grant revoke )
 - Knox ( REST API for hadoop )
 - Ranger 
+
 
 # Data storage, NoSQL
 * HBase
@@ -260,6 +270,7 @@ fast retrieving data by 'key of the row' + 'column name'
 contains from: (HBase HMaster) *---> (HBase Region Server)
 ```
 * Accumulo
+
 
 # Cluster management
 * ambari
