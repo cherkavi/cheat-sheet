@@ -506,6 +506,10 @@ use this:
 ```
 ssh-keygen -R <host>
 ```
+or
+```
+rm ~/.ssh/known_hosts 
+```
 
 ### proxy
 * /etc/profile.d/proxy.sh
@@ -533,9 +537,9 @@ no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 - web management - atomicproject.io, cockpit
   * [install](https://cockpit-project.org/running#ubuntu)
   * [guide](https://cockpit-project.org/guide/latest/)
-  * [https://127.0.0.1:9090](after installation)
+  * [after installation](https://127.0.0.1:9090)
   * use your own user/password
 
 ### virtual machines
-* [images](osboxes.org)
+* [images](http://osboxes.org)
 * [app with infrastructure](https://bitnami.com/stacks)

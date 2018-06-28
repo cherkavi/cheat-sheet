@@ -1,6 +1,9 @@
 # Hadoop 
 
 ## Hadoop into Docker container 
+* MapR
+* Hortonworks
+* Cloudera
 
 ### [couldera container start](https://www.cloudera.com/documentation/enterprise/latest/topics/quickstart_docker_container.html#cloudera_docker_container)
 ```
@@ -117,7 +120,7 @@ hdfs dfs -ls -r
 ```
 
 ## Hadoop governance, administration
-### filesystem capacity
+### filesystem capacity, disk usage in human readable format
 ```
 hdfs dfs -df -h
 ```
@@ -180,7 +183,7 @@ localhost:8080
 admin/{your password}
 
 
-### Zeppelin UI
+## Zeppelin UI
 http://localhost:9995
 
 ### install jupyter for spark
@@ -191,3 +194,73 @@ Error in pyspark startup:
 IPYTHON and IPYTHON_OPTS are removed in Spark 2.0+. Remove these from the environment and set PYSPARK_DRIVER_PYTHON and PYSPARK_DRIVER_PYTHON_OPTS instead.
 just set variable to using Spart1 inside script: SPARK_MAJOR_VERSION=1
 ```
+
+## Sqoop ( SQl to hadOOP )
+import 
+```
+sqoop import --connect jdbc:mysql://127.0.0.1/crm?user=michael --table customers --target-dir /crm/users/michael.csv --as-textfile --fields-terminated-by ','
+```
+
+## Hive
+*not supported SQL"
+- transactions
+- materialized view
+- update
+- non-equality joins
+
+### hive command line interfaces
+- hive
+- beeline ( recommended )
+
+### hive html gui
+- ambari
+- hue
+
+## SQL engines
+- Impala
+- Phoenix ( HBase )
+- Drill ( schema-less sql )
+- BigSQL ( PostgreSQL + Hadoop )
+- Spark
+
+## [Oozie](https://oozie.apache.org/)
+workflow scheduler
+```
+START -> ACTION -> OK | ERROR
+```
+
+## Cascading
+TBD
+
+# Hadoop streaming. 
+- Storm ( real time streaming solution )
+- Spark ( near real time streaming, uses microbatching )
+- Samza ( streaming on top of Kafka )
+- Flink ( common approach to batch and stream code development )
+
+
+### Pig Latin
+TBD
+
+### Scalding
+TBD
+
+# Security
+- File permissions ( posix attributes )
+- Hive ( grant revoke )
+- Knox ( REST API for hadoop )
+- Ranger 
+
+# Data storage, NoSQL
+* HBase
+distributed, column-oriented persistent multidimensional sorted map 
+```
+data is sparse - a lot of column has null values
+fast retrieving data by 'key of the row' + 'column name'
+contains from: (HBase HMaster) *---> (HBase Region Server)
+```
+* Accumulo
+
+# Cluster management
+* ambari
+* cloudera manager

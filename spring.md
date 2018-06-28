@@ -23,10 +23,22 @@ schema-${platform}.sql
 ```
 java -jar myapp.jar --debug
 ```
+```
+logging:
+  level:
+    ROOT: DEBUG
+```
+```
+-Dlogging.level.root=debug
+```
+
 ### logging to file, log to file
 ```
 -Dlogging.file 	
 -Dlogging.path
+```
+```
+-Dlogging.file=deployer.log -Dlogging.path=/dev/deployer/deployer.log -Dlogging.level.root=info
 ```
 
 ### spring boot another http port, change http port, change server port
@@ -37,6 +49,11 @@ mvn spring-boot:run -Dserver.port=8090
 ### spring boot start application with specific profile
 ```
 java -Dspring.profiles.active={name of profile} -jar {path to jar/war with spring-boot inside} 
+```
+
+### spring boot update DB schema, database update, hibernate update
+```
+-Dspring.jpa.hibernate.ddl-auto=update
 ```
 
 ### bean post processor
@@ -91,16 +108,7 @@ http://localhost:8808/actuator
 <url:port>/<application>/health
 ```
 
-### logging level
-```
-logging:
-  level:
-    ROOT: DEBUG
-```
-```
--Dlogging.level.root=debug
-```
-### Spring Boot h2, h2 console, Spring Boot h2
+### Spring Boot h2, h2 console, Spring Boot h2, conditional bean
 ```
 import org.h2.server.web.WebServlet;
 
@@ -129,6 +137,12 @@ import org.h2.server.web.WebServlet;
 </dependency>
 ```
 
+### conditional bean, bean with specific methods 
+```
+    @Bean(initMethod = "start", destroyMethod = "stop")
+    @ConditionalOnMissingBean(InstanceRepository.class)
+```
+
 ### Spring boot issues
 
 #### error during start standalone web application
@@ -153,6 +167,14 @@ application.properties
 spring.servlet.multipart.max-file-size=128MB
 spring.servlet.multipart.max-request-size=128MB
 spring.servlet.multipart.enabled=true
+```
+#### No serialization found for class
+```
+HttpEntity<String> request = new HttpEntity<>(new ObjectMapper().writeValueAsString(registration), headers);
+    or
+ObjectMapper mapper = new ObjectMapper();
+mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+HttpEntity<String> request = new HttpEntity<>(mapper.writeValueAsString(registration), headers);
 ```
 
 ## Monitoring
@@ -222,5 +244,79 @@ String[] disabledCommands = {"--spring.shell.command.quit.enabled=false"};
 ```
 spring.shell.interactive.enabled=false
 ```
+# spring boot maven plugin for building fat jar, uber jar, jar with all dependencies
+```
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+```
 
+# spring boot admin
+[source code](https://github.com/codecentric/spring-boot-admin)
+[doc](http://codecentric.github.io/spring-boot-admin/2.0.0/)
+### maven dependency
+```
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.0.2.RELEASE</version>
+    <relativePath/> 
+  </parent>
+  
+  <dependencies>
+    <dependency>
+        <groupId>de.codecentric</groupId>
+        <artifactId>spring-boot-admin-starter-server</artifactId>
+        <version>2.0.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+  </dependencies>
+```
 
+### register client on server side
+```
+    @Bean
+    CommandLineRunner registerClient(InstanceRegistry registry){
+        return new CommandLineRunner() {
+            @Override
+            public void run(String... args) throws Exception {
+                Registration build = Registration.builder()
+                        .name("sit")
+                        // .managementUrl("http://v337:9001/env")
+                        .healthUrl(    "http://v337:9001/health")
+                        .serviceUrl(   "http://v337:9001")
+                        // .source(       "http://v337:9001")
+                        .build();
+
+                Mono<InstanceId> response = registry.register(build);
+                System.out.println(response.block());
+            }
+        };
+    }
+```
+
+### curl request to register new instance
+```
+curl -X POST -H "content-type:application/json;charset=UTF-8" -d "@register-host.json" http://localhost:8080/instances
+```
+```
+{
+	"name":"new host",
+	"healthUrl": "http://v337:9001/health",
+	"serviceUrl": "http://v337:9001",
+	"metadata": {
+		"version":"1"
+		"controlUrl":"my-own-manager:8080"
+	}
+}
+```
+### curl delete instance
+```
+curl -X DELETE -H "content-type:application/json;charset=UTF-8" http://localhost:8080/instances/bbe42fdc3e6a
+```
