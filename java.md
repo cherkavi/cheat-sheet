@@ -72,12 +72,13 @@ jar tf WC2.jar
 java -verbose app
 ```
 
-### log4j configuration key for JVM 
+### LOG4j
+#### log4j configuration key for JVM 
 ```
 -Dlog4j.configuration={path to file}
 ```
 
-### log4j override configuration from code
+#### log4j override configuration from code
 ```
 Properties props = new Properties();
 props.put("log4j.rootLogger", level+", stdlog");
@@ -93,6 +94,26 @@ LogManager.resetConfiguration();
 PropertyConfigurator.configure(props);
 ```
 
+#### log4j file configuration 
+```
+<?xml version="1.0" encoding="UTF-8"?>
+    <Configuration status="WARN">
+      <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+          <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+      </Appenders>
+      <Loggers>
+        <Logger name="com.foo.Bar" level="debug">
+          <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="debug">
+          <AppenderRef ref="Console"/>
+        </Root>
+      </Loggers>
+    </Configuration>
+```
+
 ### log4j update configuration during runtime, refresh configuration
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -100,6 +121,8 @@ PropertyConfigurator.configure(props);
 ...
 </Configuration>
 ```
+
+
 
 ### hsqldb Oracle dialect
 ```
