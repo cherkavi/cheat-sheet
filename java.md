@@ -285,3 +285,85 @@ java -jar fakeSMTP.jar -s -b -p 2525 -a 127.0.0.1  -o output_directory_name
 ```
 java -Dgreenmail.smtp.hostname=0.0.0.0 -Dgreenmail.smtp.port=2525 -Dgreenmail.pop3.hostname=0.0.0.0 -Dgreenmail.pop3.port=8443 -Dgreenmail.users=Vitali.Cherkashyn:vitali@localhost.com,user:password@localhost.com -jar  greenmail-standalone-1.5.7.jar 
 ```
+
+## WebLogic REST management
+[using REST services](http://www.oracle.com/webfolder/technetwork/tutorials/obe/fmw/wls/12c/manage_wls_rest/obe.html)
+
+---
+list of all DataSources:
+```
+curl -X GET http://host:7001/management/wls/latest/datasources
+```
+
+---
+return all accessible parameters for request
+```
+curl -X OPTION http://host:7001/management/wls/latest/datasources
+```
+
+---
+request with authentication ( where magic string is "username:password" in base64 )
+```
+curl -H "Authorization: Basic d2VibG9naWM6d2VibG9naWMx" -X GET http://host:7001/management/wls/latest/datasources
+```
+
+---
+request with authentication 
+```
+curl --user username:password -X GET http://host:7001/management/wls/latest/datasources
+```
+
+--- 
+description of one DataSource:
+```
+curl -X GET http://host:7001/management/wls/latest/datasources/id/{datasourceid}
+```
+
+---
+domain runtime
+```
+curl --user weblogic:weblogic1  -X GET http://host:7001/management/weblogic/latest/domainRuntime
+```
+
+---
+server parameters, server folders, server directories, server status, server classpath
+```
+curl --user weblogic:weblogic1  -X GET http://host:7001/management/weblogic/latest/domainRuntime/serverRuntimes
+```
+
+---
+list of deployments
+```
+curl -v --user weblogic:weblogic1 -H X-Requested-By:MyClient -H Accept:application/json -X GET http://host:7001/management/wls/latest/deployments
+```
+
+---
+list of applications
+```
+curl --user weblogic:weblogic1 -H Accept:application/json -X GET http://host:7001/management/wls/latest/deployments/application
+```
+
+---
+info about one application
+```
+curl --user weblogic:weblogic1 -H Accept:application/json -X GET http://host:7001/management/wls/latest/deployments/application/id/userappname-gui-2018.02.00.00-SPRINT-7
+```
+
+---
+remove application, undeploy application, uninstall application
+```
+curl --user weblogic:weblogic1 -H X-Requested-By:weblogic -H Accept:application/json -X DELETE http://host:7001/management/wls/latest/deployments/application/id/userappname-gui-2018.02.00.00-SPRINT-7
+```
+
+---
+deploy application
+```
+curl -X POST --user weblogic:weblogic1 -H X-Requested-By:weblogic -H Accept:application/json -H Content-Type:application/json -d@deploy.json http://host:7001/management/wls/latest/deployments/application
+```
+```
+{
+    "name":"userappname-gui-2018.02.00.00-SPRINT-7"
+   ,"deploymentPath":"/opt/oracle/domains/pportal_dev/binaries/userappname-gui-2018.02.00.00-SPRINT-7.war"
+   , "targets": ["pportal_group"]
+}
+```
