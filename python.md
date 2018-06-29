@@ -1,9 +1,3 @@
-### find vs index ( string find, string index )
-```
-find - return -1 if not found
-index - throw exception if not found
-```
-
 ### install pip
 ```
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
@@ -63,11 +57,21 @@ try:
 except ImportError:
     import simplejson as json
 ```
+### execute command inline, base64 example
+```
+python -c "import base64;print(base64.encodestring('hello'.encode()));"
+```
 
 ### execute string as commands
 ```
 a=10
 eval(" print(a)")
+```
+
+### find vs index ( string find, string index )
+```
+find - return -1 if not found
+index - throw exception if not found
 ```
 
 ### list of frameworks
