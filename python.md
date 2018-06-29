@@ -1,3 +1,5 @@
+## [python3 readiness](http://py3readiness.org/)
+
 ### install pip
 ```
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
