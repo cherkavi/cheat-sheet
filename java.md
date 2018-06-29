@@ -132,7 +132,8 @@ username="sa" password=""
 ```
 
 ### liquibase
-####  liquibase print sql scripts ( update sql )
+---
+liquibase print sql scripts ( update sql )
 ```
 java -jar C:\soft\maven-repo\org\liquibase\liquibase-core\3.4.1\liquibase-core-3.4.1.jar  \
 --driver=oracle.jdbc.OracleDriver --classpath=C:\soft\maven-repo\com\oracle\ojdbc6\11.2.0.2.0\ojdbc6-11.2.0.2.0.jar  \
@@ -141,11 +142,36 @@ java -jar C:\soft\maven-repo\org\liquibase\liquibase-core\3.4.1\liquibase-core-3
 --url=jdbc:oracle:thin:@q-ora-db-scan.wirecard.sys:1521/stx11de.wirecard --username=horus_user_cherkavi --password=horus_user_cherkavi \
  updateSQL > script.sql
  ```
-
-### liquibase test scripts against H2 database
+---
+liquibase test scripts against H2 database
 ```
 java -jar liquibase-core-3.5.5.jar  --driver=org.h2.Driver --classpath=h2-1.4.197.jar --changeLogFile=C:\project\opm\opm-persistence\src\main\resources\db\changelog\changes.xml --url=jdbc:h2:mem:testdb;Mode=Oracle --username=sa --password=  update
 ```
+
+### flyway
+[commandline documentation](https://flywaydb.org/documentation/commandline/)
+---
+folder structure
+```
+/-<root>
+  /drivers
+  /jars
+  /scripts
+  /sql
+```
+---
+execute flyway from commandline, db info
+```
+java -cp flyway-core-4.0.3.jar;flyway-commandline-5.1.3.jar org.flywaydb.commandline.Main -configFile=flyway-info.conf info
+```
+config file example
+```
+flyway.driver=oracle.jdbc.OracleDriver
+flyway.url=jdbc:oracle:thin:@vpn050.kabel.de:1523:PMDR
+flyway.user=login
+flyway.password=pass
+```
+
 
 ### java application debug, remote debug
 ```
