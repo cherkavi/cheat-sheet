@@ -158,8 +158,7 @@ jarn jar {path to jar} {classname}
 
 
 ## Hortonworks sandbox
-[tutorial.credentials](https://hortonworks.com/tutorial/learning-the-ropes-of-the-hortonworks-sandbox)
-
+[sandbox tutorial](https://hortonworks.com/tutorial/learning-the-ropes-of-the-hortonworks-sandbox)
 
 ### Web SSH 
 ```
