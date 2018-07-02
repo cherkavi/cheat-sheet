@@ -74,6 +74,9 @@ docker images --all
 ------
 ### map volume ( map folder )
 ```
+-v {host machine folder}:{internal folder into docker container}
+```
+```
 -v /tmp:/home/root/tmp
 ```
 
@@ -83,6 +86,9 @@ docker volume ls
 ```
 
 ### map multiply ports to current host
+```
+-p {host machine port}:{internal docker machine port}
+```
 ```
 -p 8030-8033:8030-8033/tcp  
 -p 8040:8040/tcp
