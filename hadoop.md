@@ -239,7 +239,24 @@ TBD
 TBD
 
 ## Hive
-TBD
+---
+create table from [csv](https://www.kaggle.com/passnyc/data-science-for-good)
+```
+CREATE EXTERNAL TABLE IF NOT EXISTS school_explorer(
+	grade boolean,
+	is_new boolean, 
+	location string,
+	name string, 
+	sed_code STRING,
+	location_code STRING, 
+	district int,
+	latitude float,
+	longitude float,
+	address string
+)COMMENT 'School explorer from Kaggle'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE LOCATION '/data/';
+```
+**do not specify filename ( all files into folder will be picked up ) !!!!**
 
 
 ## Pig Latin
