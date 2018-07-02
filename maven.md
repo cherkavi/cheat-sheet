@@ -1,9 +1,65 @@
-### init project 
+## create project, init project, new project
+
+### example of creating project
 ```
-mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.tools -DartifactId=zip-extract-copy -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.startup.searchcorrector -DartifactId=searchcorrector -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ```
+
+### example of creating project
+``` 
+mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.startup.searchcorrector -DartifactId=workplace -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+```
+
+### maven create Java web project
+``` 
+mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.smava.onsite -DartifactId=soap-calculator -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+```
+
+### for creating Eclipse Web project ( change pom.xml:packaging to "war" ) :
+``` 
+mvn eclipse:eclipse -Dwtpversion=2.0
+```
+
+### Java Vaadin project
+``` 
+mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=7.2.5 -DgroupId=com.cherkashyn.vitalii.tools.barcode.ui -DartifactId=BarCodeUtilsUI -Dversion=1.0 -Dpackaging=war
+```
+
+### Java console application
+``` 
+mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.akka.web -DartifactId=akka-web -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+ mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.testtask.kaufland -DartifactId=anagrams -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+ ```
+
+### Java OSGi bundle
+``` 
+mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.3.5 -DgroupId=com.cherkashyn.vitalii.osgi.test.listener -DartifactId=osgi-service-listener -Dversion=1.0.0-SNAPSHOT
+```
+
+### Java OSGi Blueprint bundle
+``` 
+mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-blueprint-archetype -DarchetypeVersion=2.3.5 -DgroupId=com.cherkashyn.vitalii.osgi.test -DartifactId=osgi-blueprint-consumer -Dversion=1.0.0-SNAPSHOT
+```
+
+### Java OSGi Karaf bundle
+``` 
+mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.2.8 -DgroupId=com.mycompany -DartifactId=KarafExample -Dversion=1.0-SNAPSHOT -Dpackage=com.mycompany.bundle
+```
+
+
 ### debug from IDE, IDE debug
 ```-DforkCount=0 -DreuseForks=false -DforkMode=never ```
+
+### remote debug, remote projecess debug
+``` 
+%MAVEN_HOME%/bin/mvnDebug
+```
+
+### Download Sources and JavaDoc
+``` 
+-DdownloadSources=true -DdownloadJavadocs=true
+```
+
 
 ### exclude sub-library from dependency lib
             <dependency>
@@ -451,61 +507,26 @@ mvn  org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy -Dmaven.test.skip
     </resources>
 ```
 
-## create project
-
-### example of creating project 
+### sonar plugin
+%Maven%/conf/settings.xml
 ```
-mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.startup.searchcorrector -DartifactId=searchcorrector -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-```
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.jdbc.url>
+				  jdbc:mysql://localhost:3306/sonar_schema?useUnicode=true&amp;characterEncoding=utf8
+				</sonar.jdbc.url>
+				<sonar.jdbc.driverClassName>com.mysql.jdbc.Driver</sonar.jdbc.driverClassName>
+				<sonar.jdbc.username>root</sonar.jdbc.username>
+				<sonar.jdbc.password></sonar.jdbc.password>
 
-### example of creating project
-``` 
-mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.startup.searchcorrector -DartifactId=workplace -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+				<sonar.host.url>
+				  http://localhost:9000
+				</sonar.host.url>
+			</properties>
+		</profile>
 ```
-
-### maven create Java web project
-``` 
-mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.smava.onsite -DartifactId=soap-calculator -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
-```
-
-### for creating Eclipse Web project ( change pom.xml:packaging to "war" ) :
-``` 
-mvn eclipse:eclipse -Dwtpversion=2.0
-```
-
-### Java Vaadin project
-``` 
-mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=7.2.5 -DgroupId=com.cherkashyn.vitalii.tools.barcode.ui -DartifactId=BarCodeUtilsUI -Dversion=1.0 -Dpackaging=war
-```
-
-### Java console application
-``` 
-mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.akka.web -DartifactId=akka-web -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
- mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.testtask.kaufland -DartifactId=anagrams -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
- ```
-
-### Java OSGi bundle
-``` 
-mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.3.5 -DgroupId=com.cherkashyn.vitalii.osgi.test.listener -DartifactId=osgi-service-listener -Dversion=1.0.0-SNAPSHOT
-```
-
-### Java OSGi Blueprint bundle
-``` 
-mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-blueprint-archetype -DarchetypeVersion=2.3.5 -DgroupId=com.cherkashyn.vitalii.osgi.test -DartifactId=osgi-blueprint-consumer -Dversion=1.0.0-SNAPSHOT
-```
-
-### Java OSGi Karaf bundle
-``` 
-mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.2.8 -DgroupId=com.mycompany -DartifactId=KarafExample -Dversion=1.0-SNAPSHOT -Dpackage=com.mycompany.bundle
-```
-
-## Tools:
-### how to debug
-``` 
-%MAVEN_HOME%/bin/mvnDebug
-```
-
-### Download Sources and JavaDoc
-``` 
--DdownloadSources=true -DdownloadJavadocs=true
-```
+mvn sonar:sonar
