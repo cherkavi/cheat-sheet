@@ -165,6 +165,15 @@ execute flyway from commandline, db info
 java -cp flyway-core-4.0.3.jar;flyway-commandline-5.1.3.jar org.flywaydb.commandline.Main -configFile=flyway-info.conf info
 ```
 ---
+to see debug log, need to add next jars into classpath:
+* slf4j-api-1.7.25.jar
+* log4j-to-slf4j-2.10.0.jar
+* log4j-core-2.10.0.jar
+* log4j-api-2.10.0.jar
+* log4j-1.2.14.jar
+
+
+---
 config file example
 ```
 flyway.driver=oracle.jdbc.OracleDriver
@@ -182,6 +191,7 @@ update schema name with "success" flag
 ```
 update {schema name}."schema_version" set "success"=1 where "version"='3.9'; 
 ```
+
 
 ### java application debug, remote debug
 ```
