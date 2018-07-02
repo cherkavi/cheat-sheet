@@ -1,4 +1,8 @@
-### maven debug from IDE, IDE debug
+### init project 
+```
+mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.tools -DartifactId=zip-extract-copy -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+```
+### debug from IDE, IDE debug
 ```-DforkCount=0 -DreuseForks=false -DforkMode=never ```
 
 ### exclude sub-library from dependency lib
