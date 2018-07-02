@@ -171,8 +171,6 @@ to see debug log, need to add next jars into classpath:
 * log4j-core-2.10.0.jar
 * log4j-api-2.10.0.jar
 * log4j-1.2.14.jar
-
-
 ---
 config file example
 ```
@@ -191,7 +189,19 @@ update schema name with "success" flag
 ```
 update {schema name}."schema_version" set "success"=1 where "version"='3.9'; 
 ```
-
+---
+update from java code, custom update from code, 
+```
+package db.migration.initialize;
+import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
+public class V1_9_9__insert_initial_gui_configurations implements JdbcMigration {
+    @Override
+    public void migrate(Connection connection) throws Exception
+}
+```
+```
+<location>classpath:db.migration.initialize</location>
+```
 
 ### java application debug, remote debug
 ```
