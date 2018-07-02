@@ -371,6 +371,9 @@ curl -X PUT -H "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charse
 ```
 chmod -R +x <folder name>
 ```
+```
+find . -name "*.sql" -print0 | xargs -0 chmod 666
+```
 
 ### execute command with environment variable, new environment variable for command
 ```
