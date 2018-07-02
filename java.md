@@ -164,6 +164,7 @@ execute flyway from commandline, db info
 ```
 java -cp flyway-core-4.0.3.jar;flyway-commandline-5.1.3.jar org.flywaydb.commandline.Main -configFile=flyway-info.conf info
 ```
+---
 config file example
 ```
 flyway.driver=oracle.jdbc.OracleDriver
@@ -171,7 +172,16 @@ flyway.url=jdbc:oracle:thin:@vpn050.kabel.de:1523:PMDR
 flyway.user=login
 flyway.password=pass
 ```
-
+--- 
+flyway table with current migration status
+```
+select * from {schema name}."schema_version";
+```
+---
+update schema name with "success" flag
+```
+update {schema name}."schema_version" set "success"=1 where "version"='3.9'; 
+```
 
 ### java application debug, remote debug
 ```
