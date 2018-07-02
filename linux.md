@@ -79,6 +79,10 @@ cut --delimiter "," --fields 2,3,4 test1.csv
 ```
 --extra-vars 'rpm_version=$(cat version.txt)'
 ```
+### all command line arguments to another program
+```
+original.sh $*
+```
 
 ### auto execute during startup
 ```
