@@ -108,7 +108,10 @@ mvn javadoc:javadoc
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
 					<archive>
-						<manifestFile>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+						<!-- manifestFile>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</manifestFile -->
+            					<manifest>
+              						<mainClass>com.cherkashyn.vitalii.tools.App</mainClass>
+            					</manifest>
 					</archive>
 					<!-- Remove the "-jar-with-dependencies" at the end of the file -->
 					<appendAssemblyId>false</appendAssemblyId>
