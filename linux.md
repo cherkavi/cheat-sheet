@@ -169,6 +169,11 @@ rpm -qi wd-tomcat8-app-brandserver
 fg, bg, jobs
 ```
 
+### disconnect from current process, leave process into background
+```
+Ctrl-Z
+```
+
 ### postponed execution
 ```
 at <date and time>
