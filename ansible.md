@@ -206,6 +206,16 @@ playbook usage:
 '{{http_port}}'
 ```
 
+## execution with inventory examples
+for one specific host without inventory file 
+```
+ansible-playbook playbook.yml -i 10.10.10.10
+```
+with inventory file
+```
+ansible-playbook -i inventory.ini playbook.yml 
+```
+
 # strategy
 ---
 ```
