@@ -179,6 +179,11 @@ flyway.url=jdbc:oracle:thin:@vpn050.kabel.de:1523:PMDR
 flyway.user=login
 flyway.password=pass
 ```
+---
+execute flyway with command line parameters
+```
+flyway migrate -driver=oracle.jdbc.OracleDriver -url=jdbc:oracle:thin:@vs050:1523:PMDR -user=xnet -password=xnet -locations=filesystem:/opt/oracle/scripts"
+```
 --- 
 flyway table with current migration status
 ```
