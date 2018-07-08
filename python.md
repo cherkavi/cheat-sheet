@@ -16,7 +16,7 @@ pip install -U pip
 pip install tornado==2.1.1
 ```
 
-### install from git
+### install artifact from git
 ```
 pip install git+https://github.com/django-extensions/django-extensions
 pip install git+https://github.com/django-extensions/django-extensions.git
@@ -36,7 +36,7 @@ export PYTHONPATH=$PYTHONPATH:"/home/user/my/python/packages"
 pip install tornado --update
 ```
 
-### list of all installed libraries
+### list of all installed libraries, installed modules
 ```
 pip freeze
 ```
@@ -59,6 +59,13 @@ try:
 except ImportError:
     import simplejson as json
 ```
+
+### path to python, obtain python interpreter path
+```
+import sys
+sys.executable
+```
+
 ### execute command inline, base64 example
 ```
 python -c "import base64;print(base64.encodestring('hello'.encode()));"
