@@ -171,10 +171,18 @@ rpm -qi wd-tomcat8-app-brandserver
 fg, bg, jobs
 ```
 
-### disconnect from current process, leave process into background
+### stop process and start it into background
 ```
-Ctrl-Z
+ctrl-Z
+bg
 ```
+
+### stop process and resume it, disconnect from process and leave it running
+```
+ctrl-Z
+fg
+```
+
 
 ### postponed execution
 ```
