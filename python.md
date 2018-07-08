@@ -40,6 +40,10 @@ pip install tornado --update
 ```
 pip freeze
 ```
+```
+import sys
+sys.modules
+```
 
 ### using pip from interpreter ( install wheels package)
 ```
@@ -64,6 +68,10 @@ except ImportError:
 ```
 import sys
 sys.executable
+```
+also check 
+```
+sys.modules
 ```
 
 ### execute command inline, base64 example
