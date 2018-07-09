@@ -178,6 +178,7 @@ flyway.driver=oracle.jdbc.OracleDriver
 flyway.url=jdbc:oracle:thin:@vpn050.kabel.de:1523:PMDR
 flyway.user=login
 flyway.password=pass
+flyway.locations=filesystem:../fixnet-data/,classpath:db.migration.initialize
 ```
 ---
 execute flyway with command line parameters
