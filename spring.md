@@ -98,6 +98,13 @@ name of the declared method
 ```
 
 ### spring boot actuator, spring boot list of all elements
+dependency
+```
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+      </dependency>
+```
 [endpoints](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html)
 ```
 http://localhost:8808/actuator
