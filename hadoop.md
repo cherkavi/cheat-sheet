@@ -161,6 +161,10 @@ jarn jar {path to jar} {classname}
 ---
 # Hortonworks sandbox
 [sandbox tutorial](https://hortonworks.com/tutorial/learning-the-ropes-of-the-hortonworks-sandbox)
+[download](https://hortonworks.com/downloads/#sandbox)
+[install instruction](https://hortonworks.com/tutorial/sandbox-deployment-and-install-guide/section/3/)
+[tutorials](https://hortonworks.com/tutorials/)
+[getting started](https://hortonworks.com/tutorial/hadoop-tutorial-getting-started-with-hdp/)
 
 ## Web SSH 
 ```
