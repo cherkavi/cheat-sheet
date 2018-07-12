@@ -87,6 +87,9 @@ name of the declared method
 @Resource(name="${<name of the value>}")
 ```
 
+### hierarchy
+if @Component extends another @Component, parent won't visible for Spring context
+
 ### refresh context for testing
 ```
 @DirtiesContext
