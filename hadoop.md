@@ -1,4 +1,6 @@
 # Hadoop 
+[tutorial](http://hadooptutorial.info)
+
 
 ## Hadoop into Docker container 
 * MapR
@@ -156,23 +158,22 @@ hadoop jar {path to jar} {classname}
 jarn jar {path to jar} {classname}
 ```
 
-
-## Hortonworks sandbox
+---
+# Hortonworks sandbox
 [sandbox tutorial](https://hortonworks.com/tutorial/learning-the-ropes-of-the-hortonworks-sandbox)
 
-### Web SSH 
+## Web SSH 
 ```
 localhost:4200
 root/hadoop
 ```
 
-### SSH access
+## SSH access
 ```
 ssh root@localhost -p 2222
 ```
 
-
-### setup after installation, init, ambari password reset
+## setup after installation, init, ambari password reset
 * shell web client (aka shell-in-a-box): 
 localhost:4200 
 root / hadoop
@@ -182,14 +183,12 @@ root / hadoop
 localhost:8080
 admin/{your password}
 
-
-### Zeppelin UI
+## Zeppelin UI
 http://localhost:9995
 user: maria_dev
 pass: maria_dev
 
-
-### install jupyter for spark
+## install jupyter for spark
 https://hortonworks.com/hadoop-tutorial/using-ipython-notebook-with-apache-spark/
 ```
 PARK_MAJOR_VERSION is set to 2, using Spark2
@@ -205,15 +204,23 @@ sqoop import --connect jdbc:mysql://127.0.0.1/crm?user=michael --table customers
 ```
 
 ## Hive
-*not supported SQL"
+*not supported full SQL, especially:"
 - transactions
 - materialized view
 - update
 - non-equality joins
 
 ### hive command line interfaces
-- hive
-- beeline ( recommended )
+[cheat sheet](https://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/)
+run interpreter
+```
+hive
+```
+new interpreter
+```
+beeline
+```
+
 
 ### hive html gui
 - ambari
@@ -235,7 +242,7 @@ START -> ACTION -> OK | ERROR
 ## Cascading
 TBD
 
-### Scalding
+## Scalding
 TBD
 
 ## Hive
@@ -263,31 +270,33 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE LOCATION '/data
 TBD
 
 
-# Hadoop streaming. 
+## Hadoop streaming. 
 - Storm ( real time streaming solution )
 - Spark ( near real time streaming, uses microbatching )
 - Samza ( streaming on top of Kafka )
 - Flink ( common approach to batch and stream code development )
 
 
-# Security
+## Security
 - File permissions ( posix attributes )
 - Hive ( grant revoke )
 - Knox ( REST API for hadoop )
 - Ranger 
 
 
-# Data storage, NoSQL
-* HBase
+## Data storage, NoSQL
+### HBase
 distributed, column-oriented persistent multidimensional sorted map 
 ```
 data is sparse - a lot of column has null values
 fast retrieving data by 'key of the row' + 'column name'
 contains from: (HBase HMaster) *---> (HBase Region Server)
 ```
-* Accumulo
+### Accumulo
 
+### Druid
 
-# Cluster management
-* ambari
+## Cluster management
+### [ambari](http://localhost:8080)
+
 * cloudera manager
