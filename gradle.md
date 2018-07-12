@@ -17,3 +17,23 @@ gradlew test --test "com.example.android.testing.blueprint.unit.integrationTests
 
 ### execute single test
 gradlew test -Dtest.single=< wildcard of test > build
+
+## groovy
+
+### init project
+```
+gradle init --groovy-application
+```
+
+### execute groovy script
+add into build.gradle
+```
+task runScript (dependsOn: 'classes', type: JavaExec) {
+    main = 'App'
+    classpath = sourceSets.main.runtimeClasspath
+}
+```
+execute script 
+```
+gradle runtScript
+```
