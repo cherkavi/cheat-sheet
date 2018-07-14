@@ -565,3 +565,19 @@ no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ### virtual machines
 * [images](http://osboxes.org)
 * [app with infrastructure](https://bitnami.com/stacks)
+
+## mapping keys
+### show key codes
+```
+xmodmap -pke 
+```
+
+### remap key 'Druck' to 'Win'
+```
+xmodmap -e "keycode 107 = Super_L"
+```
+
+### save to use during each reboot
+```
+create file '~/.Xmodmap'
+```
