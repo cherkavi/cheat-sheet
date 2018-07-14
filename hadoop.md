@@ -1,5 +1,6 @@
 # Hadoop 
 [tutorial](http://hadooptutorial.info)
+[MapR documentation](https://maprdocs.mapr.com/51/WR-ecosystem-intro.html)
 
 
 ## Hadoop into Docker container 
@@ -249,6 +250,15 @@ TBD
 ## Scalding
 TBD
 
+## HCatalog
+
+### table description
+```
+hcat -e "describe school_explorer"
+hcat -e "describe formatted school_explorer"
+```
+
+
 ## Hive
 ---
 create table from [csv](https://www.kaggle.com/passnyc/data-science-for-good)
@@ -270,6 +280,20 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE LOCATION '/data
 **do not specify filename ( all files into folder will be picked up ) !!!!**
 
 
+---
+jdbc connection issue:
+```
+TApplicationException: Required field 'client_protocol' is unset! 
+```
+reason:
+```
+This indicates a version mismatch between client and server, namely that the client is newer than the server, which is your case.
+```
+solution:
+```
+need to decrease version of the client
+    compile group: 'org.apache.hive', name: 'hive-jdbc', version: '1.1.0'
+```
 ## Pig Latin
 TBD
 
