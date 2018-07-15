@@ -581,3 +581,8 @@ xmodmap -e "keycode 107 = Super_L"
 ```
 create file '~/.Xmodmap'
 ```
+
+### find key code
+```
+xev | grep keysym
+```
