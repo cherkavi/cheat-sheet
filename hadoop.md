@@ -1,7 +1,9 @@
 # Hadoop 
 [tutorial](http://hadooptutorial.info)
 [MapR documentation](https://maprdocs.mapr.com/51/WR-ecosystem-intro.html)
-
+[Cloudera documentation](https://www.cloudera.com/documentation/enterprise/latest.html)
+[Hortonworks]([tutorials](https://hortonworks.com/tutorials/)
+[Hortonworks ecosystems](https://hortonworks.com/ecosystems/)
 
 ## Hadoop into Docker container 
 * MapR
@@ -161,10 +163,11 @@ jarn jar {path to jar} {classname}
 
 ---
 # Hortonworks sandbox
+[tutorials](https://hortonworks.com/tutorials/)
+[ecosystem](https://hortonworks.com/ecosystems/)
 [sandbox tutorial](https://hortonworks.com/tutorial/learning-the-ropes-of-the-hortonworks-sandbox)
 [download](https://hortonworks.com/downloads/#sandbox)
 [install instruction](https://hortonworks.com/tutorial/sandbox-deployment-and-install-guide/section/3/)
-[tutorials](https://hortonworks.com/tutorials/)
 [getting started](https://hortonworks.com/tutorial/hadoop-tutorial-getting-started-with-hdp/)
 
 ## Web SSH 
@@ -208,7 +211,22 @@ import
 sqoop import --connect jdbc:mysql://127.0.0.1/crm?user=michael --table customers --target-dir /crm/users/michael.csv --as-textfile --fields-terminated-by ','
 ```
 
+
+## HCatalog
+[documentation](https://cwiki.apache.org/confluence/display/Hive/HCatalog)
+
+### table description
+```
+hcat -e "describe school_explorer"
+hcat -e "describe formatted school_explorer"
+```
+
 ## Hive
+[documentation](https://cwiki.apache.org/confluence/display/Hive)
+[description](https://maprdocs.mapr.com/51/Hive/Hive.html)
+[description](https://hortonworks.com/apache/hive/)
+[cheat sheet](https://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/)
+[sql to hive](https://www.slideshare.net/hortonworks/sql-to-hive)
 *not supported full SQL, especially:"
 - transactions
 - materialized view
@@ -226,10 +244,125 @@ new interpreter
 beeline
 ```
 
+### show all databases
+```
+show databases;
+use database default;
+```
+
+### show all tables for selected database
+```
+show tables;
+```
+
+### create table
+[documentation](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)
+
+---
+plain text format
+```
+CREATE TABLE apachelog (
+  host STRING,
+  identity STRING,
+  user STRING,
+  time STRING,
+  request STRING,
+  status STRING,
+  size STRING,
+  referer STRING,
+  agent STRING)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+WITH SERDEPROPERTIES (
+  "input.regex" = "([^]*) ([^]*) ([^]*) (-|\\[^\\]*\\]) ([^ \"]*|\"[^\"]*\") (-|[0-9]*) (-|[0-9]*)(?: ([^ \"]*|\".*\") ([^ \"]*|\".*\"))?"
+)
+STORED AS TEXTFILE;
+```
+
+---
+create table from [csv](https://www.kaggle.com/passnyc/data-science-for-good)
+CSV format
+```
+CREATE EXTERNAL TABLE IF NOT EXISTS school_explorer(
+	grade boolean,
+	is_new boolean, 
+	location string,
+	name string, 
+	sed_code STRING,
+	location_code STRING, 
+	district int,
+	latitude float,
+	longitude float,
+	address string
+)COMMENT 'School explorer from Kaggle'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
+STORED AS TEXTFILE LOCATION '/data/';
+
+do not specify filename !!!!
+( all files into folder will be picked up )
+```
+
+---
+CSV format
+```
+CREATE TABLE my_table(a string, b string, ...)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+   "separatorChar" = "\t",
+   "quoteChar"     = "'",
+   "escapeChar"    = "\\"
+)  
+STORED AS TEXTFILE LOCATION '/data/';
+```
+
+---
+table from 'tab' delimiter
+```
+CREATE TABLE web_log(viewTime INT, userid BIGINT, url STRING, referrer STRING, ip STRING) 
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'; 
+
+LOAD DATA LOCAL INPATH '/home/mapr/sample-table.txt' INTO TABLE web_log;
+```
+
+---
+JSON
+```
+CREATE TABLE my_table(a string, b bigint, ...)
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+STORED AS TEXTFILE;
+```
+
+---
+external Parquet
+```
+create external table parquet_table_name (x INT, y STRING)
+  ROW FORMAT SERDE 'parquet.hive.serde.ParquetHiveSerDe'
+  STORED AS 
+    INPUTFORMAT "parquet.hive.DeprecatedParquetInputFormat"
+    OUTPUTFORMAT "parquet.hive.DeprecatedParquetOutputFormat"
+    LOCATION '/test-warehouse/tinytable';
+```
+
+### troubleshooting
+---
+jdbc connection issue:
+```
+TApplicationException: Required field 'client_protocol' is unset! 
+```
+reason:
+```
+This indicates a version mismatch between client and server, namely that the client is newer than the server, which is your case.
+```
+solution:
+```
+need to decrease version of the client
+    compile group: 'org.apache.hive', name: 'hive-jdbc', version: '1.1.0'
+```
+
 
 ### hive html gui
 - ambari
 - hue
+
 
 ## SQL engines
 - Impala
@@ -250,50 +383,9 @@ TBD
 ## Scalding
 TBD
 
-## HCatalog
-
-### table description
-```
-hcat -e "describe school_explorer"
-hcat -e "describe formatted school_explorer"
-```
 
 
-## Hive
----
-create table from [csv](https://www.kaggle.com/passnyc/data-science-for-good)
-```
-CREATE EXTERNAL TABLE IF NOT EXISTS school_explorer(
-	grade boolean,
-	is_new boolean, 
-	location string,
-	name string, 
-	sed_code STRING,
-	location_code STRING, 
-	district int,
-	latitude float,
-	longitude float,
-	address string
-)COMMENT 'School explorer from Kaggle'
-ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE LOCATION '/data/';
-```
-**do not specify filename ( all files into folder will be picked up ) !!!!**
 
-
----
-jdbc connection issue:
-```
-TApplicationException: Required field 'client_protocol' is unset! 
-```
-reason:
-```
-This indicates a version mismatch between client and server, namely that the client is newer than the server, which is your case.
-```
-solution:
-```
-need to decrease version of the client
-    compile group: 'org.apache.hive', name: 'hive-jdbc', version: '1.1.0'
-```
 ## Pig Latin
 TBD
 
@@ -321,6 +413,8 @@ fast retrieving data by 'key of the row' + 'column name'
 contains from: (HBase HMaster) *---> (HBase Region Server)
 ```
 ### Accumulo
+TBD
+
 
 ### Druid
 
