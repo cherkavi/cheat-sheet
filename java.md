@@ -270,6 +270,9 @@ body("brands.size()")
 ```
 // NOSONAR
 ```
+```
+@java.lang.SuppressWarnings("squid:S3655")
+```
 
 ## Hibernate
 ### @Modifying
