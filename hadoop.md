@@ -433,7 +433,10 @@ execute into local mode
 pig -x local
 pig -x local <filename>
 ```
-
+load data from file
+```
+LOAD <path to file> USING PigStorage(';') AS (userId: chararray, timestamp: long ) 
+```
 
 ## Hadoop streaming. 
 - Storm ( real time streaming solution )
