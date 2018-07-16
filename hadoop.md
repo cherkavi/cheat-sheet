@@ -427,10 +427,12 @@ TBD
 TBD
 
 
-
-
-## Pig Latin
-TBD
+## Pig
+execute into local mode
+```
+pig -x local
+pig -x local <filename>
+```
 
 
 ## Hadoop streaming. 
