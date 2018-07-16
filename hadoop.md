@@ -435,8 +435,25 @@ pig -x local <filename>
 ```
 load data from file
 ```
-LOAD <path to file> USING PigStorage(';') AS (userId: chararray, timestamp: long ) 
+LOAD <path to file> USING PigStorage(';') AS (userId: chararray, timestamp: long ); 
 ```
+describe variable, print type
+```
+DESCRIBE <var name>;
+```
+print content of the variable
+```
+DUMP <var name>;
+```
+group into new variable
+```
+{bag} = GROUP <var name> by <field name>;
+```
+history of the variable, variable transformation steps
+```
+ILLUSTRATE <var name>;
+```
+
 
 ## Hadoop streaming. 
 - Storm ( real time streaming solution )
