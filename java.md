@@ -265,6 +265,12 @@ RestAssured
 body("brands.size()")
 ```
 
+## Sonar
+### skip checking by code checker
+```
+// NOSONAR
+```
+
 ## Hibernate
 ### @Modifying
 ```
