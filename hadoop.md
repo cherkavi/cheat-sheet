@@ -341,6 +341,49 @@ create external table parquet_table_name (x INT, y STRING)
     OUTPUTFORMAT "parquet.hive.DeprecatedParquetOutputFormat"
     LOCATION '/test-warehouse/tinytable';
 ```
+### UDF, custom functions
+```
+<dependencies>
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-client</artifactId>
+        <version>2.7.3</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.hive</groupId>
+        <artifactId>hive-exec</artifactId>
+        <version>1.2.1</version>
+        <scope>provided</scope>
+    </dependency>
+</dependencies>
+```
+```
+package com.mycompany.hive.lower;
+import org.apache.hadoop.hive.ql.exec.Description;
+import org.apache.hadoop.hive.ql.exec.UDF;
+import org.apache.hadoop.io.*;
+
+// Description of the UDF
+@Description(
+    name="ExampleUDF",
+    value="analogue of lower in Oracle .",
+    extended="select ExampleUDF(deviceplatform) from table;"
+)
+public class ExampleUDF extends UDF {
+    public String evaluate(String input) {
+        if(input == null)
+            return null;
+        return input.toLowerCase();
+    }
+}
+```
+after compillation into my-udf.jar
+```
+  hive> addjar my-udf.jar
+  hive> create temporary function ExampleUDF using "com.mycompany.hive.lower";
+  hive> SELECT ExampleUDF(value) from table;
+```
 
 ### troubleshooting
 ---
