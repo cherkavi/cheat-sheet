@@ -516,6 +516,15 @@ dig {hostname}
 ```
 add :{username} to the end of line with {groupname}:x:999
 ```
+### print all logged in users
+```
+users
+```
+
+### print all users registered into system
+```
+cat /etc/passwd | cut --delimiter=: --fields=1
+```
 
 ### issue with ssh, ssh connection issue
 when you see message:
