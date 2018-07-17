@@ -437,6 +437,10 @@ load data from file
 ```
 LOAD <path to file> USING PigStorage(';') AS (userId: chararray, timestamp: long ); 
 ```
+save data
+```
+STORE <var name> INTO <path to file>
+```
 describe variable, print type
 ```
 DESCRIBE <var name>;
@@ -453,7 +457,22 @@ history of the variable, variable transformation steps
 ```
 ILLUSTRATE <var name>;
 ```
-
+map value one-by-one, walk through variable 
+```
+{bag} = FOREACH <var name> GENERATE <var field>, FUNCTION(<var field>);  
+```
+functions 
+```
+TOKENIZE - split
+FLATTEN, - flat map
+COUNT, 
+SUM,....
+```
+filter by condition
+```
+FILTER <var name> BY <field name> operation;
+FILTER <var name> BY <field name> MATCHES <regexp>;
+```
 
 ## Hadoop streaming. 
 - Storm ( real time streaming solution )
