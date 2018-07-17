@@ -307,7 +307,13 @@ STORED AS TEXTFILE LOCATION '/data/';
 do not specify filename !!!!
 ( all files into folder will be picked up )
 ```
-
+---
+insert data into another table
+```
+INSERT OVERWRITE TABLE <table destination>
+SELECT <field1>, <field2>, ....
+FROM <table source> s JOIN <table source another> s2 ON s.key_field=s2.key_field2
+```
 ---
 CSV format
 ```
