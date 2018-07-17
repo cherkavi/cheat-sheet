@@ -222,6 +222,7 @@ hcat -e "describe formatted school_explorer"
 ```
 
 ## Hive
+fixed data structure ( Pig - free data structure )
 [documentation](https://cwiki.apache.org/confluence/display/Hive)
 [description](https://maprdocs.mapr.com/51/Hive/Hive.html)
 [description](https://hortonworks.com/apache/hive/)
@@ -311,9 +312,13 @@ do not specify filename !!!!
 insert data into another table
 ```
 INSERT OVERWRITE TABLE <table destination>
+-- CREATE TABLE <table destination>
 SELECT <field1>, <field2>, ....
 FROM <table source> s JOIN <table source another> s2 ON s.key_field=s2.key_field2
+-- LEFT OUTER
+-- FULL OUTER
 ```
+
 ---
 CSV format
 ```
@@ -354,6 +359,13 @@ create external table parquet_table_name (x INT, y STRING)
     OUTPUTFORMAT "parquet.hive.DeprecatedParquetOutputFormat"
     LOCATION '/test-warehouse/tinytable';
 ```
+---
+functions
+```
+split - split string
+explode - flat map, array to separated fields
+```
+
 ### UDF, custom functions
 ```
 <dependencies>
@@ -441,6 +453,7 @@ TBD
 
 
 ## Pig
+free data structure ( Hive - fixed data structure )
 execute into local mode
 ```
 pig -x local
