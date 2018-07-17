@@ -277,6 +277,11 @@ WITH SERDEPROPERTIES (
 )
 STORED AS TEXTFILE;
 ```
+and load data into it
+```
+LOAD DATA LOCAL INPATH '/data/' OVERWRITE INTO TABLE apachelog;
+```
+data will be saved into: /user/hive/warehouse
 
 ---
 create table from [csv](https://www.kaggle.com/passnyc/data-science-for-good)
