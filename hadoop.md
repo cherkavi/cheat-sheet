@@ -282,6 +282,7 @@ and load data into it
 LOAD DATA LOCAL INPATH '/data/' OVERWRITE INTO TABLE apachelog;
 ```
 data will be saved into: /user/hive/warehouse
+if cell has wrong format - will be 'null'
 
 ---
 create table from [csv](https://www.kaggle.com/passnyc/data-science-for-good)
