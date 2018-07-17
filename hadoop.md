@@ -438,6 +438,9 @@ load data from file
 LOAD <path to file> USING PigStorage(';') AS (userId: chararray, timestamp: long ); 
 LOAD <path to file> AS (userId: chararray, timestamp: long ); # space will be used as delimiter 
 ```
+[custom delimiter implementation](https://stackoverflow.com/questions/26354949/how-to-load-files-with-different-delimiter-each-time-in-piglatin#26356592)
+[Pig UDF](https://pig.apache.org/docs/latest/udf.html)
+
 save data
 ```
 STORE <var name> INTO <path to file>
