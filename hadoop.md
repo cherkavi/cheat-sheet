@@ -436,6 +436,7 @@ pig -x local <filename>
 load data from file
 ```
 LOAD <path to file> USING PigStorage(';') AS (userId: chararray, timestamp: long ); 
+LOAD <path to file> AS (userId: chararray, timestamp: long ); # space will be used as delimiter 
 ```
 save data
 ```
@@ -473,6 +474,16 @@ filter by condition
 FILTER <var name> BY <field name> operation;
 FILTER <var name> BY <field name> MATCHES <regexp>;
 ```
+join variables, inner join, outer join for variables
+```
+posts = LOAD '/data/user-posts.txt' USING PigStorage(',') AS (user:chararray, post:chararray, date:timestamp);
+likes = LOAD '/data/user-likes.txt' USING PigStorage(',') AS (user_name:chararray, user_like:chararray, like_date:long);
+JOIN posts BY user, likes BY user_name;
+JOIN posts BY user LEFT OUTER, likes BY user_name;
+JOIN posts BY user FULL OUTER, likes BY user_name;
+> result will be: ( posts::user, posts::post, posts::date, likes:user_name, likes:user_like, likes:like_date )
+```
+
 
 ## Hadoop streaming. 
 - Storm ( real time streaming solution )
