@@ -279,6 +279,7 @@ STORED AS TEXTFILE;
 ```
 and load data into it
 ```
+LOAD DATA INPATH '/home/user/my-prepared-data/' OVERWRITE INTO TABLE apachelog;
 LOAD DATA LOCAL INPATH '/data/' OVERWRITE INTO TABLE apachelog;
 ```
 data will be saved into: /user/hive/warehouse
