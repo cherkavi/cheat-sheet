@@ -546,3 +546,6 @@ TBD
 ### [ambari](http://localhost:8080)
 
 * cloudera manager
+
+# TODO
+download all slides from stepik - for repeating and creating xournals
