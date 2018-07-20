@@ -5,6 +5,14 @@
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
 ```
+issue:
+```
+ImportError: cannot import name 'sysconfig'
+```
+solution
+```
+sudo apt install python3-distutils
+```
 
 ### upgrade pip
 ```
