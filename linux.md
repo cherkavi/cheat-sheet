@@ -575,7 +575,7 @@ no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 * [images](http://osboxes.org)
 * [app with infrastructure](https://bitnami.com/stacks)
 
-## mapping keys
+## mapping keys, keymap, assign actions to key
 ### show key codes
 ```
 xmodmap -pke 
