@@ -585,6 +585,10 @@ xmodmap -pke
 ```
 xmodmap -e "keycode 107 = Super_L"
 ```
+to reset
+```
+setxkbmap
+```
 
 ### save to use during each reboot
 ```
