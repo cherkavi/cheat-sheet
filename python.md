@@ -183,3 +183,14 @@ if __name__ == "__main__":
     application.listen(7777)
 tornado.ioloop.IOLoop.instance().start()
 ```
+## install packages
+### selenium, virtualdisplay
+```
+sudo pip install selenium
+sudo pip install xvfbwrapper
+sudo pip install pyvirtualdisplay
+sudo apt-get install xvfb
+wget https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux64.tar.gz
+chmod +x geckodriver
+sudo cp geckodriver /usr/local/bin/
+```
