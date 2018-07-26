@@ -196,3 +196,9 @@ git config --global --unset http.proxy
 
 ### using additional command before 'fetch' 'push', custom fetch/push
 git config core.sshCommand 'ssh -i private_key_file'
+
+### remove auto replacing CRLF for LF on Windows OS
+.gitattributes
+```
+*.sh -crlf
+```
