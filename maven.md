@@ -81,6 +81,17 @@ mvn help:describe -Dplugin=org.apache.tomcat.maven:tomcat7-maven-plugin
 mvn help:describe  -DgroupId=org.springframework.boot -DartifactId=spring-boot-maven-plugin -Ddetail=true
 ```
 
+Oracle depencdencies
+```
+            <dependencies>
+                <dependency>
+                    <groupId>com.github.noraui</groupId>
+                    <artifactId>ojdbc7</artifactId>
+                    <version>${oracle.driver.version}</version>
+                </dependency>
+            </dependencies>
+```
+
 ## Plugins:
 
 ### release plugin
