@@ -77,6 +77,16 @@ cut --delimiter "," --fields 2,3,4 test1.csv
 /var/log/syslog
 ```
 
+### folder into bash script
+working folder
+```
+pwd
+```
+folder of the script
+```
+`dirname $0`/another_script_into_folder.sh
+```
+
 ### bash reading content of the file to command-line parameter
 ```
 --extra-vars 'rpm_version=$(cat version.txt)'
