@@ -590,6 +590,9 @@ words.map(w=>(w,1)) .reduceByKey(_ + _) .print()
 ```
 * MLib
 * GraphX
+```
+GraphLoader.edgeListFile(sc, path_to_file)
+```
 
 
 ## Hadoop streaming. 
