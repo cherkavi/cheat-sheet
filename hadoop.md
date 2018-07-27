@@ -540,15 +540,21 @@ from pyspark import SparkContext, SparkConf
 ### context
 scala
 ```
-new SparkContext( new SparkConf().setAppName("my-app").setMaster("local[4]") )
+val sc new SparkContext( new SparkConf().setAppName("my-app").setMaster("local[4]") )
+new org.apache.spark.sql.SQLContext(sc)
 ```
 java
 ```
-new JavaSparkContext( new SparkConf().setAppName("my-app").setMaster("local[*]") )
+sc = new JavaSparkContext( new SparkConf().setAppName("my-app").setMaster("local[*]") )
+
+new org.apache.spark.sql.api.java.SQLContext(sc)
 ```
 python
 ```
 sc = SparkContext( conf = SparkConf().setAppName("my-app").setMaster("local") )
+
+from pyspark.sql import SQLContext
+sqlContext = SQLContext(sc)
 ```
 
 ### passing functions into Spark
@@ -568,6 +574,15 @@ currentRdd.map(FunctionsCollections.sizeCounter)
 def myExecutor(rdd: RDD[String]): RDD[String] = {... rdd.map(a=> a+1) }
 ```
 
+### libraries
+* Spark SQL
+```
+val employee = sqlContext.sql("select employee.name, employee.age from employee where salary>120000")
+employee.map(empl=> "Name:"+empl(0)+"  age:"+empl(1).sort(false).take(5).foreach(println)
+```
+* Spark Streaming
+* MLib
+* GraphX
 
 
 ## Hadoop streaming. 
