@@ -517,6 +517,19 @@ JOIN posts BY user FULL OUTER, likes BY user_name;
 [app examples](https://mvnrepository.com/artifact/org.apache.spark/spark-examples)
 [scala, java, python start point app](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_3.pdf)
 
+### configuration ( spark-defaults.conf )
+http://<driver>:4040
+	
+* spark properties
+```
+new SparkConf().set("spark.executor.memory","1g")
+```
+```
+bin/spark-submit --conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
+```
+* conf/spark-env.sh
+* log4j.properties
+
 ### packages
 java/scala packages
 ```
