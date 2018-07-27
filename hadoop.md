@@ -516,6 +516,7 @@ JOIN posts BY user FULL OUTER, likes BY user_name;
 ## Spark
 [app examples](https://mvnrepository.com/artifact/org.apache.spark/spark-examples)
 [scala, java, python start point app](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_3.pdf)
+[configuration and monitoring](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_5.pdf)
 
 ### configuration ( spark-defaults.conf )
 http://<driver>:4040
@@ -529,6 +530,23 @@ bin/spark-submit --conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX
 ```
 * conf/spark-env.sh
 * log4j.properties
+
+### metrics
+Coda Hale Metrics Library
+/conf/metrics.properties
+
+### history server
+/sbin/start-history-server.sh
+
+### serialization
+* java 
+* kyro
+conf.set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
+
+### instrumentations
+* Ganglia
+* OS profiling tools
+* JVM utilities
 
 ### packages
 java/scala packages
