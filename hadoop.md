@@ -540,8 +540,10 @@ from pyspark import SparkContext, SparkConf
 ### context
 scala
 ```
-val sc new SparkContext( new SparkConf().setAppName("my-app").setMaster("local[4]") )
-new org.apache.spark.sql.SQLContext(sc)
+val sparkConfig = new SparkConf().setAppName("my-app").setMaster("local[4]")
+val sc = new SparkContext(  )
+val sqlContext = new org.apache.spark.sql.SQLContext(sc)
+val streamingContext = new StreamingContext(conf, Seconds(1))
 ```
 java
 ```
@@ -581,6 +583,11 @@ val employee = sqlContext.sql("select employee.name, employee.age from employee 
 employee.map(empl=> "Name:"+empl(0)+"  age:"+empl(1).sort(false).take(5).foreach(println)
 ```
 * Spark Streaming
+```
+val lines = streamingContext.socketTextStream("127.0.0.1", 8888)
+val words = lines.flatMap(_.split(" "))
+words.map(w=>(w,1)) .reduceByKey(_ + _) .print()
+```
 * MLib
 * GraphX
 
