@@ -513,6 +513,62 @@ JOIN posts BY user FULL OUTER, likes BY user_name;
 > result will be: ( posts::user, posts::post, posts::date, likes:user_name, likes:user_like, likes:like_date )
 ```
 
+## Spark
+[app examples](https://mvnrepository.com/artifact/org.apache.spark/spark-examples)
+[scala, java, python start point app](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_3.pdf)
+
+### packages
+java/scala packages
+```
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-core_2.10</artifactId>
+    <version>2.2.2</version>
+</dependency>
+```
+```
+org.apache.spark.SparkContext.*
+org.apache.spark.SparkConf
+org.apache.spark.api.java.JavaRDD
+org.apache.spark.api.java.JavaSparkContext
+```
+python
+```
+from pyspark import SparkContext, SparkConf
+```
+
+### context
+scala
+```
+new SparkContext( new SparkConf().setAppName("my-app").setMaster("local[4]") )
+```
+java
+```
+new JavaSparkContext( new SparkConf().setAppName("my-app").setMaster("local[*]") )
+```
+python
+```
+sc = SparkContext( conf = SparkConf().setAppName("my-app").setMaster("local") )
+```
+
+### passing functions into Spark
+* anonymous functions syntax
+```
+(a: Int) => a + 1
+```
+* static method
+```
+object FunctionCollections{
+	def sizeCounter(s: String): Int = s.length
+}
+currentRdd.map(FunctionsCollections.sizeCounter)
+```
+* by reference
+```
+def myExecutor(rdd: RDD[String]): RDD[String] = {... rdd.map(a=> a+1) }
+```
+
+
 
 ## Hadoop streaming. 
 - Storm ( real time streaming solution )
