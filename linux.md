@@ -611,9 +611,13 @@ xev | grep keysym
 ```
 
 ## pdf
-###convert pdf to image
+### convert pdf to image
 ```
 convert -geometry 400x600 -density 100x100 -quality 100 test-pdf.pdf test-pdf.jpg
+```
+### bar code create into pdf
+```
+barcode -o 1.pdf -b "12345"
 ```
 
 ### bar code finder
