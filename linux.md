@@ -617,7 +617,7 @@ convert -geometry 400x600 -density 100x100 -quality 100 test-pdf.pdf test-pdf.jp
 ```
 ### bar code create into pdf
 ```
-barcode -o 1.pdf -b "12345"
+barcode -o 1112.pdf -e "code39" -b "1112" -u "mm" -g 50x50 
 ```
 
 ### bar code finder
