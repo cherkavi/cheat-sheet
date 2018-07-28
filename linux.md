@@ -609,3 +609,20 @@ create file '~/.Xmodmap'
 ```
 xev | grep keysym
 ```
+
+## pdf
+###convert pdf to image
+```
+convert -geometry 400x600 -density 100x100 -quality 100 test-pdf.pdf test-pdf.jpg
+```
+
+### bar code finder
+```
+apt install zbar-tool
+zbarimg <file>
+```
+
+### pdf file merge, pdf join
+```
+gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf test-pdf2.pdf test-pdf3.pdf test-pdf4.pdf
+```
