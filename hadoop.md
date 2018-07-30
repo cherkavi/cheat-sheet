@@ -19,6 +19,12 @@ docker run --hostname=quickstart.cloudera --privileged=true -t -i -p 7180 4239cd
 ```docker run -v /tmp:/home/root/tmp --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -t -i sequenceiq/hadoop-docker 
 ```
 
+### IBM education container start
+```
+docker run -it --name bdu_spark2 -P -p 4040:4040 -p 4041:4041 -p 8080:8080 -p8081:8081 bigdatauniversity/spark2:latest
+-- /etc/bootstrap.sh -bash 
+```
+
 ## HDFS common commands
 
 ### help ( Distributed File System )
