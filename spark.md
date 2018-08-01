@@ -1,4 +1,5 @@
 ## Spark
+[main documentation](https://spark.apache.org/docs/latest/)
 [app examples](https://mvnrepository.com/artifact/org.apache.spark/spark-examples)
 [scala, java, python start point app](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_3.pdf)
 [configuration and monitoring](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_5.pdf)
@@ -15,6 +16,20 @@ bin/spark-submit --conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX
 ```
 * conf/spark-env.sh
 * log4j.properties
+
+```
+spark.rdd.compress=false
+spark.shuffle.consolidateFiles=false # set true for ext4/xfs filesystems
+
+spark.shuffle.spill=true
+spark.shuffle.memoryFraction=0.2 # memory limit used during reduce by spilling on disk
+spark.shuffle.spill.compress=true
+
+spark.storage.memoryFraction=0.6 # how much storage will be dedicated to in-memory storage
+
+spark.storage.unrollFraction=0.2 # unrolling serialized data
+```
+
 
 ### metrics
 Coda Hale Metrics Library
@@ -33,6 +48,8 @@ conf.set("spark.scheduler.allocation.file", "/path/to/allocations.xml")
 * Ganglia
 * OS profiling tools
 * JVM utilities
+
+using [Alluxio](alluxio.org) to save/read RDD across SparkContext
 
 ### packages
 java/scala packages
