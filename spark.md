@@ -143,7 +143,38 @@ class HelperForString extends Serializable{
 }
 ```
 
-### libraries
+### difference betwee reduceByKey and countByKey
+```
+val text = sc.textFile("my_own_file")
+val counts = 
+	// reduceByKey - reduce all values by key, after - combine the result for each partition
+	text.flatMap(_.split(" ")).map((_, 1)).reduceByKey(_+_).collectAsMap()
+	text.flatMap(_.split(" ")).countByValue()
+// call reduce( _ + _ ), collect result from each partitions, sent to driver !!! ( only for testing/development )
+.countByKey
+
+```	
+
+examples
+```
+// approximate result of large dataset:
+.countApproxDistinct
+
+// update accumulator with value and return it
+.fold((accumulator, value)=> accumulator)
+
+// group all values by key from all partitions into memory !!! ( Memory issue !!!)
+.groupByKey
+
+// return all values for specified key
+.lookup
+
+// apply map function to value only, avoid shuffling between partitions
+.mapValues 
+
+```
+
+# libraries
 * Spark SQL
 ```
 val employee = sqlContext.sql("select employee.name, employee.age from employee where salary>120000")
