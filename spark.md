@@ -122,6 +122,12 @@ data.toDebugString()
 
 // descriptions of partitions
 data.partitions
+
+// statistic values
+.stats()
+
+
+// histogram, mean, stdev, sum, variance, min, max
 ```
 
 ### serialization issue
