@@ -181,10 +181,12 @@ dump comments;
 > (3, "third")
 > (4, "fourth")
 
-FOREACH comments{
+result = FOREACH comments{
 	filtered_data = filter data by f1<=4;
-	generate name, filtered_data.f2, filtered_data.f3 
-}
+	generate name, filtered_data.f2, filtered_data.f3;
+};
+dump result;
+
 > ("first", 2,3)
 > ("second")
 > ("third")
@@ -199,9 +201,24 @@ accessible nested functions:
 * order by
 ---
 functions 
+* FLATTEN, - flat map for tuples
 ```
-TOKENIZE - split
-FLATTEN, - flat map
+dump a
+(1,(4,7))
+(2,(5,8))
+(3,(6,9))
+
+b = FOREACH a generate $0, flatten($1);
+>(1,4,7)
+>(2,5,8)
+>(3,6,9)
+
+will work even for:
+(1,{(4),(7)}) -> (1,4,7)
+```
+
+```
+TOKENIZE - split	
 COUNT, 
 SUM,....
 ```
