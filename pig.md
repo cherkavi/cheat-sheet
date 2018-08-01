@@ -121,9 +121,47 @@ dump groupped_data;
 
 ```
 ---
-map value one-by-one, walk through variable 
+map value one-by-one, walk through variable, foreach with outer relation 
 ```
 {bag} = FOREACH <var name> GENERATE <var field>, FUNCTION(<var field>);  
+```
+example
+```
+data = load 'data.csv' as (f1:int, f2:int, f3:int);
+dump data;
+> (1,2,3)
+> (4,5,6)
+> (7,8,9)
+> (4,3,2)
+```
+extension = FOREACH data f1,f2,f3, f1+f2 as s12:int, f2+f3 as s23;
+```
+> (1,2,3,3,5)
+> (4,5,6,9,11)
+> (7,8,9,15,17)
+> (4,3,2,7,5)
+```
+---
+foreach with a grouped relation
+```
+data = load 'data.csv' as (f1:int, f2:int, f3:int);
+dump data;
+> (1,2,3)
+> (4,5,6)
+> (7,8,9)
+> (4,3,2)
+
+groupped_data = group data by f1;
+dump groupped_data;
+( 1, {(1,2,3)} )
+( 4, {(4,5,6), (4,3,2)} )
+( 7, {(7,8,9)} )
+
+FOREACH groupped_data GENERATE group, data.f2, data.f3
+>(1, { (2) }, { (3) })
+>(4, { (5), (3) }, { (6),(2) })
+>(7, { (8) }, { (9) })
+
 ```
 ---
 functions 
