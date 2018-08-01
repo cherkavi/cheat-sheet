@@ -157,12 +157,46 @@ dump groupped_data;
 ( 4, {(4,5,6), (4,3,2)} )
 ( 7, {(7,8,9)} )
 
+/* name of the first field from previous dataset will be 'group' */
 FOREACH groupped_data GENERATE group, data.f2, data.f3
 >(1, { (2) }, { (3) })
 >(4, { (5), (3) }, { (6),(2) })
 >(7, { (8) }, { (9) })
 
 ```
+---
+foreach nested block
+```
+data = load 'data.csv' as (f1:int, f2:int, f3:int);
+dump data;
+> (1,2,3)
+> (4,5,6)
+> (7,8,9)
+> (4,3,2)
+
+comments = load 'comments.csv' as (id: int, name: chararray);
+dump comments;
+> (1, "first")
+> (2, "second")
+> (3, "third")
+> (4, "fourth")
+
+FOREACH comments{
+	filtered_data = filter data by f1<=4;
+	generate name, filtered_data.f2, filtered_data.f3 
+}
+> ("first", 2,3)
+> ("second")
+> ("third")
+> ("fourth", 5, 6)
+> ("fourth", 3, 2)
+```
+
+accessible nested functions:
+* distinct
+* filter
+* limit
+* order by
 ---
 functions 
 ```
