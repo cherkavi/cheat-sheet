@@ -76,6 +76,22 @@ group into new variable
 ```
 {bag} = GROUP <var name> by <field name>;
 ```
+example
+```
+data = load 'data.csv' as (f1:int, f2:int, f3:int);
+dump data;
+> (1,2,3)
+> (4,5,6)
+> (7,8,9)
+> (4,3,2)
+
+groupped_data = group data f1;
+dump groupped_data;
+( 1, {(1,2,3)} )
+( 4, {(4,5,6), (4,3,2)} )
+( 7, {(7,8,9)} )
+
+```
 ---
 map value one-by-one, walk through variable 
 ```
@@ -99,6 +115,11 @@ example:
 ```
 data = LOAD <path to file/folder> USING PigStorage(';') AS (userId: chararray, timestamp: long );
 filtered_data = FILTER data BY timestamp is not null
+```
+---
+order data
+```
+ordered_data = ORDER data by timestamp DESC
 ```
 ---
 join variables, inner join, outer join for variables
