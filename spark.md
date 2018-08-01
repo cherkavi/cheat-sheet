@@ -130,6 +130,7 @@ data.partitions
 // histogram, mean, stdev, sum, variance, min, max
 ```
 
+## Serialization
 ### serialization issue
 any class, that involved into Task should be Serializable
 ```
@@ -141,6 +142,37 @@ using lazy initialization for any object inside ( instead of Serializable)
 class HelperForString extends Serializable{
 	@transient lazy val innerHelper = new AnotherHelperForString()
 }
+```
+
+### serialization types
+Java - default
+Python - pickle
+Scala - Kryo
+
+## Persistence
+good place for persistence
+```
+sc.textFile("data/*.csv").
+filter(!_.startsWith("Trip ID")).map(_.split(",")). // skip first line
+map(StaticClassUtility.parse(_)).
+keyBy(_.column2).
+partitionBy(new HashPartitioner(8)).
+// after at least one 'heavy' action should be persisted
+persist(StorageLevel.xxxxxxx)
+
+
+rdd1.join(rdd2).
+persist(StorageLevel.xxxxxxx)
+
+```
+
+### cache and persist
+cache == persist(StorageLevel.MEMORY_ONLY)
+
+### unpersist RDD
+```
+// should be called after "action"
+rdd.unpersist()
 ```
 
 ### difference betwee reduceByKey and countByKey
