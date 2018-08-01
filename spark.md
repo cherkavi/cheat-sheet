@@ -27,6 +27,7 @@ Coda Hale Metrics Library
 * java 
 * kyro
 conf.set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
+conf.registerKryoClasses(Array(classOf[MyOwnClass1], classOf[MyOwnClass2]))
 conf.set("spark.scheduler.allocation.file", "/path/to/allocations.xml")
 ### instrumentations
 * Ganglia
