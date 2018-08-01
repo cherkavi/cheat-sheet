@@ -1,46 +1,11 @@
 ## Pig
 free data structure ( Hive - fixed data structure )
-only function names are case sensitive 
+function names, names of relations, fields are case sensitive 
+---
 execute into local mode
 ```
 pig -x local
 pig -x local <filename>
-```
-load data from file
-```
-/* load data from file and use semicolon delimiter, default delimiter = \t */
-LOAD <path to file> USING PigStorage(';') AS (userId: chararray, timestamp: long ); 
-LOAD <path to file> AS (userId: chararray, timestamp: long ); -- space will be used as delimiter 
-LOAD <path to file> USING TextLoader() -- tuple with one value - single line of text
-LOAD <path to file> USING JsonLoader() -- json format
-LOAD <path to file> USING BinStorage() -- for internal using 
-```
-[custom delimiter implementation](https://stackoverflow.com/questions/26354949/how-to-load-files-with-different-delimiter-each-time-in-piglatin#26356592)
-[Pig UDF](https://pig.apache.org/docs/latest/udf.html)
-
-save data
-```
-STORE <var name> INTO <path to file>
-```
-describe variable, print type
-```
-DESCRIBE <var name>;
-```
-print content of the variable
-```
-DUMP <var name>;
-```
-group into new variable
-```
-{bag} = GROUP <var name> by <field name>;
-```
-history of the variable, variable transformation steps
-```
-ILLUSTRATE <var name>;
-```
-map value one-by-one, walk through variable 
-```
-{bag} = FOREACH <var name> GENERATE <var field>, FUNCTION(<var field>);  
 ```
 data types
 ```
@@ -49,7 +14,72 @@ bag: (1, red), (2, yellow), (3, green)
 tuple: (1,red)
 atom: int, long, float, double, chararray, bytearray
 ```
-
+load data from file
+```
+/* load data from file and use semicolon delimiter, default delimiter = \t */
+LOAD <path to file/folder> USING PigStorage(';') AS (userId: chararray, timestamp: long ); 
+LOAD <path to file/folder> AS (userId: chararray, timestamp: long ); -- tab will be used as delimiter for default loader - PigStorage('\t')
+LOAD <path to file/folder> USING TextLoader() -- tuple with one value - single line of text
+LOAD <path to file/folder> USING JsonLoader() -- json format
+LOAD <path to file/folder> USING BinStorage() -- for internal using 
+```
+[custom delimiter implementation](https://stackoverflow.com/questions/26354949/how-to-load-files-with-different-delimiter-each-time-in-piglatin#26356592)
+[Pig UDF](https://pig.apache.org/docs/latest/udf.html)
+---
+save data
+> operation will fail, if directory exists
+```
+STORE <var name> INTO <path to directory>
+STORE <var name> INTO <path to directory> USING PigStorage() -- default saver
+STORE <var name> INTO <path to directory> USING BinStorage()
+STORE <var name> INTO <path to directory> USING PigDump()
+STORE <var name> INTO <path to directory> USING JsonStorage()
+```
+---
+using command line parameters into PigLating script
+```
+./pig -param dir='/opt/data/import' myscript.pig
+```
+script with used parameter from command line
+```
+/* inside script it is looks like */
+employee = LOAD "$dir/employee.csv" as PigStorage("\t")
+```
+---
+using one parameter file to combine all parameters
+custom_parameters.values
+```
+dir = '/opt/data/import'
+user = 'Michael'
+```
+command line
+```
+./pig -param_file custom_parameters.values myscript.org
+```
+---
+describe variable, print type
+```
+DESCRIBE <var name>;
+```
+---
+print content of the variable
+```
+DUMP <var name>;
+```
+---
+history of the variable, variable transformation steps
+```
+ILLUSTRATE <var name>;
+```
+---
+group into new variable
+```
+{bag} = GROUP <var name> by <field name>;
+```
+map value one-by-one, walk through variable 
+```
+{bag} = FOREACH <var name> GENERATE <var field>, FUNCTION(<var field>);  
+```
 functions 
 ```
 TOKENIZE - split
@@ -70,5 +100,7 @@ JOIN posts BY user, likes BY user_name;
 JOIN posts BY user LEFT OUTER, likes BY user_name;
 JOIN posts BY user FULL OUTER, likes BY user_name;
 > result will be: ( posts::user, posts::post, posts::date, likes:user_name, likes:user_like, likes:like_date )
+-- the same but with reference using position of the field
+JOIN posts BY $0, likes BY $0;
 ```
 
