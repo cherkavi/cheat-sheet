@@ -85,10 +85,38 @@ dump data;
 > (7,8,9)
 > (4,3,2)
 
-groupped_data = group data f1;
+groupped_data = group data by f1;
 dump groupped_data;
 ( 1, {(1,2,3)} )
 ( 4, {(4,5,6), (4,3,2)} )
+( 7, {(7,8,9)} )
+
+```
+---
+cogroup - multiply grouping
+```
+{bag} = COGROUP <var name> by <field name>, <var name> by <field name>;
+```
+example
+```
+data = load 'data.csv' as (f1:int, f2:int, f3:int);
+dump data;
+> (1,2,3)
+> (4,5,6)
+> (7,8,9)
+> (4,3,2)
+
+comments = load 'comments.csv' as (id: int, name: chararray);
+dump comments;
+> (1, "first")
+> (2, "second")
+> (3, "third")
+> (4, "fourth")
+
+groupped_data = cogroup data by f1, comments by id;
+dump groupped_data;
+( 1, {(1,2,3)}, {(1, "first")} )
+( 4, {(4,5,6), (4,3,2)}, {(4, "fourth")} )
 ( 7, {(7,8,9)} )
 
 ```
