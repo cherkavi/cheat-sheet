@@ -76,10 +76,12 @@ group into new variable
 ```
 {bag} = GROUP <var name> by <field name>;
 ```
+---
 map value one-by-one, walk through variable 
 ```
 {bag} = FOREACH <var name> GENERATE <var field>, FUNCTION(<var field>);  
 ```
+---
 functions 
 ```
 TOKENIZE - split
@@ -87,11 +89,18 @@ FLATTEN, - flat map
 COUNT, 
 SUM,....
 ```
+---
 filter by condition
 ```
 FILTER <var name> BY <field name> operation;
 FILTER <var name> BY <field name> MATCHES <regexp>;
 ```
+example:
+```
+data = LOAD <path to file/folder> USING PigStorage(';') AS (userId: chararray, timestamp: long );
+filtered_data = FILTER data BY timestamp is not null
+```
+---
 join variables, inner join, outer join for variables
 ```
 posts = LOAD '/data/user-posts.txt' USING PigStorage(',') AS (user:chararray, post:chararray, date:timestamp);
