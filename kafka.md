@@ -1,8 +1,10 @@
 # main concepts
 * Topics
 category of messages, consists from Partitions
-* Partition
+* Partition ( Leader and Followers )
 part of the Topic, can be replicated (replication factor) across Brokers, must have at least one Leader and 0..* Followers
+when you save message, it will be saved into one of the partitions depends on:
+partition number | hash of the key | round robin
 * Leader
 main partition in certain period of time, contains InSyncReplica's - list of Followers that are alive in current time
 * Committed Messages
@@ -71,11 +73,33 @@ bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic mytopic --config 
 bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic mytopic --deleteConfig retention.ms=72000
 ```
 
-# Producer
+# [Producer](https://docs.confluent.io/current/clients/producer.html)
 ## producer console
 ```
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mytopic
 ```
+## java producer example
+```
+ Properties props = new Properties();
+ props.put("bootstrap.servers", "localhost:4242");
+ props.put("acks", "all");  // 0 - no wait; 1 - leader write into local log; all - leader write into local log and wait ACK from full set of InSyncReplications 
+ props.put("client.id", "unique_client_id"); // nice to have
+ props.put("retries", 0);           // can change ordering of the message in case of retriying
+ props.put("batch.size", 16384);    // collect messages into batch
+ props.put("linger.ms", 1);         // additional wait time before sending batch
+ props.put("compression.type", ""); // type of compression: none, gzip, snappy, lz4
+ props.put("buffer.memory", 33554432);
+ props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+ props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+ Producer<String, String> producer = new KafkaProducer<>(props);
+ producer.metrics(); // 
+ for(int i = 0; i < 100; i++)
+     producer.send(new ProducerRecord<String, String>("mytopic", Integer.toString(i), Integer.toString(i)));
+     producer.flush(); // immediatelly send, even if 'linger.ms' is greater than 0
+ producer.close();
+ producer.partitionsFor("mytopic")
+```
+partition will be selected 
 
 #Consumer
 ## consumer console
@@ -87,3 +111,4 @@ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-
 ```
 bin/kafka-consumer-groups.sh --zoopkeeper localhost:2181 --describe --group mytopic-consumer-group
 ```
+
