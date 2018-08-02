@@ -318,5 +318,23 @@ JOIN posts BY user FULL OUTER, likes BY user_name;
 -- the same but with reference using position of the field
 JOIN posts BY $0, likes BY $0;
 ```
+example
+```
+DUMP data1;
+> (1,2,3)
+> (1,2,4)
+> (2,3,4)
+> (2,3,5)
+
+DUMP data2;
+> ("first", 1)
+> ("second", 2)
+
+JOIN data1 BY $0, data2 BY, $1
+> (1,2,3, "first", 1)
+> (1,2,4, "first", 1)
+> (2,3,4, "second", 2)
+> (2,3,5, "second", 2)
+```
 
 [Pig UDF](https://pig.apache.org/docs/latest/udf.html)
