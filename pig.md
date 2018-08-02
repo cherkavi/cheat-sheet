@@ -273,6 +273,40 @@ UNION data, data2;
 
 ```
 ---
+split data to different dataset using conditions
+```
+dump data
+>(1,4,7)
+>(2,5,8)
+>(3,6,9)
+
+SPLIT data INTO data_small IF $0<=1, data_big IF $0>1;
+
+DUMP data_small;
+>(1,4,7)
+
+DUMP data_big;
+>(2,5,8)
+>(3,6,9)
+```
+---
+cross values
+```
+DUMP data1;
+> (1,2,3)
+> (4,5,6)
+
+DUMP data2;
+> (7,8)
+> (9,10)
+
+CROSS data1, data2;
+> (1,2,3, 7,8)
+> (1,2,3, 9,10)
+> (4,5,6, 7,8)
+> (4,5,6, 9,10)
+```
+---
 join variables, inner join, outer join for variables
 ```
 posts = LOAD '/data/user-posts.txt' USING PigStorage(',') AS (user:chararray, post:chararray, date:timestamp);
