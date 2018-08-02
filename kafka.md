@@ -33,3 +33,40 @@ leader, which topic exists
 * "At-least-once" message delivery guaranteed - for consumer who crushed before it commited offset
 * "At-most-once" delivery - ( custom realization ) consumer will never read the same message again, even when crushed before process it
 
+
+# scripts
+## start Kafka's Broker
+```
+zookeeper-server-start.sh
+kafka-server-start.sh config/server.properties
+```
+
+## topic create
+```
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mytopic
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --describe --topic mytopic
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --config retention.ms=360000 --topic mytopic
+```
+or just enable "autocreation"
+```
+auto.create.topics.enable=true
+```
+
+## topic delete
+can be marked "for deletion"
+```
+bin/kafka-topics.sh --delete --zookeeper localhost:2181 --topic mytopic
+```
+
+## topics list
+
+```
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --list
+```
+
+## topic update
+```
+bin/kafka-topics.sh --alter --zookeeper localhost:2181 --partitions 5 --topic mytopic
+bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic mytopic --config retention.ms=72000
+bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic mytopic --deleteConfig retention.ms=72000
+```
