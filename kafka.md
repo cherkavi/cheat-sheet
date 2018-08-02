@@ -19,6 +19,7 @@ consumer instance from different group will receive own copy of message ( one me
 
 
 # ZoopKeeper ( one instance per cluster )
+* must be started before using Kafka ( zookeeper-server-start.sh, kafka-server-start.sh )
 * cluster membership
 * electing a controller
 * topic configuration
