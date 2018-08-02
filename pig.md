@@ -200,8 +200,8 @@ accessible nested functions:
 * limit
 * order by
 ---
-functions 
-* FLATTEN, - flat map for tuples
+# functions 
+* FLATTEN - flat map for tuples ( and nested elements )
 ```
 dump data
 (1,(4,7))
@@ -217,11 +217,43 @@ will work even for:
 (1,{(4),(7)}) -> (1,4,7)
 ```
 
+* AVG
+average of the number values in a single column
+* CONCAT
+concatanation of two columns
+* TOKENIZE
+split string and return tuple of words
+* COUNT
+count number of elements, require GROUP BY/GROUP ALL
+* COUNT_STAR
+count number of elments into a bag
+* DIFF
+compare two fields in tuple
+* IsEmpty
+is field empty/null
+* MAX/MIN/SUM
+maximum/minimum/summarize value, require GROUP BY/GROUP ALL
 ```
-TOKENIZE - split	
-COUNT, 
-SUM,....
+data = load 'data.csv' as (f1:int, f2:int, f3:int);
+dump data;
+> (1,2)
+> (4,5)
+> (7,8)
+> (4,3)
+
+groupped_data = group data by f1;
+dump groupped_data;
+( 1, {(1,2)} )
+( 4, {(4,5), (4,3)} )
+( 7, {(7,8)} )
+
+FOREACH groupped_data GENERATE group, MAX(groupped_data.f2)
+> (1, 2)
+> (4, 5)
+> (7, 8)
 ```
+* SUM
+* ....
 ---
 filter by condition
 ```
