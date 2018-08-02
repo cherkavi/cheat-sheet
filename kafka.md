@@ -70,3 +70,20 @@ bin/kafka-topics.sh --alter --zookeeper localhost:2181 --partitions 5 --topic my
 bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic mytopic --config retention.ms=72000
 bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic mytopic --deleteConfig retention.ms=72000
 ```
+
+# Producer
+## producer console
+```
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mytopic
+```
+
+#Consumer
+## consumer console
+```
+bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning
+bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning --consumer.config my_own_config.properties
+```
+## consumer group console
+```
+bin/kafka-consumer-groups.sh --zoopkeeper localhost:2181 --describe --group mytopic-consumer-group
+```
