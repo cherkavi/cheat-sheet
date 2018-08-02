@@ -24,7 +24,6 @@ LOAD <path to file/folder> USING JsonLoader() -- json format
 LOAD <path to file/folder> USING BinStorage() -- for internal using 
 ```
 [custom delimiter implementation](https://stackoverflow.com/questions/26354949/how-to-load-files-with-different-delimiter-each-time-in-piglatin#26356592)
-[Pig UDF](https://pig.apache.org/docs/latest/udf.html)
 ---
 save data
 > operation will fail, if directory exists
@@ -184,6 +183,7 @@ dump comments;
 result = FOREACH comments{
 	filtered_data = filter data by f1<=4;
 	generate name, filtered_data.f2, filtered_data.f3;
+--  generate name, filtered_data.$1, filtered_data.$2;
 };
 dump result;
 
@@ -203,12 +203,12 @@ accessible nested functions:
 functions 
 * FLATTEN, - flat map for tuples
 ```
-dump a
+dump data
 (1,(4,7))
 (2,(5,8))
 (3,(6,9))
 
-b = FOREACH a generate $0, flatten($1);
+FOREACH data generate $0, flatten($1);
 >(1,4,7)
 >(2,5,8)
 >(3,6,9)
@@ -236,7 +236,41 @@ filtered_data = FILTER data BY timestamp is not null
 ---
 order data
 ```
-ordered_data = ORDER data by timestamp DESC
+ordered_data = ORDER data BY timestamp DESC
+```
+---
+distinct
+```
+dump data;
+>(1,4,7)
+>(2,5,8)
+>(2,5,8)
+>(2,5,8)
+
+DISTINCT data;
+
+>(1,4,7)
+>(2,5,8)
+
+```
+---
+union
+```
+dump data;
+>(1,4,7)
+>(2,5,8)
+
+dump data2
+>(2,5,8)
+>(2,5,8)
+
+UNION data, data2;
+
+>(1,4,7)
+>(2,5,8)
+>(2,5,8)
+>(2,5,8)
+
 ```
 ---
 join variables, inner join, outer join for variables
@@ -251,3 +285,4 @@ JOIN posts BY user FULL OUTER, likes BY user_name;
 JOIN posts BY $0, likes BY $0;
 ```
 
+[Pig UDF](https://pig.apache.org/docs/latest/udf.html)
