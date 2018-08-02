@@ -61,7 +61,7 @@ describe variable, print type
 DESCRIBE <var name>;
 ```
 ---
-explanation of execution
+explanation of execution ( logical, physical, MapReduce)
 ```
 EXPLAIN <var name>;
 ```
