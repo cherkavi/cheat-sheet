@@ -61,6 +61,11 @@ describe variable, print type
 DESCRIBE <var name>;
 ```
 ---
+explanation of execution
+```
+EXPLAIN <var name>;
+```
+---
 print content of the variable
 ```
 DUMP <var name>;
@@ -265,6 +270,33 @@ example:
 data = LOAD <path to file/folder> USING PigStorage(';') AS (userId: chararray, timestamp: long );
 filtered_data = FILTER data BY timestamp is not null
 ```
+* ABS
+absolute value
+* CEIL
+round to the nearest up integer
+* STRSPLIT
+split around Regular Expression
+* REGEX_EXTRACT/REGEX_EXTRACT_ALL
+extract elements according given Regular Expression
+* SUBSTRING
+substring of the given string
+* REPLACE
+replace existing characters with new one/sequence
+* TOTUPLE
+* TOBAG
+* TOMAP
+
+* MAPREDUCE
+execute external job
+* STREAM
+send data to external script or program
+* UDF DEFINE 
+assign alias to user defined function
+* UDF REGISTER 
+register jar with UDF
+* fs
+invoke FSShell command ( ls, mkdir, )
+
 ---
 order data
 ```
