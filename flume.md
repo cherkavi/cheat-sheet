@@ -9,6 +9,7 @@ aggregate the data push data to Storage tier
 Each tier has
 * Source
 * Sink
+* Channel between them
 
 Source and Sink used Avro
 ( Remote procedure call and serialization framework )
