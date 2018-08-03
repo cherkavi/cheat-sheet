@@ -135,7 +135,8 @@ bin/kafka-consumer-groups.sh --zoopkeeper localhost:2181 --describe --group myto
  props.put("heartbeat.interval.ms", "");
 ```
 
-## consumer types
+## consumer java
+NOT THREAD Safe !!!
 ```
 KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
 ConsumerRecords<String, String> records = consumer.pool(100); // time in ms
