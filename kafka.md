@@ -112,3 +112,50 @@ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-
 bin/kafka-consumer-groups.sh --zoopkeeper localhost:2181 --describe --group mytopic-consumer-group
 ```
 
+## consumer offset
+* automatic commit offset (enable.auto.commit=true) with period (auto.commit.interval.ms=1000)
+* manual offset commit (enable.auto.commit=false) 
+
+## [consumer configuration](https://kafka.apache.org/documentation/#consumerconfigs)
+```
+ Properties props = new Properties();
+ props.put("bootstrap.servers", "localhost:4242"); // list of host/port pairs to connect to cluster
+ props.put("client.id", "unique_client_id");       // nice to have
+ props.put("group.id", "unique_group_id");         // nice to have
+ props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+ props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+ props.put("fetch.min.bytes", 0);              // if value 1 - will be fetched immediatelly
+ props.put("enable.auto.commit", "true");      //
+ // timeout of detecting failures of consumer, Kafka group coordinator will wait for heartbeat from consumer within this period of time
+ props.put("session.timeout.ms", "1000"); 
+ // expected time between heartbeats to the consumer coordinator,
+ // is consumer session stays active, 
+ // facilitate rebalancing when new consumers join/leave group,
+ // must be set lower than *session.timeout.ms*
+ props.put("heartbeat.interval.ms", "");
+```
+
+## consumer types
+```
+KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
+ConsumerRecords<String, String> records = consumer.pool(100); // time in ms
+
+```
+
+## consumer consume messages
+* by topic
+```
+consumer.subscribe(Arrays.asList("mytopic_1", "mytopic_2"));
+```
+* by partition
+```
+TopicPartition partition0 = new TopicPartition("mytopic_1", 0);
+TopicPartition partition1 = new TopicPartition("mytopic_1", 1);
+consumer.assign(Arrays.asList(partition0, partition1));
+```
+* seek to position
+```
+seek(partition0, 1024);
+seekToBeginning(parition0, partition1);
+seekToEnd(parition0, partition1);
+```
