@@ -30,6 +30,10 @@ run interpreter
 ```
 hive
 ```
+run existing script into file
+```
+hive -f <filename>
+```
 new interpreter
 ```
 beeline
