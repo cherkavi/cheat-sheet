@@ -211,10 +211,57 @@ IPYTHON and IPYTHON_OPTS are removed in Spark 2.0+. Remove these from the enviro
 just set variable to using Spart1 inside script: SPARK_MAJOR_VERSION=1
 ```
 
-## Sqoop ( SQl to hadOOP )
-import 
+## Sqoop ( SQl to/from hadOOP )
+JDBC driver for jdbc url must present: $SQOOP_HOME/lib
+--- 
+
+### import
+Import destinations:
+* text files
+* binary files
+* HBase
+* Hive
 ```
-sqoop import --connect jdbc:mysql://127.0.0.1/crm?user=michael --table customers --target-dir /crm/users/michael.csv --as-textfile --fields-terminated-by ','
+sqoop import --connect jdbc:mysql://127.0.0.1/crm --username myuser --password mypassword --table customers --target-dir /crm/users/michael.csv  
+```
+additional parameter to leverage amount of mappers that working in parallel:
+```
+--split-by customer_id_pk
+```
+additional parameters:
+```
+--fields-terminated-by ','
+--columns "name, age, address"
+--where "age>30"
+--query "select name, age, address from customers where age>30"
+```
+additional import parameters:
+```
+--as-textfile
+--as-sequencefile
+--as-avrodatafile
+```
+
+### export
+export modes:
+* insert
+```
+sqoop export --connect jdbc:mysql://127.0.0.1/crm --username myuser --password mypassword --export-dir /crm/users/michael.csv --table customers 
+```
+* update
+```
+sqoop export --connect jdbc:mysql://127.0.0.1/crm --username myuser --password mypassword --export-dir /crm/users/michael.csv --udpate_key user_id
+```
+* call ( store procedure will be executed )
+```
+sqoop export --connect jdbc:mysql://127.0.0.1/crm --username myuser --password mypassword --export-dir /crm/users/michael.csv --call customer_load
+```
+additional export parameters:
+```
+# row for a single insert
+-Dsqoop.export.records.per.statement
+# number of insert before commit
+-Dexport.statements.per.transaction
 ```
 
 
