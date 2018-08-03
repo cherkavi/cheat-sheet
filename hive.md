@@ -41,7 +41,7 @@ namespace for tables separation
 -> Table
    unit of data inside some schema
   -> Partition
-     virtual column 
+     virtual column ( example below )
     -> Buckets
        data of column can be divided into buckets based on hash value
 Partition and Buckets serve to speed up queries during reading/joining
@@ -111,9 +111,21 @@ create_union
 
 ### create table
 [documentation](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)
+table types:
+* managed
+data stored in subdirectories of 'hive.metastore.warehouse.dir'
+dropping managed table will drop all data on the disc too
+* external
+data stored outsice 'hive.metastore.warehouse.dir'
+dropping table will delete metadata only
+'''
+CREATE EXTERNAL TABLE ...
+...
+LOCATION '/my/path/to/folder'
+'''
 
 ---
-plain text format
+create managed table with regular expression
 ```
 CREATE TABLE apachelog (
   host STRING,
@@ -131,7 +143,41 @@ WITH SERDEPROPERTIES (
 )
 STORED AS TEXTFILE;
 ```
-and load data into it
+create managed table with complex data
+```
+CREATE TABLE users{
+id INT,
+name STRING,
+departments ARRAY<STRING>
+} ROW FORMAT DELIMITED FIELD TERMINATED BY ','
+            COLLECTION ITEMS TERMINATED BY ':'
+STORED AS TEXTFILE;
+
+1, Mike, sales|manager
+2, Bob,  HR
+3, Fred, manager| HR
+4,Klava, manager|sales|developer|cleaner
+
+```
+
+create managed table with partition
+```
+CREATE TABLE users{
+id INT,
+name STRING,
+departments ARRAY<STRING>
+}
+ PARTITIONED BY (office_location STRING ) 
+ ROW FORMAT DELIMITED FIELD TERMINATED BY ','
+            COLLECTION ITEMS TERMINATED BY ':'
+STORED AS TEXTFILE;
+--
+-- representation on HDFS
+$WH/mydatabase.db/users/office_location=USA
+$WH/mydatabase.db/users/office_location=GERMANY
+```
+---
+load data into table
 ```
 LOAD DATA INPATH '/home/user/my-prepared-data/' OVERWRITE INTO TABLE apachelog;
 LOAD DATA LOCAL INPATH '/data/' OVERWRITE INTO TABLE apachelog;
@@ -140,7 +186,7 @@ data will be saved into: /user/hive/warehouse
 if cell has wrong format - will be 'null'
 
 ---
-create table from [csv](https://www.kaggle.com/passnyc/data-science-for-good)
+create external table from [csv](https://www.kaggle.com/passnyc/data-science-for-good)
 CSV format
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS school_explorer(
@@ -157,6 +203,22 @@ CREATE EXTERNAL TABLE IF NOT EXISTS school_explorer(
 )COMMENT 'School explorer from Kaggle'
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
 STORED AS TEXTFILE LOCATION '/data/';
+
+---
+drop table
+```
+DROP TABLE IF EXISTS users;
+```
+---
+alter table
+```
+ALTER TABLE users RENAME TO external_users;
+```
+```
+ALTER TABLE users ADD COLUMNS{
+age INT, children BOOLEAN
+}
+```
 
 do not specify filename !!!!
 ( all files into folder will be picked up )
@@ -211,6 +273,21 @@ create external table parquet_table_name (x INT, y STRING)
     INPUTFORMAT "parquet.hive.DeprecatedParquetInputFormat"
     OUTPUTFORMAT "parquet.hive.DeprecatedParquetOutputFormat"
     LOCATION '/test-warehouse/tinytable';
+```
+---
+## Index
+will be saved into separate file
+create index for some specific field
+```
+CREATE INDEX users_name ON TABLE users ( name ) AS 'users_name';
+```
+show index
+```
+SHOW INDEX ON users;
+```
+delete index
+```
+DROP INDEX users_name on users;
 ```
 ---
 functions
