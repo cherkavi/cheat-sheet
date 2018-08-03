@@ -6,8 +6,11 @@ agent is sending data to Collect tier
 aggregate the data push data to Storage tier
 * Storage tier
 
-Each tier has 
+Each tier has
 * Source
 * Sink
+
+Source and Sink used Avro
+( Remote procedure call and serialization framework )
 
 Interceptors can be configured for simple data processing
