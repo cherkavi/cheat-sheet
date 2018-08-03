@@ -11,6 +11,19 @@ fixed data structure ( Pig - free data structure )
 - update
 - non-equality joins
 
+### metastore
+HCatalog
+can be one of:
+* embedded 
+in-process metastore
+in-process database
+* local
+in-process metastore
+out-of-process database
+* remote
+out-of-process metastore
+out-of-process database
+
 ### hive command line interfaces
 [cheat sheet](https://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/)
 run interpreter
