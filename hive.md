@@ -56,18 +56,58 @@ partition -> $WH/testdb.db/T/date=01012013
 ```
 
 
-### show all databases
+### databases
 ```
-show databases;
-use database default;
+SHOW DATABASES;
+USE DATABASE default;
+-- describe
+DESCRIBE DATABASE my_own_database;
+DESCRIBE DATABASE EXTENDED my_own_database;
+-- delete database
+DROP DATABASE IF EXISTS my_own_database;
+-- alter database
+ALTER DATABASE my_own_database SET DBPROPERTIES(...)
+
 ```
 
 ### show all tables for selected database
 ```
-show tables;
+SHOW TABLES;
 ```
 
 ## DDL
+
+### types primitive
+TINYINT
+SMALLINT
+INT
+BIGINT
+BOOLEAN ( TRUE/FALSE )
+FLOAT
+DOUBLE
+DECIMAL
+STRING
+VARCHAR
+TIMESTAMP ( YYYY-MM-DD HH:MM:SS.ffffffff )
+DATE ( YYYY-MM-DD )
+
+### types comples
+* Arrays
+```
+array('a1', 'a2', 'a3')
+```
+* Structs
+```
+struct('a1', 'a2', 'a3')
+```
+* Maps
+```
+map('first', 1, 'second', 2, 'third', 3)
+```
+* Union
+```
+create_union
+```
 
 ### create table
 [documentation](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)
