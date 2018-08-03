@@ -320,9 +320,34 @@ FROM ( SELECT * FROM users WHERE age>30 ) custom_sub_query SELECT custom_sub_que
 ---
 # functions
 ```
-split - split string
-explode - flat map, array to separated fields
+-- if regular expression B can be applied to A
+A RLIKE B
+A REGEXP B
+-- split string to elements
+split
+-- flat map, array to separated fields - instead of one field with array will be many record with one field
+explode( array field )
+-- extract part of the date: year, month, day
+year(timestamp field)
+-- extract json object from json string
+get_json_object
+-- common functions with SQL-92
+A LIKE B
+round
+ceil
+substr
+upper
+Length
+count
+sum
+average
 ```
+
+# user defined functions
+## types
+* UDF
+* UDAggregatedFunctions
+* UDTablegeneratingFunctions
 
 ## UDF, custom functions
 ```
@@ -368,7 +393,15 @@ after compillation into my-udf.jar
   hive> SELECT ExampleUDF(value) from table;
 ```
 
-### troubleshooting
+#Streaming
+MAP(), REDUCE(), TRANSFORM()
+```
+SELECT TRANSFORM (name, age) 
+USING '/bin/cat'
+AS name, age FROM my_own_database.users;
+```
+
+# troubleshooting
 query explanation and understanding of the DirectAsyncGraph
 ```
 EXPLAIN SELECT * FROM users ORDER BY age DESC;
