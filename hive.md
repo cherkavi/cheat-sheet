@@ -90,7 +90,9 @@ STRING
 VARCHAR
 TIMESTAMP ( YYYY-MM-DD HH:MM:SS.ffffffff )
 DATE ( YYYY-MM-DD )
-
+```
+cast ( string_column_value as FLOAT )
+```
 ### types comples
 * Arrays
 ```
@@ -177,15 +179,6 @@ $WH/mydatabase.db/users/office_location=USA
 $WH/mydatabase.db/users/office_location=GERMANY
 ```
 ---
-load data into table
-```
-LOAD DATA INPATH '/home/user/my-prepared-data/' OVERWRITE INTO TABLE apachelog;
-LOAD DATA LOCAL INPATH '/data/' OVERWRITE INTO TABLE apachelog;
-```
-data will be saved into: /user/hive/warehouse
-if cell has wrong format - will be 'null'
-
----
 create external table from [csv](https://www.kaggle.com/passnyc/data-science-for-good)
 CSV format
 ```
@@ -203,39 +196,11 @@ CREATE EXTERNAL TABLE IF NOT EXISTS school_explorer(
 )COMMENT 'School explorer from Kaggle'
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
 STORED AS TEXTFILE LOCATION '/data/';
-
----
-drop table
-```
-DROP TABLE IF EXISTS users;
+-- do not specify filename !!!!
+-- ( all files into folder will be picked up )
 ```
 ---
-alter table
-```
-ALTER TABLE users RENAME TO external_users;
-```
-```
-ALTER TABLE users ADD COLUMNS{
-age INT, children BOOLEAN
-}
-```
-
-do not specify filename !!!!
-( all files into folder will be picked up )
-```
----
-insert data into another table
-```
-INSERT OVERWRITE TABLE <table destination>
--- CREATE TABLE <table destination>
-SELECT <field1>, <field2>, ....
-FROM <table source> s JOIN <table source another> s2 ON s.key_field=s2.key_field2
--- LEFT OUTER
--- FULL OUTER
-```
-
----
-CSV format
+create table from CSV format file
 ```
 CREATE TABLE my_table(a string, b string, ...)
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
@@ -246,16 +211,13 @@ WITH SERDEPROPERTIES (
 )  
 STORED AS TEXTFILE LOCATION '/data/';
 ```
-
 ---
-table from 'tab' delimiter
+create table from 'tab' delimiter
 ```
 CREATE TABLE web_log(viewTime INT, userid BIGINT, url STRING, referrer STRING, ip STRING) 
 ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'; 
-
 LOAD DATA LOCAL INPATH '/home/mapr/sample-table.txt' INTO TABLE web_log;
 ```
-
 ---
 JSON
 ```
@@ -263,7 +225,6 @@ CREATE TABLE my_table(a string, b bigint, ...)
 ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
 STORED AS TEXTFILE;
 ```
-
 ---
 external Parquet
 ```
@@ -275,9 +236,31 @@ create external table parquet_table_name (x INT, y STRING)
     LOCATION '/test-warehouse/tinytable';
 ```
 ---
-## Index
-will be saved into separate file
-create index for some specific field
+drop table
+```
+DROP TABLE IF EXISTS users;
+```
+---
+alter table - rename
+```
+ALTER TABLE users RENAME TO external_users;
+```
+alter table - add columns
+```
+ALTER TABLE users ADD COLUMNS{
+age INT, children BOOLEAN
+}
+```
+---
+View
+```
+CREATE VIEW young_users SELECT name, age FROM users WHERE age<21;
+DROP VIEW IF EXISTS young_users;
+```
+
+
+# Index
+create index for some specific field, will be saved into separate file
 ```
 CREATE INDEX users_name ON TABLE users ( name ) AS 'users_name';
 ```
@@ -289,14 +272,59 @@ delete index
 ```
 DROP INDEX users_name on users;
 ```
+
+# DML 
 ---
-functions
+load data into table
+```
+-- hdfs
+LOAD DATA LOCAL INPATH '/home/user/my-prepared-data/' OVERWRITE INTO TABLE apachelog;
+-- local file system
+LOAD DATA INPATH '/data/' OVERWRITE INTO TABLE apachelog;
+-- load data with partitions, override files on hdfs if they are exists ( without OVERWRITE )
+LOAD DATA INPATH '/data/users/country_usa' INTO TABLE users PARTITION (office_location='USA', children='TRUE')
+-- example of partition location: /user/hive/warehouse/my_database/users/office_location=USA/children=TRUE
+```
+data will be copied and saved into: /user/hive/warehouse
+if cell has wrong format - will be 'null'
+---
+insert data into table using select, insert select
+```
+INSERT OVERWRITE TABLE <table destination>
+-- INSERT OVERWRITE TABLE <table destination>
+-- CREATE TABLE <table destination>
+SELECT <field1>, <field2>, ....
+FROM <table source> s JOIN <table source another> s2 ON s.key_field=s2.key_field2
+-- LEFT OUTER
+-- FULL OUTER
+```
+---
+export data from Hive, data external copy, data copy
+```
+INSERT OVERWRITE LOCAL DIRECTORY '/home/users/technik/users-db-usa'
+SELECT name, office_location, age
+FROM users
+WHERE office_location='USA'
+```
+select 
+```
+SELECT * FROM users LIMIT 1000;
+SELECT name, department[0], age FROM users;
+SELECT name, struct_filed_example.post_code FROM users ORDER BY age DESC;
+SELECT .... FROM users GROUP BY age HEAVING MIN(age)>50
+-- from sub-query
+FROM ( SELECT * FROM users WHERE age>30 ) custom_sub_query SELECT custom_sub_query.name, custom_sub_query.office_location WHERE children==FALSE;
+
+```
+
+---
+# functions
 ```
 split - split string
 explode - flat map, array to separated fields
 ```
 
-### UDF, custom functions
+## UDF, custom functions
 ```
 <dependencies>
     <dependency>
@@ -341,6 +369,11 @@ after compillation into my-udf.jar
 ```
 
 ### troubleshooting
+query explanation and understanding of the DirectAsyncGraph
+```
+EXPLAIN SELECT * FROM users ORDER BY age DESC;
+EXPLAIN EXTENDED SELECT * FROM users ORDER BY age DESC;
+```
 ---
 jdbc connection issue:
 ```
