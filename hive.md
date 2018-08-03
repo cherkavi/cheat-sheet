@@ -35,6 +35,27 @@ new interpreter
 beeline
 ```
 
+## Data units
+Database
+namespace for tables separation
+-> Table
+   unit of data inside some schema
+  -> Partition
+     virtual column 
+    -> Buckets
+       data of column can be divided into buckets based on hash value
+Partition and Buckets serve to speed up queries during reading/joining
+
+example of bucket existence
+```
+ database -> $WH/testdb.db
+    table -> $WH/testdb.db/T
+partition -> $WH/testdb.db/T/date=01012013
+   bucket -> $WH/testdb.db/T/date=01012013/000032_0
+( only 'bucket' is a file )
+```
+
+
 ### show all databases
 ```
 show databases;
@@ -45,6 +66,8 @@ use database default;
 ```
 show tables;
 ```
+
+## DDL
 
 ### create table
 [documentation](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)
