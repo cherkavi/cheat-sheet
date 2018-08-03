@@ -159,3 +159,28 @@ seek(partition0, 1024);
 seekToBeginning(parition0, partition1);
 seekToEnd(parition0, partition1);
 ```
+
+# Kafka connect
+* manage copying data between Kafka and another system
+* connector either a source or sink
+* connector can split "job" to "tasks" ( to copy subset of data )
+* *partitioned streams* for source/sink, each record into it: [key,value,offset]
+* standalone/distributed mode
+
+## Kafka connect standalone
+start connect
+```
+bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties
+```
+connect settings
+```
+name=local-file-source
+connector.class=org.apache.kafka.connect.file.FileStreamSourceConnector
+tasks.max=1
+file=my_test_file.txt
+topic=topic_for_me
+```
+after execution you can check the topic
+```
+bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic topic_for_me --from-beginning
+```
