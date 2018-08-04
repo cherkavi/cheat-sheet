@@ -154,3 +154,19 @@ words.map(w=>(w,1)) .reduceByKey(_ + _) .print()
 ```
 GraphLoader.edgeListFile(sc, path_to_file)
 ```
+
+
+
+# Scala examples
+```
+val input = sc.textFile("data/stations/*")
+
+val header = input.first // to skip the header row
+
+val stations = input2.
+	filter(_ != header2).
+	map(_.split(",")).
+	keyBy(_(0).toInt)
+
+stations.join(trips.keyBy(_(4).toInt))
+```
