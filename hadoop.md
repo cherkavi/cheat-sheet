@@ -211,10 +211,57 @@ IPYTHON and IPYTHON_OPTS are removed in Spark 2.0+. Remove these from the enviro
 just set variable to using Spart1 inside script: SPARK_MAJOR_VERSION=1
 ```
 
-## Sqoop ( SQl to hadOOP )
-import 
+## Sqoop ( SQl to/from hadOOP )
+JDBC driver for jdbc url must present: $SQOOP_HOME/lib
+--- 
+
+### import
+Import destinations:
+* text files
+* binary files
+* HBase
+* Hive
 ```
-sqoop import --connect jdbc:mysql://127.0.0.1/crm?user=michael --table customers --target-dir /crm/users/michael.csv --as-textfile --fields-terminated-by ','
+sqoop import --connect jdbc:mysql://127.0.0.1/crm --username myuser --password mypassword --table customers --target-dir /crm/users/michael.csv  
+```
+additional parameter to leverage amount of mappers that working in parallel:
+```
+--split-by customer_id_pk
+```
+additional parameters:
+```
+--fields-terminated-by ','
+--columns "name, age, address"
+--where "age>30"
+--query "select name, age, address from customers where age>30"
+```
+additional import parameters:
+```
+--as-textfile
+--as-sequencefile
+--as-avrodatafile
+```
+
+### export
+export modes:
+* insert
+```
+sqoop export --connect jdbc:mysql://127.0.0.1/crm --username myuser --password mypassword --export-dir /crm/users/michael.csv --table customers 
+```
+* update
+```
+sqoop export --connect jdbc:mysql://127.0.0.1/crm --username myuser --password mypassword --export-dir /crm/users/michael.csv --udpate_key user_id
+```
+* call ( store procedure will be executed )
+```
+sqoop export --connect jdbc:mysql://127.0.0.1/crm --username myuser --password mypassword --export-dir /crm/users/michael.csv --call customer_load
+```
+additional export parameters:
+```
+# row for a single insert
+-Dsqoop.export.records.per.statement
+# number of insert before commit
+-Dexport.statements.per.transaction
 ```
 
 
@@ -226,216 +273,6 @@ sqoop import --connect jdbc:mysql://127.0.0.1/crm?user=michael --table customers
 hcat -e "describe school_explorer"
 hcat -e "describe formatted school_explorer"
 ```
-
-## Hive
-fixed data structure ( Pig - free data structure )
-[documentation](https://cwiki.apache.org/confluence/display/Hive)
-[description](https://maprdocs.mapr.com/51/Hive/Hive.html)
-[description](https://hortonworks.com/apache/hive/)
-[cheat sheet](https://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/)
-[sql to hive](https://www.slideshare.net/hortonworks/sql-to-hive)
-*not supported full SQL, especially:"
-- transactions
-- materialized view
-- update
-- non-equality joins
-
-### hive command line interfaces
-[cheat sheet](https://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/)
-run interpreter
-```
-hive
-```
-new interpreter
-```
-beeline
-```
-
-### show all databases
-```
-show databases;
-use database default;
-```
-
-### show all tables for selected database
-```
-show tables;
-```
-
-### create table
-[documentation](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)
-
----
-plain text format
-```
-CREATE TABLE apachelog (
-  host STRING,
-  identity STRING,
-  user STRING,
-  time STRING,
-  request STRING,
-  status STRING,
-  size STRING,
-  referer STRING,
-  agent STRING)
-ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
-WITH SERDEPROPERTIES (
-  "input.regex" = "([^]*) ([^]*) ([^]*) (-|\\[^\\]*\\]) ([^ \"]*|\"[^\"]*\") (-|[0-9]*) (-|[0-9]*)(?: ([^ \"]*|\".*\") ([^ \"]*|\".*\"))?"
-)
-STORED AS TEXTFILE;
-```
-and load data into it
-```
-LOAD DATA INPATH '/home/user/my-prepared-data/' OVERWRITE INTO TABLE apachelog;
-LOAD DATA LOCAL INPATH '/data/' OVERWRITE INTO TABLE apachelog;
-```
-data will be saved into: /user/hive/warehouse
-if cell has wrong format - will be 'null'
-
----
-create table from [csv](https://www.kaggle.com/passnyc/data-science-for-good)
-CSV format
-```
-CREATE EXTERNAL TABLE IF NOT EXISTS school_explorer(
-	grade boolean,
-	is_new boolean, 
-	location string,
-	name string, 
-	sed_code STRING,
-	location_code STRING, 
-	district int,
-	latitude float,
-	longitude float,
-	address string
-)COMMENT 'School explorer from Kaggle'
-ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' 
-STORED AS TEXTFILE LOCATION '/data/';
-
-do not specify filename !!!!
-( all files into folder will be picked up )
-```
----
-insert data into another table
-```
-INSERT OVERWRITE TABLE <table destination>
--- CREATE TABLE <table destination>
-SELECT <field1>, <field2>, ....
-FROM <table source> s JOIN <table source another> s2 ON s.key_field=s2.key_field2
--- LEFT OUTER
--- FULL OUTER
-```
-
----
-CSV format
-```
-CREATE TABLE my_table(a string, b string, ...)
-ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
-WITH SERDEPROPERTIES (
-   "separatorChar" = "\t",
-   "quoteChar"     = "'",
-   "escapeChar"    = "\\"
-)  
-STORED AS TEXTFILE LOCATION '/data/';
-```
-
----
-table from 'tab' delimiter
-```
-CREATE TABLE web_log(viewTime INT, userid BIGINT, url STRING, referrer STRING, ip STRING) 
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'; 
-
-LOAD DATA LOCAL INPATH '/home/mapr/sample-table.txt' INTO TABLE web_log;
-```
-
----
-JSON
-```
-CREATE TABLE my_table(a string, b bigint, ...)
-ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
-STORED AS TEXTFILE;
-```
-
----
-external Parquet
-```
-create external table parquet_table_name (x INT, y STRING)
-  ROW FORMAT SERDE 'parquet.hive.serde.ParquetHiveSerDe'
-  STORED AS 
-    INPUTFORMAT "parquet.hive.DeprecatedParquetInputFormat"
-    OUTPUTFORMAT "parquet.hive.DeprecatedParquetOutputFormat"
-    LOCATION '/test-warehouse/tinytable';
-```
----
-functions
-```
-split - split string
-explode - flat map, array to separated fields
-```
-
-### UDF, custom functions
-```
-<dependencies>
-    <dependency>
-        <groupId>org.apache.hadoop</groupId>
-        <artifactId>hadoop-client</artifactId>
-        <version>2.7.3</version>
-        <scope>provided</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.hive</groupId>
-        <artifactId>hive-exec</artifactId>
-        <version>1.2.1</version>
-        <scope>provided</scope>
-    </dependency>
-</dependencies>
-```
-```
-package com.mycompany.hive.lower;
-import org.apache.hadoop.hive.ql.exec.Description;
-import org.apache.hadoop.hive.ql.exec.UDF;
-import org.apache.hadoop.io.*;
-
-// Description of the UDF
-@Description(
-    name="ExampleUDF",
-    value="analogue of lower in Oracle .",
-    extended="select ExampleUDF(deviceplatform) from table;"
-)
-public class ExampleUDF extends UDF {
-    public String evaluate(String input) {
-        if(input == null)
-            return null;
-        return input.toLowerCase();
-    }
-}
-```
-after compillation into my-udf.jar
-```
-  hive> addjar my-udf.jar
-  hive> create temporary function ExampleUDF using "com.mycompany.hive.lower";
-  hive> SELECT ExampleUDF(value) from table;
-```
-
-### troubleshooting
----
-jdbc connection issue:
-```
-TApplicationException: Required field 'client_protocol' is unset! 
-```
-reason:
-```
-This indicates a version mismatch between client and server, namely that the client is newer than the server, which is your case.
-```
-solution:
-```
-need to decrease version of the client
-    compile group: 'org.apache.hive', name: 'hive-jdbc', version: '1.1.0'
-```
-
-
-### hive html gui
-- ambari
-- hue
 
 
 ## SQL engines
@@ -457,67 +294,6 @@ TBD
 ## Scalding
 TBD
 
-
-## Pig
-free data structure ( Hive - fixed data structure )
-execute into local mode
-```
-pig -x local
-pig -x local <filename>
-```
-load data from file
-```
-LOAD <path to file> USING PigStorage(';') AS (userId: chararray, timestamp: long ); 
-LOAD <path to file> AS (userId: chararray, timestamp: long ); # space will be used as delimiter 
-```
-[custom delimiter implementation](https://stackoverflow.com/questions/26354949/how-to-load-files-with-different-delimiter-each-time-in-piglatin#26356592)
-[Pig UDF](https://pig.apache.org/docs/latest/udf.html)
-
-save data
-```
-STORE <var name> INTO <path to file>
-```
-describe variable, print type
-```
-DESCRIBE <var name>;
-```
-print content of the variable
-```
-DUMP <var name>;
-```
-group into new variable
-```
-{bag} = GROUP <var name> by <field name>;
-```
-history of the variable, variable transformation steps
-```
-ILLUSTRATE <var name>;
-```
-map value one-by-one, walk through variable 
-```
-{bag} = FOREACH <var name> GENERATE <var field>, FUNCTION(<var field>);  
-```
-functions 
-```
-TOKENIZE - split
-FLATTEN, - flat map
-COUNT, 
-SUM,....
-```
-filter by condition
-```
-FILTER <var name> BY <field name> operation;
-FILTER <var name> BY <field name> MATCHES <regexp>;
-```
-join variables, inner join, outer join for variables
-```
-posts = LOAD '/data/user-posts.txt' USING PigStorage(',') AS (user:chararray, post:chararray, date:timestamp);
-likes = LOAD '/data/user-likes.txt' USING PigStorage(',') AS (user_name:chararray, user_like:chararray, like_date:long);
-JOIN posts BY user, likes BY user_name;
-JOIN posts BY user LEFT OUTER, likes BY user_name;
-JOIN posts BY user FULL OUTER, likes BY user_name;
-> result will be: ( posts::user, posts::post, posts::date, likes:user_name, likes:user_like, likes:like_date )
-```
 
 
 ## Hadoop streaming. 
