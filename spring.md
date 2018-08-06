@@ -152,6 +152,20 @@ import org.h2.server.web.WebServlet;
     @Bean(initMethod = "start", destroyMethod = "stop")
     @ConditionalOnMissingBean(InstanceRepository.class)
 ```
+### junit test abstract file with custom copmonent scanning
+```
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes={SpringStepTest.TestConfiguration.class})
+public abstract class SpringStepTest {
+
+    @Autowired
+    ApplicationContext context;
+ 
+    @Configurable
+    @ComponentScan(basePackages = {"com.cd.deployer.step"})
+    public static class TestConfiguration {}
+}
+```
 
 ### Spring boot issues
 
