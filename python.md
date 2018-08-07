@@ -1,5 +1,11 @@
-## [python3 readiness](http://py3readiness.org/)
+# [python3 readiness](http://py3readiness.org/)
 
+## package manager easy_install
+```
+%PYTHON%/Scripts/easy_install.exe <package name>
+```
+
+## package manager pip
 ### install pip
 ```
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
@@ -23,6 +29,7 @@ pip install -U pip
 ```
 pip install tornado==2.1.1
 ```
+
 
 ### install artifact from git
 ```
@@ -56,7 +63,16 @@ sys.modules
 ### using pip from interpreter ( install wheels package)
 ```
 import pip
+pip.__version__
 pip.main("install", "wheels")
+```
+fix for version 9 and 10
+```
+try:
+    from pip import main as pipmain
+except:
+    from pip._internal import main as pipmain
+pipmain(["install", "wheels"])
 ```
 
 ### import package by string name
