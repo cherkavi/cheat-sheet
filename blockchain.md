@@ -38,7 +38,11 @@ Autonomous, Decentralized, Peer-to-Peer Telemetry.
 
 ### Messaging
 [IRC channels](https://en.bitcoin.it/wiki/IRC_channels)
-[BitMessage](https://bitmsg.me/)
+[BitMessage](https://bitmessage.org/)
+```
+ execute: PyBitMessage/src/bitmessagemain.py
+```
+[web BitMessage](https://bitmsg.me/)
 
 # other
 
