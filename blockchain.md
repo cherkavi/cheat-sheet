@@ -11,17 +11,23 @@ Business Application -> Hyperledger Composer -> Blockchain ( Hyperledger Fabric)
 [wiki](https://en.bitcoin.it/wiki/Main_Page)
 [proof of work is a piece of data which is difficult (costly, time-consuming) to produce but easy for others to verify](https://en.bitcoin.it/wiki/Proof_of_work)
 Mining -  Byzantine Generals Problem
+![bitcoin pillars](https://drive.google.com/open?id=1I23oAWUtE3p-mwaikxY2nprqsaFkrLD7)
+
 ---
 NSA paper, 1996: "How To Make A Mint: The Cryptography of Anonymous Electronic Cash". 
 One referenced crypto expert is named Tatsuaki Okamoto.
+
 ---
 NASDAQ - major experimentor with Blockchain
 [Open Assets Protocol](github.com/OpenAssets)
+
 ---
 IBM project ADEPT
 Autonomous, Decentralized, Peer-to-Peer Telemetry. 
+
 ---
 [sidechains](http://blockstream.com/sidechains.pdf)
+
 ---
 [bitcoin white paper](https://bitcoin.org/bitcoin.pdf)
 [bitcoin full node description](https://bitcoin.org/en/full-node)
@@ -45,5 +51,4 @@ Autonomous, Decentralized, Peer-to-Peer Telemetry.
 [web BitMessage](https://bitmsg.me/)
 
 # other
-
  
