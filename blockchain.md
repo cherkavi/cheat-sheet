@@ -8,10 +8,10 @@ Business Application -> Hyperledger Composer -> Blockchain ( Hyperledger Fabric)
 ```
 
 # bitcoin
-[wiki](https://en.bitcoin.it/wiki/Main_Page)
-[proof of work is a piece of data which is difficult (costly, time-consuming) to produce but easy for others to verify](https://en.bitcoin.it/wiki/Proof_of_work)
-Mining -  Byzantine Generals Problem
-![bitcoin pillars](https://drive.google.com/open?id=1I23oAWUtE3p-mwaikxY2nprqsaFkrLD7)
+* [wiki](https://en.bitcoin.it/wiki/Main_Page)
+* [proof of work is a piece of data which is difficult (costly, time-consuming) to produce but easy for others to verify](https://en.bitcoin.it/wiki/Proof_of_work)
+* Mining -  Byzantine Generals Problem
+* ![bitcoin pillars](https://ibb.co/j5Unke)
 
 ---
 NSA paper, 1996: "How To Make A Mint: The Cryptography of Anonymous Electronic Cash". 
