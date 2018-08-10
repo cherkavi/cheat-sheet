@@ -7,6 +7,19 @@
 Business Application -> Hyperledger Composer -> Blockchain ( Hyperledger Fabric)
 ```
 
+# ethereum
+[app example](https://github.com/StephenGrider/EthereumCasts)
+---
+simple app example
+```
+# ganache-cli 
+const Web3 = require('web3')
+const web3 = new Web3("http://localhost:8545")
+
+console.log(web3.eth.getAccounts().then(e=>console.log(e)))
+```
+
+
 # bitcoin
 * [wiki](https://en.bitcoin.it/wiki/Main_Page)
 * [proof of work is a piece of data which is difficult (costly, time-consuming) to produce but easy for others to verify](https://en.bitcoin.it/wiki/Proof_of_work)
