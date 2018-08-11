@@ -158,7 +158,7 @@ git log --pretty=format:"%h - %an, %ar : %s" <commit SHA> -1
 git --git-dir C:\project\horus\.git  branch --all
 ```
 
-### clone only files without history
+### clone only files without history, download code
 ```
 git clone --depth 1 https://github.com/kubernetes/minikube
 ```
