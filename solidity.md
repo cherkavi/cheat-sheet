@@ -31,6 +31,9 @@ storage - data storage
 code - compiled machine code 
 ```
 
+## account credential saving
+[bip39](https://iancoleman.io/bip39/)
+
 ## [smart contract playground](http://remix.ethereum.org)
 
 
