@@ -21,7 +21,6 @@ user app to communicate with Ethereum
 [Rinkeby ethereum account charger](rinkeby-faucet.com)
 [Rinkeby ethereum charger](https://faucet.rinkeby.io/)
 
-
 ---
 
 ## account address types:
@@ -40,7 +39,7 @@ code - compiled machine code
 
 
 ## SmartContract API collaboration via nodejs app example
-* NodeJS
+* NodeJS ( min version 8.0.1 )
 ```
 # ganache-cli 
 const Web3 = require('web3')
@@ -53,10 +52,36 @@ console.log(web3.eth.getAccounts().then(e=>console.log(e)))
 
 http://solidity.readthedocs.io/en/latest/
 
+## contract development phases:
+* create project
+```
+npm init
+
+```
+* contract creation ( solidity compiler )
+* local testing ( Mocha framework )
+* deployment ( script )
+```
+truffle
+```
+
 # [syntax](http://solidity.readthedocs.io/en/latest/)
 [code examples](https://solidity.readthedocs.io/en/latest/solidity-by-example.html)
 [references](https://solidity.readthedocs.io/en/latest/solidity-in-depth.html)
 [source code of the smart contracts](https://github.com/ethereum/solidity)
+
+## syntax highlighters
+* [Atom](https://atom.io/packages/language-ethereum)
+```
+Open the package installation manager in atom and search for 'language-ethereum'. After installing the package, you might have to manually change the highlighter in the .sol file. Look for the selector at the bottom right of your editor window.
+```
+[Sublime](https://packagecontrol.io/packages/Ethereum)
+[VSCode](https://github.com/juanfranblanco/vscode-solidity)
+[Webstorm](https://plugins.jetbrains.com/plugin/9475-intellij-solidity)
+[VIM](https://github.com/tomlion/vim-solidity)
+```
+
+```
 
 ## function types
 * public/private
