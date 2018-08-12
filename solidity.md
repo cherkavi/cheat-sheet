@@ -7,8 +7,20 @@
 [hyperledger composer playground](http://composer-playground.mybluemix.net/login)
 [hyperledger composer playground tutorial](https://hyperledger.github.io/composer/latest/tutorials/playground-tutorial.html)
 ```
+# application schema
 Business Application -> Hyperledger Composer -> Blockchain ( Hyperledger Fabric)
 ```
+[documentation](http://solidity.readthedocs.io/en/latest/)
+
+---
+user app to communicate with Ethereum
+* Metamask ( chrome extension )
+* Mist browser
+
+---
+[Rikneby ethereum account charger](rinkeby-faucet.com)
+
+---
 
 ## account address types:
 * external ( user account, common for all networks )
@@ -34,13 +46,11 @@ console.log(web3.eth.getAccounts().then(e=>console.log(e)))
 * [Java](https://docs.web3j.io/getting_started.html)
 * [SpringBoot, gradle example, maven plugin](https://github.com/web3j/)
 
----
-user app to communicate with Ethereum
-* Metamask ( chrome extension )
-* Mist browser
+http://solidity.readthedocs.io/en/latest/
 
----
-[Rikneby ethereum account charger](rinkeby-faucet.com)
-
----
-
+# syntax
+## function types
+* public/private
+* view/constant ( return field, return constant)
+* pure ( don't use any contract-variables to manipulate )
+* payable 
