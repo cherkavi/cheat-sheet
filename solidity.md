@@ -18,7 +18,9 @@ user app to communicate with Ethereum
 * Mist browser
 
 ---
-[Rikneby ethereum account charger](rinkeby-faucet.com)
+[Rinkeby ethereum account charger](rinkeby-faucet.com)
+[Rinkeby ethereum charger](https://faucet.rinkeby.io/)
+
 
 ---
 
