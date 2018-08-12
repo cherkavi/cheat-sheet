@@ -48,9 +48,13 @@ console.log(web3.eth.getAccounts().then(e=>console.log(e)))
 
 http://solidity.readthedocs.io/en/latest/
 
-# syntax
+# [syntax](http://solidity.readthedocs.io/en/latest/)
+[code examples](https://solidity.readthedocs.io/en/latest/solidity-by-example.html)
+[references](https://solidity.readthedocs.io/en/latest/solidity-in-depth.html)
+[source code of the smart contracts](https://github.com/ethereum/solidity)
+
 ## function types
 * public/private
 * view/constant ( return field, return constant)
-* pure ( don't use any contract-variables to manipulate )
+* pure ( don't use any contract-variables to manipulate, 'pure' functions  )
 * payable 
