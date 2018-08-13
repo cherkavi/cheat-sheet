@@ -56,10 +56,16 @@ http://solidity.readthedocs.io/en/latest/
 * create project
 ```
 npm init
+npm install -save solc
 
 ```
 * contract creation ( solidity compiler )
 * local testing ( Mocha framework )
+```
+# npm install mocha ganache-cli web3@1.0.0-beta.26
+npm install mocha ganache-cli web3
+ 
+```
 * deployment ( script )
 ```
 truffle
@@ -79,12 +85,30 @@ Open the package installation manager in atom and search for 'language-ethereum'
 [VSCode](https://github.com/juanfranblanco/vscode-solidity)
 [Webstorm](https://plugins.jetbrains.com/plugin/9475-intellij-solidity)
 [VIM](https://github.com/tomlion/vim-solidity)
-```
 
+## array types
+* fixed array
+```
+uint[5] exampleOfFixedArray;
+```
+* dynamic array
+```
+string[] public exampleOfDynamicPublicArray;
 ```
 
 ## function types
-* public/private
+* public/private ( default - public )
 * view/constant ( return field, return constant)
 * pure ( don't use any contract-variables to manipulate, 'pure' functions  )
 * payable 
+
+
+## useful functions
+* eccak256 
+```
+built in, which is a version of SHA3. A hash function basically maps an input string into a random 256-bit hexidecimal number.
+example:
+//b1f078126895a1424524de5321b339ab00408010b7cf0e6ed451514981e58aa9
+keccak256("aaaac");
+```
+
