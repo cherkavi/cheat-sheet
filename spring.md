@@ -125,7 +125,7 @@ http://localhost:8808/actuator
 <url:port>/<application>/health
 ```
 
-### Spring Boot h2, h2 console, Spring Boot h2, conditional bean
+### Spring Boot h2, h2 console, Spring Boot h2, conditional bean, register bean if condition is matches
 ```
 import org.h2.server.web.WebServlet;
 
