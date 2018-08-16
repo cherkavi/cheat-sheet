@@ -87,6 +87,13 @@ name of the declared method
 @Resource(name="${<name of the value>}")
 ```
 
+### add bean programmatically, add bean at runtime
+```
+GenericApplicationContext context = ....;
+context.registerBean("int100", Integer.class, () -> new Integer(100));
+context.registerBean("int100Lazy", Integer.class, () -> new Integer(100), (bd) -> bd.setLazyInit(true));
+```
+
 ### hierarchy
 if @Component extends another @Component, parent won't visible for Spring context
 
