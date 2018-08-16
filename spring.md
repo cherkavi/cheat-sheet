@@ -173,8 +173,12 @@ public abstract class SpringStepTest {
     public static class TestConfiguration {}
 }
 ```
+### not to start web application
+```
+new SpringApplicationBuilder(CommandExecutorApplication.class).web(WebApplicationType.NONE).run(args);
+```
 
-### Spring boot issues
+## Spring boot issues
 
 #### error during start standalone web application
 ```
