@@ -173,9 +173,34 @@ public abstract class SpringStepTest {
     public static class TestConfiguration {}
 }
 ```
+
 ### not to start web application
 ```
 new SpringApplicationBuilder(CommandExecutorApplication.class).web(WebApplicationType.NONE).run(args);
+```
+
+### set variable from expression
+```
+    @Autowired
+    JSONReader jsonReader;
+
+    @Value("${steps}")
+    String pathToSteps;
+    @Value("${failSteps}")
+    String pathToFailSteps;
+
+    // Value("#{JSONReader.parse(JSONReader.readFile('${steps}'))}")
+    List<StepWithParameters> steps;
+
+    // Value("#{JSONReader.parse(JSONReader.readFile('${failSteps}'))}")
+    List<StepWithParameters> failSteps;
+
+    @PostConstruct
+    public void afterBuild(){
+        this.steps = jsonReader.parse(jsonReader.readFile(Objects.isNull(pathToSteps)?System.getProperty("steps"):pathToSteps));
+        this.failSteps = jsonReader.parse(jsonReader.readFile(Objects.isNull(pathToFailSteps)?System.getProperty("failSteps"):pathToFailSteps));
+    }
+
 ```
 
 ## Spring boot issues
