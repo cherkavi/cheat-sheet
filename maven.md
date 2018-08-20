@@ -91,6 +91,10 @@ Oracle depencdencies
                 </dependency>
             </dependencies>
 ```
+Oracle driver
+```
+Class<?> driverClass = Class.forName("oracle.jdbc.driver.OracleDriver");
+```
 
 ## Plugins:
 
