@@ -203,7 +203,11 @@ at <date and time>
 
 ### find process by name
 ```
-ps -fC firefox
+ps fC firefox
+```
+windows analogue of 'ps aux'
+```
+wmic path win32_process get Caption, Processid, Commandline
 ```
 
 ### kill -3
