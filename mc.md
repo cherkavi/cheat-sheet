@@ -21,7 +21,7 @@
 ||
 | Alt-s      |       Incremental search (Alt-s again to jump to next occurence)
 | Ctrl-s     |       Incremental search (Alt-s again to jump to next occurence)
-| Alt-?      |       file search
+| Alt-Shift- ?      |       file search
 ||
 | Alt-i      |       make the other panel show the same directory as the current
 | Alt-o      |       make the other panel show the subfolder of selected in the current
