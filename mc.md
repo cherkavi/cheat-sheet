@@ -12,7 +12,7 @@
 | Alt-n      |       Next command into history
 ||
 | Ctrl-x d   |       compare Directories
-| Alt-H      |       Show full history of directories
+| Alt-Shift-H      |       Show full history of directories
 | Alt-y      |       to previous directory in the historY
 | Alt-u      |       to the next directory in the history
 | Ctrl-\     |       directory HotList
