@@ -1,27 +1,25 @@
 
-# smart contracts
-[Linux Foundation Hyberledger Fabric](https://www.hyperledger.org/)
-[hyperledger composer playground](http://composer-playground.mybluemix.net/login)
-[hyperledger composer playground tutorial](https://hyperledger.github.io/composer/latest/tutorials/playground-tutorial.html)
-```
-Business Application -> Hyperledger Composer -> Blockchain ( Hyperledger Fabric)
-```
-
 # bitcoin
-[wiki](https://en.bitcoin.it/wiki/Main_Page)
-[proof of work is a piece of data which is difficult (costly, time-consuming) to produce but easy for others to verify](https://en.bitcoin.it/wiki/Proof_of_work)
-Mining -  Byzantine Generals Problem
+* [wiki](https://en.bitcoin.it/wiki/Main_Page)
+* [proof of work is a piece of data which is difficult (costly, time-consuming) to produce but easy for others to verify](https://en.bitcoin.it/wiki/Proof_of_work)
+* Mining -  Byzantine Generals Problem
+* ![bitcoin pillars](https://s19.postimg.cc/7lprsldqr/bitcoin-tech-pillars.png)
+
 ---
 NSA paper, 1996: "How To Make A Mint: The Cryptography of Anonymous Electronic Cash". 
 One referenced crypto expert is named Tatsuaki Okamoto.
+
 ---
 NASDAQ - major experimentor with Blockchain
 [Open Assets Protocol](github.com/OpenAssets)
+
 ---
 IBM project ADEPT
 Autonomous, Decentralized, Peer-to-Peer Telemetry. 
+
 ---
 [sidechains](http://blockstream.com/sidechains.pdf)
+
 ---
 [bitcoin white paper](https://bitcoin.org/bitcoin.pdf)
 [bitcoin full node description](https://bitcoin.org/en/full-node)
@@ -45,5 +43,4 @@ Autonomous, Decentralized, Peer-to-Peer Telemetry.
 [web BitMessage](https://bitmsg.me/)
 
 # other
-
  

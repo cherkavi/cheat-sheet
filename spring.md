@@ -87,6 +87,13 @@ name of the declared method
 @Resource(name="${<name of the value>}")
 ```
 
+### add bean programmatically, add bean at runtime
+```
+GenericApplicationContext context = ....;
+context.registerBean("int100", Integer.class, () -> new Integer(100));
+context.registerBean("int100Lazy", Integer.class, () -> new Integer(100), (bd) -> bd.setLazyInit(true));
+```
+
 ### hierarchy
 if @Component extends another @Component, parent won't visible for Spring context
 
@@ -118,7 +125,7 @@ http://localhost:8808/actuator
 <url:port>/<application>/health
 ```
 
-### Spring Boot h2, h2 console, Spring Boot h2, conditional bean
+### Spring Boot h2, h2 console, Spring Boot h2, conditional bean, register bean if condition is matches
 ```
 import org.h2.server.web.WebServlet;
 
@@ -167,7 +174,36 @@ public abstract class SpringStepTest {
 }
 ```
 
-### Spring boot issues
+### not to start web application
+```
+new SpringApplicationBuilder(CommandExecutorApplication.class).web(WebApplicationType.NONE).run(args);
+```
+
+### set variable from expression
+```
+    @Autowired
+    JSONReader jsonReader;
+
+    @Value("${steps}")
+    String pathToSteps;
+    @Value("${failSteps}")
+    String pathToFailSteps;
+
+    // Value("#{JSONReader.parse(JSONReader.readFile('${steps}'))}")
+    List<StepWithParameters> steps;
+
+    // Value("#{JSONReader.parse(JSONReader.readFile('${failSteps}'))}")
+    List<StepWithParameters> failSteps;
+
+    @PostConstruct
+    public void afterBuild(){
+        this.steps = jsonReader.parse(jsonReader.readFile(Objects.isNull(pathToSteps)?System.getProperty("steps"):pathToSteps));
+        this.failSteps = jsonReader.parse(jsonReader.readFile(Objects.isNull(pathToFailSteps)?System.getProperty("failSteps"):pathToFailSteps));
+    }
+
+```
+
+## Spring boot issues
 
 #### error during start standalone web application
 ```
