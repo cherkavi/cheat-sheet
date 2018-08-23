@@ -648,3 +648,9 @@ gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf test-pdf2.pd
 ```
 bzip2 -dc ricochet-1.1.4-src.tar.bz2 | tar xvf -
 ```
+
+## console and clipboard
+```
+xclip -o
+cat file.txt | xclip
+```
