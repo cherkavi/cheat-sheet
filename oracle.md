@@ -26,3 +26,11 @@ BEGIN
   dbms_output.enable;
   dbms_output.put_line('hello');
 END;
+
+### 'select' combining, resultset combining
+```
+union
+union all
+intersect
+minus
+```
