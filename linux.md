@@ -129,6 +129,10 @@ locate -b "brand-reader"
 ```
 readlink -f {file}
 ```
+### real path to link
+```
+readlink 'path to symlink'
+```
 
 ### where is program placed, location of executable file
 ```
