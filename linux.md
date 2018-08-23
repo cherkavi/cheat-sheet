@@ -11,6 +11,14 @@ ssh -L 28010:vldn337:8010 localhost
 ssh -R <remoteport>:<local host name>:<local port> <hostname>
 ssh -R 9020:127.0.0.1:9092 localhost
 ```
+### gpg signature check, asc signature check, crt signature check
+```
+gpg --keyserver keyserver.ubuntu.com --recv-keys 9032CAE4CBFA933A5A2145D5FF97C53F183C045D gpg --import john-brooks.asc
+
+gpg --verify ricochet-1.1.4-src.tar.bz2.asc
+
+gpg --keyserver keyserver.ubuntu.com --recv-keys D09FB15F1A24768DDF1FA29CCFEEF31651B5FDE8
+```
 
 ### connect to remote machine via ssh without credentials
 ```
