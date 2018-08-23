@@ -642,3 +642,8 @@ zbarimg <file>
 ```
 gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf test-pdf2.pdf test-pdf3.pdf test-pdf4.pdf
 ```
+## zip
+### unzip bz2
+```
+bzip2 -dc ricochet-1.1.4-src.tar.bz2 | tar xvf -
+```
