@@ -373,6 +373,12 @@ use "my_schema"
 create hadoop table my_table_into_my_schema ( col1 int not null primary key, col2 varchar(50)) row format delimited fields terminated by ',';
 ```
 
+## insert ( not to use for prod )
+each command will create its personal file with records
+```
+insert into my_table_into_my_schema values (1,'first'), (2,'second'), (3,'third');
+```
+
 ## JSqsh
 CLI tool to work with any JDBC driver
 [getting started](https://github.com/scgray/jsqsh/wiki/Getting-Started)
