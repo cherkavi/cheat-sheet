@@ -371,19 +371,45 @@ drop schema "my_schema" cascade;
 
 ## create table ( @see hive.md )
 ```
-create hadoop table my_table_into_my_schema ( col1 int not null primary key, col2 varchar(50)) row format delimited fields terminated by ',';
+create hadoop table my_table_into_my_schema ( col1 int not null primary key, col2 varchar(50)) 
+row format delimited fields terminated by ',' 
+escaped BY '\\', 
+null defined as '%THIS_IS_NULL%' s
+stored as [<empty>, TEXT, BINARY] SEQUENCEFILE;
+-- PARQUETFILE
+-- ORC
+-- RCFILE
 ```
+avro table creation:
+![avro table](https://s19.postimg.cc/bfe9fh0tf/bigsql-table-avro.png)
 
-## insert ( not to use for prod )
-each command will create its personal file with records
+## insert 
+* insert values (not to use for prod) - each command will create its personal file with records
 ```
 insert into my_table_into_my_schema values (1,'first'), (2,'second'), (3,'third');
 ```
-file insert - copy file into appropriate folder ( with delimiter between columns )
+* file insert - copy file into appropriate folder ( with delimiter between columns )
 ```
 call syshadoop.hcat_cache_sync('my_schema', 'my_table_into_my_schema');
 ```
+* create table based on select
+```
+CREATE HADOOP TABLE new_my_table STORED AS PARQUETFILE AS SELECT * FROM my_table_into_my_schema;
+```
+* load data
+```
+LOAD HADOOP USING FILE URL 'sftp://my_host:22/sub-folder/file1' 
+WITH SOURCE PROPERTIES ('field.delimiter' = '|')
+INTO TABLE my_table_into_my_schema APPEND;
+```
 
+## null value
+* BigSQL 1.0 - ''
+* BigSQL - \N
+* can be specified as part of table creation
+```
+NULL DEFINED AS 'null_representation'
+```
 
 ## JSqsh
 CLI tool to work with any JDBC driver
