@@ -323,6 +323,11 @@ additional sub-directory to save special data for the table
 /special-folder/hive/warehouse/user-personal-schema/my-table-01/my-column-country=GERMANY
 ```
 
+## JSqsh
+CLI tool to work with any JDBC driver
+[getting started](https://github.com/scgray/jsqsh/wiki/Getting-Started)
+[command line parameters](https://github.com/scgray/jsqsh/wiki/jsqsh)
+
 # Data storage, NoSQL
 ## HBase
 - distributed, column-oriented persistent multidimensional sorted map
