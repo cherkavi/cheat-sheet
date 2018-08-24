@@ -378,6 +378,10 @@ each command will create its personal file with records
 ```
 insert into my_table_into_my_schema values (1,'first'), (2,'second'), (3,'third');
 ```
+file insert - copy file into appropriate folder ( with delimiter between columns )
+```
+call syshadoop.hcat_cache_sync('my_schema', 'my_table_into_my_schema');
+```
 
 ## JSqsh
 CLI tool to work with any JDBC driver
