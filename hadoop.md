@@ -310,6 +310,7 @@ TBD
 - Ranger 
 
 # BigSQL 
+[how to run query](https://www.ibm.com/support/knowledgecenter/en/SSPT3X_4.0.0/com.ibm.swg.im.infosphere.biginsights.analyze.doc/doc/bigsql_run_queries.html)
 ## Warehouse
 default directory (/special-folder/hive/warehouse) in HDFS to store tables 
 ## Schema
@@ -322,11 +323,18 @@ additional sub-directory to save special data for the table
 /special-folder/hive/warehouse/user-personal-schema/my-table-01/my-column-country=USA
 /special-folder/hive/warehouse/user-personal-schema/my-table-01/my-column-country=GERMANY
 ```
+## commands
+```
+bigsql/bin start
+bigsql/bin stop
+bigsql/bin status
+```
 
 ## JSqsh
 CLI tool to work with any JDBC driver
 [getting started](https://github.com/scgray/jsqsh/wiki/Getting-Started)
 [command line parameters](https://github.com/scgray/jsqsh/wiki/jsqsh)
+[ibm documentation](https://www.ibm.com/support/knowledgecenter/SSPT3X_3.0.0/com.ibm.swg.im.infosphere.biginsights.analyze.doc/doc/bsql_jsqsh.html)
 
 # Data storage, NoSQL
 ## HBase
