@@ -161,6 +161,13 @@ hdfs dfsadmin -upgrade
 hdfs dfsadmin -backup
 ```
 
+### Security
+- File permissions ( posix attributes )
+- Hive ( grant revoke )
+- Knox ( REST API for hadoop )
+- Ranger 
+
+
 ### job execution
 ```
 hadoop jar {path to jar} {classname}
@@ -264,7 +271,7 @@ additional export parameters:
 -Dexport.statements.per.transaction
 ```
 
-
+---
 # HCatalog
 [documentation](https://cwiki.apache.org/confluence/display/Hive/HCatalog)
 
@@ -273,8 +280,7 @@ additional export parameters:
 hcat -e "describe school_explorer"
 hcat -e "describe formatted school_explorer"
 ```
-
-
+---
 # SQL engines
 - Impala
 - Phoenix ( HBase )
@@ -295,7 +301,7 @@ TBD
 TBD
 
 
-
+--- 
 # Hadoop streaming. 
 - Storm ( real time streaming solution )
 - Spark ( near real time streaming, uses microbatching )
@@ -303,12 +309,7 @@ TBD
 - Flink ( common approach to batch and stream code development )
 
 
-## Security
-- File permissions ( posix attributes )
-- Hive ( grant revoke )
-- Knox ( REST API for hadoop )
-- Ranger 
-
+---
 # BigSQL 
 [how to run query](https://www.ibm.com/support/knowledgecenter/en/SSPT3X_4.0.0/com.ibm.swg.im.infosphere.biginsights.analyze.doc/doc/bigsql_run_queries.html)
 ## Warehouse
@@ -361,6 +362,16 @@ set hadoop property bigsql.string.size=128
 ### boolean 
 ![boolean workaround](https://s19.postimg.cc/6biedpfsz/bigsql-datatypes-boolean.png)
 
+## create schema
+```
+create schema "my_schema";
+use "my_schema"
+```
+
+## create table ( @see hive.md )
+```
+create hadoop table my_table_into_my_schema ( col1 int not null primary key, col2 varchar(50)) row format delimited fields terminated by ',';
+```
 
 ## JSqsh
 CLI tool to work with any JDBC driver
@@ -368,6 +379,7 @@ CLI tool to work with any JDBC driver
 [command line parameters](https://github.com/scgray/jsqsh/wiki/jsqsh)
 [ibm documentation](https://www.ibm.com/support/knowledgecenter/SSPT3X_3.0.0/com.ibm.swg.im.infosphere.biginsights.analyze.doc/doc/bsql_jsqsh.html)
 
+---
 # Data storage, NoSQL
 ## HBase
 - distributed, column-oriented persistent multidimensional sorted map
@@ -392,5 +404,6 @@ TBD
 * cloudera manager
 
 
+---
 # TODO
 download all slides from stepik - for repeating and creating xournals
