@@ -330,6 +330,12 @@ bigsql/bin stop
 bigsql/bin status
 ```
 
+##  Data types
+![compare data types](https://s19.postimg.cc/vg9eqx4wz/bigsql-datatypes.png)
+* Declared type
+* SQL type
+* Hive type
+
 ## JSqsh
 CLI tool to work with any JDBC driver
 [getting started](https://github.com/scgray/jsqsh/wiki/Getting-Started)
