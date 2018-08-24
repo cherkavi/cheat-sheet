@@ -211,7 +211,7 @@ IPYTHON and IPYTHON_OPTS are removed in Spark 2.0+. Remove these from the enviro
 just set variable to using Spart1 inside script: SPARK_MAJOR_VERSION=1
 ```
 
-## Sqoop ( SQl to/from hadOOP )
+# Sqoop ( SQl to/from hadOOP )
 JDBC driver for jdbc url must present: $SQOOP_HOME/lib
 --- 
 
@@ -265,7 +265,7 @@ additional export parameters:
 ```
 
 
-## HCatalog
+# HCatalog
 [documentation](https://cwiki.apache.org/confluence/display/Hive/HCatalog)
 
 ### table description
@@ -275,28 +275,28 @@ hcat -e "describe formatted school_explorer"
 ```
 
 
-## SQL engines
+# SQL engines
 - Impala
 - Phoenix ( HBase )
 - Drill ( schema-less sql )
 - BigSQL ( PostgreSQL + Hadoop )
 - Spark
 
-## [Oozie](https://oozie.apache.org/)
+# [Oozie](https://oozie.apache.org/)
 workflow scheduler
 ```
 START -> ACTION -> OK | ERROR
 ```
 
-## Cascading
+# Cascading
 TBD
 
-## Scalding
+# Scalding
 TBD
 
 
 
-## Hadoop streaming. 
+# Hadoop streaming. 
 - Storm ( real time streaming solution )
 - Spark ( near real time streaming, uses microbatching )
 - Samza ( streaming on top of Kafka )
@@ -309,9 +309,22 @@ TBD
 - Knox ( REST API for hadoop )
 - Ranger 
 
+# BigSQL 
+## Warehouse
+default directory (/special-folder/hive/warehouse) in HDFS to store tables 
+## Schema
+directory (/special-folder/hive/warehouse/user-personal-schema) to store tables ( can be organized in schema )
+## Table
+directory (/special-folder/hive/warehouse/user-personal-schema/my-table-01) with zero or more files
+## Partitions
+additional sub-directory to save special data for the table 
+```
+/special-folder/hive/warehouse/user-personal-schema/my-table-01/my-column-country=USA
+/special-folder/hive/warehouse/user-personal-schema/my-table-01/my-column-country=GERMANY
+```
 
-## Data storage, NoSQL
-### HBase
+# Data storage, NoSQL
+## HBase
 - distributed, column-oriented persistent multidimensional sorted map
 - storing column-family into memory/disc
 - disc = hdfs or filesystem
@@ -323,16 +336,16 @@ data is sparse - a lot of column has null values
 fast retrieving data by 'key of the row' + 'column name'
 contains from: (HBase HMaster) *---> (HBase Region Server)
 ```
-### Accumulo
+## Accumulo
 TBD
 
+## Druid
+TBD
 
-### Druid
-
-## Cluster management
-### [ambari](http://localhost:8080)
-
+# Cluster management
+## [ambari](http://localhost:8080)
 * cloudera manager
+
 
 # TODO
 download all slides from stepik - for repeating and creating xournals
