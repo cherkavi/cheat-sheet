@@ -412,10 +412,10 @@ NULL DEFINED AS 'null_representation'
 ```
 
 ## JSqsh
-CLI tool to work with any JDBC driver
-[getting started](https://github.com/scgray/jsqsh/wiki/Getting-Started)
-[command line parameters](https://github.com/scgray/jsqsh/wiki/jsqsh)
-[ibm documentation](https://www.ibm.com/support/knowledgecenter/SSPT3X_3.0.0/com.ibm.swg.im.infosphere.biginsights.analyze.doc/doc/bsql_jsqsh.html)
+CLI tool to work with any JDBC driver ( Java SQl SH )
+* [getting started](https://github.com/scgray/jsqsh/wiki/Getting-Started)
+* [command line parameters](https://github.com/scgray/jsqsh/wiki/jsqsh)
+* [ibm documentation](https://www.ibm.com/support/knowledgecenter/SSPT3X_3.0.0/com.ibm.swg.im.infosphere.biginsights.analyze.doc/doc/bsql_jsqsh.html)
 
 ---
 # Data storage, NoSQL
