@@ -371,14 +371,17 @@ drop schema "my_schema" cascade;
 
 ## create table ( @see hive.md )
 ```
-create hadoop table my_table_into_my_schema ( col1 int not null primary key, col2 varchar(50)) 
-row format delimited fields terminated by ',' 
+create hadoop table IF NOT EXISTS my_table_into_my_schema ( col1 int not null primary key, col2 varchar(50)) 
+row format delimited 
+fields terminated by ',' 
+LINES TERMINATED by '\n'
 escaped BY '\\', 
 null defined as '%THIS_IS_NULL%' s
 stored as [<empty>, TEXT, BINARY] SEQUENCEFILE;
 -- PARQUETFILE
 -- ORC
 -- RCFILE
+-- TEXTFILE
 ```
 avro table creation:
 ![avro table](https://s19.postimg.cc/bfe9fh0tf/bigsql-table-avro.png)
