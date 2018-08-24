@@ -366,6 +366,7 @@ set hadoop property bigsql.string.size=128
 ```
 create schema "my_schema";
 use "my_schema"
+drop schema "my_schema" cascade;
 ```
 
 ## create table ( @see hive.md )
@@ -382,6 +383,7 @@ file insert - copy file into appropriate folder ( with delimiter between columns
 ```
 call syshadoop.hcat_cache_sync('my_schema', 'my_table_into_my_schema');
 ```
+
 
 ## JSqsh
 CLI tool to work with any JDBC driver
