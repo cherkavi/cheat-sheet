@@ -329,12 +329,38 @@ bigsql/bin start
 bigsql/bin stop
 bigsql/bin status
 ```
+## configuration
+```
+bigsql-conf.xml
+```
+
+## switch on compatability mode
+use Big SQL 1.0 into Big SQL 
+```
+set syshadoop.compatability_mode=1;
+```
 
 ##  Data types
 ![compare data types](https://s19.postimg.cc/vg9eqx4wz/bigsql-datatypes.png)
 * Declared type
 * SQL type
 * Hive type
+
+### using strings
+* avoid to use string - default value 32k
+* change default string length
+```
+set hadoop property bigsql.string.size=128
+```
+* use VARCHAR instead of
+
+### datetime ( not date !!! )
+```
+2003-12-23 00:00:00.0
+```
+### boolean 
+![boolean workaround](https://s19.postimg.cc/6biedpfsz/bigsql-datatypes-boolean.png)
+
 
 ## JSqsh
 CLI tool to work with any JDBC driver
