@@ -169,7 +169,24 @@ def needToExecuteStage(stageName, func){
         }
     }
 }
+```
 
+### sonar management
+obtaining
+```
+wget https://sonarsource.bintray.com/Distribution/sonarqube/
+```
+start/stop/status
+```
+/dev/sonar/bin/linux-x86-64/sonar.sh start
+/dev/sonar/bin/linux-x86-64/sonar.sh status
+/dev/sonar/bin/linux-x86-64/sonar.sh stop
+```
+sonar
+```
+url: http://host01:9000
+login: admin
+passw: admin
 ```
 
 ### print all accessible variables

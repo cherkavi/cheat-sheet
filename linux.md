@@ -11,6 +11,15 @@ ssh -L 28010:vldn337:8010 localhost
 ssh -R <remoteport>:<local host name>:<local port> <hostname>
 ssh -R 9020:127.0.0.1:9092 localhost
 ```
+### gpg signature check, asc signature check, crt signature check
+```
+gpg --keyserver keyserver.ubuntu.com --recv-keys 9032CAE4CBFA933A5A2145D5FF97C53F183C045D 
+gpg --import john-brooks.asc
+
+gpg --verify ricochet-1.1.4-src.tar.bz2.asc
+
+gpg --keyserver keyserver.ubuntu.com --recv-keys D09FB15F1A24768DDF1FA29CCFEEF31651B5FDE8
+```
 
 ### connect to remote machine via ssh without credentials
 ```
@@ -120,6 +129,10 @@ locate -b "brand-reader"
 ```
 readlink -f {file}
 ```
+### real path to link
+```
+readlink 'path to symlink'
+```
 
 ### where is program placed, location of executable file
 ```
@@ -203,7 +216,11 @@ at <date and time>
 
 ### find process by name
 ```
-ps -fC firefox
+ps fC firefox
+```
+windows analogue of 'ps aux'
+```
+wmic path win32_process get Caption, Processid, Commandline
 ```
 
 ### kill -3
@@ -629,4 +646,25 @@ zbarimg <file>
 ### pdf file merge, pdf join
 ```
 gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf test-pdf2.pdf test-pdf3.pdf test-pdf4.pdf
+```
+## zip
+### unzip bz2
+```
+bzip2 -dc ricochet-1.1.4-src.tar.bz2 | tar xvf -
+```
+
+## console and clipboard
+```
+xclip -o
+cat file.txt | xclip
+```
+
+## wifi 
+```
+ifconfig ( result - wlan0 )
+airmon-ng check kill
+airmon-ng check ( should be empty )
+airmon-ng start wlan0 ( result - wlan0mon )
+airodump-ng wlan0mon ( result - BSSID )
+reaver -i wlan0mon -b <BSSID> -vv -K 1
 ```
