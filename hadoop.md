@@ -1,9 +1,9 @@
 # Hadoop 
-[tutorial](http://hadooptutorial.info)
-[MapR documentation](https://maprdocs.mapr.com/51/WR-ecosystem-intro.html)
-[Cloudera documentation](https://www.cloudera.com/documentation/enterprise/latest.html)
-[Hortonworks tutorials](https://hortonworks.com/tutorials/)
-[Hortonworks ecosystems](https://hortonworks.com/ecosystems/)
+* [tutorial](http://hadooptutorial.info)
+* [MapR documentation](https://maprdocs.mapr.com/51/WR-ecosystem-intro.html)
+* [Cloudera documentation](https://www.cloudera.com/documentation/enterprise/latest.html)
+* [Hortonworks tutorials](https://hortonworks.com/tutorials/)
+* [Hortonworks ecosystems](https://hortonworks.com/ecosystems/)
 
 ## Hadoop into Docker container 
 * MapR
