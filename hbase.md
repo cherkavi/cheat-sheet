@@ -10,26 +10,46 @@ data is sparse - a lot of column has null values
 fast retrieving data by 'key of the row' + 'column name'
 contains from: (HBase HMaster) *---> (HBase Region Server)
 ```
-
-![record, logical view](https://s19.postimg.cc/bjssr74gz/hbase-record-logical-view.png)
-[![hbase-acid.png](https://s19.postimg.cc/7ao2orlpf/hbase-acid.png)](https://postimg.cc/image/6xwoil3fj/)
-[![hbase-record-logical-view.png](https://s19.postimg.cc/bjssr74gz/hbase-record-logical-view.png)](https://postimg.cc/image/t9uhc8i1r/)
-[![hbase-record-phisical-view.png](https://s19.postimg.cc/rjbgafnkj/hbase-record-phisical-view.png)](https://postimg.cc/image/3sc2sbndb/)
-[![hbase-why.png](https://s19.postimg.cc/43tj55w4j/hbase-why.png)](https://postimg.cc/image/bwk6x523j/)
-[![hbase-logical-to-phisical-view.png](https://s19.postimg.cc/dpn3lfsf7/hbase-logical-to-phisical-view.png)](https://postimg.cc/image/vfos6h5zz/)
-[![hbase-architecture.jpg](https://s19.postimg.cc/uq5zufaoz/hbase-architecture.jpg)](https://postimg.cc/image/g6yut0hjz/)
-[![hbase-table-characteristics.png](https://s19.postimg.cc/jruqcabtv/hbase-table-characteristics.png)](https://postimg.cc/image/7pzci52lb/)
-[![hbase-column-family.png](https://s19.postimg.cc/z1ulj2mn7/hbase-column-family.png)](https://postimg.cc/image/xmt0ucljz/)
+SQL for Hbase - [Phoenix SQL](https://phoenix.apache.org/)
 
 
+## Why HBase
+![hbase-why.png](https://s19.postimg.cc/43tj55w4j/hbase-why.png)
+
+## HBase Architecture
+![hbase-architecture.jpg](https://s19.postimg.cc/uq5zufaoz/hbase-architecture.jpg)
+
+## HBase ACID
+![hbase-acid.png](https://s19.postimg.cc/7ao2orlpf/hbase-acid.png)
+
+## logical view
+![hbase-record-logical-view.png](https://s19.postimg.cc/bjssr74gz/hbase-record-logical-view.png)
+
+## phisical view
+![hbase-record-phisical-view.png](https://s19.postimg.cc/rjbgafnkj/hbase-record-phisical-view.png)
+
+## logical to phisical view
+![hbase-logical-to-phisical-view.png](https://s19.postimg.cc/dpn3lfsf7/hbase-logical-to-phisical-view.png)
+
+## Table characteristics
+![hbase-table-characteristics.png](https://s19.postimg.cc/jruqcabtv/hbase-table-characteristics.png)
+
+## Column-Family
+![hbase-column-family.png](https://s19.postimg.cc/z1ulj2mn7/hbase-column-family.png)
+
+## manage HBase
 start/stop hbase
+```
 $HBASE_HOME/bin/start-hbase.sh
 $HBASE_HOME/bin/stop-hbase.sh
+```
 
-shell
+## interactive shell
+```
 $HBASE_HOME/bin/hbase shell
+```
 
-commands
+## commands
 * list of the tables
 ```
 list
