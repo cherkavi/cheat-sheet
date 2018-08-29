@@ -1,5 +1,6 @@
 ---
-# BigSQL 
+# BigSQL
+![overview](https://s19.postimg.cc/lmevs5koz/bigsql-overview.png)
 [how to run query](https://www.ibm.com/support/knowledgecenter/en/SSPT3X_4.0.0/com.ibm.swg.im.infosphere.biginsights.analyze.doc/doc/bigsql_run_queries.html)
 ## Warehouse
 default directory (/special-folder/hive/warehouse) in HDFS to store tables 
