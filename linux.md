@@ -43,6 +43,13 @@ chmod 600 ~/.ssh/authorized_keys
 sudo apt get ssh
 sudo service ssh start
 ```
+### here document, sftp batch command with bash
+```
+sftp -P 2222 my_user@localhost << END_FILE_MARKER
+ls
+exit
+END_FILE_MARKER
+```
 
 ### mount cdrom ( for virtual machine )
 ```
