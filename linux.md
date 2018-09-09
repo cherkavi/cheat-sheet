@@ -1,4 +1,4 @@
-## Linux
+# Linux
 
 ### tunnel, port forwarding from local machine to outside
 ```
@@ -213,7 +213,6 @@ ctrl-Z
 fg
 ```
 
-
 ### postponed execution
 ```
 at <date and time>
@@ -325,6 +324,14 @@ wget -O out.zip http://{host}:9000/published/resources/10050001.zip
 ### zip files, zip all files
 ```
 zip -r bcm-1003.zip *
+```
+### using parameters for aliases
+```
+alias sublime_editor=/Applications/SublimeEditor/Sublime
+
+subl(){
+  sublime_editor "$1" &
+}
 ```
 
 ## AWK
@@ -675,3 +682,11 @@ airmon-ng start wlan0 ( result - wlan0mon )
 airodump-ng wlan0mon ( result - BSSID )
 reaver -i wlan0mon -b <BSSID> -vv -K 1
 ```
+
+# MacOS
+## bashrc replacement
+.bashrc - .bash_profile
+
+## package manager
+brew
+
