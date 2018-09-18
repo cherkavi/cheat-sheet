@@ -235,6 +235,13 @@ at <date and time>
 ```
 ps fC firefox
 ```
+
+pid of process by name
+```
+pidof <app name>
+pidof chrome
+```
+
 windows analogue of 'ps aux'
 ```
 wmic path win32_process get Caption, Processid, Commandline
