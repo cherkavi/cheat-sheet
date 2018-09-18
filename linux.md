@@ -78,6 +78,14 @@ shutdown -r now
 sort <filename>
 ```
 
+### split and merge big files
+```
+split --bytes=1M /path/to/image/image.jpg /path/to/image/prefixForNewImagePieces
+
+cat prefixFiles* > newimage.jpg
+```
+
+
 ### unique lines (duplications) into file
 #### add count
 ```
