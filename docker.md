@@ -317,6 +317,7 @@ login/pass: admin/12345678
 ### build from file
 ```
 docker build -t {name of my own image}:latest {name of docker file | . }
+docker build -t solr-4.10.3:latest . // Dockerfile into current folder
 ```
 
 ### build useful commands
