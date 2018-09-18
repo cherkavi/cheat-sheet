@@ -731,6 +731,11 @@ airodump-ng wlan0mon ( result - BSSID )
 reaver -i wlan0mon -b <BSSID> -vv -K 1
 ```
 
+## printer managing ( add/remote/edit )
+http://cups.org - printer installation
+http://localhost:631/admin
+
+
 # MacOS
 ## bashrc replacement
 .bashrc - .bash_profile
