@@ -4,6 +4,10 @@
 ```
 ssh -D <localport> <user>@<remote host>
 ```
+and checking if it is working for 'ssh -D 7772 cherkavi@151.190.211.1'
+```
+ssh -o "ProxyCommand nc -x 127.0.0.1:7772 %h %p" cherkavi@151.190.211.47
+```
 
 ### tunnel, port forwarding from local machine to outside
 ```
