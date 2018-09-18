@@ -61,6 +61,11 @@ END_FILE_MARKER
 sudo mount /dev/cdrom /mnt
 ```
 
+### repeat command with predefined interval, execute command repeatedly
+```
+watch -n 60 'ls -la | grep archive'
+```
+
 ### directories into stack
 ```
 pushd 
