@@ -1,5 +1,10 @@
 # Linux
 
+### socket proxy, proxy to remote machine
+```
+ssh -D <localport> <user>@<remote host>
+```
+
 ### tunnel, port forwarding from local machine to outside
 ```
 ssh -L <localport>:<remote host>:<remote port> <hostname>
@@ -117,6 +122,12 @@ original.sh $*
 folder: etc/rc1.d ( rc2.d ... )
 contains links to ../init.d/<name of bash script>
 should understand next options: start, stop, restart
+```
+
+reset X-server
+```
+sudo init 3
+sudo init 5
 ```
 
 ### mc color, midnight commander
