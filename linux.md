@@ -60,6 +60,12 @@ exit
 END_FILE_MARKER
 ```
 
+### map folder to another path, mount dir to another location
+```
+# map local /tmp folder to another path/drive
+sudo mount -B /tmp /mapped_drive/path/to/tmp
+```
+
 ### mount cdrom ( for virtual machine )
 ```
 sudo mount /dev/cdrom /mnt
