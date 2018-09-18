@@ -90,8 +90,8 @@ docker volume ls
 -p {host machine port}:{internal docker machine port}
 ```
 ```
--p 8030-8033:8030-8033/tcp  
--p 8040:8040/tcp
+docker run -d -p 8030-8033:8030-8033/tcp  e02d9b40e89d
+docker run -d -p 8040:8040/tcp  prom/prometheus 
 ```
 
 ### run container in detached ( background ) mode, without console attachment to running process
