@@ -61,6 +61,13 @@ END_FILE_MARKER
 sudo mount /dev/cdrom /mnt
 ```
 
+### directories into stack
+```
+pushd 
+popd 
+dirs
+```
+
 ### sudo reboot
 ``` 
 shutdown -r now
