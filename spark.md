@@ -93,6 +93,13 @@ from pyspark.sql import SQLContext
 sqlContext = SQLContext(sc)
 ```
 
+### read data 
+read csv file without header
+```
+spark.read.format("csv").option("header", "true").load("/tmp/1.txt")
+```
+
+
 ### Side effect
 any task can be executed more than once !!!!
 ```
@@ -202,8 +209,7 @@ val counts =
 	text.flatMap(_.split(" ")).countByValue()
 // call reduce( _ + _ ), collect result from each partitions, sent to driver !!! ( only for testing/development )
 .countByKey
-
-```	
+```
 
 examples
 ```
