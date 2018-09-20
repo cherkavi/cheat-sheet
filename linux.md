@@ -469,6 +469,12 @@ find -cmin -2
 ```
 curl -X PUT -H "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charset=ISO-8859-1" -H "x-username: cherkavi" -d@put-request.data http://q-brands-app01.wirecard.sys:9000/draft/brands/229099017/model/country-configurations
 ```
+```
+curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: text/json" --data '{"add":"data"}'
+```
+```
+curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: text/json" --data-binary '{"add":"data"}'
+```
 
 ### curl without progress
 * curl -s -X GET http://google.com
