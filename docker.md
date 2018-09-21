@@ -218,7 +218,7 @@ docker load -i {filename of archive}
 
 ### import full image into 'images' - like a basement 
 ```
-docker import -i {filename of archive}
+docker import {filename of archive}
 ```
 
 ## Stop and Pause
