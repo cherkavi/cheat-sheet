@@ -17,11 +17,6 @@ docker system info
 
 
 ## proxy set up:
-possible issue with 'pull'
-```
-Error response from daemon: Get https://registry-1.docker.io/v2/: dial tcp: lookup registry-1.docker.io on 160.55.52.52:8080: no such host
-```
-
 * /etc/default/docker
 ```
 export http_proxy="http://host:3128/"
@@ -331,6 +326,37 @@ docker pull portainer/portainer
 docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
 ```
 login/pass: admin/12345678
+
+## installation issues
+```
+The following packages have unmet dependencies:
+ docker-ce : Depends: libseccomp2 (>= 2.3.0) but 2.2.3-3ubuntu3 is to be installed
+E: Unable to correct problems, you have held broken packages.
+```
+resolution:
+```
+sudo apt install docker-ce=17.03.0~ce-0~ubuntu-xenial
+```
+
+---
+```
+Error starting daemon: error initializing graphdriver: /var/lib/docker contains several valid graphdrivers: overlay2, aufs; Please cleanup or explicitly choose storage driver (-s <DRIVER>)
+Failed to start Docker Application Container Engine.
+```
+resolution
+```
+sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
+sudo modprobe aufs
+sudo gedit /lib/systemd/system/docker.service &
+ExecStart=/usr/bin/dockerd -H fd:// --storage-driver=aufs
+```
+
+---
+possible issue with 'pull'
+```
+Error response from daemon: Get https://registry-1.docker.io/v2/: dial tcp: lookup registry-1.docker.io on 160.55.52.52:8080: no such host
+```
+
 
 ## Build
 
