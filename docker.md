@@ -209,7 +209,7 @@ docker save --output <output file name>.tar {CONTAINER ID}
 docker export --output <output file name>.tar {CONTAINER ID}
 ```
 
-## Load
+## Load/Import/Read from file to image
 ------
 ### load full image into 'images' - with all layers and history
 ```
@@ -219,6 +219,11 @@ docker load -i {filename of archive}
 ### import full image into 'images' - like a basement 
 ```
 docker import -i {filename of archive}
+```
+
+## Export
+```
+docker export {conatiner id} > {name of archive}.tar
 ```
 
 ## Stop and Pause
