@@ -37,7 +37,7 @@ curl http://localhost:8983/solr/update?commit=true -H "Content-Type: text/json" 
 curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: text/json" --data '{"add":{ "doc":{"id":"1023","title":"title 1023"},"boost":1.0,"overwrite":true,"commitWithin":1}}'
 ```
 
-## select records, execute query
+## select records, execute query, read records
 * xml
 ```
 curl http://localhost:8983/solr/select?q=*:*
