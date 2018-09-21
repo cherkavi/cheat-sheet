@@ -357,6 +357,18 @@ possible issue with 'pull'
 Error response from daemon: Get https://registry-1.docker.io/v2/: dial tcp: lookup registry-1.docker.io on 160.55.52.52:8080: no such host
 ```
 
+---
+build error
+```
+W: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/xenial/InRelease  Could not resolve 'archive.ubuntu.com'
+W: Failed to fetch http://archive.ubuntu.com/ubuntu/dists/xenial-updates/InRelease  Could not resolve 'archive.ubuntu.com'
+```
+need to add proxy into Dockerfile
+```
+ENV http_proxy http://user:passw@proxy.url:8080
+ENV https_proxy http://user:passw@proxy.url:8080
+
+```
 
 ## Build
 
