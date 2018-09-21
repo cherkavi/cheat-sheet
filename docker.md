@@ -221,11 +221,6 @@ docker load -i {filename of archive}
 docker import -i {filename of archive}
 ```
 
-## Export
-```
-docker export {conatiner id} > {name of archive}.tar
-```
-
 ## Stop and Pause
 ------
 ### wait until container will be stopped
