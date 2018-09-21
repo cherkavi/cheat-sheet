@@ -14,7 +14,14 @@ docker system info
 ( add current user into docker group )
 3. sudo service docker restart
 
-### proxy set up:
+
+
+## proxy set up:
+possible issue with 'pull'
+```
+Error response from daemon: Get https://registry-1.docker.io/v2/: dial tcp: lookup registry-1.docker.io on 160.55.52.52:8080: no such host
+```
+
 * /etc/default/docker
 ```
 export http_proxy="http://host:3128/"
@@ -49,6 +56,19 @@ no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 [Service]    
 Environment="HTTP_PROXY=http://webproxy.host.de:3128/" "NO_PROXY=localhost,127.0.0.1,.host.de,.viola.local,.local"
 ```
+* /etc/systemd/system/docker.service.d/10_docker_proxy.conf
+```
+[Service]
+Environment=HTTP_PROXY=http://1.1.1.1:111
+Environment=HTTPS_PROXY=http://1.1.1.1:111
+```
+
+## restart Docker service
+```
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
 
 Images
 ------
