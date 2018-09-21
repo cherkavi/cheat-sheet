@@ -263,3 +263,14 @@ val stations = input2.
 
 stations.join(trips.keyBy(_(4).toInt))
 ```
+
+
+## add jar to spark shell
+* before start into configuration file "spark-defaults.conf"
+spark.driver.extraClassPath  pathOfJarsWithCommaSeprated
+
+* during the start 
+./spark-shell --jars pathOfjarsWithCommaSeprated
+
+* after start
+scala> :require /path/to/file.jar
