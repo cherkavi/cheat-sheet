@@ -6,7 +6,7 @@
 
 ### configuration ( spark-defaults.conf )
 http://<driver>:4040
-	
+
 * spark properties
 ```
 new SparkConf().set("spark.executor.memory","1g")
@@ -39,7 +39,7 @@ Coda Hale Metrics Library
 /sbin/start-history-server.sh
 
 ### serialization
-* java 
+* java
 * kyro
 conf.set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
 conf.registerKryoClasses(Array(classOf[MyOwnClass1], classOf[MyOwnClass2]))
@@ -93,7 +93,7 @@ from pyspark.sql import SQLContext
 sqlContext = SQLContext(sc)
 ```
 
-### read data 
+### read data
 read csv file without header
 ```
 spark.read.format("csv").option("header", "true").load("/tmp/1.txt")
@@ -203,7 +203,7 @@ rdd.unpersist()
 ### difference betwee reduceByKey and countByKey
 ```
 val text = sc.textFile("my_own_file")
-val counts = 
+val counts =
 	// reduceByKey - reduce all values by key, after - combine the result for each partition
 	text.flatMap(_.split(" ")).map((_, 1)).reduceByKey(_+_).collectAsMap()
 	text.flatMap(_.split(" ")).countByValue()
@@ -226,7 +226,7 @@ examples
 .lookup
 
 // apply map function to value only, avoid shuffling between partitions
-.mapValues 
+.mapValues
 
 ```
 
@@ -269,8 +269,18 @@ stations.join(trips.keyBy(_(4).toInt))
 * before start into configuration file "spark-defaults.conf"
 spark.driver.extraClassPath  pathOfJarsWithCommaSeprated
 
-* during the start 
+* during the start
 ./spark-shell --jars pathOfjarsWithCommaSeprated
 
 * after start
 scala> :require /path/to/file.jar
+
+# spark shell, spark-shell, spark2-shell
+## read text file with json ( each line - separate json)
+```
+spark.read.json("/home/technik/temp/rdd-processedLabels.json")
+sc.textFile("/home/technik/temp/rdd-processedLabels.json").values().map(json.loads)
+import scala.util.parsing.json._
+sc.wholeTextFiles("/home/technik/temp/rdd-processedLabels.json").values.map(v=>v)
+
+```
