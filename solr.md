@@ -1,14 +1,23 @@
-# REST API collaboration 
+# REST API collaboration
+[Official documentation for different versions](http://archive.apache.org/dist/lucene/solr/ref-guide/)
 
-*TIP* investigation request/response of the Solr UI 
+**TIP:** *investigate request/response of the Solr UI*
+
+## request types:
+* wt=json
+* wt=xml
+
 
 ## read collections
 ```
 curl -s localhost:8983/solr/admin/cores?wt=json
 ```
+request to server with https
+```
+curl -i -k --negotiate -u: https://localhost:8983/solr/admin/cores?wt=json
+```
 ```
 curl localhost:8983/solr/admin/collections?action=LIST&wt=json
-
 ```
 
 ## force commit for core/collection
@@ -53,3 +62,16 @@ curl -X GET -H "Accept: application/json, text/javascript" "http://localhost:898
 curl http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: text/xml" --data-binary '<delete><query>*:*</query></delete>'
 ```
 
+## delete core/collection itself
+```
+curl localhost:8985/solr/admin/cores?action=UNLOAD&deleteInstanceDir=true&core=collection1
+```
+
+# command line parameters
+* -Dsolr.admin.port=8984
+SOLR_PORT
+
+* -Dsolr.port=8985
+SOLR_ADMIN_PORT
+
+* -Dsolr.solr.home=/var/lib/solr
