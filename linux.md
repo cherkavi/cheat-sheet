@@ -22,7 +22,7 @@ ssh -R 9020:127.0.0.1:9092 localhost
 ```
 ### gpg signature check, asc signature check, crt signature check
 ```
-gpg --keyserver keyserver.ubuntu.com --recv-keys 9032CAE4CBFA933A5A2145D5FF97C53F183C045D 
+gpg --keyserver keyserver.ubuntu.com --recv-keys 9032CAE4CBFA933A5A2145D5FF97C53F183C045D
 gpg --import john-brooks.asc
 
 gpg --verify ricochet-1.1.4-src.tar.bz2.asc
@@ -43,8 +43,8 @@ ssh-copy-id {username}@{machine ip}:{port}
 the same, but manually:
 ```
 cat .ssh/id_rsa.pub | ssh {username}@{ip}:{port} "cat >> ~/.ssh/authorized_keys"
-chmod 700 ~/.ssh ; 
-chmod 600 ~/.ssh/authorized_keys 
+chmod 700 ~/.ssh ;
+chmod 600 ~/.ssh/authorized_keys
 ```
 
 ### install ssh
@@ -78,13 +78,13 @@ watch -n 60 'ls -la | grep archive'
 
 ### directories into stack
 ```
-pushd 
-popd 
+pushd
+popd
 dirs
 ```
 
 ### sudo reboot
-``` 
+```
 shutdown -r now
 ```
 
@@ -173,7 +173,7 @@ mc --nocolor
 locate -ir "brand-reader*"
 locate -b "brand-reader"
 ```
-### full path to file 
+### full path to file
 ```
 readlink -f {file}
 ```
@@ -205,7 +205,7 @@ find /tmp -maxdepth 1 -mmin +240 -iname "[0-9]*\-[0-9]" | xargs sudo rm -r {} \;
 ### find large files
 ```
 find . -type f -size +50000k -exec ls -lh {} \;
-find . -type f -size +50000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }' 
+find . -type f -size +50000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 ```
 
 ### yum ( app search )
@@ -334,7 +334,7 @@ vi wrap( :set wrap, :set nowrap )
 ```
 | shortcut |   description   |
 |----------|-----------------|
-|     /    |  search forward | 
+|     /    |  search forward |
 |     ?    | search backward |
 |     n    | next occurence  |
 |     N    | prev occurence  |
@@ -512,10 +512,10 @@ sudo dpkg -l
 
 | First letter | desired package state ("selection state")|
 ----|------------------------
-| u | unknown | 
-| i | install | 
-| r | remove/deinstall | 
-| p |  purge (remove including config files) | 
+| u | unknown |
+| i | install |
+| r | remove/deinstall |
+| p |  purge (remove including config files) |
 | h |  hold |
 
 | Second letter | current package state |
@@ -538,7 +538,7 @@ sudo dpkg -l
 sudo apt-cache madison {package name}
 ```
 
-### Debian install new version of package with specific version 
+### Debian install new version of package with specific version
 ```
 sudo apt-get install {package name}={version}
 ```
@@ -586,7 +586,7 @@ ip -6 a
 interfaces
 ```
 
-### switch on and off network interface 
+### switch on and off network interface
 ```
 sudo ifdown lo && sudo ifup lo
 ```
@@ -596,7 +596,7 @@ sudo ifdown lo && sudo ifup lo
 sudo service network-manager restart
 ```
 
-### DNS 
+### DNS
 ```
 systemd-resolve --status
 ```
@@ -634,7 +634,7 @@ ssh-keygen -R <host>
 ```
 or
 ```
-rm ~/.ssh/known_hosts 
+rm ~/.ssh/known_hosts
 ```
 
 ### proxy
@@ -648,13 +648,13 @@ export NO_PROXY="localhost,127.0.0.1,.host,.viola.local"
 export no_proxy="localhost,127.0.0.1,.host,.viola.local"
 ```
 
-* /etc/environment 
+* /etc/environment
 ```
 http_proxy=http://webproxy.host:3128
 no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ```
 
-### apache 
+### apache
 [manage httpd](https://httpd.apache.org/docs/current/stopping.html)
 
 ### tools:
@@ -673,7 +673,7 @@ no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ## mapping keys, keymap, assign actions to key
 ### show key codes
 ```
-xmodmap -pke 
+xmodmap -pke
 ```
 
 ### remap key 'Druck' to 'Win'
@@ -695,6 +695,17 @@ create file '~/.Xmodmap'
 xev | grep keysym
 ```
 
+## terminal title
+```
+set-title(){
+  ORIG=$PS1
+  TITLE="\e]2;$@\a"
+  PS1=${ORIG}${TITLE}
+}
+
+set-title "my title for terminal"
+```
+
 ## pdf
 ### convert pdf to image
 ```
@@ -702,7 +713,7 @@ convert -geometry 400x600 -density 100x100 -quality 100 test-pdf.pdf test-pdf.jp
 ```
 ### bar code create into pdf
 ```
-barcode -o 1112.pdf -e "code39" -b "1112" -u "mm" -g 50x50 
+barcode -o 1112.pdf -e "code39" -b "1112" -u "mm" -g 50x50
 ```
 
 ### bar code finder
@@ -727,7 +738,7 @@ xclip -o
 cat file.txt | xclip
 ```
 
-## wifi 
+## wifi
 ```
 ifconfig ( result - wlan0 )
 airmon-ng check kill
@@ -748,4 +759,3 @@ http://localhost:631/admin
 
 ## package manager
 brew
-
