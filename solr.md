@@ -1,3 +1,6 @@
+# Key terms
+![Core, collection](https://i.postimg.cc/HLGhMgMd/Solr-_Core-_Collection.png)
+
 # REST API collaboration
 [Official documentation for different versions](http://archive.apache.org/dist/lucene/solr/ref-guide/)
 
