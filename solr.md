@@ -17,6 +17,12 @@
 * wt=json
 * wt=xml
 
+## system info
+```
+curl -i -k --negotiate -u: https://134.190.200.9:8983/solr/admin/info/system?wt=xml
+curl -i -k --negotiate -u: https://134.190.200.9:8983/solr/admin/info/system?wt=json
+curl 134.190.200.9:8983/solr/admin/info/system?wt=json
+```
 
 ## read collections
 ```
