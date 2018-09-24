@@ -1,6 +1,13 @@
 # Key terms
 ![Core, collection](https://i.postimg.cc/HLGhMgMd/Solr-_Core-_Collection.png)
 
+# copy collection/core manually 
+* cp solr/example/solr/collection1 solr/example/solr/collection2
+* rm solr/example/solr/collection2/data
+* core.properties # name=collection2
+* change schema.xml [doc](https://wiki.apache.org/solr/SchemaXml) [src-code](https://github.com/apache/lucene-solr/blob/master/solr/solr-ref-guide/src/field-type-definitions-and-properties.adoc)
+
+
 # REST API collaboration
 [Official documentation for different versions](http://archive.apache.org/dist/lucene/solr/ref-guide/)
 
