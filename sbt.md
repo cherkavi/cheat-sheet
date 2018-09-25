@@ -23,3 +23,18 @@ sbt package
 ```
 mainClass := Some("com.cherkashyn.solr.ConnectionCheck")
 ```
+
+## create uber jar
+* project/assembly.sbt
+```
+addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.7")
+```
+* build.sbt
+```
+mainClass := Some("com.bmw.ad.solr.ConnectionCheck")
+test in assembly := {}
+```
+* command to build uber jar target/scala-{version}/{project-name}.jar
+```
+sbt assembly
+```
