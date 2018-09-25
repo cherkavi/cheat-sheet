@@ -291,4 +291,7 @@ sc.wholeTextFiles("/home/technik/temp/rdd-processedLabels.json").values.map(v=>v
 df.head(10).toJSON
 df.toJSON.take(10)
 
+// get value from sql.Row
+df.map( v=> (v.getAs[Map[String, String]]("processedLabel"), v.getAs[String]("projectName"), v.getAs[String]("sessionId"), v.getAs[Long]("timestamp")  ) )
+
 ```
