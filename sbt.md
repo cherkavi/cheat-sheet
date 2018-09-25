@@ -1,3 +1,8 @@
+## create new project ( sub-folder will be created )
+```
+sbt new sbt/scala-seed.g8
+```
+
 ## clean 
 ```
 sbt clean clean-files
