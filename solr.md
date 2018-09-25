@@ -10,6 +10,7 @@
 
 # REST API collaboration
 [Official documentation for different versions](http://archive.apache.org/dist/lucene/solr/ref-guide/)
+[Solr REST API admin](https://lucene.apache.org/solr/guide/6_6/coreadmin-api.html)
 
 **TIP:** *investigate request/response of the Solr UI*
 
