@@ -282,8 +282,13 @@ scala> :require /path/to/file.jar
 ## read text file with json ( each line - separate json)
 ```
 spark.read.json("/home/technik/temp/rdd-processedLabels.json")
+
 sc.textFile("/home/technik/temp/rdd-processedLabels.json").values().map(json.loads)
+
 import scala.util.parsing.json._
 sc.wholeTextFiles("/home/technik/temp/rdd-processedLabels.json").values.map(v=>v)
+
+df.head(10).toJSON
+df.toJSON.take(10)
 
 ```
