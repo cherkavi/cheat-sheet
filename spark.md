@@ -98,7 +98,10 @@ read csv file without header
 ```
 spark.read.format("csv").option("header", "true").load("/tmp/1.txt")
 ```
-
+read json format
+```
+spark.read.format("json").load("/tmp/1.json")
+```
 
 ### Side effect
 any task can be executed more than once !!!!
