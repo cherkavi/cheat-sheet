@@ -39,6 +39,11 @@ ssh-keygen -t rsa
 ```
 ssh-copy-id {username}@{machine ip}:{port}
 ```
+sometimes need to add next
+```
+ssh-agent bash
+ssh-add ~/.ssh/id_dsa or id_rsa
+```
 
 the same, but manually:
 ```
