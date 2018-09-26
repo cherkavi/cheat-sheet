@@ -37,3 +37,8 @@ execute script
 ```
 gradle runtScript
 ```
+
+## proxy settings
+```
+gradle build -Dhttp.proxyHost=proxy-host -Dhttp.proxyPort=8080 -Dhttp.proxyUser=q4577777 -Dhttp.proxyPassword=my-password
+```
