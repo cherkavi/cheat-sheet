@@ -378,6 +378,18 @@ docker build -t {name of my own image}:latest {name of docker file | . }
 docker build -t solr-4.10.3:latest . // Dockerfile into current folder
 ```
 
+### build with parameters
+```
+build --build-arg app_name=k8s-ambassador
+```
+
+inside Dockerfile
+```
+ARG app_name
+ENV JAR=$app_name.jar
+```
+
+
 ### build useful commands
 | command |   description |
 |---------|---------------|
