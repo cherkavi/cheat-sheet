@@ -279,6 +279,11 @@ spark.driver.extraClassPath  pathOfJarsWithCommaSeprated
 scala> :require /path/to/file.jar
 
 # spark shell, spark-shell, spark2-shell
+## execute console wit edditional jar and in debug mode 
+```
+spark-shell --jars "/home/some_path/solr-rest_2.11-0.1.jar,/home/someuser/.ivy2/cache/org.json/json/bundles/json-20180813.jar" --conf "spark.driver.extraJavaOptions=-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
+```
+
 ## read text file with json ( each line - separate json)
 ```
 spark.read.json("/home/technik/temp/rdd-processedLabels.json")
