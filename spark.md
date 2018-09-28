@@ -295,3 +295,12 @@ df.toJSON.take(10)
 df.map( v=> (v.getAs[Map[String, String]]("processedLabel"), v.getAs[String]("projectName"), v.getAs[String]("sessionId"), v.getAs[Long]("timestamp")  ) )
 
 ```
+## read history
+```
+:history
+```
+
+## repeat command from history
+```
+:37
+```
