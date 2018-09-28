@@ -304,3 +304,7 @@ df.map( v=> (v.getAs[Map[String, String]]("processedLabel"), v.getAs[String]("pr
 ```
 :37
 ```
+## load script from file
+```
+:load <path to file>
+```
