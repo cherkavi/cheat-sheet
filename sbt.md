@@ -43,3 +43,8 @@ test in assembly := {}
 ```
 sbt assembly
 ```
+
+## default local lib storage, local repository
+```
+$HOME/.ivy2/cache/{path to library}
+```
