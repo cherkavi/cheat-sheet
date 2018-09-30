@@ -1,6 +1,15 @@
-## create new project ( sub-folder will be created )
+## create new project, Giter8 template 
 ```
 sbt new sbt/scala-seed.g8
+```
+or
+```
+sbt new scala/hello-world.g8
+```
+or 
+```
+# https://github.com/MrPowers/spark-sbt.g8
+MrPowers/spark-sbt.g8
 ```
 
 ## clean 
