@@ -44,3 +44,9 @@
 | Ctrl-x s   |       create Symlink dialog
 | Ctrl-x l   |       create hard Link dialog
 | sh link    |       sh://user@host:port/path/into/remote/machine
+
+---
+change editor to gedit
+```
+export EDITOR=gedit
+```
