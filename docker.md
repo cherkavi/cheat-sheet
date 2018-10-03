@@ -412,6 +412,11 @@ ENV JAR=$app_name.jar
 
 ### [online playground](https://labs.play-with-docker.com)
 
+### push your container
+* docker login
+* docker tag <name of the container> <dockerhub username>/<name of the container>
+* docker push <dockerhub username>/<name of the container>
+
 ### advices
 * for a starting points ( FROM ) using *-alpine images, for example: "FROM python:3.6.1-alpine"
 
