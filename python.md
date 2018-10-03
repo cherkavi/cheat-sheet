@@ -22,6 +22,7 @@ sudo apt install python3-distutils
 
 ### upgrade pip
 ```
+pip3 install --upgrade pip
 pip install -U pip
 ```
 
