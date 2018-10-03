@@ -412,6 +412,9 @@ ENV JAR=$app_name.jar
 
 ### [online playground](https://labs.play-with-docker.com)
 
+### advices
+* for a starting points ( FROM ) using *-alpine images, for example: "FROM python:3.6.1-alpine"
+
 Examples
 ------
 * docker run --hostname=quickstart.cloudera --privileged=true -t -i -p 7180 4239cd2958c6 /usr/bin/docker-quickstart
