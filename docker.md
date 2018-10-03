@@ -410,6 +410,7 @@ ENV JAR=$app_name.jar
 | ONBUILD |  Adds an instruction to be executed later, when the image is used as the base for another build|
 | STOPSIGNAL |  Sets the system call signal that will be sent to the container to exit|
 
+### [online playground](https://labs.play-with-docker.com)
 
 Examples
 ------
