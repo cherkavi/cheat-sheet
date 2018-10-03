@@ -393,7 +393,7 @@ ENV JAR=$app_name.jar
 ### build useful commands
 | command |   description |
 |---------|---------------|
-| FROM | Sets the base image for subsequent|
+| FROM | Sets the base image, starting image to build the container, must be first line|
 | MAINTAINER  | Sets the author field of the generated images|
 | RUN |  Execute commands in a new layer on top of the current image and commit the results|
 | CMD |  Allowed only once (if many then last one takes effect)|
