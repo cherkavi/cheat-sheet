@@ -296,7 +296,7 @@ Additional management
 docker system df
 ```
 
-### remove unused data
+### remove unused data, remove stopped containers
 ```
 docker system prune
 ```
