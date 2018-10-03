@@ -418,7 +418,15 @@ ENV JAR=$app_name.jar
 * docker push <dockerhub username>/<name of the container>
 
 ### advices
-* for a starting points ( FROM ) using *-alpine images, for example: "FROM python:3.6.1-alpine"
+* for a starting points ( FROM ) using -alpine images, for example: "FROM python:3.6.1-alpine"
+* Each line in a Dockerfile creates a new layer, and because of the layer cache, the lines that change more frequently, for example, adding source code to an image, should be listed near the bottom of the file.
+* CMD will be executed after COPY
+```
+FROM python:3.6.1-alpine
+RUN pip install flask
+CMD ["python","app.py"]
+COPY app.py /app.py
+```
 
 Examples
 ------
