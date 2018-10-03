@@ -69,6 +69,10 @@ pip.main("install", "wheels")
 ```
 fix for version 9 and 10
 ```
+error message: AttributeError: 'module' object has no attribute 'main'
+```
+solution:
+```
 try:
     from pip import main as pipmain
 except:
