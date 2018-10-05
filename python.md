@@ -25,6 +25,10 @@ sudo apt install python3-distutils
 pip3 install --upgrade pip
 pip install -U pip
 ```
+debian
+```
+apt-get install -y --no-install-recommends python3-pip
+```
 
 ### install certain version of artifact
 ```
