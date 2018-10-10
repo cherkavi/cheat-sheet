@@ -23,7 +23,13 @@ gradlew test -Dtest.single=< wildcard of test > build
 ### init project
 ```
 gradle init --groovy-application
+gradle init --type java-library
 ```
+* java-application
+* java-library
+* scala-library
+* groovy-library
+* basic
 
 ### execute groovy script
 add into build.gradle
