@@ -322,6 +322,10 @@ cat file.txt | grep -e "occurence1" | grep -e "occurence2"
 ```
 cat file.txt | grep -v "not-include-string"
 ```
+### grep with file mask
+```
+grep -ir "memory" --include="*.scala"
+```
 
 ### find inside zip file(s), grep zip, zip grep
 ```
