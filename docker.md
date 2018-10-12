@@ -443,3 +443,19 @@ docker run --name mysql-container --volume /my/local/folder/with/data:/var/lib/m
 ```
 docker exec mysql-container sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql
 ```
+
+# Docker compose
+[installation](https://github.com/docker/compose/releases)
+```
+chmod +x docker-compose-Linux-x86_64
+sudo mv docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
+sudo apt-get install  --only-upgrade docker
+```
+
+## Issues
+```
+In file './docker-compose.yml' service 'version' doesn't have any configuration options.
+```
+solution: 
+* check format of the docker-compose file
+* install docker-copmose respective your Docker version
