@@ -46,7 +46,6 @@ mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -Darchetyp
 mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.2.8 -DgroupId=com.mycompany -DartifactId=KarafExample -Dversion=1.0-SNAPSHOT -Dpackage=com.mycompany.bundle
 ```
 
-
 ### debug from IDE, IDE debug
 ```-DforkCount=0 -DreuseForks=false -DforkMode=never ```
 
@@ -94,6 +93,24 @@ Oracle depencdencies
 Oracle driver
 ```
 Class<?> driverClass = Class.forName("oracle.jdbc.driver.OracleDriver");
+```
+
+## settings
+### proxy settings
+* $MAVEN_HOME/conf/settings.xml
+* ${user.home}/.m2/settings.xml
+```
+<proxies>
+    <proxy>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>proxy.somewhere.com</host>
+      <port>8080</port>
+      <username>proxyuser</username>
+      <password>somepassword</password>
+      <nonProxyHosts>www.google.com|*.somewhere.com</nonProxyHosts>
+    </proxy>
+  </proxies>
 ```
 
 ## Plugins:
