@@ -445,11 +445,17 @@ docker exec mysql-container sh -c 'exec mysqldump --all-databases -uroot -p"$MYS
 ```
 
 # Docker compose
-[installation](https://github.com/docker/compose/releases)
+
+## [installation](https://github.com/docker/compose/releases)
 ```
 chmod +x docker-compose-Linux-x86_64
 sudo mv docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
 sudo apt-get install  --only-upgrade docker
+```
+
+## start in detached mode, up and detach
+```
+docker-compose up -d
 ```
 
 ## Issues
