@@ -14,6 +14,11 @@ docker system info
 ( add current user into docker group )
 3. sudo service docker restart
 
+Issue:
+```
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock
+```
+logout and login again
 
 
 ## proxy set up:
