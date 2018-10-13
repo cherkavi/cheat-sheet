@@ -158,6 +158,13 @@ git log --pretty=format:"%h - %an, %ar : %s" <commit SHA> -1
 git --git-dir C:\project\horus\.git  branch --all
 ```
 
+### clone operation under the hood
+```
+git clone http://localhost:3000/vitalii/sensor-yaml.git
+< equals >
+wget http://localhost:3000/vitalii/sensor-yaml.git/info/refs?service=git-upload-pack
+```
+
 ### clone only files without history, download code
 ```
 git clone --depth 1 https://github.com/kubernetes/minikube
