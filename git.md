@@ -159,11 +159,23 @@ git --git-dir C:\project\horus\.git  branch --all
 ```
 
 ### clone operation under the hood
+if during the access ( clone, pull ) issue appear:
+```
+fatal: unable to access 'http://localhost:3000/vitalii/sensor-yaml.git/': The requested URL returned error: 407
+```
+or
+```
+fatal: unable to access 'http://localhost:3000/vitalii/sensor-yaml.git/': The requested URL returned error: 503
+```
+use next command to 'simulate' cloning
 ```
 git clone http://localhost:3000/vitalii/sensor-yaml.git
 < equals >
 wget http://localhost:3000/vitalii/sensor-yaml.git/info/refs?service=git-upload-pack
 ```
+
+
+
 
 ### clone only files without history, download code
 ```
