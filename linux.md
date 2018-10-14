@@ -15,6 +15,11 @@ ssh -L <localport>:<remote host>:<remote port> <hostname>
 ssh -L 28010:vldn337:8010 localhost
 ```
 
+from local port 7000 to remote 5005
+```
+ssh -L 7000:127.0.0.1:5005 cherkavi@134.190.200.201
+```
+
 ### tunnel, port forwarding from outside to localmachine
 ```
 ssh -R <remoteport>:<local host name>:<local port> <hostname>
