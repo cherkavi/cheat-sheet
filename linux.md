@@ -20,6 +20,12 @@ from local port 7000 to remote 5005
 ssh -L 7000:127.0.0.1:5005 cherkavi@134.190.200.201
 ```
 
+browser(ext_host) -> 134.190.2.5 -> 134.190.200.201
+```
+user@134.190.2.5:~$ ssh -L 134.190.2.5:8091:134.190.200.201:8091 cherkavi@134.190.200.201
+user@ext_host:~$ wget 134.190.2.5:8091/echo 
+```
+
 ### tunnel, port forwarding from outside to localmachine
 ```
 ssh -R <remoteport>:<local host name>:<local port> <hostname>
