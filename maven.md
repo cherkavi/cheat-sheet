@@ -31,6 +31,15 @@ mvn -T 4 clean install # 4 threads
 mvn clean install --projects :artifact_id
 ```
 
+### build test coverage
+plugin:  
+```
+org.scoverage:scoverage-maven-plugin:1.3.0:report
+```
+```
+mvn scoverage:report --projects :artifact_id
+```
+
 ### Java Vaadin project
 ``` 
 mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=7.2.5 -DgroupId=com.cherkashyn.vitalii.tools.barcode.ui -DartifactId=BarCodeUtilsUI -Dversion=1.0 -Dpackaging=war
