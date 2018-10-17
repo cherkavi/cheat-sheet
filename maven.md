@@ -26,6 +26,11 @@ mvn -T 1C clean install # 1 per thread
 mvn -T 4 clean install # 4 threads
 ```
 
+### build only specific subproject
+```
+mvn clean install --projects :artifact_id
+```
+
 ### Java Vaadin project
 ``` 
 mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=7.2.5 -DgroupId=com.cherkashyn.vitalii.tools.barcode.ui -DartifactId=BarCodeUtilsUI -Dversion=1.0 -Dpackaging=war
