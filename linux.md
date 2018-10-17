@@ -99,6 +99,11 @@ popd
 dirs
 ```
 
+### to previous folder
+```
+cd -
+```
+
 ### sudo reboot
 ```
 shutdown -r now
