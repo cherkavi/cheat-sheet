@@ -149,6 +149,9 @@ cut --delimiter "," --fields 2,3,4 test1.csv
 /var/log/syslog
 ```
 
+### avoid to put command into history, hide password into history, avoid history
+add space before command
+
 ### folder into bash script
 working folder
 ```
