@@ -31,6 +31,7 @@ user@ext_host:~$ wget 134.190.2.5:8091/echo
 ssh -R <remoteport>:<local host name>:<local port> <hostname>
 ssh -R 9020:127.0.0.1:9092 localhost
 ```
+
 ### gpg signature check, asc signature check, crt signature check
 ```
 gpg --keyserver keyserver.ubuntu.com --recv-keys 9032CAE4CBFA933A5A2145D5FF97C53F183C045D
@@ -154,6 +155,20 @@ cut --delimiter "," --fields 2,3,4 test1.csv
 /var/log/messages
 /var/log/syslog
 ```
+
+### add repository
+```
+add-apt-repository ppa:inkscape.dev/stable
+```
+you can find additional file into
+```
+/etc/apt/sources.list.d
+```
+search after adding
+```
+apt-cache search inkscape
+```
+
 
 ### avoid to put command into history, hide password into history, avoid history
 add space before command
