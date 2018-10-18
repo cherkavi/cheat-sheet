@@ -687,7 +687,7 @@ rm ~/.ssh/known_hosts
 ```
 
 ### proxy
-* /etc/profile.d/proxy.sh
+* for user /etc/profile.d/proxy.sh
 ```
 export HTTP_PROXY=http://webproxy.host:3128
 export http_proxy=http://webproxy.host:3128
@@ -697,10 +697,34 @@ export NO_PROXY="localhost,127.0.0.1,.host,.viola.local"
 export no_proxy="localhost,127.0.0.1,.host,.viola.local"
 ```
 
-* /etc/environment
+* global /etc/environment
 ```
 http_proxy=http://webproxy.host:3128
 no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
+```
+* for application
+create environment for http
+```
+sudo gedit /etc/systemd/system/{service name}.service.d/http-proxy.conf
+
+[Service]
+Environment="http_proxy=http://user:passw@webproxy.host:8080"
+```
+
+create environment for https
+```
+sudo gedit /etc/systemd/system/{service name}.service.d/https-proxy.conf
+[Service]
+Environment="https_proxy=http://user:passw@webproxy.host:8080"
+```
+restart service
+```
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart {service name}
+```
+check settings
+```
+systemctl show {service name} | grep proxy
 ```
 
 ### apache
