@@ -68,6 +68,12 @@ chmod 600 ~/.ssh/authorized_keys
 sudo apt get ssh
 sudo service ssh start
 ```
+
+### copy from one machine to another, remote copy
+```
+scp filename.txt cherkavi@129.191.200.15:~/temp/filename-from-local.txt
+```
+
 ### here document, sftp batch command with bash
 ```
 sftp -P 2222 my_user@localhost << END_FILE_MARKER
