@@ -1,5 +1,6 @@
 Docker
 ======
+### [online playground](https://labs.play-with-docker.com)
 
 ### information about docker itself
 ```
@@ -415,8 +416,6 @@ ENV JAR=$app_name.jar
 | ONBUILD |  Adds an instruction to be executed later, when the image is used as the base for another build|
 | STOPSIGNAL |  Sets the system call signal that will be sent to the container to exit|
 
-### [online playground](https://labs.play-with-docker.com)
-
 ### push your container
 * docker login
 * docker tag <name of the container> <dockerhub username>/<name of the container>
@@ -470,3 +469,71 @@ In file './docker-compose.yml' service 'version' doesn't have any configuration 
 solution: 
 * check format of the docker-compose file
 * install docker-copmose respective your Docker version
+
+# Docker swarm
+## init 'manager' node
+```
+docker swarm init --advertise-addr eth0
+```
+you will see invitation to add 'worker' node like
+```
+docker swarm join --token SWMTKN-1-3p93jlhx2hx9wif8xphl6e47c5ukwz12a00na81g7h0uopk6he-6xof1chqhjuor7hkn65ggjw1p 192.168.0.18:2377
+```
+
+to show token again
+```
+docker swarm join-token worker
+docker swarm join-token manager
+```
+
+amount of managers:
+* Three manager nodes tolerate one node failure.
+* Five manager nodes tolerate two node failures.
+* Seven manager nodes tolerate three node failure
+amount of worker nodes - hundreds, thousands!!!
+
+to leave docker cluster
+```
+docker swarm leave
+```
+
+to print amount of nodes into cluster
+```
+docker node ls
+docker node inspect {node name}
+```
+## create service ( for manager only )
+```
+docker service create --detach=true --name nginx1 --publish 80:80  --mount source=/etc/hostname,target=/usr/share/nginx/html/index.html,type=bind,ro nginx:1.12
+pgqdxr41dpy8qwkn6qm7vke0q
+```
+
+## inspect services
+```
+docker service ls
+```
+
+## inspect service
+```
+docker service ps {service name}
+```
+
+## update service, change service attributes
+```
+docker service update --replicas=5 --detach=true {service name}
+docker service update --image nginx:1.13 --detach=true nginx1
+```
+* store desire state into internal storage
+* swarm recognized diff between desired and current state
+* tasks will be executed according diff
+
+## service log
+log will be aggregated into one place and can be shown
+```
+docker service log
+```
+
+## routing mesh effect
+```
+The routing mesh built into Docker Swarm means that any port that is published at the service level will be exposed on every node in the swarm. Requests to a published service port will be automatically routed to a container of the service that is running in the swarm.
+```
