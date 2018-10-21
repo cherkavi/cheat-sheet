@@ -53,6 +53,17 @@ test in assembly := {}
 sbt assembly
 ```
 
+## enter into interactive mode
+```
+sbt
+```
+
+## execute command from interactive mode via direct sbt call
+```
+sbt "runMain com.cherkashyn.vitalii.finch.Finchwebapp"
+```
+
+
 ## default local lib storage, local repository
 ```
 $HOME/.ivy2/cache/{path to library}
