@@ -825,6 +825,11 @@ reaver -i wlan0mon -b <BSSID> -vv -K 1
 http://cups.org - printer installation
 http://localhost:631/admin
 
+## disk usage
+```
+ncdu
+```
+
 
 # MacOS
 ## bashrc replacement
