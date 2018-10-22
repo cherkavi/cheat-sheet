@@ -1,8 +1,9 @@
 ## Spark
-[main documentation](https://spark.apache.org/docs/latest/)
-[app examples](https://mvnrepository.com/artifact/org.apache.spark/spark-examples)
-[scala, java, python start point app](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_3.pdf)
-[configuration and monitoring](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_5.pdf)
+* [main documentation](https://spark.apache.org/docs/latest/)
+* [app examples](https://mvnrepository.com/artifact/org.apache.spark/spark-examples)
+* [scala, java, python start point app](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_3.pdf)
+* [configuration and monitoring](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_5.pdf)
+* [Mastering apache spark](https://jaceklaskowski.gitbooks.io/mastering-apache-spark/)
 
 ### configuration ( spark-defaults.conf )
 http://<driver>:4040
