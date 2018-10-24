@@ -130,7 +130,7 @@ cat prefixFiles* > newimage.jpg
 
 
 ### unique lines (duplications) into file
-#### add count
+#### add counter and print result
 ```
 uniq -c
 ```
