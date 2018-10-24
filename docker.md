@@ -175,6 +175,15 @@ docker ps -a
 ```
 docker attach {CONTAINER ID}
 ```
+with detached sequence
+```
+docker attach {CONTAINER ID} --detach-keys="ctrl-Z"
+```
+with translation of all signals ( detaching: ctrl-p & ctrl-q )
+```
+docker attach {CONTAINER ID} --sig-proxy=true
+```
+
 
 ### docker log of container, console output
 ```
