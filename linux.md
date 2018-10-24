@@ -120,6 +120,10 @@ shutdown -r now
 ```
 sort <filename>
 ```
+sort by column ( space delimiter )
+```
+sort -k 3
+```
 
 ### split and merge big files
 ```
