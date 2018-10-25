@@ -203,10 +203,17 @@ contains links to ../init.d/<name of bash script>
 should understand next options: start, stop, restart
 ```
 
-reset X-server
+reset X-server, reset linux gui
 ```
 sudo init 3
 sudo init 5
+```
+```
+sudo pkill X
+```
+start
+```
+sudo startx
 ```
 
 ### mc color, midnight commander
