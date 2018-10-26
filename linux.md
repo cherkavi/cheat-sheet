@@ -203,7 +203,7 @@ contains links to ../init.d/<name of bash script>
 should understand next options: start, stop, restart
 ```
 
-reset X-server, reset linux gui
+reset X-server, re-start xserver, reset linux gui
 ```
 sudo init 3
 sudo init 5
@@ -211,9 +211,16 @@ sudo init 5
 ```
 sudo pkill X
 ```
+```
+sudo service lightdm stop
+sudo service lightdm force-reload
+```
 start
 ```
 sudo startx
+```
+```
+sudo service lightdm start
 ```
 
 ### mc color, midnight commander
