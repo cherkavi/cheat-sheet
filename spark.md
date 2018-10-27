@@ -93,6 +93,29 @@ sc = SparkContext( conf = SparkConf().setAppName("my-app").setMaster("local") )
 from pyspark.sql import SQLContext
 sqlContext = SQLContext(sc)
 ```
+### create data inline
+```
+import spark.implicits._
+```
+```
+val words = Seq( ("John", 44), ("Mary",38), ("Chak",18)
+).toDF("name", "age")
+```
+create data with predefined schema
+```
+val schema = new StructType()
+  .add(StructField("Name", StringType, true))
+  .add(StructField("Age", IntegerType, true))
+  
+sqlContext.createDataFrame(
+sc.parallelize(
+  Seq(
+    Row("John", 27),
+    Row("Mary", 25)
+  )
+), schema)
+```
+
 
 ### read data
 read csv file without header
@@ -102,6 +125,13 @@ spark.read.format("csv").option("header", "true").load("/tmp/1.txt")
 read json format
 ```
 spark.read.format("json").load("/tmp/1.json")
+```
+
+### describe data
+```
+words.show()
+words.describe()
+words.printSchema()
 ```
 
 ### Side effect
