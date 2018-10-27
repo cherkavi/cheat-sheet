@@ -104,8 +104,8 @@ val words = Seq( ("John", 44), ("Mary",38), ("Chak",18)
 create data with predefined schema
 ```
 val schema = new StructType()
-  .add(StructField("Name", StringType, true))
-  .add(StructField("Age", IntegerType, true))
+  .add(StructField("name", StringType, true))
+  .add(StructField("age", IntegerType, true))
   
 sqlContext.createDataFrame(
 sc.parallelize(
@@ -114,6 +114,17 @@ sc.parallelize(
     Row("Mary", 25)
   )
 ), schema)
+```
+```
+val someDF = spark.createDF(
+  List(
+    ("John", 27),
+    ("Mary", 25)
+  ), List(
+    ("name", StringType, true),
+    ("age", IntegerType, true)
+  )
+)
 ```
 
 
