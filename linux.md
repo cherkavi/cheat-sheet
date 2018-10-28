@@ -316,6 +316,11 @@ bg
 ctrl-Z
 fg
 ```
+resume process by number into list 'jobs'
+```
+fg 2
+```
+
 
 ### postponed execution
 ```
