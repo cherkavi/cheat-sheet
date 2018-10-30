@@ -47,6 +47,11 @@ output example:
 -rw-r--r--   1 root supergroup       5107 2017-10-27 12:57 hdfs://hadoop-local:9000/data/Iris.csv
              ^ factor of replication
 ```
+### find files
+for cloudera only !!!
+```
+hadoop jar /opt/cloudera/parcels/CDH/jars/search-mr-1.0.0-cdh5.14.4-job.jar org.apache.solr.hadoop.HdfsFindTool -find hdfs:///data/ingest/ -type d -name "some-name-of-the-directory"
+```
 
 ### change factor of replication 
 ```
