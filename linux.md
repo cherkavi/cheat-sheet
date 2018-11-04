@@ -619,7 +619,11 @@ sudo apt-get install {package name}={version}
 ```
 sudo apt-get clean
 sudo apt-get autoremove --purge
+```
 
+### uninstall specific app
+```
+sudo apt-get --purge remote {app name}
 ```
 
 ### remove service ( kubernetes )
