@@ -166,6 +166,11 @@ spark.speculation.multiplier = 1.5
 spark.scheduler.mode = FAIR # not to wait in the queue - round robin eviction to be executed somewhere
 ```
 
+### measuring time of operation
+```
+spark.time(dataFrame.show)
+```
+
 ### passing functions into Spark
 * anonymous functions syntax
 ```
