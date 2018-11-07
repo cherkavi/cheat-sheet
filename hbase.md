@@ -66,6 +66,11 @@ create table 'mytable1'
 descibe 'my_space:mytable1'
 ```
 
+* count records
+```
+count 'my_space:mytable1'
+```
+
 * delete table
 ```
 drop table 'mytable1'
