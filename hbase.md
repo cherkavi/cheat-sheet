@@ -72,6 +72,10 @@ disable table 'mytable1'
 scan 'my_space:mytable1'
 scan 'my_space:mytable1', {STARTROW=>"00223cfd-8b50-979d29164e72:1220", STOPROW=>"00223cfd-8b50-979d29164e72:1520"}
 ```
+* save results into a file
+```
+echo " scan 'my_space:mytable1', {STARTROW=>"00223cfd-8b50-979d29164e72:1220", STOPROW=>"00223cfd-8b50-979d29164e72:1520"} " | hbase shell > out.txt
+```
 
 * insert data
 ```
