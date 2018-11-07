@@ -61,6 +61,11 @@ list
 create table 'mytable1'
 ```
 
+* description of the table
+```
+descibe 'my_space:mytable1'
+```
+
 * delete table
 ```
 drop table 'mytable1'
