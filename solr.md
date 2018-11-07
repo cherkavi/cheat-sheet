@@ -1,8 +1,16 @@
 # Key terms
 ![Core, collection](https://i.postimg.cc/HLGhMgMd/Solr-_Core-_Collection.png)
 
+# copy collection/core manually 
+* cp solr/example/solr/collection1 solr/example/solr/collection2
+* rm solr/example/solr/collection2/data
+* core.properties # name=collection2
+* change schema.xml [doc](https://wiki.apache.org/solr/SchemaXml) [src-code](https://github.com/apache/lucene-solr/blob/master/solr/solr-ref-guide/src/field-type-definitions-and-properties.adoc)
+
+
 # REST API collaboration
 [Official documentation for different versions](http://archive.apache.org/dist/lucene/solr/ref-guide/)
+[Solr REST API admin](https://lucene.apache.org/solr/guide/6_6/coreadmin-api.html)
 
 **TIP:** *investigate request/response of the Solr UI*
 
@@ -10,6 +18,12 @@
 * wt=json
 * wt=xml
 
+## system info
+```
+curl -i -k --negotiate -u: https://134.190.200.9:8983/solr/admin/info/system?wt=xml
+curl -i -k --negotiate -u: https://134.190.200.9:8983/solr/admin/info/system?wt=json
+curl 134.190.200.9:8983/solr/admin/info/system?wt=json
+```
 
 ## read collections
 ```

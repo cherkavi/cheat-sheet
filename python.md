@@ -22,7 +22,12 @@ sudo apt install python3-distutils
 
 ### upgrade pip
 ```
+pip3 install --upgrade pip
 pip install -U pip
+```
+debian
+```
+apt-get install -y --no-install-recommends python3-pip
 ```
 
 ### install certain version of artifact
@@ -68,11 +73,15 @@ pip.main("install", "wheels")
 ```
 fix for version 9 and 10
 ```
+error message: AttributeError: 'module' object has no attribute 'main'
+```
+solution:
+```
 try:
     from pip import main as pipmain
 except:
     from pip._internal import main as pipmain
-pipmain(["install", "wheels"])
+pipmain(["install", "wheels"]);
 ```
 
 ### import package by string name

@@ -23,7 +23,13 @@ gradlew test -Dtest.single=< wildcard of test > build
 ### init project
 ```
 gradle init --groovy-application
+gradle init --type java-library
 ```
+* java-application
+* java-library
+* scala-library
+* groovy-library
+* basic
 
 ### execute groovy script
 add into build.gradle
@@ -36,4 +42,9 @@ task runScript (dependsOn: 'classes', type: JavaExec) {
 execute script 
 ```
 gradle runtScript
+```
+
+## proxy settings
+```
+gradle build -Dhttp.proxyHost=proxy-host -Dhttp.proxyPort=8080 -Dhttp.proxyUser=q4577777 -Dhttp.proxyPassword=my-password
 ```

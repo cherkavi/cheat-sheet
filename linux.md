@@ -15,11 +15,23 @@ ssh -L <localport>:<remote host>:<remote port> <hostname>
 ssh -L 28010:vldn337:8010 localhost
 ```
 
+from local port 7000 to remote 5005
+```
+ssh -L 7000:127.0.0.1:5005 cherkavi@134.190.200.201
+```
+
+browser(ext_host) -> 134.190.2.5 -> 134.190.200.201
+```
+user@134.190.2.5:~$ ssh -L 134.190.2.5:8091:134.190.200.201:8091 cherkavi@134.190.200.201
+user@ext_host:~$ wget 134.190.2.5:8091/echo 
+```
+
 ### tunnel, port forwarding from outside to localmachine
 ```
 ssh -R <remoteport>:<local host name>:<local port> <hostname>
 ssh -R 9020:127.0.0.1:9092 localhost
 ```
+
 ### gpg signature check, asc signature check, crt signature check
 ```
 gpg --keyserver keyserver.ubuntu.com --recv-keys 9032CAE4CBFA933A5A2145D5FF97C53F183C045D
@@ -39,6 +51,11 @@ ssh-keygen -t rsa
 ```
 ssh-copy-id {username}@{machine ip}:{port}
 ```
+sometimes need to add next
+```
+ssh-agent bash
+ssh-add ~/.ssh/id_dsa or id_rsa
+```
 
 the same, but manually:
 ```
@@ -52,6 +69,12 @@ chmod 600 ~/.ssh/authorized_keys
 sudo apt get ssh
 sudo service ssh start
 ```
+
+### copy from one machine to another, remote copy
+```
+scp filename.txt cherkavi@129.191.200.15:~/temp/filename-from-local.txt
+```
+
 ### here document, sftp batch command with bash
 ```
 sftp -P 2222 my_user@localhost << END_FILE_MARKER
@@ -83,6 +106,11 @@ popd
 dirs
 ```
 
+### to previous folder
+```
+cd -
+```
+
 ### sudo reboot
 ```
 shutdown -r now
@@ -91,6 +119,10 @@ shutdown -r now
 ### sort, order
 ```
 sort <filename>
+```
+sort by column ( space delimiter )
+```
+sort -k 3
 ```
 
 ### split and merge big files
@@ -102,7 +134,7 @@ cat prefixFiles* > newimage.jpg
 
 
 ### unique lines (duplications) into file
-#### add count
+#### add counter and print result
 ```
 uniq -c
 ```
@@ -127,6 +159,23 @@ cut --delimiter "," --fields 2,3,4 test1.csv
 /var/log/messages
 /var/log/syslog
 ```
+
+### add repository
+```
+add-apt-repository ppa:inkscape.dev/stable
+```
+you can find additional file into
+```
+/etc/apt/sources.list.d
+```
+search after adding
+```
+apt-cache search inkscape
+```
+
+
+### avoid to put command into history, hide password into history, avoid history
+add space before command
 
 ### folder into bash script
 working folder
@@ -154,10 +203,24 @@ contains links to ../init.d/<name of bash script>
 should understand next options: start, stop, restart
 ```
 
-reset X-server
+reset X-server, re-start xserver, reset linux gui
 ```
 sudo init 3
 sudo init 5
+```
+```
+sudo pkill X
+```
+```
+sudo service lightdm stop
+sudo service lightdm force-reload
+```
+start
+```
+sudo startx
+```
+```
+sudo service lightdm start
 ```
 
 ### mc color, midnight commander
@@ -253,6 +316,11 @@ bg
 ctrl-Z
 fg
 ```
+resume process by number into list 'jobs'
+```
+fg 2
+```
+
 
 ### postponed execution
 ```
@@ -316,6 +384,10 @@ cat file.txt | grep -e "occurence1" | grep -e "occurence2"
 ### grep not included, grep NOT
 ```
 cat file.txt | grep -v "not-include-string"
+```
+### grep with file mask
+```
+grep -ir "memory" --include="*.scala"
 ```
 
 ### find inside zip file(s), grep zip, zip grep
@@ -547,7 +619,11 @@ sudo apt-get install {package name}={version}
 ```
 sudo apt-get clean
 sudo apt-get autoremove --purge
+```
 
+### uninstall specific app
+```
+sudo apt-get --purge remote {app name}
 ```
 
 ### remove service ( kubernetes )
@@ -638,7 +714,7 @@ rm ~/.ssh/known_hosts
 ```
 
 ### proxy
-* /etc/profile.d/proxy.sh
+* for user /etc/profile.d/proxy.sh
 ```
 export HTTP_PROXY=http://webproxy.host:3128
 export http_proxy=http://webproxy.host:3128
@@ -648,10 +724,34 @@ export NO_PROXY="localhost,127.0.0.1,.host,.viola.local"
 export no_proxy="localhost,127.0.0.1,.host,.viola.local"
 ```
 
-* /etc/environment
+* global /etc/environment
 ```
 http_proxy=http://webproxy.host:3128
 no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
+```
+* for application
+create environment for http
+```
+sudo gedit /etc/systemd/system/{service name}.service.d/http-proxy.conf
+
+[Service]
+Environment="http_proxy=http://user:passw@webproxy.host:8080"
+```
+
+create environment for https
+```
+sudo gedit /etc/systemd/system/{service name}.service.d/https-proxy.conf
+[Service]
+Environment="https_proxy=http://user:passw@webproxy.host:8080"
+```
+restart service
+```
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart {service name}
+```
+check settings
+```
+systemctl show {service name} | grep proxy
 ```
 
 ### apache
@@ -751,6 +851,11 @@ reaver -i wlan0mon -b <BSSID> -vv -K 1
 ## printer managing ( add/remote/edit )
 http://cups.org - printer installation
 http://localhost:631/admin
+
+## disk usage
+```
+ncdu
+```
 
 
 # MacOS

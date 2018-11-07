@@ -20,6 +20,26 @@ mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.smava.onsite -DartifactI
 mvn eclipse:eclipse -Dwtpversion=2.0
 ```
 
+### build with many threads
+```
+mvn -T 1C clean install # 1 per thread 
+mvn -T 4 clean install # 4 threads
+```
+
+### build only specific subproject
+```
+mvn clean install --projects :artifact_id
+```
+
+### build test coverage
+plugin:  
+```
+org.scoverage:scoverage-maven-plugin:1.3.0:report
+```
+```
+mvn scoverage:report --projects :artifact_id
+```
+
 ### Java Vaadin project
 ``` 
 mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=7.2.5 -DgroupId=com.cherkashyn.vitalii.tools.barcode.ui -DartifactId=BarCodeUtilsUI -Dversion=1.0 -Dpackaging=war
@@ -45,7 +65,6 @@ mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -Darchetyp
 ``` 
 mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -DarchetypeArtifactId=karaf-bundle-archetype -DarchetypeVersion=2.2.8 -DgroupId=com.mycompany -DartifactId=KarafExample -Dversion=1.0-SNAPSHOT -Dpackage=com.mycompany.bundle
 ```
-
 
 ### debug from IDE, IDE debug
 ```-DforkCount=0 -DreuseForks=false -DforkMode=never ```
@@ -94,6 +113,24 @@ Oracle depencdencies
 Oracle driver
 ```
 Class<?> driverClass = Class.forName("oracle.jdbc.driver.OracleDriver");
+```
+
+## settings
+### proxy settings
+* $MAVEN_HOME/conf/settings.xml
+* ${user.home}/.m2/settings.xml
+```
+<proxies>
+    <proxy>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>proxy.somewhere.com</host>
+      <port>8080</port>
+      <username>proxyuser</username>
+      <password>somepassword</password>
+      <nonProxyHosts>www.google.com|*.somewhere.com</nonProxyHosts>
+    </proxy>
+  </proxies>
 ```
 
 ## Plugins:

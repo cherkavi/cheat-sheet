@@ -1,5 +1,6 @@
 Docker
 ======
+### [online playground](https://labs.play-with-docker.com)
 
 ### information about docker itself
 ```
@@ -14,6 +15,11 @@ docker system info
 ( add current user into docker group )
 3. sudo service docker restart
 
+Issue:
+```
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock
+```
+logout and login again
 
 
 ## proxy set up:
@@ -169,6 +175,15 @@ docker ps -a
 ```
 docker attach {CONTAINER ID}
 ```
+with detached sequence
+```
+docker attach {CONTAINER ID} --detach-keys="ctrl-Z"
+```
+with translation of all signals ( detaching: ctrl-p & ctrl-q )
+```
+docker attach {CONTAINER ID} --sig-proxy=true
+```
+
 
 ### docker log of container, console output
 ```
@@ -296,7 +311,7 @@ Additional management
 docker system df
 ```
 
-### remove unused data
+### remove unused data, remove stopped containers
 ```
 docker system prune
 ```
@@ -378,10 +393,22 @@ docker build -t {name of my own image}:latest {name of docker file | . }
 docker build -t solr-4.10.3:latest . // Dockerfile into current folder
 ```
 
+### build with parameters
+```
+build --build-arg app_name=k8s-ambassador
+```
+
+inside Dockerfile
+```
+ARG app_name
+ENV JAR=$app_name.jar
+```
+
+
 ### build useful commands
 | command |   description |
 |---------|---------------|
-| FROM | Sets the base image for subsequent|
+| FROM | Sets the base image, starting image to build the container, must be first line|
 | MAINTAINER  | Sets the author field of the generated images|
 | RUN |  Execute commands in a new layer on top of the current image and commit the results|
 | CMD |  Allowed only once (if many then last one takes effect)|
@@ -398,6 +425,21 @@ docker build -t solr-4.10.3:latest . // Dockerfile into current folder
 | ONBUILD |  Adds an instruction to be executed later, when the image is used as the base for another build|
 | STOPSIGNAL |  Sets the system call signal that will be sent to the container to exit|
 
+### push your container
+* docker login
+* docker tag <name of the container> <dockerhub username>/<name of the container>
+* docker push <dockerhub username>/<name of the container>
+
+### advices
+* for a starting points ( FROM ) using -alpine or -scratch images, for example: "FROM python:3.6.1-alpine"
+* Each line in a Dockerfile creates a new layer, and because of the layer cache, the lines that change more frequently, for example, adding source code to an image, should be listed near the bottom of the file.
+* CMD will be executed after COPY
+```
+FROM python:3.6.1-alpine
+RUN pip install flask
+CMD ["python","app.py"]
+COPY app.py /app.py
+```
 
 Examples
 ------
@@ -413,4 +455,94 @@ docker run --name mysql-container --volume /my/local/folder/with/data:/var/lib/m
 * MariaDB sql dump creation:
 ```
 docker exec mysql-container sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql
+```
+
+# Docker compose
+
+## [installation](https://github.com/docker/compose/releases)
+```
+chmod +x docker-compose-Linux-x86_64
+sudo mv docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
+sudo apt-get install  --only-upgrade docker
+```
+
+## start in detached mode, up and detach
+```
+docker-compose up -d
+```
+
+## Issues
+```
+In file './docker-compose.yml' service 'version' doesn't have any configuration options.
+```
+solution: 
+* check format of the docker-compose file
+* install docker-copmose respective your Docker version
+
+# Docker swarm
+## init 'manager' node
+```
+docker swarm init --advertise-addr eth0
+```
+you will see invitation to add 'worker' node like
+```
+docker swarm join --token SWMTKN-1-3p93jlhx2hx9wif8xphl6e47c5ukwz12a00na81g7h0uopk6he-6xof1chqhjuor7hkn65ggjw1p 192.168.0.18:2377
+```
+
+to show token again
+```
+docker swarm join-token worker
+docker swarm join-token manager
+```
+
+amount of managers:
+* Three manager nodes tolerate one node failure.
+* Five manager nodes tolerate two node failures.
+* Seven manager nodes tolerate three node failure
+amount of worker nodes - hundreds, thousands!!!
+
+to leave docker cluster
+```
+docker swarm leave
+```
+
+to print amount of nodes into cluster
+```
+docker node ls
+docker node inspect {node name}
+```
+## create service ( for manager only )
+```
+docker service create --detach=true --name nginx1 --publish 80:80  --mount source=/etc/hostname,target=/usr/share/nginx/html/index.html,type=bind,ro nginx:1.12
+pgqdxr41dpy8qwkn6qm7vke0q
+```
+
+## inspect services
+```
+docker service ls
+```
+
+## inspect service
+```
+docker service ps {service name}
+```
+
+## update service, change service attributes
+```
+docker service update --replicas=5 --detach=true {service name}
+docker service update --image nginx:1.13 --detach=true nginx1
+```
+* store desire state into internal storage
+* swarm recognized diff between desired and current state
+* tasks will be executed according diff
+
+## service log
+log will be aggregated into one place and can be shown
+```
+docker service log
+```
+
+## routing mesh effect
+```
+The routing mesh built into Docker Swarm means that any port that is published at the service level will be exposed on every node in the swarm. Requests to a published service port will be automatically routed to a container of the service that is running in the swarm.
 ```

@@ -1,8 +1,9 @@
 ## Spark
-[main documentation](https://spark.apache.org/docs/latest/)
-[app examples](https://mvnrepository.com/artifact/org.apache.spark/spark-examples)
-[scala, java, python start point app](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_3.pdf)
-[configuration and monitoring](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_5.pdf)
+* [main documentation](https://spark.apache.org/docs/latest/)
+* [app examples](https://mvnrepository.com/artifact/org.apache.spark/spark-examples)
+* [scala, java, python start point app](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_3.pdf)
+* [configuration and monitoring](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_5.pdf)
+* [Mastering apache spark](https://jaceklaskowski.gitbooks.io/mastering-apache-spark/)
 
 ### configuration ( spark-defaults.conf )
 http://<driver>:4040
@@ -92,13 +93,57 @@ sc = SparkContext( conf = SparkConf().setAppName("my-app").setMaster("local") )
 from pyspark.sql import SQLContext
 sqlContext = SQLContext(sc)
 ```
+### create data inline
+```
+import spark.implicits._
+```
+```
+val words = Seq( ("John", 44), ("Mary",38), ("Chak",18)
+).toDF("name", "age")
+```
+create data with predefined schema
+```
+val schema = new StructType()
+  .add(StructField("name", StringType, true))
+  .add(StructField("age", IntegerType, true))
+  
+sqlContext.createDataFrame(
+sc.parallelize(
+  Seq(
+    Row("John", 27),
+    Row("Mary", 25)
+  )
+), schema)
+```
+```
+val someDF = spark.createDF(
+  List(
+    ("John", 27),
+    ("Mary", 25)
+  ), List(
+    ("name", StringType, true),
+    ("age", IntegerType, true)
+  )
+)
+```
+
 
 ### read data
 read csv file without header
 ```
 spark.read.format("csv").option("header", "true").load("/tmp/1.txt")
 ```
+read json format
+```
+spark.read.format("json").load("/tmp/1.json")
+```
 
+### describe data
+```
+words.show()
+words.describe()
+words.printSchema()
+```
 
 ### Side effect
 any task can be executed more than once !!!!
@@ -119,6 +164,11 @@ spark.speculation.multiplier = 1.5
 ```
 # default = FIFO
 spark.scheduler.mode = FAIR # not to wait in the queue - round robin eviction to be executed somewhere
+```
+
+### measuring time of operation
+```
+spark.time(dataFrame.show)
 ```
 
 ### passing functions into Spark
@@ -276,11 +326,40 @@ spark.driver.extraClassPath  pathOfJarsWithCommaSeprated
 scala> :require /path/to/file.jar
 
 # spark shell, spark-shell, spark2-shell
+## execute console wit edditional jar and in debug mode and multi-config lines
+```
+spark-shell \
+--jars "/home/some_path/solr-rest_2.11-0.1.jar,/home/someuser/.ivy2/cache/org.json/json/bundles/json-20180813.jar" \
+--conf "spark.driver.extraJavaOptions=-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
+--conf "spark.executor.extraJavaOptions=-XX:+UseG1GC -XX:+PrintReferenceGC -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintAdaptiveSizePolicy -XX:+PrintFlagsFinal -XX:+UnlockDiagnosticVMOptions -XX:+G1SummarizeConcMark"
+```
+
 ## read text file with json ( each line - separate json)
 ```
 spark.read.json("/home/technik/temp/rdd-processedLabels.json")
+
 sc.textFile("/home/technik/temp/rdd-processedLabels.json").values().map(json.loads)
+
 import scala.util.parsing.json._
 sc.wholeTextFiles("/home/technik/temp/rdd-processedLabels.json").values.map(v=>v)
 
+df.head(10).toJSON
+df.toJSON.take(10)
+
+// get value from sql.Row
+df.map( v=> (v.getAs[Map[String, String]]("processedLabel"), v.getAs[String]("projectName"), v.getAs[String]("sessionId"), v.getAs[Long]("timestamp")  ) )
+
+```
+## read history
+```
+:history
+```
+
+## repeat command from history
+```
+:37
+```
+## load script from file
+```
+:load <path to file>
 ```
