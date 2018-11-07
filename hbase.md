@@ -45,6 +45,7 @@ $HBASE_HOME/bin/stop-hbase.sh
 ```
 
 ## interactive shell
+[cheat sheet](https://learnhbase.wordpress.com/2013/03/02/hbase-shell-commands/)
 ```
 $HBASE_HOME/bin/hbase shell
 ```
