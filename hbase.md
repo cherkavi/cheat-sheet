@@ -66,9 +66,10 @@ drop table 'mytable1'
 disable table 'mytable1'
 ```
 
-* iterate through a table
+* iterate through a table, iterate with range
 ```
-scan 'mytable1'
+scan 'my_space:mytable1'
+scan 'my_space:mytable1', {STARTROW=>"00223cfd-8b50-979d29164e72:1220", STOPROW=>"00223cfd-8b50-979d29164e72:1520"}
 ```
 
 * insert data
