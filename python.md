@@ -4,6 +4,11 @@
 ```
 %PYTHON%/Scripts/easy_install.exe <package name>
 ```
+## using easy_install from script
+```
+from setuptools.command import easy_install
+easy_install.main( ["-U","termcolor"] )
+```
 
 ## package manager pip
 ### install pip
