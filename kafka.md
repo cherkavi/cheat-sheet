@@ -66,6 +66,11 @@ bin/kafka-topics.sh --delete --zookeeper localhost:2181 --topic mytopic
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --list
 ```
 
+# topics describe
+```
+kafka-topics --describe --zookeeper localhost:2181 --topic mytopicname
+```
+
 ## topic update
 ```
 bin/kafka-topics.sh --alter --zookeeper localhost:2181 --partitions 5 --topic mytopic
