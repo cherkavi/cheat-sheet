@@ -1,10 +1,22 @@
 # [python3 readiness](http://py3readiness.org/)
 
+## proxy 
+```
+import os
+
+proxy = 'http://<user>:<pass>@<proxy>:<port>'
+os.environ['http_proxy'] = proxy 
+os.environ['HTTP_PROXY'] = proxy
+os.environ['https_proxy'] = proxy
+os.environ['HTTPS_PROXY'] = proxy
+```
+
 ## package manager easy_install
+### using it from cmd
 ```
 %PYTHON%/Scripts/easy_install.exe <package name>
 ```
-## using easy_install from script
+### using easy_install from script
 ```
 from setuptools.command import easy_install
 easy_install.main( ["-U","termcolor"] )
