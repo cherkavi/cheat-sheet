@@ -18,7 +18,7 @@ mongo --host 127.0.0.1 --port 27017 -u my_user -p my_password --authenticationDa
 ```
 * exec command directly 
 ```
-docker run -it <docker runtime container name> mongo --host 127.0.0.1 -u my_user -p my_password --authenticationDatabase my_db
+docker exec -it {containerID} mongo --host 127.0.0.1 -u my_user -p my_password --authenticationDatabase my_db
 ```
 
 ### create user via bash, mongo eval, execute commands from bash 
@@ -28,6 +28,32 @@ mongo admin --eval "db.createUser({user: '$MONGO_USER', pwd: '$MONGO_PASS', role
 
 ### change password via 'mongo' tool
 db.changeUserPassword(username, password)
+
+### start via docker-compose
+```
+version: '3.1'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+      - 28017:28017
+    volumes:
+      - /home/technik/projects/ista/mongo-docker/container-map-folder:/data/db mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: vitalii
+      MONGO_INITDB_ROOT_PASSWORD: vitalii
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 28018:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: vitalii
+      ME_CONFIG_MONGODB_ADMINPASSWORD: vitalii
+```
 
 ### discover environment, meta-information  'mongo' tool
 | commands | description |
