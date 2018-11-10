@@ -40,7 +40,7 @@ services:
       - 27017:27017
       - 28017:28017
     volumes:
-      - /home/technik/projects/ista/mongo-docker/container-map-folder:/data/db mongo
+      - /home/technik/projects/ista/mongo-docker/container-map-folder:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: vitalii
       MONGO_INITDB_ROOT_PASSWORD: vitalii
