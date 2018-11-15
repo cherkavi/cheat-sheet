@@ -178,6 +178,10 @@ hdfs dfsadmin -backup
 hadoop jar {path to jar} {classname}
 jarn jar {path to jar} {classname}
 ```
+### application list on YARN
+```
+yarn application --list
+```
 
 ---
 # Hortonworks sandbox
