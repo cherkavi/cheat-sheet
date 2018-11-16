@@ -145,9 +145,11 @@ context.read.json("my.json")
 ```
 import org.apache.spark.sql._
 val sqlContext = new org.apache.spark.sql.hive.HiveContext(sc)
-
 val data = sqlContext.read.format("orc").load("/path/to/file/*")
-
+```
+or
+```
+frame = spark.read.format("orc").load("/path/words.orc")
 ```
 
 ### save data
