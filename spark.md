@@ -129,13 +129,47 @@ val someDF = spark.createDF(
 
 
 ### read data
-read csv file without header
+* read csv file without header
 ```
 spark.read.format("csv").option("header", "true").load("/tmp/1.txt")
 ```
-read json format
+* read json format
 ```
 spark.read.format("json").load("/tmp/1.json")
+```
+or
+```
+context.read.json("my.json")
+```
+* read orc format
+```
+import org.apache.spark.sql._
+val sqlContext = new org.apache.spark.sql.hive.HiveContext(sc)
+
+val data = sqlContext.read.format("orc").load("/path/to/file/*")
+
+```
+
+### save data
+* csv
+```
+df.write.format("csv").save(filepath)
+```
+or
+```
+df.write.option("header", "true").csv("/data/home/csv")
+```
+* json
+``` 
+rdd.write.mode('append').json("/path/to/file")
+```
+* orc
+```
+data.toDF().write.mode(SaveMode.Overwrite).format("orc").save("/path/to/save/file")
+```
+or
+```
+dataframe.write.format("orc").mode("overwrite").save("/path/to/file")
 ```
 
 ### describe data
