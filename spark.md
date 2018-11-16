@@ -366,6 +366,12 @@ scala> :require /path/to/file.jar
 ```
 spark-shell -i /path/to/file.scala
 ```
+## inline execution and exit after execution
+```
+ spark-shell -i script.scala << END_FILE_MARKER
+:quit
+END_FILE_MARKER
+```
 
 ## execute console wit edditional jar and in debug mode and multi-config lines
 ```
