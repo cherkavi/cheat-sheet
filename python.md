@@ -52,7 +52,6 @@ apt-get install -y --no-install-recommends python3-pip
 pip install tornado==2.1.1
 ```
 
-
 ### install artifact from git
 ```
 pip install git+https://github.com/django-extensions/django-extensions
@@ -235,4 +234,15 @@ sudo apt-get install xvfb
 wget https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux64.tar.gz
 chmod +x geckodriver
 sudo cp geckodriver /usr/local/bin/
+```
+## IDEA
+### standard modules not found 
+```
+Have you set up a python interpreter facet?
+Open Project Structure CTRL+ALT+SHIFT+S
+
+Project settings -> Facets -> expand Python click on child -> Python Interpreter
+
+Then:
+Project settings -> Modules -> Expand module -> Python -> Dependencies -> select Python module SDK
 ```
