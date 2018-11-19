@@ -389,6 +389,10 @@ cat file.txt | grep -v "not-include-string"
 ```
 grep -ir "memory" --include="*.scala"
 ```
+### replace character into string
+```
+array = echo $result | tr {}, ' ' 
+```
 
 ### find inside zip file(s), grep zip, zip grep
 ```
