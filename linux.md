@@ -636,6 +636,12 @@ sudo apt-get --purge remote {app name}
 * rm -rf /etc/systemd/system/localkube.service
 * vi /var/log/syslog
 
+### last executed code, last script return value
+```
+if [[ $? -ne 0 ]]; then
+fi
+```
+
 ### remove VMWare player
 ```
 sudo vmware-installer -u vmware-player
