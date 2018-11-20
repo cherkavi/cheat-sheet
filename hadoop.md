@@ -27,6 +27,11 @@ docker run -it --name bdu_spark2 -P -p 4040:4040 -p 4041:4041 -p 8080:8080 -p808
 
 ## HDFS common commands
 
+### admin command, cluster settings
+```
+hdfs dfsadmin -report
+```
+
 ### help ( Distributed File System )
 ```
 hdfs dfs -help
