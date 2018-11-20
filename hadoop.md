@@ -32,6 +32,37 @@ docker run -it --name bdu_spark2 -P -p 4040:4040 -p 4041:4041 -p 8080:8080 -p808
 hdfs dfsadmin -report
 ```
 
+### list of namenodes, list of secondary nodes
+```
+hdfs getconf -namenodes
+hdfs getconf -secondaryNameNodes
+hdfs getconf -confKey dfs.namenode.name.dir
+```
+confKey:
+* dfs.namenode.name.dir
+* fs.defaultFS
+* yarn.resourcemanager.address
+* mapreduce.framework.name
+* dfs.namenode.name.dir
+* dfs.default.chunk.view.size
+* dfs.namenode.fs-limits.max-blocks-per-file
+* dfs.permissions.enabled
+* dfs.namenode.acls.enabled
+* dfs.replication
+* dfs.replication.max
+* dfs.namenode.replication.min
+* dfs.blocksize
+* dfs.client.block.write.retries
+* dfs.hosts.exclude
+* dfs.namenode.checkpoint.edits.dir
+* dfs.image.compress
+* dfs.image.compression.codec
+* dfs.user.home.dir.prefix
+* dfs.permissions.enabled
+* io.file.buffer.size
+* io.bytes-per-checksum
+* io.seqfile.local.dir
+
 ### help ( Distributed File System )
 ```
 hdfs dfs -help
