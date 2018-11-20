@@ -181,6 +181,13 @@ words.describe()
 words.printSchema()
 ```
 
+### access to FileSystem
+```
+      val fs = FileSystem.get(sparkSession.sparkContext.hadoopConfiguration)
+      val path: Path = new Path(pathInHadoopCluster)
+      if(fs.exists(path)) ...
+```
+
 ### Side effect
 any task can be executed more than once !!!!
 ```
