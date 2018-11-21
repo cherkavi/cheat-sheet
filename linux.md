@@ -458,62 +458,6 @@ subl(){
 }
 ```
 
-## AWK
-
-### awk another delimiter
-```
-awk -F '<new delimiter>'
-```
-example of multi delimiter:
-```
-awk -F '[/, ]'
-```
-
-### awk print last column
-```
-awk '{print $NF}'
-```
-
-### [awk example of applying function and conditions](https://www.gnu.org/software/gawk/manual/html_node/)
-```
-ps -aux | awk '{if(index($1,"a.vcherk")>0){print $0}}'
-ps -aux | awk '{print substr($0,1,20)}'
-```
-
-### awk one column output to two column separated comma
-```
-awk 'BEGIN{a=""}{if(a==""){a=$NF}else{print a","$NF; a=""}}'
-```
-
-### awk execute script from file
-```
-awk -f <filename>
-```
-
-### awk complex search, print line below
-```
-BEGIN{
-	need_to_print = 0
-}
-{
-    if(need_to_print >0){
-        print $N
-        need_to_print = need_to_print - 1
-    }else{
-		if( index($N, "Exception")>0 && index($N, "WrongException")==0 )  {
-			if(index($N,"[ERROR")==1 || index($N,"[WARN")==1){
-				print $N
-				need_to_print = 3
-			}
-		}
-    }
-}
-```
-### calculcate size of files by type
-```
-find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
-```
-
 ### sed, replace
 ```
 "name : " with "nomen" string
@@ -643,6 +587,8 @@ sudo apt-get --purge remote {app name}
 ### last executed code, last script return value
 ```
 if [[ $? -ne 0 ]]; then
+    echo "error"
+    exit 1
 fi
 ```
 
@@ -874,3 +820,62 @@ ncdu
 
 ## package manager
 brew
+
+
+# AWK
+
+### awk another delimiter
+```
+awk -F '<new delimiter>'
+```
+example of multi delimiter:
+```
+awk -F '[/, ]'
+```
+
+### awk print last column
+```
+awk '{print $NF}'
+```
+
+### [awk example of applying function and conditions](https://www.gnu.org/software/gawk/manual/html_node/)
+```
+ps -aux | awk '{if(index($1,"a.vcherk")>0){print $0}}'
+ps -aux | awk '{print substr($0,1,20)}'
+```
+
+### awk one column output to two column separated comma
+```
+awk 'BEGIN{a=""}{if(a==""){a=$NF}else{print a","$NF; a=""}}'
+```
+
+### awk execute script from file
+```
+awk -f <filename>
+```
+
+### awk complex search, print line below
+```
+BEGIN{
+  need_to_print = 0
+}
+{
+    if(need_to_print >0){
+        print $N
+        need_to_print = need_to_print - 1
+    }else{
+    if( index($N, "Exception")>0 && index($N, "WrongException")==0 )  {
+      if(index($N,"[ERROR")==1 || index($N,"[WARN")==1){
+        print $N
+        need_to_print = 3
+      }
+    }
+    }
+}
+```
+
+### calculcate size of files by type
+```
+find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
+```
+
