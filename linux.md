@@ -149,7 +149,7 @@ uniq -d
 uniq -u
 ```
 
-### print column from file
+### print column from file, split string with separator
 ```
 cut --delimiter "," --fields 2,3,4 test1.csv
 ```
