@@ -182,10 +182,6 @@ working folder
 ```
 pwd
 ```
-folder of the script
-```
-`dirname $0`/another_script_into_folder.sh
-```
 
 ### bash reading content of the file to command-line parameter
 ```
@@ -474,12 +470,6 @@ locate -ir "/zip$" | sed -n '2p'
 ps -aux | awk 'BEGIN{a=0}{a=a+1}END{print a}'
 ```
 
-### bash
-```
-[-n "$variable"] - non zero
-[-z "$variable"] - zero
-```
-
 ### last changed files, last updated file
 ```
 find -cmin -2
@@ -586,10 +576,6 @@ sudo apt-get --purge remote {app name}
 
 ### last executed code, last script return value
 ```
-if [[ $? -ne 0 ]]; then
-    echo "error"
-    exit 1
-fi
 ```
 
 ### remove VMWare player
