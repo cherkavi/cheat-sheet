@@ -66,6 +66,12 @@ pip install git+ssh://git@github.com/myuser/foo.git@my_version
 pip install --target=/home/user/my/python/packages package_name
 export PYTHONPATH=$PYTHONPATH:"/home/user/my/python/packages"
 ```
+### load package from specific folder inline
+```
+import sys
+sys.path.append("/path/to/your/my_extra_component")
+import extra_component
+```
 
 ### update package
 ```
