@@ -152,6 +152,12 @@ uniq -u
 ### print column from file, split string with separator
 ```
 cut --delimiter "," --fields 2,3,4 test1.csv
+cut --delimiter "," -f2,3,4 test1.csv
+```
+substring with fixed number of chars:  from 1.to(15) and 1.to(15) && 20.to(50) 
+```
+cut -c1-15
+cut -c1-15,20-50
 ```
 
 ### log information
