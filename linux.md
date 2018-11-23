@@ -836,14 +836,17 @@ ps -aux | awk '{if(index($1,"a.vcherk")>0){print $0}}'
 ps -aux | awk '{print substr($0,1,20)}'
 ```
 
-### awk one column output to two column separated comma
-```
-awk 'BEGIN{a=""}{if(a==""){a=$NF}else{print a","$NF; a=""}}'
-```
-
 ### awk execute script from file
 ```
 awk -f <filename>
+```
+### awk print last element
+```
+print($NF)
+```
+### awk print all elements
+```
+print($0)
 ```
 
 ### awk complex search, print line below
