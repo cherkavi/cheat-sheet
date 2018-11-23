@@ -117,7 +117,7 @@ hdfs dfs -cp /home/root/tmp/Iris.csv /data/
 
 ### remote copy ( not used client as pipe )
 ```
-hdfs distcp /home/root/tmp/Iris.csv /data/
+hadoop distcp /home/root/tmp/Iris.csv /data/
 ```
 
 ### read data from DataNode
