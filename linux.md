@@ -122,7 +122,11 @@ sort <filename>
 ```
 sort by column ( space delimiter )
 ```
-sort -k 3
+sort -k 3 <filename>
+```
+sort with reverse order
+```
+sort -r <filename>
 ```
 
 ### split and merge big files
