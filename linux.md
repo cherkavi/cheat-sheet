@@ -389,10 +389,17 @@ cat file.txt | grep -e "occurence1" | grep -e "occurence2"
 ```
 cat file.txt | grep -v "not-include-string"
 ```
+
 ### grep with file mask
 ```
 grep -ir "memory" --include="*.scala"
 ```
+
+### difference between two files without spaces
+```
+diff -w file1.txt file2.txt
+```
+
 ### replace character into string
 ```
 array = echo $result | tr {}, ' ' 
@@ -845,8 +852,6 @@ awk '{print $NF}'
 ```
 awk '{print NR}'
 ```
-
-### print Input
 
 ### awk OutputFieldSeparator
 ```
