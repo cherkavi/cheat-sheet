@@ -816,7 +816,7 @@ brew
 
 # AWK
 
-### awk another delimiter
+### awk another FieldSeparator
 ```
 awk -F '<new delimiter>'
 ```
@@ -824,10 +824,29 @@ example of multi delimiter:
 ```
 awk -F '[/, ]'
 ```
+example of determination delimiter in code 
+```
+awk 'BEGIN{FS=",";}{print $2}'
+```
+
+### print NumberofFields
+```
+awk '{print NF}'
+```
 
 ### awk print last column
 ```
 awk '{print $NF}'
+```
+
+### print NumberofRow
+```
+awk '{print NR}'
+```
+
+### awk OutputFieldSeparator
+```
+awk 'BEGIN{OFS="<=>"}{print $1,$2,$3}'
 ```
 
 ### [awk example of applying function and conditions](https://www.gnu.org/software/gawk/manual/html_node/)
