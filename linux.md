@@ -844,6 +844,8 @@ awk '{print $NF}'
 awk '{print NR}'
 ```
 
+### print Input
+
 ### awk OutputFieldSeparator
 ```
 awk 'BEGIN{OFS="<=>"}{print $1,$2,$3}'
