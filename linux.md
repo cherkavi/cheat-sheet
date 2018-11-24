@@ -360,11 +360,13 @@ crontab -l
 ### grep line before
 ```
 grep -B 4
+grep --before 4
 ```
 
 ### grep line after
 ```
 grep -A 4
+grep --after 4
 ```
 
 ### grep text into files
