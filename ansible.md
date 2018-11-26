@@ -24,6 +24,10 @@ remote machine should have 'python' - 'gather_facts: False' otherwise
 ```
 ansible-playbook -i inventory.ini playbook.yml --extra-vars "$*"
 ```
+with path to file for external parameters
+```
+ansible-playbook -i inventory.ini playbook.yml --extra-vars @/path/to/var.properties
+```
 
 ## check is it working, ad-hoc command
 ```
