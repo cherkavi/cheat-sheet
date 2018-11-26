@@ -256,6 +256,15 @@ readlink 'path to symlink'
 which "program-name"
 ```
 
+### find file by name
+```
+locate {file name}
+```
+exclude DB
+```
+/etc/updatedb.conf
+```
+
 ### find file by last update time
 ```
 find / -mmin 2
