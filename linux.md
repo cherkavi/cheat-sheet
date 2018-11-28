@@ -391,6 +391,7 @@ grep -ilR "@Table" .
 ### grep OR operation
 ```
 cat file.txt | grep -e "occurence1" -e "occurence2"
+cat file.txt | grep -e "occurence1\|occurence2"
 ```
 
 ### grep AND operation
