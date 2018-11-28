@@ -915,3 +915,6 @@ BEGIN{
 find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
 ```
 
+---
+# useful links:
+[web page like a screensaver](https://github.com/lmartinking/webscreensaver)
