@@ -222,7 +222,10 @@ yarn application --list
 ```
 yarn application -kill application_1540813402987_3657
 ```
-
+### application log on YARN
+```
+yarn logs -applicationId application_1540813402987_3657 | less
+```
 ---
 # Hortonworks sandbox
 [tutorials](https://hortonworks.com/tutorials/)
