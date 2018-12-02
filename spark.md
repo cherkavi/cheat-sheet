@@ -242,7 +242,10 @@ data.toDebugString()
 data.partitions
 
 // statistic values
-.stats()
+val statistic = dataFrame.stat
+statistic.corr("column1", "column2")
+statistic.cov("column1","column2")
+statistic.freqItem(Seq("column1"), frequencyValue)
 
 
 // histogram, mean, stdev, sum, variance, min, max
