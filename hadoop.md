@@ -218,6 +218,10 @@ jarn jar {path to jar} {classname}
 ```
 yarn application --list
 ```
+### application list with ALL states
+```
+yarn application -list -appStates ALL
+```
 ### application kill on YARN
 ```
 yarn application -kill application_1540813402987_3657
