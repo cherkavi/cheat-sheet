@@ -26,6 +26,18 @@ mvn -T 1C clean install # 1 per thread
 mvn -T 4 clean install # 4 threads
 ```
 
+### for complex project print dependency tree
+```
+mvn dependency:tree | grep "^\\[INFO\\] [+-|\]" | awk '{print $NF}' | grep "^com.cherkashyn.vitalii" | awk -F ':' '{print $1":"$2}' > /home/projects/components.list
+```
+
+```
+find . -name src | awk -F 'src' '{print $1}' | while read line; do
+    echo ">>> " $line "   " `mvn -f $line"pom.xml" dependency:tree | grep "\\[INFO\\] --- maven-dependency-plugin" | awk -F '@' '{print $2}' | awk '{print $1}'`
+    mvn  -f $line"pom.xml" dependency:tree | grep "^\\[INFO\\] [+-|\]" | awk '{print $NF}' | grep "^com.cherkashyn.vitalii" | awk -F ':' '{print $1":"$2}' | python python-utilities/console/string-in-list.py /home/projects/components.list
+done
+```
+
 ### build only specific subproject
 ```
 mvn clean install --projects :artifact_id
