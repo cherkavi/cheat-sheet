@@ -28,7 +28,7 @@ mvn -T 4 clean install # 4 threads
 
 ### for complex project print dependency tree
 ```
-mvn dependency:tree | grep "^\\[INFO\\] [+-|\]" | awk '{print $NF}' | grep "^com.cherkashyn.vitalii" | awk -F ':' '{print $1":"$2}' > /home/projects/components.list
+mvn dependency:tree | grep "^\\[INFO\\] [+\]" | awk '{print $NF}' | grep "^com.cherkashyn.vitalii" | awk -F ':' '{print $1":"$2}' > /home/projects/components.list
 ```
 
 ```
