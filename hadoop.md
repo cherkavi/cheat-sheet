@@ -83,6 +83,22 @@ output example:
 -rw-r--r--   1 root supergroup       5107 2017-10-27 12:57 hdfs://hadoop-local:9000/data/Iris.csv
              ^ factor of replication
 ```
+### files count
+```
+hdfs dfs -count /user/root/input
+```
+where 1-st column - amount of folder ( +1 current ),
+where 2-nd column - amount of files into folder
+where 3-rd column - size of folder
+
+### check if folder exists
+```
+hdfs dfs -test -d /user/root/some_folder
+echo $?
+```
+0 - exists
+1 - not exits
+
 ### find files
 for cloudera only !!!
 ```
