@@ -9,6 +9,11 @@ git clean -f -q
 git reset --hard
 ```
 
+### restore local branch like remote one
+```
+git reset --hard origin/master
+```
+
 ### remove last commit and put HEAD to previous one
 ```
 git reset --hard HEAD~1
