@@ -11,3 +11,7 @@ start
 ```
 minikube start
 ```
+start without VirtualBox/KVM
+```
+minikube start --vm-driver=none
+```
