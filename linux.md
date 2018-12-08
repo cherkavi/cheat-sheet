@@ -835,6 +835,12 @@ http://localhost:631/admin
 ncdu
 ```
 
+## sound
+### join files
+```
+sox 1.wav 2.wav 3.wav 4.wav output.wav
+ffmpeg -i 1.wav -i 2.wav -i 3.wav output.wav
+```
 
 # MacOS
 ## bashrc replacement
