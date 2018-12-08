@@ -3,7 +3,9 @@ useful links
 [task by section](https://kubernetes.io/docs/tasks/)
 [k8s examples](https://github.com/wardviaene/kubernetes-course)
 
-
+---
+# Architecture
+![nodes with software](https://i.postimg.cc/QCHz6vqH/k8s-architecture.png)
 ---
 # minikube
 ## minikube installation
