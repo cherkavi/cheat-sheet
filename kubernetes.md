@@ -42,3 +42,7 @@ kubectl cluster-info dump
 ```
 kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
 ```
+
+# Helm
+## Architecture
+![main components](https://i.postimg.cc/gkBhFQHG/helm-architecture.png)
