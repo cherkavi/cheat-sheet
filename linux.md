@@ -776,6 +776,13 @@ set-title(){
 
 set-title "my title for terminal"
 ```
+## home automation
+### DTMF generator
+```
+sox -n dtmf-1.wav synth 0.1 sine 697 sine 1209 channels 1
+sox -n dtmf-2.wav synth 0.1 sine 697 sine 1336 channels 1
+sox -n dtmf-3.wav synth 0.1 sine 697 sine 1477 channels 1
+```
 
 ## pdf
 ### convert pdf to image
