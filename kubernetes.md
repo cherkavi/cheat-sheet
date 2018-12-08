@@ -5,6 +5,7 @@ useful links
 
 ---
 # Architecture
+![architecture](https://i.postimg.cc/TwZs4CN0/k8s-architecture-overview.png)
 ![nodes with software](https://i.postimg.cc/QCHz6vqH/k8s-architecture.png)
 ---
 # minikube
