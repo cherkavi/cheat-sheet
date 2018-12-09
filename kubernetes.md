@@ -124,6 +124,17 @@ kubectl delete rc helloworld-controller
 sudo snap install helm --classic
 ```
 
+## trouble shooting
+### issue with 'helm list'
+```
+E1209 22:25:57.285192    5149 portforward.go:331] an error occurred forwarding 40679 -> 44134: error forwarding port 44134 to pod de4963c7380948763c96bdda35e44ad8299477b41b5c4958f0902eb821565b19, uid : unable to do port forwarding: socat not found.
+Error: transport is closing
+```
+solution
+```
+sudo apt install socat
+```
+
 ## template frameworks
 * [go template](https://godoc.org/text/template)
 * [sprig template](https://godoc.org/github.com/Masterminds/sprig)
