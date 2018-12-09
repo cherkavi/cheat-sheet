@@ -34,7 +34,7 @@ ssh -R 9020:127.0.0.1:9092 localhost
 
 ### gpg signature check, asc signature check, crt signature check
 ```
-gpg --keyserver keyserver.ubuntu.com --recv-keys 9032CAE4CBFA933A5A2145D5FF97C53F183C045D
+kgpg --keyserver keyserver.ubuntu.com --recv-keys 9032CAE4CBFA933A5A2145D5FF97C53F183C045D
 gpg --import john-brooks.asc
 
 gpg --verify ricochet-1.1.4-src.tar.bz2.asc
@@ -764,6 +764,20 @@ create file '~/.Xmodmap'
 ### find key code
 ```
 xev | grep keysym
+```
+
+### remap [jlki] to [Left, Right, Down, Up]
+file .Xmodmap
+```
+keycode 66 = Mode_switch
+keysym j = j J Left 
+keysym l = l L Right
+keysym i = i I Up
+keysym k = k K Down
+```
+execute re-mapping
+```
+xmodmap .Xmodmap
 ```
 
 ## terminal title
