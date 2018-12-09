@@ -72,5 +72,5 @@ kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
 ![main components](https://i.postimg.cc/gkBhFQHG/helm-architecture.png)
 
 ## template frameworks
-[go template](https://godoc.org/text/template)
-[sprig template](https://godoc.org/github.com/Masterminds/sprig)
+* [go template](https://godoc.org/text/template)
+* [sprig template](https://godoc.org/github.com/Masterminds/sprig)
