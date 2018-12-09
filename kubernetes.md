@@ -86,7 +86,21 @@ kubectl get pods --show-labels
 kubectl edit pod hello-minikube-{some random hash}
 kubectl edit deploy hello-minikube
 kubectl edit ReplicationControllers helloworld-controller
+kubectl set image deployment/helloworld-deployment {name of image}
 ```
+
+## rollout status
+```
+kubectl rollout status  deployment/helloworld-deployment
+```
+
+## rollout history
+```
+kubectl rollout history  deployment/helloworld-deployment
+kubectl rollout undo deployment/helloworld-deployment
+kubectl rollout undo deployment/helloworld-deployment --to-revision={number of revision from 'history'}
+```
+
 ## delete running container
 ```
 kubectl delete pod hello-minikube-6c47c66d8-td9p2
