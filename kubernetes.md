@@ -67,6 +67,20 @@ kubectl cluster-info dump
 kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
 ```
 
+## get configuration 
+```
+kubectl get pods
+```
+
+## edit deploy
+```
+kubectl edit pod hello-minikube-{some random hash}
+kubectl edit deploy hello-minikube
+```
+## delete running container
+```
+kubectl delete pod hello-minikube-6c47c66d8-td9p2
+```
 # Helm
 ## Architecture
 ![main components](https://i.postimg.cc/gkBhFQHG/helm-architecture.png)
