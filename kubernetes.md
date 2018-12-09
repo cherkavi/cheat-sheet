@@ -56,6 +56,10 @@ sudo -E minikube start --vm-driver=none
 kubectl config use-context minikube
 kubectl get pods --context=minikube
 ```
+## start readiness
+```
+kubectl get node
+```
 
 ## check cluster 
 ```
@@ -65,6 +69,10 @@ kubectl cluster-info dump
 ## start dummy container
 ```
 kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
+```
+## create from yaml file
+```
+kubectl create -f /path/to/controller.yml
 ```
 
 ## get configuration 
