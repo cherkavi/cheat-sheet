@@ -81,6 +81,12 @@ kubectl edit deploy hello-minikube
 ```
 kubectl delete pod hello-minikube-6c47c66d8-td9p2
 ```
+
+## delete deployment
+```
+kubectl delete deploy hello-minikube
+```
+
 # Helm
 ## Architecture
 ![main components](https://i.postimg.cc/gkBhFQHG/helm-architecture.png)
