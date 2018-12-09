@@ -78,6 +78,7 @@ kubectl create -f /path/to/controller.yml
 ## get configuration 
 ```
 kubectl get pods
+kubectl get pods --show-labels
 ```
 
 ## edit configuration of controller
