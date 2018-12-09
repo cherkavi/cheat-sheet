@@ -119,6 +119,11 @@ kubectl delete rc helloworld-controller
 ## Architecture
 ![main components](https://i.postimg.cc/gkBhFQHG/helm-architecture.png)
 
+## installation
+```
+sudo snap install helm --classic
+```
+
 ## template frameworks
 * [go template](https://godoc.org/text/template)
 * [sprig template](https://godoc.org/github.com/Masterminds/sprig)
