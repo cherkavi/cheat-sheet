@@ -80,10 +80,11 @@ kubectl create -f /path/to/controller.yml
 kubectl get pods
 ```
 
-## edit deploy
+## edit configuration of controller
 ```
 kubectl edit pod hello-minikube-{some random hash}
 kubectl edit deploy hello-minikube
+kubectl edit ReplicationControllers helloworld-controller
 ```
 ## delete running container
 ```
@@ -93,6 +94,10 @@ kubectl delete pod hello-minikube-6c47c66d8-td9p2
 ## delete deployment
 ```
 kubectl delete deploy hello-minikube
+```
+## delete ReplicationController
+```
+kubectl delete rc helloworld-controller
 ```
 
 # Helm
