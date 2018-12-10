@@ -715,11 +715,17 @@ sudo gedit /etc/systemd/system/{service name}.service.d/https-proxy.conf
 [Service]
 Environment="https_proxy=http://user:passw@webproxy.host:8080"
 ```
-restart service
+
+restart service, service restart
 ```
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart {service name}
 ```
+service check logs
+```
+journalctl -u {service name}
+```
+
 check settings
 ```
 systemctl show {service name} | grep proxy
