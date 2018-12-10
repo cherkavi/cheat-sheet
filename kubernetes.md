@@ -193,7 +193,19 @@ spec:
 ## installation
 ```
 sudo snap install helm --classic
+helm init
 ```
+## de-installation
+```
+helm reset
+```
+
+## commands
+* helm install
+* helm search 
+* helm list
+* helm upgrade
+* helm rollback 
 
 ## trouble shooting
 ### issue with 'helm list'
