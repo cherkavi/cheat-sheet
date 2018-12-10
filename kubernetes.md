@@ -157,6 +157,23 @@ kubectl delete deploy hello-minikube
 kubectl delete rc helloworld-controller
 ```
 
+## labels
+### add labels to Node
+```
+kubectl label nodes {node ip/name} my_label=my_value
+```
+### deploy Pod on Node with label
+```
+apiVersion: v1
+kind: Pod
+metadata:
+...
+spec:
+...
+  nodeSelector:
+    my_label=my_value
+```
+
 # Helm
 ## Architecture
 ![main components](https://i.postimg.cc/gkBhFQHG/helm-architecture.png)
