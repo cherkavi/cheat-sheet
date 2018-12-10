@@ -173,6 +173,18 @@ spec:
   nodeSelector:
     my_label=my_value
 ```
+### create Deployment for specific node
+```
+apiVersion: some-version
+kind: Deployment
+metadata:
+...
+spec:
+...
+  nodeSelector:
+    my_label=my_value
+```
+
 
 # Helm
 ## Architecture
