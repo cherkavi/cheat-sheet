@@ -95,6 +95,10 @@ kubectl get cronjobs
 kubectl get daemonsets
 ```
 
+## determinate cluster 'hostIP' to reach out application(s)
+open 'kube-dns-....'/hostIP
+open 'kube-proxy-....'/hostIP
+
 ## edit configuration of controller
 ```
 kubectl edit pod hello-minikube-{some random hash}
