@@ -86,6 +86,7 @@ kubectl expose deployment helloworld-deployment --type=NodePort --name=helloworl
 ## get configuration 
 ```
 kubectl get pods
+kubectl get pods --namespace kube-system
 kubectl get pods --show-labels
 kubectl get pods --output=wide --selector="run=load-balancer-example" 
 kubectl get service --output=wide
