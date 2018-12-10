@@ -56,14 +56,16 @@ sudo -E minikube start --vm-driver=none
 kubectl config use-context minikube
 kubectl get pods --context=minikube
 ```
-## start readiness
+## start readiness, check cluster
 ```
+kubectl cluster-info dump
 kubectl get node
 ```
 
-## check cluster 
+## addons
 ```
-kubectl cluster-info dump
+minikube addons list
+minikube addons enable ingress
 ```
 
 ## start dummy container
