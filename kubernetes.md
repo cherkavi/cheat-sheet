@@ -157,6 +157,16 @@ kubectl delete deploy hello-minikube
 kubectl delete rc helloworld-controller
 ```
 
+## port forwarding from local to pod/deployment/service
+next receipts allow to redirect 127.0.0.1:8080 to pod:6379
+```
+kubectl port-forward redis-master-765d459796-258hz      8080:6379 
+kubectl port-forward pods/redis-master-765d459796-258hz 8080:6379
+kubectl port-forward deployment/redis-master            8080:6379 
+kubectl port-forward rs/redis-master                    8080:6379 
+kubectl port-forward svc/redis-master                   8080:6379
+```
+
 ## labels
 ### add labels to Node
 ```
