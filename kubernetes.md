@@ -76,6 +76,11 @@ kubectl apply -f /path/to/controller.yml
 kubectl create -f /path/to/controller.yml
 ```
 
+## create service fast
+```
+kubectl expose deployment helloworld-deployment --type=NodePort --name=helloworld-service
+```
+
 ## get configuration 
 ```
 kubectl get pods
