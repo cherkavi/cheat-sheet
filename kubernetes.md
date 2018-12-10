@@ -8,6 +8,36 @@ useful links
 ![architecture](https://i.postimg.cc/TwZs4CN0/k8s-architecture-overview.png)
 ![nodes with software](https://i.postimg.cc/QCHz6vqH/k8s-architecture.png)
 ---
+# microk8s
+## installation
+* https://github.com/ubuntu/microk8s
+* https://microk8s.io/
+
+```
+sudo snap install microk8s --classic
+sudo snap install microk8s --classic --edge 
+```
+enable addons
+```
+microk8s.start
+microk8s.enable dns dashboard
+```
+check installation
+```
+microk8s.inspect
+```
+check journals for services
+```
+journalctl -u snap.microk8s.daemon-docker
+```
+* snap.microk8s.daemon-apiserver
+* snap.microk8s.daemon-controller-manager
+* snap.microk8s.daemon-scheduler
+* snap.microk8s.daemon-kubelet
+* snap.microk8s.daemon-proxy
+* snap.microk8s.daemon-docker
+* snap.microk8s.daemon-etcd
+
 # minikube
 ## installation
 ```
@@ -101,8 +131,9 @@ minikube service helloworld-service --url
 kube-apiserver --service-node-port-range=30000-40000
 ```
 
-## get configuration 
+## get resources
 ```
+kubectl get all --all-namespaces
 kubectl get pods
 kubectl get pods --namespace kube-system
 kubectl get pods --show-labels
