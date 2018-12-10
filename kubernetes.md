@@ -70,8 +70,9 @@ kubectl cluster-info dump
 ```
 kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
 ```
-## create from yaml file
+## create from yaml file, update yaml file
 ```
+kubectl apply -f /path/to/controller.yml
 kubectl create -f /path/to/controller.yml
 ```
 
@@ -79,6 +80,11 @@ kubectl create -f /path/to/controller.yml
 ```
 kubectl get pods
 kubectl get pods --show-labels
+kubectl get deployments
+kubectl get replicasets
+kubectl get nodes
+kubectl get cronjobs
+kubectl get daemonsets
 ```
 
 ## edit configuration of controller
