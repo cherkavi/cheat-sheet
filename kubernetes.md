@@ -83,6 +83,11 @@ kubectl create -f /path/to/controller.yml
 kubectl expose deployment helloworld-deployment --type=NodePort --name=helloworld-service
 ```
 
+## service port range
+```
+kube-apiserver --service-node-port-range=30000-40000
+```
+
 ## get configuration 
 ```
 kubectl get pods
