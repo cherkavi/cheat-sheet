@@ -695,12 +695,12 @@ export NO_PROXY="localhost,127.0.0.1,.host,.viola.local"
 export no_proxy="localhost,127.0.0.1,.host,.viola.local"
 ```
 
-* global /etc/environment
+* #### global /etc/environment
 ```
 http_proxy=http://webproxy.host:3128
 no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ```
-* for application
+* #### for application
 create environment for http
 ```
 sudo gedit /etc/systemd/system/{service name}.service.d/http-proxy.conf
@@ -723,6 +723,22 @@ $ sudo systemctl restart {service name}
 check settings
 ```
 systemctl show {service name} | grep proxy
+```
+
+* #### for snapd 
+```
+sudo systemctl edit snapd.service
+```
+add next lines
+```
+[Service]
+Environment=http_proxy=http://proxy:port
+Environment=https_proxy=http://proxy:port
+```
+restart service
+```
+sudo systemctl daemon-reload
+sudo systemctl restart snapd.service
 ```
 
 ### apache
