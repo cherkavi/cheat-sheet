@@ -37,6 +37,11 @@ for i in {1..150}; do # timeout for 5 minutes
   sleep 2
 done
 ```
+### set up env
+```
+minikube completion bash
+```
+
 ## start
 ```
 minikube start
@@ -51,15 +56,18 @@ export CHANGE_MINIKUBE_NONE_USER=true
 export KUBECONFIG=$HOME/.kube/config
 sudo -E minikube start --vm-driver=none
 ```
+
 ## kubectl using minikube context
 ```
 kubectl config use-context minikube
 kubectl get pods --context=minikube
 ```
+
 ## start readiness, check cluster
 ```
 kubectl cluster-info dump
 kubectl get node
+minikube dashboard
 ```
 
 ## addons
