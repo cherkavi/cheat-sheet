@@ -80,6 +80,7 @@ kubectl create -f /path/to/controller.yml
 ```
 kubectl get pods
 kubectl get pods --show-labels
+kubectl get pods --output=wide --selector="run=load-balancer-example" 
 kubectl get deployments
 kubectl get replicasets
 kubectl get nodes
