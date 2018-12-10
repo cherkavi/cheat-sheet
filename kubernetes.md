@@ -82,6 +82,11 @@ kubectl create -f /path/to/controller.yml
 ```
 kubectl expose deployment helloworld-deployment --type=NodePort --name=helloworld-service
 ```
+## reach out service
+```
+minikube service helloworld-service
+minikube service helloworld-service --url
+```
 
 ## service port range
 ```
