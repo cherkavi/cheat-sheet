@@ -86,6 +86,8 @@ kubectl expose deployment helloworld-deployment --type=NodePort --name=helloworl
 kubectl get pods
 kubectl get pods --show-labels
 kubectl get pods --output=wide --selector="run=load-balancer-example" 
+kubectl get service --output=wide
+kubectl get service --output=wide --selector="app=helloworld"
 kubectl get deployments
 kubectl get replicasets
 kubectl get nodes
