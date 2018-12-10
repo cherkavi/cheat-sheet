@@ -99,6 +99,9 @@ kubectl get daemonsets
 ```
 
 ## determinate cluster 'hostIP' to reach out application(s)
+```
+minikube ip
+```
 open 'kube-dns-....'/hostIP
 open 'kube-proxy-....'/hostIP
 
