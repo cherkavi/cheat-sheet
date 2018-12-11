@@ -370,6 +370,11 @@ output to log stop process
 crontab -l
 ```
 
+### error to null
+```
+./hbase.sh 2>/dev/null
+```
+
 ### grep line before
 ```
 grep -B 4
