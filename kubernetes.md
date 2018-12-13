@@ -158,6 +158,11 @@ minikube addons enable ingress
 kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
 ```
 
+## create deployment ( with replica set )
+```
+kubectl run http --image=katacoda/docker-http-server:latest --replicas=1
+```
+
 ## create from yaml file, update yaml file
 ```
 kubectl apply -f /path/to/controller.yml
