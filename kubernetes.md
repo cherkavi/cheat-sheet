@@ -396,6 +396,8 @@ sync latest available packages
 search for chart
 * helm describe {full name of the package}
 print chart
+* helm info {name of resource}
+get information about package
 * helm install { full name of the package }
 * helm install --name {my name for new package} { full name of the package }
 install pod 
