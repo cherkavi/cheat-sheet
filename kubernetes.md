@@ -103,6 +103,12 @@ kube-public   Active    15m
 kube-system   Active    15m
 ```
 
+## get configurations, read configuration in specific format
+```
+kubectl get configmap 
+kubectl get configmap --namespace kube-system 
+kubectl get configmap --namespace kube-system kube-proxy --output json
+```
 
 ## start readiness, check cluster
 ```
