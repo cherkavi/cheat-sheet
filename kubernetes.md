@@ -103,6 +103,11 @@ kube-public   Active    15m
 kube-system   Active    15m
 ```
 
+## create namespace
+```
+kubectl create namespace my-own-namespace
+```
+
 ## get configurations, read configuration in specific format
 ```
 kubectl get configmap 
