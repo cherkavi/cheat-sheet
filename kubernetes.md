@@ -92,6 +92,17 @@ sudo -E minikube start --vm-driver=none
 kubectl config use-context minikube
 kubectl get pods --context=minikube
 ```
+## check namespaces
+```
+kubectl get namespaces
+```
+at least three namespaces will be provided
+```
+default       Active    15m
+kube-public   Active    15m
+kube-system   Active    15m
+```
+
 
 ## start readiness, check cluster
 ```
@@ -110,6 +121,7 @@ minikube addons enable ingress
 ```
 kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
 ```
+
 ## create from yaml file, update yaml file
 ```
 kubectl apply -f /path/to/controller.yml
@@ -120,6 +132,7 @@ kubectl create -f /path/to/controller.yml
 ```
 kubectl expose deployment helloworld-deployment --type=NodePort --name=helloworld-service
 ```
+
 ## reach out service
 ```
 minikube service helloworld-service
