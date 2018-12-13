@@ -241,10 +241,16 @@ kubectl port-forward svc/redis-master                   8080:6379
 ```
 
 ## labels
+### show labels for each node
+```
+kubectl get nodes --show-labels
+```
+
 ### add labels to Node
 ```
-kubectl label nodes {node ip/name} my_label=my_value
+kubectl label nodes {node name} my_label=my_value
 ```
+
 ### deploy Pod on Node with label
 ```
 apiVersion: v1
@@ -256,6 +262,7 @@ spec:
   nodeSelector:
     my_label=my_value
 ```
+
 ### create Deployment for specific node
 ```
 apiVersion: some-version
