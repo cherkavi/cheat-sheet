@@ -284,6 +284,55 @@ spec:
     my_label=my_value
 ```
 
+### resolving destination node
+![when label was not found](https://i.postimg.cc/mDjTpWw3/type-affinity-anti-affinity.png)
+
+* nodeAffinity
+* * preferred - deploy in any case, with preferrence my_label=my_value
+```
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: my_label
+            operator: In
+            values:
+            - my_value
+```
+* * required - deploy only when label matched my_label=my_value
+```
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: my_label
+            operator: In
+            values:
+            - my_value
+```
+* nodeAntiAffinity
+```
+spec:
+  affinity:
+    nodeAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+```
+* podAffinity
+* * preferred
+spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution
+* * required
+spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution
+* podAntiAffinity
+* * preferred
+spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution
+* * required
+spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution
+
 
 # Helm
 ## Architecture
