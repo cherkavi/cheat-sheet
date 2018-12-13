@@ -250,9 +250,14 @@ kubectl port-forward svc/redis-master                   8080:6379
 kubectl get nodes --show-labels
 ```
 
-### add labels to Node
+### add label to Node
 ```
 kubectl label nodes {node name} my_label=my_value
+```
+
+### remove label from Node
+```
+kubectl label nodes {node name} my_label-
 ```
 
 ### deploy Pod on Node with label
