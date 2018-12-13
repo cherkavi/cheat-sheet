@@ -43,6 +43,7 @@ journalctl -u snap.microk8s.daemon-docker
 ```
 sudo snap install minikube
 ```
+
 ## installation
 ```
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube
@@ -76,6 +77,7 @@ minikube completion bash
 ```
 minikube start
 ```
+
 ## start without VirtualBox/KVM
 ```
 export MINIKUBE_WANTUPDATENOTIFICATION=false
@@ -92,6 +94,7 @@ sudo -E minikube start --vm-driver=none
 kubectl config use-context minikube
 kubectl get pods --context=minikube
 ```
+
 ## check namespaces
 ```
 kubectl get namespaces
