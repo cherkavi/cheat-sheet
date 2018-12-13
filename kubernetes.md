@@ -172,6 +172,7 @@ kubectl create -f /path/to/controller.yml
 ## create service fastly
 ```
 kubectl expose deployment helloworld-deployment --type=NodePort --name=helloworld-service
+kubectl expose deployment helloworld-deployment --external-ip="172.17.0.13" --port=8000 --target-port=80
 ```
 
 ## reach out service
