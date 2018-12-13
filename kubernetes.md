@@ -90,8 +90,12 @@ sudo -E minikube start --vm-driver=none
 ```
 
 ## kubectl using minikube context
+permanently
 ```
 kubectl config use-context minikube
+```
+temporary
+```
 kubectl get pods --context=minikube
 ```
 
