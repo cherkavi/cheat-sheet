@@ -264,6 +264,27 @@ kubectl port-forward rs/redis-master                    8080:6379
 kubectl port-forward svc/redis-master                   8080:6379
 ```
 
+## persistent volume
+```
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-volume3
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data3"
+```
+to access created volume
+```
+ls /mnt/data3
+```
+
 ## labels
 ### show labels for each node
 ```
