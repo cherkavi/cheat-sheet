@@ -107,6 +107,21 @@ kube-system   Active    15m
 ```
 kubectl create namespace my-own-namespace
 ```
+or via yaml file 
+```
+kubectl apply -f {filename}
+```
+```
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: test
+```
+
+## delete namespace
+```
+kubectl delete namespace {name of namespace}
+```
 
 ## get configurations, read configuration in specific format
 ```
