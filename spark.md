@@ -174,6 +174,12 @@ or
 dataframe.write.format("orc").mode("overwrite").save("/path/to/file")
 ```
 
+### append data, union data
+```
+val dfUnion = df1.union(df2)
+val dfUnion = df1.unionAll(df2)
+```
+
 ### describe data
 ```
 words.show()
