@@ -393,12 +393,17 @@ helm reset
 ## initialization
 ```
 helm init
+# sync latest available packages
 helm repo update
 ```
 
+## analyze local package
+```
+helm inspect { folder }
+helm lint { folder }
+```
+
 ## commands
-* helm repo update
-sync latest available packages
 * helm search 
 search for chart
 * helm describe {full name of the package}
@@ -407,6 +412,7 @@ print chart
 get information about package
 * helm install { full name of the package }
 * helm install --name {my name for new package} { full name of the package }
+* helm install --name {my name for new package} -f values.yml --debug --dry-run { full name of the package }
 install pod 
 * helm list
 * helm ls
