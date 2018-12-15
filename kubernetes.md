@@ -94,6 +94,7 @@ permanently
 ```
 kubectl config use-context minikube
 ```
+
 temporary
 ```
 kubectl get pods --context=minikube
@@ -211,6 +212,7 @@ kubectl get replicasets
 kubectl get nodes
 kubectl get cronjobs
 kubectl get daemonsets
+kubectl get pods,deployments,services,rs,cm,pv,pvc -n demo
 ```
 
 ## determinate cluster 'hostIP' to reach out application(s)
