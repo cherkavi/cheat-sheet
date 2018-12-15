@@ -382,11 +382,18 @@ spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution
 ## installation
 ```
 sudo snap install helm --classic
-helm init
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 ```
+
 ## de-installation
 ```
 helm reset
+```
+
+## initialization
+```
+helm init
+helm repo update
 ```
 
 ## commands
