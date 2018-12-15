@@ -403,20 +403,30 @@ helm inspect { folder }
 helm lint { folder }
 ```
 
+## information about remote package
+```
+helm info {name of resource}
+```
+
+## install package
+```
+helm install { full name of the package }
+helm install --name {my name for new package} { full name of the package }
+helm install --name {my name for new package} --namespace {namespace} -f values.yml --debug --dry-run { full name of the package }
+```
+
+## list of installed packages
+```
+helm list
+helm ls
+```
+
 ## commands
 * helm search 
 search for chart
 * helm describe {full name of the package}
 print chart
-* helm info {name of resource}
 get information about package
-* helm install { full name of the package }
-* helm install --name {my name for new package} { full name of the package }
-* helm install --name {my name for new package} -f values.yml --debug --dry-run { full name of the package }
-install pod 
-* helm list
-* helm ls
-list of installed packages
 * helm upgrade
 * helm rollback 
 
