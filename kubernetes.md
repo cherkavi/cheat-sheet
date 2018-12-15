@@ -406,6 +406,7 @@ helm lint { folder }
 ## information about remote package
 ```
 helm info {name of resource}
+helm status {name of resource}
 ```
 
 ## install package
