@@ -403,6 +403,12 @@ helm inspect { folder }
 helm lint { folder }
 ```
 
+## search remote package
+```
+helm search 
+helm describe {full name of the package}
+```
+
 ## information about remote package
 ```
 helm info {name of resource}
@@ -429,11 +435,11 @@ helm history
 helm rollback {name of package} {revision of history}
 ```
 
-## commands
-* helm search 
-search for chart
-* helm describe {full name of the package}
-get information about package
+## remove package
+```
+helm delete --purge {name of package}
+```
+
 
 ## trouble shooting
 ### issue with 'helm list'
