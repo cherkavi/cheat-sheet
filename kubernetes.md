@@ -422,14 +422,18 @@ helm list
 helm ls
 ```
 
+## package upgrade
+```
+helm upgrade {name of package} {folder for scripts} --set replicas=2
+helm history
+helm rollback {name of package} {revision of history}
+```
+
 ## commands
 * helm search 
 search for chart
 * helm describe {full name of the package}
-print chart
 get information about package
-* helm upgrade
-* helm rollback 
 
 ## trouble shooting
 ### issue with 'helm list'
