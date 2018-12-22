@@ -417,6 +417,9 @@ helm info {name of resource}
 helm status {name of resource}
 ```
 
+## create package locally
+![folder structure](https://i.postimg.cc/d1kXZrL7/helm-sceleton.png)
+
 ## install package
 ```
 helm install { full name of the package }
