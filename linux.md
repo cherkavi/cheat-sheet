@@ -823,6 +823,7 @@ set-title "my title for terminal"
 ### base64
 ```
 base64 cAdvisor-start.sh | base64 --decode
+echo "just a text string" | base64 | base64 --decode
 ```
 ### md5
 ```
