@@ -444,11 +444,11 @@ helm ls
 ## package upgrade
 local package
 ```
-helm upgrade --set replicas=2,maria.db.password="new password"
+helm upgrade  {deployment/svc/rs/rc name} . --set replicas=2,maria.db.password="new password"
 ```
 package by name
 ```
-helm upgrade {name of package} {folder for scripts} --set replicas=2
+helm upgrade {name of package} {folder with helm scripts} --set replicas=2
 ```
 
 check upgrade
