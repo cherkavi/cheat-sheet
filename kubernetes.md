@@ -445,6 +445,7 @@ helm install --name {my name for new package} --namespace {namespace} -f values.
 ## list of installed packages
 ```
 helm list
+helm list --all
 helm ls
 ```
 
