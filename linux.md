@@ -610,6 +610,7 @@ sudo apt-get --purge remote {app name}
 
 ### last executed code, last script return value
 ```
+echo $?
 ```
 
 ### remove VMWare player
