@@ -818,6 +818,18 @@ set-title(){
 
 set-title "my title for terminal"
 ```
+
+## code/decode
+### base64
+```
+base64 cAdvisor-start.sh | base64 --decode
+```
+### md5
+```
+md5sum
+```
+
+
 ## home automation
 ### DTMF generator
 ```
