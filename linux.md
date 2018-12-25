@@ -876,6 +876,14 @@ http://localhost:631/admin
 ncdu
 ```
 
+## vim
+### copy-paste
+v - *visual* selection ( start selection )
+y - *yank* ( end selection )
+p - *paste* into position
+u - *undo* last changes
+ctrl-r - *redo* last changes
+
 ## sound
 ### join files
 ```
