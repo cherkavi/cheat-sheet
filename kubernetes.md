@@ -1,7 +1,7 @@
 ---
 useful links
-[task by section](https://kubernetes.io/docs/tasks/)
-[k8s examples](https://github.com/wardviaene/kubernetes-course)
+* [task by section](https://kubernetes.io/docs/tasks/)
+* [k8s examples](https://github.com/wardviaene/kubernetes-course)
 
 ---
 # Architecture
