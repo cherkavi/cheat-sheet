@@ -411,6 +411,14 @@ helm init
 helm repo update
 ```
 
+## useful variables
+```
+* $HELM_HOME: the location of Helm's configuration
+* $TILLER_HOST: the host and port that Tiller is listening on
+* $HELM_BIN: the path to the helm command on your system
+* $HELM_PLUGIN_DIR: the full path to this plugin (not shown above, but we'll see it in a moment).
+```
+
 ## analyze local package
 ```
 helm inspect { folder }
