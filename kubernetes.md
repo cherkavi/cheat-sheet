@@ -442,13 +442,22 @@ helm ls
 ```
 
 ## package upgrade
+local package
+```
+helm upgrade --set replicas=2,maria.db.password="new password"
+```
+package by name
 ```
 helm upgrade {name of package} {folder for scripts} --set replicas=2
+```
+
+check upgrade
+```
 helm history
 helm rollback {name of package} {revision of history}
 ```
 
-## remove package
+## remove packageHelm
 ```
 helm delete --purge {name of package}
 ```
