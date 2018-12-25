@@ -376,6 +376,11 @@ spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution
 * * required
 spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution
 
+## logs
+```
+kubectl logs <name of pod>
+```
+
 
 # Helm
 ## Architecture
