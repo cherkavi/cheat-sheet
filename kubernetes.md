@@ -282,9 +282,16 @@ spec:
   hostPath:
     path: "/mnt/data3"
 ```
+
 to access created volume
 ```
 ls /mnt/data3
+```
+
+list of existing volumes
+```
+kubectl get pv 
+kubectl get pvc
 ```
 
 ## labels
