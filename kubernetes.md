@@ -392,8 +392,10 @@ kubectl logs <name of pod>
 
 
 # Helm
+[documentation](https://docs.helm.sh/)
 ## Architecture
 ![main components](https://i.postimg.cc/gkBhFQHG/helm-architecture.png)
+
 
 ## installation
 ```
