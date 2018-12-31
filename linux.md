@@ -445,6 +445,12 @@ zgrep "message_gateway_integration" /var/lib/brand-server/cache/zip/*.zip
 ls -1 *.zip | xargs -I{} unzip -p {} brand.xml  | grep instant-limit | grep "\\."
 ```
 
+### pipeline chain 'to file'
+```
+echo "hello from someone" | tee --append out.txt
+echo "hello from someone" | tee --append out.txt > /dev/null
+```
+
 ### vi
 ```
 vi wrap( :set wrap, :set nowrap )
