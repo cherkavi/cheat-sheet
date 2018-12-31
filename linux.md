@@ -99,6 +99,11 @@ sudo mount /dev/cdrom /mnt
 watch -n 60 'ls -la | grep archive'
 ```
 
+### repeat last command
+```
+!!
+```
+
 ### directories into stack
 ```
 pushd
