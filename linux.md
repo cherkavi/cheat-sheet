@@ -183,9 +183,18 @@ search after adding
 apt-cache search inkscape
 ```
 
-
 ### avoid to put command into history, hide password into history, avoid history
 add space before command
+
+### execute command via default editor
+```
+ctrl+x+e
+```
+
+### edit last command via editor
+```
+fc
+```
 
 ### folder into bash script
 working folder
