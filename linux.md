@@ -358,6 +358,7 @@ at <date and time>
 ### find process by name
 ```
 ps fC firefox
+pgrep firefox
 ```
 
 pid of process by name
