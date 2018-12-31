@@ -94,6 +94,12 @@ sudo mount -B /tmp /mapped_drive/path/to/tmp
 sudo mount /dev/cdrom /mnt
 ```
 
+### create ram disc
+```
+mkdir -p /mnt/my-ram
+mount -t tmpfs tmpfs /mnt/my-ram -o size=1024M
+```
+
 ### repeat command with predefined interval, execute command repeatedly
 ```
 watch -n 60 'ls -la | grep archive'
