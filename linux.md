@@ -561,6 +561,11 @@ chmod -R +x <folder name>
 find . -name "*.sql" -print0 | xargs -0 chmod 666
 ```
 
+### create dozen of folders using one-line command
+```
+mkdir -p some-folder/{1..10}/{one,two,three}
+```
+
 ### execute command with environment variable, new environment variable for command
 ```
 ONE="this is a test"; echo $ONE
