@@ -347,6 +347,11 @@ resume process by number into list 'jobs'
 fg 2
 ```
 
+### disconnect from terminal and let command be runned
+```
+ctrl-Z
+disown -a && exit
+```
 
 ### postponed execution
 ```
