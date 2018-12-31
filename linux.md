@@ -247,7 +247,6 @@ base_color=normal=brightgray,black:marked=brightcyan,black:selected=black,lightg
 ```
 mc --nocolor
 ```
-```
 
 ### find files by mask
 ```
