@@ -447,6 +447,11 @@ helm create
 ```
 ![folder structure](https://i.postimg.cc/d1kXZrL7/helm-sceleton.png)
 
+### create package with local templates
+```
+ls -la ~/.helm/starters/
+```
+
 ## install package
 ```
 helm install { full name of the package }
