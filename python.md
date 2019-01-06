@@ -161,6 +161,12 @@ awesome-python
 python -m site --user-site
 ```
 
+### help
+```
+help contextlib
+pydoc contextlib
+```
+
 ### assign
 ```
 b = "some value" if True else "another value"
