@@ -393,6 +393,13 @@ wmic path win32_process get Caption, Processid, Commandline
 output to log stop process
 ```
 
+### youtube
+```
+ youtube-dl --list-formats https://www.youtube.com/watch?v=nhq8e9eE_L8
+ youtube-dl --format 22 https://www.youtube.com/watch?v=nhq8e9eE_L8
+
+```
+
 ### cron
 ```
 crontab -l
