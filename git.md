@@ -62,7 +62,7 @@ git branch --all --contains {name-of-the-branch}
 git branch --all --merged 0ff27c79738a6ed718baae3e18c74ba87f16a314
 ```
 
-### check last commits for specific branch
+### check last commits for specific branch, last commits in branch
 ```
 git log -5 develop
 ```
