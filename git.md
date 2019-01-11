@@ -168,6 +168,17 @@ git log --pretty=format:"%h - %an, %ar : %s" <commit SHA> -1
 git --git-dir C:\project\horus\.git  branch --all
 ```
 
+### show remote url
+```
+git remote -v
+```
+
+### change remote url
+```
+git remote set-url origin git@cc-github.my-network.net:adp/data-management.git
+```
+
+
 ### clone operation under the hood
 if during the access ( clone, pull ) issue appear:
 ```
