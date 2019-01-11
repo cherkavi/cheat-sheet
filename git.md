@@ -106,6 +106,11 @@ git cherry develop release-6.0.0
 git diff develop..master -- myfile.cs
 ```
 
+### difference between two branches, list of commits
+```
+git rev-list master..search-client-solr
+```
+
 ### git fetch
 ```
 git fetch --all --prune
