@@ -930,6 +930,21 @@ reaver -i wlan0mon -b <BSSID> -vv -K 1
 ## printer managing ( add/remote/edit )
 http://cups.org - printer installation
 http://localhost:631/admin
+in case of authorization issue:
+
+/etc/cups/cupsd.conf and changed the AuthType to None and commented the Require user @SYSTEM:
+```
+<Limit CUPS-Add-Modify-Printer CUPS-Delete-Printer CUPS-Add-Modify-Class CUPS-Delete-Class CUPS-Set-Default CUPS-Get-Devices>
+AuthType None
+# AuthType Default
+# Require user @SYSTEM
+Order deny,allow
+</Limit>
+```
+and restart the service
+```
+sudo service cups restart
+```
 
 ## disk usage
 ```
