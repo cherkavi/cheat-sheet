@@ -390,6 +390,12 @@ spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution
 kubectl logs <name of pod>
 ```
 
+## common
+### execute command on specific pod
+```
+kubectl exec -it {name of a pod}  -- bash -c "echo hi > /path/to/output/test.txt" 
+```
+
 
 # Helm
 [documentation](https://docs.helm.sh/)
