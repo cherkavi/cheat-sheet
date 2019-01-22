@@ -1053,6 +1053,11 @@ BEGIN{
 find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
 ```
 
+### reset Gnome to default
+```
+rm -rf .gnome .gnome2 .gconf .gconfd .metacity .cache .dbus .dmrc .mission-control .thumbnails ~/.config/dconf/user ~.compiz*
+```
+
 ---
 # useful links:
 [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
