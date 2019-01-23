@@ -77,7 +77,7 @@ git branch --no-merged
 git checkout -t remotes/origin/release
 ```
 
-### set username 
+### set username, global settings
 ```
 git config --global user.name "vitalii cherkashyn"
 git config --global user.email vitalii.cherkashyn@wirecard.de
