@@ -395,6 +395,17 @@ spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution
 kubectl logs <name of pod>
 ```
 
+## create dashboard 
+```
+kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
+```
+
+## access dashboard
+```
+kubectl proxy
+http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
+```
+
 ## common
 ### execute command on specific pod
 ```
