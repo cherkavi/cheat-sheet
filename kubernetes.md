@@ -200,6 +200,11 @@ kubectl describe deployment {name of deployment}
 kubectl describe service {name of service}
 ```
 
+## describe users, user token
+```
+kubectl --namespace kube-system describe secret admin-user
+```
+
 ## get resources
 ```
 kubectl get all --all-namespaces
