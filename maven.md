@@ -26,6 +26,11 @@ mvn -T 1C clean install # 1 per thread
 mvn -T 4 clean install # 4 threads
 ```
 
+### build sub-modules with parent-dependencies
+```
+mvn -am ...
+```
+
 ### for complex project print dependency tree
 ```
 mvn dependency:tree | grep "^\\[INFO\\] [+\]" | awk '{print $NF}' | grep "^com.cherkashyn.vitalii" | awk -F ':' '{print $1":"$2}' > /home/projects/components.list
