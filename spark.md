@@ -367,7 +367,7 @@ stations.join(trips.keyBy(_(4).toInt))
 ```
 
 
-## add jar to spark shell
+## add jar to spark shell, add library to shell
 * before start into configuration file "spark-defaults.conf"
 spark.driver.extraClassPath  pathOfJarsWithCommaSeprated
 
@@ -378,7 +378,7 @@ spark.driver.extraClassPath  pathOfJarsWithCommaSeprated
 scala> :require /path/to/file.jar
 
 # spark shell, spark-shell, spark2-shell
-## inline execution
+## inline execution, execute file from command line
 ```
 spark-shell -i /path/to/file.scala
 ```
