@@ -469,6 +469,11 @@ echo "hello World" | tr '[:lower:]' '[:upper:]
 echo "hello World 1234 woww" | tr -dc 'a-zA-Z'
 ```
 
+### generate random string 
+```
+urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | tr '[:upper:]' '[:lower:]' | head -n 1
+```
+
 ### find inside zip file(s), grep zip, zip grep
 ```
 zgrep "message_gateway_integration" /var/lib/brand-server/cache/zip/*.zip
