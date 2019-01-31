@@ -481,6 +481,11 @@ helm install --name {my name for new package} { full name of the package }
 helm install --name {my name for new package} --namespace {namespace} -f values.yml --debug --dry-run { full name of the package }
 ```
 
+## install aws plugin
+```
+helm plugin install https://github.com/hypnoglow/helm-s3.git
+```
+
 ## list of installed packages
 ```
 helm list
