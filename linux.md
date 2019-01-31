@@ -531,6 +531,11 @@ wget -O- http://{host}:8500/wd-only/getBrandXml.jsp?brand=229099017 > /dev/null 
 wget -O out.zip http://{host}:9000/published/resources/10050001.zip
 ```
 
+### wget https without checking certificate
+```
+wget --no-check-certificate https://musan999999.mueq.adas.intel.com:8888/data-api/session/
+```
+
 ### zip files, zip all files
 ```
 zip -r bcm-1003.zip *
