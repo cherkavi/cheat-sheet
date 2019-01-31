@@ -459,6 +459,16 @@ diff -w file1.txt file2.txt
 array = echo $result | tr {}, ' ' 
 ```
 
+### change case of chars ( upper, lower )
+```
+echo "hello World" | tr '[:lower:]' '[:upper:]
+```
+
+### replace all chars
+```
+echo "hello World 1234 woww" | tr -dc 'a-zA-Z'
+```
+
 ### find inside zip file(s), grep zip, zip grep
 ```
 zgrep "message_gateway_integration" /var/lib/brand-server/cache/zip/*.zip
