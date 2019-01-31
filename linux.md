@@ -971,6 +971,20 @@ sudo service cups restart
 ncdu
 ```
 
+## Elapsed time between two commands
+```
+STARTTIME=$SECONDS
+sleep 2
+echo $SECONDS-$STARTTIME
+```
+
+```
+STARTTIME=`date +%s.%N`
+sleep 2.5
+ENDTIME=`date +%s.%N`
+TIMEDIFF=`echo "$ENDTIME - $STARTTIME" | bc | awk -F"." '{print $1"."substr($2,1,3)}'`
+```
+
 ## vim
 ### copy-paste
 * v - *visual* selection ( start selection )
