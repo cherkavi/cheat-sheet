@@ -533,6 +533,18 @@ solution
 sudo apt install socat
 ```
 
+### incompatible version of client and server
+```
+Error: incompatible versions client[v2.12.3] server[v2.11.0]
+```
+solution
+```
+helm init --upgrade
+kubectl get pods --namespace kube-system # waiting for start Tiller
+helm version
+```
+
+
 ## template frameworks
 * [go template](https://godoc.org/text/template)
 * [sprig template](https://godoc.org/github.com/Masterminds/sprig)
