@@ -480,6 +480,7 @@ solution:
 * install docker-copmose respective your Docker version
 
 # Docker swarm
+![swarm overview](https://i.postimg.cc/LsgrnfYJ/swarm-overview.png)
 ## init 'manager' node
 ```
 docker swarm init --advertise-addr eth0
