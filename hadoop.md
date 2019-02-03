@@ -26,7 +26,7 @@ docker run -it --name bdu_spark2 -P -p 4040:4040 -p 4041:4041 -p 8080:8080 -p808
 ```
 
 ![hadoop2 yarn](https://i.postimg.cc/C522hxhG/Hadoop2-Yarn.png)
-
+![hadoop1](https://i.postimg.cc/zG2F4cfh/hdfs-map-R.png)
 ## HDFS common commands
 
 ### admin command, cluster settings
