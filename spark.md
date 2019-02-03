@@ -5,7 +5,7 @@
 * [configuration and monitoring](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_5.pdf)
 * [Mastering apache spark](https://jaceklaskowski.gitbooks.io/mastering-apache-spark/)
 
-[Spark-ecosystem.png](https://postimg.cc/gnC2FW54)
+![Spark-ecosystem.png](https://postimg.cc/gnC2FW54)
 
 ### configuration ( spark-defaults.conf )
 http://<driver>:4040
