@@ -31,6 +31,11 @@ mvn -T 4 clean install # 4 threads
 mvn -am ...
 ```
 
+### dry run 
+```
+mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec
+```
+
 ### for complex project print dependency tree
 ```
 mvn dependency:tree | grep "^\\[INFO\\] [+\]" | awk '{print $NF}' | grep "^com.cherkashyn.vitalii" | awk -F ':' '{print $1":"$2}' > /home/projects/components.list
