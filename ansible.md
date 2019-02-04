@@ -388,6 +388,12 @@ ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_
     name: flask
 ```
 
+### echo
+```
+- debug:
+    msg: ">>> {{ data_portal_deploy_folder }}/data-portal.jar"
+```
+
 ### TBD
 * system
 * commands
