@@ -1092,6 +1092,11 @@ find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
 rm -rf .gnome .gnome2 .gconf .gconfd .metacity .cache .dbus .dmrc .mission-control .thumbnails ~/.config/dconf/user ~.compiz*
 ```
 
+### sudo without password
+```
+echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
+```
+
 ---
 # useful links:
 [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
