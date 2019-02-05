@@ -77,6 +77,11 @@ git branch --no-merged
 git checkout -t remotes/origin/release
 ```
 
+### copy file from another branch
+```
+git checkout experiment -- deployment/connection_pool.py                                 
+```
+
 ### set username, global settings
 ```
 git config --global user.name "vitalii cherkashyn"
