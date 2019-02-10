@@ -735,6 +735,17 @@ dig {hostname}
 ```
 add :{username} to the end of line with {groupname}:x:999
 ```
+### create/add user, create user with admin rights
+```
+sudo useradd -m test
+sudo useradd -m test -G sudo
+```
+
+### remove user
+```
+sudo userdel -r test
+```
+
 ### print all logged in users
 ```
 users
