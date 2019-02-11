@@ -220,6 +220,16 @@ public class V1_9_9__insert_initial_gui_configurations implements JdbcMigration 
 -Dcom.sun.management.jmxremote.authenticate=false
 -Dcom.sun.management.jmxremote.ssl=false
 ```
+```
+-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+```
+you can create SSH tunnel between your local machine and remote:
+( execute next line from local machine )
+```
+ssh -L 7000:127.0.0.1:5005 remote-user@134.190.200.205
+```
+and your connection url will looks like: 127.0.0.1:7000
+
 
 ### JNDI datasource examples:
 ```
