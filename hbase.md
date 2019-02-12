@@ -50,6 +50,11 @@ $HBASE_HOME/bin/stop-hbase.sh
 $HBASE_HOME/bin/hbase shell
 ```
 
+## path to jars from hbase classpath
+```
+hbase classpath
+```
+
 ## commands
 * list of the tables
 ```
