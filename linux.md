@@ -1024,6 +1024,14 @@ ffmpeg -i 1.wav -i 2.wav -i 3.wav output.wav
 brew
 
 
+## copy users, import/export users
+```
+udo awk -F: '($3>=LIMIT) && ($3!=65534)' /etc/passwd > passwd-export
+sudo awk -F: '($3>=LIMIT) && ($3!=65534)' /etc/group > /opt/group-export
+sudo awk -F: '($3>=LIMIT) && ($3!=65534) {print $1}' /etc/passwd | tee - | egrep -f - /etc/shadow > /opt/shadow-export
+sudo cp /etc/gshadow /opt/gshadow-export
+```
+
 # AWK
 
 ### awk another FieldSeparator
