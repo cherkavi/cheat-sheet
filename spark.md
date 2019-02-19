@@ -175,6 +175,10 @@ or
 ```
 dataframe.write.format("orc").mode("overwrite").save("/path/to/file")
 ```
+or
+```
+spark.read.orc("/ingestor/46b1-a7d7-c1728088fb48")
+```
 
 ### append data, union data
 ```
