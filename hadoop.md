@@ -27,8 +27,8 @@ docker run -it --name bdu_spark2 -P -p 4040:4040 -p 4041:4041 -p 8080:8080 -p808
 
 ![hadoop2 yarn](https://i.postimg.cc/C522hxhG/Hadoop2-Yarn.png)
 ![hadoop1](https://i.postimg.cc/zG2F4cfh/hdfs-map-R.png)
-![sensor use case](https://i.postimg.cc/cLQ7rKYM/Kafka-usecase-01.png)
-![sensor use case](https://i.postimg.cc/HxPXfbDH/Kafka-usecase-02.png)
+![sensor use case](https://i.postimg.cc/BvzTXRNH/Kafka-usecase-01.png)
+![sensor use case](https://i.postimg.cc/QCGcq52M/Kafka-usecase-02.png)
 
 ## HDFS common commands
 
