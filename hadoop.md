@@ -31,8 +31,8 @@ docker run -it --name bdu_spark2 -P -p 4040:4040 -p 4041:4041 -p 8080:8080 -p808
 ![sensor use case](https://i.postimg.cc/QCGcq52M/Kafka-usecase-02.png)
 ![sensor use case](https://i.postimg.cc/Kz9dkGwQ/Sensor-usecase-03.png)
 ![sensor use case](https://i.postimg.cc/mgyRZsLp/Sensor-usecase-04.png)
-![sensor use case](https://i.postimg.cc/mh6YCqRv/Kafka-usecase-05.png)
-![sensor use case](https://i.postimg.cc/pphDZZLp/Kafka-usecase-06.png)
+![sensor use case](https://i.postimg.cc/jdRM001S/Kafka-usecase-05.png)
+![sensor use case](https://i.postimg.cc/8PwtTX8B/Kafka-usecase-06.png)
 
 ## HDFS common commands
 
