@@ -17,3 +17,8 @@
 ## reading messages via client library
 ![lib request](https://i.postimg.cc/23pfv2pw/Mapr-strems-reading-01.png)
 ![client rading](https://i.postimg.cc/SQn26RF2/Mapr-strems-reading-02.png)
+
+## reading messages cursor types
+* Read cursor ( client request it and broker sent )
+* Committed cursor ( client confirmed/commited reading )
+![cursor types](https://i.postimg.cc/s28cc8X5/Mapr-streams-cursor-types.png)
