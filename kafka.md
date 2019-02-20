@@ -5,6 +5,7 @@ category of messages, consists from Partitions
 part of the Topic, can be replicated (replication factor) across Brokers, must have at least one Leader and 0..* Followers
 when you save message, it will be saved into one of the partitions depends on:
 partition number | hash of the key | round robin
+![partitions](https://i.postimg.cc/h4TZtSyx/Kafka-replica.png)
 * Leader
 main partition in certain period of time, contains InSyncReplica's - list of Followers that are alive in current time
 * Committed Messages
