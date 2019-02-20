@@ -13,3 +13,7 @@
 ## replication
 ![replication](https://i.postimg.cc/QtbBfKN1/Mapr-streams-replication-01.png)
 ![back loop](https://i.postimg.cc/tJ4swR7f/Mapr-streams-replication-02.png)
+
+## reading messages via client library
+![lib request](https://i.postimg.cc/23pfv2pw/Mapr-strems-reading-01.png)
+![client rading](https://i.postimg.cc/SQn26RF2/Mapr-strems-reading-02.png)
