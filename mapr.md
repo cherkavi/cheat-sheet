@@ -22,3 +22,9 @@
 * Read cursor ( client request it and broker sent )
 * Committed cursor ( client confirmed/commited reading )
 ![cursor types](https://i.postimg.cc/s28cc8X5/Mapr-streams-cursor-types.png)
+
+## Replicating streams
+* Master->Slave 
+* Many->One
+* MultiMaster: Master<-->Master
+* Stream replications: Node-->Node2-->Node3-->Node4 ... ( with loop preventing )
