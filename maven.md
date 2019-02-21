@@ -65,6 +65,16 @@ mvn scoverage:report --projects :artifact_id
 ### single test running, start one test
 https://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.html
 
+### cobertura help, 
+```
+mvn cobertura:help -Ddetail=true
+```
+
+### cobertura html
+```
+mvn cobertura:clean cobertura:cobertura -Dcobertura.report.format=html
+```
+
 ### Java Vaadin project
 ``` 
 mvn archetype:generate -DarchetypeGroupId=com.vaadin -DarchetypeArtifactId=vaadin-archetype-application -DarchetypeVersion=7.2.5 -DgroupId=com.cherkashyn.vitalii.tools.barcode.ui -DartifactId=BarCodeUtilsUI -Dversion=1.0 -Dpackaging=war
