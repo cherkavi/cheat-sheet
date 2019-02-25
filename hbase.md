@@ -101,3 +101,17 @@ put 'mytable1', 'row0015', 'cf:MyColumnFamily2', 'my value 01'
 ```
 get 'mytable1', 'row0015'
 ```
+
+# Java
+## java app 
+```
+java \
+    -cp /opt/cloudera/parcels/SPARK2/lib/spark2/jars/*:`hbase classpath`:{{ deploy_dir }}/lib/ingest-pipeline-orchestrator-jar-with-dependencies.jar \
+    -Djava.security.auth.login.config={{ deploy_dir }}/res/deploy.jaas \
+    com.bmw.ad.ingest.pipeline.orchestrator.admin.TruncateSessionEntriesHelper \
+    --hbase-zookeeper {{ hbase_zookeeper }} \
+    --ingest-tracking-table-name {{ ingest_tracking_table }} \
+    --file-meta-table-name {{ file_meta_table }} \
+    --component-state-table-name {{ component_state_table }} \
+    --session-id $1
+```
