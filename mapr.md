@@ -28,3 +28,14 @@
 * Many->One
 * MultiMaster: Master<-->Master
 * Stream replications: Node-->Node2-->Node3-->Node4 ... ( with loop preventing )
+
+## command line
+### create stream 
+```
+maprcli stream create -path <filepath & name>
+maprcli stream create -path <filepath & name> -consumeperm u:<userId> -produceperm u:<userId> -topicperm u:<userId>
+```
+### create topic
+```
+maprcli stream topic create -path <path and name of the stream> -topic <name of the topic>
+```
