@@ -39,3 +39,32 @@ maprcli stream create -path <filepath & name> -consumeperm u:<userId> -producepe
 ```
 maprcli stream topic create -path <path and name of the stream> -topic <name of the topic>
 ```
+### create producer
+```
+Properties properties = new Properties();
+properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+// org.apache.kafka.common.serialization.ByteSerializer
+// properties.put("client.id", <client id>)
+
+import org.apache.kafka.clients.producer.KafkaProducer;
+KafkaProducer producer = new KafkaProducer<String, String>(properties);
+
+String streamTopic = "<streamname>:<topicname>"; // "/streams/my-stream:topic-name"
+ProducerRecord<String, String> record = new ProducerRecord<String, String>(streamTopic, textOfMessage);
+
+Callback callback = new Callback(){
+  public void onCompletion(RecordMetadata meta, Exception ex){
+    meta.offset();
+  }
+};
+producer.send(record, callback);
+producer.close();
+```
+
+### execute java app
+```
+mapr classpath
+java -cp `mapr classpath`:my-own-app.jar mypackage.MainClass
+
+```
