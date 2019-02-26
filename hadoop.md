@@ -108,6 +108,11 @@ echo $?
 0 - exists
 1 - not exits
 
+### checksum ( md5sum )
+```
+hdfs dfs -checksum <path to file>
+```
+
 ### find files
 for cloudera only !!!
 ```
