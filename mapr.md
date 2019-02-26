@@ -62,7 +62,48 @@ producer.send(record, callback);
 producer.close();
 ```
 
+### create consumer
+```
+Properties properties = new Properties();
+properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+properties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+// org.apache.kafka.common.serialization.ByteSerializer
+// properties.put("auto.offset.reset", <Earliest, Latest, None>)
+
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+KafkaConsumer consumer = new KafkaConsumer<String, String>(properties);
+
+String streamTopic = "<streamname>:<topicname>"; // "/streams/my-stream:topic-name"
+consumer.subscribe(Arrays.asList(topic));
+ConsumerRecords<String, String> messages = consumer.poll(1000L); // reading with timeout
+messages.iterator().next().toString(); // "/streams/my-stream:topic-name, parition=1, offset=256, key=one, value=text"
+```
+
 ### execute java app
+(maven repository)[https://repository.mapr.com/nexus/content/repositories/releases/]
+```
+<repositories>
+  <repository>
+    <id>mapr-maven</id>
+    <url>http://repository.mapr.com/maven</url>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
+    <snapshots>
+      <enabled>false</enabled>
+    </snapshots>
+  </repository>
+</repositories>
+<dependencies>
+  <dependency>
+    <groupId>org.apache.kafka</groupId>
+    <artifactId>kafka-clients</artifactId>
+    <version>0.9.0.0-mapr-1602-streams-5.1.0</version>
+    <scope>provided</scope>
+  </dependency>
+</dependencies>
+```
+execute on cluster
 ```
 mapr classpath
 java -cp `mapr classpath`:my-own-app.jar mypackage.MainClass
