@@ -113,10 +113,14 @@ echo $?
 hdfs dfs -checksum <path to file>
 ```
 
-### find files
-for cloudera only !!!
+### find folders ( for cloudera only !!! )
 ```
 hadoop jar /opt/cloudera/parcels/CDH/jars/search-mr-1.0.0-cdh5.14.4-job.jar org.apache.solr.hadoop.HdfsFindTool -find hdfs:///data/ingest/ -type d -name "some-name-of-the-directory"
+```
+
+### find files ( for cloudera only !!! )
+```
+hadoop jar /opt/cloudera/parcels/CDH/jars/search-mr-1.0.0-cdh5.14.4-job.jar org.apache.solr.hadoop.HdfsFindTool -find hdfs:///data/ingest/ -type f -name "some-name-of-the-file"
 ```
 
 ### change factor of replication 
