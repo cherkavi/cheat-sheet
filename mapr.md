@@ -10,6 +10,18 @@
 ![sending by client](https://i.postimg.cc/0NKdXfhm/mapr-streams-sending-01.png)
 ![consuming by broker](https://i.postimg.cc/wvK5CNdr/mapr-streams-sending-02.png)
 
+## spreading message between partitions, assigning message to paritiion
+* by partition number
+* by message key
+* round-robin ( without previous two )
+* properties.put("streams.patitioner.class", "my.package.MyClassName.class")
+```
+public class MyClassName implements Partitioner{
+   public int partition( String topic, Object, key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster){}
+}
+```
+
+
 ## replication
 ![replication](https://i.postimg.cc/QtbBfKN1/Mapr-streams-replication-01.png)
 ![back loop](https://i.postimg.cc/tJ4swR7f/Mapr-streams-replication-02.png)
