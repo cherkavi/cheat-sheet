@@ -1033,6 +1033,10 @@ sudo cp /etc/gshadow /opt/gshadow-export
 ```
 
 # AWK
+### last index of, lastIndexOf, substring
+```
+head completed2.files.list  | awk -F '/' '{print substr($0, 1, length($0) - length($NF))}'
+```
 
 ### awk another FieldSeparator
 ```
