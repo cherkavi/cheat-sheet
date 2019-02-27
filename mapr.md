@@ -65,7 +65,7 @@ producer.close();
 ```
 
 #### send conditions
-!(flash client buffer)[https://i.postimg.cc/y8X75Z6P/Selection-009.png]
+![flash client buffer](https://i.postimg.cc/y8X75Z6P/Selection-009.png)
 
 ### create consumer
 ```
