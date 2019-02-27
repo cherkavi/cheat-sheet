@@ -67,6 +67,19 @@ producer.close();
 #### send conditions
 ![flash client buffer](https://i.postimg.cc/y8X75Z6P/Selection-009.png)
 
+#### parallel sending
+```
+streams.parallel.flushers.per.partition default true:
+```
+* does not wait for ACK before sending more messages
+* possible for messages to arrive out of order
+```
+streams.parallel.flushers.per.partition set to false: 
+```
+* client library will wait for ACK from server
+* slower than default setting
+![sending types](https://i.postimg.cc/c1w1Y2q2/Selection-010.png)
+
 ### create consumer
 ```
 Properties properties = new Properties();
