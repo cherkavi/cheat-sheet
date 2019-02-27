@@ -39,7 +39,9 @@ maprcli stream create -path <filepath & name> -consumeperm u:<userId> -producepe
 ```
 maprcli stream topic create -path <path and name of the stream> -topic <name of the topic>
 ```
-### create producer
+## API, java programming
+### producer
+#### java example
 ```
 Properties properties = new Properties();
 properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -61,6 +63,9 @@ Callback callback = new Callback(){
 producer.send(record, callback);
 producer.close();
 ```
+
+#### send conditions
+!(flash client buffer)[https://i.postimg.cc/y8X75Z6P/Selection-009.png]
 
 ### create consumer
 ```
