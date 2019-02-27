@@ -66,7 +66,7 @@ producer.send(record, callback);
 producer.close();
 ```
 
-#### send conditions
+#### sending conditions
 ![flash client buffer](https://i.postimg.cc/y8X75Z6P/Selection-009.png)
 
 #### parallel sending
@@ -82,7 +82,14 @@ streams.parallel.flushers.per.partition set to false:
 * slower than default setting
 ![sending types](https://i.postimg.cc/c1w1Y2q2/Selection-010.png)
 
-### create consumer
+#### retrieving metadata during connection with Kafka
+```
+metadata.max.age.ms
+```
+How frequently to fetch metadata
+
+### consumer
+#### java consumer
 ```
 Properties properties = new Properties();
 properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
