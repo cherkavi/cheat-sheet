@@ -54,6 +54,8 @@ KafkaProducer producer = new KafkaProducer<String, String>(properties);
 
 String streamTopic = "<streamname>:<topicname>"; // "/streams/my-stream:topic-name"
 ProducerRecord<String, String> record = new ProducerRecord<String, String>(streamTopic, textOfMessage);
+// ProducerRecord<String, String> record = new ProducerRecord<String, String>(streamTopic, messageTextKey, textOfMessage);
+// ProducerRecord<String, String> record = new ProducerRecord<String, String>(streamTopic, partitionIntNumber, textOfMessage);
 
 Callback callback = new Callback(){
   public void onCompletion(RecordMetadata meta, Exception ex){
