@@ -51,10 +51,16 @@ ssh-keygen -t rsa
 ```
 ssh-copy-id {username}@{machine ip}:{port}
 ```
+
 sometimes need to add next
 ```
 ssh-agent bash
 ssh-add ~/.ssh/id_dsa or id_rsa
+```
+
+remove credentials ( undo previous command )
+```
+ssh-keygen -f "/home/{user}/.ssh/known_hosts" -R "10.140.240.105"
 ```
 
 the same, but manually:
