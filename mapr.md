@@ -108,6 +108,7 @@ properties.put("key.deserializer", "org.apache.kafka.common.serialization.String
 properties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 // org.apache.kafka.common.serialization.ByteSerializer
 // properties.put("auto.offset.reset", <Earliest, Latest, None>)
+// properties.put("group.id", <group identificator>)
 
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 KafkaConsumer consumer = new KafkaConsumer<String, String>(properties);
