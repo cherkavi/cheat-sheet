@@ -115,13 +115,14 @@ KafkaConsumer consumer = new KafkaConsumer<String, String>(properties);
 
 String streamTopic = "<streamname>:<topicname>"; // "/streams/my-stream:topic-name"
 consumer.subscribe(Arrays.asList(topic));
+// consumer.subscribe(topic, new RebalanceListener());
 ConsumerRecords<String, String> messages = consumer.poll(1000L); // reading with timeout
 messages.iterator().next().toString(); // "/streams/my-stream:topic-name, parition=1, offset=256, key=one, value=text"
 ```
 
 #### java rebalance listener
 ```
-public class Listener implements ConsumerRebalanceListener{
+public class RebalanceListener implements ConsumerRebalanceListener{
     onPartitionAssigned(Collection<TopicPartition> partitions)
     onPartitionRevoked(Collection<TopicPartition> partitions)
 }
