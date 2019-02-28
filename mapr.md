@@ -109,6 +109,8 @@ properties.put("value.deserializer", "org.apache.kafka.common.serialization.Stri
 // org.apache.kafka.common.serialization.ByteSerializer
 // properties.put("auto.offset.reset", <Earliest, Latest, None>)
 // properties.put("group.id", <group identificator>)
+// properties.put("enable.auto.commit", <true - default | false >), use consumer.commitSync() if false
+// properties.put("auto.commit.interval.ms", <default value 1000ms>)
 
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 KafkaConsumer consumer = new KafkaConsumer<String, String>(properties);
