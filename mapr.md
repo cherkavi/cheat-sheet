@@ -119,6 +119,14 @@ ConsumerRecords<String, String> messages = consumer.poll(1000L); // reading with
 messages.iterator().next().toString(); // "/streams/my-stream:topic-name, parition=1, offset=256, key=one, value=text"
 ```
 
+#### java rebalance listener
+```
+public class Listener implements ConsumerRebalanceListener{
+    onPartitionAssigned(Collection<TopicPartition> partitions)
+    onPartitionRevoked(Collection<TopicPartition> partitions)
+}
+```
+
 ### execute java app
 (maven repository)[https://repository.mapr.com/nexus/content/repositories/releases/]
 ```
