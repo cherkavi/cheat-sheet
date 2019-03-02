@@ -99,6 +99,15 @@ command inside box
 ifconfig
 ```
 
+### configuration of proxy with condition
+```
+  if Vagrant.has_plugin?("vagrant-proxyconf")
+    config.proxy.http     = "http://10.32.142.11:3128/"
+    config.proxy.https    = "http://10.32.142.11:3128/"
+    config.proxy.no_proxy = "localhost,127.0.0.1"
+  end
+```
+
 
 ## issues
 
