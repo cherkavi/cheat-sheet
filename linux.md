@@ -918,6 +918,21 @@ echo "just a text string" | base64 | base64 --decode
 md5sum
 ```
 
+## Touch screen
+### calibration
+tool installation
+```
+sudo apt install xinput-calibrator
+```
+configuration
+```
+xinput_calibration
+```
+permanent applying
+```
+vi /usr/share/X11/xorg.conf.d/80-touch.conf
+```
+
 
 ## home automation
 ### DTMF generator
