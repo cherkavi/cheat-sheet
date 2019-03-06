@@ -112,6 +112,10 @@ echo $?
 ```
 hdfs dfs -checksum <path to file>
 ```
+locally only
+```
+hdfs dfs -cat <path to file> | md5sum
+```
 
 ### find folders ( for cloudera only !!! )
 ```
