@@ -415,6 +415,10 @@ crontab -l
 ```
 ./hbase.sh 2>/dev/null
 ```
+### grep with line number
+```
+grep -nr "text for search" .
+```
 
 ### grep line before
 ```
