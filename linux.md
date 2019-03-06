@@ -1153,3 +1153,4 @@ echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnm
 ---
 # useful links:
 [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
+[jira editing shortcuts](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)
