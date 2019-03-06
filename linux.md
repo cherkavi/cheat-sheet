@@ -1,5 +1,7 @@
 # Linux
 
+[cheat sheet cmd](http://cht.sh/), [chat sheet cmd](http://cheat.sh/)
+
 ### socket proxy, proxy to remote machine
 ```
 ssh -D <localport> <user>@<remote host>
