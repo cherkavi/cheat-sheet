@@ -235,6 +235,15 @@ git tag -a $newVersion -m 'deployment_jenkins_job'
 git push --tags $remoteUrl
 ```
 
+### git lfs
+```
+echo 'deb http://http.debian.net/debian wheezy-backports main' > /etc/apt/sources.list.d/wheezy-backports-main.list
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+sudo apt-get install git-lfs
+git lfs install
+
+```
+
 ### configuration for proxy server, proxy configuration
 #### set proxy, using proxy
 ```
