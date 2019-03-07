@@ -112,6 +112,10 @@ echo $?
 ```
 hdfs dfs -checksum <path to file>
 ```
+[hdfs logic emulator](https://github.com/srch07/HDFSChecksumForLocalfile)
+```
+java -jar HadoopChecksumForLocalfile-1.0.jar V717777_MDF4_20190201.MF4 0 512 CRC32C
+```
 locally only
 ```
 hdfs dfs -cat <path to file> | md5sum
