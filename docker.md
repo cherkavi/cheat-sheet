@@ -187,8 +187,11 @@ docker attach {CONTAINER ID} --sig-proxy=true
 
 ### docker log of container, console output
 ```
+docker logs --follow --tail all {CONTAINER ID}
 docker logs --follow --tail 25 {CONTAINER ID}
 docker logs {CONTAINER ID}
+docker logs --since 10m {CONTAINER ID}
+docker logs --since 2018-01-01T00:00:00 {CONTAINER ID}
 ```
 
 ### show processes from container
