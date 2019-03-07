@@ -1028,6 +1028,15 @@ ENDTIME=`date +%s.%N`
 TIMEDIFF=`echo "$ENDTIME - $STARTTIME" | bc | awk -F"." '{print $1"."substr($2,1,3)}'`
 ```
 
+### set proxy 
+/etc/apt/apt.conf 
+```
+Acquire::http::proxy "http://proxy.company.com:80/";
+Acquire::https::proxy "https://proxy.company.com:80/";
+Acquire::ftp::proxy "ftp://proxy.company.com:80/";
+Acquire::socks5::proxy "socks://127.0.0.1:1080/";
+```
+
 ## vim
 ### copy-paste
 * v - *visual* selection ( start selection )
@@ -1053,7 +1062,7 @@ brew
 
 ## copy users, import/export users
 ```
-udo awk -F: '($3>=LIMIT) && ($3!=65534)' /etc/passwd > passwd-export
+sudo awk -F: '($3>=LIMIT) && ($3!=65534)' /etc/passwd > passwd-export
 sudo awk -F: '($3>=LIMIT) && ($3!=65534)' /etc/group > /opt/group-export
 sudo awk -F: '($3>=LIMIT) && ($3!=65534) {print $1}' /etc/passwd | tee - | egrep -f - /etc/shadow > /opt/shadow-export
 sudo cp /etc/gshadow /opt/gshadow-export
