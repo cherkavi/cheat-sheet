@@ -26,6 +26,11 @@ easy_install.main( ["-U","termcolor"] )
 ```
 
 ## package manager pip
+### find package by name
+```
+pip search {search key}
+```
+
 ### install pip
 ```
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
