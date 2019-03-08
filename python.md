@@ -55,6 +55,11 @@ apt-get install -y --no-install-recommends python3-pip
 pip install --proxy=http://proxy.muc:8080
 ```
 
+### list of packages
+```
+pip list
+```
+
 ### install certain version of artifact
 ```
 pip install tornado==2.1.1
