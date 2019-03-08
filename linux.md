@@ -163,8 +163,13 @@ uniq -c
 ```
 
 #### duplicates
+print only duplicates ( distinct )
 ```
 uniq -d
+```
+print all duplications
+```
+uniq -D
 ```
 
 #### unique
