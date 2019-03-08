@@ -19,6 +19,9 @@ os.environ['HTTPS_PROXY'] = proxy
 ### using easy_install from script
 ```
 from setuptools.command import easy_install
+# install package
+easy_install.main( ["termcolor"] )
+# update package
 easy_install.main( ["-U","termcolor"] )
 ```
 
