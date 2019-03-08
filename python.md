@@ -32,7 +32,7 @@ issue:
 ```
 ImportError: cannot import name 'sysconfig'
 ```
-solution
+solutionpip install
 ```
 sudo apt install python3-distutils
 ```
@@ -81,6 +81,11 @@ import extra_component
 ### update package
 ```
 pip install tornado --update
+```
+
+### remove package, uninstall package
+```
+pip uninstall {package name}
 ```
 
 ### list of all installed libraries, installed modules
