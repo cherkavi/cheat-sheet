@@ -800,11 +800,20 @@ export NO_PROXY="localhost,127.0.0.1,.host,.viola.local"
 export no_proxy="localhost,127.0.0.1,.host,.viola.local"
 ```
 
+* #### global /etc/apt/apt.conf 
+```
+Acquire::http::proxy "http://proxy.company.com:80/";
+Acquire::https::proxy "https://proxy.company.com:80/";
+Acquire::ftp::proxy "ftp://proxy.company.com:80/";
+Acquire::socks5::proxy "socks://127.0.0.1:1080/";
+```
+
 * #### global /etc/environment
 ```
 http_proxy=http://webproxy.host:3128
 no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ```
+
 * #### for application
 create environment for http
 ```
@@ -1031,15 +1040,6 @@ STARTTIME=`date +%s.%N`
 sleep 2.5
 ENDTIME=`date +%s.%N`
 TIMEDIFF=`echo "$ENDTIME - $STARTTIME" | bc | awk -F"." '{print $1"."substr($2,1,3)}'`
-```
-
-### set proxy 
-/etc/apt/apt.conf 
-```
-Acquire::http::proxy "http://proxy.company.com:80/";
-Acquire::https::proxy "https://proxy.company.com:80/";
-Acquire::ftp::proxy "ftp://proxy.company.com:80/";
-Acquire::socks5::proxy "socks://127.0.0.1:1080/";
 ```
 
 ## vim
