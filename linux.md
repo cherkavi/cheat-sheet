@@ -88,6 +88,11 @@ scp filename.txt cherkavi@129.191.200.15:~/temp/filename-from-local.txt
 scp -pr /source/directory user@host:the/target/directory
 ```
 
+### create directory on remote machine, create folder remotely
+```
+ssh user@host "mkdir -p /target/path/"
+```
+
 ### here document, sftp batch command with bash
 ```
 sftp -P 2222 my_user@localhost << END_FILE_MARKER
