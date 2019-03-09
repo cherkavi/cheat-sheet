@@ -83,6 +83,11 @@ sudo service ssh start
 scp filename.txt cherkavi@129.191.200.15:~/temp/filename-from-local.txt
 ```
 
+### copy directory to remote machine, copy folder to remote machine
+```
+scp -pr /source/directory user@host:the/target/directory
+```
+
 ### here document, sftp batch command with bash
 ```
 sftp -P 2222 my_user@localhost << END_FILE_MARKER
