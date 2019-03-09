@@ -155,6 +155,10 @@ split --bytes=1M /path/to/image/image.jpg /path/to/image/prefixForNewImagePieces
 cat prefixFiles* > newimage.jpg
 ```
 
+### cut big file, split big file, cat after threshold
+```
+cat --lines=17000 big_text_file.txt
+```
 
 ### unique lines (duplications) into file
 #### add counter and print result
