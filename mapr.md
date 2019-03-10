@@ -1,6 +1,9 @@
 [MapR Academy](http://learn.mapr.com)
 [Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)
 
+# Architecture examples
+![connected drive](https://i.postimg.cc/LXCBm8b5/Connected-Car-Pipeline.png)
+
 # MapR Streams
 ## parallelism
 * Partition Id
