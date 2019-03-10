@@ -78,9 +78,13 @@ sudo apt get ssh
 sudo service ssh start
 ```
 
-### copy from one machine to another, remote copy
+### copy from local machine to remote one, remote copy
 ```
 scp filename.txt cherkavi@129.191.200.15:~/temp/filename-from-local.txt
+```
+### copy from remote machine to local
+```
+scp -r cherkavi@129.191.200.15:~/temp/filename-from-local.txt filename.txt 
 ```
 
 ### copy directory to remote machine, copy folder to remote machine
