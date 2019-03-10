@@ -1,4 +1,5 @@
 [MapR Academy](http://learn.mapr.com)
+[Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)
 
 # MapR Streams
 ## parallelism
