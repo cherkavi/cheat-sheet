@@ -648,6 +648,10 @@ ONE="this is a test"; echo $ONE
 ```
 /var/log/syslog
 ```
+### Debian install package via proxy
+```
+sudo http_proxy='http://user:@proxy.muc:8080' apt install meld
+```
 
 ### Debian update package
 ```
