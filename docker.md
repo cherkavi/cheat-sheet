@@ -319,16 +319,6 @@ docker system df
 docker system prune
 ```
 
-### network types
-```
---network="bridge" : 
-  'host': use the Docker host network stack
-  'bridge': create a network stack on the default Docker bridge
-  'none': no networking
-  'container:<name|id>': reuse another container's network stack
-  '<network-name>|<network-id>': connect to a user-defined network
-```
-
 ### assign static hostname to container (map hostname)
 * create network
 ```
@@ -346,7 +336,18 @@ docker inspect {CONTAINER ID} | grep -i NETWORK
 ### shares the host network stack and has access to the /etc/hosts for network communication
 ```
 --net=host 
+--network host 
 ```
+### network types
+```
+--network="bridge" : 
+  'host': use the Docker host network stack
+  'bridge': create a network stack on the default Docker bridge
+  'none': no networking
+  'container:<name|id>': reuse another container's network stack
+  '<network-name>|<network-id>': connect to a user-defined network
+```
+
 
 ### [UI manager](https://portainer.readthedocs.io)
 ```
