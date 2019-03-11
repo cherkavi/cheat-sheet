@@ -209,7 +209,7 @@ docker exec -it {CONTAINER ID} /bin/bash
 docker diff {CONTAINER ID}
 ```
 
-### show all layers command+size
+### show all layers command+size, reverse engineering of container, print dockerfile
 ```
 docker history --no-trunc {CONTAINER ID}
 ```
