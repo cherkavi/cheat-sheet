@@ -489,6 +489,11 @@ grep -ir "memory" --include="*.scala"
 diff -w file1.txt file2.txt
 ```
 
+### show difference in lines with context
+```
+diff -c file1.txt file2.txt
+```
+
 ### replace character into string
 ```
 array = echo $result | tr {}, ' ' 
