@@ -111,6 +111,7 @@ import org.apache.spark.sql.types._
 val schema = new StructType()
   .add(StructField("name", StringType, true))
   .add(StructField("age", IntegerType, true))
+// new StructType(Array( StructField("name", StringType, true), StructType("age", IntegerType, true)))
   
 sqlContext.createDataFrame(
 sc.parallelize(
