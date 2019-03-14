@@ -105,6 +105,9 @@ val words = Seq( ("John", 44), ("Mary",38), ("Chak",18)
 ```
 create data with predefined schema
 ```
+import spark.implicits._
+import org.apache.spark.sql.types._
+
 val schema = new StructType()
   .add(StructField("name", StringType, true))
   .add(StructField("age", IntegerType, true))
