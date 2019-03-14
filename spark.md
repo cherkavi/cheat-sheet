@@ -108,14 +108,12 @@ dataFrame.createTempView("viewName")
 
 ### read data with case class
 ```
-val dataFrame = spark.read.format("csv").schema(customSchema).load("/path/to/file")
+val dataFrame = spark.read.format("csv").option("inferSchema", true).load("/path/to/file")
 .toDF("name", "age")
-
+// name of fields into caseclass must match with name columns in DataFrame
 case class Person(name:String, age:Int)
 
 val dataSet = dataFrame.as[Person]
-
-dataSet.createTempView("viewName")
 ```
 
 ### create data inline
