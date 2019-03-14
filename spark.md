@@ -263,6 +263,9 @@ statistic.freqItem(Seq("column1"), frequencyValue)
 // histogram, mean, stdev, sum, variance, min, max
 ```
 
+### difference between DataFrame and DataSet
+![DF vs DS](https://i.postimg.cc/NM20wHtD/DS-DF.png)
+
 ## Serialization
 ### serialization issue
 any class, that involved into Task should be Serializable
