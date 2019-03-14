@@ -95,24 +95,38 @@ sc = SparkContext( conf = SparkConf().setAppName("my-app").setMaster("local") )
 from pyspark.sql import SQLContext
 sqlContext = SQLContext(sc)
 ```
+
+### read data from file with predefined structure
+```
+import spark.implicits._
+import org.apache.spark.sql.types._
+
+val customSchema = new StructType(Array( StructField("name", StringType, true), StructType("age", IntegerType, true)))
+val dataFrame = spark.read.format("csv").schema(customSchema).load("/path/to/file").toDF("name", "age")
+dataFrame.createTempView("viewName")
+```
+
 ### create data inline
 ```
 import spark.implicits._
 ```
+
 ```
 val words = Seq( ("John", 44), ("Mary",38), ("Chak",18)
 ).toDF("name", "age")
 ```
+
 create data with predefined schema
 ```
 import spark.implicits._
 import org.apache.spark.sql.types._
 
+// create structure
 val schema = new StructType()
   .add(StructField("name", StringType, true))
   .add(StructField("age", IntegerType, true))
-// new StructType(Array( StructField("name", StringType, true), StructType("age", IntegerType, true)))
   
+// create DataFrame
 sqlContext.createDataFrame(
 sc.parallelize(
   Seq(
@@ -120,7 +134,12 @@ sc.parallelize(
     Row("Mary", 25)
   )
 ), schema)
+
+// create DataSet
+spark.read.format()
 ```
+
+
 ```
 val someDF = spark.createDF(
   List(
