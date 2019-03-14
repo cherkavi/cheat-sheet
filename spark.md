@@ -265,6 +265,7 @@ statistic.freqItem(Seq("column1"), frequencyValue)
 
 ### difference between DataFrame and DataSet
 ![DF vs DS](https://i.postimg.cc/NM20wHtD/DS-DF.png)
+![Load data](https://i.postimg.cc/KYkbKhWv/Load-Data-DF-DS.png)
 
 ## Serialization
 ### serialization issue
