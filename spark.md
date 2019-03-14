@@ -131,6 +131,13 @@ val someDF = spark.createDF(
 
 
 ### read data
+* read csv
+```
+import spark.implicits._
+val dataFrame = spark.read.csv("/path/to/file")
+val dataSet = dataFrame.as[CaseClassName]
+dataSet.createTempView("viewName")
+```
 * read csv file without header
 ```
 spark.read.format("csv").option("header", "true").load("/tmp/1.txt")
