@@ -131,6 +131,22 @@ val someDF = spark.createDF(
 
 
 ### read data
+* load data
+```
+spark.read.load("/path/to/file").format("name of format")
+- json
+- parquet
+- csv
+```
+* read text file
+```
+spark.read.text
+spark.read.textfile
+```
+* read jdbc, load jdbc
+```
+spark.read.jdbc(url, table, connection_properties)
+```
 * read csv
 ```
 import spark.implicits._
