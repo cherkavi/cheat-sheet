@@ -106,6 +106,18 @@ val dataFrame = spark.read.format("csv").schema(customSchema).load("/path/to/fil
 dataFrame.createTempView("viewName")
 ```
 
+### read data with case class
+```
+val dataFrame = spark.read.format("csv").schema(customSchema).load("/path/to/file")
+.toDF("name", "age")
+
+case class Person(name:String, age:Int)
+
+val dataSet = dataFrame.as[Person]
+
+dataSet.createTempView("viewName")
+```
+
 ### create data inline
 ```
 import spark.implicits._
