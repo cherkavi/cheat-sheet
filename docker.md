@@ -485,6 +485,10 @@ sudo apt-get install  --only-upgrade docker
 docker-compose up -d
 ```
 
+## docker-compose find folder with image
+default name of image contains name of the folder like a prefix
+( but underscore and minus signs can be removed )
+
 ## Issues
 ```
 In file './docker-compose.yml' service 'version' doesn't have any configuration options.
