@@ -191,6 +191,11 @@ dataSet.createTempView("viewName")
 ```
 spark.read.format("csv").option("header", "true").load("/tmp/1.txt")
 ```
+* read csv file with columns
+```
+val df = spark.read.option("inferSchema", true).csv("/path/to/file.csv").toDF("column_1", "column_2", "column_3", "column_4")
+df.as[CaseClassMapper]
+```
 * read json format
 ```
 spark.read.format("json").load("/tmp/1.json")
