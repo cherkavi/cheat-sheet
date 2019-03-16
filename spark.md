@@ -409,6 +409,10 @@ examples
 val employee = sqlContext.sql("select employee.name, employee.age from employee where salary>120000")
 employee.map(empl=> "Name:"+empl(0)+"  age:"+empl(1).sort(false).take(5).foreach(println)
 ```
+or
+```
+spark.sql("select * from registeredView").show(5)
+```
 * Spark Streaming
 ```
 val lines = streamingContext.socketTextStream("127.0.0.1", 8888)
