@@ -163,8 +163,8 @@ val someDF = spark.createDF(
 ```
 
 
-### read data
-* load data
+### read data, load data
+* with format
 ```
 spark.read.load("/path/to/file").format("name of format")
 - json
@@ -179,6 +179,14 @@ spark.read.textfile
 * read jdbc, load jdbc
 ```
 spark.read.jdbc(url, table, connection_properties)
+
+val jdbcDF = spark.read
+  .format("jdbc")
+  .option("url", "jdbc:postgresql:dbserver")
+  .option("dbtable", "schema.tablename")
+  .option("user", "username")
+  .option("password", "password")
+  .load()
 ```
 * read csv
 ```
@@ -214,8 +222,17 @@ or
 ```
 frame = spark.read.format("orc").load("/path/words.orc")
 ```
+or
+```
+spark.read.orc("/ingestor/46b1-a7d7-c1728088fb48")
+```
 
-### save data
+### save data, write data
+* with format
+```
+df.write.format("csv").mode("override").save(filepath)
+
+```
 * csv
 ```
 df.write.format("csv").save(filepath)
@@ -236,9 +253,29 @@ or
 ```
 dataframe.write.format("orc").mode("overwrite").save("/path/to/file")
 ```
+* parquet
+```
+val usersDF = spark.read.load("users.parquet")
+usersDF.select("name", "favorite_color").write.save("namesAndFavColors.parquet")
+```
 or
 ```
-spark.read.orc("/ingestor/46b1-a7d7-c1728088fb48")
+val peopleDF = spark.read.format("json").load("resources/people.json")
+peopleDF.select("name", "age").write.format("parquet").save("namesAndAges.parquet")
+```
+* jdbc
+```
+jdbcDF.write
+  .format("jdbc")
+  .option("url", "jdbc:postgresql:dbserver")
+  .option("dbtable", "schema.tablename")
+  .option("user", "username")
+  .option("password", "password")
+  .save()
+```
+* Hive table
+```
+dataframe.write.option("path", "/some/path").saveAsTable("some_table_name")
 ```
 
 ### append data, union data
