@@ -70,6 +70,15 @@ pip list
 pip install tornado==2.1.1
 ```
 
+### create virtual environment, dedicated env
+```
+python3 -m venv virtual_env
+source virtual_env/bin/activate
+# deactivate
+pip install wheel 
+python3 
+```
+
 ### install artifact from git
 ```
 pip install git+https://github.com/django-extensions/django-extensions
