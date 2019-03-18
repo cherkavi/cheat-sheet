@@ -110,6 +110,17 @@ import sys
 sys.modules
 ```
 
+### list of all folders with source code, installed packages
+```
+import sys
+print(sys.prefix)
+```
+for easy_install, pip
+```
+import site
+print(site.getsitepackages())
+```
+
 ### using pip from interpreter ( install wheels package)
 ```
 import pip
