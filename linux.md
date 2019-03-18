@@ -423,6 +423,10 @@ wmic path win32_process get Caption, Processid, Commandline
 ```
 output to log stop process
 ```
+### remove except one file
+```
+rm -rf  -- !(exclude-filename.sh)
+```
 
 ### youtube
 ```
