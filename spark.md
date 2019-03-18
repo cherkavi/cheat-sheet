@@ -361,6 +361,18 @@ statistic.freqItem(Seq("column1"), frequencyValue)
 // histogram, mean, stdev, sum, variance, min, max
 ```
 
+### UDF, user defined functions
+```
+val myUdf = udf( (s:String)=>(s.trim().substring(s.lastIndexOf('/')) )
+// usage example
+dataFrame.groupBy(myUdf(dataFrame("column_name"))).show()
+```
+usage in SQL
+```
+spark.udf.register("trimDirectory", myUdf)
+spark.sql("select trimDirectory(column_name) from registeredView groupBy trimDirectory(column_name) ")
+```
+
 ### difference between DataFrame and DataSet
 ![DF vs DS](https://i.postimg.cc/NM20wHtD/DS-DF.png)
 ![Load data](https://i.postimg.cc/KYkbKhWv/Load-Data-DF-DS.png)
