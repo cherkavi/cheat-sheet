@@ -571,7 +571,7 @@ wget -O- http://{host}:8500/wd-only/getBrandXml.jsp?brand=229099017 > /dev/null 
 wget -nv -O- http://{host}:8500/wd-only/getBrandXml.jsp?brand=229099017 2>/dev/null
 ```
 
-### wget to specific file
+### wget to specific file, download file to specific file
 ```
 wget -O out.zip http://{host}:9000/published/resources/10050001.zip
 ```
