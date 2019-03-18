@@ -349,7 +349,9 @@ val data = sc.textFile("some_data.csv")
 data.toDebugString()
 
 // descriptions of partitions
-data.partitions
+dataSet.rdd.partitions
+data.partitions.size
+data.repartition(new_size)
 
 // statistic values
 val statistic = dataFrame.stat
