@@ -264,6 +264,11 @@ git config core.sshCommand 'ssh -i private_key_file'
 *.sh -crlf
 ```
 
+### download latest release from github, release download
+```
+curl -s https://api.github.com/repos/bugy/script-server/releases/latest | grep browser_download_url | cut -d '"' -f 4
+```
+
 ### linux command line changes
 ```
 #git settings parse_git_branch() {
