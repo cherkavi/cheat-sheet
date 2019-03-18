@@ -523,6 +523,10 @@ zgrep "message_gateway_integration" /var/lib/brand-server/cache/zip/*.zip
 ```
 ls -1 *.zip | xargs -I{} unzip -p {} brand.xml  | grep instant-limit | grep "\\."
 ```
+### unzip into specific folder
+```
+unzip file.zip -d output_folder
+```
 
 ### pipeline chain 'to file'
 ```
