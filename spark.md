@@ -33,7 +33,11 @@ spark.storage.memoryFraction=0.6 # how much storage will be dedicated to in-memo
 
 spark.storage.unrollFraction=0.2 # unrolling serialized data
 ```
-
+### session
+```
+val spark = SparkSession.builder.master("local").appName("applicationName").getOrCreate()
+spark.read.format("csv").option(....
+```
 
 ### metrics
 Coda Hale Metrics Library
