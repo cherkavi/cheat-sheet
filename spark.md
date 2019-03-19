@@ -6,6 +6,7 @@
 * [Mastering apache spark](https://jaceklaskowski.gitbooks.io/mastering-apache-spark/)
 
 ![Spark-ecosystem.png](https://i.postimg.cc/g2JXhcK9/Spark-ecosystem.png)
+![lifecycle](https://i.postimg.cc/WpZrZ4dQ/spark-app-lifecycle.png)
 
 ### configuration ( spark-defaults.conf )
 http://<driver>:4040
