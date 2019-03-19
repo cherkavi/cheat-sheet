@@ -35,6 +35,7 @@ spark.storage.unrollFraction=0.2 # unrolling serialized data
 ```
 ### session
 ```
+import org.apache.spark.sql.SparkSession
 val spark = SparkSession.builder.master("local").appName("applicationName").getOrCreate()
 spark.read.format("csv").option(....
 ```
