@@ -20,7 +20,9 @@
 
 
 ### configuration ( spark-defaults.conf )
+* monitoring of execution of SparkJob
 http://<driver>:4040
+( history server ) 
 
 * spark properties
 ```
