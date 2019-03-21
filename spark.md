@@ -14,6 +14,8 @@
   * cluster mode - driver launches on cluster, quit after submission
   * client mode - driver launches in the same process, must wait for finish of work
 * YARN - reource manager in hadoop
+  * cluster mode
+  * client mode
 * Mesos - general cluster manager
 
 
@@ -25,11 +27,16 @@ http://<driver>:4040
 new SparkConf().set("spark.executor.memory","1g")
 ```
 ```
-bin/spark-submit --conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
+bin/spark-submit 
+--class <main class>
+--master <master url>
+--deploy-mode <mode>
+--conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
+<jar>
+< application arguments>
 ```
 * conf/spark-env.sh
 * log4j.properties
-
 ```
 spark.rdd.compress=false
 spark.shuffle.consolidateFiles=false # set true for ext4/xfs filesystems
