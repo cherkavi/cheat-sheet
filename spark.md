@@ -34,7 +34,7 @@ bin/spark-submit
 --master <local[n] | spark:<masterurl> | yarn-client/yarn-master | mesos:<mesosurl> >
 --deploy-mode <mode>
 --conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
-<jar>
+--jars <jar1>,<jar2>,<jar3>
 < application arguments>
 ```
 * conf/spark-env.sh
