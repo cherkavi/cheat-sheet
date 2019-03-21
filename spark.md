@@ -58,7 +58,7 @@ val spark = SparkSession.builder.master("local").appName("applicationName").getO
 spark.read.format("csv").option(....
 ```
 [components](https://i.postimg.cc/m27LHPRc/spark-components.png)
-
+[execution phases](https://i.postimg.cc/nhVyhrLf/spark-execution-phases.png)
 
 ### metrics
 Coda Hale Metrics Library
