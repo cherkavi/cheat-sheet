@@ -29,7 +29,7 @@ new SparkConf().set("spark.executor.memory","1g")
 ```
 bin/spark-submit 
 --class <main class>
---master <master url>
+--master <local[n] | spark:<masterurl> | yarn-client/yarn-master | mesos:<mesosurl> >
 --deploy-mode <mode>
 --conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
 <jar>
