@@ -48,6 +48,7 @@ git fetch --prune
 ### remove local branch only
 ```
 git branch -d release-6.9.0
+git branch -d -f release-6.9.0
 ```
 
 ### check hash-code of the branch
