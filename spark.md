@@ -57,6 +57,8 @@ import org.apache.spark.sql.SparkSession
 val spark = SparkSession.builder.master("local").appName("applicationName").getOrCreate()
 spark.read.format("csv").option(....
 ```
+[components](https://i.postimg.cc/m27LHPRc/spark-components.png)
+
 
 ### metrics
 Coda Hale Metrics Library
