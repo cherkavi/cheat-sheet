@@ -8,6 +8,15 @@
 ![Spark-ecosystem.png](https://i.postimg.cc/g2JXhcK9/Spark-ecosystem.png)
 ![lifecycle](https://i.postimg.cc/WpZrZ4dQ/spark-app-lifecycle.png)
 
+### modes
+* local - run in the same VM
+* standalone - simple cluster manager
+  * cluster mode - driver launches on cluster, quit after submission
+  * client mode - driver launches in the same process, must wait for finish of work
+* YARN - reource manager in hadoop
+* Mesos - general cluster manager
+
+
 ### configuration ( spark-defaults.conf )
 http://<driver>:4040
 
