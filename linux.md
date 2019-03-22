@@ -1128,7 +1128,7 @@ example:
 ```
 a=$((a+`zip_textfiles part_0 part_0.txt | awk '{if(NF>=5){print $4"/"$5}}' | awk -F '/' '{print $14" "$15"/"$16"/"$17" "$18}' | python sql-update-files-with-md5sum.py`))
 
-cat hosts-parts.txt | awk '{print "a=$((a+`zip_textfiles "$2" "$2".txt | awk \x27 "}'
+awk '{print "a=$((a+`zip_textfiles "$2" "$2".txt | awk \x27 "}'
 | awk -F \'/\' \'{print $14\" \"$15\"/\"$16\"/\"$17\" \"$18}\' | python sql-update-files-with-md5sum.py\`)); echo \"update "$2".txt"}' > update-db-from-files.sh
 ```
 
