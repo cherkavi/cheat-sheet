@@ -438,9 +438,8 @@ partitionBy(new HashPartitioner(8)).
 // after at least one 'heavy' action should be persisted
 persist(StorageLevel.xxxxxxx)
 
-
-rdd1.join(rdd2).
-persist(StorageLevel.xxxxxxx)
+rdd1.join(rdd2)
+.persist(StorageLevel.xxxxxxx) // MEMORY_ONLY, MEMORY_ONLY_SER, MEMORY_AND_DISK
 
 ```
 
