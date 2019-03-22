@@ -51,6 +51,9 @@ spark.storage.memoryFraction=0.6 # how much storage will be dedicated to in-memo
 
 spark.storage.unrollFraction=0.2 # unrolling serialized data
 ```
+### log files default place
+![log files default place](https://i.postimg.cc/zvNhgmhg/Spark-logging.png)
+
 ### session
 ```
 import org.apache.spark.sql.SparkSession
