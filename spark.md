@@ -444,7 +444,7 @@ rdd1.join(rdd2)
 ```
 
 ### cache and persist
-cache == persist(StorageLevel.MEMORY_ONLY)
+cache() == persist() == persist(StorageLevel.MEMORY_ONLY)
 
 ### unpersist RDD
 ```
