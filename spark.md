@@ -7,6 +7,12 @@
 
 ![Spark-ecosystem.png](https://i.postimg.cc/g2JXhcK9/Spark-ecosystem.png)
 ![lifecycle](https://i.postimg.cc/WpZrZ4dQ/spark-app-lifecycle.png)
+```
+two ways you can improve the performance of your Spark application:
+* tuning the degree of parallelism
+* avoiding the shuffle of large amounts of data 
+```
+
 
 ### modes
 * local - run in the same VM
