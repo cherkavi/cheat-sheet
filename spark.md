@@ -375,9 +375,12 @@ val data = sc.textFile("some_data.csv")
 data.toDebugString()
 
 // descriptions of partitions
-dataSet.rdd.partitions
-data.partitions.size
-data.repartition(new_size)
+dataSet.rdd.partitions.size()
+dataSet.rdd.getNumPartitions()
+
+// change number of partitions 
+dataSet.rdd.repartition(new_size)
+dataSet.rdd.coalesce() // optimized version; for decreasing only; doesn't touch part of the data - other parts copy to "untouched"
 
 // statistic values
 val statistic = dataFrame.stat
