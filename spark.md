@@ -439,8 +439,12 @@ partitionBy(new HashPartitioner(8)).
 persist(StorageLevel.xxxxxxx)
 
 rdd1.join(rdd2)
-.persist(StorageLevel.xxxxxxx) // MEMORY_ONLY, MEMORY_ONLY_SER, MEMORY_AND_DISK
-
+.persist(StorageLevel.xxxxxxx) 
+* MEMORY_ONLY
+* MEMORY_ONLY_SER - compressed version ( CPU consumption )
+* MEMORY_AND_DISK
+* MEMORY_AND_DISK_SER - compressed version ( CPU consumption )
+* DISK_ONLY
 ```
 
 ### cache and persist
