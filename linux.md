@@ -1120,6 +1120,18 @@ sudo cp /etc/gshadow /opt/gshadow-export
 ```
 
 # AWK
+### single quota escape
+```
+\x27
+```
+example:
+```
+a=$((a+`zip_textfiles part_0 part_0.txt | awk '{if(NF>=5){print $4"/"$5}}' | awk -F '/' '{print $14" "$15"/"$16"/"$17" "$18}' | python sql-update-files-with-md5sum.py`))
+
+cat hosts-parts.txt | awk '{print "a=$((a+`zip_textfiles "$2" "$2".txt | awk \x27 "}'
+| awk -F \'/\' \'{print $14\" \"$15\"/\"$16\"/\"$17\" \"$18}\' | python sql-update-files-with-md5sum.py\`)); echo \"update "$2".txt"}' > update-db-from-files.sh
+```
+
 ### last index of, lastIndexOf, substring
 ```
 head completed2.files.list  | awk -F '/' '{print substr($0, 1, length($0) - length($NF))}'
