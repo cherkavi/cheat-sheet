@@ -52,6 +52,7 @@ ssh-keygen -t rsa
 
 ```
 ssh-copy-id {username}@{machine ip}:{port}
+ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no vcherkashyn@bmw000013.adv.org
 ```
 
 automate copying password
