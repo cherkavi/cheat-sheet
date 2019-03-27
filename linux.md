@@ -34,6 +34,11 @@ ssh -R <remoteport>:<local host name>:<local port> <hostname>
 ssh -R 9020:127.0.0.1:9092 localhost
 ```
 
+### mount remote filesystem via ssh
+```
+sudo sshfs -o allow_other,IdentityFile=~/.ssh/id_rsa vcherkashyn@190.17.19.11:/ /mnt/vendor-cluster-prod
+```
+
 ### gpg signature check, asc signature check, crt signature check
 ```
 kgpg --keyserver keyserver.ubuntu.com --recv-keys 9032CAE4CBFA933A5A2145D5FF97C53F183C045D
