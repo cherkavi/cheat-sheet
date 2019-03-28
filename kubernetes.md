@@ -90,6 +90,8 @@ kubectl delete pods --all
 sudo apt-get purge kube*
 sudo apt-get autoremove
 
+sudo kubeadm reset
+
 sudo rm -rf ~/.kube
 ```
 
