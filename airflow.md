@@ -15,3 +15,6 @@ An instance of an operator
 Represents a specific run of a task = DAG + Task + Point of time
 * Workflow
 Combination of all above
+
+## Architecture overview
+![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
