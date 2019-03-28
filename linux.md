@@ -806,8 +806,11 @@ add :{username} to the end of line with {groupname}:x:999
 ```
 ### create/add user, create user with admin rights
 ```
-sudo useradd -m test
-sudo useradd -m test -G sudo
+sudo useradd test
+
+sudo useradd --create-home test --groups sudo 
+# set password for new user
+sudo passwd test
 ```
 
 ### remove user
