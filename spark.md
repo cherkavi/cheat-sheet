@@ -56,6 +56,8 @@ spark.shuffle.spill.compress=true
 spark.storage.memoryFraction=0.6 # how much storage will be dedicated to in-memory storage
 
 spark.storage.unrollFraction=0.2 # unrolling serialized data
+
+spark.serializer=org.apache.spark.serializer.KryoSerializer
 ```
 ### log files default place
 ![log files default place](https://i.postimg.cc/zvNhgmhg/Spark-logging.png)
