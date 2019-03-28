@@ -18,3 +18,4 @@ Combination of all above
 
 ## Architecture overview
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
+![multi node](https://i.postimg.cc/MGyy4DGJ/airflow-architecture-multinode.png)
