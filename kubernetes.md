@@ -40,7 +40,7 @@ journalctl -u snap.microk8s.daemon-docker
 * snap.microk8s.daemon-proxy
 * snap.microk8s.daemon-docker
 * snap.microk8s.daemon-etcd
-
+---
 # minikube
 ## installation
 ```
@@ -79,6 +79,18 @@ minikube completion bash
 ## start
 ```
 minikube start
+```
+
+## uninstall kubectl
+```
+kubectl delete node --all
+kubectl delete pods --all
+
+# sudo apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*
+sudo apt-get purge kube*
+sudo apt-get autoremove
+
+sudo rm -rf ~/.kube
 ```
 
 ## start without VirtualBox/KVM
