@@ -312,10 +312,15 @@ mc --nocolor
 locate -ir "brand-reader*"
 locate -b "brand-reader"
 ```
-### full path to file
+### full path to file, file behind symlink 
 ```
 readlink -f {file}
 ```
+or
+```
+python -c 'import os.path; print(os.path.realpath("symlinkName"))'
+```
+
 ### real path to link
 ```
 readlink 'path to symlink'
