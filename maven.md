@@ -29,7 +29,15 @@ mvn -T 4 clean install # 4 threads
 ### build sub-modules with parent-dependencies
 ```
 mvn -am ...
+mvn --also-make ...
+
 ```
+
+### list of all modules
+```
+mvn org.qunix:structure-maven-plugin:modules
+```
+
 
 ### buld only one module, single module build
 ```
@@ -37,7 +45,7 @@ mvn -pl common/common-utils clean install
 ```
 or build with all dependencies
 ```
-mvn -T 2C -pl common/common-utils -am clean install
+mvn --threads 2C --projects common/common-utils -am clean install
 ```
 
 ### dry run 
