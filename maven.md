@@ -31,6 +31,15 @@ mvn -T 4 clean install # 4 threads
 mvn -am ...
 ```
 
+### buld only one module, single module build
+```
+mvn -pl common/common-utils clean install
+```
+or build with all dependencies
+```
+mvn -T 2C -pl common/common-utils -am clean install
+```
+
 ### dry run 
 ```
 mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec
