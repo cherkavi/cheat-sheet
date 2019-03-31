@@ -895,8 +895,16 @@ restart service, service restart
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart {service name}
 ```
+
+enable automatic start, disable autostart
+```
+sudo systemctl enable {service name}
+sudo systemctl disable {service name}
+```
+
 service check logs
 ```
+systemctl status {service name}
 journalctl -u {service name}
 ```
 
