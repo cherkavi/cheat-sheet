@@ -164,3 +164,12 @@ mapr classpath
 java -cp `mapr classpath`:my-own-app.jar mypackage.MainClass
 
 ```
+
+# maprcli
+## login, print info, logout
+```
+maprlogin password -user {your cluster username}
+maprlogin print
+maprlogin logout
+
+```
