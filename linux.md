@@ -1246,6 +1246,11 @@ rm -rf .gnome .gnome2 .gconf .gconfd .metacity .cache .dbus .dmrc .mission-contr
 echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
 ```
 
+### default type, detect default browser, mime types
+```
+xdg-mime query default x-scheme-handler/http
+```
+
 ---
 # useful links:
 [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
