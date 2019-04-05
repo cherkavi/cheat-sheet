@@ -1255,6 +1255,13 @@ echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnm
 xdg-mime query default x-scheme-handler/http
 ```
 
+## install haskell
+```
+sudo apt-get install haskell-stack
+stack upgrade
+stack install toodles
+```
+
 ---
 # useful links:
 [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
