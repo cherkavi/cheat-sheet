@@ -1261,6 +1261,7 @@ sudo apt-get install haskell-stack
 stack upgrade
 stack install toodles
 ```
+[get started with hackell](https://haskell.fpcomplete.com/get-started)
 
 ---
 # useful links:
