@@ -300,6 +300,10 @@ docker rmi --force <IMAGE ID>
 docker volume ls -qf dangling=true | xargs -r docker volume rm
 ```
 
+### cleanup docker
+```
+docker system prune -af --volumes
+```
 ### delete
 ```
 docker network ls  
