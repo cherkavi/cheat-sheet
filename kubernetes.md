@@ -81,18 +81,27 @@ minikube completion bash
 minikube start
 ```
 
-## uninstall kubectl
+## uninstall kubectl, uninstall minikube
 ```
 kubectl delete node --all
 kubectl delete pods --all
+kubectl stop
+kubectl delete
+
+launchctl stop '*kubelet*.mount'
+launchctl stop localkube.service
+launchctl disable localkube.service
+
+sudo kubeadm reset
+rm -rf ~/.kube ~/.minikube
+sudo rm -rf /usr/local/bin/localkube /usr/local/bin/minikube
+sudo rm -rf /etc/kubernetes/
 
 # sudo apt-get purge kubeadm kubectl kubelet kubernetes-cni kube*
 sudo apt-get purge kube*
 sudo apt-get autoremove
 
-sudo kubeadm reset
-
-sudo rm -rf ~/.kube
+docker system prune -af --volumes
 ```
 
 ## start without VirtualBox/KVM
