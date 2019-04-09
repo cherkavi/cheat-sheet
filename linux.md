@@ -1267,3 +1267,4 @@ stack install toodles
 # useful links:
 [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
 [jira editing shortcuts](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)
+[i3 window manager shortcuts](https://i3wm.org/docs/refcard.html)
