@@ -414,7 +414,9 @@ docker build -t solr-4.10.3:latest . // Dockerfile into current folder
 ### build with parameters
 ```
 build --build-arg app_name=k8s-ambassador
+docker build --build-arg http_proxy=proxy.muc:8080 --build-arg https_proxy=proxy.muc:8080 .
 ```
+
 
 inside Dockerfile
 ```
