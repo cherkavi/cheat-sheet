@@ -81,10 +81,15 @@ docker search <text of search>
 ### pull image from repository
 ```
 docker pull <image name>
-docker pull cc-artifactory.myserver.net/some-path/<image name>
+docker pull cc-artifactory.myserver.net/some-path/<image name>:<image version>
 ```
 > image can be found: https://hub.docker.com/
 > example of command: docker pull mysql
+
+### push image to local repo
+```
+docker push cc-artifactory.myserver.net/some-path/<image name>:<image version>
+```
 
 ### show all local images
 ```
