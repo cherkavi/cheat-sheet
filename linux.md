@@ -1263,6 +1263,12 @@ stack install toodles
 ```
 [get started with hackell](https://haskell.fpcomplete.com/get-started)
 
+## i3wm
+exit from i3 window manager
+```
+bindsym $mod+Shift+e exec i3-msg exit
+```
+
 ---
 # useful links:
 [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
