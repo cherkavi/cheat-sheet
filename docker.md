@@ -81,6 +81,7 @@ docker search <text of search>
 ### pull image from repository
 ```
 docker pull <image name>
+docker pull cc-artifactory.myserver.net/some-path/<image name>
 ```
 > image can be found: https://hub.docker.com/
 > example of command: docker pull mysql
