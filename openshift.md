@@ -156,3 +156,19 @@ kubectl api-versions
     Application is not exposed. You can expose services to the outside world by executing one or more of the commands below:
      'oc expose svc/web' 
     Run 'oc status' to view your app.
+
+### job example
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: scenario-description
+spec:
+  template:         
+    spec:
+      containers:
+      - name: scenario-description
+        image: scenario_description:0.2.3
+        command: ["python", "-c", "'import scenario_description'"]
+      restartPolicy: Never
+```
