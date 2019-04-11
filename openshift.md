@@ -47,6 +47,7 @@ oc get all
 
 ### create project
 ```
+oc get projects
 oc new-project {project name}
 ```
 
@@ -58,6 +59,29 @@ oc project
 ### project select, select project
 ```
 oc project {project name}
+```
+
+### create resource ( pod, job, volume ... )
+```
+oc create -f {description file}
+```
+example of job
+```
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: scenario-description
+spec:
+  nodeSelector:         
+    composer: true
+  template:         
+    spec:
+      containers:
+      - name: scenario-description
+        image: cc-artifactory.myserver.net/add-docker/scenario_description:0.23.3
+        command: ["python", "-c", "'import scenario_description'"]
+      restartPolicy: Never
+  backoffLimit: 4
 ```
 
 ### [create app](https://access.redhat.com/documentation/en-us/openshift_enterprise/3.0/html/developer_guide/dev-guide-new-app)
@@ -84,8 +108,16 @@ oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-ex.git --con
 
 ### log from 
 ```
+oc logs pod/{name of pod}
 oc logs --follow bc/{name of app}
 ```
+
+### describe resource, information about resource
+```
+oc describe job {job name}
+oc describe pod {pod name}
+```
+
 
 ### Grant permission to be able to access OpenShift REST API and discover services.
 ```
