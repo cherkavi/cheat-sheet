@@ -60,6 +60,11 @@ apt-get install -y --no-install-recommends python3-pip
 pip install --proxy=http://proxy.muc:8080
 ```
 
+### pip install with specific proxy
+```
+pip install --index-url http://cc-artifactory.mynetwork.net my_own_package
+```
+
 ### list of packages
 ```
 pip list
