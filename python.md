@@ -69,6 +69,14 @@ pip install --index-url http://cc-artifactory.mynetwork.net my_own_package
 ```
 pip list
 ```
+### path to external artifacts, external index, pip configuration
+```bash
+$ ​cat /etc/pip.conf 
+```
+```properties
+[global]
+index-url = https://cc-artifactory.myserver.net/artifactory/api/pypi/adp-pypi-virtual/simple
+```
 
 ### install certain version of artifact
 ```
