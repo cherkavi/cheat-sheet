@@ -77,6 +77,9 @@ pip install tornado==2.1.1
 
 ### create virtual environment, dedicated env
 ```
+pip install virtualenv
+```
+```
 python3 -m venv virtual_env
 source virtual_env/bin/activate
 # deactivate
