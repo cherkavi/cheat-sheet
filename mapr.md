@@ -46,6 +46,11 @@ public class MyClassName implements Partitioner{
 * Stream replications: Node-->Node2-->Node3-->Node4 ... ( with loop preventing )
 
 ## command line
+### find CLDB hosts ( ContainerLocationDataBase )
+```
+maprcli node listcldbs
+```
+
 ### create stream 
 ```
 maprcli stream create -path <filepath & name>
