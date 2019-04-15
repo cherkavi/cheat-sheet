@@ -456,6 +456,7 @@ ENV JAR=$app_name.jar
 * docker tag <name of the container> <dockerhub username>/<name of the container>
 * docker push <dockerhub username>/<name of the container>
 
+
 ### advices
 * for a starting points ( FROM ) using -alpine or -scratch images, for example: "FROM python:3.6.1-alpine"
 * Each line in a Dockerfile creates a new layer, and because of the layer cache, the lines that change more frequently, for example, adding source code to an image, should be listed near the bottom of the file.
@@ -576,4 +577,21 @@ docker service log
 ## routing mesh effect
 ```
 The routing mesh built into Docker Swarm means that any port that is published at the service level will be exposed on every node in the swarm. Requests to a published service port will be automatically routed to a container of the service that is running in the swarm.
+```
+
+
+### issues
+docker login
+```
+Error response from daemon: Get https://docker-registry-default.dplapps.adv.org/v2/: x509: certificate signed by unknown authority
+```
+solution 
+change file ~/.docker/config.json
+```
+...
+	"auths": {
+		"docker-registry-default.dplapps.adv.org": {},
+		"https://docker-registry-default.dplapps.adv.org": {}
+	},
+...
 ```
