@@ -161,6 +161,11 @@ git diff HEAD..origin/develop
 git show 143243a3754c51b16c24a2edcac4bcb32cf0a37d -- db-scripts/src/main/python/db-diff/db-update.py
 ```
 
+### show changes by commit, commit changes
+```
+git diff {hash}~ {hash}
+```
+
 ### git revert commit
 ```
 git revert <commit>
