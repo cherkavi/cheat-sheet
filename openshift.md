@@ -17,6 +17,7 @@ export PATH=/home/soft/openshift-tool:$PATH
 ### login into local minishift
 ```
 oc login --username=admin --password=admin
+echo "my_password" | oc login -u my_user
 oc login -u developer -p developer
 oc login {url}
 ```
