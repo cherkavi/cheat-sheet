@@ -75,7 +75,10 @@ with DAG('airflow_tutorial_v01',
     print(dag)
 ```
 
-## operator types
+## operator types ( BaseOperator )
 * action
 * transfer ( data )
 * sensor ( waiting for some event )
+   * long running task
+   * BaseSensorOperator
+   * poke method is responsible for waiting
