@@ -42,7 +42,9 @@ check workspace
 airflow --help
 ```
 
-## minimal DAG example
+## DAG example
+should be placed into "dag" folder ( default: %AIRFLOW%/dag )
+* minimal
 ```
 from airflow import DAG
 
@@ -53,7 +55,7 @@ with DAG('airflow_tutorial_v01',
     print(dag)
 ```
 
-## DAG example
+* simple
 ```
 from airflow import DAG
 from datetime import date, timedelta, datetime
