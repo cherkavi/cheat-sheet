@@ -20,6 +20,12 @@ Combination of all above
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
 ![multi node](https://i.postimg.cc/MGyy4DGJ/airflow-architecture-multinode.png)
 
+## [Airflow virtual environment](https://github.com/hgrif/airflow-tutorial)
+```
+python env create -f environment.yml
+source activate airflow-tutorial
+```
+
 ## [Airflow Virtual machine](https://marclamberti.com/form-course-material-100/)
 credentials
 ```
@@ -30,6 +36,7 @@ activate workspace
 ```
 source .sandbox/bin/activate
 ```
+## commands
 check workspace
 ```
 airflow --help
