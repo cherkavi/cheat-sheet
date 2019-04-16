@@ -74,3 +74,8 @@ with DAG('airflow_tutorial_v01',
          ) as dag:
     print(dag)
 ```
+
+## operator types
+* action
+* transfer ( data )
+* sensor ( waiting for some event )
