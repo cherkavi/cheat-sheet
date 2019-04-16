@@ -1,5 +1,6 @@
 # ![Airflow](https://airbnb.io/img/projects/airflow3.png)
 * [Airflow apache](https://airflow.apache.org/)
+* [how to](https://airflow.apache.org/howto/index.html)
 * [Virtual machine](https://marclamberti.com/form-course-material-100/)
 * [podcast](https://soundcloud.com/the-airflow-podcast)
 
