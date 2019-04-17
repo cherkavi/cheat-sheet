@@ -21,6 +21,29 @@ Combination of all above
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
 ![multi node](https://i.postimg.cc/MGyy4DGJ/airflow-architecture-multinode.png)
 
+## [Airflow install on python virtualenv]
+```
+# create python virtual env
+python3 -m venv airflow-env
+source airflow-env/bin/activate
+
+# create folder 
+mkdir airflow
+export AIRFLOW_HOME=`pwd`/airflow
+
+# install workflow
+pip install apache-airflow
+
+# init workflow
+airflow initdb 
+airflow scheduler &
+airflow webserver -p 8080 &
+echo "localhost:8080"
+
+# sudo apt install sqllite3
+# sqllite3 $AIRFLOW_HOME/airflow.db
+```
+
 ## [Airflow virtual environment](https://github.com/hgrif/airflow-tutorial)
 ```
 python env create -f environment.yml
