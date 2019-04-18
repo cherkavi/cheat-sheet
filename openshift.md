@@ -21,6 +21,11 @@ echo "my_password" | oc login -u my_user
 oc login -u developer -p developer
 oc login {url}
 ```
+check login
+```
+oc whoami
+oc whoami -t
+```
 
 ### describe information about cluster
 ```
