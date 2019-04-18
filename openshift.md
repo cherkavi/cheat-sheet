@@ -27,6 +27,24 @@ oc whoami
 oc whoami -t
 ```
 
+### create token for MapR
+```
+maprlogin password -user {mapruser}
+```
+using file from previous command
+```
+cat /tmp/maprticket_1000 
+oc create secret generic {name of secret/token} --from-file=/tmp/maprticket_1000 -n {project name}
+```
+or from content of file from previous command
+```
+oc create secret generic {name of secret/token} --from-literal=CONTAINER_TICKET='dp.prod.ubs qEnHLE7UaW81NJaDehSH4HX+m9kcSg1UC5AzLO8HJTjhfJKrQWdHd82Aj0swwb3AsxLg==' -n {project name}
+```
+check creation
+```
+oc get secrets
+```
+
 ### describe information about cluster
 ```
 oc describe {[object type:](https://docs.openshift.com/enterprise/3.0/cli_reference/basic_cli_operations.html#object-types)}
