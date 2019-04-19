@@ -1273,6 +1273,18 @@ exit from i3 window manager
 ```
 bindsym $mod+Shift+e exec i3-msg exit
 ```
+## external monitor settings
+```monitor.sh
+#!/bin/sh
+xrandr --output $1
+xrandr --output $2 --auto --right-of $1
+xrandr --output $3 --auto --right-of $2
+```
+```
+xrandr | grep " connected" | awk '{print $1}'
+ ./monitor.sh "DP-4" "DP-1-3" "eDP-1-1"
+```
+
 
 ---
 # useful links:
