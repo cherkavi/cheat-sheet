@@ -34,7 +34,9 @@ maprlogin password -user {mapruser}
 using file from previous command
 ```
 cat /tmp/maprticket_1000 
-oc create secret generic {name of secret/token} --from-file=/tmp/maprticket_1000 -n {project name}
+#oc create secret generic {name of secret/token} --from-file=/tmp/maprticket_1000 -n {project name}
+oc create secret generic {name of secret/token} --from-file=CONTAINER_TICKET=/tmp/maprticket_1000 -n {project name}
+
 ```
 or from content of file from previous command
 ```
