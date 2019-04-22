@@ -633,6 +633,12 @@ subl(){
 "name" with "nomen" string
 sed 's/name/nomen/g'
 ```
+example of replacing all occurences in multiply files
+```
+for each_file in `find -name "*.java"`; do
+	sed --in-place 's/vodkafone/cherkavi/g' $each_file
+done
+```
 
 ### print line by number from output, line from pipeline
 ```
