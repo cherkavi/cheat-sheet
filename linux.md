@@ -630,8 +630,8 @@ subl(){
 
 ### sed, replace
 ```
-"name : " with "nomen" string
-sed 's/"name" : "/nomen/g'
+"name" with "nomen" string
+sed 's/name/nomen/g'
 ```
 
 ### print line by number from output, line from pipeline
