@@ -154,6 +154,10 @@ oc policy add-role-to-user view -n {name of application/namespace} -z default
 ```
 oc config view
 ```
+the same as
+```
+cat ~/.kube/config/config
+```
 
 ### check accessible applications, ulr to application, application path
 ```
