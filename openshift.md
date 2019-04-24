@@ -109,6 +109,11 @@ spec:
       restartPolicy: Never
   backoffLimit: 4
 ```
+### connect to existing pod
+```
+oc get pods
+oc rsh {name of pod}
+```
 
 ### [create app](https://access.redhat.com/documentation/en-us/openshift_enterprise/3.0/html/developer_guide/dev-guide-new-app)
 
