@@ -590,8 +590,8 @@ The routing mesh built into Docker Swarm means that any port that is published a
 ```
 
 
-### issues
-docker login
+# issues
+## docker login
 ```
 Error response from daemon: Get https://docker-registry-default.dplapps.adv.org/v2/: x509: certificate signed by unknown authority
 ```
@@ -604,4 +604,13 @@ change file ~/.docker/config.json
 		"https://docker-registry-default.dplapps.adv.org": {}
 	},
 ...
+```
+## docker push, docker pull
+```
+authentication required
+``
+solution
+before 'docker login' need change file ~/.docker/config.json remove next block
+```
+    "credsStore": "secretservice"
 ```
