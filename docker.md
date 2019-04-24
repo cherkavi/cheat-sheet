@@ -64,6 +64,16 @@ Environment=HTTP_PROXY=http://1.1.1.1:111
 Environment=HTTPS_PROXY=http://1.1.1.1:111
 ```
 
+## login, logout
+```
+docker login -u cherkavi -p `oc whoami -t` docker-registry.local.org
+docker logout docker-registry.local.org
+```
+check login
+```
+cat ~/.docker/config.json | grep "auth\":" | awk -F '"' '{print $4}' | base64 -d -
+```
+
 ## restart Docker service
 ```
 sudo systemctl daemon-reload
