@@ -76,6 +76,11 @@ oc get all
 oc get serviceaccounts
 ```
 
+## print all roles
+```
+oc get rolebindings
+```
+
 ### create project
 ```
 oc get projects
