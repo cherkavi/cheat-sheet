@@ -8,6 +8,13 @@ docker info
 docker system info
 ```
 
+### settings files
+```
+/etc/docker/daemon.json
+/etc/default/docker 
+~/.docker/config.json
+/etc/systemd/system/docker.service.d/http-proxy.conf
+```
 
 ### how to skip typing "sudo" each time
 1. sudo groupadd docker
