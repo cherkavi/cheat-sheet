@@ -234,3 +234,30 @@ spec:
         command: ["python", "-c", "'import scenario_description'"]
       restartPolicy: Never
 ```
+
+### pod example
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: connect-to-me
+spec:
+  containers:
+  - name: just-a-example
+    image: busybox
+    command: ["sleep", "36000"]
+    volumeMounts:
+    - mountPath: /source
+      name: maprvolume-source
+    - mountPath: /destination
+      name: maprvolume-destination
+  volumes:
+  - name: maprvolume-source
+    persistentVolumeClaim:
+      claimName: pvc-scenario-input-prod
+  - name: maprvolume-destination
+    persistentVolumeClaim:
+      claimName: pvc-scenario-output-prod
+  restartPolicy: Never
+  backoffLimit: 4
+```
