@@ -71,6 +71,11 @@ oc get routes {app name / service name}
 oc get all
 ```
 
+## print all accounts
+```
+oc get serviceaccounts
+```
+
 ### create project
 ```
 oc get projects
