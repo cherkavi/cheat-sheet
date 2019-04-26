@@ -106,3 +106,22 @@ with DAG('airflow_tutorial_v01',
    * long running task
    * BaseSensorOperator
    * poke method is responsible for waiting
+
+
+# REST endpoints
+## trigger DAG
+```
+import urllib2
+import json
+
+AIRFLOW_URL="https://airflow.local/api/experimental/dags/name_of_my_dag/dag_runs"
+payload_dict = {"conf": {"dag_param_1": "test value"}}
+
+req = urllib2.Request(AIRFLOW_URL, data=json.dumps(payload_dict))
+req.add_header('Content-Type', 'application/json')
+req.add_header('Cache-Control', 'no-cache')
+req.get_method = lambda: "POST"
+f = urllib2.urlopen(req)
+print(f.read())
+
+```
