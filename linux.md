@@ -1298,6 +1298,10 @@ xrandr | grep " connected" | awk '{print $1}'
  ./monitor.sh "DP-4" "DP-1-3" "eDP-1-1"
 ```
 
+or just install 'arandr' and generate bash script 
+```
+sudo apt install arandr
+```
 
 ---
 # useful links:
