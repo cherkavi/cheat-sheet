@@ -36,6 +36,7 @@ ssh -R 9020:127.0.0.1:9092 localhost
 
 ### mount remote filesystem via ssh
 ```
+sudo mkdir /mnt/vendor-cluster-prod
 sudo sshfs -o allow_other,IdentityFile=~/.ssh/id_rsa vcherkashyn@190.17.19.11:/ /mnt/vendor-cluster-prod
 ```
 
