@@ -76,8 +76,15 @@ oc get all
 oc get serviceaccounts
 ```
 
-## print all roles
+## print all roles, check assigned roles, get users, list of users
 ```
+oc get rolebindings
+```
+
+## add role to current project, assign role to project
+```
+oc project
+oc policy add-role-to-user admin cherkavi
 oc get rolebindings
 ```
 
