@@ -433,8 +433,9 @@ kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/
 
 ## access dashboard
 ```
-kubectl proxy
+kubectl -n kube-system describe secret admin-user
 http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
+kubectl proxy
 ```
 
 ## common
