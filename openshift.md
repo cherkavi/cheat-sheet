@@ -27,6 +27,24 @@ oc whoami
 oc whoami -t
 ```
 
+### switch contex, use another cluster
+~/.kube/config
+```
+apiVersion: v1
+clusters:
+- cluster:
+    insecure-skip-tls-verify: true
+    server: https://localhost:6440
+  name: docker-for-desktop-cluster   
+- cluster:
+    insecure-skip-tls-verify: true
+    server: https://openshift-master-sim.myprovider.org:8443
+  name: openshift-master-sim-myprovider-org:8443
+```
+```
+kubectl config use-context kubernetes-admin@docker-for-desktop-cluster
+```
+
 ### create token for MapR
 ```
 maprlogin password -user {mapruser}
