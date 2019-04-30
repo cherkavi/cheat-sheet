@@ -1287,7 +1287,7 @@ exit from i3 window manager
 ```
 bindsym $mod+Shift+e exec i3-msg exit
 ```
-## external monitor settings
+## external monitor settings, external screen, external display
 ```monitor.sh
 #!/bin/sh
 xrandr --output $1
