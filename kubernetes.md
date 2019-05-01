@@ -1,5 +1,6 @@
 ---
 useful links
+* [cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 * [docs task by section](https://kubernetes.io/docs/tasks/)
 * [k8s examples](https://github.com/wardviaene/kubernetes-course)
 * [playground](https://labs.play-with-k8s.com/)
