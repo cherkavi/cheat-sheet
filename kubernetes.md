@@ -492,7 +492,32 @@ kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/master/Docume
 kubectl create  -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 
+read logs
+```
+kubectl logs --namespace kube-system kube-flannel-ds-amd64-j4frw -c kube-flannel 
+```
+read logs from all pods
+```
+for each_node in $(kubectl get pods --namespace kube-system | grep flannel | awk '{print $1}');do echo $each_node;kubectl logs --namespace kube-system $each_node -c kube-flannel;done
+```
 
+read settings
+```
+kubectl --namespace kube-system exec kube-flannel-ds-amd64-wc4zp ls /etc/kube-flannel/
+kubectl --namespace kube-system exec kube-flannel-ds-amd64-wc4zp cat /etc/kube-flannel/cni-conf.json
+kubectl --namespace kube-system exec kube-flannel-ds-amd64-wc4zp cat /etc/kube-flannel/net-conf.json
+
+kubectl --namespace kube-system exec kube-flannel-ds-amd64-wc4zp ls /run/flannel/
+kubectl --namespace kube-system exec kube-flannel-ds-amd64-wc4zp cat /run/flannel/subnet.env
+
+kubectl --namespace kube-system exec kube-flannel-ds-amd64-wc4zp ls /etc/cni/net.d
+kubectl --namespace kube-system exec kube-flannel-ds-amd64-wc4zp cat /etc/cni/net.d/10-flannel.conflist
+```
+read DNS logs
+```
+kubectl get svc --namespace=kube-system | grep kube-dns
+kubectl logs --namespace=kube-system coredns-78fcd94-7tlpw | tail
+```
 # Helm
 [documentation](https://docs.helm.sh/)
 ## Architecture
