@@ -445,6 +445,15 @@ kubectl proxy
 kubectl exec -it {name of a pod}  -- bash -c "echo hi > /path/to/output/test.txt" 
 ```
 
+# Flannel
+restart nodes
+```sh
+# remove died pods
+kubectl delete pods kube-flannel-ds-amd64-zsfz  --grace-period=0 --force
+kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl create  -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
+
 
 # Helm
 [documentation](https://docs.helm.sh/)
