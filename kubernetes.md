@@ -435,14 +435,14 @@ kubeadm token create --print-join-command  --ttl 0
 ```
 expected result from previous command
 ```
-kubeadm join 10.143.226.20:6443 --token 7h0dmx.qh11kn2v5oe1jwed --discovery-token-ca-cert-hash sha256:1d28ebf950316b8f3fdf694080af5619ea2682707f2e966fc0afc60b
+kubeadm join 10.14.26.210:6443 --token 7h0dmx.2v5oe1jwed --discovery-token-ca-cert-hash sha256:1d28ebf950316b8f3fdf680af5619ea2682707f2e966fc0
 ```
 go to node, clean up and apply token
 ```
 ssh {node address}
 rm -rf /etc/kubernetes
 # apply token from previous step with additional flag: --ignore-preflight-errors=all
-kubeadm join 10.14.26.210:6443 --token 7h0dmx.2v5oe1jwed --discovery-token-ca-cert-hash sha256:1d28ebf950316b8f3fdf680af5619ea2682707f2e966fc0
+kubeadm join 10.14.26.210:6443 --token 7h0dmx.2v5oe1jwed --discovery-token-ca-cert-hash sha256:1d28ebf950316b8f3fdf680af5619ea2682707f2e966fc0 --ignore-preflight-errors=all
 ```
 
 expected result from previous command
