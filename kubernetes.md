@@ -298,6 +298,13 @@ kubectl port-forward rs/redis-master                    8080:6379
 kubectl port-forward svc/redis-master                   8080:6379
 ```
 
+## NodeSelector for certain host
+```
+spec:
+  nodeSelector: 
+    kubernetes.io/hostname: gtxmachine1-ev
+```
+
 ## persistent volume
 ```
 kind: PersistentVolume
