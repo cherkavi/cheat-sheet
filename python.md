@@ -64,6 +64,10 @@ pip install --proxy=http://proxy.muc:8080
 ```
 pip install --index-url http://cc-artifactory.mynetwork.net my_own_package
 ```
+### install package into home of current user ( do not use for virtual environment )
+```
+pip install --user .
+```
 
 ### list of packages
 ```
