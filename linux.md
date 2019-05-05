@@ -319,11 +319,6 @@ base_color=normal=brightgray,black:marked=brightcyan,black:selected=black,lightg
 mc --nocolor
 ```
 
-### find files by mask
-```
-locate -ir "brand-reader*"
-locate -b "brand-reader"
-```
 ### full path to file, file behind symlink 
 ```
 readlink -f {file}
@@ -350,6 +345,15 @@ locate {file name}
 exclude DB
 ```
 /etc/updatedb.conf
+```
+### find files by mask
+```
+locate -ir "brand-reader*"
+locate -b "brand-reader"
+```
+you need to update filedatabase: /var/lib/mlocate/mlocate.db
+```
+sudo updatedb
 ```
 
 ### find file by last update time
