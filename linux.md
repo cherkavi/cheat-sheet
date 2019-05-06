@@ -475,6 +475,7 @@ rm -rf  -- !(exclude-filename.sh)
 
 ### cron
 ```
+crontab -e
 crontab -l
 ```
 
