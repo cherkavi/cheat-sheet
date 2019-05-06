@@ -257,6 +257,15 @@ apt-cache search inkscape
 ### avoid to put command into history, hide password into history, avoid history
 add space before command
 
+### bash settings, history lookup
+~/.inputrc
+```
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+set show-all-if-ambiguous on
+set completion-ignore-case on
+```
+
 ### execute command via default editor
 ```
 ctrl+x+e
@@ -276,6 +285,7 @@ pwd
 ### bash reading content of the file to command-line parameter
 ```
 --extra-vars 'rpm_version=$(cat version.txt)'
+--extra-vars 'rpm_version=`cat version.txt`'
 ```
 ### all command line arguments to another program
 ```
