@@ -1,16 +1,35 @@
-list of databases
+[official documentation](https://docs.influxdata.com/influxdb/v1.7/query_language/schema_exploration/)
+
+list of all databases
 ```
-curl --silent -X GET "http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=true&db=metrics&q=SHOW%20MEASUREMENTS"
+curl --silent -G "http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=true" \
+--data-urlencode "q=SHOW DATABASES"
 ```
 
-default settings
+show retention policy for specific database
 ```
-curl --silent -X GET "http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=true&db=metrics&q=SHOW%20RETENTION%20POLICIES"
+curl --silent -G "http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=true" \
+--data-urlencode "db=metrics" \
+--data-urlencode "q=SHOW RETENTION POLICIES"
 ```
 
-list of all "tables"
+list of all measurements
 ```
-curl --silent -X GET "http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=true&db=metrics&q=SHOW%20FIELD%20KEYS" | grep "name\":" | awk '{print $2}' | tr , ' '
+curl --silent -G "http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=true" \
+--data-urlencode "db=metrics" \
+--data-urlencode "q=SHOW MEASUREMENTS"
+
+curl --silent -G "http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=true" \
+--data-urlencode "db=metrics" \
+--data-urlencode "q=SHOW FIELD KEYS" \
+| grep "name\":" | awk '{print $2}' | tr , ' '
+```
+
+list of all fields and keys ( for measurements )
+```
+curl --silent -G "http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=true" \
+--data-urlencode "db=metrics" \
+--data-urlencode "q=SHOW FIELD KEYS"
 ```
 
 examples of requests
