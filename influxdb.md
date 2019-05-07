@@ -33,6 +33,7 @@ curl --silent -G "http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=tr
 ```
 
 examples of requests
+( be carefull with string values and single quota )
 ```
 curl -G 'http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=true' --data-urlencode "db=metrics" --data-urlencode "q=SELECT jobId FROM \"events\" limit 10"
 curl -G 'http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=true' --data-urlencode "db=metrics" --data-urlencode "q=SELECT distinct \"jobGroup\" FROM \"events\" limit 10"
