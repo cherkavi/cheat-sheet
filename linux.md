@@ -484,9 +484,24 @@ rm -rf  -- !(exclude-filename.sh)
 ```
 
 ### cron
+all symbols '%' must be converted to '\%'
 ```
 crontab -e
 crontab -l
+```
+logs
+```
+sudo tail -f /var/log/syslog
+```
+is cron running
+```
+ps -ef | grep cron | grep -v grep
+```
+start/stop/restart cron
+```
+systemctl start cron
+systemctl stop cron
+systemctl restart cron
 ```
 
 ### error to null
