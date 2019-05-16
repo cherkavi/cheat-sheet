@@ -633,6 +633,13 @@ cat /proc/meminfo
 cat /proc/sys/fs/file-max
 ```
 
+### open file by type, open image 
+```
+mimetype -d {filename}
+xdg-open {filename}
+w3m {filename}
+```
+
 ### wget to console
 ```
 wget -O- http://{host}:8500/wd-only/getBrandXml.jsp?brand=229099017 > /dev/null  2>&1
