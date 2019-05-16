@@ -558,12 +558,30 @@ spark-shell -i /path/to/file.scala
 END_FILE_MARKER
 ```
 
-## execute console wit edditional jar and in debug mode and multi-config lines
+## execute shell wit additional jar and in debug mode and multi-config lines
 ```
 spark-shell \
 --jars "/home/some_path/solr-rest_2.11-0.1.jar,/home/someuser/.ivy2/cache/org.json/json/bundles/json-20180813.jar" \
 --conf "spark.driver.extraJavaOptions=-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
 --conf "spark.executor.extraJavaOptions=-XX:+UseG1GC -XX:+PrintReferenceGC -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintAdaptiveSizePolicy -XX:+PrintFlagsFinal -XX:+UnlockDiagnosticVMOptions -XX:+G1SummarizeConcMark"
+```
+
+## execute shell with additional parameters
+```
+spark-shell --jars "lightning-1.5.0-SNAPSHOT-3a517e-jar-with-dependencies.jar" \
+--name testexecution \
+--master yarn \
+--deploy-mode client \
+--num-executors 100 \
+--executor-cores 1 \
+--executor-memory 8g \
+--driver-memory 8g \
+--conf "spark.dynamicAllocation.enabled=false" \
+--conf "spark.executor.memoryOverhead=4096" \
+--conf "spark.driver.memoryOverhead=4096" \
+--conf "spark.executor.extraJavaOptions=-XX:+UseG1GC" \
+--conf "spark.driver.extraJavaOptions=-XX:+UseG1GC" \
+--conf "spark.serializer=org.apache.spark.serializer.KryoSerializer"
 ```
 
 ## read text file with json ( each line - separate json)
