@@ -247,8 +247,22 @@ echo 'deb http://http.debian.net/debian wheezy-backports main' > /etc/apt/source
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 sudo apt-get install git-lfs
 git lfs install
-
 ```
+if you are using SSH access to git, you should specify http credentials ( lfs is using http access ), to avoid possible errors: "Service Unavailable...", "Smudge error...", "Error downloading object"
+```bash
+git config --global credential.helper store
+```
+file .gitconfig will have next section
+```
+[credential]
+        helper = store
+```
+file ~/.git-credentials ( default from previous command ) should contains your http(s) credentials
+```file:~/.git-credentials
+https://username:userpass@aa-github.mygroup.net
+https://username:userpass@aa-artifactory.mygroup.ne
+```
+
 
 ### configuration for proxy server, proxy configuration
 #### set proxy, using proxy
