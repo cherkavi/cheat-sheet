@@ -1139,6 +1139,14 @@ xclip -o
 cat file.txt | xclip
 ```
 
+## screenshot, copy screen
+```
+screenshot(){
+	file_name="/home/user/Pictures/screenshots/screenshot_"`date +%Y%m%d_%H%M%S`".png"
+	scrot $file_name -s -e "xdg-open $file_name"
+}
+```
+
 ## wifi
 ```
 ifconfig ( result - wlan0 )
