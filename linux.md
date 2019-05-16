@@ -1335,11 +1335,13 @@ stack install toodles
 [get started with hackell](https://haskell.fpcomplete.com/get-started)
 
 ## i3wm
-exit from i3 window manager
+### [custom status bar](https://py3status.readthedocs.io/en/latest/intro.html#installation)
+
+### exit from i3 window manager
 ```
 bindsym $mod+Shift+e exec i3-msg exit
 ```
-## external monitor settings, external screen, external display
+### external monitor settings, external screen, external display
 ```monitor.sh
 #!/bin/sh
 xrandr --output $1
