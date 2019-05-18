@@ -131,6 +131,10 @@ mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -Darchetyp
 -DdownloadSources=true -DdownloadJavadocs=true
 ```
 
+### download single artifact, download jar
+```
+mvn -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.4.0 dependency:get
+```
 
 ### exclude sub-library from dependency lib
             <dependency>
