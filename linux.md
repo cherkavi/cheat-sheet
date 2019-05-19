@@ -849,6 +849,13 @@ sudo ifdown lo && sudo ifup lo
 sudo service network-manager restart
 ```
 
+### vpn connection, connect to network
+```
+nmcli con
+nmcli con up id {NAME}
+nmcli con down id {NAME}
+```
+
 ### DNS
 ```
 systemd-resolve --status
