@@ -62,9 +62,9 @@ Reentrant lock == Semaphore
 jar cf WC2.jar *.class
 ```
 
-### take a look into jar
+### take a look into jar, list all files into jar
 ```
-jar tf WC2.jar
+jar tvf WC2.jar
 ```
 
 ### print loaded classes during start application
