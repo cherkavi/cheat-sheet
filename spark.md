@@ -46,16 +46,26 @@ bin/spark-submit
 * conf/spark-env.sh
 * log4j.properties
 ```
+# ability to read files by mask like: /some/path/on/cluster/*/some/*/file
+mapreduce.input.fileinputformat.input.dir.recursive=true
+
 spark.rdd.compress=false
-spark.shuffle.consolidateFiles=false # set true for ext4/xfs filesystems
+
+# set true for ext4/xfs filesystems
+spark.shuffle.consolidateFiles=false 
 
 spark.shuffle.spill=true
-spark.shuffle.memoryFraction=0.2 # memory limit used during reduce by spilling on disk
+
+# memory limit used during reduce by spilling on disk
+spark.shuffle.memoryFraction=0.2 
+
 spark.shuffle.spill.compress=true
 
-spark.storage.memoryFraction=0.6 # how much storage will be dedicated to in-memory storage
+# how much storage will be dedicated to in-memory storage
+spark.storage.memoryFraction=0.6 
 
-spark.storage.unrollFraction=0.2 # unrolling serialized data
+# unrolling serialized data
+spark.storage.unrollFraction=0.2 
 
 spark.serializer=org.apache.spark.serializer.KryoSerializer
 ```
