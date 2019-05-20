@@ -500,6 +500,10 @@ docker run --name mysql-container --volume /my/local/folder/with/data:/var/lib/m
 ```
 docker exec mysql-container sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql
 ```
+* MariaDB sql dump import
+```
+docker run --net=host -v /some/path/on/your/host:/sql -it arey/mysql-client --host=10.143.242.65 --port=3310 --user=root --password=example --database=files -e "source /sql/all-databases.sql"
+```
 
 # Docker compose
 
