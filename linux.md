@@ -851,9 +851,9 @@ sudo service network-manager restart
 
 ### vpn connection, connect to network
 ```
-nmcli con
-nmcli con up id {NAME}
-nmcli con down id {NAME}
+nmcli connection
+nmcli connection up id {name from previous command}
+nmcli connection down id {name of connection}
 ```
 
 ### DNS
@@ -863,6 +863,12 @@ systemd-resolve --status
 ```
 dig {hostname}
 
+```
+
+### encrypt file, decrypt file
+```
+gpg --symmetric {filename}
+gpg --decrypt {filename}
 ```
 
 ### add user into special group
