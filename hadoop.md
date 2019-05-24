@@ -264,6 +264,10 @@ yarn application --list
 ```
 yarn application -list -appStates ALL
 ```
+### application status
+```
+yarn application -status application_1555573258694_20981
+```
 ### application kill on YARN
 ```
 yarn application -kill application_1540813402987_3657
