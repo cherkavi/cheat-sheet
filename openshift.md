@@ -110,6 +110,7 @@ oc get rolebindings
 ```
 oc get projects
 oc new-project {project name}
+oc describe project {project name}
 ```
 
 ### print current project
