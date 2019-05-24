@@ -1391,3 +1391,22 @@ sudo apt install arandr
 * [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
 * [jira editing shortcuts](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)
 * [i3 window manager shortcuts](https://i3wm.org/docs/refcard.html)
+
+---
+# visual code plugins
+```
+vscjava.vscode-java-debug
+peterjausovec.vscode-docker
+ryu1kn.edit-with-shell
+vscjava.vscode-java-dependency
+vscjava.vscode-java-pack
+vscjava.vscode-java-test
+redhat.java
+yzhang.markdown-all-in-one
+vscjava.vscode-maven
+ms-python.python
+liximomo.remotefs
+scala-lang.scala
+visualstudioexptteam.vscodeintellicode
+miguel-savignano.terminal-runner
+```
