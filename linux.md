@@ -120,6 +120,10 @@ scp -r cherkavi@129.191.200.15:~/temp/filename-from-local.txt filename.txt
 ```
 scp -pr /source/directory user@host:the/target/directory
 ```
+the same as local copy folder
+```
+cp -var /path/to/folder /another/path/to/folder
+```
 
 ### create directory on remote machine, create folder remotely
 ```
