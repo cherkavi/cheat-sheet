@@ -1,3 +1,8 @@
+### debug flag, verbose output of commands, output debug
+```
+export GIT_TRACE=1
+```
+
 ### clean 
 ```
 git clean --dry-run
