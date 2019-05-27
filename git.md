@@ -268,6 +268,12 @@ https://username:userpass@aa-github.mygroup.net
 https://username:userpass@aa-artifactory.mygroup.ne
 ```
 
+#### git lfs proxy
+be aware about upper case for environment variables 
+```
+NO_PROXY=localhost,127.0.0.1,.localdomain,.advantage.org
+```
+
 
 ### configuration for proxy server, proxy configuration
 #### set proxy, using proxy
