@@ -272,6 +272,8 @@ https://username:userpass@aa-artifactory.mygroup.ne
 be aware about upper case for environment variables 
 ```
 NO_PROXY=localhost,127.0.0.1,.localdomain,.advantage.org
+HTTP_PROXY=muc.proxy
+HTTPS_PROXY=muc.proxy
 ```
 
 
