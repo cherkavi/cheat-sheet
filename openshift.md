@@ -126,6 +126,7 @@ oc project {project name}
 ### create resource ( pod, job, volume ... )
 ```
 oc create -f {description file}
+# oc replace -f {description file}
 ```
 example of job
 ```
@@ -178,6 +179,11 @@ oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-ex.git
 #### new app with "specific" (centos/ruby-22-centos7) docker container from GIT with specific sub-folder and name
 ```
 oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-ex.git --context-dir=sub-project --name myruby
+```
+
+#### import specific image
+```
+oc import-image jenkins:v3.7 --from='registry.access.redhat.com/openshift3/jenkins-2-rhel7:v3.7' --confirm -n openshift
 ```
 
 ### log from 
