@@ -145,6 +145,13 @@ spec:
       restartPolicy: Never
   backoffLimit: 4
 ```
+
+### set resource limits
+```
+oc set resources dc/{app-name} --limits=cpu=400m,memory=512Mi --requests=cpu=200m,memory=256Mi
+oc autoscale dc/{app-name} --min 1 --max 5 --cpu-percent=40
+```
+
 ### connect to existing pod
 ```
 oc get pods
