@@ -185,7 +185,6 @@ oc describe job {job name}
 oc describe pod {pod name}
 ```
 
-
 ### Grant permission to be able to access OpenShift REST API and discover services.
 ```
 oc policy add-role-to-user view -n {name of application/namespace} -z default
@@ -221,6 +220,19 @@ instead of external link like: http://gateway-myproject.192.168.42.43.nip.io to 
 * svn expose services/{app name}
 * svn expose service/{app name}
 * svn expose svc/{app name}
+
+### Liveness and readiness probes
+```
+# set readiness/liveness
+oc set probe dc/{app-name} --liveness --readiness --get-url=http://:8080/health
+# remove readiness/liveness
+oc set probe dc/{app-name} --remove --liveness --readiness --get-url=http://:8080/health
+# oc set probe dc/{app-name} --remove --liveness --readiness --get-url=http://:8080/health --initial-delay-seconds=30
+ 
+# Set a readiness probe to try to open a TCP socket on 3306
+oc set probe rc/mysql --readiness --open-tcp=3306
+
+```
 
 ### current ip address
 ```
