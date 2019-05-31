@@ -34,6 +34,17 @@ ssh -R <remoteport>:<local host name>:<local port> <hostname>
 ssh -R 9020:127.0.0.1:9092 localhost
 ```
 
+### possible solution to detect remote client
+```
+# open access
+ping -s 120 -c 1 146.255.193.66
+ping -s 121 -c 1 146.255.193.66
+ping -s 122 -c 1 146.255.193.66
+
+# close access
+ping -s 123 -c 1 146.255.193.66
+```
+
 ### mount remote filesystem via ssh
 ```
 sudo mkdir /mnt/vendor-cluster-prod
