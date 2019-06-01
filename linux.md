@@ -1204,6 +1204,14 @@ and restart the service
 sudo service cups restart
 ```
 
+## kernel related messages
+```
+dmesg --level=err,warn
+dmesg --follow
+# save all messages /var/log/dmesg
+dmesg -S
+```
+
 ## disk usage
 ```
 ncdu
