@@ -491,6 +491,7 @@ kubectl exec -it {name of a pod}  -- bash -c "echo hi > /path/to/output/test.txt
 ```
 
 # Flannel
+![deployment diagram](https://i.postimg.cc/d3ZwjhXd/flannel.png)
 restart nodes
 ```sh
 # remove died pods
