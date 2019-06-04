@@ -557,6 +557,10 @@ spark.driver.extraClassPath  pathOfJarsWithCommaSeprated
 scala> :require /path/to/file.jar
 
 # spark shell, spark-shell, spark2-shell
+## local execution
+```
+spark-shell --deploy-mode client --master yarn
+```
 ## inline execution, execute file from command line
 ```
 spark-shell -i /path/to/file.scala
