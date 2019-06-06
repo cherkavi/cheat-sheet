@@ -1422,6 +1422,7 @@ sudo apt install arandr
 * [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
 * [jira editing shortcuts](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)
 * [i3 window manager shortcuts](https://i3wm.org/docs/refcard.html)
+* [xmind settings](https://www.xmind.net/m/PuDC/)
 
 ---
 # visual code plugins
