@@ -998,6 +998,8 @@ systemctl show {service name} | grep proxy
 
 * #### for snapd 
 ```
+# export SYSTEM_EDITOR="vim"
+# export SYSTEMD_EDITOR="vim"
 sudo systemctl edit snapd.service
 ```
 add next lines
