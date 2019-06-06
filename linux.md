@@ -1001,6 +1001,7 @@ systemctl show {service name} | grep proxy
 # export SYSTEM_EDITOR="vim"
 # export SYSTEMD_EDITOR="vim"
 sudo systemctl edit snapd.service
+# will edit: /etc/systemd/system/snapd.service.d/override.conf
 ```
 add next lines
 ```
