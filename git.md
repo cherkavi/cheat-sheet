@@ -254,6 +254,7 @@ echo 'deb http://http.debian.net/debian wheezy-backports main' > /etc/apt/source
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 sudo apt-get install git-lfs
 git lfs install
+git lfs pull
 ```
 if you are using SSH access to git, you should specify http credentials ( lfs is using http access ), to avoid possible errors: "Service Unavailable...", "Smudge error...", "Error downloading object"
 ```bash
