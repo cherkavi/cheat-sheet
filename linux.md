@@ -316,6 +316,10 @@ should understand next options: start, stop, restart
 ```
 
 reset X-server, re-start xserver, reset linux gui
+ubuntu only
+```
+Ctrl-Alt-F1
+```
 ```
 sudo init 3
 sudo init 5
