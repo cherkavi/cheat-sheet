@@ -99,10 +99,11 @@ oc get serviceaccounts
 oc get rolebindings
 ```
 
-## add role to current project, assign role to project
+## add role to current project, assign role to project, remove role from user
 ```
 oc project
 oc policy add-role-to-user admin cherkavi
+# oc policy remove-role-from-user admin cherkavi
 oc get rolebindings
 ```
 
