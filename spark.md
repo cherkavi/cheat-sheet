@@ -425,6 +425,7 @@ spark.udf.register("trimDirectory", myUdf)
 spark.sql("select trimDirectory(column_name) from registeredView groupBy trimDirectory(column_name) ")
 ```
 
+
 ### difference between DataFrame and DataSet
 ![DF vs DS](https://i.postimg.cc/NM20wHtD/DS-DF.png)
 ![Load data](https://i.postimg.cc/KYkbKhWv/Load-Data-DF-DS.png)
@@ -476,6 +477,31 @@ cache() == persist() == persist(StorageLevel.MEMORY_ONLY)
 // should be called after "action"
 rdd.unpersist()
 ```
+# Use cases
+* Bad use case: using SQL DB like key and values
+```
+select * from table1 where id_key='1234'
+select * from table1 where id_key like '%1234%'
+```
+* Good use case: using like ExtractTransformLoad
+* Bad use case: each insert will create new file
+```
+insert into table1 select * from table2
+```
+* Bad use case: Frequent/Increment updates, using SQL DB for updates
+  * random access
+  * delete + insert
+  * update not working for files
+* Good use case: Frequent/Increment updates should be replaced with: 
+  * HDFS + SQL query->Spark
+  * use 'deleted' column instead of DELETE query ( ClusterBy, Bucketing )
+* Bad architecture: HDFS<-Spark<-many users
+* Good architecture: HDFS<-Spark<-tableau
+* Good for scheduled jobs:
+  * use dedicated cluster
+  * output to files
+* Bad use case: low latency stream processing:
+  * send data to queue: JMS, Kafka
 
 ### difference betwee reduceByKey and countByKey
 ```
