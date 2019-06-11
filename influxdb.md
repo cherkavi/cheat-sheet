@@ -25,6 +25,14 @@ curl --silent -G "http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=tr
 | grep "name\":" | awk '{print $2}' | tr , ' '
 ```
 
+delete record
+```
+curl --silent -G "https://dq-influxdb.dplapps.vantage.org:443/query?pretty=true" \
+--data-urlencode "db=dataquality-metrics" \
+--data-urlencode "q=DROP SERIES FROM \"km-dr\" WHERE \"session\"='aa416-7dcc-4537-8045-83afa2' and \"vin\"='V77777'"
+
+```
+
 list of all fields and keys ( for measurements )
 ```
 curl --silent -G "http://tesla-influx.k8sstg.mueq.adas.intel.com/query?pretty=true" \
