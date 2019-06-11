@@ -269,6 +269,10 @@ search after adding
 ```
 apt-cache search inkscape
 ```
+update from one repo, single update
+```
+sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/cc-ros-mirror.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0" 
+```
 
 ### avoid to put command into history, hide password into history, avoid history
 add space before command
