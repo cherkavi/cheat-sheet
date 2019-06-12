@@ -328,3 +328,42 @@ spec:
   restartPolicy: Never
   backoffLimit: 4
 ```
+### Persistent Volume with Persistent Volume Claim example
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-scenario-extraction-input
+  namespace: scenario-extraction
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    namespace: scenario-extraction
+    name: pvc-scenario-extraction-input
+  flexVolume:
+    driver: "mapr.com/maprfs"
+    options:
+      platinum: "false"
+      cluster: "dp.prod.munich"
+      cldbHosts: "dpmesp000004.gedp.org dpmesp000007.gedp.org dpmesp000010.gedp.org dpmesp000009.gedp.org"
+      volumePath: "/tage/data/store/processed/ground-truth/"
+      securityType: "secure"
+      ticketSecretName: "volume-token-ground-truth"
+      ticketSecretNamespace: "scenario-extraction"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-scenario-extraction-input
+  namespace: scenario-extraction
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeName: pv-scenario-extraction-input
+  resources:
+    requests:
+      storage: 1G
+```
