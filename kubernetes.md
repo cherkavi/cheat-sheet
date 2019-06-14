@@ -287,6 +287,10 @@ kubectl delete deploy hello-minikube
 ```
 kubectl delete rc helloworld-controller
 ```
+## delete PV/PVC
+```
+oc delete pvc/pvc-scenario-output-prod
+```
 
 ## port forwarding from local to pod/deployment/service
 next receipts allow to redirect 127.0.0.1:8080 to pod:6379
