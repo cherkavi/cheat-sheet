@@ -334,6 +334,8 @@ spec:
   backoffLimit: 4
 ```
 ### Persistent Volume with Persistent Volume Claim example
+For MapR cluster, be aware about
+MapR ticket-file ----<>Secret-----<>PV------<>PVC
 ```
 apiVersion: v1
 kind: PersistentVolume
