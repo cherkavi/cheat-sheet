@@ -46,22 +46,27 @@ kubectl config use-context kubernetes-admin@docker-for-desktop-cluster
 ```
 
 ### create token for MapR
-```
+```bash
 maprlogin password -user {mapruser}
+# ticket-file will be created
 ```
+check expiration date
+```
+maprlogin print -ticketfile /tmp/maprticket_1000 # or another filename
+```
+
 using file from previous command
-```
+```bash
 cat /tmp/maprticket_1000 
 #oc create secret generic {name of secret/token} --from-file=/tmp/maprticket_1000 -n {project name}
 oc create secret generic {name of secret/token} --from-file=CONTAINER_TICKET=/tmp/maprticket_1000 -n {project name}
-
 ```
 or from content of file from previous command
-```
+```bash
 oc create secret generic {name of secret/token} --from-literal=CONTAINER_TICKET='dp.prod.ubs qEnHLE7UaW81NJaDehSH4HX+m9kcSg1UC5AzLO8HJTjhfJKrQWdHd82Aj0swwb3AsxLg==' -n {project name}
 ```
 check creation
-```
+```bash
 oc get secrets
 ```
 
