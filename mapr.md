@@ -176,5 +176,11 @@ java -cp `mapr classpath`:my-own-app.jar mypackage.MainClass
 maprlogin password -user {your cluster username}
 maprlogin print
 maprlogin logout
+```
 
+## check your credential, expiration date/time
+```
+maprlogin print -ticketfile <your ticketfile> 
+# you will see expiration date like 
+# on 07.05.2019 13:56:47 created = 'Tue Apr 23 13:56:47 UTC 2019', expires = 'Tue May 07 13:56:47 UTC 2019'
 ```
