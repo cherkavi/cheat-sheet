@@ -1111,6 +1111,10 @@ configuration
 ```
 xinput_calibration
 ```
+list of all devices
+```
+xinput --list
+```
 permanent applying
 ```
 vi /usr/share/X11/xorg.conf.d/80-touch.conf
