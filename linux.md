@@ -1119,6 +1119,10 @@ permanent applying
 ```
 vi /usr/share/X11/xorg.conf.d/80-touch.conf
 ```
+disable device
+```
+xinput --disable {number from command --list}
+```
 
 ## Keyboard Lenovo
 ### middle button
