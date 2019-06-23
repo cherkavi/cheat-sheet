@@ -136,6 +136,13 @@ the same as local copy folder
 ```
 cp -var /path/to/folder /another/path/to/folder
 ```
+### syncronize folders, copy everything between folders
+```bash
+# local sync
+rsync -r /tmp/first-folder/ /tmp/second-folder
+# remote sync
+rsync -avh /tmp/local-folder/ root@remote-host:/tmp/remote-folder
+```
 
 ### create directory on remote machine, create folder remotely
 ```
