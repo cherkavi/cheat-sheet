@@ -1154,7 +1154,20 @@ Section "InputClass"
 EndSection
 ```
 
-
+### recover usb drive
+```
+sudo fdisk -l
+sudo lsblk
+sudo fsck /dev/sdb
+e2fsck -b 32768 /dev/sdb
+sudo e2fsck -b 32768 /dev/sdb
+sudo dd if=/dev/zero of=/dev/sdb
+sudo fdisk /dev/sdb
+sudo partprobe -s
+sudo mkfs.vfat -F 32 /dev/sdb
+sudo dd if=/dev/zero of=/dev/sdb bs=512 count=1
+sudo fdisk /dev/sdb
+```
 
 ## home automation
 ### DTMF generator
