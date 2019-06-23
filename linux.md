@@ -142,6 +142,8 @@ cp -var /path/to/folder /another/path/to/folder
 rsync -r /tmp/first-folder/ /tmp/second-folder
 # remote sync
 rsync -avh /tmp/local-folder/ root@remote-host:/tmp/remote-folder
+# remote sync with specific port
+rsync -azh /tmp/local-folder/ -e 'ssh -p 2233' root@remote-host:/tmp/remote-folder
 ```
 
 ### create directory on remote machine, create folder remotely
