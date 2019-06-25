@@ -749,6 +749,11 @@ curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Conte
 * curl --silent -X GET http://google.com
 * curl  http://google.com 2>/dev/null
 
+### curl certificate skipping
+```
+curl --insecure -s -X GET http://google.com
+```
+
 ### chmod recursively
 ```
 chmod -R +x <folder name>
