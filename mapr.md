@@ -55,6 +55,7 @@ maprcli node listcldbs
 ```
 maprcli stream create -path <filepath & name>
 maprcli stream create -path <filepath & name> -consumeperm u:<userId> -produceperm u:<userId> -topicperm u:<userId>
+maprcli stream create -path <filepath & name> -consumeperm "u:<userId>" -produceperm "u:<userId>" -topicperm "u:<userId>" -adminperm "u:<userId1> | u:<userId2>"
 ```
 ### topic create
 ```
