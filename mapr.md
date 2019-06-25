@@ -51,15 +51,20 @@ public class MyClassName implements Partitioner{
 maprcli node listcldbs
 ```
 
-### create stream 
+### stream create
 ```
 maprcli stream create -path <filepath & name>
 maprcli stream create -path <filepath & name> -consumeperm u:<userId> -produceperm u:<userId> -topicperm u:<userId>
 ```
-### create topic
+### topic create
 ```
 maprcli stream topic create -path <path and name of the stream> -topic <name of the topic>
 ```
+### topic check, topic print
+```
+maprcli stream topic list -path <path and name of the stream>
+```
+
 ## API, java programming
 ### producer
 #### java example
