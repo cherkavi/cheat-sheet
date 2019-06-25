@@ -1,6 +1,7 @@
 # Linux
 
-[cheat sheet cmd](http://cht.sh/), [chat sheet cmd](http://cheat.sh/)
+* [cheat sheet cmd](http://cht.sh/)
+* [cheat sheet cmd](http://cheat.sh/)
 
 ### socket proxy, proxy to remote machine
 ```
