@@ -212,6 +212,12 @@ hdfs dfs -ls -r
 ```
 -touchz, -cat (-text), -tail, -mkdir, -chmod, -chown, -count ....
 ```
+### java application run
+```
+hadoop classpath
+hadoop classpath glob
+```
+
 
 ## Hadoop governance, administration
 ### filesystem capacity, disk usage in human readable format
@@ -375,6 +381,12 @@ additional export parameters:
 # number of insert before commit
 -Dexport.statements.per.transaction
 ```
+### java application run
+```
+mapr classpath
+mapr classpath glob
+```
+
 
 ---
 # HCatalog
