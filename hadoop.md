@@ -212,10 +212,11 @@ hdfs dfs -ls -r
 ```
 -touchz, -cat (-text), -tail, -mkdir, -chmod, -chown, -count ....
 ```
-### java application run
+### java application run, java run, java build
 ```
 hadoop classpath
 hadoop classpath glob
+# javac -classpath `hadoop classpath` MyProducer.java
 ```
 
 
@@ -381,10 +382,16 @@ additional export parameters:
 # number of insert before commit
 -Dexport.statements.per.transaction
 ```
-### java application run
+### java application run, java run, java build
 ```
 mapr classpath
 mapr classpath glob
+```
+
+### compile java app, execute java app
+```
+javac -classpath `mapr classpath` MyProducer.java
+java -classpath `mapr classpath`:. MyProducer
 ```
 
 
