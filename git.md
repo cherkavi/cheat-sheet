@@ -74,6 +74,10 @@ git branch --all --merged 0ff27c79738a6ed718baae3e18c74ba87f16a314
 ```
 git log -5 develop
 ```
+### check files only for last commits
+```
+git log -5 develop --name-only
+```
 
 ### show no-merged branches
 ```
