@@ -77,7 +77,11 @@ maprcli stream topic list -path <path and name of the stream>
 
 ## API, java programming
 ### producer
-#### java example
+#### 
+```
+java -classpath kafka-clients-1.1.1-mapr-1808.jar:slf4j-api-1.7.12.jar:slf4j-log4j12-1.7.12.jar:log4j-1.2.17.jar:mapr-streams-6.1.0-mapr.jar:maprfs-6.1.0-mapr.jar:protobuf-java-2.5.0.jar:hadoop-common-2.7.0.jar:commons-logging-1.1.3-api.jar:commons-logging-1.1.3.jar:guava-14.0.1.jar:commons-collections-3.2.2.jar:hadoop-auth-2.7.0-mapr-1808.jar:commons-configuration-1.6.jar:commons-lang-2.6.jar:jackson-core-2.9.5.jar:. MyConsumer
+```
+#### java example, kafka java application
 ```
 Properties properties = new Properties();
 properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
