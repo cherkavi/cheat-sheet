@@ -606,7 +606,7 @@ The routing mesh built into Docker Swarm means that any port that is published a
 ```
 Error response from daemon: Get https://docker-registry-default.dplapps.adv.org/v2/: x509: certificate signed by unknown authority
 ```
-solution 
+* solution1 - skip authentication 
 change file ~/.docker/config.json
 ```
 ...
@@ -616,6 +616,15 @@ change file ~/.docker/config.json
 	},
 ...
 ```
+* solution2 - authentication
+```bash
+url_to_registry="docker-registry-default.simapps.advant.org"
+sudo mkdir -p "/etc/docker/certs.d/$url_to_registry"
+sudo cp certificate.crt /etc/docker/certs.d/$url_to_registry
+
+docker login -u login_user -p `oc whoami -t` $url_to_registry
+```
+
 ## docker push, docker pull
 ```
 authentication required
