@@ -371,6 +371,10 @@ or
 ```
 python -c 'import os.path; print(os.path.realpath("symlinkName"))'
 ```
+### print full path to files inside folder
+```
+ls -d <path to folder>/*
+```
 
 ### real path to link
 ```
