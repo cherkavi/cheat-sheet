@@ -434,7 +434,7 @@ docker build -t {name of my own image}:latest {name of docker file | . }
 docker build -t solr-4.10.3:latest . // Dockerfile into current folder
 ```
 
-### build with parameters
+### build with parameters, build with proxy settings
 ```
 build --build-arg app_name=k8s-ambassador
 docker build --build-arg http_proxy=proxy.muc:8080 --build-arg https_proxy=proxy.muc:8080 .
