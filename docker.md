@@ -432,6 +432,7 @@ ENV https_proxy http://user:passw@proxy.url:8080
 ```
 docker build -t {name of my own image}:latest {name of docker file | . }
 docker build -t solr-4.10.3:latest . // Dockerfile into current folder
+docker build --tag java-app-runner:latest --build-arg http_proxy=http://user:passw@proxy.zur:8080  --file /home/projects/current-task/mapr/Dockerfile .
 ```
 
 ### build with parameters, build with proxy settings
