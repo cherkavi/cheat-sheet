@@ -159,10 +159,12 @@ oc set resources dc/{app-name} --limits=cpu=400m,memory=512Mi --requests=cpu=200
 oc autoscale dc/{app-name} --min 1 --max 5 --cpu-percent=40
 ```
 
-### connect to existing pod
+### connect to existing pod, execute command on remote pod, oc exec
 ```
 oc get pods
 oc rsh {name of pod}
+# example of executing program on pod: kafka-test-app
+oc exec kafka-test-app "/usr/bin/java"
 ```
 
 ### [create app](https://access.redhat.com/documentation/en-us/openshift_enterprise/3.0/html/developer_guide/dev-guide-new-app)
