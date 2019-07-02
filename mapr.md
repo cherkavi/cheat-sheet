@@ -203,3 +203,8 @@ maprlogin print -ticketfile <your ticketfile>
 # you will see expiration date like 
 # on 07.05.2019 13:56:47 created = 'Tue Apr 23 13:56:47 UTC 2019', expires = 'Tue May 07 13:56:47 UTC 2019'
 ```
+
+## check status of the cluster, cluster health check
+```
+maprcli dashboard info -json
+```
