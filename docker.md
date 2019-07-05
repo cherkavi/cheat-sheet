@@ -485,6 +485,13 @@ RUN pip install flask
 CMD ["python","app.py"]
 COPY app.py /app.py
 ```
+* create user and group, create group
+```
+RUN groupadd -g 2053 r-d-ubs-technical-user
+RUN useradd -ms /bin/bash -m -u 2056 -g 2053 customer2description
+# activate user
+USER customer2description
+```
 
 Examples
 ------
