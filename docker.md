@@ -469,6 +469,11 @@ ENV JAR=$app_name.jar
 | ONBUILD |  Adds an instruction to be executed later, when the image is used as the base for another build|
 | STOPSIGNAL |  Sets the system call signal that will be sent to the container to exit|
 
+> Use RUN instructions to build your image by adding layers 
+> Use ENTRYPOINT to CMD when building executable Docker image and you need a command always to be executed. 
+> Use CMD if you need to provide extra default arguments that could be overwritten from command line when docker container runs.
+> Use CMD if you need to provide       default arguments that could be overwritten from command line when docker container runs.                         
+
 ### push your container
 * docker login
 * docker tag <name of the container> <dockerhub username>/<name of the container>
