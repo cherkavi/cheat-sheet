@@ -1479,6 +1479,7 @@ locate rc.lua
 vscjava.vscode-java-debug
 peterjausovec.vscode-docker
 ryu1kn.edit-with-shell
+inu1255.easy-shell
 vscjava.vscode-java-dependency
 vscjava.vscode-java-pack
 vscjava.vscode-java-test
