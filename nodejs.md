@@ -31,9 +31,18 @@ npm start
 ## links
 [quick start](https://github.com/angular/quickstart.git)
 
-## start a project
+## create new project
 ```
 ng new my-new-project
+```
+## start a project
+```
 cd my-new-project
 ng serve
+```
+
+## create component
+```
+ng g my-new-component
+ng generate my-new-component
 ```
