@@ -149,6 +149,9 @@ spec:
       - name: scenario-description
         image: cc-artifactory.myserver.net/add-docker/scenario_description:0.23.3
         command: ["python", "-c", "'import scenario_description'"]
+        env:
+          - name: MAPR_TICKETFILE_LOCATION
+            value: "/tmp/maprticket_202208"        
       restartPolicy: Never
   backoffLimit: 4
 ```
