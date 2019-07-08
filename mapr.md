@@ -76,6 +76,10 @@ maprcli stream topic list -path <path and name of the stream>
 ```
 
 ## API, java programming
+### compile java app
+```
+javac -classpath `mapr classpath` MyConsumer.java
+```
 ### producer
 #### 
 ```
