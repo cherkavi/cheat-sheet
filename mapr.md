@@ -197,6 +197,8 @@ java -cp `mapr classpath`:my-own-app.jar mypackage.MainClass
 ## login, print info, logout
 ```
 maprlogin password -user {your cluster username}
+# long term ticket
+maprlogin password -user {your cluster username} -duration 30:0:0 -renewal 90:0:0
 maprlogin print
 maprlogin logout
 ```
