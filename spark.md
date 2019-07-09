@@ -533,6 +533,16 @@ examples
 
 ```
 
+## [stream window](https://i.postimg.cc/XNcY5PCr/spark-window.png)
+
+## Fault tolerant
+* Write ahead logs
+> write data to fault-tolerant system and send acknoledgement of receipt
+* Checkpointing
+> save data to fault-tolerant system
+* Data replication
+> save data on multiply nodes
+
 # libraries
 * Spark SQL
 ```
