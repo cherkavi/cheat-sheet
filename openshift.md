@@ -79,6 +79,11 @@ oc describe {[object type:](https://docs.openshift.com/enterprise/3.0/cli_refere
 * routes
 * ...
 
+### take a look into all events, notification about changes
+```
+oc get --watch events
+```
+
 ### show namespace, all applications, url to service, status of all services
 ```
 oc status
