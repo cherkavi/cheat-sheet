@@ -162,6 +162,11 @@ oc set resources dc/{app-name} --limits=cpu=400m,memory=512Mi --requests=cpu=200
 oc autoscale dc/{app-name} --min 1 --max 5 --cpu-percent=40
 ```
 
+### connect to existing pod in debug mode
+```bash
+oc debug pods/{name of the pod}
+```
+
 ### connect to existing pod, execute command on remote pod, oc exec
 ```
 oc get pods
