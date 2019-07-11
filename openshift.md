@@ -392,7 +392,7 @@ spec:
 ```
 
 # admin commands
-## add security policy
+## add security context constraint
 ```
 oc adm policy add-scc-to-user {name of policy} { name of project }
 oc adm policy remove-scc-to-user {name of policy} { name of project }
