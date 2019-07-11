@@ -70,6 +70,11 @@ check creation
 oc get secrets
 ```
 
+### information about cluster
+```
+kubectl cluster-info
+```
+
 ### describe information about cluster
 ```
 oc describe {[object type:](https://docs.openshift.com/enterprise/3.0/cli_reference/basic_cli_operations.html#object-types)}
@@ -290,10 +295,6 @@ kubectl config get-contexts
 kubectl config current-context
 ```
 
-### information about cluster
-```
-kubectl cluster-info
-```
 
 ### api version
 ```
@@ -388,4 +389,11 @@ spec:
   resources:
     requests:
       storage: 1G
+```
+
+# admin commands
+## add security policy
+```
+oc adm policy add-scc-to-user {name of policy} { name of project }
+oc adm policy remove-scc-to-user {name of policy} { name of project }
 ```
