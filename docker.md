@@ -70,6 +70,28 @@ Environment="HTTP_PROXY=http://webproxy.host.de:3128/" "NO_PROXY=localhost,127.0
 Environment=HTTP_PROXY=http://1.1.1.1:111
 Environment=HTTPS_PROXY=http://1.1.1.1:111
 ```
+* if all previous options not working ( due permission ) :
+  * change Docker file with additional lines
+  ```Dockerfile
+  ARG rsync_proxy
+  ENV rsync_proxy $rsync_proxy
+  ARG http_proxy
+  ENV http_proxy $http_proxy
+  ARG no_proxy
+  ENV no_proxy $no_proxy
+  ARG ftp_proxy
+  ENV ftp_proxy $ftp_proxy
+  ```
+  * build arguments
+  ```bash
+  sudo docker build \
+  --build-arg rsync_proxy=http://$TSS_USER:$TSS_PASSWORD@proxy.muc:8080 \
+  --build-arg https_proxy=https://$TSS_USER:$TSS_PASSWORD@proxy.muc:8080 \
+  --build-arg http_proxy=http://$TSS_USER:$TSS_PASSWORD@proxy.muc:8080 \
+  --build-arg no_proxy=localhost,127.0.0.1,.localdomain,.ubsroup.net,.ubs.corp,.cn.sub,.muc,.vantage.org \
+  --build-arg ftp_proxy=http://$TSS_USER:$TSS_PASSWORD@proxy.muc:8080 \
+  --file Dockerfile-firefox .
+  ```
 
 ## login, logout
 ```
