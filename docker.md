@@ -71,7 +71,17 @@ Environment=HTTP_PROXY=http://1.1.1.1:111
 Environment=HTTPS_PROXY=http://1.1.1.1:111
 ```
 * if all previous options not working ( due permission ) or you need to execute (apt install, wget, curl, ... ):
-  * change Docker file with additional lines
+  * build arguments
+  ```bash
+  sudo docker build \
+  --build-arg rsync_proxy=http://$TSS_USER:$TSS_PASSWORD@proxy.muc:8080 \
+  --build-arg https_proxy=https://$TSS_USER:$TSS_PASSWORD@proxy.muc:8080 \
+  --build-arg http_proxy=http://$TSS_USER:$TSS_PASSWORD@proxy.muc:8080 \
+  --build-arg no_proxy=localhost,127.0.0.1,.localdomain,.ubsroup.net,.ubs.corp,.cn.sub,.muc,.vantage.org \
+  --build-arg ftp_proxy=http://$TSS_USER:$TSS_PASSWORD@proxy.muc:8080 \
+  --file Dockerfile-firefox .
+  ```
+  * change Docker file with additional lines ( not necessary, only for earlier docker version )
   ```Dockerfile
   ARG rsync_proxy
   ENV rsync_proxy $rsync_proxy
@@ -87,16 +97,6 @@ Environment=HTTPS_PROXY=http://1.1.1.1:111
   unset ftp_proxy
   unset rsync_proxy
   unset no_proxy
-  ```
-  * build arguments
-  ```bash
-  sudo docker build \
-  --build-arg rsync_proxy=http://$TSS_USER:$TSS_PASSWORD@proxy.muc:8080 \
-  --build-arg https_proxy=https://$TSS_USER:$TSS_PASSWORD@proxy.muc:8080 \
-  --build-arg http_proxy=http://$TSS_USER:$TSS_PASSWORD@proxy.muc:8080 \
-  --build-arg no_proxy=localhost,127.0.0.1,.localdomain,.ubsroup.net,.ubs.corp,.cn.sub,.muc,.vantage.org \
-  --build-arg ftp_proxy=http://$TSS_USER:$TSS_PASSWORD@proxy.muc:8080 \
-  --file Dockerfile-firefox .
   ```
 
 ## login, logout
