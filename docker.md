@@ -70,7 +70,7 @@ Environment="HTTP_PROXY=http://webproxy.host.de:3128/" "NO_PROXY=localhost,127.0
 Environment=HTTP_PROXY=http://1.1.1.1:111
 Environment=HTTPS_PROXY=http://1.1.1.1:111
 ```
-* if all previous options not working ( due permission ) :
+* if all previous options not working ( due permission ) or you need to execute (apt install, wget, curl, ... ):
   * change Docker file with additional lines
   ```Dockerfile
   ARG rsync_proxy
@@ -81,6 +81,12 @@ Environment=HTTPS_PROXY=http://1.1.1.1:111
   ENV no_proxy $no_proxy
   ARG ftp_proxy
   ENV ftp_proxy $ftp_proxy
+  ...
+  # at the end of file
+  unset http_proxy
+  unset ftp_proxy
+  unset rsync_proxy
+  unset no_proxy
   ```
   * build arguments
   ```bash
