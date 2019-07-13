@@ -8,6 +8,12 @@
 ![software architecture](https://i.postimg.cc/D0cMGPPc/software-architecture.png)
 ![programmers mistakes](https://i.postimg.cc/fWPPqJfd/sketch-programmers-mistakes.png)
 ![negotiations](https://i.postimg.cc/nz24YRNM/image.jpg)
+How to learn new tech fastly:
+* Повторяйте за экспертами, не изобретайте велосипед
+* Выделяйте элементы навыка, которые приносят 80% успеха
+* Забудьте о многозадачности
+* Репетируйте, репетируйте, репетируйте - ищите обратную связь 
+* Играйте вдолгую и помните о спаде.
 ![manager types](https://i.postimg.cc/0QjQFVbz/manager-types.jpg)
 ![devops introduction](https://i.postimg.cc/htLmgZMv/devops-introduction.png)
 ![NoSql](https://i.postimg.cc/qBmqcVD2/NoSql.png)
