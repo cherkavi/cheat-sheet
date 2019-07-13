@@ -6,6 +6,7 @@
 
 ---
 ![software architecture](https://i.postimg.cc/D0cMGPPc/software-architecture.png)
+![programmers mistakes](https://i.postimg.cc/fWPPqJfd/sketch-programmers-mistakes.png)
 ![negotiations](https://i.postimg.cc/nz24YRNM/image.jpg)
 ![manager types](https://i.postimg.cc/0QjQFVbz/manager-types.jpg)
 ![devops introduction](https://i.postimg.cc/htLmgZMv/devops-introduction.png)
