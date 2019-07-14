@@ -1,3 +1,5 @@
+[shortcuts](http://midnight-commander.org/wiki/doc/filePanels/hotkeys)
+
 | Shortcut   |            Description                                        |
 | -----------|---------------------------------------------------------------|
 | Ctrl-x i   |       show panel Information
