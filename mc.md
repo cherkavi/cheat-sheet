@@ -5,18 +5,24 @@
 | Ctrl-x !   |       show custom command result
 | Ctrl-Space |       calculate folder size
 | Ctrl-x t   |       copy selected files into console
+| Ctrl-x d   |       compare Directories
+| Ctrl-x h   |       add to Hotlist current directory
+| Ctrl-x q   |       show HEX of file
+| Ctrl-x c   |       Chmod dialog
+| Ctrl-x o   |       chOwn dialog
+| Ctrl-x s   |       create Symlink dialog
+| Ctrl-x l   |       create hard Link dialog
 ||
 | Alt-.      |       Toggle "Show Hidden Files" feature
+| Alt-t      |       Toggle "change panel view"
 | Alt-h      |       Show command history
 | Alt-p      |       Previous command in the history
 | Alt-n      |       Next command into history
 ||
-| Ctrl-x d   |       compare Directories
 | Alt-Shift-H      |       Show full history of directories
 | Alt-y      |       to previous directory in the historY
 | Alt-u      |       to the next directory in the history
 | Ctrl-\     |       directory HotList
-| Ctrl-x h   |       add to Hotlist current directory
 | Alt-!      |       ???
 ||
 | Alt-s      |       Incremental search (Alt-s again to jump to next occurence)
@@ -39,10 +45,6 @@
 | Ctrl-r     |       Refresh directory information
 | Ctrl-l     |       refresh screen
 ||
-| Ctrl-x c   |       Chmod dialog
-| Ctrl-x o   |       chOwn dialog
-| Ctrl-x s   |       create Symlink dialog
-| Ctrl-x l   |       create hard Link dialog
 | sh link    |       sh://user@host:port/path/into/remote/machine
 
 ---
