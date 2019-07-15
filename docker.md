@@ -108,6 +108,11 @@ check login
 ```
 cat ~/.docker/config.json | grep "auth\":" | awk -F '"' '{print $4}' | base64 -d -
 ```
+check login without access to config
+```
+echo "" | docker login docker-registry.local.org
+echo $?
+```
 
 ## restart Docker service
 ```
