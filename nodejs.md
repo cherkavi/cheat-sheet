@@ -44,6 +44,6 @@ ng serve
 
 ## create component
 ```
-ng g my-new-component
-ng generate my-new-component
+ng g component my-new-component
+ng generate component my-new-component
 ```
