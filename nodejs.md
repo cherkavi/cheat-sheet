@@ -30,6 +30,7 @@ npm start
 # angular
 ## links
 [quick start](https://github.com/angular/quickstart.git)
+[angular installation](https://cli.angular.io)
 
 ## create new project
 ```
