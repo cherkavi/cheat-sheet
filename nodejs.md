@@ -42,7 +42,7 @@ cd my-new-project
 ng serve
 ```
 
-## create component
+## [create component](https://angular.io/cli/generate#class-command)
 ```
 ng g component my-new-component
 ng generate component my-new-component
