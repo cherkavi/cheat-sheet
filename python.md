@@ -250,6 +250,15 @@ __call__  <class instance>()
 need to execute: yum install rpm-build
 ```
 
+### build package usind pants with special folder
+```
+# BUILD PEX
+PANTS_PATH="../../../.."
+PANTS_OUTPUT=$CURRENT_PATH/dist
+$PANTS_PATH/pants --pants-distdir=$PANTS_OUTPUT binary src/path/to/package:package-name
+
+```
+
 ### tornado inline GET parameters
 ```
 app = tornado.web.Application([(r"/file/([a-zA-Z\-0-9\.:,/_]+)", FileHandler, dict(folder=folder)),])
