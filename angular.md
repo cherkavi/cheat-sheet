@@ -35,3 +35,31 @@ ng generate component my-new-component
 })
 ```
 
+## for loop
+```typescript
+@Component({
+  selector: 'app-my-component',
+  template: `
+  <b>my-component</b> <br/>
+  <i>is working inline ->{{description.title+"   "+description.values}}<- </i>
+  <ul>
+    <li *ngFor="let each of description.values; let index = index">{{ index }} {{ each }}</li>
+  </ul>
+  `,
+  styleUrls: ['./my-component.component.css']
+})
+
+export class MyComponentComponent {
+  description:object
+
+  constructor() { 
+    this.description={
+      title: "my custom properties",
+      values: [5,7,9,11,13]
+    }
+    
+  }
+}
+
+```
+
