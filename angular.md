@@ -62,4 +62,30 @@ export class MyComponentComponent {
 }
 
 ```
+## alternative template
+```
+@Component({
+  selector: 'app-my-component',
+  template: `
+  <div *ngIf="description.customTemplate==true; else myAnotherTemplate">{{ description.values}}</div>  
+
+  <ng-template #myAnotherTemplate>
+    <ul><li *ngFor="let each of description.values"> {{ each }} </li></ul>
+  </ng-template>
+  `,
+  styleUrls: ['./my-component.component.css']
+})
+
+export class MyComponentComponent {
+  description:object
+  constructor() { 
+    this.description={
+      title: "my custom properties",
+      customTemplate: false,
+      values: [5,7,9,11,13]      
+    }    
+  }
+
+}
+```
 
