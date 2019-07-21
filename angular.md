@@ -90,6 +90,7 @@ export class MyComponentComponent {
 ```
 
 # Property binding
+
 Component --data--> View
 
 ```typescript
@@ -99,4 +100,25 @@ Component --data--> View
 <button [disabled]="myProperty=='not-active-now'" >
 
 <img bind-src="myProperty" >
+```
+
+# [Events](https://developer.mozilla.org/en-US/docs/Web/Events) binding
+
+View --event--> Component 
+
+```typescript
+@Component({
+  selector: 'app-my-component',
+  template: `
+    <button (click)="myEvent($event)">click event</button>
+  `,
+  styleUrls: ['./my-component.component.css']
+})
+
+export class MyComponentComponent {
+  myEvent(event){
+    console.log(event)
+    window.alert(event)
+  }
+}
 ```
