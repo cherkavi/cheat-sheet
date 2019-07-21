@@ -122,3 +122,20 @@ export class MyComponentComponent {
   }
 }
 ```
+
+# Styles
+## inline style
+```
+@Component({
+  selector: 'app-my-component',
+  template: `
+    <button>my button</button>
+  `,
+  styles: [`
+   button {
+     font-weight: bold;
+     color: red;
+   }
+  `]
+})
+```
