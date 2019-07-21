@@ -89,3 +89,14 @@ export class MyComponentComponent {
 }
 ```
 
+# Property binding
+Component --data--> View
+
+```typescript
+<img src="{{ myProperty }}" >
+
+<img [src]="myProperty" >
+<button [disabled]="myProperty=='not-active-now'" >
+
+<img bind-src="myProperty" >
+```
