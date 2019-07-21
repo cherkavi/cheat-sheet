@@ -116,7 +116,7 @@ View --event--> Component
 })
 
 export class MyComponentComponent {
-  myEvent(event){
+  myEvent(event:MouseEvent){
     console.log(event)
     window.alert(event)
   }
