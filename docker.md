@@ -276,6 +276,17 @@ docker inspect
 docker inspect -f '{{.HostConfig.PortBindings}}' {CONTAINER ID}
 ```
 
+### debug information
+```
+docker --debug
+```
+or for file /etc/docker/daemon.json
+```
+{
+  "debug": true
+}
+```
+
 ## Save
 ------
 ### docker save/commit
@@ -648,10 +659,6 @@ docker pause {container name}
 docker unpause {container name}
 ```
 
-## docker check processes
-```
-docker top {name of process}
-```
 
 ## routing mesh effect
 ```
