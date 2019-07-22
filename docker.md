@@ -118,6 +118,7 @@ echo $?
 ```
 sudo systemctl daemon-reload
 sudo systemctl restart docker
+sudo systemctl show docker
 ```
 
 
