@@ -504,6 +504,7 @@ ENV JAR=$app_name.jar
 
 > Use RUN instructions to build your image by adding layers 
 > Use ENTRYPOINT to CMD when building executable Docker image and you need a command always to be executed. 
+> ( ENTRYPOINT can be re-writed from command-line: docker run -d  -p 80:80 --entrypoint /bin/sh alipne )
 > Use CMD if you need to provide extra default arguments that could be overwritten from command line when docker container runs.
 > Use CMD if you need to provide       default arguments that could be overwritten from command line when docker container runs.                         
 
