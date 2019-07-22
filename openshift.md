@@ -390,6 +390,42 @@ spec:
     requests:
       storage: 1G
 ```
+### service example
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-pod
+spec:
+  selector:
+    matchLabels:
+      run: my-flask
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: my-flask
+    spec:
+      containers:
+      - name: flask-test
+        image: docker-registry.zur.local:5000/test-flask:0.0.1
+        command: ["sleep","3600"]
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+  labels:
+    run: my-flask
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+  selector:
+    run: my-flask
+```
 
 # admin commands
 ## add security context constraint
