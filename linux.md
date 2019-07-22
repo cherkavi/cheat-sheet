@@ -353,6 +353,13 @@ sudo startx
 sudo service lightdm start
 ```
 
+### xserver automation
+```
+apt-get install xdotool
+xdotool windowactivate $each_window 
+xdotool key --window $each_window Return alt+f e Down Down Return
+```
+
 ### mc color, midnight commander
 file:~/.mc/ini
 ```
