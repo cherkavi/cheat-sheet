@@ -22,6 +22,40 @@ ng g component my-new-component
 ng generate component my-new-component
 ```
 
+## create service
+* generate by cli
+  ```bash
+  ng generate service myService
+  ```
+* create dummy data "src/app/my-service.service.ts"
+  ```typescript
+  data=[9,8,7,6,5]
+  ```
+* update "src/app/app.module.ts"
+  ```typescript
+  import { MyServiceService } from './my-service.service';
+  ...
+  providers: [MyServiceService],
+  ```
+using it in model "src/app/my-component/my-component.component.ts"
+  ```typescript
+  import { MyServiceService } from '../my-service.service';
+  ...
+  template: `
+    <div>{{ this.externalService.data }}</div>
+    <div>{{ this.mydata }}</div>
+  `,
+  ...
+  export class MyComponentComponent implements OnInit{
+  mydata:number[]
+    ngOnInit(): void {
+      this.mydata = this.externalService.data
+    }
+    constructor(private externalService:MyServiceService){}
+  }
+  ```
+
+
 # angular templates
 ## inline template
 ```typescript
