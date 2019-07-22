@@ -648,6 +648,11 @@ docker pause {container name}
 docker unpause {container name}
 ```
 
+## docker check processes
+```
+docker top {name of process}
+```
+
 ## routing mesh effect
 ```
 The routing mesh built into Docker Swarm means that any port that is published at the service level will be exposed on every node in the swarm. Requests to a published service port will be automatically routed to a container of the service that is running in the swarm.
