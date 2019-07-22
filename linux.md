@@ -354,6 +354,7 @@ sudo service lightdm start
 ```
 
 ### xserver automation
+[keymap](https://gitlab.com/cunidev/gestures/wikis/xdotool-list-of-key-codes)
 ```
 apt-get install xdotool
 xdotool windowactivate $each_window 
