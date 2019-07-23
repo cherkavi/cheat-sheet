@@ -716,3 +716,7 @@ need to execute 'update' before new package installation
 ```
 apt update
 ```
+and also helpful
+```
+apt install -y software-properties-common
+```
