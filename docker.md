@@ -673,7 +673,7 @@ The routing mesh built into Docker Swarm means that any port that is published a
 ```
 Error response from daemon: Get https://docker-registry-default.dplapps.adv.org/v2/: x509: certificate signed by unknown authority
 ```
-* solution1 - skip authentication 
+* *solution1* - skip authentication 
 change file ~/.docker/config.json
 ```
 ...
@@ -683,7 +683,7 @@ change file ~/.docker/config.json
 	},
 ...
 ```
-* solution2 - authentication
+* *solution2* - authentication
 ```bash
 url_to_registry="docker-registry-default.simapps.advant.org"
 sudo mkdir -p "/etc/docker/certs.d/$url_to_registry"
@@ -695,9 +695,23 @@ docker login -u login_user -p `oc whoami -t` $url_to_registry
 ## docker push, docker pull
 ```
 authentication required
-``
-solution
+```
+*solution*
 before 'docker login' need change file ~/.docker/config.json remove next block
 ```
     "credsStore": "secretservice"
+```
+
+## docker instance issue
+```bash
+#apt install software-properties-common
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+E: Unable to locate package software-properties-common
+```
+*solution*
+need to execute 'update' before new package installation
+```
+apt update
 ```
