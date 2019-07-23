@@ -374,11 +374,23 @@ mc --nocolor
 ### full path to file, file behind symlink 
 ```
 readlink -f {file}
+realpath {file}
 ```
 or
 ```
 python -c 'import os.path; print(os.path.realpath("symlinkName"))'
 ```
+
+### filename from path
+```
+basename {file}
+```
+
+### folder name from path
+```
+dirname {file}
+```
+
 ### print full path to files inside folder
 ```
 ls -d <path to folder>/*
