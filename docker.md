@@ -547,6 +547,7 @@ USER customer2description
 Examples
 ------
 * docker run -it ubuntu /bin/sh
+* docker run --env http_proxy=$http_proxy --env https_proxy=$https_proxy --env no_proxy=$no_proxy -it ubuntu:18.04 /bin/bash
 * docker exec -it high_mclean /bin/bash
 * docker run --hostname=quickstart.cloudera --privileged=true -t -i -p 7180 4239cd2958c6 /usr/bin/docker-quickstart
 * docker run -v /tmp:/home/root/tmp --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -t -i  -p  50075:50075/tcp  -p 50090:50090/tcp sequenceiq/hadoop-docker /etc/bootstrap.sh -bash
