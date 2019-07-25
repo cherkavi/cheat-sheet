@@ -918,6 +918,11 @@ nmcli connection
 nmcli connection up id {name from previous command}
 nmcli connection down id {name of connection}
 ```
+### raw vpn connection
+```
+sudo openconnect --no-proxy {ip-address} --user={user name}
+sudo openconnect --no-cert-check --no-proxy {ip-address} --user={user name} ---servercert
+```
 
 ### DNS
 ```
