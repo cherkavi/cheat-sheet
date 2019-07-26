@@ -317,3 +317,19 @@ parse_git_branch() {
 }
 export PS1="\[\033[32m\]\W\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "​
 ```
+
+## hooks
+### check commit message
+```
+mv .git/hooks/commit-msg.sample .git/hooks/commit-msg
+```
+```
+result=`cat $1 | grep "^check-commit"`
+
+if [ "$result" != "" ]; then
+	exit 0
+else 
+	echo "message should start from 'check-commit'"
+	exit 1
+fi
+```
