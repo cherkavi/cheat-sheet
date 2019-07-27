@@ -1294,6 +1294,11 @@ dmesg -S
 ncdu
 ```
 
+## create startup disk
+```bash
+sudo dd bs=4M if=/home/my-user/Downloads/archlinux-2019.07.01-x86_64.iso of=/dev/sdb status=progress && sync
+```
+
 ## Elapsed time between two commands
 ```
 STARTTIME=$SECONDS
