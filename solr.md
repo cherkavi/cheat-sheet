@@ -119,6 +119,13 @@ SOLR_ADMIN_PORT
 
 * -Dsolr.solr.home=/var/lib/solr
 
+* spark-shell example
+```sh
+spark2-shell --deploy-mode client --executor-memory 16G --num-executors 50 \
+--jars spark-solr-3.5.5-shaded.jar \
+--conf "spark.executor.extraJavaOptions=Djavax.net.ssl.trustStore=/home/user1/truststore.jks -Djavax.net.ssl.trustStorePassword=${TRUSTSTORE_PASSWORD} -Djava.security.auth.login.config=/home/user1/kerberos/jaas-client.conf" 
+```
+
 # folders
 * log: /var/log/solr/
 * conf: /etc/solr/conf
