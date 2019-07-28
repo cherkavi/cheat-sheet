@@ -1,5 +1,9 @@
+[documentation](http://archive.apache.org/dist/lucene/solr/ref-guide/)
+
 # Key terms
 ![Core, collection](https://i.postimg.cc/HLGhMgMd/Solr-_Core-_Collection.png)
+
+
 
 # generate configuration of instance
 ```bash
