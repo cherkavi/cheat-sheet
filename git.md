@@ -309,6 +309,11 @@ git config core.sshCommand 'ssh -i private_key_file'
 curl -s https://api.github.com/repos/bugy/script-server/releases/latest | grep browser_download_url | cut -d '"' -f 4
 ```
 
+### download last version of file from github
+```
+wget https://raw.githubusercontent.com/cherkavi/cheat-sheet/master/git.md
+```
+
 ### linux command line changes
 ```
 #git settings parse_git_branch() {
