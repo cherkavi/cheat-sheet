@@ -47,6 +47,7 @@ curl 134.190.200.9:8983/solr/admin/info/system?wt=json
 ## read collections
 ```
 curl -s localhost:8983/solr/admin/cores?wt=json
+curl -i -k --negotiate -u: https://34.91.11.49:8985/solr/admin/collection_labels
 ```
 request to server with https
 ```
