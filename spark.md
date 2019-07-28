@@ -324,6 +324,12 @@ jdbcDF.write
 ```
 dataframe.write.option("path", "/some/path").saveAsTable("some_table_name")
 ```
+* Solr
+```scala
+// Generate unique key if the 'id' field does not exist
+val options = Map("zkhost" -> "134.191.209.235:2181/solr", "collection" -> "label_collection", "gen_uniq_key" -> "true") 
+dataframe.write.format("solr").options(options).mode(org.apache.spark.sql.SaveMode.Overwrite).save
+```
 
 ### append data, union data
 ```
@@ -608,7 +614,7 @@ spark-shell -i /path/to/file.scala
 END_FILE_MARKER
 ```
 
-## execute shell wit additional jar and in debug mode and multi-config lines
+## execute shell with additional jar, in debug mode 
 ```
 spark-shell \
 --jars "/home/some_path/solr-rest_2.11-0.1.jar,/home/someuser/.ivy2/cache/org.json/json/bundles/json-20180813.jar" \
