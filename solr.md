@@ -84,6 +84,11 @@ curl http://localhost:8983/solr/update?commit=true -H "Content-Type: text/json" 
 curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: text/json" --data '{"add":{ "doc":{"id":"1023","title":"title 1023"},"boost":1.0,"overwrite":true,"commitWithin":1}}'
 ```
 
+* json POST request with external file
+```sh
+curl -i -k --negotiate -u: https://34.91.11.49:8985/solr/label_collection/update -H "Content-type:application/json" --data @/home/user1/solr_test_data/test_label.json 
+```
+
 ## select records, execute query, read records
 * xml
 ```
