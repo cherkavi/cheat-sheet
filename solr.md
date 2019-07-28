@@ -1,6 +1,21 @@
 # Key terms
 ![Core, collection](https://i.postimg.cc/HLGhMgMd/Solr-_Core-_Collection.png)
 
+# generate configuration of instance
+```bash
+solrctl instancedir --generate $HOME/label_collection_config
+```
+
+# create instance based on configuration 
+```bash
+solrctl --zk 134.191.209.235:2181/solr instancedir --create label_collection_config $HOME/label_collection_config
+```
+
+# create collection 
+```bash
+solrctl --zk 134.191.209.235:2181/solr collection --create label_collection -s 5 -c label_collection_config
+```
+
 # copy collection/core manually 
 * cp solr/example/solr/collection1 solr/example/solr/collection2
 * rm solr/example/solr/collection2/data
