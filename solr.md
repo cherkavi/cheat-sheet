@@ -107,3 +107,8 @@ SOLR_PORT
 SOLR_ADMIN_PORT
 
 * -Dsolr.solr.home=/var/lib/solr
+
+# folders
+* log: /var/log/solr/
+* conf: /etc/solr/conf
+* collection conf: /home/solr_deploy_eq_s/solr_deploy/labelsCollection/conf/schema.xml
