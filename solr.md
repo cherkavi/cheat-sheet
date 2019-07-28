@@ -1,4 +1,5 @@
-[documentation](http://archive.apache.org/dist/lucene/solr/ref-guide/)
+* [documentation](http://archive.apache.org/dist/lucene/solr/ref-guide/)
+* [solr + spark](https://risdenk.gitbooks.io/hadoop_book/examples/spark_and_solr.html)
 
 # Key terms
 ![Core, collection](https://i.postimg.cc/HLGhMgMd/Solr-_Core-_Collection.png)
