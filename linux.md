@@ -1,6 +1,6 @@
 # Linux
 
-* [cheat sheet cmd](http://cht.sh/)
+* [cheat sheet cmd](http://cht.sh/)f
 * [cheat sheet cmd](http://cheat.sh/)
 
 ### socket proxy, proxy to remote machine
@@ -1284,7 +1284,7 @@ dmesg -S
 ncdu
 ```
 
-## create startup disk
+## create startup disk, write iso image
 ```bash
 sudo dd bs=4M if=/home/my-user/Downloads/archlinux-2019.07.01-x86_64.iso of=/dev/sdb status=progress && sync
 ```
