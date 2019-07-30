@@ -405,15 +405,26 @@ add flag for verbosity:-vv (2) or -v (1)
     verbosity: 2
 ```
 
-# debugging
+# [debugging](https://docs.ansible.com/ansible/latest/user_guide/playbooks_debugger.html)
 ```bash
 export ANSIBLE_STRATEGY=debug
 ```
+print variables
 ```python
 task.args
 task.args['src']
+vars()
+```
+change variables
+```python
 del(task.args['src'])
 task.args['src']="/new path to file"
+```
+manage palying
+```
+redo
+continue
+quit
 ```
 
 ### TBD
