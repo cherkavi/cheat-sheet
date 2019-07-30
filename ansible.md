@@ -408,6 +408,8 @@ add flag for verbosity:-vv (2) or -v (1)
 # [debugging](https://docs.ansible.com/ansible/latest/user_guide/playbooks_debugger.html)
 ```bash
 export ANSIBLE_STRATEGY=debug
+# revert it afterwards:
+# export ANSIBLE_STRATEGY=linear
 ```
 print variables
 ```python
