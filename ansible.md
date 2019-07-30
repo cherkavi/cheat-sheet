@@ -337,6 +337,14 @@ for example
 ```
 TASK [java : install java with jdbc libraries] ***********************************
 ```
+
+## configuration for external roles
+filename: ansible.cfg
+```
+[defaults]
+roles_path = ~/repos/project1/roles:~/repos/project2/roles
+```
+
 # file encryption, vault
 ```
 ansible-vault encrypt inventory.txt
