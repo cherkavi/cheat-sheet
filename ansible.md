@@ -130,7 +130,7 @@ TBD
     failed_when : "'ERROR' in server_log_file.stdout"
 ```
 
-# template, Jinja2 templating
+# template, Jinja2 templating, pipes, [ansible filtering](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html)
 default value
 ```
 default path is {{ my_custom_path | default("/opt/program/script.sh") }}
