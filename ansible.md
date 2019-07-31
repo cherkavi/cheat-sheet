@@ -146,6 +146,7 @@ operation with list
 {{ [1,2,3] | intersect([3]) }}
 {{ 100 | random }}
 {{ ["space", "separated", "value"] | join(" ") }}
+{{'latest' if (my_own_value is defined) else 'local-build'}}
 ```
 file name from path (return 'script.sh')
 ```
