@@ -16,9 +16,21 @@ remote machine should have 'python' - 'gather_facts: False' otherwise
 
 ## ansible configuration places
 * path variable $Ansible_Config
-* ./ansible.cfg
-* ~/ansible.cfg
+* ~/.ansible.cfg
 * /etc/ansible/ansible.cfg
+
+### configuration for external roles
+filename: ~/.ansible.cfg
+```
+[defaults]
+roles_path = ~/repos/project1/roles:~/repos/project2/roles
+```
+
+### check configuration
+```
+ansible-config view
+```
+
 
 ## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters
 ```
@@ -337,13 +349,6 @@ TASK [{project/role name}: {task name}] ***********************************
 for example
 ```
 TASK [java : install java with jdbc libraries] ***********************************
-```
-
-## configuration for external roles
-filename: ansible.cfg
-```
-[defaults]
-roles_path = ~/repos/project1/roles:~/repos/project2/roles
 ```
 
 # file encryption, vault
