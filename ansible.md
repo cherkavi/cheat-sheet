@@ -115,6 +115,13 @@ approprate file should be created:
   - debug:
       msg: "print variable: {{  my_own_var }}"
 ```
+```
+  - shell: /usr/bin/uptime
+    register: result
+
+  - debug:
+      var: result
+```
 
 ## conditions "when"
 TBD
