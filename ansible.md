@@ -172,6 +172,20 @@ file name from path (return 'script.sh')
 {{ "/etc/program/script.sh" | basename }}
 ```
 
+## template with tempfile
+```
+- hosts: localhost
+  tasks:
+    - tempfile:
+        state:  file
+        suffix: config
+      register: temp_config
+
+    - template:
+        src:  templates/configfile.j2
+        dest: "{{ temp_config.path }}"
+```
+
 # [plugins](https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/)
 example of plugin
 ```
