@@ -337,12 +337,13 @@ insert into code
 all folders of the imported project will be applied to your project ( tasks, vars, defaults )
 
 ## import task from role, role.task
-```
----
-- name: do something
-  include_role:
-    name: common-role
-    tasks_from: common-role-name-of-task
+```yaml
+- hosts: localhost
+  tasks:
+  - name: first step
+    include_role:
+      name: mapr-kafka
+      tasks_from: cluster-login
 ```
 
 ## export 
