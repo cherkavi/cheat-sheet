@@ -62,6 +62,11 @@ maprcli stream create -path <filepath & name>
 maprcli stream create -path <filepath & name> -consumeperm u:<userId> -produceperm u:<userId> -topicperm u:<userId>
 maprcli stream create -path <filepath & name> -consumeperm "u:<userId>" -produceperm "u:<userId>" -topicperm "u:<userId>" -adminperm "u:<userId1> | u:<userId2>"
 ```
+### stream check creation
+```
+maprcli stream info -path {filepath}
+```
+
 ### stream remove, stream delete
 ```
 maprcli stream delete -path <filepath & name>
