@@ -8,7 +8,7 @@ apt install ansible
 ```
 pip install ansible 
 ```
-remote machine should have 'python' - 'gather_facts: False' otherwise
+remote machine should have 'python' - 'gather_facts: False' or 'gather_facts: no' otherwise
 
 ## [examples](https://github.com/ansible/ansible-examples)
 ## [examples 2](https://github.com/mmumshad/ansible-training-answer-keys)
@@ -175,6 +175,7 @@ file name from path (return 'script.sh')
 ## template with tempfile
 ```
 - hosts: localhost
+  gather_facts: no
   tasks:
     - tempfile:
         state:  file
