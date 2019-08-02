@@ -173,6 +173,37 @@ file name from path (return 'script.sh')
 {{ "/etc/program/script.sh" | basename }}
 ```
 
+## directives for Jinja
+for improving indentation globally in file, add one of next line in the beginning
+```
+#jinja2: lstrip_blocks: True
+#jinja2: trim_blocks:False
+#jinja2: lstrip_blocks: True, trim_blocks: True
+```
+for improving indentation only for the block
+```
+<div>
+        {%+ if something %}<span>hello</span>{% endif %}
+</div>
+```
+
+## escaping
+just a symbol
+```
+{{ '{{' }}
+```
+bigger piece of code
+```
+{% raw %}
+    <ul>
+    {% for item in seq %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+{% endraw %}
+```
+
+
 ## template with tempfile
 ```
 - hosts: localhost
