@@ -390,7 +390,7 @@ insert into code
 ```
 all folders of the imported project will be applied to your project ( tasks, vars, defaults )
 
-## import task from role, role.task
+## import task from role, role.task, task inside role
 ```yaml
 - hosts: localhost
   tasks:
