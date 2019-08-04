@@ -5,6 +5,24 @@ useful links
 * [k8s examples](https://github.com/wardviaene/kubernetes-course)
 * [playground](https://labs.play-with-k8s.com/)
 * [playground](https://www.katacoda.com/courses/kubernetes/playground)
+* some tricks
+  * completion
+  ```bash
+  source <(kubectl completion bash)
+  ```
+  * trace logging
+  ```bash
+  rm -rf ~/.kube/cache
+  kubectl get pods -v=6
+  kubectl get pods -v=7
+  kubectl get pods -v=8
+  ```
+  * explain yaml schema
+  ```
+  kubectl explain pods
+  kubectl explain pods --recursive
+  kubectl explain pods --recursive --api-version=autoscaling/v2beta1
+  ```
 
 ---
 # Architecture
@@ -180,12 +198,6 @@ minikube addons enable ingress
 
 ## deployment
 ![main schema](https://i.postimg.cc/6pfGpWvN/deployment-high-level.png)
-
-### print collaboration, output rest api call, print api calls
-```
-rm -rf ~/.kube/cache
-kubectl get pods -v=8
-```
 
 ## start dummy container
 ```
