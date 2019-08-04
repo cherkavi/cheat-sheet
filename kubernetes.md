@@ -183,6 +183,7 @@ minikube addons enable ingress
 
 ### print collaboration, output rest api call, print api calls
 ```
+rm -rf ~/.kube/cache
 kubectl get pods -v=8
 ```
 
