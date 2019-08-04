@@ -1,3 +1,22 @@
+## some tricks
+  * completion
+  ```bash
+  source <(oc completion bash)
+  ```
+  * trace logging
+  ```bash
+  rm -rf ~/.kube/cache
+  oc get pods -v=6
+  oc get pods -v=7
+  oc get pods -v=8
+  ```
+  * explain yaml schema
+  ```
+  oc explain pods
+  oc explain pods --recursive
+  oc explain pods --recursive --api-version=autoscaling/v2beta1
+  ```
+
 ### minishift documentation, help url
 > https://docs.openshift.org/latest/minishift/using/index.html
 
