@@ -1,6 +1,6 @@
 # Linux
 
-* [cheat sheet cmd](http://cht.sh/)f
+* [cheat sheet cmd](http://cht.sh/)
 * [cheat sheet cmd](http://cheat.sh/)
 
 ### socket proxy, proxy to remote machine
