@@ -181,6 +181,11 @@ minikube addons enable ingress
 ## deployment
 ![main schema](https://i.postimg.cc/6pfGpWvN/deployment-high-level.png)
 
+### print collaboration, output rest api call, print api calls
+```
+kubectl get pods -v=8
+```
+
 ## start dummy container
 ```
 kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
