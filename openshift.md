@@ -49,6 +49,21 @@ oc whoami -t
 ```
 oc whoami -v=8
 ```
+### example of rest api collaboration, rest call
+```bash
+TOKEN=$(oc whoami -t)
+ENDPOINT=$(oc status | head --lines=1 | awk '{print $6}')
+NAMESPACE=$(oc status | head --lines=1 | awk '{print $3}')
+echo $TOKEN
+echo $ENDPOINT
+echo $NAMESPACE
+echo $NAME
+
+curl -k -H "Authorization: Bearer $TOKEN" -H 'Accept: application/json' $ENDPOINT/api/v1/pods
+curl -k -H "Authorization: Bearer $TOKEN" -H 'Accept: application/json' $ENDPOINT/api/v1/namespaces/$NAMESPACE/pods
+# watch on changes
+curl -k -H "Authorization: Bearer $TOKEN" -H 'Accept: application/json' $ENDPOINT/api/v1/watch/namespaces/$NAMESPACE/pods
+```
 
 ### switch contex, use another cluster
 ~/.kube/config
