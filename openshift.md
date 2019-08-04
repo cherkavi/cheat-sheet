@@ -179,7 +179,7 @@ oc debug pods/{name of the pod}
 
 ### connect to existing pod, execute command on remote pod, oc exec
 ```
-oc get pods
+oc get pods --field-selector=status.phase=Running
 oc rsh {name of pod}
 # example of executing program on pod: kafka-test-app
 oc exec kafka-test-app "/usr/bin/java"
