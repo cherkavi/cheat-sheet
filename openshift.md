@@ -26,6 +26,10 @@ check login
 oc whoami
 oc whoami -t
 ```
+### print collaboration, output rest api call, print api calls
+```
+oc whoami -v=8
+```
 
 ### switch contex, use another cluster
 ~/.kube/config
