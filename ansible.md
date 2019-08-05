@@ -111,7 +111,7 @@ approprate file should be created:
 ```
 ./path_to_folder/path_to_file
 ```
-## debug module
+## debug modules
 ```
   - debug:
       msg: "print variable: {{  my_own_var }}"
@@ -217,6 +217,36 @@ bigger piece of code
     - template:
         src:  templates/configfile.j2
         dest: "{{ temp_config.path }}"
+```
+# [modules](https://github.com/ansible/ansible/tree/devel/lib/ansible/modules)
+## settings for modules
+also need to 'notify' ansible about module giving one of the next option:
+* add your folder with module to environment variable ANSIBLE_LIBRARY
+* update $HOME/.ansible.cfg
+  ```properties
+  library=/path/to/module/library
+  ```
+
+## module documentation
+```
+ansible-doc -t module {name of the module}
+```
+
+## minimal module
+```
+from ansible.module_utils.basic import AnsibleModule
+def main():
+    input_fields = {
+        "operation": {"required": True, "type": "str"},
+        "file": {"required": True, "type": "str"},
+        "timeout": {"required": False, "type": "int", "default": "120"}
+    }
+    module = AnsibleModule(argument_spec=input_fields)
+    operation = module.params["operation"]
+    file = module.params["file"]
+    timeout = module.params["timeout"]
+    # module.fail_json(msg="you must be logged in into OpenShift")
+    module.exit_json(changed=True, meta={operation: "create"})    
 ```
 
 # [plugins](https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/)
