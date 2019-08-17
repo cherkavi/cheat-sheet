@@ -5,6 +5,85 @@
 [quick start](https://github.com/angular/quickstart.git)
 [angular installation](https://cli.angular.io)
 
+# core conceptions
+* modular architecture
+  * Angular architecture patterns
+  * Scalable Angular application architecture
+* one way data-flow
+  * Angular data flow best practices
+  * Uni-directional flow in Angular
+  * Advantages of one way binding
+* directives
+  * Angular attribute directives
+  * Angular structural directives
+  * Angular structural directive patterns
+* components lifecycle
+  * Angular life cycle hook
+  * Component life cycle
+* http services
+  * JavaScript observable patterns
+  * Angular HTTP and observables
+  * ES7 observable feature
+* smart/dumb components
+  * Smart/dumb Angular components
+  * Stateless dumb components
+  * Presentational components
+  * Smart components in Angular
+* application structure
+  * Single repo Angular apps
+  * Angular libraries
+  * Angular packages
+  * Angular bundles
+  * Angular micro apps
+  * Monorepo
+* property binding
+  * Angular property binding 
+  * Angular event binding 
+  * Angular two-way binding
+  * Angular interpolation
+  * Angular passing constants 
+* feature modules
+  * Angular feature modules
+  * Shared feature structures in Angular
+  * Feature module providers
+  * Lazy loading with routing and feature modules
+* forms
+  * Angular form validation
+  * Template driven validation
+  * Reactive form validation
+  * Sync and async validators in Angular
+  * Built-in validators 
+  * Angular custom validators
+  * Cross-field validation
+* projection
+  * Angular content projection
+  * Angular parent-child view relationship
+  * Angular view data relationships
+* onPush
+  * Angular onPush change detection
+* route access restrictions
+  * Angular route guards
+  * Angular authentication patterns
+  * Angular preloading and lazy-loading modules
+  * Angular secured route patterns
+* Angular custom pipes
+* decorators
+  * Angular decorators 
+  * Viewchild and contentchild in Angular
+  * Angular component data sharing
+  * Angular directives patterns 
+  * @Host, @HostBinding and exportAs in Angular 
+* dynamic components
+  * Dynamic components in Angular
+  * Dynamic components and ng-templating
+* manage state of application
+  * Angular RxJs
+  * Flux/Redux principles
+  * Angular state management principles
+* Dependency injection
+  * Angular zones
+  * Angular DI
+
 # angular cli
 ## create new project
 ```
