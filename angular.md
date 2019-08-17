@@ -173,3 +173,43 @@ export class MyComponentComponent {
   `]
 })
 ```
+
+# Animation
+## installation
+```
+ npm install @angular/animations@latest --save
+```
+## component 
+```
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations'
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  animations: [
+    trigger('myOwnAnimation',
+            [
+            state('small', style({transform: 'scale(1)'})),
+            state('bigger', style({transform: 'scale(2)'})),
+            transition(
+              'small <=> bigger', 
+              animate('300ms', style({transform: 'translateY(100px)'}))
+            )
+            ]
+    )
+  ]
+})
+export class AppComponent {
+  state: string = "small"
+  animateMe(){
+    this.state = (this.state === 'small'? 'bigger' : "small")
+  }
+}
+
+```
+
+## template
+```app.component.html
+    <p [@myOwnAnimation]='state'  (click)="animateMe()" style="text-align: center"> animation</p>
+```
