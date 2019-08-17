@@ -20,6 +20,7 @@ ng serve
 ```
 ng build
 ng build --prod
+ng build --prod --base-href http://your-url
 ```
 
 ## [create component](https://angular.io/cli/generate#class-command)
