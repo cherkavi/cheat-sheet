@@ -16,6 +16,12 @@ cd my-new-project
 ng serve
 ```
 
+## build a project
+```
+ng build
+ng build --prod
+```
+
 ## [create component](https://angular.io/cli/generate#class-command)
 ```
 ng g component my-new-component
