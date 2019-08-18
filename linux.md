@@ -324,9 +324,33 @@ original.sh $*
 
 ### auto execute during startup, autoexec
 ```
-folder: etc/rc1.d ( rc2.d ... )
+folder: /etc/rc1.d ( rc2.d ... )
 contains links to ../init.d/<name of bash script>
 should understand next options: start, stop, restart
+```
+```
+#! /bin/sh
+# /etc/init.d/blah
+#
+
+# Some things that run always
+touch /var/lock/blah
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "Starting script blah "
+    ;;
+  stop)
+    echo "Stopping script blah"
+    ;;
+  *)
+    echo "Usage: /etc/init.d/blah {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
 ```
 or
 ```bash
