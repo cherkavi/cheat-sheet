@@ -322,11 +322,38 @@ pwd
 original.sh $*
 ```
 
-### auto execute during startup
+### auto execute during startup, autoexec
 ```
 folder: etc/rc1.d ( rc2.d ... )
 contains links to ../init.d/<name of bash script>
 should understand next options: start, stop, restart
+```
+or
+```bash
+sudo vim /etc/systemd/system/YOUR_SERVICE_NAME.service
+```
+
+```text
+Description=GIVE_YOUR_SERVICE_A_DESCRIPTION
+
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+Type=simple
+ExecStart=YOUR_COMMAND_HERE
+Restart=on-failure
+RestartSec=10
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+```
+```
+sudo systemctl enable YOUR_SERVICE_NAME
+sudo systemctl start YOUR_SERVICE_NAME
+sudo systemctl status YOUR_SERVICE_NAME
+sudo systemctl daemon-reload YOUR_SERVICE_NAME
 ```
 
 reset X-server, re-start xserver, reset linux gui
