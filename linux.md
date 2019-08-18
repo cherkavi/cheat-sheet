@@ -1464,7 +1464,7 @@ stack install toodles
 ```
 bindsym $mod+Shift+e exec i3-msg exit
 ```
-### external monitor settings, external screen, external display
+## external monitor settings, external screen, external display
 ```monitor.sh
 #!/bin/sh
 xrandr --output $1
@@ -1479,6 +1479,37 @@ xrandr | grep " connected" | awk '{print $1}'
 or just install 'arandr' and generate bash script 
 ```
 sudo apt install arandr
+```
+
+## control mouse from keyboard
+```
+sudo apt-get install keynav
+killall keynav 
+cp /usr/share/doc/keynav/keynavrc ~/.keynavrc
+keynav ~/.keynavrc
+```
+example of custom configfile
+```
+clear
+daemonize
+Super+j start,cursorzoom 400 400
+Escape end
+shift+j cut-left
+shift+k cut-down
+shift+i cut-up
+shift+l cut-right
+j move-left
+k move-down
+i move-up
+l move-right
+space warp,click 1,end
+Return warp,click 1,end
+1 click 1
+2 click 2
+3 click 3
+w windowzoom
+c cursorzoom 400 400
+a history-back
 ```
 
 ---
