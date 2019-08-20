@@ -630,6 +630,9 @@ docker node inspect {node name}
 ```
 docker service create --detach=true --name nginx1 --publish 80:80  --mount source=/etc/hostname,target=/usr/share/nginx/html/index.html,type=bind,ro nginx:1.12
 ```
+* request to each node will be routed to routing mesh
+* each docker container on each node will have own mount point ( you should see name of different hosts from previous example )
+
 
 ## inspect services
 ```
