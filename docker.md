@@ -593,6 +593,7 @@ solution:
 * install docker-copmose respective your Docker version
 
 # Docker swarm
+[gossip protocol](https://en.wikipedia.org/wiki/Gossip_protocol)
 ![swarm overview](https://i.postimg.cc/LsgrnfYJ/swarm-overview.png)
 ## init 'manager' node
 ```
