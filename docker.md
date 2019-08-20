@@ -628,7 +628,6 @@ docker node inspect {node name}
 ## create service ( for manager only )
 ```
 docker service create --detach=true --name nginx1 --publish 80:80  --mount source=/etc/hostname,target=/usr/share/nginx/html/index.html,type=bind,ro nginx:1.12
-pgqdxr41dpy8qwkn6qm7vke0q
 ```
 
 ## inspect services
