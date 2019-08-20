@@ -5,6 +5,7 @@ useful links
 * [k8s examples](https://github.com/wardviaene/kubernetes-course)
 * [playground](https://labs.play-with-k8s.com/)
 * [playground](https://www.katacoda.com/courses/kubernetes/playground)
+* [ibmcloud](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
 * some tricks
   * completion
   ```bash
