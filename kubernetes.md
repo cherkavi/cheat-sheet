@@ -33,6 +33,18 @@ useful links
 ![kubernetes](https://i.postimg.cc/CL1Z9Lnv/kubernetes.png)
 
 ---
+# workflow
+![deployment workflow](https://i.postimg.cc/bvJn06Tz/update-workflow.png)
+
+* The user deploys a new app by using the kubectl CLI. Kubectl sends the request to the API server.
+* The API server receives the request and stores it in the data store (etcd). After the request is written to the data store, the API server is done with the request.
+* Watchers detect the resource changes and send notifications to the Controller to act on those changes.
+* The Controller detects the new app and creates new pods to match the desired number of instances. Any changes to the stored model will be used to create or delete pods.
+* The Scheduler assigns new pods to a node based on specific criteria. The Scheduler decides on whether to run pods on specific nodes in the cluster. The Scheduler modifies the model with the node information.
+* A Kubelet on a node detects a pod with an assignment to itself and deploys the requested containers through the container runtime, for example, Docker. Each node watches the storage to see what pods it is assigned to run. The node takes necessary actions on the resources assigned to it such as to create or delete pods.
+* Kubeproxy manages network traffic for the pods, including service discovery and load balancing. Kubeproxy is responsible for communication between pods that want to interact.
+
+---
 # [k3s - Lightweight Kubernetes](https://k3s.io/)
 
 ---
