@@ -181,6 +181,42 @@ metadata:
 kubectl delete namespace {name of namespace}
 ```
 
+## configuration, configmap
+### create configmap
+example of configuration
+```properties
+color.ok=green
+color.error=red
+textmode=true
+security.user.external.login_attempts=5
+```
+* create configuration on cluster
+  ```
+  kubectl create configmap my-config-file --from-env-file=/local/path/to/config.properties
+  ```
+  will be created next configuration
+  ```yaml
+  ...
+  data:
+    color.ok=green
+    color.error=red
+    textmode=true
+    security.user.external.login_attempts=5
+  ```
+* or configuration with additional key, additional abstraction over the properties ( like Map of properties )
+  ```
+  kubectl create configmap my-config-file --from-file=name-or-key-of-config=/local/path/to/config.properties
+  ```
+  created file is:
+  ```yaml
+  data:
+    name-or-key-of-config:
+      color.ok=green
+      color.error=red
+      textmode=true
+      security.user.external.login_attempts=5
+  ```
+
 ## get configurations, read configuration in specific format
 ```
 kubectl get configmap 
