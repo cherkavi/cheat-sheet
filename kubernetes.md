@@ -216,6 +216,23 @@ security.user.external.login_attempts=5
       textmode=true
       security.user.external.login_attempts=5
   ```
+* or configuration with additional key based on filename ( key will be a name of file )
+  ```
+  kubectl create configmap my-config-file --from-file=/local/path/to/
+  ```
+  created file is:
+  ```yaml
+  data:
+    config.properties:
+      color.ok=green
+      color.error=red
+      textmode=true
+      security.user.external.login_attempts=5
+  ```
+* or inline creation
+  ```
+  kubectl create configmap special-config --from-literal=color.ok=green --from-literal=color.error=red
+  ```
 
 ## get configurations, read configuration in specific format
 ```
