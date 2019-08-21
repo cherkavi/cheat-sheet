@@ -234,12 +234,35 @@ security.user.external.login_attempts=5
   kubectl create configmap special-config --from-literal=color.ok=green --from-literal=color.error=red
   ```
 
-## get configurations, read configuration in specific format
+### get configurations, read configuration in specific format
 ```
 kubectl get configmap 
 kubectl get configmap --namespace kube-system 
 kubectl get configmap --namespace kube-system kube-proxy --output json
 ```
+
+### using configuration, using of configmap
+* one variable from configmap
+  ```yaml
+  spec:
+    containers:
+      - name: test-container
+        image: k8s.gcr.io/busybox
+        command: [ "/bin/sh", "echo $(MY_ENVIRONMENT_VARIABLE)" ]
+        env:
+          - name: MY_ENVIRONMENT_VARIABLE
+            valueFrom:
+              configMapKeyRef:
+                name: my-config-file
+                key: security.user.external.login_attempts
+  ```
+* all variables from configmap
+   ```yaml
+   ...
+        envFrom:
+        - configMapRef:
+            name: my-config-file
+   ```
 
 ## start readiness, check cluster
 ```
