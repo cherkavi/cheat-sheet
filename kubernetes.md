@@ -215,10 +215,13 @@ kubectl run http --image=katacoda/docker-http-server:latest --replicas=1
 kubectl scale --replicas=3 deployment {name of the deployment}
 ```
 
-## create from yaml file, update yaml file
+## create from yaml file
+```
+kubectl create -f /path/to/controller.yml
+```
+# update yaml file
 ```
 kubectl apply -f /path/to/controller.yml
-kubectl create -f /path/to/controller.yml
 ```
 
 ## create service fastly
