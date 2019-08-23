@@ -822,6 +822,9 @@ reboot
 # /usr/bin/kubelet
 sudo systemctl start kubectl.service
 
+# init locate kubectl
+sudo cp /etc/kubernetes/admin.conf ~/.kube/config
+
 # check certificate
 openssl x509 -in /etc/kubernetes/pki/apiserver.crt  -noout -text  | grep "Not After"
 ```
