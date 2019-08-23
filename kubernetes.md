@@ -6,6 +6,7 @@ useful links
 * [playground](https://labs.play-with-k8s.com/)
 * [playground](https://www.katacoda.com/courses/kubernetes/playground)
 * [ibmcloud](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
+* [troubleshooting](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/)
 * some tricks
   * completion
   ```bash
