@@ -1092,7 +1092,9 @@ sudo systemctl disable {service name}
 service check logs
 ```
 systemctl status {service name}
-journalctl -u {service name}
+journalctl -u {service name} -e
+# print all units
+journalctl -F _SYSTEMD_UNIT
 ```
 
 check settings
