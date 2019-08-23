@@ -806,6 +806,10 @@ sudo rm /etc/kubernetes/apiserver-kubelet-client.*
 sudo rm /etc/kubernetes/front-proxy-client.*
 sudo rm /etc/kubernetes/etcd/*
 sudo rm /etc/kubernetes/apiserver-etcd-client.*
+sudo rm /etc/kubernetes/admin.conf
+sudo rm /etc/kubernetes/controller-manager.conf
+sudo rm /etc/kubernetes/kubelet.conf
+sudo rm /etc/kubernetes/scheduler.conf
 
 # re-init certificates
 sudo kubeadm init phase certs all --apiserver-advertise-address {master ip address} --ignore-preflight-errors=all
