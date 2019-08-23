@@ -78,6 +78,10 @@ git log -5 develop
 ```
 git log -5 develop --name-only
 ```
+### pretty log with tree
+```
+git log --all --graph --decorate --oneline --simplify-by-decoration
+```
 
 ### show no-merged branches
 ```
