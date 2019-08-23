@@ -770,6 +770,61 @@ kubectl get pods --namespace kube-system # waiting for start Tiller
 helm version
 ```
 
+### certificate is expired
+```
+bootstrap.go:195] Part of the existing bootstrap client certificate is expired: 2019-08-22 11:29:48 +0000 UTC
+```
+solution
+```bash
+sudo cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+
+# archive configuration
+sudo cp /etc/kubernetes/pki /etc/kubernetes/pki_backup
+sudo mkdir /etc/kubernetes/conf_backup
+sudo cp /etc/kubernetes/*.conf /etc/kubernetes/conf_backup
+
+# remove certificates
+sudo rm /etc/kubernetes/pki/./apiserver-kubelet-client.crt 
+sudo rm /etc/kubernetes/pki/./etcd/healthcheck-client.crt 
+sudo rm /etc/kubernetes/pki/./etcd/server.crt 
+sudo rm /etc/kubernetes/pki/./etcd/peer.crt 
+sudo rm /etc/kubernetes/pki/./etcd/ca.crt 
+sudo rm /etc/kubernetes/pki/./front-proxy-client.crt 
+sudo rm /etc/kubernetes/pki/./apiserver-etcd-client.crt 
+sudo rm /etc/kubernetes/pki/./front-proxy-ca.crt 
+sudo rm /etc/kubernetes/pki/./apiserver.crt 
+sudo rm /etc/kubernetes/pki/./ca.crt 
+sudo rm /etc/kubernetes/pki/apiserver.crt 
+sudo rm /etc/kubernetes/pki/apiserver-etcd-client.crt 
+sudo rm /etc/kubernetes/pki/apiserver-kubelet-client.crt 
+sudo rm /etc/kubernetes/pki/ca.crt 
+sudo rm /etc/kubernetes/pki/front-proxy-ca.crt 
+sudo rm /etc/kubernetes/pki/front-proxy-client.crt 
+
+# remove configurations
+sudo rm /etc/kubernetes/apiserver-kubelet-client.*
+sudo rm /etc/kubernetes/front-proxy-client.*
+sudo rm /etc/kubernetes/etcd/*
+sudo rm /etc/kubernetes/apiserver-etcd-client.*
+
+# re-init certificates
+sudo kubeadm init phase certs all --apiserver-advertise-address {master ip address} --ignore-preflight-errors=all
+
+# re-init configurations
+sudo kubeadm init phase kubeconfig all --ignore-preflight-errors=all
+
+# re-start
+sudo systemctl stop kubectl.service
+sudo systemctl restart docker.service
+docker system prune -af --volumes
+reboot
+
+# /usr/bin/kubelet
+sudo systemctl start kubectl.service
+
+# check certificate
+openssl x509 -in /etc/kubernetes/pki/apiserver.crt  -noout -text  | grep "Not After"
+```
 
 ## template frameworks
 * [go template](https://godoc.org/text/template)
