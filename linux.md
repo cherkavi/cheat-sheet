@@ -833,7 +833,11 @@ curl --insecure -s -X GET http://google.com
 ### [parsing json, json processing](https://stedolan.github.io/jq/manual/)
 [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})
 ```bash
-echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq ".[] | .name"
+echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
+jq ".[] | .name"
+
+echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
+jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
 ```
 
 ### chmod recursively
