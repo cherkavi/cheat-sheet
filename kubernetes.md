@@ -26,7 +26,10 @@ useful links
   kubectl explain pods --recursive
   kubectl explain pods --recursive --api-version=autoscaling/v2beta1
   ```
-
+* python client
+  ```bash
+  pip install kubernetes
+  ```
 ---
 # Architecture
 ![architecture](https://i.postimg.cc/RFpnbwgc/k8s-architecture.png)
