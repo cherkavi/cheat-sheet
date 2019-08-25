@@ -226,7 +226,7 @@ spec:
         memory: "128Mi"
         cpu: "500m"
 ```
-
+> also can be limited: pods, pv/pvc, services, configmaps...
 
 ## delete namespace
 ```
