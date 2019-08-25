@@ -190,6 +190,22 @@ metadata:
   name: test
 ```
 
+### create limits for namespace
+example for previous namespace declaration 
+```json
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: my-own-namespace
+spec:
+  limits:
+  - default:
+      memory: 512Mi
+    defaultRequest:
+      memory: 256Mi
+    type: Container
+```
+
 ## delete namespace
 ```
 kubectl delete namespace {name of namespace}
