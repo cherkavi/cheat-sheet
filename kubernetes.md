@@ -11,6 +11,7 @@ useful links
   * completion
   ```bash
   source <(kubectl completion bash)
+  source <(kubectl completion zsh)
   ```
   * trace logging
   ```bash
