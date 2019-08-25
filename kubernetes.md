@@ -237,6 +237,9 @@ spec:
 kubectl get quota --namespace my-own-namespace
 kubectl describe quota/compute-quota --namespace my-own-namespace
 kubectl describe quota/object-quota --namespace my-own-namespace
+
+kubectl describe {pod-name} limits 
+kubectl describe {pod-name} limits --namespace my-own-namespace
 ```
 
 ## delete namespace
