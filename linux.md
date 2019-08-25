@@ -830,6 +830,12 @@ curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Conte
 curl --insecure -s -X GET http://google.com
 ```
 
+### [parsing json, json processing](https://stedolan.github.io/jq/manual/)
+[jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})
+```bash
+echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq ".[] | .name"
+```
+
 ### chmod recursively
 ```
 chmod -R +x <folder name>
