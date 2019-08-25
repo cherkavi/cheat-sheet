@@ -232,6 +232,13 @@ spec:
 ```
 > also can be limited: pods, pv/pvc, services, configmaps...
 
+### print limits
+```
+kubectl get quota --namespace my-own-namespace
+kubectl describe quota/compute-quota --namespace my-own-namespace
+kubectl describe quota/object-quota --namespace my-own-namespace
+```
+
 ## delete namespace
 ```
 kubectl delete namespace {name of namespace}
