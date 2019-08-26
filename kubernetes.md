@@ -247,6 +247,20 @@ kubectl describe {pod-name} limits --namespace my-own-namespace
 kubectl delete namespace {name of namespace}
 ```
 
+## users
+* normal user
+  * client certificates
+  * bearer tokens
+  * authentication proxy
+  * http basic authentication
+  * OpenId
+* service user
+  * service account tokens
+  * credentials using secrets
+  * specific to namespace
+  * created by objects
+  * anonymous user ( not authenticated )
+
 ## configuration, configmap
 ### create configmap
 example of configuration
