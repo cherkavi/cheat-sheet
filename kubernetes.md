@@ -168,6 +168,24 @@ temporary
 kubectl get pods --context=minikube
 ```
 
+## access cluster
+* reverse proxy 
+  activate proxy from current node
+  ```sh
+  kubectl proxy --port 9090
+  # execute request against kubectl via reverse-proxy
+  curl {current node ip}:9090/api
+  ```
+* token access
+   ```sh
+  $TOKEN=$(kubectl describe secret $(kubectl get secrets | grep ^default | cut -f1 -d ' ') | grep -E '^token' | cut -f2 -d':' | tr -d " ")
+  echo $TOKEN | tee token.crt
+  echo "Authorization: Bearer "$TOKEN | tee token.header
+  # execute from remote node against ( cat ~/.kube/config | grep server )
+  curl https://{ip:port}/api --header @token.crt --insecure
+  ```
+  
+
 ## check namespaces
 ```
 kubectl get namespaces
