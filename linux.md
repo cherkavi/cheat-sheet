@@ -1573,6 +1573,10 @@ Return warp,click 1,end
 w windowzoom
 c cursorzoom 400 400
 a history-back
+Left move-left 10
+Down move-down 10
+Up move-up 10
+Right move-right 10
 ```
 
 ---
