@@ -111,7 +111,7 @@ approprate file should be created:
 ```
 ./path_to_folder/path_to_file
 ```
-## debug modules
+## debug command
 ```
   - debug:
       msg: "print variable: {{  my_own_var }}"
@@ -122,6 +122,32 @@ approprate file should be created:
 
   - debug:
       var: result
+```
+
+## debug module
+argument file ( args.json )
+```json
+{
+    "ANSIBLE_MODULE_ARGS": {
+        "task_parameter_1": "just a string",
+        "task_parameter_2": 50
+    }
+}
+```
+execute file
+```bash
+python3 -m pdb library/oc_collaboration.py args.json
+```
+set breakpoint
+```python
+import pdb
+...
+pdb.set_trace()
+```
+run until breakpoint
+```
+until 9999
+next
 ```
 
 ## conditions "when"
