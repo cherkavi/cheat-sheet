@@ -16,6 +16,11 @@
   oc explain pods --recursive
   oc explain pods --recursive --api-version=autoscaling/v2beta1
   ```
+  * get in yaml, get source of resource, describe yaml
+  ```
+  oc get -o yaml  pod {name of the pod}
+  oc get -o json  pod {name of the pod}
+  ```
 
 ### minishift documentation, help url
 > https://docs.openshift.org/latest/minishift/using/index.html
