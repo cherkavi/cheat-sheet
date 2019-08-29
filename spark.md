@@ -163,6 +163,11 @@ case class Person(name:String, age:Int)
 val dataSet = dataFrame.as[Person]
 ```
 
+### transform data from DataSet
+```
+dataSet.map( record=>{ osi3.OsiGroundtruth.GroundTruth.parseFrom(x.osi).getProjString } )
+```
+
 ### create data inline
 ```
 import spark.implicits._
