@@ -1543,6 +1543,14 @@ or just install 'arandr' and generate bash script
 ```
 sudo apt install arandr
 ```
+## move mouse, control X server
+```
+apt-get install xdotool
+# move the mouse  x    y
+xdotool mousemove 1800 500
+# left click
+xdotool click 1
+```
 
 ## control mouse from keyboard
 ```
