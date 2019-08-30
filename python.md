@@ -288,6 +288,9 @@ wget https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodrive
 chmod +x geckodriver
 sudo cp geckodriver /usr/local/bin/
 ```
+
+### [virtual environment automation, tox tool](https://tox.readthedocs.io/en/latest/)
+
 ## IDEA
 ### standard modules not found 
 ```
