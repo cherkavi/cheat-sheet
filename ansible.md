@@ -245,6 +245,7 @@ bigger piece of code
         dest: "{{ temp_config.path }}"
 ```
 # [modules](https://github.com/ansible/ansible/tree/devel/lib/ansible/modules)
+* [create custom module](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html)
 ## settings for modules
 also need to 'notify' ansible about module giving one of the next option:
 * add your folder with module to environment variable ANSIBLE_LIBRARY
