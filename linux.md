@@ -1497,6 +1497,11 @@ find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
 rm -rf .gnome .gnome2 .gconf .gconfd .metacity .cache .dbus .dmrc .mission-control .thumbnails ~/.config/dconf/user ~.compiz*
 ```
 
+### restart Gnome shell
+```sh
+alt-F2 r
+```
+
 ### install drivers, update drivers ubuntu
 ```
 sudo ubuntu-drivers autoinstall
