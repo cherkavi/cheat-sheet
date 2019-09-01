@@ -296,6 +296,21 @@ set show-all-if-ambiguous on
 set completion-ignore-case on
 ```
 
+### script settings
+```
+# stop execution when non-zero exit
+set -e
+
+# stop execution when error happend even inside pipeline 
+set -eo pipeline
+
+# stop when access to unknown variable 
+set -u
+
+# print each command before execution
+set -x
+```
+
 ### execute command via default editor
 ```
 ctrl+x+e
