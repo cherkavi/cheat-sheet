@@ -799,8 +799,11 @@ subl(){
 
 ### sed, replace
 ```
-"name" with "nomen" string
+replace "name" with "nomen" string
 sed 's/name/nomen/g'
+
+# replace only second occurence
+# echo "there is a test is not a sentence" | sed 's/is/are/2'
 ```
 example of replacing all occurences in multiply files
 ```
