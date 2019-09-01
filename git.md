@@ -149,6 +149,11 @@ git fetch --all --prune
 git log --all --grep "BCM-642"
 ```
 
+### find by diff source, find through all text changes in repo
+```
+git grep '^test$'
+```
+
 ### current comment
 ```
 git rev-parse HEAD
