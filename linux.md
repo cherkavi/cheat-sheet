@@ -494,6 +494,11 @@ sudo updatedb
 find . -name "prd-ticket-1508.txt"  2>&1 | grep -v "Permission denied"
 ```
 
+### find multiply patterns
+```
+find . -name "*.j2" -o -name "*.yaml"
+```
+
 ### find file by last update time
 ```
 find / -mmin 2
