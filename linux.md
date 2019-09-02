@@ -489,6 +489,10 @@ you need to update filedatabase: /var/lib/mlocate/mlocate.db
 ```
 sudo updatedb
 ```
+### find file, search file, skip permission denied
+```
+find . -name "prd-ticket-1508.txt"  2>&1 | grep -v "Permission denied"
+```
 
 ### find file by last update time
 ```
