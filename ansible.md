@@ -115,6 +115,20 @@ approprate file should be created:
 ```
 ./path_to_folder/path_to_file
 ```
+
+## skip/activate some tasks with labeling, tagging
+```yaml
+tasks:
+- template
+    src: template/activation.sh.j2
+    dest: /usr/bin/activation.sh
+  tags:
+  - flag_activation
+```
+```sh
+ansible-playbook previous-block.yml --skip-tags "flag_activation"
+# ansible-playbook previous-block.yml --tags "flag_activation"
+```
 ## debug command
 ```
   - debug:
