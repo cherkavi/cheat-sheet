@@ -153,6 +153,19 @@ until 9999
 next
 ```
 
+## execute module inline, adhoc module check
+```sh
+ansible localhost -m debug --args msg="my custom message"
+# collect facts
+ansible localhost -m setup
+```
+## ansible-console 
+```
+ansible-console
+debug msg="my custom message"
+shell pwd
+```
+
 ## conditions "when"
 TBD
 
