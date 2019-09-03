@@ -36,13 +36,14 @@ ansible-config view
 ```
 
 
-## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters
+## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters, extra variables
 ```
 ansible-playbook -i inventory.ini playbook.yml --extra-vars "$*"
 ```
-with path to file for external parameters
+with path to file for external parameters, additional variables from external file
 ```
 ansible-playbook -i inventory.ini playbook.yml --extra-vars @/path/to/var.properties
+ansible-playbook playbook.yml --extra-vars=@/path/to/var.properties
 ```
 
 ## check is it working, ad-hoc command
