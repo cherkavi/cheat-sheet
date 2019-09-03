@@ -645,6 +645,11 @@ systemctl restart cron
 ```
 grep -nr "text for search" .
 ```
+### grep only in certain folder without recursion
+```
+# need to set * or mask for files in folder !!!
+grep -s "search_string" /path/to/folder/*
+```
 
 ### grep line before
 ```
