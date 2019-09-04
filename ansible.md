@@ -14,7 +14,9 @@ yum install ansible
 apt install ansible
 ```
 ```
-pip install ansible 
+pip3 install ansible 
+# for python2 - default installation 
+pip install ansible
 ```
 remote machine should have 'python' - 'gather_facts: False' or 'gather_facts: no' otherwise
 
