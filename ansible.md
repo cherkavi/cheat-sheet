@@ -409,7 +409,7 @@ skipping: no hosts matched
 ```
 solution
 ```sh
-ansible-playbook --inventory="localhost," --connection=local --skip-tag="python-script" playbook.yaml
+ansible-playbook --inventory="localhost," --connection=local --limit=localhost --skip-tag="python-script" playbook.yaml
 ```
 
 
