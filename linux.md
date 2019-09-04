@@ -51,6 +51,7 @@ ping -s 123 -c 1 146.255.193.66
 sudo mkdir /mnt/vendor-cluster-prod
 sudo sshfs -o allow_other,IdentityFile=~/.ssh/id_rsa vcherkashyn@190.17.19.11:/remote/path/folder /mnt/vendor-cluster-prod
 # sudo fusermount -u /remote/path/folder
+# sudo umount /remote/path/folder
 ```
 
 ### mount remote filesystem via ftp
