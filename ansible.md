@@ -44,6 +44,11 @@ sudo rm -rf /usr/local/lib/python2.7/dist-packages/ansible
 * path variable $Ansible_Config
 * ~/.ansible.cfg
 * /etc/ansible/ansible.cfg
+```sh
+ansible-config view
+# list of possible environment variables
+ansible-config dump
+```
 
 ### configuration for external roles
 filename: ~/.ansible.cfg
