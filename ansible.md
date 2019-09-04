@@ -2,6 +2,11 @@
 * [best practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)
 * [ansible modules](https://docs.ansible.com/ansible/latest/modules/modules_by_category.html)
 * [ansible roles](https://galaxy.ansible.com/)
+* [examples](https://github.com/ansible/ansible-examples)
+* [examples 2](https://github.com/mmumshad/ansible-training-answer-keys)
+* [examples 3](https://github.com/mmumshad/ansible-training-answer-keys-2)
+* [Jinja2 templating](https://jinja.palletsprojects.com/en/2.10.x/templates/)
+
 
 ## installation
 ```
@@ -12,11 +17,6 @@ apt install ansible
 pip install ansible 
 ```
 remote machine should have 'python' - 'gather_facts: False' or 'gather_facts: no' otherwise
-
-## [examples](https://github.com/ansible/ansible-examples)
-## [examples 2](https://github.com/mmumshad/ansible-training-answer-keys)
-## [examples 3](https://github.com/mmumshad/ansible-training-answer-keys-2)
-## [Jinja2 templating](https://jinja.palletsprojects.com/en/2.10.x/templates/)
 
 ## ansible configuration places
 * path variable $Ansible_Config
