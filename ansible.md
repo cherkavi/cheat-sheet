@@ -389,13 +389,24 @@ playbook usage:
 
 ## execution with inventory examples
 for one specific host without inventory file 
-```
+```sh
 ansible-playbook playbook.yml -i 10.10.10.10
 ```
 with inventory file
-```
+```sh
 ansible-playbook -i inventory.ini playbook.yml 
 ```
+issue with execution playbook for localhost only, local execution
+```text
+Note that the implicit localhost does not match 'all'
+...
+skipping: no hosts matched 
+```
+solution
+```sh
+ansible-playbook --inventory="localhost," --connection=local --skip-tag="python-script" playbook.yaml
+```
+
 
 # strategy
 ---
