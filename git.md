@@ -186,6 +186,11 @@ git show 143243a3754c51b16c24a2edcac4bcb32cf0a37d -- db-scripts/src/main/python/
 git diff {hash}~ {hash}
 ```
 
+### git cherry pick without commit, just copy changes from another branch
+```
+git cherry-pick -n {commit-hash}
+```
+
 ### git revert commit
 ```
 git revert <commit>
