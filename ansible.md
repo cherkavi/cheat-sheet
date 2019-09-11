@@ -63,7 +63,7 @@ ansible-config view
 ```
 
 
-## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters, extra variables
+## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters, extra variables, external variables
 ```
 ansible-playbook -i inventory.ini playbook.yml --extra-vars "$*"
 ```
@@ -71,6 +71,11 @@ with path to file for external parameters, additional variables from external fi
 ```
 ansible-playbook -i inventory.ini playbook.yml --extra-vars @/path/to/var.properties
 ansible-playbook playbook.yml --extra-vars=@/path/to/var.properties
+```
+
+## external variables inline
+```
+ansible-playbook playbook.yml --extra-vars="oc_project=scenario-test mapr_stream_path=/mapr/prod.zurich/vantage/scenario-test"
 ```
 
 ## check is it working, ad-hoc command
