@@ -37,25 +37,26 @@ git remote prone origin
 ```
 
 ### delete local branch, remove branch, remove local branch
-```
+```sh
+git branch -d release-6.9.0
+git branch --delete release-6.9.0
+
+# delete with force - for non-merged branches
 git branch -D origin/release/2018.05.00.12-test
+# the same as
+git branch -d -f release-6.9.0
+git branch --delete --force origin/release/2018.05.00.12-test
 ```
 
 ### delete remote branch, remove remote, remove remote branch
-```
+```sh
 git push origin --delete release/2018.05.00.12-test
 ```
 
-### remove branches, delete branches that exist locally only ( not remotely )
-```
+### remove branches, delete branches that exist locally only ( not remotely ), cleanup local repo
+```sh
 git gc --prune=now
 git fetch --prune
-```
-
-### remove local branch only
-```
-git branch -d release-6.9.0
-git branch -d -f release-6.9.0
 ```
 
 ### check hash-code of the branch
