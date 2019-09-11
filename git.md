@@ -64,7 +64,7 @@ git fetch --prune
 git rev-parse "remotes/origin/release-6.0.0"
 ```
 
-### check all branches for certain commit ( git contains, git commit )
+### check all branches for certain commit ( is commit in branch, is branch contains commit )
 ```
 git branch --all --contains 0ff27c79738a6ed718baae3e18c74ba87f16a314
 git branch --all --contains {name-of-the-branch}
