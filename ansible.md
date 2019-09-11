@@ -415,6 +415,11 @@ skipping: no hosts matched
 solution
 ```sh
 ansible-playbook --inventory="localhost," --connection=local --limit=localhost --skip-tag="python-script" playbook.yaml
+
+# example with external variables
+ansible-playbook --inventory="localhost," --connection=local --limit=localhost \
+--extra-vars="oc_project=scenario-test mapr_stream_path=/mapr/prod.zurich/vantage/scenario-test" \
+--tag="scenario-service" deploy-scenario-pipeline.yaml
 ```
 
 
