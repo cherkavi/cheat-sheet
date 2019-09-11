@@ -284,6 +284,10 @@ update from one repo, single update
 ```
 sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/cc-ros-mirror.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0" 
 ```
+### remove repository
+```
+sudo rm /etc/apt/sources.list.d/inkscape.dev*
+```
 
 ### avoid to put command into history, hide password into history, avoid history
 add space before command
