@@ -112,36 +112,38 @@ git config --global credential.helper store
 ```
 
 ### revert all previous changes with "credential.helper"
-```
+```sh
 git config --system --unset credential.helper
 git config --global --unset credential.helper
 ```
 
 ### show all branches merged into specified
-```
+```sh
 git branch --all --merged "release" --verbose
 git branch --all --no-merged "release" --verbose
 git branch -vv
 ```
 
 ### difference between two commits ( diff between branches )
-```
+```sh
 git diff --name-status develop release-6.0.0
 git cherry develop release-6.0.0
 ```
 
 ### difference between branches for file ( diff between branches )
-```
+```sh
 git diff develop..master -- myfile.cs
 ```
 
 ### difference between two branches, list of commits
-```
+```sh
 git rev-list master..search-client-solr
+# by author
+git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201
 ```
 
 ### git fetch
-```
+```sh
 git fetch --all --prune
 ```
 
