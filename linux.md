@@ -904,6 +904,14 @@ ONE="this is a test"; echo $ONE
 sudo http_proxy='http://user:@proxy.muc:8080' apt install meld
 ```
 
+### install package for another architecture, install x86 on x64
+```
+dpkg --add-architecture i386
+dpkg --print-architecture
+dpkg --print-foreign-architectures
+sudo apt-get install libglib2.0-0:i386 libgtk2.0-0:i386
+```
+
 ### Debian update package
 ```
 sudo apt-get install --only-upgrade {packagename}
