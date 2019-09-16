@@ -140,6 +140,8 @@ git diff develop..master -- myfile.cs
 git rev-list master..search-client-solr
 # by author
 git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201
+# list of files that were changed
+git show --name-only --oneline `git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201`
 ```
 
 ### git fetch
