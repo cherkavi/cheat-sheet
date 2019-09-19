@@ -1570,6 +1570,12 @@ stack install toodles
 ```
 [get started with hackell](https://haskell.fpcomplete.com/get-started)
 
+## shell examples
+### byobu
+```
+sudo apt install byobu
+```
+
 ## i3wm
 ### [custom status bar](https://py3status.readthedocs.io/en/latest/intro.html#installation)
 
