@@ -305,17 +305,24 @@ HTTPS_PROXY=muc.proxy
 
 ### configuration for proxy server, proxy configuration
 #### set proxy, using proxy
-```
+```sh
 git config --global http.proxy 139.7.95.74:8080
-```
 git config --global https.proxy 139.7.95.74:8080
+```
+
 #### check proxy, get proxy
+```sh
 git config --global --get http.proxy
+```
 #### remove proxy configuration, unset proxy
+```sh
 git config --global --unset http.proxy
+```
 
 ### using additional command before 'fetch' 'push', custom fetch/push
+```
 git config core.sshCommand 'ssh -i private_key_file'
+```
 
 ### remove auto replacing CRLF for LF on Windows OS
 .gitattributes
