@@ -1576,6 +1576,30 @@ stack install toodles
 sudo apt install byobu
 ```
 
+## icaclient
+### [download receiver](https://www.citrix.de/downloads/citrix-receiver/)
+
+### sudo apt remove icaclient
+```sh
+sudo dpkg --add-architecture i386
+```
+
+### check architecture
+```sh
+dpkg --add-architecture i386
+dpkg --print-architecture
+dpkg --print-foreign-architectures
+```
+
+### install dependencies
+```sh
+#sudo apt-get install ia32-libs ia32-libs-i386 libglib2.0-0:i386 libgtk2.0-0:i386
+sudo apt-get install libglib2.0-0:i386 libgtk2.0-0:i386
+sudo apt-get install gcc-multilib
+sudo apt-get install libwebkit-1.0-2:i386 libwebkitgtk-1.0-0:i386
+sudo dpkg --install icaclient_13.10.0.20_amd64.deb
+```
+
 ## i3wm
 ### [custom status bar](https://py3status.readthedocs.io/en/latest/intro.html#installation)
 
