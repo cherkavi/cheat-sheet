@@ -161,6 +161,31 @@ tasks:
 ansible-playbook previous-block.yml --skip-tags "flag_activation"
 # ansible-playbook previous-block.yml --tags "flag_activation"
 ```
+# Debug
+## [debug playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_debugger.html)
+```bash
+export ANSIBLE_STRATEGY=debug
+# revert it afterwards ( avoid "ERROR! Invalid play strategy specified: "):
+# export ANSIBLE_STRATEGY=linear
+```
+print variables
+```python
+task.args
+task.args['src']
+vars()
+```
+change variables
+```python
+del(task.args['src'])
+task.args['src']="/new path to file"
+```
+manage palying
+```
+redo
+continue
+quit
+```
+
 ## debug command
 ```
   - debug:
@@ -200,12 +225,14 @@ until 9999
 next
 ```
 
-## execute module inline, adhoc module check
+## debug module inline, execute module inline, adhoc module check
 ```sh
 ansible localhost -m debug --args msg="my custom message"
 # collect facts
 ansible localhost -m setup
 ```
+
+
 ## ansible-console 
 ```
 ansible-console
@@ -611,29 +638,6 @@ add flag for verbosity:-vv (2) or -v (1)
     verbosity: 2
 ```
 
-# [debugging](https://docs.ansible.com/ansible/latest/user_guide/playbooks_debugger.html)
-```bash
-export ANSIBLE_STRATEGY=debug
-# revert it afterwards ( avoid "ERROR! Invalid play strategy specified: "):
-# export ANSIBLE_STRATEGY=linear
-```
-print variables
-```python
-task.args
-task.args['src']
-vars()
-```
-change variables
-```python
-del(task.args['src'])
-task.args['src']="/new path to file"
-```
-manage palying
-```
-redo
-continue
-quit
-```
 
 ### TBD
 * system
