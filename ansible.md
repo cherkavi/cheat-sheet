@@ -232,6 +232,12 @@ ansible localhost -m debug --args msg="my custom message"
 ansible localhost -m setup
 ```
 
+## task print all variables 
+```
+- name: "Ansible | List all known variables and facts"
+  debug:
+    var: hostvars[inventory_hostname]
+```
 
 ## ansible-console 
 ```
