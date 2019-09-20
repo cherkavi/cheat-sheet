@@ -544,7 +544,7 @@ examples
 
 ```
 
-## [stream window](https://i.postimg.cc/XNcY5PCr/spark-window.png)
+## ![stream window](https://i.postimg.cc/XNcY5PCr/spark-window.png)
 
 ## Fault tolerant
 * Write ahead logs
