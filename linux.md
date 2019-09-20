@@ -1673,6 +1673,7 @@ Right move-right 10
 * [jira editing shortcuts](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)
 * [i3 window manager shortcuts](https://i3wm.org/docs/refcard.html)
 * [xmind settings](https://www.xmind.net/m/PuDC/)
+> XMind.ini: ```-vm  /home/user/.sdkman/candidates/java/8.0.222-zulu/bin/java ```
 * [awesome windows manager, battery widget](https://github.com/deficient/battery-widget)
 ```bash
 echo $XDG_CONFIG_DIRS
