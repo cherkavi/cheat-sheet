@@ -739,6 +739,11 @@ ls -1 *.zip | xargs -I{} unzip -p {} brand.xml  | grep instant-limit | grep "\\.
 unzip file.zip -d output_folder
 ```
 
+### unzip tar file from url, wget unzip, wget untar
+```
+wget -qO- https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz | tar xvz - -C /target/directory
+```
+
 ### pipeline chain 'to file'
 ```
 echo "hello from someone" | tee --append out.txt
