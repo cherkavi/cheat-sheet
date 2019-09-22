@@ -1,5 +1,22 @@
 # installation
-[install Angular](https://cli.angular.io/)
+* install nodejs
+  ```sh
+  # download and unpack to $destionation folder https://nodejs.org/en/
+  destination_folder=/home/soft/node2
+  wget -O node.tar.xz https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz
+  tar -xf node.tar.xz -C $destination_folder
+  # update /etc/environment with $destination_folder
+  ```
+  
+* install typescript
+  ```sh
+  npm install -g typescript  
+  ```
+  
+* [install Angular](https://cli.angular.io/)
+  ```sh 
+  npm install -g @angular/cli
+  ```
 
 # links
 [quick start](https://github.com/angular/quickstart.git)
