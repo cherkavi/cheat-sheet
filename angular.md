@@ -111,6 +111,7 @@ ng new my-new-project
 ## start a project
 ```
 cd my-new-project
+# open in VisualCode just generated project ```code .```
 ng serve
 ```
 
