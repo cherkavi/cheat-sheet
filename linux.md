@@ -816,7 +816,7 @@ subl(){
 }
 ```
 
-### sed, replace
+### [sed cheat sheet](https://gist.github.com/ssstonebraker/6140154), replace
 ```
 replace "name" with "nomen" string
 sed 's/name/nomen/g'
