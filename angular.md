@@ -11,11 +11,13 @@
 * install typescript
   ```sh
   npm install -g typescript  
+  # tsc --version
   ```
   
 * [install Angular](https://cli.angular.io/)
   ```sh 
   npm install -g @angular/cli
+  # ng --version
   ```
 
 # links
