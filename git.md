@@ -135,6 +135,11 @@ git cherry develop release-6.0.0
 git diff develop..master -- myfile.cs
 ```
 
+### difference between commited and staged
+```
+git diff --staged
+```
+
 ### difference between two branches, list of commits
 ```sh
 git rev-list master..search-client-solr
