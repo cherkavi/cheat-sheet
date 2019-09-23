@@ -44,6 +44,10 @@ echo "localhost:8080"
 # sqllite3 $AIRFLOW_HOME/airflow.db
 ```
 ## [Airflow docker](https://github.com/cherkavi/docker-images/tree/master/airflow)
+```sh
+# * copy your dags to ``` .dags```
+docker-compose -f docker-compose-LocalExecutor.yml up -d
+```
 
 ## [Airflow virtual environment](https://github.com/hgrif/airflow-tutorial)
 ```
