@@ -386,6 +386,15 @@ docker network ls | grep "bridge"
 docker network rm $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
 ```
 
+### delete docker
+```
+sudo apt remove docker.io
+sudo rm -rf /etc/systemd/system/docker.service
+sudo rm -rf /etc/systemd/system/docker.socket
+rm /home/$USER/.docker/.buildNodeID
+sudo rm -rf /var/lib/docker
+```
+
 Additional management
 ------
 ### disk usage infomration
