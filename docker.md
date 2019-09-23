@@ -598,6 +598,30 @@ In file './docker-compose.yml' service 'version' doesn't have any configuration 
 solution: 
 * check format of the docker-compose file
 * install docker-copmose respective your Docker version
+---
+```
+ERROR: error while removing network: dockerairflow_default
+```
+
+```
+docker ps
+# dockerairflow_webserver_1 
+# dockerairflow_postgres_1 
+
+docker network disconnect --force dockerairflow_default dockerairflow_webserver_1 
+docker network disconnect --force dockerairflow_default dockerairflow_postgres_1 
+# docker network rm --force dockerairflow_default
+
+sudo aa-status
+sudo systemctl disable apparmor.service --now
+sudo aa-status
+sudo apt-get purge --auto-remove apparmor
+sudo service docker restart
+docker system prune --all --volumes
+```
+
+
+
 
 # Docker swarm
 [gossip protocol](https://en.wikipedia.org/wiki/Gossip_protocol)
