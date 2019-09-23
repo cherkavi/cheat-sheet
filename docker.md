@@ -349,6 +349,7 @@ docker unpause {CONTAINER ID}
 ### kill executing container
 ```
 docker kill {CONTAINER ID}
+docker kill --signal=9 {CONTAINER ID}
 ```
 
 ### leave executing container
