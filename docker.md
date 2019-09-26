@@ -198,6 +198,29 @@ docker run --user root {name of image}
 docker start {CONTAINER ID}
 ```
 
+## Connect containers
+### connecting containers via host port, host connection
+```sh
+# external data storage for Redis: --volume /docker/host/dir:/data
+sudo docker run --publish_list 7001:6379 --detach redis
+# ip a | grep docker -B 2 | grep inet | grep global
+sudo docker run --interactive --tty redis redis-cli -h 172.17.0.1 -p 7001
+```
+
+### connecting containers directly via link
+```sh
+sudo docker run --name my-redis-container --detach redis
+sudo docker run --interactive --tty --name my-redis-cli --link my-redis-container:redis redis-cli -h redis -p 6379
+```
+
+### connecting containers via network
+```sh
+docker network create some-network
+
+docker run --network some-network --name my-redis -d redis
+docker run --network some-network --interactive --tty redis redis-cli -h my-redis
+```
+
 ## Volumes
 ### create volume
 ```
