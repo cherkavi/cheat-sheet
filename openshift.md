@@ -145,6 +145,7 @@ oc get routes {app name / service name}
 ## get all information about current project, show all resources
 ```
 oc get all
+oc get deployment,pod,service,route,dc,pvc,secret -l deployment_name=name-of-my-deployment
 ```
 
 ## print all accounts
