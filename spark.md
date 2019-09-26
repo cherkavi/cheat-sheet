@@ -40,6 +40,7 @@ bin/spark-submit
 --master <local[n] | spark:<masterurl> | yarn-client/yarn-master | mesos:<mesosurl> >
 --deploy-mode <mode>
 --conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
+--driver-java-options "-Dlog4j.configuration=file:log4j-local-usage-only.xml" \
 --jars <jar1>,<jar2>,<jar3>
 < application arguments>
 ```
@@ -71,6 +72,13 @@ spark.serializer=org.apache.spark.serializer.KryoSerializer
 ```
 ### log files default place
 ![log files default place](https://i.postimg.cc/zvNhgmhg/Spark-logging.png)
+
+
+### Spark submit with output additional information
+```sh
+/opt/mapr/spark/spark-2.3.2/bin/spark-submit --verbose --master yarn --deploy-mode cluster \
+...
+```
 
 ### Spark submit with log info, logger output
 ```sh
