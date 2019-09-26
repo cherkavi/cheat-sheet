@@ -72,6 +72,53 @@ spark.serializer=org.apache.spark.serializer.KryoSerializer
 ### log files default place
 ![log files default place](https://i.postimg.cc/zvNhgmhg/Spark-logging.png)
 
+### Spark submit with log info, logger output
+```sh
+export SPARK_SUBMIT_OPTS="-Dlog4j.debug=true -Dlog4j.configuration=log4j-local-usage-only.xml"
+
+/opt/mapr/spark/spark-2.3.2/bin/spark-submit --master yarn --deploy-mode cluster \
+  --queue projects_my_queue \
+  --name ${USER}_v1-GroundValuesGeneration-${SESSION_ID} \
+  ...
+```
+and log4j.xml
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+   <appender name="console" class="org.apache.log4j.ConsoleAppender">
+    <param name="Target" value="System.out"/>
+    <layout class="org.apache.log4j.PatternLayout">
+    <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+    </layout>
+  </appender>
+    <logger name="org.apache.spark">
+        <level value="info" />
+    </logger>
+    <logger name="org.spark-project">
+        <level value="info" />
+    </logger>
+    <logger name="org.apache.hadoop">
+        <level value="info" />
+    </logger>
+    <logger name="io.netty">
+        <level value="info" />
+    </logger>
+    <logger name="org.apache.zookeeper">
+        <level value="info" />
+    </logger>
+   <logger name="org">
+        <level value="info" />
+    </logger>
+    <root>
+        <priority value ="INFO" />
+        <appender-ref ref="console" />
+    </root>
+</log4j:configuration>
+```
+
+
 ### session
 ```
 import org.apache.spark.sql.SparkSession
