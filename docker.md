@@ -220,7 +220,7 @@ sudo docker run --interactive --tty redis redis-cli -h 172.17.0.1 -p 7001
 ### connecting containers directly via link
 ```sh
 sudo docker run --name my-redis-container --detach redis
-sudo docker run --interactive --tty --name my-redis-cli --link my-redis-container:redis redis-cli -h redis -p 6379
+sudo docker run --interactive --tty --name my-redis-cli --link my-redis-container:redis redis redis-cli -h redis -p 6379
 ```
 
 ### connecting containers via network
