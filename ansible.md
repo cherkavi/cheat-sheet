@@ -294,6 +294,14 @@ file name from path (return 'script.sh')
 ```
 {{ "/etc/program/script.sh" | basename }}
 ```
+## copy file and rename it, pipe replace suffix
+```
+- name: Create DAG config
+  template: src={{ item }} dest={{ airflow_dag_dir }}/config/{{ item | basename | regex_replace('\.j2','') }}
+  with_fileglob:
+    - ../airflow_dags/airflow_dags_gt/config/*.py.j2
+
+```
 
 ## directives for Jinja
 for improving indentation globally in file, add one of next line in the beginning
