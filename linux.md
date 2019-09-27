@@ -187,6 +187,15 @@ watch -n 60 'ls -la | grep archive'
 ```
 !!
 ```
+### repeat last command with substring "flow" included into whole command line
+```
+!?flow
+```
+
+### execute in current dir, inline shell execution
+```
+. goto-command.sh
+```
 
 ### directories into stack
 ```
