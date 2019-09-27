@@ -17,10 +17,11 @@ docker system info
 ```
 
 ### how to skip typing "sudo" each time
-1. sudo groupadd docker
-2. sudo usermod -aG docker $USER
-( add current user into docker group )
-3. sudo service docker restart
+```sh
+sudo groupadd docker
+sudo usermod -aG docker $USER # add current user into docker group
+sudo service docker restart
+```
 
 Issue:
 ```
@@ -211,7 +212,7 @@ docker start {CONTAINER ID}
 ### connecting containers via host port, host connection
 ```sh
 # external data storage for Redis: --volume /docker/host/dir:/data
-sudo docker run --publish_list 7001:6379 --detach redis
+sudo docker run --publish 7001:6379 --detach redis
 # ip a | grep docker -B 2 | grep inet | grep global
 sudo docker run --interactive --tty redis redis-cli -h 172.17.0.1 -p 7001
 ```
