@@ -193,6 +193,15 @@ docker run --name my_specific_name {name of image}
 docker run --user root {name of image}
 ```
 
+### run container with empty entrypoint, without entrypoint
+```dockerfile
+ENTRYPOINT []
+```
+```sh
+docker run image-name --entrypoint="" --interactive --tty /bin/sh
+```
+
+
 ### start stopped previously container
 ```
 docker start {CONTAINER ID}
@@ -525,8 +534,7 @@ build --build-arg app_name=k8s-ambassador
 docker build --build-arg http_proxy=proxy.muc:8080 --build-arg https_proxy=proxy.muc:8080 .
 ```
 
-
-inside Dockerfile
+### build with parameters inside dockerfile 
 ```
 ARG app_name
 ENV JAR=$app_name.jar
