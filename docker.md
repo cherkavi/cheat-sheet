@@ -130,7 +130,7 @@ sudo systemctl show docker
 
 Images
 ------
-### search image into registry
+### search image into registry, find image, catalog search
 ```
 docker search <text of search>
 ```
