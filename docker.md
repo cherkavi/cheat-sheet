@@ -786,3 +786,15 @@ and also helpful
 ```
 apt install -y software-properties-common
 ```
+
+## docker build command issue
+
+```sh
+docker build -t local-scenario --file Dockerfile-scenario-file .
+# COPY/ADD failed: stat /var/lib/docker/tmp/docker-builder905175157/scenario_service.pex: no such file or directory
+```
+but file exists and present in proper place
+```
+FULL_PATH_TO_FOLDER="/my/own/path"
+docker build -t local-scenario --file $FULL_PATH_TO_FOLDER/Dockerfile-scenario-file $FULL_PATH_TO_FOLDER
+```
