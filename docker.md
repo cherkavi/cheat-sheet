@@ -788,13 +788,31 @@ apt install -y software-properties-common
 ```
 
 ## docker build command issue
-
+**issue**
+```
+FROM cc.ubsgroup.net/docker/builder
+RUN mkdir /workspace
+COPY dist/scenario_service.pex /workspace/scenario_service.pex
+WORKDIR /workspace
+```
 ```sh
 docker build -t local-scenario --file Dockerfile-scenario-file .
 # COPY/ADD failed: stat /var/lib/docker/tmp/docker-builder905175157/scenario_service.pex: no such file or directory
 ```
 but file exists and present in proper place
+
+*solution*
 ```
-FULL_PATH_TO_FOLDER="/my/own/path"
-docker build -t local-scenario --file $FULL_PATH_TO_FOLDER/Dockerfile-scenario-file $FULL_PATH_TO_FOLDER
+FROM cc.ubsgroup.net/docker/builder
+RUN mkdir /workspace
+COPY scenario_service.pex /workspace/scenario_service.pex
+WORKDIR /workspace
+```
+
+```
+FULL_PATH="/home/projects/adp"
+DOCKER_FILE="Dockerfile-scenario"
+BUILD_SUBFOLDER="dist"
+IMAGE_NAME="local-scenario"
+docker build -t $IMAGE_NAME --file $FULL_PATH/$DOCKER_FILE $FULL_PATH/$BUILD_SUBFOLDER
 ```
