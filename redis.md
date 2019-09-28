@@ -2,3 +2,4 @@
 ![client architecture](https://i.postimg.cc/fTp83WSJ/redis-client.png)  
 [clients libraries](https://redis.io/clients)  
 ![connection types](https://i.postimg.cc/rw7qqyR8/redis-deployment-connections.png)
+![redis-java types](https://i.postimg.cc/c4qj1KXk/redis-java-types.png)
