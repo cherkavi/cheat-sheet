@@ -270,6 +270,7 @@ docker ps -a
 ### join to executed container
 ```
 docker attach {CONTAINER ID}
+# docker exec --interactive --tty {CONTAINER ID} /bin/sh
 ```
 with detached sequence
 ```
