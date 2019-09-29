@@ -3,6 +3,7 @@
 [clients libraries](https://redis.io/clients)  
 ![connection types](https://i.postimg.cc/rw7qqyR8/redis-deployment-connections.png)  
 ![redis-java types](https://i.postimg.cc/c4qj1KXk/redis-java-types.png)  
+
 ## retrieve values by key, save collection
 ```redis
 type <key>
@@ -22,3 +23,8 @@ type <key>
   * sadd ( hset )
   
 * if value is of type sorted sets -> ZRANGEBYSCORE <key> <min> <max>
+
+## moving members, cut/paste members
+```
+smove "source set" "destination set" "member name"
+```
