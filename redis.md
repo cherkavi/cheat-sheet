@@ -8,15 +8,49 @@
 ![keys list](https://i.postimg.cc/5ygnVyrt/redis-search-key-scan.png)
 * keys
 ```redis
-keys customer:15*
-keys cus:15*
-keys *
+KEYS customer:15*
+KEYS cus:15*
+KEYS *
 ```
 * scan
 ```
-scan 0 MATCH customer*
-scan 0
+SCAN 0 MATCH customer*
+SCAN 0
 ```
+## retrieve values by key, save collection
+```redis
+TYPE <key>
+```
+* if value is of type string -> GET <key>
+* if value is of type hash -> HGETALL <key>
+* if value is of type lists -> 
+  * LRANGE <key> <start> <end> ( hgetall )
+  * LREM
+  * RPOP
+  * LLEN
+  * RPUSH
+* if value is of type sets -> 
+  * SMEMBERS <key> ( HGET )
+  * SCARD ( SSCAN )
+  * SREM
+  * SADD ( HSET )
+  
+* if value is of type sorted sets -> ZRANGEBYSCORE <key> <min> <max>
+
+## moving members, cut/paste members
+```
+SMOVE "source set" "destination set" "member name"
+```
+
+## delete 
+```
+# delete key and value with blocking until removing associated memory block
+DEL {key}
+
+# delete key without blocking
+UNLINK {key}
+```
+
 
 [REdis Serialization Protocol - RESP](https://redis.io/topics/protocol)  
 ![client architecture](https://i.postimg.cc/fTp83WSJ/redis-client.png)  
@@ -24,27 +58,3 @@ scan 0
 ![connection types](https://i.postimg.cc/rw7qqyR8/redis-deployment-connections.png)  
 ![redis-java types](https://i.postimg.cc/c4qj1KXk/redis-java-types.png)  
 
-## retrieve values by key, save collection
-```redis
-type <key>
-```
-* if value is of type string -> GET <key>
-* if value is of type hash -> HGETALL <key>
-* if value is of type lists -> 
-  * lrange <key> <start> <end> ( hgetall )
-  * lrem
-  * rpop
-  * llen
-  * rpush
-* if value is of type sets -> 
-  * smembers <key> ( hget )
-  * scard ( sscan )
-  * srem
-  * sadd ( hset )
-  
-* if value is of type sorted sets -> ZRANGEBYSCORE <key> <min> <max>
-
-## moving members, cut/paste members
-```
-smove "source set" "destination set" "member name"
-```
