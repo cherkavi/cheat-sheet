@@ -1,8 +1,8 @@
 ## Key Spaces
 * Flat key space
 * No automatic namespacing
-* Logical Databases
-* Naming conventions
+* Logical Databases ( Database zero )
+* Naming conventions ( case sensitive, example user:{unique id of user}:followers
 
 [REdis Serialization Protocol - RESP](https://redis.io/topics/protocol)  
 ![client architecture](https://i.postimg.cc/fTp83WSJ/redis-client.png)  
