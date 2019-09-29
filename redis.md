@@ -58,6 +58,26 @@ SET customer:3000 Vitalii NX
 SET customer:3000 cherkavi XX
 ```
 
+## expiration for key
+```
+EXPIRE {key} {seconds}
+PEXPIRE {key} {miliseconds}
+
+EXPIREAT {key} {timestamp}
+PEXPIREAT {key} {miliseconds-timestamp}
+```
+remove expiration
+```
+PERSIST {key]
+```
+set with TTL
+```
+# miliseconds
+SET customer:3000 warior PX 60000
+# seconds
+SET customer:3000 warior EX 60
+```
+
 ## moving members, cut/paste members
 ```
 SMOVE "source set" "destination set" "member name"
