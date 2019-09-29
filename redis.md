@@ -3,7 +3,7 @@
 * [data types](https://redis.io/topics/data-types-intro)
 * [REdis Serialization Protocol - RESP](https://redis.io/topics/protocol)  
 
-## Key Spaces
+## Key Spaces ( any binary represenation up to 512 Mb )
 * Flat key space
 * No automatic namespacing
 * Logical Databases ( Database zero )
