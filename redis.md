@@ -10,7 +10,7 @@ type <key>
 * if value is of type string -> GET <key>
 * if value is of type hash -> HGETALL <key>
 * if value is of type lists -> 
-  * lrange <key> <start> <end>
+  * lrange <key> <start> <end> ( hgetall )
   * lrem
   * rpop
   * llen
