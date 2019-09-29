@@ -37,6 +37,22 @@ TYPE <key>
   
 * if value is of type sorted sets -> ZRANGEBYSCORE <key> <min> <max>
 
+## insert values, add value
+* existence of keys
+```
+EXIST {key}
+# EXIST customer:1500
+```
+
+* set value
+```
+# insert only if the record still Not eXists
+SET customer:3000 Vitalii NX
+
+# insert only if the record EXXists
+SET customer:3000 cherkavi XX
+```
+
 ## moving members, cut/paste members
 ```
 SMOVE "source set" "destination set" "member name"
