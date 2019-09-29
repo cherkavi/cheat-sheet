@@ -4,6 +4,9 @@
 * Logical Databases ( Database zero )
 * Naming conventions ( case sensitive, example user:{unique id of user}:followers
 
+## getting a list of existings keys
+![keys list](https://i.postimg.cc/5ygnVyrt/redis-search-key-scan.png)
+
 [REdis Serialization Protocol - RESP](https://redis.io/topics/protocol)  
 ![client architecture](https://i.postimg.cc/fTp83WSJ/redis-client.png)  
 [clients libraries](https://redis.io/clients)  
