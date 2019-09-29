@@ -6,6 +6,17 @@
 
 ## getting a list of existings keys
 ![keys list](https://i.postimg.cc/5ygnVyrt/redis-search-key-scan.png)
+* keys
+```redis
+keys customer:15*
+keys cus:15*
+keys *
+```
+* scan
+```
+scan 0 MATCH customer*
+scan 0
+```
 
 [REdis Serialization Protocol - RESP](https://redis.io/topics/protocol)  
 ![client architecture](https://i.postimg.cc/fTp83WSJ/redis-client.png)  
