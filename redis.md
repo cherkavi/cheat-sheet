@@ -66,6 +66,11 @@ PEXPIRE {key} {miliseconds}
 EXPIREAT {key} {timestamp}
 PEXPIREAT {key} {miliseconds-timestamp}
 ```
+check expiration, check TimeToLive
+```
+TTL {key}
+```
+
 remove expiration
 ```
 PERSIST {key]
