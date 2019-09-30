@@ -32,10 +32,7 @@ OBJECT ENCODING <key>
 * if value is of type lists -> 
   * LRANGE <key> <start> <end> ( hgetall )
 * if value is of type sets -> 
-  * SMEMBERS <key> ( HGET )
-  * SCARD ( SSCAN )
-  * SREM
-  * SADD  
+  * SMEMBERS <key>
 * if value is of type sorted sets -> ZRANGEBYSCORE <key> <min> <max>
 
 ## insert values, add value
@@ -54,7 +51,7 @@ SET customer:3000 Vitalii NX
 SET customer:3000 cherkavi XX
 ```
 
-* list (always ordered ) operations
+## list (always ordered ) operations
   * LLEN
   * LRANGE <key> <start> <end> ( hgetall )
     ```LRANGE my-list 0 -1```
@@ -67,7 +64,18 @@ SET customer:3000 cherkavi XX
   * RPOP ( right pop )
   * LREM ( remove element by value )
   * LTRIM ( remove to certain lenght )
-* set hash value, read hash value
+
+## set ( unordered )
+  * SADD  
+  * SMEMBERS <key>
+  * SISMEMBER <key> <value> ( check if value present into set )
+  * SCARD ( SSCAN )
+  * SREM ( remove by value )
+  * SPOP ( pop random!!! element  )
+  * SDIFF SINTER SUNION
+
+
+## hash value, set value, read hash value
 > hash has only one level, can't be embeddable
 ```
 HSET <key> <field1> <value1> <field2> <value2>
@@ -76,7 +84,7 @@ HMGET <key> <field1> <field2>
 HGETALL <key>
 ```
 
-* increase value
+## increase value
 ```redis
 INCR <key> # for integer
 # SET my-personal-key 10
