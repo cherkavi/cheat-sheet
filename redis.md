@@ -39,7 +39,7 @@ OBJECT ENCODING <key>
   * SMEMBERS <key> ( HGET )
   * SCARD ( SSCAN )
   * SREM
-  * SADD ( HSET )
+  * SADD
   
 * if value is of type sorted sets -> ZRANGEBYSCORE <key> <min> <max>
 
@@ -57,6 +57,14 @@ SET customer:3000 Vitalii NX
 
 # insert only if the record EXXists
 SET customer:3000 cherkavi XX
+```
+
+* set hash value, read hash value
+> hash has only one level, can't be embeddable
+```
+HSET <key> <field1> <value1> <field2> <value2>
+HGET <key> <field...>
+HMGET <key> <field1> <field2>
 ```
 
 * increase value
