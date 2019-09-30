@@ -72,7 +72,7 @@ SET customer:3000 cherkavi XX
   * SCARD ( SSCAN )
   * SREM ( remove by value )
   * SPOP ( pop random!!! element  )
-  * SDIFF SINTER SUNION
+  * SUNION (sql:union), SINTER (sql:inner join), SDIFF ( not in )
 
 
 ## hash value, set value, read hash value
