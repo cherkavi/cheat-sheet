@@ -156,8 +156,12 @@ UNLINK {key}
 ![redis-java types](https://i.postimg.cc/c4qj1KXk/redis-java-types.png)  
 
 # Stream
-* data structure
+![streams pub sub](https://i.postimg.cc/66rt4RwT/redis-streams-pub-sub.png)
+![storage and delivery](https://i.postimg.cc/DzTSLhHK/redis-streams-storage-and-delivery.png)
+* data structure ( reading can be blocked and non-blocking  )
   ![new data structure](https://i.postimg.cc/qM6Hr3R1/redis-streams-new-data-structure.png)
+  ![delete](https://i.postimg.cc/kgZcm22v/redis-stream-delete.png)
+  ![trim](https://i.postimg.cc/RhVffm30/redis-streams-trim.png)
 * acts like append-only list ( immutable, order cannot be changed)
   ![append only](https://i.postimg.cc/JhmfjYQF/redis-streams-append-only.png)
 * each entries are hashes
