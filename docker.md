@@ -811,7 +811,14 @@ docker build -t local-scenario --file Dockerfile-scenario-file .
 ```
 but file exists and present in proper place
 
-*solution*
+*solution 1*
+check your ```.dockerignore ``` file for ignoring your "dist" or even worse "*" files :
+```.dockerignore
+# ignore all files
+*
+```
+
+*solution 2*
 ```
 FROM cc.ubsgroup.net/docker/builder
 RUN mkdir /workspace
