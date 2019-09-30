@@ -31,16 +31,11 @@ OBJECT ENCODING <key>
 * if value is of type hash -> HGETALL <key>
 * if value is of type lists -> 
   * LRANGE <key> <start> <end> ( hgetall )
-  * LREM
-  * RPOP
-  * LLEN
-  * RPUSH
 * if value is of type sets -> 
   * SMEMBERS <key> ( HGET )
   * SCARD ( SSCAN )
   * SREM
-  * SADD
-  
+  * SADD  
 * if value is of type sorted sets -> ZRANGEBYSCORE <key> <min> <max>
 
 ## insert values, add value
@@ -59,6 +54,19 @@ SET customer:3000 Vitalii NX
 SET customer:3000 cherkavi XX
 ```
 
+* list (always ordered ) operations
+  * LLEN
+  * LRANGE <key> <start> <end> ( hgetall )
+    ```LRANGE my-list 0 -1```
+  * LINDEX ( get from specific position )
+  * LPUSH ( left push )
+  * RPUSH ( right push )
+  * LSET 
+  * LINSERT ( insert after certain element )
+  * LPOP ( left pop )
+  * RPOP ( right pop )
+  * LREM ( remove element by value )
+  * LTRIM ( remove to certain lenght )
 * set hash value, read hash value
 > hash has only one level, can't be embeddable
 ```
