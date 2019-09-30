@@ -1,3 +1,4 @@
+REmote DIctionary Server
 
 * [commands](https://redis.io/commands)
 * [data types](https://redis.io/topics/data-types-intro)
@@ -86,7 +87,7 @@ SET customer:3000 cherkavi XX
   * ZINTERSTORE, ZUNIONSTORE
   * ZUNION, ZINTER
 
-## hash value, set value, read hash value
+## hash value (map, dictionary), set value, read hash value
 > hash has only one level, can't be embeddable
 ```
 HSET <key> <field1> <value1> <field2> <value2>
@@ -154,3 +155,16 @@ UNLINK {key}
 ![connection types](https://i.postimg.cc/rw7qqyR8/redis-deployment-connections.png)  
 ![redis-java types](https://i.postimg.cc/c4qj1KXk/redis-java-types.png)  
 
+# Stream
+* data structure
+  ![new data structure](https://i.postimg.cc/qM6Hr3R1/redis-streams-new-data-structure.png)
+* acts like append-only list ( immutable, order cannot be changed)
+  ![append only](https://i.postimg.cc/JhmfjYQF/redis-streams-append-only.png)
+* each entries are hashes
+  ![entry as a map](https://i.postimg.cc/Zn1gnwRV/redis-streams-entry-as-map.png)
+* entries have unique ID - time entries
+  ![default id](https://i.postimg.cc/K87VcryD/redis-streams-default-id.png) 
+* supports ID-based range queries
+  ![range queries](https://i.postimg.cc/sXLHHTps/redis-strams-range-query.png)
+* consumer groups
+  ![consumer groups](https://i.postimg.cc/ZYG4CcXG/redis-streams-consumer-groups.png)
