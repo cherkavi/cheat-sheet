@@ -33,7 +33,8 @@ OBJECT ENCODING <key>
   * LRANGE <key> <start> <end> ( hgetall )
 * if value is of type sets -> 
   * SMEMBERS <key>
-* if value is of type sorted sets -> ZRANGEBYSCORE <key> <min> <max>
+* if value is of type sorted sets -> 
+  * ZRANGEBYSCORE <key> <min> <max>
 
 ## insert values, add value
 * existence of keys
@@ -74,6 +75,12 @@ SET customer:3000 cherkavi XX
   * SPOP ( pop random!!! element  )
   * SUNION (sql:union), SINTER (sql:inner join), SDIFF ( not in )
 
+## set ( ordered )
+  * ZRANGE <key> <start> <stop>
+  * ZADD <key>
+  * ZREM <key> <value>
+  * ZINTERSTORE, ZUNIONSTORE
+  * ZUNION, ZINTER
 
 ## hash value, set value, read hash value
 > hash has only one level, can't be embeddable
