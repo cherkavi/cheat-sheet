@@ -25,6 +25,7 @@ SCAN 0
 ## retrieve values by key, save collection
 ```redis
 TYPE <key>
+OBJECT ENCODING <key>
 ```
 * if value is of type string -> GET <key>
 * if value is of type hash -> HGETALL <key>
@@ -50,12 +51,22 @@ EXIST {key}
 ```
 
 * set value
-```
+```redis
 # insert only if the record still Not eXists
 SET customer:3000 Vitalii NX
 
 # insert only if the record EXXists
 SET customer:3000 cherkavi XX
+```
+
+* increase value
+```redis
+INCR <key> # for integer
+# SET my-personal-key 10
+# SET my-personal-key "10"
+# INCR my-personal-key
+# INCRBY my-personal-key 3
+# INCRBYFLOAT my-personal-key 2.5
 ```
 
 ## expiration for key
@@ -70,7 +81,10 @@ check expiration, check TimeToLive
 ```
 TTL {key}
 ```
-
+check living time
+```
+OBJECT IDLETIME <key>
+```
 remove expiration
 ```
 PERSIST {key]
