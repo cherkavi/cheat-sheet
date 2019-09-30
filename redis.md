@@ -65,6 +65,7 @@ SET customer:3000 cherkavi XX
 HSET <key> <field1> <value1> <field2> <value2>
 HGET <key> <field...>
 HMGET <key> <field1> <field2>
+HGETALL <key>
 ```
 
 * increase value
