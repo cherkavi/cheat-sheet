@@ -534,6 +534,11 @@ find . -type f -size +50000k -exec ls -lh {} \;
 find . -type f -size +50000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 ```
 
+### find files on special level, find on level
+```
+find . -maxdepth 5 -mindepth 5
+```
+
 ### yum ( app search )
 ```
 yum list {pattern}
