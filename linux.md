@@ -865,6 +865,7 @@ ps -aux | awk 'BEGIN{a=0}{a=a+1}END{print a}'
 find -cmin -2
 ```
 
+## cURL
 ### curl username, curl with user and password, curl credentials
 ```
 curl -u username:password http://example.com
@@ -889,6 +890,21 @@ curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Conte
 ### curl certificate skipping
 ```
 curl --insecure -s -X GET http://google.com
+```
+### curl with additional output, curl verbosive mode
+```sh
+curl --verbose --insecure -s -X GET http://google.com
+```
+### curl cookie
+```sh
+# send predefined cookie to url
+curl -b path-to-cookie-file.txt -X GET url.com
+
+# send cookie from command line
+curl --cookie "first_cookie=123;second_cookie=456;third_cookie=789" -X GET url.com
+
+# collect cookie from remote url and save in file
+culr -c cookie-from-url-com.txt -X GET url.com
 ```
 
 ### [parsing json, json processing](https://stedolan.github.io/jq/manual/)
