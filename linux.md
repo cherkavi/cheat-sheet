@@ -520,12 +520,12 @@ find / -mmin 2
 
 ### find files/folders by name and older than 240 min
 ```
-find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs sudo rm -r {} \; >/dev/null 2>&1
+find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs -I {} sudo rm -r {} \; >/dev/null 2>&1
 ```
 
 ### find files/folders by regexp and older than 240 min
 ```
-find /tmp -maxdepth 1 -mmin +240 -iname "[0-9]*\-[0-9]" | xargs sudo rm -r {} \; >/dev/null 2>&1
+find /tmp -maxdepth 1 -mmin +240 -iname "[0-9]*\-[0-9]" | xargs -I {} sudo rm -r {} \; >/dev/null 2>&1
 ```
 
 ### find large files, find big files
