@@ -164,13 +164,14 @@ UNLINK {key}
 # Stream
 ![streams pub sub](https://i.postimg.cc/66rt4RwT/redis-streams-pub-sub.png)
 ![storage and delivery](https://i.postimg.cc/DzTSLhHK/redis-streams-storage-and-delivery.png)
+* add stream entry https://redis.io/commands/xadd
 * data structure ( reading can be blocked and non-blocking  )
   ![new data structure](https://i.postimg.cc/qM6Hr3R1/redis-streams-new-data-structure.png)
   ![delete](https://i.postimg.cc/kgZcm22v/redis-stream-delete.png)
   ![trim](https://i.postimg.cc/RhVffm30/redis-streams-trim.png)
 * acts like append-only list ( immutable, order cannot be changed)
   ![append only](https://i.postimg.cc/JhmfjYQF/redis-streams-append-only.png)
-* each entries are hashes
+* each entries are hashes ( immutable )
   ![entry as a map](https://i.postimg.cc/Zn1gnwRV/redis-streams-entry-as-map.png)
 * entries have unique ID - time entries
   ![default id](https://i.postimg.cc/K87VcryD/redis-streams-default-id.png) 
