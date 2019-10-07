@@ -3,11 +3,12 @@ REmote DIctionary Server
 * [commands](https://redis.io/commands)
 * [data types](https://redis.io/topics/data-types-intro)
 * [REdis Serialization Protocol - RESP](https://redis.io/topics/protocol)  
-* [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)
 * [pipeline](https://redis.io/topics/pipelining)
 > pipeline == batch commands, will return result ONLY when ALL commands will be finished
 * [transactions](https://redis.io/topics/transactions)
 > transaction (multi, exec ) is like pipeline (pipelined, sync)
+* [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)
+> like transaction will execute everything atomically
 
 ## commands
 * dbsize
