@@ -85,7 +85,13 @@ SET customer:3000 cherkavi XX
   * LPOP ( left pop )
   * RPOP ( right pop )
   * LREM ( remove element by value )
-  * LTRIM ( remove to certain lenght )
+  * LTRIM ( remove to certain length, ``` LTRIM mylist -5 -1``` - retain only last 5 elements  )
+    ```
+    rpush mylist 1 2 3 4 5
+    lstrim mylist 0 3
+    lrange 0 -1
+    # 1 2 3
+    ```
 
 ## set ( unordered )
   * SADD  
@@ -111,6 +117,22 @@ SET customer:3000 cherkavi XX
     ```
   * ZADD <key>
   * ZREM <key> <value>
+  * ZREMRANGEBYRANK
+    ```
+    redis:6379>zrange zset 0 -1
+    1) "aaa"
+    2) "bbb"
+    3) "ccc"
+    4) "ddd"
+    5) "eee"
+    redis:6379> ZREMRANGEBYRANK zset 4 5 # (not-inclusive inclusive]
+    (integer) 1
+    redis:6379> zrange zset 0 -1 # 
+    1) "aaa"
+    2) "bbb"
+    3) "ccc"
+    4) "ddd"
+    ```
   * ZRANK <key> <value>
   * ZSCORE <key> <value>
   * ZCOUNT <key> <min score> <max score> # inclusive 
