@@ -4,6 +4,7 @@ REmote DIctionary Server
 * [data types](https://redis.io/topics/data-types-intro)
 * [REdis Serialization Protocol - RESP](https://redis.io/topics/protocol)  
 * [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)
+* [pipeline](https://redis.io/topics/pipelining)
 
 ## commands
 * dbsize
