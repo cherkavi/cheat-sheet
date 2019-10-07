@@ -21,6 +21,7 @@ REmote DIctionary Server
   ...
   exec
   ```
+* flashall [async] # remove all keys
   
 
 ## Key Spaces ( any binary represenation up to 512 Mb )
@@ -205,5 +206,7 @@ XADD <name of stream> <unique ID, or *> <field-name> <field-value>
   ![default id](https://i.postimg.cc/K87VcryD/redis-streams-default-id.png) 
 * supports ID-based range queries
   ![range queries](https://i.postimg.cc/sXLHHTps/redis-strams-range-query.png)
+* fan-out
+  ![](https://i.postimg.cc/1XK14P03/redis-consumer-fan-out.png)
 * consumer groups
   ![consumer groups](https://i.postimg.cc/ZYG4CcXG/redis-streams-consumer-groups.png)
