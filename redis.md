@@ -7,6 +7,7 @@ REmote DIctionary Server
 * [pipeline](https://redis.io/topics/pipelining)
 > pipeline == batch commands, will return result ONLY when ALL commands will be finished
 * [transactions](https://redis.io/topics/transactions)
+> transaction (multi, exec ) is like pipeline (pipelined, sync)
 
 ## commands
 * dbsize
