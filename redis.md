@@ -167,7 +167,7 @@ UNLINK {key}
 * add stream entry https://redis.io/commands/xadd
 ```redis-cli
 XADD <name of stream> <unique ID, or *> <field-name> <field-value>
-# return generated ID ( in case of * ) or ID
+# return generated ID ( in case of * ) like "<miliseconds>-<add digit>" or specified by user ID
 # XRANGE numbers - +
 ```
 * data structure ( reading can be blocked and non-blocking  )
