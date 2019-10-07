@@ -12,6 +12,15 @@ REmote DIctionary Server
 
 ## commands
 * dbsize
+* memory usage <key>
+* "pipelining"
+  ```
+  multi 
+  command1 
+  command2 
+  ...
+  exec
+  ```
   
 
 ## Key Spaces ( any binary represenation up to 512 Mb )
@@ -168,7 +177,15 @@ UNLINK {key}
 ```redis-cli
 XADD <name of stream> <unique ID, or *> <field-name> <field-value>
 # return generated ID ( in case of * ) like "<miliseconds>-<add digit>" or specified by user ID
-# XRANGE numbers - +
+
+# XLEN <stream name>
+# XRANGE <stream name> - +
+# XDEL <stream name> ID ID...
+# XTRIM <stream name> MAXLEN <length of latest messages in stream >
+# more memory efficiency optimization
+# XTRIM <stream name> MAXLEN ~ <length of latest messages in stream >
+# trimming after adding value 
+# XTRIM <stream name> MAXLEN ~ <length of latest messages in stream > <ID or *> <field-name> <field-value>
 ```
 * data structure ( reading can be blocked and non-blocking  )
   ![new data structure](https://i.postimg.cc/qM6Hr3R1/redis-streams-new-data-structure.png)
