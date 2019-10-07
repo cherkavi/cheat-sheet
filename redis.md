@@ -181,6 +181,10 @@ XADD <name of stream> <unique ID, or *> <field-name> <field-value>
 # XLEN <stream name>
 # XRANGE <stream name> - +
 # XREVRANGE <stream name> + -
+# xrange/xrevrange inclusive ranges 
+# XREAD COUNT <count of values or -1 > STREAMS <stream-name stream-name2> <start id or 0>
+# xread is waiting for last known client id, not inclusive; multistream
+
 # XDEL <stream name> ID ID...
 # XTRIM <stream name> MAXLEN <length of latest messages in stream >
 # more memory efficiency optimization
