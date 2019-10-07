@@ -180,6 +180,7 @@ XADD <name of stream> <unique ID, or *> <field-name> <field-value>
 
 # XLEN <stream name>
 # XRANGE <stream name> - +
+# XREVRANGE <stream name> + -
 # XDEL <stream name> ID ID...
 # XTRIM <stream name> MAXLEN <length of latest messages in stream >
 # more memory efficiency optimization
