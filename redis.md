@@ -97,9 +97,23 @@ SET customer:3000 cherkavi XX
   * SUNION (sql:union), SINTER (sql:inner join), SDIFF ( not in )
 
 ## set ( ordered )
-  * ZRANGE <key> <start> <stop>
+  * ZRANGE <key> <rank/index start> <rank/index stop> # inclusive
+  * ZRANGEBYSCORE <key> <score start> <score stop> # inclusive
+  * ZRANGEBYLEX
+    ```
+    ZADD zset 10 aaa
+    ZADD zset 20 bbb
+    ZADD zset 30 ccc
+    ZADD zset 30 ddd
+
+    ZRANGEBYLEX zset "[aaa" "[ddd"
+    ZRANGEBYLEX zset "[aaa" "(ddd"
+    ```
   * ZADD <key>
   * ZREM <key> <value>
+  * ZRANK <key> <value>
+  * ZSCORE <key> <value>
+  * ZCOUNT <key> <min score> <max score> # inclusive 
   * ZINTERSTORE, ZUNIONSTORE
   * ZUNION, ZINTER
 
