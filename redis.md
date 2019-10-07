@@ -171,6 +171,19 @@ UNLINK {key}
 ![connection types](https://i.postimg.cc/rw7qqyR8/redis-deployment-connections.png)  
 ![redis-java types](https://i.postimg.cc/c4qj1KXk/redis-java-types.png)  
 
+# Publish/Subscribe
+```
+SUBSCRIBE <channel name>
+```
+```
+PUBLISH <channel name> <value>
+```
+* subscribers listening only for new messages
+* published message will not be saved/stored ( if no subscribers are listening - lost forever ) - fire and forget
+* message is just a string ( unstructured )
+* no unique id for message 
+![Pub/Sub vs Streams](https://i.postimg.cc/6QBRGhN6/redis-streams-vs-pubsub.png)
+
 # Stream
 ![streams pub sub](https://i.postimg.cc/66rt4RwT/redis-streams-pub-sub.png)
 ![storage and delivery](https://i.postimg.cc/DzTSLhHK/redis-streams-storage-and-delivery.png)
