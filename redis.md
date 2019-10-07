@@ -5,6 +5,7 @@ REmote DIctionary Server
 * [REdis Serialization Protocol - RESP](https://redis.io/topics/protocol)  
 * [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)
 * [pipeline](https://redis.io/topics/pipelining)
+> pipeline == batch commands, will return result ONLY when ALL commands will be finished
 
 ## commands
 * dbsize
