@@ -168,6 +168,7 @@ UNLINK {key}
 ```redis-cli
 XADD <name of stream> <unique ID, or *> <field-name> <field-value>
 # return generated ID ( in case of * ) or ID
+# XRANGE numbers - +
 ```
 * data structure ( reading can be blocked and non-blocking  )
   ![new data structure](https://i.postimg.cc/qM6Hr3R1/redis-streams-new-data-structure.png)
