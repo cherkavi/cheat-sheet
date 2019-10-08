@@ -93,7 +93,7 @@ SET customer:3000 cherkavi XX
     ```
     rpush mylist 1 2 3 4 5
     lstrim mylist 0 3
-    lrange 0 -1
+    lrange mylist 0 -1
     # 1 2 3
     ```
 
@@ -114,6 +114,11 @@ SET customer:3000 cherkavi XX
     sinter myset1 myset2
     ```
   * SDIFF ( not in )
+    ```
+    sadd set-three A b C 
+    sadd set-four a b C
+    sdiff set-three set-four # A
+    ```
 
 ## set ( ordered )
   * ZRANGE <key> <rank/index start> <rank/index stop> # inclusive
