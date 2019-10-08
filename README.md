@@ -19,4 +19,5 @@ How to learn new tech fastly:
 ![devops introduction](https://i.postimg.cc/htLmgZMv/devops-introduction.png)
 ![NoSql](https://i.postimg.cc/qBmqcVD2/NoSql.png)
 ![NoSql BoltDB](https://i.postimg.cc/FRfS4fc9/nosql-boltdb.png)
+!["Big O" - Die Ordnung](https://i.postimg.cc/85Rbr9Mn/Big-O-notation.png)
 ![Testing rules](https://i.postimg.cc/Kc3rwfXk/Testing-rules.png)
