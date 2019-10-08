@@ -98,7 +98,9 @@ SET customer:3000 cherkavi XX
   * SADD  
   * SMEMBERS <key>
   * SISMEMBER <key> <value> ( check if value present into set )
-  * SCARD ( SSCAN )
+  * SCARD # amount of elements
+  * SSCAN <key for searching> <number of cursor> MATCH <pattern>
+    ```SSCAN myset 0 MATCH *o*```
   * SREM ( remove by value )
   * SPOP ( pop random!!! element  )
   * SUNION (sql:union), SINTER (sql:inner join), SDIFF ( not in )
