@@ -10,6 +10,9 @@ REmote DIctionary Server
 * [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)
 > like transaction will execute everything atomically
 * no native indexes
+  * use "secondary index" - build "inverted index"
+  * use "faceted search" - build intersection of "inverted indexes" to find target search criteria
+  * use "hashed search" - build set with hash-key ( long name of relations between data cardinality )
 
 ## commands
 * DBSIZE
@@ -98,12 +101,19 @@ SET customer:3000 cherkavi XX
   * SADD  
   * SMEMBERS <key>
   * SISMEMBER <key> <value> ( check if value present into set )
-  * SCARD # amount of elements
+  * SCARD # amount of elements, CARDinality
   * SSCAN <key for searching> <number of cursor> MATCH <pattern>
     ```SSCAN myset 0 MATCH *o*```
   * SREM ( remove by value )
   * SPOP ( pop random!!! element  )
-  * SUNION (sql:union), SINTER (sql:inner join), SDIFF ( not in )
+  * SUNION (sql:union)
+  * SINTER (sql:inner join)
+    ```
+    sadd myset1 one two three four
+    sadd myset2 three four five six
+    sinter myset1 myset2
+    ```
+  * SDIFF ( not in )
 
 ## set ( ordered )
   * ZRANGE <key> <rank/index start> <rank/index stop> # inclusive
