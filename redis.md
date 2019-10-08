@@ -11,17 +11,17 @@ REmote DIctionary Server
 > like transaction will execute everything atomically
 
 ## commands
-* dbsize
-* memory usage <key>
+* DBSIZE
+* MEMORY USAGE <key>
 * "pipelining"
   ```
-  multi 
+  MULTI
   command1 
   command2 
   ...
-  exec
+  EXEC
   ```
-* flashall [async] # remove all keys
+* FLUSHALL [async] # remove all keys
   
 
 ## Key Spaces ( any binary represenation up to 512 Mb )
