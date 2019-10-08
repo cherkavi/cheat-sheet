@@ -136,8 +136,8 @@ SET customer:3000 cherkavi XX
   * ZRANK <key> <value>
   * ZSCORE <key> <value>
   * ZCOUNT <key> <min score> <max score> # inclusive 
-  * ZINTERSTORE, ZUNIONSTORE
-  * ZUNION, ZINTER
+  * ZINTERSTORE <destination key> <number of keys> <key1, key2.... [number of keys]> WEIGHTS <for key1> <for key2> AGGREGATE <SUM|MIN|MAX> # intersection of sets (WEIGHT can be specified for all elements) and ordered-sets with multiplication factor WEIGHTS and way of AGGREGATion
+  * ZUNIONSTORE <destination key> <number of keys> <key1, key2.... [number of keys]> WEIGHTS <for key1> <for key2> AGGREGATE <SUM|MIN|MAX> # union of sets (WEIGHT can be specified for all elements) and ordered-sets with multiplication factor WEIGHTS and way of AGGREGATion
 
 ## hash value (map, dictionary), set value, read hash value
 > hash has only one level, can't be embeddable
