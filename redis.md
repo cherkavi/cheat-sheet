@@ -9,6 +9,7 @@ REmote DIctionary Server
 > transaction (multi, exec ) is like pipeline (pipelined, sync)
 * [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)
 > like transaction will execute everything atomically
+* no native indexes
 
 ## commands
 * DBSIZE
