@@ -709,6 +709,11 @@ cat file.txt | grep -v "not-include-string"
 grep -ir "memory" --include="*.scala"
 ```
 
+### inner join for two files, compare string from different files
+```
+grep -F -f path-to-file1 path-to-file2
+```
+
 ### difference between two files without spaces
 ```
 diff -w file1.txt file2.txt
