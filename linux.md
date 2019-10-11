@@ -46,7 +46,7 @@ ping -s 122 -c 1 146.255.193.66
 ping -s 123 -c 1 146.255.193.66
 ```
 
-### mount remote filesystem via ssh, map ssh folder, ssh-folder, ssh disk
+### mount remote filesystem via ssh, map folder via ssh, ssh remote folder
 ```
 sudo mkdir /mnt/vendor-cluster-prod
 sudo sshfs -o allow_other,IdentityFile=~/.ssh/id_rsa vcherkashyn@190.17.19.11:/remote/path/folder /mnt/vendor-cluster-prod
