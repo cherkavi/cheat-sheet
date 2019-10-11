@@ -21,7 +21,7 @@ npm cache clear --force
 npm install -g @angular/cli 
 ```
 
-## build project
+## build project ( install dependencies )
 ```
 npm install
 npm start
