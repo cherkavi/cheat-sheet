@@ -885,6 +885,10 @@ curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Conte
 ```
 ```
 curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: text/json" --data-binary '{"add":"data"}'
+# or with bash variable
+SOME_DATA="my_personal_value"
+curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: text/json" --data-binary '{"add":"'$SOME_DATA'"}'
+
 ```
 
 ### curl without progress
