@@ -59,6 +59,12 @@ git gc --prune=now
 git fetch --prune
 ```
 
+### delete local branches that was(were) merged to master ( and not have 'in-progress' marker )
+```sh
+git branch --merged | egrep -v "(^\*|master|in-progress)" | xargs git branch -d
+```
+
+
 ### check hash-code of the branch
 ```
 git rev-parse "remotes/origin/release-6.0.0"
