@@ -681,6 +681,11 @@ spark-shell \
 --conf "spark.driver.extraJavaOptions=-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
 --conf "spark.executor.extraJavaOptions=-XX:+UseG1GC -XX:+PrintReferenceGC -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintAdaptiveSizePolicy -XX:+PrintFlagsFinal -XX:+UnlockDiagnosticVMOptions -XX:+G1SummarizeConcMark"
 ```
+useful changes for local debugging
+```sh
+spark-shell --master local --deploy-mode client \
+...
+```
 
 ## execute shell with additional parameters
 ```
