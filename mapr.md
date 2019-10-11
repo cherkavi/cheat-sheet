@@ -224,3 +224,15 @@ maprlogin print -ticketfile <your ticketfile>
 ```
 maprcli dashboard info -json
 ```
+
+# posix client
+```
+$ wget -O - https://package.mapr.com/releases/pub/maprgpg.key | sudo apt-key add -
+add these lines to /etc/apt/sources.list:
+```
+ deb https://package.mapr.com/releases/v6.1.0/ubuntu binary trusty
+ deb https://package.mapr.com/releases/MEP/MEP-6.0.0/ubuntu binary trusty
+```
+$ apt-get update
+$ apt-get install mapr-posix-client-platinum
+```
