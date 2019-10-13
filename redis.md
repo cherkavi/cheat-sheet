@@ -245,20 +245,41 @@ PUBLISH <channel name> <value>
 XADD <name of stream> <unique ID, or *> <field-name> <field-value>
 # return generated ID ( in case of * ) like "<miliseconds>-<add digit>" or specified by user ID
 # XADD my-stream * my-field 0
+XADD numbers * n 6
+XADD numbers * n 7
+```
 
+* calculate amount of messages 
+```
 # XLEN <stream name>
+XLEN numbers
+```
+* print all messages 
+```
 # XRANGE <stream name> - +
+XRANGE numbers - +
 # XREVRANGE <stream name> + -
+XREVRANGE numbers + -
+```
+* read specific messages 
+```
 # XREAD COUNT <count of values or -1 > STREAMS <stream-name stream-name2> <start id or 0>
 # xread is waiting for last known client id, not inclusive; multistream
 XREAD COUNT 1 STREAMS numbers 1570976182071-0
 # XREAD BLOCK <milisec> STREAMS <stream-name> <last message id or '$' for last message> # waiting milisec (0-forever) for first new message
+```
 
+* Pending Entries List ![pending entries list](https://i.postimg.cc/jjsF475H/redis-consumer-pending.png)
+```
 # XREADGROUP
 xreadgroup group numbers-group terminal-lower count 1 block 1000 streams numbers 1570976183500
 # read for 1000 miliseconds and after that return value ( if it is exist )
 xreadgroup group numbers-group terminal-lower count 1 block 1000 streams numbers >
+```
 
+
+
+```
 # XDEL <stream name> ID ID...
 # XTRIM <stream name> MAXLEN <length of latest messages in stream >
 # more memory efficiency optimization
@@ -277,9 +298,17 @@ XGROUP CREATE <name of stream> <name of group> <message id> MKSTREAM
 # XGROUP CREATE my-stream my-group0 0
 # start from next new message
 # XGROUP CREATE my-stream my-group0 $
+```
 
-# print all groups
-XINFO GROUPS my-stream
+* stream information
+```
+# XINFO GROUPS <name of stream >
+XINFO GROUPS numbers
+# XINFO STREAM <key == stream name>
+XINFO STREAM numbers
+# XINFO CONSUMERS <key == stream name> < name of consumer group >
+XINFO CONSUMERS numbers numbers-group
+
 
 # print all clients
 CLIENT LIST
