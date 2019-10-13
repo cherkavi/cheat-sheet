@@ -239,6 +239,7 @@ PUBLISH <channel name> <value>
 # Stream
 ![streams pub sub](https://i.postimg.cc/66rt4RwT/redis-streams-pub-sub.png)
 ![storage and delivery](https://i.postimg.cc/DzTSLhHK/redis-streams-storage-and-delivery.png)
+![assign consumer to partition](https://i.postimg.cc/2ykdGDdc/redis-partition-consumer.png)
 * add stream entry https://redis.io/commands/xadd
 ```redis-cli
 XADD <name of stream> <unique ID, or *> <field-name> <field-value>
