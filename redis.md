@@ -239,17 +239,15 @@ PUBLISH <channel name> <value>
 # Stream
 ![streams pub sub](https://i.postimg.cc/66rt4RwT/redis-streams-pub-sub.png)
 ![storage and delivery](https://i.postimg.cc/DzTSLhHK/redis-streams-storage-and-delivery.png)
-![assign consumer to partition](https://i.postimg.cc/2ykdGDdc/redis-partition-consumer.png)
-![consumer groups](https://i.postimg.cc/dVn2BBqs/redis-consumer-groups.png)
 * add stream entry https://redis.io/commands/xadd
 ```redis-cli
 XADD <name of stream> <unique ID, or *> <field-name> <field-value>
 # return generated ID ( in case of * ) like "<miliseconds>-<add digit>" or specified by user ID
+# XADD my-stream * my-field 0
 
 # XLEN <stream name>
 # XRANGE <stream name> - +
 # XREVRANGE <stream name> + -
-# xrange/xrevrange inclusive ranges 
 # XREAD COUNT <count of values or -1 > STREAMS <stream-name stream-name2> <start id or 0>
 # xread is waiting for last known client id, not inclusive; multistream
 # XREAD BLOCK <milisec> STREAMS <stream-name> <last message id or '$' for last message> # waiting milisec (0-forever) for first new message
@@ -261,6 +259,18 @@ XADD <name of stream> <unique ID, or *> <field-name> <field-value>
 # trimming after adding value 
 # XTRIM <stream name> MAXLEN ~ <length of latest messages in stream > <ID or *> <field-name> <field-value>
 ```
+
+![assign consumer to partition](https://i.postimg.cc/2ykdGDdc/redis-partition-consumer.png)
+![consumer groups](https://i.postimg.cc/dVn2BBqs/redis-consumer-groups.png)
+```redis-cli
+XGROUP CREATE <name of stream> <name of group> <message id>
+XGROUP CREATE <name of stream> <name of group> <message id> MKSTREAM
+# start from first message
+# XGROUP CREATE my-stream my-group0 0
+# start from next new message
+# XGROUP CREATE my-stream my-group0 $
+```
+
 * data structure ( reading can be blocked and non-blocking  )
   ![new data structure](https://i.postimg.cc/qM6Hr3R1/redis-streams-new-data-structure.png)
   ![delete](https://i.postimg.cc/kgZcm22v/redis-stream-delete.png)
