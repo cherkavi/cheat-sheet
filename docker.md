@@ -267,6 +267,13 @@ docker ps
 docker ps -a
 ```
 
+### show container with filter, show container with format
+```
+# filter docker images by name 
+# output format - names with commands (https://github.com/BrianBland/docker/edit/master/api/client/formatter/formatter.go)
+docker ps -a --filter "name=redis-lab" --format "{{.Names}} {{.Command}}"
+```
+
 ### join to executed container
 ```
 docker attach {CONTAINER ID}
