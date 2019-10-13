@@ -254,6 +254,11 @@ XADD <name of stream> <unique ID, or *> <field-name> <field-value>
 XREAD COUNT 1 STREAMS numbers 1570976182071-0
 # XREAD BLOCK <milisec> STREAMS <stream-name> <last message id or '$' for last message> # waiting milisec (0-forever) for first new message
 
+# XREADGROUP
+xreadgroup group numbers-group terminal-lower count 1 block 1000 streams numbers 1570976183500
+# read for 1000 miliseconds and after that return value ( if it is exist )
+xreadgroup group numbers-group terminal-lower count 1 block 1000 streams numbers >
+
 # XDEL <stream name> ID ID...
 # XTRIM <stream name> MAXLEN <length of latest messages in stream >
 # more memory efficiency optimization
