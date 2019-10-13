@@ -293,6 +293,8 @@ XREADGROUP GROUP numbers-group terminal-lower STREAMS numbers 0
 # read new messages ( acknowledgement is not considering )
 XREADGROUP GROUP numbers-group terminal-lower STREAMS numbers >
 # read new messages ( switch off acknowledgement )
+# The message delivery semantics will change from at-least-once to at-most-once.
+# Redis will consider all messages returned by XREADGROUP to be acknowledged.
 XREADGROUP GROUP numbers-group NOACK terminal-lower STREAMS numbers >
 # read messages from stream <numbers> with group <numbers-group> with consumerA and after messageID ( non inclusive ) 1570997593499-0
 XREADGROUP GROUP numbers-group consumerA STREAMS numbers 1570997593499-0
