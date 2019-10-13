@@ -238,6 +238,21 @@ PUBLISH <channel name> <value>
 ![Pub/Sub vs Streams](https://i.postimg.cc/6QBRGhN6/redis-streams-vs-pubsub.png)
 
 # Stream
+* stream information
+```
+# XINFO GROUPS <name of stream >
+XINFO GROUPS numbers
+# XINFO STREAM <key == stream name>
+XINFO STREAM numbers
+# XINFO CONSUMERS <key == stream name> < name of consumer group >
+XINFO CONSUMERS numbers numbers-group
+
+
+# print all clients
+CLIENT LIST
+CLIENT SETNAME
+```
+
 ![streams pub sub](https://i.postimg.cc/66rt4RwT/redis-streams-pub-sub.png)
 ![storage and delivery](https://i.postimg.cc/DzTSLhHK/redis-streams-storage-and-delivery.png)
 * add stream entry https://redis.io/commands/xadd
@@ -270,14 +285,28 @@ XREAD COUNT 1 STREAMS numbers 1570976182071-0
 ```
 
 * Pending Entries List ![pending entries list](https://i.postimg.cc/jjsF475H/redis-consumer-pending.png)
+> for adding consumer to ConsumerGroup - just read message
 ```
 # XREADGROUP
-xreadgroup group numbers-group terminal-lower count 1 block 1000 streams numbers 1570976183500
-# read for 1000 miliseconds and after that return value ( if it is exist )
-xreadgroup group numbers-group terminal-lower count 1 block 1000 streams numbers >
+# read all messages from Pending Entries List ( not acknowledged )
+XREADGROUP GROUP numbers-group terminal-lower STREAMS numbers 0
+# read new messages ( acknowledgement is not considering )
+XREADGROUP GROUP numbers-group terminal-lower STREAMS numbers >
+# read new messages ( switch off acknowledgement )
+XREADGROUP GROUP numbers-group NOACK terminal-lower STREAMS numbers >
+# read messages from stream <numbers> with group <numbers-group> with consumerA and after messageID ( non inclusive ) 1570997593499-0
+XREADGROUP GROUP numbers-group consumerA STREAMS numbers 1570997593499-0
+# read with waiting for new
+XREADGROUP GROUP numbers-group terminal-lower COUNT 1 BLOCK 1000 STREAMS numbers 1570976183500
+# read new messages with waiting for 1000 miliseconds ( acknowledgement is not considering )
+XREADGROUP GROUP numbers-group terminal-lower COUNT 1 BLOCK 1000 STREAMS numbers >
 ```
 
-
+* message acknowledges, removing from PendingEntriesList
+```
+# XACK <key of stream> <name of the group> <messageID>
+XACK numbers numbers-group 1570976179060-0
+```
 
 ```
 # XDEL <stream name> ID ID...
@@ -300,21 +329,6 @@ XGROUP CREATE <name of stream> <name of group> <message id> MKSTREAM
 # XGROUP CREATE my-stream my-group0 $
 ```
 
-* stream information
-```
-# XINFO GROUPS <name of stream >
-XINFO GROUPS numbers
-# XINFO STREAM <key == stream name>
-XINFO STREAM numbers
-# XINFO CONSUMERS <key == stream name> < name of consumer group >
-XINFO CONSUMERS numbers numbers-group
-
-
-# print all clients
-CLIENT LIST
-CLIENT SETNAME
-
-```
 
 * data structure ( reading can be blocked and non-blocking  )
   ![new data structure](https://i.postimg.cc/qM6Hr3R1/redis-streams-new-data-structure.png)
