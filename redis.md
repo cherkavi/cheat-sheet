@@ -17,6 +17,7 @@ REmote DIctionary Server
 ## commands
 * DBSIZE
 * MEMORY USAGE <key>
+* CLIENT LIST 
 * "pipelining"
   ```
   MULTI
@@ -250,6 +251,7 @@ XADD <name of stream> <unique ID, or *> <field-name> <field-value>
 # XREVRANGE <stream name> + -
 # XREAD COUNT <count of values or -1 > STREAMS <stream-name stream-name2> <start id or 0>
 # xread is waiting for last known client id, not inclusive; multistream
+XREAD COUNT 1 STREAMS numbers 1570976182071-0
 # XREAD BLOCK <milisec> STREAMS <stream-name> <last message id or '$' for last message> # waiting milisec (0-forever) for first new message
 
 # XDEL <stream name> ID ID...
@@ -273,6 +275,11 @@ XGROUP CREATE <name of stream> <name of group> <message id> MKSTREAM
 
 # print all groups
 XINFO GROUPS my-stream
+
+# print all clients
+CLIENT LIST
+CLIENT SETNAME
+
 ```
 
 * data structure ( reading can be blocked and non-blocking  )
