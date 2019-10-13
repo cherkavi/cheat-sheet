@@ -269,6 +269,9 @@ XGROUP CREATE <name of stream> <name of group> <message id> MKSTREAM
 # XGROUP CREATE my-stream my-group0 0
 # start from next new message
 # XGROUP CREATE my-stream my-group0 $
+
+# print all groups
+XINFO GROUPS my-stream
 ```
 
 * data structure ( reading can be blocked and non-blocking  )
