@@ -309,9 +309,10 @@ XREAD COUNT 1 STREAMS numbers 1570976182071-0
 # XREAD BLOCK <milisec> STREAMS <stream-name> <last message id or '$' for last message> # waiting milisec (0-forever) for first new message
 ```
 
-![assign consumer to partition](https://i.postimg.cc/2ykdGDdc/redis-partition-consumer.png)
-![consumer groups](https://i.postimg.cc/dVn2BBqs/redis-consumer-groups.png)
-![consumer in groups](https://i.postimg.cc/hjFYH5PB/redis-consumers-in-group.png)
+![assign consumer to partition](https://i.postimg.cc/2ykdGDdc/redis-partition-consumer.png)  
+![consumer groups](https://i.postimg.cc/ZYG4CcXG/redis-streams-consumer-groups.png)  
+![consumer groups](https://i.postimg.cc/dVn2BBqs/redis-consumer-groups.png)  
+![consumer in groups](https://i.postimg.cc/hjFYH5PB/redis-consumers-in-group.png)  
 ```redis-cli
 XGROUP CREATE <name of stream> <name of group> <message id>
 XGROUP CREATE <name of stream> <name of group> <message id> MKSTREAM
@@ -325,10 +326,11 @@ XGROUP CREATE <name of stream> <name of group> <message id> MKSTREAM
 # remove group and delete all consumers associated with group
 XGROUP DESTROY <stream> <name of group>
 ```
-![consumer group starts with](https://i.postimg.cc/wMzQnH6Y/redis-consumer-group-start.png)
+![consumer group starts with](https://i.postimg.cc/wMzQnH6Y/redis-consumer-group-start.png)  
 
-* Pending Entries List ![pending entries list](https://i.postimg.cc/jjsF475H/redis-consumer-pending.png)
-> for adding consumer to ConsumerGroup (create consumer) - just read message via XREADGROUP, automatically will be created Pending Entries List ( if NOACK not applied )
+* Pending Entries List   
+![pending entries list](https://i.postimg.cc/jjsF475H/redis-consumer-pending.png)  
+> for adding consumer to ConsumerGroup (create consumer) - just read message via XREADGROUP, automatically will be created Pending Entries List ( if NOACK not applied )  
 > for removing consumer ( also Pending Entries List will be removed)
   ``` 
   # XGROUP DELCONSUMER <stream> <group> <user name>
@@ -374,19 +376,17 @@ XGROUP SETID numbers numbers-group $
 ```
 
 
-* data structure ( reading can be blocked and non-blocking  )
-  ![new data structure](https://i.postimg.cc/qM6Hr3R1/redis-streams-new-data-structure.png)
-  ![delete](https://i.postimg.cc/kgZcm22v/redis-stream-delete.png)
-  ![trim](https://i.postimg.cc/RhVffm30/redis-streams-trim.png)
-* acts like append-only list ( immutable, order cannot be changed)
-  ![append only](https://i.postimg.cc/JhmfjYQF/redis-streams-append-only.png)
-* each entries are hashes ( immutable )
-  ![entry as a map](https://i.postimg.cc/Zn1gnwRV/redis-streams-entry-as-map.png)
-* entries have unique ID - time entries
-  ![default id](https://i.postimg.cc/K87VcryD/redis-streams-default-id.png) 
-* supports ID-based range queries
-  ![range queries](https://i.postimg.cc/sXLHHTps/redis-strams-range-query.png)
-* fan-out
-  ![](https://i.postimg.cc/1XK14P03/redis-consumer-fan-out.png)
-* consumer groups
-  ![consumer groups](https://i.postimg.cc/ZYG4CcXG/redis-streams-consumer-groups.png)
+* data structure ( reading can be blocked and non-blocking  )  
+  ![new data structure](https://i.postimg.cc/qM6Hr3R1/redis-streams-new-data-structure.png)  
+  ![delete](https://i.postimg.cc/kgZcm22v/redis-stream-delete.png)  
+  ![trim](https://i.postimg.cc/RhVffm30/redis-streams-trim.png)  
+* acts like append-only list ( immutable, order cannot be changed)  
+  ![append only](https://i.postimg.cc/JhmfjYQF/redis-streams-append-only.png)  
+* each entries are hashes ( immutable )  
+  ![entry as a map](https://i.postimg.cc/Zn1gnwRV/redis-streams-entry-as-map.png)  
+* entries have unique ID - time entries  
+  ![default id](https://i.postimg.cc/K87VcryD/redis-streams-default-id.png)  
+* supports ID-based range queries  
+  ![range queries](https://i.postimg.cc/sXLHHTps/redis-strams-range-query.png)  
+* fan-out  
+  ![](https://i.postimg.cc/1XK14P03/redis-consumer-fan-out.png)  
