@@ -5,8 +5,25 @@ REmote DIctionary Server
 * [REdis Serialization Protocol - RESP](https://redis.io/topics/protocol)  
 * [pipeline](https://redis.io/topics/pipelining)
 > pipeline == batch commands, will return result ONLY when ALL commands will be finished
+> commands: PIPELINED, SYNC  
 * [transactions](https://redis.io/topics/transactions)
-> transaction (multi, exec ) is like pipeline (pipelined, sync)
+  * **commands:** 
+  * MULTI - start transaction
+  * EXEC ( OK - successfully applied, nil - discard) / DISCARD  - execute or discard transaction
+  * no rollback ( single operation )
+  * no nested transactions   
+  * WATCH/UNWATCH - optimistic lock ( DISCARD transaction when someone will change key )
+    * should be executed !!before!! MULTI
+    * EXEC will execute UNWATCH for all transactions 
+  * full example
+    ```redis-cli
+    SET my-value 200
+    WATCH my-value
+    MULTI
+    INCR my-value
+    EXEC
+    ```
+
 * [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)
 > like transaction will execute everything atomically
 * no native indexes
