@@ -299,14 +299,14 @@ XGROUP CREATE <name of stream> <name of group> <message id> MKSTREAM
 # create group, start from next new message
 # XGROUP CREATE my-stream my-group0 $
 
-# remove group
+# remove group and delete all consumers associated with group
 XGROUP DESTROY <stream> <name of group>
 ```
 ![consumer group starts with](https://i.postimg.cc/wMzQnH6Y/redis-consumer-group-start.png)
 
 * Pending Entries List ![pending entries list](https://i.postimg.cc/jjsF475H/redis-consumer-pending.png)
-> for adding consumer to ConsumerGroup (create consumer) - just read message via XREADGROUP
-> for removing consumer
+> for adding consumer to ConsumerGroup (create consumer) - just read message via XREADGROUP, automatically will be created Pending Entries List ( if NOACK not applied )
+> for removing consumer ( also Pending Entries List will be removed)
   ``` 
   # XGROUP DELCONSUMER <stream> <group> <user name>
   XGROUP DELCONSUMER numbers numbers-group terminal-upper
@@ -329,7 +329,7 @@ XREADGROUP GROUP numbers-group terminal-lower COUNT 1 BLOCK 1000 STREAMS numbers
 XREADGROUP GROUP numbers-group terminal-lower COUNT 1 BLOCK 1000 STREAMS numbers >
 ```
 
-* message acknowledges, removing from PendingEntriesList
+* message acknowledges, removing from entry from  Pending Entries List by certain customer
 ```
 # XACK <key of stream> <name of the group> <messageID>
 XACK numbers numbers-group 1570976179060-0
