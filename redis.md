@@ -2,6 +2,7 @@ REmote DIctionary Server
 
 * [commands](https://redis.io/commands)
 * [data types](https://redis.io/topics/data-types-intro)
+  > string is underpinning data for all data structures
 * [REdis Serialization Protocol - RESP](https://redis.io/topics/protocol)  
 * [pipeline](https://redis.io/topics/pipelining)
 > pipeline == batch commands, will return result ONLY when ALL commands will be finished
