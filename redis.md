@@ -13,6 +13,8 @@ REmote DIctionary Server
   * EXEC ( OK - successfully applied, nil - discard) / DISCARD  - execute or discard transaction
   * no rollback ( single operation )
   * no nested transactions   
+  * don't check validity of command during queueing
+  * wrong operation on datatype (increase string) just skipping the step, don't throw exception
   * WATCH/UNWATCH - optimistic lock ( DISCARD transaction when someone will change key )
     * should be executed !!before!! MULTI
     * EXEC will execute UNWATCH for all transactions 
