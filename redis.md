@@ -177,7 +177,20 @@ INCR <key> # for integer
 # INCRBYFLOAT my-personal-key 2.5
 ```
 
-## expiration for key
+## geo value
+```redis
+GEOADD sites:geo -122.147019 37.670738 56
+GEOADD sites:geo -122.007419 37.5506959 101
+
+GEORADIUS sites:geo -122.007419 37.5506959 5 km
+GEORADIUS sites:geo -122.007419 37.5506959 5 km WITHDIST WITHCOORD
+
+
+
+
+```
+
+# expiration for key
 ```
 EXPIRE {key} {seconds}
 PEXPIRE {key} {miliseconds}
