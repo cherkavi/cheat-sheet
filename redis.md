@@ -247,9 +247,9 @@ XINFO STREAM numbers
 # XINFO CONSUMERS <key == stream name> < name of consumer group >
 XINFO CONSUMERS numbers numbers-group
 
-
-# print all clients
+# print all clients, print consumers
 CLIENT LIST
+# consumer set name
 CLIENT SETNAME
 ```
 
@@ -262,6 +262,8 @@ XADD <name of stream> <unique ID, or *> <field-name> <field-value>
 # XADD my-stream * my-field 0
 XADD numbers * n 6
 XADD numbers * n 7
+
+# XDEL <stream name> ID ID...
 ```
 
 * calculate amount of messages 
@@ -284,8 +286,31 @@ XREAD COUNT 1 STREAMS numbers 1570976182071-0
 # XREAD BLOCK <milisec> STREAMS <stream-name> <last message id or '$' for last message> # waiting milisec (0-forever) for first new message
 ```
 
+![assign consumer to partition](https://i.postimg.cc/2ykdGDdc/redis-partition-consumer.png)
+![consumer groups](https://i.postimg.cc/dVn2BBqs/redis-consumer-groups.png)
+![consumer in groups](https://i.postimg.cc/hjFYH5PB/redis-consumers-in-group.png)
+```redis-cli
+XGROUP CREATE <name of stream> <name of group> <message id>
+XGROUP CREATE <name of stream> <name of group> <message id> MKSTREAM
+
+# create group, start from first message
+# XGROUP CREATE my-stream my-group0 0
+
+# create group, start from next new message
+# XGROUP CREATE my-stream my-group0 $
+
+# remove group
+XGROUP DESTROY <stream> <name of group>
+```
+![consumer group starts with](https://i.postimg.cc/wMzQnH6Y/redis-consumer-group-start.png)
+
 * Pending Entries List ![pending entries list](https://i.postimg.cc/jjsF475H/redis-consumer-pending.png)
-> for adding consumer to ConsumerGroup - just read message
+> for adding consumer to ConsumerGroup (create consumer) - just read message via XREADGROUP
+> for removing consumer
+  ``` 
+  # XGROUP DELCONSUMER <stream> <group> <user name>
+  XGROUP DELCONSUMER numbers numbers-group terminal-upper
+  ```
 ```
 # XREADGROUP
 # read all messages from Pending Entries List ( not acknowledged )
@@ -310,25 +335,19 @@ XREADGROUP GROUP numbers-group terminal-lower COUNT 1 BLOCK 1000 STREAMS numbers
 XACK numbers numbers-group 1570976179060-0
 ```
 
+* change last-delivered-id for group
 ```
-# XDEL <stream name> ID ID...
+# XGROUP SETID <stream name> <group name> <message id>
+XGROUP SETID numbers numbers-group 0
+XGROUP SETID numbers numbers-group $
+```
+
+```
 # XTRIM <stream name> MAXLEN <length of latest messages in stream >
 # more memory efficiency optimization
 # XTRIM <stream name> MAXLEN ~ <length of latest messages in stream >
 # trimming after adding value 
 # XTRIM <stream name> MAXLEN ~ <length of latest messages in stream > <ID or *> <field-name> <field-value>
-```
-
-![assign consumer to partition](https://i.postimg.cc/2ykdGDdc/redis-partition-consumer.png)
-![consumer groups](https://i.postimg.cc/dVn2BBqs/redis-consumer-groups.png)
-![consumer in groups](https://i.postimg.cc/hjFYH5PB/redis-consumers-in-group.png)
-```redis-cli
-XGROUP CREATE <name of stream> <name of group> <message id>
-XGROUP CREATE <name of stream> <name of group> <message id> MKSTREAM
-# start from first message
-# XGROUP CREATE my-stream my-group0 0
-# start from next new message
-# XGROUP CREATE my-stream my-group0 $
 ```
 
 
