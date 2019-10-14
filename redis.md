@@ -144,6 +144,7 @@ SET customer:3000 cherkavi XX
   * ZRANGEBYSCORE <key> <score start> <score stop> # inclusive
   * ZRANGEBYLEX
     ```
+    # ZADD <key> <score> <member>
     ZADD zset 10 aaa
     ZADD zset 20 bbb
     ZADD zset 30 ccc
