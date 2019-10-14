@@ -136,7 +136,8 @@ SET customer:3000 cherkavi XX
     ```
   * ZADD <key>
   * ZREM <key> <value>
-  * ZREMRANGEBYRANK
+  * ZREMRANGEBYSCORE <key> <score begin> <score end>
+  * ZREMRANGEBYRANK <key> <position begin> < position end>
     ```
     redis:6379>zrange zset 0 -1
     1) "aaa"
@@ -178,11 +179,14 @@ INCR <key> # for integer
 ```
 
 ## geo value
+> under the hood - SortedSet
 ```redis
 GEOADD sites:geo -122.147019 37.670738 56
 GEOADD sites:geo -122.007419 37.5506959 101
 
+# measurements: m, km, mi, ft
 GEORADIUS sites:geo -122.007419 37.5506959 5 km
+# with additional data
 GEORADIUS sites:geo -122.007419 37.5506959 5 km WITHDIST WITHCOORD
 
 
@@ -251,6 +255,7 @@ PUBLISH <channel name> <value>
 ![Pub/Sub vs Streams](https://i.postimg.cc/6QBRGhN6/redis-streams-vs-pubsub.png)
 
 # Stream
+> logically infinite, but server doesn't have infinite memory
 * stream information
 ```
 # XINFO GROUPS <name of stream >
@@ -270,11 +275,16 @@ CLIENT SETNAME
 ![storage and delivery](https://i.postimg.cc/DzTSLhHK/redis-streams-storage-and-delivery.png)
 * add stream entry https://redis.io/commands/xadd
 ```redis-cli
-XADD <name of stream> <unique ID, or *> <field-name> <field-value>
+# XADD <name of stream> <unique ID, or *> <field-name> <field-value>
 # return generated ID ( in case of * ) like "<miliseconds>-<add digit>" or specified by user ID
 # XADD my-stream * my-field 0
 XADD numbers * n 6
 XADD numbers * n 7
+
+# approximate size: XADD <key> MAXLEN ~ <maxlen of stream > <unique ID, or *> <field-name> <field-value>
+XADD numbers MAXLEN ~ 10 * n 9
+# certain size: XADD <key> MAXLEN <maxlen of stream > <unique ID, or *> <field-name> <field-value>
+XADD numbers MAXLEN 10 * n 9
 
 # XDEL <stream name> ID ID...
 ```
