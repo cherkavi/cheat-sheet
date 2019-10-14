@@ -177,13 +177,44 @@ SET customer:3000 cherkavi XX
   * ZINTERSTORE <destination key> <number of keys> <key1, key2.... [number of keys]> WEIGHTS <for key1> <for key2> AGGREGATE <SUM|MIN|MAX> # intersection of sets (WEIGHT can be specified for all elements) and ordered-sets with multiplication factor WEIGHTS and way of AGGREGATion
   * ZUNIONSTORE <destination key> <number of keys> <key1, key2.... [number of keys]> WEIGHTS <for key1> <for key2> AGGREGATE <SUM|MIN|MAX> # union of sets (WEIGHT can be specified for all elements) and ordered-sets with multiplication factor WEIGHTS and way of AGGREGATion
 
-## hash value (map, dictionary), set value, read hash value
+## hash value (map, dictionary), set value, read hash value, save object
 > hash has only one level, can't be embeddable
-```
-HSET <key> <field1> <value1> <field2> <value2>
-HGET <key> <field...>
-HMGET <key> <field1> <field2>
-HGETALL <key>
+> individual field cannot be expired
+```redis-cli
+# HEXISTS <key> <field>
+HEXISTS myhash three
+
+# HSET <key> <field1> <value1> <field2> <value2>
+HSET myhash one 1 two 2 three 3
+
+# HSETNX <key> <field> <value> # set only if not exists
+HSETNX myhash one 2
+HSETNX myhash four 4
+
+# HDEL <key> <field>
+HDEL myhash one
+
+# HGET <key> <field>
+HGET myhash one
+# HMGET <key> <field1> ... <field.>
+HMGET myhash one two
+
+# HGETALL <key>
+HGETALL myhash
+
+# HLEN <key> # return amount of all fields
+HLEN myhash
+
+# HKEYS <key> # return only names of fields
+HKEYS myhash
+
+# HSCAN <key> <number> MATCH <pattern>
+HSCAN myhash 0 MATCH *o*
+HSCAN myhash 0 MATCH *ou*
+
+# HINCRBY <key> <field> <value>
+HINCRBY myhash four 3
+HINCRBYFLOAT myhash four 3.2
 ```
 
 ## increase value
