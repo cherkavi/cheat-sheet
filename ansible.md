@@ -463,6 +463,12 @@ ansible-playbook --inventory="localhost," --connection=local --limit=localhost \
 --tag="scenario-service" deploy-scenario-pipeline.yaml
 ```
 
+solution2
+```sh
+#vim /etc/ansible/hosts
+localhost ansible_connection=local
+```
+
 
 # strategy
 ---
