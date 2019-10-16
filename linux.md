@@ -916,6 +916,11 @@ curl --cookie "first_cookie=123;second_cookie=456;third_cookie=789" -X GET url.c
 culr -c cookie-from-url-com.txt -X GET url.com
 ```
 
+### json output pretty print, json pretty print
+```
+echo output.json | jq .
+```
+
 ### [parsing json, json processing](https://stedolan.github.io/jq/manual/)
 [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})
 ```bash
