@@ -113,8 +113,8 @@ with DAG('airflow_tutorial_v01',
    * poke method is responsible for waiting
 
 
-# REST endpoints
-## trigger DAG
+# REST API
+## trigger DAG - python
 ```
 import urllib2
 import json
@@ -128,5 +128,14 @@ req.add_header('Cache-Control', 'no-cache')
 req.get_method = lambda: "POST"
 f = urllib2.urlopen(req)
 print(f.read())
+```
 
+## trigger DAG - bash
+```
+curl -X POST --user tech-user \     
+    --data '{"conf":{"session_id": "bff2-08275862a9b0"}}' \
+    https://airflow.local/api/experimental/dags/ibeo_gt/dag_runs
+
+# check running
+curl -X GET --user ibeo_gt-s https://airflow.local/api/experimental/dags/ibeo_gt/dag_runs | jq '.[] | if .state=="running" then . else empty end'
 ```
