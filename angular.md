@@ -123,7 +123,12 @@ ng new my-new-project
 ```
 cd my-new-project
 # open in VisualCode just generated project ```code .```
+# start locally 
 ng serve
+# start on specific port
+ng serve --port 2222
+# start and open browser
+ng serve --open
 ```
 
 ## build a project
