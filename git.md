@@ -360,6 +360,11 @@ parse_git_branch() {
 export PS1="\[\033[32m\]\W\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "​
 ```
 
+### ignore tracked file, ignore changes
+```
+git update-index --assume-unchanged .idea/vcs.xml
+```
+
 ## hooks
 ### check commit message
 ```
