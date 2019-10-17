@@ -8,16 +8,16 @@
   # update /etc/environment with $destination_folder
   ```
 * npm config
-> $HOME/.npmrc - another way to extend settings
-```sh
-# list of configuration
-npm config list
-# full config list with default settings
-npm config ls -l
-# set proxy 
-npm config set proxy http://proxy.company.com:8080
-npm config set https-proxy http://proxy.company.com:8080
-```
+> $HOME/.npmrc - another way to extend settings per user
+  ```sh
+  # list of configuration
+  npm config list
+  # full config list with default settings
+  npm config ls -l
+  # set proxy 
+  npm config set proxy http://<username>:<pass>@proxyhost:<port>
+  npm config set https-proxy http://<uname>:<pass>@proxyhost:<port>
+  ```
 
 * install typescript
   ```sh
