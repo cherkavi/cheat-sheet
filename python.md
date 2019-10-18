@@ -74,73 +74,6 @@ pip install --user .
 ```
 pip list
 ```
-### path to external artifacts, external index, pip configuration
-```bash
-$ ​cat /etc/pip.conf 
-```
-```properties
-[global]
-index-url = https://cc-artifactory.myserver.net/artifactory/api/pypi/adp-pypi-virtual/simple
-```
-
-### install certain version of artifact
-```
-pip install tornado==2.1.1
-```
-
-### create virtual environment, dedicated env
-```
-pip install virtualenv
-```
-```
-python3 -m venv virtual_env
-source virtual_env/bin/activate
-# deactivate
-pip install wheel 
-python3 
-```
-
-### install list of artifacts
-```sh
-pip install --requirement requirements.txt
-```
-where requirements.txt is:
-```
-docker==3.7.0
-enum34==1.1.6
-flask-restful==0.3.7
-```
-
-### install artifact from git
-```
-pip install git+https://github.com/django-extensions/django-extensions
-pip install git+https://github.com/django-extensions/django-extensions.git
-pip install -e git+https://github.com/django-extensions/django-extensions.git#egg=django-extensions
-pip install https://github.com/django/django/archive/stable/1.7.x.zip
-pip install git+ssh://git@github.com/myuser/foo.git@my_version
-```
-
-### install package to specific folder
-```
-pip install --target=/home/user/my/python/packages package_name
-export PYTHONPATH=$PYTHONPATH:"/home/user/my/python/packages"
-```
-### load package from specific folder inline
-```
-import sys
-sys.path.append("/path/to/your/my_extra_component")
-import extra_component
-```
-
-### update package
-```
-pip install tornado --update
-```
-
-### remove package, uninstall package
-```
-pip uninstall {package name}
-```
 
 ### list of all installed libraries, installed modules
 ```
@@ -180,6 +113,78 @@ except:
     from pip._internal import main as pipmain
 pipmain(["install", "wheels"]);
 ```
+
+### path to external artifacts, external index, pip configuration
+```bash
+$ ​cat /etc/pip.conf 
+```
+```properties
+[global]
+index-url = https://cc-artifactory.myserver.net/artifactory/api/pypi/adp-pypi-virtual/simple
+```
+
+### install certain version of artifact
+```
+pip install tornado==2.1.1
+```
+
+### create virtual environment, dedicated env
+```
+pip install virtualenv
+```
+```
+python3 -m venv virtual_env
+source virtual_env/bin/activate
+# deactivate
+pip install wheel 
+python3 
+```
+
+### install list of artifacts
+```sh
+pip install -r requirements.txt
+# sometimes after installation not working
+# 'pip list' & 'pip freeze' are not consistent
+cat requirements.txt | xargs -I {} ./pip3 install {}
+```
+where requirements.txt is:
+```
+docker==3.7.0
+enum34==1.1.6
+flask-restful==0.3.7
+```
+
+### install artifact from git
+```
+pip install git+https://github.com/django-extensions/django-extensions
+pip install git+https://github.com/django-extensions/django-extensions.git
+pip install -e git+https://github.com/django-extensions/django-extensions.git#egg=django-extensions
+pip install https://github.com/django/django/archive/stable/1.7.x.zip
+pip install git+ssh://git@github.com/myuser/foo.git@my_version
+```
+
+### install package to specific folder
+```
+pip install --target=/home/user/my/python/packages package_name
+export PYTHONPATH=$PYTHONPATH:"/home/user/my/python/packages"
+```
+### load package from specific folder inline
+```
+import sys
+sys.path.append("/path/to/your/my_extra_component")
+import extra_component
+```
+
+### update package
+```
+pip install tornado --update
+```
+
+### remove package, uninstall package
+```
+pip uninstall {package name}
+```
+
 
 ### import package by string name
 ```
