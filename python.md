@@ -40,8 +40,9 @@ issue:
 ```
 ImportError: cannot import name 'sysconfig'
 ```
-solutionpip install
+solution
 ```
+# pip install
 sudo apt install python3-distutils
 ```
 
@@ -97,6 +98,17 @@ source virtual_env/bin/activate
 # deactivate
 pip install wheel 
 python3 
+```
+
+### install list of artifacts
+```sh
+pip install --requirement requirements.txt
+```
+where requirements.txt is:
+```
+docker==3.7.0
+enum34==1.1.6
+flask-restful==0.3.7
 ```
 
 ### install artifact from git
