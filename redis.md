@@ -308,6 +308,7 @@ PUBLISH <channel name> <value>
 
 # Stream
 > logically infinite, but server doesn't have infinite memory
+> removing old messages ( XTRIM ) should be performed manually ( all messages are saving in memory permanently )
 * stream information
 ```
 # XINFO GROUPS <name of stream >
