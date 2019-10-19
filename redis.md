@@ -380,14 +380,10 @@ XGROUP DESTROY <stream> <name of group>
 ```
 ![consumer group starts with](https://i.postimg.cc/wMzQnH6Y/redis-consumer-group-start.png)  
 
-* Pending Entries List   
-![pending entries list](https://i.postimg.cc/jjsF475H/redis-consumer-pending.png)  
-> for adding consumer to ConsumerGroup (create consumer) - just read message via XREADGROUP, automatically will be created Pending Entries List ( if NOACK not applied )  
-> for removing consumer ( also Pending Entries List will be removed)
-  ``` 
-  # XGROUP DELCONSUMER <stream> <group> <user name>
-  XGROUP DELCONSUMER numbers numbers-group terminal-upper
-  ```
+``` 
+# XGROUP DELCONSUMER <stream> <group> <user name>
+XGROUP DELCONSUMER numbers numbers-group terminal-upper
+```
 ```
 # XREADGROUP
 # read all messages from Pending Entries List ( not acknowledged )
@@ -405,6 +401,63 @@ XREADGROUP GROUP numbers-group terminal-lower COUNT 1 BLOCK 1000 STREAMS numbers
 # read new messages with waiting for 1000 miliseconds ( acknowledgement is not considering )
 XREADGROUP GROUP numbers-group terminal-lower COUNT 1 BLOCK 1000 STREAMS numbers >
 ```
+
+* Pending Entries List   
+![pending entries list](https://i.postimg.cc/jjsF475H/redis-consumer-pending.png)  
+> for adding consumer to ConsumerGroup (create consumer) - just read message via XREADGROUP, automatically will be created Pending Entries List ( if NOACK not applied )  
+> for removing consumer ( also Pending Entries List will be removed)
+
+* review pending messages
+  * list of consumers with pending messages
+  ```
+  # XPENDING <stream name> <group name>
+  XPENDING numbers numbers-group
+  ```
+  * list of messages that pending by consumer
+  ```
+  # XPENDING <stream name> <group name> <begin> <end> <count>
+  XPENDING numbers numbers-group - + 3
+  # XPENDING <stream name> <group name> <begin> <end> <count> <consumer>
+  XPENDING numbers numbers-group - + 3 terminal-lower
+  ```
+  * re-assign message to another consumer
+  ```
+  XPENDING numbers numbers-group 
+1) (integer) 9
+2) "1570976179060-0"
+3) "1571005063764-0"
+4) 1) 1) "consumerC"
+      2) "1"
+   2) 1) "terminal-lower"
+      2) "8"
+  
+  # read list of pending messages
+  XPENDING numbers numbers-group - + 3
+1) 1) "1570976179060-0"
+   2) "terminal-lower"
+   3) (integer) 451374622
+   4) (integer) 1
+2) 1) "1570976182075-0"
+   2) "terminal-lower"
+   3) (integer) 451372154
+   4) (integer) 1
+3) 1) "1570976183508-0"
+   2) "terminal-lower"
+   3) (integer) 451371190
+   4) (integer) 1
+   
+  # re-assing one of the message that belong to <consumer-1> to <consumer-2>
+  XCLAIM numbers numbers-group consumerC 1000 1570976182075-0
+  
+  XPENDING numbers numbers-group
+1) (integer) 9
+2) "1570976179060-0"
+3) "1571005063764-0"
+4) 1) 1) "consumerC"
+      2) "2"
+   2) 1) "terminal-lower"
+      2) "7"  
+  ```
 
 * message acknowledges, removing from entry from  Pending Entries List by certain customer
 ```
