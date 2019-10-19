@@ -309,6 +309,16 @@ PUBLISH <channel name> <value>
 # Stream
 > logically infinite, but server doesn't have infinite memory
 > removing old messages ( XTRIM ) should be performed manually ( all messages are saving in memory permanently )
+* stream patterns
+  * large message payloads
+    [external payload storage](https://i.postimg.cc/vBNRRmrT/Screenshot-from-2019-10-19-21-44-06.png)
+  * one stream vs multiple stream
+    [one/multiple stream approach](https://i.postimg.cc/hP9Sm980/Screenshot-from-2019-10-19-21-48-43.png)
+  * single consumer vs consumer group
+    * consume jobs from queue  
+    [consume jobs from queue](https://i.postimg.cc/65NKB8s4/Screenshot-from-2019-10-19-21-51-10.png)
+    * chain of responsibilities  
+    [chain of responsibilities](https://i.postimg.cc/65NKB8s4/Screenshot-from-2019-10-19-21-51-10.png)
 * stream information
 ```
 # XINFO GROUPS <name of stream >
