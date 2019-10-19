@@ -324,6 +324,23 @@ CLIENT LIST
 CLIENT SETNAME
 ```
 
+* control stream length ( removing redundant messages )
+  * by size of stream: during adding new element
+  ```redis-cli
+  # strict number of elements ( not recommended )
+  XADD <stream name> MAXLEN <max elements size> <name of current key or *> <field name> <field value>
+  # more efficient by resources consumption
+  XADD <stream name> MAXLEN ~ <max elements size> <name of current key or *> <field name> <field value>
+  ```
+  * by size of stream: background process 
+  ```redis-cli
+  # certain number of elements 
+  XTRIM <stream name> MAXLEN <max elements size>
+  # recommended ( approximate amount of elements )
+  XTRIM <stream name> MAXLEN ~ <max elements size>
+  ```
+  * by using EXPIRE with special name of STREAM based on date/time
+
 ![streams pub sub](https://i.postimg.cc/66rt4RwT/redis-streams-pub-sub.png)
 ![storage and delivery](https://i.postimg.cc/DzTSLhHK/redis-streams-storage-and-delivery.png)
 * add stream entry https://redis.io/commands/xadd
