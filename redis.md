@@ -340,6 +340,8 @@ XADD numbers MAXLEN 10 * n 9
 
 # XDEL <stream name> ID ID...
 ```
+* path compression for keys
+[path compression](https://i.postimg.cc/wTjkLcSY/Screenshot-from-2019-10-19-16-36-49.png)
 
 * calculate amount of messages 
 ```
