@@ -26,13 +26,13 @@ REmote DIctionary Server
     INCR my-value
     EXEC
     ```
-
 * [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)
 > like transaction will execute everything atomically
 * no native indexes
   * use "secondary index" - build "inverted index"
   * use "faceted search" - build intersection of "inverted indexes" to find target search criteria
   * use "hashed search" - build set with hash-key ( long name of relations between data cardinality )
+* reject all types of 'write' operations in case of "Out of Memory"
 
 ## commands
 * DBSIZE
@@ -340,8 +340,8 @@ XADD numbers MAXLEN 10 * n 9
 
 # XDEL <stream name> ID ID...
 ```
-* path compression for keys
-[path compression](https://i.postimg.cc/wTjkLcSY/Screenshot-from-2019-10-19-16-36-49.png)
+* STREAMS are using path compression for keys ( fieldname compression ) - less memory consumption in comparing with SET
+[path compression](https://i.postimg.cc/VvtgZZG5/Screenshot-from-2019-10-19-20-27-12.png)
 
 * calculate amount of messages 
 ```
