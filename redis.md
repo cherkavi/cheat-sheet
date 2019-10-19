@@ -1,5 +1,5 @@
 REmote DIctionary Server
-
+* [simple nodejs app](https://github.com/RedisLabs/redis-for-dummies)
 * [commands](https://redis.io/commands)
 * [data types](https://redis.io/topics/data-types-intro)
   > string is underpinning data for all data structures
