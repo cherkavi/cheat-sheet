@@ -1,7 +1,7 @@
 REmote DIctionary Server
 * purposes (use cases)
-  * Primary data storage (key:value, fast data ingestion, geo-based search, rate-limits, leaderboards, ...)
-  * In-memory cache (http session storage, ...)
+  * Primary data storage (key:value, fast data ingestion, geo-based search, leaderboards, ...)
+  * In-memory cache (http session storage, rate-limits - decrease amount of request to expensive API with fixing/sliding window ...)
   * Services decoupling (glue between microservices - pub/sub, streams)
   * 
 * [simple nodejs app](https://github.com/RedisLabs/redis-for-dummies)
