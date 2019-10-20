@@ -39,7 +39,8 @@ REmote DIctionary Server
     INCR my-value
     EXEC
     ```
-* [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)
+* [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)  
+> [Redis Lua script debugger](https://redis.io/topics/ldb)
 > like transaction will execute everything atomically
 * no native indexes
   * use "secondary index" - build "inverted index"
@@ -48,7 +49,7 @@ REmote DIctionary Server
 * reject all types of 'write' operations in case of "Out of Memory"
 
 ## commands
-* MONITOR - show all executed commands
+* MONITOR - show all executed commands ( for debugging purposes only !!! )
 * DBSIZE - print current DB size
 * MEMORY USAGE <key>
 * SLOWLOG GET 2 - investigating slow operations
