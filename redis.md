@@ -50,6 +50,11 @@ REmote DIctionary Server
 
 ## commands
 * MONITOR - show all executed commands ( for debugging purposes only !!! )
+* debugging via linux shell, collaboration between client and server
+  ```sh
+  sudo ngrep -W byline -d lo -t '' 'port 6379'
+  sudo ngrep -W byline -d docker0 -t '' 'port 6379'
+  ```
 * DBSIZE - print current DB size
 * MEMORY USAGE <key>
 * SLOWLOG GET 2 - investigating slow operations
