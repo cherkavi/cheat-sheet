@@ -261,10 +261,22 @@ GEOADD sites:geo -122.007419 37.5506959 101
 GEORADIUS sites:geo -122.007419 37.5506959 5 km
 # with additional data
 GEORADIUS sites:geo -122.007419 37.5506959 5 km WITHDIST WITHCOORD
+```
 
-
-
-
+## bit data
+[bitfield represenation](https://i.postimg.cc/kGcR7NRc/Screenshot-from-2019-10-20-22-24-35.png)  
+[bitfield setvalue](https://i.postimg.cc/hv6Wz6mP/Screenshot-from-2019-10-20-22-31-46.png)  
+[set using histogram symbol](https://i.postimg.cc/nhvbrdhp/Screenshot-from-2019-10-20-22-33-44.png)
+> limit - i64 or u63
+```
+# sign - i
+# unsign - u
+BITFIELD mybit SET u8 0 42
+BITFIELD mybit SET u8 #0 0
+BITFIELD mybit GET u8 0
+BITFIELD mybit INCRBY u8 0 3
+BITFIELD mybit INCRBY u8 #0 0
+GET mybit
 ```
 
 # expiration for key
