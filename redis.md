@@ -539,3 +539,21 @@ XGROUP SETID numbers numbers-group $
   ![range queries](https://i.postimg.cc/sXLHHTps/redis-strams-range-query.png)  
 * fan-out  
   ![](https://i.postimg.cc/1XK14P03/redis-consumer-fan-out.png)  
+
+# Extensions
+  # [TimeSeries DB](http://redistimeseries.io)  
+  [github](https://github.com/RedisTimeSeries/)  
+  [java library](https://github.com/RedisTimeSeries/JRedisTimeSeries)
+  ```redis-cli
+  # add TimeSeries values
+  TS.ADD sites:ts:1:tempC 1562707932573 18.0
+  TS.ADD sites:ts:1:tempC 1562707992573 18.5
+  TS.ADD sites:ts:1:tempC 1562708052573 19.0
+  TS.ADD sites:ts:1:tempC 1562708152573 19.5
+
+  # retrieve values by timerange
+  TS.RANGE sites:ts:1:tempC 1562707932573 1562708152573
+
+  # retrieve values by timerange with aggregation
+  TS.RANGE sites:ts:1:tempC 1562707932573 1562708152573 AGGREGATION AVG 120000
+  ```
