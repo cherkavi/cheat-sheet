@@ -51,6 +51,7 @@ REmote DIctionary Server
 * MONITOR - show all executed commands
 * DBSIZE - print current DB size
 * MEMORY USAGE <key>
+* SLOWLOG GET 2 - investigating slow operations
 * CLIENT LIST 
 * "pipelining"
   ```
@@ -344,8 +345,9 @@ XINFO CONSUMERS numbers numbers-group
 
 # print all clients, print consumers
 CLIENT LIST
-# consumer set name
-CLIENT SETNAME
+# consumer set name, nameconvention: hostname-applicationName-processId
+CLIENT SETNAME <name>
+CLIENT GETNAME
 ```
 
 * control stream length ( removing redundant messages )
