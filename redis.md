@@ -1,4 +1,9 @@
 REmote DIctionary Server
+* purposes (use cases)
+  * Primary data storage (key:value, fast data ingestion, geo-based search, rate-limits, leaderboards, ...)
+  * In-memory cache (http session storage, ...)
+  * Services decoupling (glue between microservices - pub/sub, streams)
+  * 
 * [simple nodejs app](https://github.com/RedisLabs/redis-for-dummies)
 * [commands](https://redis.io/commands)
 * [data types](https://redis.io/topics/data-types-intro)
@@ -35,7 +40,8 @@ REmote DIctionary Server
 * reject all types of 'write' operations in case of "Out of Memory"
 
 ## commands
-* DBSIZE
+* MONITOR - show all executed commands
+* DBSIZE - print current DB size
 * MEMORY USAGE <key>
 * CLIENT LIST 
 * "pipelining"
