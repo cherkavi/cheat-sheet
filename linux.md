@@ -1089,6 +1089,12 @@ sudo openconnect --no-proxy {ip-address} --user={user name}
 sudo openconnect --no-cert-check --no-proxy {ip-address} --user={user name} ---servercert
 ```
 
+### debug network collaboration
+example with reading redis collaboration
+```sh
+sudo ngrep -W byline -d docker0 -t '' 'port 6379'
+```
+
 ### DNS
 ```
 systemd-resolve --status
