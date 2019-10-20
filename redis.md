@@ -3,7 +3,15 @@ REmote DIctionary Server
   * Primary data storage (key:value, fast data ingestion, geo-based search, leaderboards, ...)
   * In-memory cache (http session storage, rate-limits - decrease amount of request to expensive API with fixing/sliding window ...)
   * Services decoupling (glue between microservices - pub/sub, streams)
-  * 
+
+* (extensions)[https://redislabs.com/community/oss-projects/]
+  * (RediSearch)[https://oss.redislabs.com/redisearch/]
+  * (RedisGraph)[https://oss.redislabs.com/redisgraph/]
+  * (RedisTimeSeries)[https://oss.redislabs.com/redistimeseries/]
+  * (RedisJSON)[https://oss.redislabs.com/rejson/]
+  * (RedisAI)[https://oss.redislabs.com/redisai/]
+  * (RedisBloom)[https://oss.redislabs.com/rebloom/]
+  * (Benchmarking)[https://github.com/RedisLabs/memtier_benchmark]
 * [simple nodejs app](https://github.com/RedisLabs/redis-for-dummies)
 * [commands](https://redis.io/commands)
 * [data types](https://redis.io/topics/data-types-intro)
