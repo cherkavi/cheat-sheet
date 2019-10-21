@@ -276,7 +276,19 @@ BITFIELD mybit SET u8 #0 0
 BITFIELD mybit GET u8 0
 BITFIELD mybit INCRBY u8 0 3
 BITFIELD mybit INCRBY u8 #0 0
+
 GET mybit
+
+GETBIT mybit #0
+SETBIT mybit #0 1
+
+# total amount of bit with value 1
+BITCOUNT mybit
+# total amount of bit with value 1 with byte!!! offset
+BITCOUNT mybit 1
+
+# perform OR opertion with bitfields
+BITOP OR mybit mybit
 ```
 
 # expiration for key
