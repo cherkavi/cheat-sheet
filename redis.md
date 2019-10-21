@@ -287,7 +287,7 @@ BITCOUNT mybit
 # total amount of bit with value 1 with byte!!! offset
 BITCOUNT mybit 1
 
-# perform OR opertion with bitfields
+# perform OR (AND, XOR) opertion with bitfields
 BITOP OR mybit mybit
 ```
 
