@@ -355,6 +355,7 @@ PUBLISH <channel name> <value>
 
 [patterned subscriber](https://redis.io/commands/psubscribe)
 > if channel is not exists but you are subscribed already - you will get all messages
+> [patterns](https://en.wikipedia.org/wiki/Glob_(programming))
 ```
 # subscribe for all channels
 PSUBSCRIBE *
