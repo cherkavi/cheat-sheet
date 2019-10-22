@@ -482,6 +482,7 @@ XGROUP DESTROY <stream> <name of group>
 ``` 
 # XGROUP DELCONSUMER <stream> <group> <user name>
 XGROUP DELCONSUMER numbers numbers-group terminal-upper
+# Use XPENDING and XCLAIM to identify messages that may need to be processed by other consumers and reassign them
 ```
 ```
 # XREADGROUP
