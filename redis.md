@@ -464,6 +464,7 @@ XREAD COUNT 1 STREAMS numbers 1570976182071-0
 ![consumer groups](https://i.postimg.cc/dVn2BBqs/redis-consumer-groups.png)  
 ![consumer in groups](https://i.postimg.cc/hjFYH5PB/redis-consumers-in-group.png)  
 ```redis-cli
+# create stream if it is not exist
 XGROUP CREATE <name of stream> <name of group> <message id>
 XGROUP CREATE <name of stream> <name of group> <message id> MKSTREAM
 
