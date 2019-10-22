@@ -339,17 +339,38 @@ UNLINK {key}
 ![redis-java types](https://i.postimg.cc/c4qj1KXk/redis-java-types.png)  
 
 # Publish/Subscribe
-```
-SUBSCRIBE <channel name>
-```
-```
-PUBLISH <channel name> <value>
-```
 * subscribers listening only for new messages
 * published message will not be saved/stored ( if no subscribers are listening - lost forever ) - fire and forget
 * message is just a string ( unstructured )
 * no unique id for message 
 ![Pub/Sub vs Streams](https://i.postimg.cc/6QBRGhN6/redis-streams-vs-pubsub.png)
+```
+SUBSCRIBE <channel name>
+UNSUBSCRIBE <channel name>
+```
+
+```
+PUBLISH <channel name> <value>
+```
+
+[patterned subscriber](https://redis.io/commands/psubscribe)
+> if channel is not exists but you are subscribed already - you will get all messages
+```
+# subscribe for all channels
+PSUBSCRIBE *
+# subscribe for channel with any letter (ch-1, ch-2) at the end
+PSUBSCRIBE ch-?
+```
+[administration of pub/subscribe](https://redis.io/commands/pubsub)
+```
+PUBSUB <subcommand>
+# list of active channels to subscribe
+PUBSUB CHANNELS
+# number of subscribers for a channel
+PUBSUB NUMSUB <channel name>
+# number of patterned subscribers ( how many psubscribe commands are active right now)
+PUBSUB NUMPAT <channel name>
+```
 
 # Stream
 > logically infinite, but server doesn't have infinite memory
