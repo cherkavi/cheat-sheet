@@ -30,6 +30,8 @@
   npm install -g @angular/cli
   # ng --version
   ```
+  
+* [install yarn](https://yarnpkg.com/en/docs/install)
 
 # links
 [quick start](https://github.com/angular/quickstart.git)
