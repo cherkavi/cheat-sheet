@@ -14,7 +14,8 @@ How to learn new tech fastly:
 * Выделяйте элементы навыка, которые приносят 80% успеха
 * Забудьте о многозадачности
 * Репетируйте, репетируйте, репетируйте - ищите обратную связь 
-* Играйте вдолгую и помните о спаде.
+* Играйте вдолгую и помните о спаде.  
+
 ![negotiations](https://i.postimg.cc/nz24YRNM/image.jpg)
 ![manager types](https://i.postimg.cc/0QjQFVbz/manager-types.jpg)
 ![hiring](https://i.postimg.cc/3JG2RGwM/hiring.png)
