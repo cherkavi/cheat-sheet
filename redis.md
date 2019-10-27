@@ -77,6 +77,32 @@ load scripts, cache script
 SCRIPT LOAD "return redis.call('HGET', KEYS[1], ARGV[1])"
 EVALSHA 4688a0f6e1e971a14e2d596031751f0590d37a92 1 hash-key field2
 ```
+ticket purchasing example
+```
+   local customer_hold_key = 'hold:' .. ARGV[1] .. ':' .. KEYS[1]
+    local requested_tickets = tonumber(ARGV[2])
+    local purchase_state = redis.call('HGET', KEYS[2], 'state')
+
+    local hold_qty = redis.call('HGET', customer_hold_key, 'qty')
+    if (hold_qty == nil) then
+        return 0
+    elseif requested_tickets == tonumber(hold_qty) and
+           purchase_state == 'AUTHORIZE' then
+
+        -- Decrement the number of available tickets
+        redis.call('HINCRBY', KEYS[1], "available:General", -requested_tickets)
+
+        -- Delete the customer hold key
+        redis.call('DEL', customer_hold_key)
+
+        -- Set the purchase to 'COMPLETE'
+        redis.call('HMSET', KEYS[2], 'state', 'COMPLETE', 'ts', ARGV[3])
+
+        return 1
+    else
+      return 0
+    end
+```
 
 managing scripts
 ```
