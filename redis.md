@@ -103,6 +103,21 @@ ticket purchasing example
       return 0
     end
 ```
+state machine example
+```
+local current_state = redis.call('HGET', KEYS[1], 'state')
+    local requested_state = ARGV[1]
+
+    if ((requested_state == 'AUTHORIZE' and current_state == 'RESERVE') or
+        (requested_state == 'FAIL' and current_state == 'RESERVE') or
+        (requested_state == 'FAIL' and current_state == 'AUTHORIZE') or
+        (requested_state == 'COMPLETE' and current_state == 'AUTHORIZE')) then
+        redis.call('HMSET', KEYS[1], 'state', requested_state, 'ts', ARGV[2])
+        return 1
+    else
+        return 0
+    end
+```
 
 managing scripts
 ```
