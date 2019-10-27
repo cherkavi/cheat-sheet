@@ -1746,6 +1746,18 @@ locate rc.lua
 ```
 
 ---
+# bluejeans installation ubuntu 18+
+```sh
+sudo alien --to-deb bluejeans-1.37.22.x86_64.rpm 
+sudo dpkg -i bluejeans_1.37.22-2_amd64.deb 
+
+sudo apt install libgconf-2-4 
+sudo ln -s /lib/x86_64-linux-gnu/libudev.so.1 /lib/x86_64-linux-gnu/libudev.so.0
+
+sudo ln -s /opt/bluejeans/bluejeans-bin /usr/bin/bluejeans
+```
+
+---
 # visual code plugins
 ```
 vscjava.vscode-java-debug
