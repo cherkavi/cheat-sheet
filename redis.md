@@ -252,7 +252,17 @@ INCR <key> # for integer
 ```
 
 ## geo value
-> under the hood - SortedSet
+> under the hood - SortedSet,  
+> where Score is [52bit GeoHash](https://en.wikipedia.org/wiki/Geohash) == Long+Lat   
+> [geohash online](http://geohash.org/xn77h1fbep0)
+> retrieving can be fulfilled by Distance, by Radius  
+> geospatial standards:  
+> * https://epsg.io/900913  
+> * https://spatialreference.org/ref/epsg/popular-visualisation-crs-mercator/  
+
+GEOADD key longitude latitude member  
+> Longitude: -180..180  
+> Latitude: -85.05112878..85.05112878
 ```redis
 GEOADD sites:geo -122.147019 37.670738 56
 GEOADD sites:geo -122.007419 37.5506959 101
@@ -262,6 +272,17 @@ GEORADIUS sites:geo -122.007419 37.5506959 5 km
 # with additional data
 GEORADIUS sites:geo -122.007419 37.5506959 5 km WITHDIST WITHCOORD
 ```
+nature of the data under the hood  
+```
+GEOADD test:geopoints 139.75 35.69333 "Budokan"
+GEOADD test:geopoints 139.76632 35.666 "Olympic"
+GEOADD test:geopoints 139.64007 35.4433 "Yokohama"
+ZRANGE test:geopoints 0 -1 WITHSCORES
+
+GEOHASH test:geopoints "Budokan" "Olympic" "Yokohama"
+GEOPOS test:geopoints "Budokan" "Olympic" "Yokohama"
+```
+
 
 ## bit data
 [bitfield represenation](https://i.postimg.cc/kGcR7NRc/Screenshot-from-2019-10-20-22-24-35.png)  
