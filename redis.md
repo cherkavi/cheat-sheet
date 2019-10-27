@@ -162,7 +162,7 @@ SET customer:3000 cherkavi XX
     sdiff set-three set-four # A
     ```
 
-## set ( ordered )
+## set ( ordered ), sorted set
   * ZRANGE <key> <rank/index start> <rank/index stop> # inclusive
   * ZRANGEBYSCORE <key> <score start> <score stop> # inclusive
   * ZRANGEBYLEX
@@ -266,11 +266,6 @@ GEOADD key longitude latitude member
 ```redis
 GEOADD sites:geo -122.147019 37.670738 56
 GEOADD sites:geo -122.007419 37.5506959 101
-
-# measurements: m, km, mi, ft
-GEORADIUS sites:geo -122.007419 37.5506959 5 km
-# with additional data
-GEORADIUS sites:geo -122.007419 37.5506959 5 km WITHDIST WITHCOORD
 ```
 nature of the data under the hood  
 ```
@@ -282,6 +277,27 @@ ZRANGE test:geopoints 0 -1 WITHSCORES
 GEOHASH test:geopoints "Budokan" "Olympic" "Yokohama"
 GEOPOS test:geopoints "Budokan" "Olympic" "Yokohama"
 ```
+querying goedata
+>  measurements: m, km, mi, ft
+```
+#GEODIST key member1 member2 [unit]
+GEODIST test:geopoints "Budokan" "Olympic"  km
+
+# GEORADIUSBYMEMBER key member value unit
+GEORADIUSBYMEMBER test:geopoints "Budokan" 3.5 km
+GEORADIUSBYMEMBER test:geopoints "Budokan" 3.5 km WITHCOORD
+
+GEORADIUS sites:geo -122.007419 37.5506959 5 km
+GEORADIUS sites:geo -122.007419 37.5506959 5 km WITHDIST WITHCOORD
+
+GEORADIUSBYMEMBER test:geopoints "Budokan" 5 km WITHHASH
+GEORADIUSBYMEMBER test:geopoints "Budokan" 5 km WITHHASH WITHDIST STORE search_result
+# saving search results into new key
+GEORADIUSBYMEMBER test:geopoints "Budokan" 5 km STORE search_result
+ZRANGE search_result 0 -1 WITHSCORES
+GEOPOS search_result "Budokan" "Olympic" "Yokohama"
+```
+
 
 
 ## bit data
