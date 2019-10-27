@@ -1748,6 +1748,9 @@ locate rc.lua
 ---
 # bluejeans installation ubuntu 18+
 ```sh
+# retrieve all html anchors from url, html tags from url
+curl -X GET https://www.bluejeans.com/downloads | grep -o '<a .*href=.*>' | sed -e 's/<a /\n<a /g' | sed -e 's/<a .*href=['"'"'"]//' -e 's/["'"'"'].*$//' -e '/^$/ d' | grep rp
+
 sudo alien --to-deb bluejeans-1.37.22.x86_64.rpm 
 sudo dpkg -i bluejeans_1.37.22-2_amd64.deb 
 
