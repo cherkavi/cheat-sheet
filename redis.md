@@ -39,14 +39,54 @@ REmote DIctionary Server
     INCR my-value
     EXEC
     ```
-* [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)  
-> [Redis Lua script debugger](https://redis.io/topics/ldb)
-> like transaction will execute everything atomically
+  * terminate server
+    ```
+    SHUTDOWN NOSAVE
+    ```
 * no native indexes
   * use "secondary index" - build "inverted index"
   * use "faceted search" - build intersection of "inverted indexes" to find target search criteria
   * use "hashed search" - build set with hash-key ( long name of relations between data cardinality )
 * reject all types of 'write' operations in case of "Out of Memory"
+
+* [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)  
+> [Redis Lua script debugger](https://redis.io/topics/ldb)
+> like transaction will execute script atomically
+[types](https://i.postimg.cc/13Y5K4Wm/redis-lua-types.png)
+```redis-cli
+# EVAL script numkeys key [key ...] arg [arg ...]
+# !!! KEYS and ARGV - 1-based arrays
+
+HSET hash-key field1 hello field2 world
+
+EVAL "return redis.call('HGET', 'hash-key', 'field1')" 0
+EVAL "return redis.call('HGET', KEYS[1], ARGV[1])" 1 hash-key field2
+EVAL "return redis.call('HMGET', KEYS[1], ARGV[1], ARGV[2])" 1 hash-key field2 field1
+EVAL "return redis.call('HSCAN', KEYS[1], ARGV[1])" 1 hash-key 0
+
+EVAL "local var1='hello world' return var1" 0
+EVAL "local current_year=2019 return current_year+4" 0
+SET current_year 2019
+GET current_year
+EVAL "local current_year=redis.call('GET', 'current_year') return current_year+4" 0
+```
+
+load scripts, cache script
+```
+# EVAL "return redis.call('HGET', KEYS[1], ARGV[1])" 1 hash-key field2
+SCRIPT LOAD "return redis.call('HGET', KEYS[1], ARGV[1])"
+EVALSHA 4688a0f6e1e971a14e2d596031751f0590d37a92 1 hash-key field2
+```
+
+managing scripts
+```
+# remove all scripts
+SCRIPT FLUSH
+# terminal current script
+SCRIPT KILL
+# debug command
+SCRIPT DEBUG YES|SYNC|NO
+```
 
 ## commands
 * MONITOR - show all executed commands ( for debugging purposes only !!! )
@@ -221,7 +261,7 @@ HDEL myhash one
 
 # HGET <key> <field>
 HGET myhash one
-# HMGET <key> <field1> ... <field.>
+# HMGET <key> <field1> ... <field.> # return multiply values 
 HMGET myhash one two
 
 # HGETALL <key>
@@ -440,6 +480,7 @@ XINFO CONSUMERS numbers numbers-group
 CLIENT LIST
 # consumer set name, nameconvention: hostname-applicationName-processId
 CLIENT SETNAME <name>
+# get user name
 CLIENT GETNAME
 ```
 
