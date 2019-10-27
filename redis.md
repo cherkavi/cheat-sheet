@@ -198,6 +198,7 @@ SET customer:3000 cherkavi XX
   * ZRANK <key> <value>
   * ZSCORE <key> <value>
   * ZCOUNT <key> <min score> <max score> # inclusive 
+    ZCOUNT <key> -inf +inf
   * ZINTERSTORE <destination key> <number of keys> <key1, key2.... [number of keys]> WEIGHTS <for key1> <for key2> AGGREGATE <SUM|MIN|MAX> # intersection of sets (WEIGHT can be specified for all elements) and ordered-sets with multiplication factor WEIGHTS and way of AGGREGATion
   * ZUNIONSTORE <destination key> <number of keys> <key1, key2.... [number of keys]> WEIGHTS <for key1> <for key2> AGGREGATE <SUM|MIN|MAX> # union of sets (WEIGHT can be specified for all elements) and ordered-sets with multiplication factor WEIGHTS and way of AGGREGATion
 
@@ -567,9 +568,9 @@ XREADGROUP GROUP numbers-group terminal-lower COUNT 1 BLOCK 1000 STREAMS numbers
 2) "1570976179060-0"
 3) "1571005063764-0"
 4) 1) 1) "consumerC"
-      2) "1"
-   2) 1) "terminal-lower"
-      2) "8"
+      1) "1"
+   1) 1) "terminal-lower"
+      1) "8"
   
   # read list of pending messages
   XPENDING numbers numbers-group - + 3
