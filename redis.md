@@ -259,6 +259,9 @@ INCR <key> # for integer
 > geospatial standards:  
 > * https://epsg.io/900913  
 > * https://spatialreference.org/ref/epsg/popular-visualisation-crs-mercator/  
+> UseCases: 
+> * finding points nearby  
+> * find points in special region  
 
 GEOADD key longitude latitude member  
 > Longitude: -180..180  
