@@ -199,7 +199,7 @@ docker run --user root {name of image}
 ENTRYPOINT []
 ```
 ```sh
-docker run image-name --entrypoint="" --interactive --tty /bin/sh
+docker run --entrypoint="" --interactive --tty image-name /bin/sh 
 ```
 
 
