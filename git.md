@@ -318,6 +318,8 @@ HTTPS_PROXY=muc.proxy
 #### set proxy, using proxy
 ```sh
 git config --global http.proxy 139.7.95.74:8080
+# proxy settings
+git config --global http.proxy http://proxyuser:proxypwd@proxy.server.com:8080
 git config --global https.proxy 139.7.95.74:8080
 ```
 
