@@ -172,6 +172,11 @@ Class<?> driverClass = Class.forName("oracle.jdbc.driver.OracleDriver");
 ```
 
 ## settings
+### location of settings file
+```sh
+mvn -X help | grep settings.xml
+```
+
 ### proxy settings
 * $MAVEN_HOME/conf/settings.xml
 * ${user.home}/.m2/settings.xml
