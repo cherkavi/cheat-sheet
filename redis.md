@@ -381,6 +381,9 @@ GEORADIUSBYMEMBER test:geopoints "Budokan" 5 km WITHHASH WITHDIST STORE search_r
 GEORADIUSBYMEMBER test:geopoints "Budokan" 5 km STORE search_result
 ZRANGE search_result 0 -1 WITHSCORES
 GEOPOS search_result "Budokan" "Olympic" "Yokohama"
+
+# removing data
+ZREM key member
 ```
 
 
