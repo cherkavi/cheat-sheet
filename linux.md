@@ -451,9 +451,10 @@ base_color=normal=brightgray,black:marked=brightcyan,black:selected=black,lightg
 mc --nocolor
 ```
 
-### full path to file, file behind symlink 
+### full path to file, file behind symlink, absolute path to file
 ```
 readlink -f {file}
+readlink -f `dirname $0`
 realpath {file}
 ```
 or
