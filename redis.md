@@ -22,6 +22,7 @@ REmote DIctionary Server
 > commands: PIPELINED, SYNC  
 * [transactions](https://redis.io/topics/transactions)
   * **commands:** 
+  * Within a transaction, changes are made by a command visible to subsequent commands in the same transaction
   * MULTI - start transaction
   * EXEC ( OK - successfully applied, nil - discard) / DISCARD  - execute or discard transaction
   * no rollback ( single operation )
@@ -53,9 +54,10 @@ REmote DIctionary Server
 > [Redis Lua script debugger](https://redis.io/topics/ldb)
 > like transaction will execute script atomically
 [types](https://i.postimg.cc/13Y5K4Wm/redis-lua-types.png)
+> if execution timeout exceed limit - all other clients will receive "BUSY" answer
 ```redis-cli
 # EVAL script numkeys key [key ...] arg [arg ...]
-# !!! KEYS and ARGV - 1-based arrays
+# !!! KEYS and ARGV - 1-based arrays 
 
 HSET hash-key field1 hello field2 world
 
@@ -172,6 +174,7 @@ SCAN 0
 ```
 ## retrieve values by key, save collection
 ```redis
+# return None if value is empty
 TYPE <key>
 OBJECT ENCODING <key>
 ```
@@ -382,6 +385,12 @@ GEORADIUSBYMEMBER test:geopoints "Budokan" 5 km STORE search_result
 ZRANGE search_result 0 -1 WITHSCORES
 GEOPOS search_result "Budokan" "Olympic" "Yokohama"
 
+# intersection between two keysets
+ZINTERSTORE
+
+# union for two keysets
+ZUNIONSTORE
+
 # removing data
 ZREM key member
 ```
@@ -424,7 +433,7 @@ PEXPIRE {key} {miliseconds}
 EXPIREAT {key} {timestamp}
 PEXPIREAT {key} {miliseconds-timestamp}
 ```
-check expiration, check TimeToLive
+check expiration, check TimeToLive, how many seconds will live
 ```
 TTL {key}
 ```
