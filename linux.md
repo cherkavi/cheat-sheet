@@ -1241,6 +1241,12 @@ sudo systemctl daemon-reload
 sudo systemctl restart snapd.service
 ```
 
+### snap proxy settings
+```
+sudo snap set system proxy.http="http://user:password@proxy.muc:8080"
+sudo snap set system proxy.https="http://user:password@proxy.muc:8080"
+```
+
 ### apache
 [manage httpd](https://httpd.apache.org/docs/current/stopping.html)
 
