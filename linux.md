@@ -894,7 +894,10 @@ curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Conte
 # or with bash variable
 SOME_DATA="my_personal_value"
 curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: text/json" --data-binary '{"add":"'$SOME_DATA'"}'
-
+# or with data from file
+curl -X POST http://localhost:8983/test -H "Content-Type: text/json" --data-binary '@/path/to/file.json'
+# or with multipart body
+curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "userid=1234" http://mysuperserver/media/upload/
 ```
 
 ### curl without progress
