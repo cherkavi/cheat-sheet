@@ -146,6 +146,7 @@ oc get routes {app name / service name}
 ```
 oc get all
 oc get deployment,pod,service,route,dc,pvc,secret -l deployment_name=name-of-my-deployment
+oc get route/name-of-route --output json
 ```
 
 ## print all accounts
