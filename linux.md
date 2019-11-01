@@ -1467,7 +1467,7 @@ dmesg -S
 ncdu
 ```
 
-## create startup disk, write iso image
+## create startup disk, write iso image, usb stick, bootable drive
 ```bash
 sudo dd bs=4M if=/home/my-user/Downloads/archlinux-2019.07.01-x86_64.iso of=/dev/sdb status=progress && sync
 ```
