@@ -1469,6 +1469,9 @@ ncdu
 
 ## create startup disk, write iso image, usb stick, bootable drive
 ```bash
+# list of all hard drives, disk list
+sudo lshw -class disk -short
+# write image
 sudo dd bs=4M if=/home/my-user/Downloads/archlinux-2019.07.01-x86_64.iso of=/dev/sdb status=progress && sync
 ```
 
