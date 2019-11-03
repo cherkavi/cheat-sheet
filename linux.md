@@ -595,6 +595,22 @@ resume process by number into list 'jobs'
 fg 2
 ```
 
+### shell replacing, redirect output to file
+```sh
+bash
+exec > output-file.txt
+date
+# the same as 'exit'
+exec <&-
+cat output-file.txt
+```
+
+### execute command and exit
+```sh
+bash
+exec ls -la
+```
+
 ### disconnect from terminal and let command be runned
 ```
 ctrl-Z
@@ -1093,8 +1109,8 @@ sudo openconnect --no-proxy {ip-address} --user={user name}
 sudo openconnect --no-cert-check --no-proxy {ip-address} --user={user name} ---servercert
 ```
 
-### debug network collaboration
-example with reading redis collaboration
+### debug network collaboration, ip packages
+example with reading redis collaboration ( package sniffer )
 ```sh
 sudo ngrep -W byline -d docker0 -t '' 'port 6379'
 ```
