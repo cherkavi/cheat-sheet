@@ -595,7 +595,7 @@ resume process by number into list 'jobs'
 fg 2
 ```
 
-### shell replacing, redirect output to file
+### shell replacing, redirect output to file, fork new process start
 ```sh
 bash
 exec > output-file.txt
