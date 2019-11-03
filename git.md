@@ -106,10 +106,17 @@ git checkout experiment -- deployment/connection_pool.py
 ```
 
 ### set username, global settings
-```
+```sh
 git config --global user.name "vitalii cherkashyn"
 git config --global user.email vitalii.cherkashyn@wirecard.de
 git config --global --list
+```
+or
+```properties
+# git config --global --edit
+[user]
+   name=Vitalii Cherkashyn
+   email=vitalii.cherkashyn@bmw.de
 ```
 
 ### avoid to enter login/password
