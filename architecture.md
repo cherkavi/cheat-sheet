@@ -1,3 +1,10 @@
+# Architecture 
+```
+Architecture != Tools & Frameworks
+Postponing decisions about Tooling and frameworks
+Focus on customer, not environment
+```
+
 # Useful links
 * [C4](https://leanpub.com/visualising-software-architecture)
 * [C4 model](https://c4model.com/)
