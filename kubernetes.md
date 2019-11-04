@@ -1,6 +1,14 @@
 ---
 useful links
+* [main tutorial](https://kubernetes.io/docs/tutorials/)
+* [git source](https://github.com/kubernetes/dashboard)
+* [architecture](https://kubernetes.io/docs/reference/glossary/?architecture=true)
 * [cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+* [tutorial](https://kubernetes.io/docs/tutorials/)
+* [tutorial external](https://academy.level-up.one/p/learn-kubernetes-from-a-devops-guru-kubernetes-docker)
+* [interactive course](https://www.katacoda.com/courses/kubernetes)
+* [interactive course](https://www.katacoda.com/contino/courses/kubernetes)
+* [interactive course helm](https://www.katacoda.com/aptem/scenarios/helm)
 * [docs task by section](https://kubernetes.io/docs/tasks/)
 * [k8s examples](https://github.com/wardviaene/kubernetes-course)
 * [playground](https://labs.play-with-k8s.com/)
