@@ -840,3 +840,10 @@ BUILD_SUBFOLDER="dist"
 IMAGE_NAME="local-scenario"
 docker build -t $IMAGE_NAME --file $FULL_PATH/$DOCKER_FILE $FULL_PATH/$BUILD_SUBFOLDER
 ```
+
+[RKT](https://coreos.com/rkt/docs/latest/)
+======
+* [getting started fastly](https://coreos.com/blog/getting-started-with-rkt-1-0.html)
+* [gettings started](https://coreos.com/rkt/docs/latest/getting-started-guide.html)
+* [documenation](https://coreos.com/rkt/docs/latest/)
+
