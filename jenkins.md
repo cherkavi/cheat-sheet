@@ -6,6 +6,8 @@
 * [user handbook](https://jenkins.io/user-handbook.pdf)
 * [BlueOcean](https://jenkins.io/doc/book/blueocean/)
 * [pipeline examples](https://github.com/jenkinsci/pipeline-examples)
+* [continuous delivery patterns](https://continuousdelivery.com/implementing/patterns/)
+* [continuous delivery architecture](https://continuousdelivery.com/implementing/architecture/)
 
 #### DSL
 * [jenkins dsl source code](https://github.com/jenkinsci/job-dsl-plugin)
