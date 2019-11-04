@@ -1,4 +1,5 @@
 * [documentation](http://archive.apache.org/dist/lucene/solr/ref-guide/)
+* [tutorial](http://www.solrtutorial.com/)
 * [solr + spark](https://risdenk.gitbooks.io/hadoop_book/examples/spark_and_solr.html)
 
 # Key terms
