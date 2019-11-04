@@ -1,4 +1,8 @@
 
+# education links
+* [interactive learning](https://www.bitdegree.org/course/learn-solidity-space-doggos)
+* [stupid interactive learning](https://cryptozombies.io/)
+
 # bitcoin
 * [wiki](https://en.bitcoin.it/wiki/Main_Page)
 * [proof of work is a piece of data which is difficult (costly, time-consuming) to produce but easy for others to verify](https://en.bitcoin.it/wiki/Proof_of_work)
