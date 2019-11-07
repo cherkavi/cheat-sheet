@@ -734,6 +734,7 @@ grep -ir "memory" --include="*.scala"
 ### inner join for two files, compare string from different files
 ```
 grep -F -x -f path-to-file1 path-to-file2
+grep --fixed-strings --line-regexp -f path-to-file1 path-to-file2
 ```
 
 ### difference between two files without spaces
