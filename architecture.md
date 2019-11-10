@@ -5,6 +5,13 @@ Postponing decisions about Tooling and frameworks
 Focus on customer, not environment
 ```
 
+## Architecture cycle
+[architecture cycle](https://i.postimg.cc/VNXSFVb1/architecture-cycle.png)
+
+## Software architecture patterns
+[architecture patterns](https://i.postimg.cc/Gm8T42L4/architecture-patterns.png)
+
+
 # Useful links
 * [C4](https://leanpub.com/visualising-software-architecture)
 * [C4 model](https://c4model.com/)
