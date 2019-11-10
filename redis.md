@@ -3,7 +3,12 @@ REmote DIctionary Server
   * Primary data storage (key:value, fast data ingestion, geo-based search, leaderboards, ...)
   * In-memory cache (http session storage, rate-limits - decrease amount of request to expensive API with fixing/sliding window ...)
   * Services decoupling (glue between microservices - pub/sub, streams)
-
+* build in C, all modules (Shared Objects) should be written in C or interoperate with it ( Foreign Function Interface )
+* module loading
+  * redis.conf
+  * command line:  --loadmodule /usr/lib/redis/modules/redistimeseries.so
+  * MODULE LOAD
+  * through Redis Enterpirse GUI
 * (extensions)[https://redislabs.com/community/oss-projects/]
   * (RediSearch)[https://oss.redislabs.com/redisearch/]
   * (RedisGraph)[https://oss.redislabs.com/redisgraph/]
