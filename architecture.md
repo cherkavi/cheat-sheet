@@ -5,6 +5,11 @@ Postponing decisions about Tooling and frameworks
 Focus on customer, not environment
 ```
 
+# Architecture trade-offs
+* Build vs Buy
+* Coding vs Configuration
+* Product customisation
+
 # [Antipatterns](https://sourcemaking.com/antipatterns/software-architecture-antipatterns)
 
 ## Architecture cycle
