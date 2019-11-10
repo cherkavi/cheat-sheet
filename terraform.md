@@ -29,9 +29,8 @@ terraform plan
 ```
 
 # terraform examples
-[instance_type](https://aws.amazon.com/ec2/
-[ami](https://eu-central-1.console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:)
-physicalcores/)
+[instance_type](https://aws.amazon.com/ec2/physicalcores/)  
+[ami](https://eu-central-1.console.aws.amazon.com/ec2/v2/home?region=eu-central-1#LaunchInstanceWizard:)  
 ```terraform
 provider "aws" {
    access_key = "AKIA4"
