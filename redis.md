@@ -18,8 +18,16 @@ REmote DIctionary Server
   > string is underpinning data for all data structures
 * [REdis Serialization Protocol - RESP](https://redis.io/topics/protocol)  
 * [pipeline](https://redis.io/topics/pipelining)
-> pipeline == batch commands, will return result ONLY when ALL commands will be finished
-> commands: PIPELINED, SYNC  
+  > pipeline == batch commands, will return result ONLY when ALL commands will be finished
+  **commands**
+  * PIPELINED - start batching
+  * EXEC - execute all commands at once
+  ```redis-cli
+  PIPELINED
+  SET my-value 200
+  INCR my-value
+  SYNC
+  ```
 * [transactions](https://redis.io/topics/transactions)
   * **commands:** 
   * Within a transaction, changes are made by a command visible to subsequent commands in the same transaction
@@ -145,14 +153,6 @@ SCRIPT DEBUG YES|SYNC|NO
 * MEMORY STATS
 * SLOWLOG GET 2 - investigating slow operations
 * CLIENT LIST 
-* "pipelining"
-  ```
-  MULTI
-  command1 
-  command2 
-  ...
-  EXEC
-  ```
 * FLUSHALL [async] # remove all keys
   
 
