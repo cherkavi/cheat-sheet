@@ -132,6 +132,8 @@ SCRIPT DEBUG YES|SYNC|NO
 ```
 
 ## commands
+* MODULE LIST - print all modules
+* MODULE LOAD /usr/lib/redis/modules/redistimeseries.so
 * MONITOR - show all executed commands ( for debugging purposes only !!! )
 * debugging via linux shell, collaboration between client and server
   ```sh
@@ -140,6 +142,7 @@ SCRIPT DEBUG YES|SYNC|NO
   ```
 * DBSIZE - print current DB size
 * MEMORY USAGE <key>
+* MEMORY STATS
 * SLOWLOG GET 2 - investigating slow operations
 * CLIENT LIST 
 * "pipelining"
