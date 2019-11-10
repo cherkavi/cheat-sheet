@@ -21,6 +21,9 @@
 * sudo systemctl start jenkins
 * sudo systemctl status jenkins
 
+### master-slave
+![master-slave](https://i.postimg.cc/J72b0b13/jenkins-master-slave.png)
+
 ### manual clean up
 rm -rf .jenkins/caches/*
 rm -rf .jenkins/workspace/*
