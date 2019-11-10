@@ -5,6 +5,8 @@ Postponing decisions about Tooling and frameworks
 Focus on customer, not environment
 ```
 
+# [Antipatterns](https://sourcemaking.com/antipatterns/software-architecture-antipatterns)
+
 ## Architecture cycle
 [architecture cycle](https://i.postimg.cc/VNXSFVb1/architecture-cycle.png)
 
