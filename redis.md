@@ -3,12 +3,6 @@ REmote DIctionary Server
   * Primary data storage (key:value, fast data ingestion, geo-based search, leaderboards, ...)
   * In-memory cache (http session storage, rate-limits - decrease amount of request to expensive API with fixing/sliding window ...)
   * Services decoupling (glue between microservices - pub/sub, streams)
-* build in C, all modules (Shared Objects) should be written in C or interoperate with it ( Foreign Function Interface )
-* module loading
-  * redis.conf
-  * command line:  --loadmodule /usr/lib/redis/modules/redistimeseries.so
-  * MODULE LOAD
-  * through Redis Enterpirse GUI
 * (extensions)[https://redislabs.com/community/oss-projects/]
   * (RediSearch)[https://oss.redislabs.com/redisearch/]
   * (RedisGraph)[https://oss.redislabs.com/redisgraph/]
@@ -62,12 +56,18 @@ REmote DIctionary Server
   * use "faceted search" - build intersection of "inverted indexes" to find target search criteria
   * use "hashed search" - build set with hash-key ( long name of relations between data cardinality )
 * reject all types of 'write' operations in case of "Out of Memory"
-
+* redis built in C, all modules (Shared Objects) should be written in C or interoperate with it ( Foreign Function Interface )
+* module loading
+  * redis.conf
+  * command line:  --loadmodule /usr/lib/redis/modules/redistimeseries.so
+  * MODULE LOAD
+  * through Redis Enterpirse GUI
+* [module vs lua scripting](https://i.postimg.cc/HxtKjkNf/redis-module-vs-lua.png)
 * [LUA scripting in Redis](https://redis.io/commands/eval), [lua playground](https://www.lua.org/cgi-bin/demo)  
-> [Redis Lua script debugger](https://redis.io/topics/ldb)
-> like transaction will execute script atomically
-[types](https://i.postimg.cc/13Y5K4Wm/redis-lua-types.png)
-> if execution timeout exceed limit - all other clients will receive "BUSY" answer
+> [Redis Lua script debugger](https://redis.io/topics/ldb)  
+> like transaction will execute script atomically  
+[types](https://i.postimg.cc/13Y5K4Wm/redis-lua-types.png)  
+> if execution timeout exceed limit - all other clients will receive "BUSY" answer  
 ```redis-cli
 # EVAL script numkeys key [key ...] arg [arg ...]
 # !!! KEYS and ARGV - 1-based arrays 
@@ -622,12 +622,12 @@ XGROUP DESTROY <stream> <name of group>
 ```
 ![consumer group starts with](https://i.postimg.cc/wMzQnH6Y/redis-consumer-group-start.png)  
 
-``` 
+```redis-cli
 # XGROUP DELCONSUMER <stream> <group> <user name>
 XGROUP DELCONSUMER numbers numbers-group terminal-upper
 # Use XPENDING and XCLAIM to identify messages that may need to be processed by other consumers and reassign them
 ```
-```
+```redis-cli
 # XREADGROUP
 # read all messages from Pending Entries List ( not acknowledged )
 XREADGROUP GROUP numbers-group terminal-lower STREAMS numbers 0
@@ -652,19 +652,19 @@ XREADGROUP GROUP numbers-group terminal-lower COUNT 1 BLOCK 1000 STREAMS numbers
 
 * review pending messages
   * list of consumers with pending messages
-  ```
+```redis-cli
   # XPENDING <stream name> <group name>
   XPENDING numbers numbers-group
-  ```
+```
   * list of messages that pending by consumer
-  ```
+```redis-cli
   # XPENDING <stream name> <group name> <begin> <end> <count>
   XPENDING numbers numbers-group - + 3
   # XPENDING <stream name> <group name> <begin> <end> <count> <consumer>
   XPENDING numbers numbers-group - + 3 terminal-lower
-  ```
+```
   * re-assign message to another consumer
-  ```
+```redis-cli
   XPENDING numbers numbers-group 
 1) (integer) 9
 2) "1570976179060-0"
@@ -673,8 +673,10 @@ XREADGROUP GROUP numbers-group terminal-lower COUNT 1 BLOCK 1000 STREAMS numbers
       1) "1"
    1) 1) "terminal-lower"
       1) "8"
-  
+```
+
   # read list of pending messages
+```redis-cli
   XPENDING numbers numbers-group - + 3
 1) 1) "1570976179060-0"
    2) "terminal-lower"
@@ -700,22 +702,22 @@ XREADGROUP GROUP numbers-group terminal-lower COUNT 1 BLOCK 1000 STREAMS numbers
       2) "2"
    2) 1) "terminal-lower"
       2) "7"  
-  ```
+```
 
 * message acknowledges, removing from entry from  Pending Entries List by certain customer
-```
+```redis-cli
 # XACK <key of stream> <name of the group> <messageID>
 XACK numbers numbers-group 1570976179060-0
 ```
 
 * change last-delivered-id for group
-```
+```redis-cli
 # XGROUP SETID <stream name> <group name> <message id>
 XGROUP SETID numbers numbers-group 0
 XGROUP SETID numbers numbers-group $
 ```
 
-```
+```redis-cli
 # XTRIM <stream name> MAXLEN <length of latest messages in stream >
 # more memory efficiency optimization
 # XTRIM <stream name> MAXLEN ~ <length of latest messages in stream >
@@ -740,7 +742,7 @@ XGROUP SETID numbers numbers-group $
   ![](https://i.postimg.cc/1XK14P03/redis-consumer-fan-out.png)  
 
 # Extensions
-  # [TimeSeries DB](http://redistimeseries.io)  
+## [TimeSeries DB](http://redistimeseries.io)  
   [github](https://github.com/RedisTimeSeries/)  
   [java library](https://github.com/RedisTimeSeries/JRedisTimeSeries)
   ```redis-cli
@@ -756,3 +758,23 @@ XGROUP SETID numbers numbers-group $
   # retrieve values by timerange with aggregation
   TS.RANGE sites:ts:1:tempC 1562707932573 1562708152573 AGGREGATION AVG 120000
   ```
+
+## [redisearch](https://oss.redislabs.com/redisearch)
+![rdbms vs nosql vs redisearch](https://i.postimg.cc/5NdTx9V3/redis-secondary-index-overview.png)  
+![redis index domain](https://i.postimg.cc/Hx3nTvJ0/redis-index-domain.png)  
+![redis index processing](https://i.postimg.cc/T271SSvf/redis-index-processing.png)  
+* [list of stop-words](https://oss.redislabs.com/redisearch/Stopwords/)  
+* advantages of using secondary indexing
+  * optimizing memory usage
+  * deals with large documents
+  * optimizing for high scale and speed
+  * flexibility by docoupling storage from index
+  * unify multiply data storages
+* UNLINK, DEL, TTL not affected index
+* only RedisEnterprise can cluster RediSearch ( not compatible with Redis Cluster )
+* RediSearch - one index per database ( documents are living there with document ID - unique in one DB)
+* field types for indexing:
+  * text
+  * numeric
+  * tag ( collection of flags/words, no stemming )
+  * geo
