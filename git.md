@@ -188,6 +188,11 @@ git log --all -- "**db-update.py"
 git log --all -- db-scripts/src/main/python/db-diff/db-update.py
 ```
 
+### history of file, file changes
+```sh
+git log path/to/file
+```
+
 ### files in commit
 ```
 git diff-tree --no-commit-id --name-only -r 6dee1f44f56cdaa673bbfc3a76213dec48ecc983
