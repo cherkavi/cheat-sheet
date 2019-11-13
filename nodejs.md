@@ -26,3 +26,8 @@ npm install -g @angular/cli
 npm install
 npm start
 ```
+
+## start from different folder, start with special marker
+```sh
+npm start --prefix /path/to/api "special_app_marker_for_ps_aux"
+```
