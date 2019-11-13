@@ -605,6 +605,12 @@ exec <&-
 cat output-file.txt
 ```
 
+## output to file with variable, output to variable
+```sh
+gen_version="5.2.1"
+$(find /mapr/dp.prod/vantage/data/processed/gen/$gen_version/ -maxdepth 5 -mindepth 5 | awk -F '/' '{print $14}' > gt-$gen_version.list)
+```
+
 ### execute command and exit
 ```sh
 bash
