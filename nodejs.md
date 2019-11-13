@@ -31,3 +31,9 @@ npm start
 ```sh
 npm start --prefix /path/to/api "special_app_marker_for_ps_aux"
 ```
+
+## start with different port
+package.json solution
+```json
+ "scripts": {"start": "PORT=$PORT node ./bin/www"},
+```
