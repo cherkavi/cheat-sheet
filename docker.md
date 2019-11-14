@@ -231,6 +231,39 @@ docker run --network some-network --name my-redis -d redis
 docker run --network some-network --interactive --tty redis redis-cli -h my-redis
 ```
 
+### connecting containers via host, localhost connection, shares the host network stack and has access to the /etc/hosts for network communication
+```sh
+docker run --rm   --name postgres-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 postgres
+# --net=host 
+# --network host 
+docker run -it --rm --network="host" postgres psql -h 0.0.0.0 -U postgres
+```
+
+### assign static hostname to container (map hostname)
+* create network
+```
+docker network create --subnet=172.18.0.0/16 docker.local.network
+```
+* assign address with network
+```
+docker run --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -it {CONTAINER ID} /bin/bash
+```
+* check network
+```
+docker inspect {CONTAINER ID} | grep -i NETWORK
+```
+
+### network types
+```
+--network="bridge" : 
+  'host': use the Docker host network stack
+  'bridge': create a network stack on the default Docker bridge
+  'none': no networking
+  'container:<name|id>': reuse another container's network stack
+  '<network-name>|<network-id>': connect to a user-defined network
+```
+
+
 ## Volumes
 ### create volume
 ```
@@ -447,36 +480,6 @@ docker system df
 ```
 docker system prune
 ```
-
-### assign static hostname to container (map hostname)
-* create network
-```
-docker network create --subnet=172.18.0.0/16 docker.local.network
-```
-* assign address with network
-```
-docker run --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -it {CONTAINER ID} /bin/bash
-```
-* check network
-```
-docker inspect {CONTAINER ID} | grep -i NETWORK
-```
-
-### shares the host network stack and has access to the /etc/hosts for network communication
-```
---net=host 
---network host 
-```
-### network types
-```
---network="bridge" : 
-  'host': use the Docker host network stack
-  'bridge': create a network stack on the default Docker bridge
-  'none': no networking
-  'container:<name|id>': reuse another container's network stack
-  '<network-name>|<network-id>': connect to a user-defined network
-```
-
 
 ### [UI manager](https://portainer.readthedocs.io)
 ```
