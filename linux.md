@@ -948,6 +948,11 @@ curl --cookie "first_cookie=123;second_cookie=456;third_cookie=789" -X GET url.c
 culr -c cookie-from-url-com.txt -X GET url.com
 ```
 
+### xml pretty print, xml format
+```
+xmllint --format /path/to/file.xml > /path/to/file-formatted.xml
+```
+
 ### json output pretty print, json pretty print
 ```
 echo output.json | jq .
