@@ -836,6 +836,11 @@ xdg-open {filename}
 w3m {filename}
 ```
 
+### open in browser, open url
+```
+sensible-browser http://localhost:3000/api/status
+```
+
 ### wget to console
 ```
 wget -O- http://{host}:8500/wd-only/getBrandXml.jsp?brand=229099017 > /dev/null  2>&1
