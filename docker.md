@@ -16,7 +16,7 @@ docker system info
 /etc/systemd/system/docker.service.d/http-proxy.conf
 ```
 
-### how to skip typing "sudo" each time
+### how to skip typing "sudo" each time, without sudo
 ```sh
 sudo groupadd docker
 sudo usermod -aG docker $USER # add current user into docker group
