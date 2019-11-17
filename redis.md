@@ -781,20 +781,20 @@ XGROUP SETID numbers numbers-group $
 * [redisearch commands](https://oss.redislabs.com/redisearch/Commands/)
 * ![redisearch vs rdbms](https://i.postimg.cc/Jn7ZJBTZ/redisearch-vs-rdbms.png)
 * search examples
-  * simple search ( UNION )
+  * simple search ( INTERSECT by default - boolean and )
   ```redis-cli
   # FT.SEARCH <index> <query> LIMIT <begin> <end>
 
-  # number of documents, without results (UNION)
+  # number of documents, without results
   FT.SEARCH permits garage LIMIT 0 0
 
-  # OR condition ( INTERSECT UNION )
+  # OR condition ( UNION )
   FT.SEARCH permits garage|carport LIMIT 0 0
 
-  # AND condition ( INTERSECT UNION )
+  # AND condition ( INTERSECT )
   FT.SEARCH permits "garage carport" LIMIT 0 0
   ```
-  * AND condition with NOT  ( INTERSECT UNION NOT)
+  * AND condition with NOT  ( INTERSECT NOT)
   ![AND condition with NOT](https://i.postimg.cc/L4LZyp7n/redisearch-conditions-overlap.png)  
   ```redis-cli
   # AND condition with NOT
