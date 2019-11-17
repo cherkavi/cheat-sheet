@@ -1790,6 +1790,11 @@ Right move-right 10
 echo $XDG_CONFIG_DIRS
 locate rc.lua
 ```
+* [rainbow cursor](https://www.gnome-look.org/p/1300587/)
+```sh
+# place for mouse pointer, cursor, theme
+/usr/share/icons
+```
 
 ---
 # bluejeans installation ubuntu 18+
