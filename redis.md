@@ -782,37 +782,50 @@ XGROUP SETID numbers numbers-group $
 * ![redisearch vs rdbms](https://i.postimg.cc/Jn7ZJBTZ/redisearch-vs-rdbms.png)
 * search examples
   * simple search ( UNION )
-```redis-cli
-# FT.SEARCH <index> <query> LIMIT <begin> <end>
+  ```redis-cli
+  # FT.SEARCH <index> <query> LIMIT <begin> <end>
 
-# number of documents, without results
-FT.SEARCH permits garage LIMIT 0 0
+  # number of documents, without results (UNION)
+  FT.SEARCH permits garage LIMIT 0 0
 
-# OR condition 
-FT.SEARCH permits garage|carport LIMIT 0 0
+  # OR condition ( INTERSECT UNION )
+  FT.SEARCH permits garage|carport LIMIT 0 0
 
-# AND condition 
-FT.SEARCH permits "garage carport" LIMIT 0 0
-```
-  * AND condition with NOT  ( INTERSECT )
+  # AND condition ( INTERSECT UNION )
+  FT.SEARCH permits "garage carport" LIMIT 0 0
+  ```
+  * AND condition with NOT  ( INTERSECT UNION NOT)
   ![AND condition with NOT](https://i.postimg.cc/L4LZyp7n/redisearch-conditions-overlap.png)  
-```redis-cli
-# AND condition with NOT
-FT.SEARCH permits "garage carport -government" LIMIT 0 0
-```
+  ```redis-cli
+  # AND condition with NOT
+  FT.SEARCH permits "garage carport -government" LIMIT 0 0
+  ```
   * wildchar  
-```redis-cli
-FT.SEARCH permits car*
-```
+  ```redis-cli
+  FT.SEARCH permits car*
+  ```
   * certain search ( EXACT )
-```redis-cli
-FT.SEARCH permits "\"big garage\""
-```
+  ```redis-cli
+  FT.SEARCH permits "\"big garage\""
+  ```
   * levenstein search with distance 1  
-![levenstein search](https://i.postimg.cc/J7Y4cd7G/redisearch-levenstein.png)
-```redis-cli
-FT.SEARCH permits "%lock%"
-```
+  ![levenstein search](https://i.postimg.cc/J7Y4cd7G/redisearch-levenstein.png)
+  ```redis-cli
+  FT.SEARCH permits "%lock%"
+  ```
+  * parens   
+  ![parens](https://i.postimg.cc/Vvv79NfZ/redisearch-parens.png)
+  ```redis-cli
+  FT.SEARCH permits "(underground parkade)|(parking lot)"
+  ```
+  ![parens more comples](https://i.postimg.cc/x1vPzmGT/redisearch-parens2.png)
+  ```redis-cli
+  # image above
+  FT.SEARCH permits "(underground parkade)|(parking lot) demolish"
+  # or with not 
+  FT.SEARCH permits "(underground parkade)|(parking lot) -demolish"
+  FT.SEARCH permits "(underground parkade)|(parking lot) -(demolish|remove)"
+  ```
 
 * explain query cli
 ```redis-cli
