@@ -780,9 +780,10 @@ XGROUP SETID numbers numbers-group $
   * geo
 * [redisearch commands](https://oss.redislabs.com/redisearch/Commands/)
 * ![redisearch vs rdbms](https://i.postimg.cc/Jn7ZJBTZ/redisearch-vs-rdbms.png)
-* search example
+* search examples
+  * simple search
 ```redis-cli
-# FT.SEARCH <key> <query> LIMIT <begin> <end>
+# FT.SEARCH <index> <query> LIMIT <begin> <end>
 
 # number of documents, without results
 FT.SEARCH permits garage LIMIT 0 0
@@ -793,3 +794,25 @@ FT.SEARCH permits garage|carport LIMIT 0 0
 # AND condition 
 FT.SEARCH permits "garage carport" LIMIT 0 0
 ```
+  * AND condition with NOT  
+  ![AND condition with NOT](https://i.postimg.cc/L4LZyp7n/redisearch-conditions-overlap.png)  
+```redis-cli
+# AND condition with NOT
+FT.SEARCH permits "garage carport -government" LIMIT 0 0
+```
+  * wildchar  
+```redis-cli
+FT.SEARCH permits car*
+```
+  * levenstein search with distance 1  
+![levenstein search](https://i.postimg.cc/J7Y4cd7G/redisearch-levenstein.png)
+```redis-cli
+FT.SEARCH permits "%lock%"
+```
+
+* explain query cli
+```redis-cli
+# FT.EXPLAINCLI <index> <query> 
+```
+
+  
