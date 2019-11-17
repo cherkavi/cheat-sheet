@@ -778,3 +778,18 @@ XGROUP SETID numbers numbers-group $
   * numeric
   * tag ( collection of flags/words, no stemming )
   * geo
+* [redisearch commands](https://oss.redislabs.com/redisearch/Commands/)
+* ![redisearch vs rdbms](https://i.postimg.cc/Jn7ZJBTZ/redisearch-vs-rdbms.png)
+* search example
+```redis-cli
+# FT.SEARCH <key> <query> LIMIT <begin> <end>
+
+# number of documents, without results
+FT.SEARCH permits garage LIMIT 0 0
+
+# OR condition 
+FT.SEARCH permits garage|carport LIMIT 0 0
+
+# AND condition 
+FT.SEARCH permits "garage carport" LIMIT 0 0
+```
