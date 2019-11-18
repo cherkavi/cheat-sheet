@@ -856,6 +856,11 @@ wget -nv -O- http://{host}:8500/wd-only/getBrandXml.jsp?brand=229099017 2>/dev/n
 wget -O out.zip http://{host}:9000/published/resources/10050001.zip
 ```
 
+### wget to specific folder
+```sh
+wget http://host:9090/wd-only/1005000.zip --directory-prefix="/home/temp/out"
+```
+
 ### wget https without checking certificate
 ```
 wget --no-check-certificate https://musan999999.mueq.adas.intel.com:8888/data-api/session/
