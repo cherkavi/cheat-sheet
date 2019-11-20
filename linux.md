@@ -963,6 +963,11 @@ culr -c cookie-from-url-com.txt -X GET url.com
 xmllint --format /path/to/file.xml > /path/to/file-formatted.xml
 ```
 
+### xml validation
+```sh
+xmllint --noout file.xml; echo $?
+```
+
 ### json output pretty print, json pretty print
 ```
 echo output.json | jq .
