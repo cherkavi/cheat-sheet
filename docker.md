@@ -634,6 +634,27 @@ sudo mv docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
 sudo apt-get install  --only-upgrade docker
 ```
 
+## variables in compose file
+```docker
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=${MYSQL_PORT}
+      - PMA_USER=${MYSQL_USER}
+      - PMA_PASSWORD=${MYSQL_PASSWORD}
+    depends_on: 
+      - mariadb
+```
+and file ```.env``` in the same folder
+```properties
+MYSQL_USER=joomla
+MYSQL_PASSWORD=joomla
+MYSQL_PORT=3306
+```
+
 ## start in detached mode, up and detach
 ```
 docker-compose up -d
