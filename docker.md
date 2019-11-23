@@ -654,6 +654,9 @@ MYSQL_USER=joomla
 MYSQL_PASSWORD=joomla
 MYSQL_PORT=3306
 ```
+```sh
+docker-compose config
+```
 
 ## start in detached mode, up and detach
 ```
