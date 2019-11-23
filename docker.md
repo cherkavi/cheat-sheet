@@ -843,6 +843,15 @@ BUILD_SUBFOLDER="dist"
 IMAGE_NAME="local-scenario"
 docker build -t $IMAGE_NAME --file $FULL_PATH/$DOCKER_FILE $FULL_PATH/$BUILD_SUBFOLDER
 ```
+## docker remove volume issue
+```
+Error response from daemon: remove typo3_db_data: volume is in use 
+```
+```
+docker system prune -af --volumes
+docker volume rm typo3_db_data
+```
+
 
 [RKT](https://coreos.com/rkt/docs/latest/)
 ======
