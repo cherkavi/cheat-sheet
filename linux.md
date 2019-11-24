@@ -1831,6 +1831,25 @@ sudo ln -s /lib/x86_64-linux-gnu/libudev.so.1 /lib/x86_64-linux-gnu/libudev.so.0
 
 sudo ln -s /opt/bluejeans/bluejeans-bin /usr/bin/bluejeans
 ```
+---
+# [vim plugin](https://github.com/junegunn/vim-plug)
+file ```.vimrc``` should have next content: 
+```
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'itchyny/lightline.vim'
+call plug#end()
+
+set laststatus=2
+```
 
 ---
 # visual code plugins
