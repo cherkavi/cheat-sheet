@@ -1832,7 +1832,8 @@ sudo ln -s /lib/x86_64-linux-gnu/libudev.so.1 /lib/x86_64-linux-gnu/libudev.so.0
 sudo ln -s /opt/bluejeans/bluejeans-bin /usr/bin/bluejeans
 ```
 ---
-# [vim plugin](https://github.com/junegunn/vim-plug)
+# vim
+## [vim plugin](https://github.com/junegunn/vim-plug)
 file ```.vimrc``` should have next content: 
 ```
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -1845,10 +1846,29 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 set laststatus=2
+```
+
+## .vim folder example
+```
+.vim
+├── autoload
+│   └── plug.vim
+├── colors
+│   └── wombat.vim
+├── pack
+│   └── plugins
+└── plugged
+    ├── goyo.vim
+    ├── lightline.vim
+    ├── limelight.vim
+    ├── seoul256.vim
+    ├── vim-airline
+    └── vim-airline-themes
 ```
 
 ---
