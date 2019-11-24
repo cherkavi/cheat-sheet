@@ -688,6 +688,7 @@ systemctl restart cron
 ```
 ./hbase.sh 2>/dev/null
 ```
+
 ### grep with line number
 ```
 grep -nr "text for search" .
@@ -735,6 +736,16 @@ cat file.txt | grep -v "not-include-string"
 ### grep with file mask
 ```
 grep -ir "memory" --include="*.scala"
+```
+
+### grep with regexp
+```
+grep -ir --include=README.md ".*base" 2>/dev/null
+```
+
+### grep without permission denied
+```
+grep -ir --include=README.md "base" 2>/dev/null
 ```
 
 ### inner join for two files, compare string from different files
