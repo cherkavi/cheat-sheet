@@ -826,6 +826,10 @@ XGROUP SETID numbers numbers-group $
   FT.SEARCH permits "(underground parkade)|(parking lot) -demolish"
   FT.SEARCH permits "(underground parkade)|(parking lot) -(demolish|remove)"
   ```
+  * fields
+  ```redis-cli
+  FT.SEARCH permits "@building_type:new @description:construction"
+  ```
 
 * explain query cli
 ```redis-cli
