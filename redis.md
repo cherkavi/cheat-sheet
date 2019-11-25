@@ -830,6 +830,13 @@ XGROUP SETID numbers numbers-group $
   ```redis-cli
   FT.SEARCH permits "@building_type:new @description:construction"
   ```
+  * SLOP
+    ![garbage between words](https://i.postimg.cc/tRnLsLB3/redisearch-slop.png)
+    * text only
+    * limit to field ( otherwise all fields will be considered like one text line )
+  ```redis-cli
+  FT.SEARCH slop-fox "@phrase: (brown lazy john)" SLOP 5
+  ```
 
 * explain query cli
 ```redis-cli
