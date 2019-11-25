@@ -837,6 +837,14 @@ XGROUP SETID numbers numbers-group $
   ```redis-cli
   FT.SEARCH slop-fox "@phrase: (brown lazy john)" SLOP 5
   ```
+  * HIGHLIGHTS
+  ```redis-cli
+  FT.SEARCH permits "retail construction" HIGHLIGHTS
+  FT.SEARCH permits "retail construction" HIGHLIGHTS LIMIT 0 1
+  FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description
+  FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description TAGS "<strong>" "</strong>"
+  FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS 1 description TAGS "<strong>" "</strong>"
+  ```
 
 * explain query cli
 ```redis-cli
