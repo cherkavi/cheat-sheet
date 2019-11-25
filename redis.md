@@ -846,6 +846,9 @@ XGROUP SETID numbers numbers-group $
   FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS 1 description TAGS "<strong>" "</strong>"
   ```
   * SUMMARIZE
+    * LEN - amount of words to be output
+    * FRAG - amount of fragments 
+    * SEPARATOR - sepearator for fragments
   ```redis-cli
   FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR ,
   FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong>
