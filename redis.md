@@ -842,8 +842,13 @@ XGROUP SETID numbers numbers-group $
   FT.SEARCH permits "retail construction" HIGHLIGHTS
   FT.SEARCH permits "retail construction" HIGHLIGHTS LIMIT 0 1
   FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description
-  FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description TAGS "<strong>" "</strong>"
+  FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description TAGS <strong> </strong>
   FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS 1 description TAGS "<strong>" "</strong>"
+  ```
+  * SUMMARIZE
+  ```redis-cli
+  FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR ,
+  FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong>
   ```
 
 * explain query cli
