@@ -958,6 +958,7 @@ curl --insecure -s -X GET http://google.com
 curl --verbose --insecure -s -X GET http://google.com
 ```
 ### curl cookie
+chrome extension ```cookies.txt```
 ```sh
 # send predefined cookie to url
 curl -b path-to-cookie-file.txt -X GET url.com
