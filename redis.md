@@ -781,10 +781,17 @@ XGROUP SETID numbers numbers-group $
   * geo
 * [redisearch commands](https://oss.redislabs.com/redisearch/Commands/)
 * ![redisearch vs rdbms](https://i.postimg.cc/Jn7ZJBTZ/redisearch-vs-rdbms.png)
+* explain query cli
+```redis-cli
+# FT.EXPLAINCLI <index> <query> 
+```
+
 * search examples
   * simple search ( INTERSECT by default - boolean and )
   ```redis-cli
   # FT.SEARCH <index> <query> LIMIT <offset> <count>
+  # use explanation to understand what is going on under the hood
+  # FT.EXPLAINCLI permits garage LIMIT 0 0
 
   # number of documents, without results
   FT.SEARCH permits garage LIMIT 0 0
@@ -862,10 +869,19 @@ XGROUP SETID numbers numbers-group $
   # find certain numeric number - low/high ranges are equals
   FT.SEARCH permits "@construction_value:[1000 1000] demolish garage" LIMIT 0 0
   ```
+  * TAG 
+  ```redis-cli
+  # example of querying by tag
+  FT.SEARCH permits @zoning:{rf1}
+  # print all available tags
+  FT.TAGVALS permits zoning
+  ```
+    * AND    
+    ```redis-cli
+    FT.SEARCH permits "@zoning:{rf1} @zoning:{rf1}"
+    ```
+    * OR
+    ```redis-cli
+    FT.SEARCH permits @zoning:{rf1|rf6}
+    ```
 
-* explain query cli
-```redis-cli
-# FT.EXPLAINCLI <index> <query> 
-```
-
-  
