@@ -1844,15 +1844,15 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/seoul256.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
-set laststatus=2
+set laststatus=1
 ```
+```sh
+git clone https://github.com/vim-airline/vim-airline ~/.vim/plugged/vim-airline
+```
+
 
 ## .vim folder example
 ```
