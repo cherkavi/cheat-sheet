@@ -885,4 +885,9 @@ XGROUP SETID numbers numbers-group $
     ```redis-cli
     FT.SEARCH permits @zoning:{rf1|rf6}
     ```
-
+  * GEO 
+  > value in field: longitude,latitude
+  ![geo search](https://i.postimg.cc/Jh3B6mCC/redis-search-geo.png)  
+  ```redis-cli
+  FT.SEARCH permits "@location:[-113.477 53.558 1 km]" LIMIT 0 0
+  ```
