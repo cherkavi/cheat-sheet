@@ -376,6 +376,7 @@ GEOPOS test:geopoints "Budokan" "Olympic" "Yokohama"
 ```
 querying goedata
 >  measurements: m, km, mi, ft
+> ![georadius](https://i.postimg.cc/9X9HvfN9/redis-georadius.png)
 ```
 #GEODIST key member1 member2 [unit]
 GEODIST test:geopoints "Budokan" "Olympic"  km
