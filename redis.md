@@ -291,6 +291,7 @@ SET customer:3000 cherkavi XX
   * ZSCORE <key> <value>
   * ZCOUNT <key> <min score> <max score> # inclusive 
     ZCOUNT <key> -inf +inf
+    ZCOUNT <key> (-inf +inf) # exclusive
   * ZINTERSTORE <destination key> <number of keys> <key1, key2.... [number of keys]> WEIGHTS <for key1> <for key2> AGGREGATE <SUM|MIN|MAX> # intersection of sets (WEIGHT can be specified for all elements) and ordered-sets with multiplication factor WEIGHTS and way of AGGREGATion
   * ZUNIONSTORE <destination key> <number of keys> <key1, key2.... [number of keys]> WEIGHTS <for key1> <for key2> AGGREGATE <SUM|MIN|MAX> # union of sets (WEIGHT can be specified for all elements) and ordered-sets with multiplication factor WEIGHTS and way of AGGREGATion
 
@@ -783,7 +784,7 @@ XGROUP SETID numbers numbers-group $
 * search examples
   * simple search ( INTERSECT by default - boolean and )
   ```redis-cli
-  # FT.SEARCH <index> <query> LIMIT <begin> <end>
+  # FT.SEARCH <index> <query> LIMIT <offset> <count>
 
   # number of documents, without results
   FT.SEARCH permits garage LIMIT 0 0
@@ -852,6 +853,14 @@ XGROUP SETID numbers numbers-group $
   ```redis-cli
   FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR ,
   FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong>
+  ```
+  * search with numeric fields
+  ```redis-cli
+  FT.SEARCH permits "@construction_value:[1 300]" LIMIT 0 0
+  FT.SEARCH permits "@construction_value:[1 300]|@description:in_process" LIMIT 0 0
+  FT.SEARCH permits "@construction_value:[10 300]|@description:in_process" LIMIT 0 0
+  # find certain numeric number - low/high ranges are equals
+  FT.SEARCH permits "@construction_value:[1000 1000] demolish garage" LIMIT 0 0
   ```
 
 * explain query cli
