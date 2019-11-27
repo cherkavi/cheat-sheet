@@ -163,8 +163,13 @@ git show --name-only --oneline `git rev-list --author="Vitalii Cherkashyn" item-
 ```
 
 ### conflict files, show conflicts
-```
+```sh
 git diff --name-only --diff-filter=U
+```
+
+### conflict file apply remote changes
+```sh
+git checkout --theirs path/to/file
 ```
 
 ### git fetch
