@@ -839,12 +839,22 @@ XGROUP SETID numbers numbers-group $
   ```redis-cli
   FT.SEARCH permits "@building_type:new @description:construction"
   ```
+    * AND
+      ```redis-cli
+      FT.SEARCH permits "@building_type:new @description:construction"
+      ```
+    * OR
+      ```redis-cli
+      FT.SEARCH permits "@building_type:new @description:construction|done"
+      ```
   * SLOP
     ![garbage between words](https://i.postimg.cc/tRnLsLB3/redisearch-slop.png)
     * text only
     * limit to field ( otherwise all fields will be considered like one text line )
   ```redis-cli
   FT.SEARCH slop-fox "@phrase: (brown lazy john)" SLOP 5
+  # more strict - order should be the same
+  FT.SEARCH permits "retail construction" SLOP 5 INORDER
   ```
   * HIGHLIGHTS
   ```redis-cli
@@ -885,9 +895,14 @@ XGROUP SETID numbers numbers-group $
     ```redis-cli
     FT.SEARCH permits @zoning:{rf1|rf6}
     ```
+    * NOT
+    ```redis-cli
+    FT.SEARCH permits "@zoning:{AGU} @zoning:{DC2} -@zoning:{PU|CSC|US}"
+    ```
   * GEO 
   > value in field: longitude,latitude
   ![geo search](https://i.postimg.cc/Jh3B6mCC/redis-search-geo.png)  
   ```redis-cli
-  FT.SEARCH permits "@location:[-113.477 53.558 1 km]" LIMIT 0 0
+  FT.SEARCH permits "@location:[-113.477 53.558 1 km]" LIMIT 0 0  
+  FT.SEARCH permits "@location:[-113.50125915402455, 53.57593507222605 1 km] @neighbourhood:{Westwood|Eastwood}" LIMIT 0 0
   ```
