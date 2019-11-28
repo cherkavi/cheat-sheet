@@ -1,3 +1,7 @@
+# [source code](https://kafka.apache.org/code)
+```sh
+git clone https://github.com/apache/kafka.git kafka
+```
 # main concepts
 * Topics
 category of messages, consists from Partitions
