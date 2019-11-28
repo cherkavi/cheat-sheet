@@ -108,13 +108,16 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mytopic
 partition will be selected 
 
 # Consumer
-## consumer console
+## consumer console ( console consumer )
 ```
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning --consumer.config my_own_config.properties
 bin/kafka-console-consumer.sh --bootstrap-server mus07.mueq.adac.com:9092 --new-consumer --topic session-ingest-stage-1 --offset 20 --partition 0  --consumer.config kafka-log4j.properties
 
+# read information about partitions
 java kafka.tools.GetOffsetShell --broker-list musnn071001:9092 --topic session-ingest-stage-1
+# get number of messages in partitions, partitions messages count
+bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list localhost:9092 --topic session-ingest-stage-1
 ```
 ## consumer group console
 ```
