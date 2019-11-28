@@ -112,7 +112,7 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mytopic
 partition will be selected 
 
 # Consumer
-## consumer console ( console consumer )
+## [consumer console](https://github.com/apache/kafka/blob/trunk/core/src/main/scala/kafka/tools/ConsoleConsumer.scala) ( console consumer )
 ```
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning --consumer.config my_own_config.properties
