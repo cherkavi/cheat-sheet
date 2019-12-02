@@ -778,6 +778,24 @@ criterias:
 limits:  
   * up to 1024 fields
   * up to 128 text fields
+* creating index arguments, creating index options
+  * STOPWORDS
+    ```redis-cli
+    # FT.CREATE <index name> STOPWORDS 2 <stop-word1> <stop-word2> SCHEMA <index field name> text
+    FT.CREATE my-fields STOPWORDS 4 and or xor not SCHEMA field-names text
+    ```  
+  * NOFIELDS - will search through all text fields, not only for specific one
+    ```redis-cli
+    # FT.CREATE <index name> NOFIELDS SCHEMA <field name> <type> <field name> <type>
+    FT.CREATE my-index NOFIELDS SCHEMA fname TEXT lname TEXT age NUMERIC
+    # will return "my-search-value" from all text fields, not only from fname
+    FT.SEARCH my-index "@fname:my-search-value"
+    ```
+* add value to index
+  ```redis-cli
+  # FT.ADD <index name> <document id> <amount of records> FIELDS <index field name> <value>
+  FT.ADD my-fields math-expressions 1 FIELDS field_names "ln 10 and sin 2.5 and cos 1"  
+  ```
 * [list of stop-words](https://oss.redislabs.com/redisearch/Stopwords/)  
 * advantages of using secondary indexing
   * optimizing memory usage
