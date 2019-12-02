@@ -782,6 +782,11 @@ XGROUP SETID numbers numbers-group $
   * geo
 * [redisearch commands](https://oss.redislabs.com/redisearch/Commands/)
 * ![redisearch vs rdbms](https://i.postimg.cc/Jn7ZJBTZ/redisearch-vs-rdbms.png)
+* TF-IDF - TermFrequency - Inverse Document Frequency   
+```
+TF-IDF = 1 + ln( number of documents / ( 1 + documents with term ) )
+Document Score = "amount of words" * TF-IDF
+```
 * explain query cli
 ```redis-cli
 # FT.EXPLAINCLI <index> <query> 
@@ -812,6 +817,10 @@ XGROUP SETID numbers numbers-group $
   * wildchar  
   ```redis-cli
   FT.SEARCH permits car*
+  ```
+  * optional search ( OPTIONAL ), increase score of document ( boost up document weights in return result )
+  ```redis-cli
+  FT.SEARCH permits "garage ~kiosk"
   ```
   * certain search ( EXACT )
   ```redis-cli
