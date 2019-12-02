@@ -162,6 +162,16 @@ git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201
 git show --name-only --oneline `git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201`
 ```
 
+### conflict files, show conflicts
+```sh
+git diff --name-only --diff-filter=U
+```
+
+### conflict file apply remote changes
+```sh
+git checkout --theirs path/to/file
+```
+
 ### git fetch
 ```sh
 git fetch --all --prune

@@ -958,6 +958,7 @@ curl --insecure -s -X GET http://google.com
 curl --verbose --insecure -s -X GET http://google.com
 ```
 ### curl cookie
+chrome extension ```cookies.txt```
 ```sh
 # send predefined cookie to url
 curl -b path-to-cookie-file.txt -X GET url.com
@@ -1476,9 +1477,13 @@ bzip2 -dc ricochet-1.1.4-src.tar.bz2 | tar xvf -
 ```
 
 ## console and clipboard
-```
-xclip -o
-cat file.txt | xclip
+```sh
+alias clipboard="xclip -selection clipboard" 
+alias clipboard-ingest="xclip -selection clipboard"
+function clipboard-copy-file(){
+    xclip -in -selection c $1
+}
+alias clipboard-print="xclip -out -selection clipboard"
 ```
 
 ## screenshot, copy screen
@@ -1843,15 +1848,15 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/seoul256.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
-set laststatus=2
+set laststatus=1
 ```
+```sh
+git clone https://github.com/vim-airline/vim-airline ~/.vim/plugged/vim-airline
+```
+
 
 ## .vim folder example
 ```

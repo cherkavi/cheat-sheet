@@ -589,6 +589,17 @@ create/update file:
 ./roles/{project/role name}/meta/main.yml
 ```
 
+## execute role, role execution, start role locally
+```sh
+ansible localhost \
+    --extra-vars="deploy_application=1" \
+    --extra-vars=@group_vars/all/defaults/all.yaml \
+    --extra-vars=@group_vars/all/vars/all.yaml \
+    --extra-vars="mapr_stream_path={{ some_variable_from_previous_files }}/some-argument" \
+    -m include_role \
+    -a name="new_application/new_role"
+```
+
 ## console output with applied roles should looks like
 ```
 TASK [{project/role name}: {task name}] ***********************************
