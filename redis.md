@@ -844,7 +844,7 @@ Document Score = "amount of words" * TF-IDF
   FT.SEARCH permits "(underground parkade)|(parking lot) -demolish"
   FT.SEARCH permits "(underground parkade)|(parking lot) -(demolish|remove)"
   ```
-  * fields
+  * field search, specify field name for search ( not across all fields )
   ```redis-cli
   FT.SEARCH permits "@building_type:new @description:construction"
   ```
@@ -855,6 +855,7 @@ Document Score = "amount of words" * TF-IDF
     * OR
       ```redis-cli
       FT.SEARCH permits "@building_type:new @description:construction|done"
+      FT.SEARCH permits "(@building_type:new @description:construction) | (@building_type:new @description:fdone)"
       ```
   * SLOP
     ![garbage between words](https://i.postimg.cc/tRnLsLB3/redisearch-slop.png)
@@ -878,6 +879,8 @@ Document Score = "amount of words" * TF-IDF
     * FRAG - amount of fragments 
     * SEPARATOR - sepearator for fragments
   ```redis-cli
+  FT.SEARCH permits "work" RETURN 1 description 
+  FT.SEARCH permits "work" RETURN 2 description location
   FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR ,
   FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong>
   ```
@@ -909,7 +912,7 @@ Document Score = "amount of words" * TF-IDF
     FT.SEARCH permits "@zoning:{AGU} @zoning:{DC2} -@zoning:{PU|CSC|US}"
     ```
   * GEO 
-  > value in field: longitude,latitude
+  > value in field: [longitude latitude radius m|km|mi|ft ]
   ![geo search](https://i.postimg.cc/Jh3B6mCC/redis-search-geo.png)  
   ```redis-cli
   FT.SEARCH permits "@location:[-113.477 53.558 1 km]" LIMIT 0 0  
