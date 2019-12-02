@@ -765,6 +765,19 @@ XGROUP SETID numbers numbers-group $
 ![rdbms vs nosql vs redisearch](https://i.postimg.cc/5NdTx9V3/redis-secondary-index-overview.png)  
 ![redis index domain](https://i.postimg.cc/Hx3nTvJ0/redis-index-domain.png)  
 ![redis index processing](https://i.postimg.cc/T271SSvf/redis-index-processing.png)  
+* creating index
+```redis-cli
+FT.CREATE <index-name> [index level arguments] SCHEMA <name type options> <name type options> <...>
+```
+criterias:  
+  * Indexed field == queryable
+  * All or Some fields
+  * Duplicate values across fields
+  * Value vs Ambiguity
+  * Space vs Flexibility
+limits:  
+  * up to 1024 fields
+  * up to 128 text fields
 * [list of stop-words](https://oss.redislabs.com/redisearch/Stopwords/)  
 * advantages of using secondary indexing
   * optimizing memory usage
@@ -776,10 +789,10 @@ XGROUP SETID numbers numbers-group $
 * only RedisEnterprise can cluster RediSearch ( not compatible with Redis Cluster )
 * RediSearch - one index per database ( documents are living there with document ID - unique in one DB)
 * field types for indexing:
-  * text
-  * numeric
-  * tag ( collection of flags/words, no stemming )
-  * geo
+  * text ( human language )
+  * numeric ( numbers, timestamps )
+  * tag ( collection of flags/words, no stemming; flags or enums )
+  * geo ( location )
 * [redisearch commands](https://oss.redislabs.com/redisearch/Commands/)
 * ![redisearch vs rdbms](https://i.postimg.cc/Jn7ZJBTZ/redisearch-vs-rdbms.png)
 * TF-IDF - TermFrequency - Inverse Document Frequency   
