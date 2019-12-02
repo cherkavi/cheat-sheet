@@ -801,6 +801,15 @@ limits:
     # next query can return some results
     FT.SEARCH my-index "@my-field2:some-value" SORTBY my-field ASC
     ```
+  * WEIGHT ( for text only ) for increasing weight in return result 
+  ```redis-cli
+  ... SCHEMA my-field TEXT WEIGHT 3.0
+  ```
+  * NOSTEM ( for text only ) not using root-word diversity ( only matching by exact value )
+  ```redis-cli
+  ... SCHEMA my-field TEXT NOSTEM
+  ```
+  * TAG SEPARATOR <ascii char> - separator between tags
 * add value to index
   ```redis-cli
   # FT.ADD <index name> <document id> <amount of records> FIELDS <index field name> <value>
