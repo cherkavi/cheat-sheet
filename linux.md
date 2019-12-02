@@ -1477,9 +1477,13 @@ bzip2 -dc ricochet-1.1.4-src.tar.bz2 | tar xvf -
 ```
 
 ## console and clipboard
-```
-xclip -o
-cat file.txt | xclip
+```sh
+alias clipboard="xclip -selection clipboard" 
+alias clipboard-ingest="xclip -selection clipboard"
+function clipboard-copy-file(){
+    xclip -in -selection c $1
+}
+alias clipboard-print="xclip -out -selection clipboard"
 ```
 
 ## screenshot, copy screen
