@@ -791,6 +791,16 @@ limits:
     # will return "my-search-value" from all text fields, not only from fname
     FT.SEARCH my-index "@fname:my-search-value"
     ```
+  * SORTABLE - additional argument SORTBY ASC|DESC can be applied to search query
+    can be used for: text, tag, numeric
+  * SORTABLE NOINDEX - can be used only for sorting, not for querying
+    ```redis-cli
+    FT.CREATE my-index SCHEMA my-field NUMERIC SORTABLE NOINDEX my-field2 TEXT
+    # next query will always return empty results - field is not searchable
+    FT.SEARCH my-index "@my-field:[-inf +inf]"
+    # next query can return some results
+    FT.SEARCH my-index "@my-field2:some-value" SORTBY my-field ASC
+    ```
 * add value to index
   ```redis-cli
   # FT.ADD <index name> <document id> <amount of records> FIELDS <index field name> <value>
@@ -822,7 +832,6 @@ Document Score = "amount of words" * TF-IDF
 ```redis-cli
 # FT.EXPLAINCLI <index> <query> 
 ```
-
 * search examples
   * simple search ( INTERSECT by default - boolean and )
   ```redis-cli
@@ -938,6 +947,10 @@ Document Score = "amount of words" * TF-IDF
   FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description
   FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description TAGS <strong> </strong>
   FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS 1 description TAGS "<strong>" "</strong>"
+  ```
+  * SORTBY ( field must be marked as SORTABLE )
+  ```redis-cli
+  FT.SEARCH permits "retail construction" HIGHLIGHTS SORTBY my-sortable-field ASC LIMIT 0 1   
   ```
   * SUMMARIZE
     * LEN - amount of words to be output
