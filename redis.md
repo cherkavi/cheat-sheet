@@ -822,9 +822,9 @@ Document Score = "amount of words" * TF-IDF
   ```redis-cli
   FT.SEARCH permits "garage ~kiosk"
   ```
-  * certain search ( EXACT )
+  * certain search, multi word search ( EXACT )
   ```redis-cli
-  FT.SEARCH permits "\"big garage\""
+  FT.SEARCH permits "\"big yellow garage\""
   ```
   * levenstein search with distance 1  
   ![levenstein search](https://i.postimg.cc/J7Y4cd7G/redisearch-levenstein.png)
@@ -861,11 +861,11 @@ Document Score = "amount of words" * TF-IDF
     ![garbage between words](https://i.postimg.cc/tRnLsLB3/redisearch-slop.png)
     * text only
     * limit to field ( otherwise all fields will be considered like one text line )
-  ```redis-cli
-  FT.SEARCH slop-fox "@phrase: (brown lazy john)" SLOP 5
-  # more strict - order should be the same
-  FT.SEARCH permits "retail construction" SLOP 5 INORDER
-  ```
+    ```redis-cli
+    FT.SEARCH slop-fox "@phrase: (brown lazy john)" SLOP 5
+    # more strict - order should be the same
+    FT.SEARCH permits "retail construction" SLOP 5 INORDER
+    ```
   * search with numeric fields
   ```redis-cli
   FT.SEARCH permits "@construction_value:[1 300]" LIMIT 0 0
