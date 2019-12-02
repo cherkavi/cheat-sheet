@@ -866,24 +866,6 @@ Document Score = "amount of words" * TF-IDF
   # more strict - order should be the same
   FT.SEARCH permits "retail construction" SLOP 5 INORDER
   ```
-  * HIGHLIGHTS
-  ```redis-cli
-  FT.SEARCH permits "retail construction" HIGHLIGHTS
-  FT.SEARCH permits "retail construction" HIGHLIGHTS LIMIT 0 1
-  FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description
-  FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description TAGS <strong> </strong>
-  FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS 1 description TAGS "<strong>" "</strong>"
-  ```
-  * SUMMARIZE
-    * LEN - amount of words to be output
-    * FRAG - amount of fragments 
-    * SEPARATOR - sepearator for fragments
-  ```redis-cli
-  FT.SEARCH permits "work" RETURN 1 description 
-  FT.SEARCH permits "work" RETURN 2 description location
-  FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR ,
-  FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong>
-  ```
   * search with numeric fields
   ```redis-cli
   FT.SEARCH permits "@construction_value:[1 300]" LIMIT 0 0
@@ -917,4 +899,23 @@ Document Score = "amount of words" * TF-IDF
   ```redis-cli
   FT.SEARCH permits "@location:[-113.477 53.558 1 km]" LIMIT 0 0  
   FT.SEARCH permits "@location:[-113.50125915402455, 53.57593507222605 1 km] @neighbourhood:{Westwood|Eastwood}" LIMIT 0 0
+  ```
+  * HIGHLIGHTS
+  ```redis-cli
+  FT.SEARCH permits "retail construction" HIGHLIGHTS
+  FT.SEARCH permits "retail construction" HIGHLIGHTS LIMIT 0 1
+  FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description
+  FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description TAGS <strong> </strong>
+  FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS 1 description TAGS "<strong>" "</strong>"
+  ```
+  * SUMMARIZE
+    * LEN - amount of words to be output
+    * FRAG - amount of fragments 
+    * SEPARATOR - sepearator for fragments
+  ```redis-cli
+  FT.SEARCH permits "work" RETURN 1 description 
+  FT.SEARCH permits "work" RETURN 2 description location
+  FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR ,
+  FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong>
+  FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong> LIMIT 100 5  
   ```
