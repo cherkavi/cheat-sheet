@@ -810,10 +810,22 @@ limits:
   ... SCHEMA my-field TEXT NOSTEM
   ```
   * TAG SEPARATOR <ascii char> - separator between tags
-* add value to index
+* add value to index, adding value to index
   ```redis-cli
   # FT.ADD <index name> <document id> <amount of records> FIELDS <index field name> <value>
   FT.ADD my-fields math-expressions 1 FIELDS field_names "ln 10 and sin 2.5 and cos 1"  
+  ```
+* CRUD operation for values in index
+  * FT.CREATE
+  ```redis-cli
+  ```
+  * FT.DROP
+  ```redis-cli
+  # KEEPDOCS - not re-calculate hashes 
+  ```
+  * FT.ALTER all already have added documents will not be changed
+  ```redis-cli
+  FT.ADD my-fields SCHEMA add new-field text
   ```
 * [list of stop-words](https://oss.redislabs.com/redisearch/Stopwords/)  
 * advantages of using secondary indexing
