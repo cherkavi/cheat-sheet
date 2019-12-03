@@ -764,6 +764,12 @@ diff -w file1.txt file2.txt
 diff -c file1.txt file2.txt
 ```
 
+### show difference between two dates, date difference, time difference
+```sh
+apt install dateutils
+dateutils.ddiff -i '%Y%m%d%H%M%S' -f '%y %m %d %H %M %S' 20160312000101 20170817040001
+```
+
 ### replace character into string
 ```
 array = echo $result | tr {}, ' ' 
