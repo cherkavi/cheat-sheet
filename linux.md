@@ -1555,6 +1555,7 @@ TIMEDIFF=`echo "$ENDTIME - $STARTTIME" | bc | awk -F"." '{print $1"."substr($2,1
 ```
 
 ## vim
+[vim cheat sheet](http://najomi.org/vim)
 ### copy-paste
 * v - *visual* selection ( start selection )
 * y - *yank* ( end selection )
