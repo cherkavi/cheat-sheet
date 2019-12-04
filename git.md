@@ -1,3 +1,6 @@
+# cheat sheet collection
+* [git useful commands and advices ](http://najomi.org/git)
+
 ### debug flag, verbose output of commands, output debug
 ```
 export GIT_TRACE=1
