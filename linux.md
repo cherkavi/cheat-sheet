@@ -973,7 +973,12 @@ curl -b path-to-cookie-file.txt -X GET url.com
 curl --cookie "first_cookie=123;second_cookie=456;third_cookie=789" -X GET url.com
 
 # collect cookie from remote url and save in file
-culr -c cookie-from-url-com.txt -X GET url.com
+curl -c cookie-from-url-com.txt -X GET url.com
+```
+
+### curl with encoding to another codepage, from win1251 to utf8
+```sh
+curl "http://some.resource/read_book.php?id=66258&p=1" | iconv --from-code WINDOWS-1251 --to-code UTF-8
 ```
 
 ### xml pretty print, xml format
