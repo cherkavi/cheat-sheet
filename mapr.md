@@ -203,6 +203,21 @@ java -cp `mapr classpath`:my-own-app.jar mypackage.MainClass
 
 ```
 
+## REST API
+```sh
+curl_user="cluster_user"
+curl_pass="cluster_user_password"
+stream_path="%2Fvantage%2Forchestration%2Fstreams%2Fpipeline"
+topic_name="gateway"
+host="https://ubsdpdesp000001.vantage.org"
+port=8082
+ 
+curl -u $curl_user:$curl_pass \
+--insecure -s -X GET \
+-H "Content-Type: application/vnd.kafka.v2+json" \
+$host:$port/topics/$stream_path%3A$topic_name
+```
+
 # maprcli
 ## login, print info, logout
 ```
