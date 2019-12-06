@@ -146,9 +146,14 @@ git diff --name-status develop release-6.0.0
 git cherry develop release-6.0.0
 ```
 
-### difference between branches for file ( diff between branches )
+### difference between branches for file ( diff between branches, compare branches )
 ```sh
 git diff develop..master -- myfile.cs
+```
+
+### difference between branch and current file ( compare file with file in branch )
+```sh
+git diff master -- myfile.cs
 ```
 
 ### difference between commited and staged
