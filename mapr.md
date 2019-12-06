@@ -203,7 +203,7 @@ java -cp `mapr classpath`:my-own-app.jar mypackage.MainClass
 
 ```
 
-## REST API
+## [REST API](https://mapr.com/docs/61/Kafka/REST-proxy.html)
 ```sh
 curl_user="cluster_user"
 curl_pass="cluster_user_password"
