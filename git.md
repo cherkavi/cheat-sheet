@@ -170,6 +170,21 @@ git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201
 git show --name-only --oneline `git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201`
 ```
 
+### copying from another branch, copy file branch
+```
+branch_source="master"
+branch_dest="feature-2121"
+file_name="src/libs/service/message_encoding.py"
+
+# check
+git diff $branch_dest..$branch_source $file_name
+# apply 
+git checkout $branch_source -- $file_name
+# check 
+git diff $branch_source $file_name
+
+```
+
 ### conflict files, show conflicts
 ```sh
 git diff --name-only --diff-filter=U
