@@ -697,6 +697,7 @@ grep -nr "text for search" .
 ```
 # need to set * or mask for files in folder !!!
 grep -s "search_string" /path/to/folder/*
+sed -n 's/^search_string//p' /path/to/folder/*
 ```
 
 ### grep line before
