@@ -819,11 +819,29 @@ limits:
   FT.ADD my-fields math-expressions 1 FIELDS REPLACE field_names "ln 10 and sin 2.5 and cos 1"  
   # if a field is not a part of the schema (NOINDEX) - no re-index; if field is SORTABLE - sort will be updated
   FT.ADD my-fields math-expressions 1 FIELDS REPLACE PARTIAL field_names "ln 10 and sin 2.5 and cos 1"  
-  # index document with force
+  # index document with force without saving
   FT.ADD my-fields math-expressions 1 FIELDS NOSAVE field_names "ln 10 and sin 2.5 and cos 1"  
   # specify a language
   FT.ADD my-fields math-expressions 1 FIELDS LANGUAGE Russian field_names "ln 10 and sin 2.5 and cos 1"  
   ```
+* read element from index
+  ```redis-cli
+  # retrieve all fields, synonym is HGETALL
+  FT.GET <index name> <document id>
+  # retrieve ManyDocuments
+  FT.MGET <index name> <document id> < document id >
+  ```
+* remove value from index
+  * [problem of deletion](https://i.postimg.cc/DzyjdF3y/redisearch-remove-document.png)
+  * document is marking for deletion, not removing immediately 
+  * removing is executing in separate thread
+  ```redis-cli
+  FT.DEL <index> <document ID>
+  # delete also related hash map
+  FT.DEL <index> <document ID> DD
+  ```
+  * one document can belond to two indexes
+  [one document two indexes](https://i.postimg.cc/QCthRv7X/redis-search-one-doc-two-indexes.png)
 * CRUD operation for values in index
   * FT.CREATE
   ```redis-cli
