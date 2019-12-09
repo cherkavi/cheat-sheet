@@ -812,8 +812,17 @@ limits:
   * TAG SEPARATOR <ascii char> - separator between tags
 * add value to index, adding value to index
   ```redis-cli
-  # FT.ADD <index name> <document id> <amount of records> FIELDS <index field name> <value>
+  # FT.ADD <index name> <document id> <score> FIELDS <field name> <field value> <field name> <field value>
+  # FT.ADD <index name> <document id> <score> <options> FIELDS <field name> <field value> <field name> <field value>
   FT.ADD my-fields math-expressions 1 FIELDS field_names "ln 10 and sin 2.5 and cos 1"  
+  # re-index document 
+  FT.ADD my-fields math-expressions 1 FIELDS REPLACE field_names "ln 10 and sin 2.5 and cos 1"  
+  # if a field is not a part of the schema (NOINDEX) - no re-index; if field is SORTABLE - sort will be updated
+  FT.ADD my-fields math-expressions 1 FIELDS REPLACE PARTIAL field_names "ln 10 and sin 2.5 and cos 1"  
+  # index document with force
+  FT.ADD my-fields math-expressions 1 FIELDS NOSAVE field_names "ln 10 and sin 2.5 and cos 1"  
+  # specify a language
+  FT.ADD my-fields math-expressions 1 FIELDS LANGUAGE Russian field_names "ln 10 and sin 2.5 and cos 1"  
   ```
 * CRUD operation for values in index
   * FT.CREATE
