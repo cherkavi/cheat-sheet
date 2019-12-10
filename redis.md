@@ -840,8 +840,22 @@ limits:
   # delete also related hash map
   FT.DEL <index> <document ID> DD
   ```
-  * one document can belond to two indexes
+  * one document can belonds to two indexes
   [one document two indexes](https://i.postimg.cc/QCthRv7X/redis-search-one-doc-two-indexes.png)
+* sysnonyms
+https://oss.redislabs.com/redisearch/Commands/#ftsynadd  
+  ```redis-cli
+  # add synonyms, return value - id of group, index should be updated afterwards ( FT.ADD ... REPLACE )
+  # be aware, one synonym can belong to different groups
+  FT.SYNADD <index name> <synonym 1> <synonym 2> <synonym 3> <synonym ...>
+  # explaing cli will return group id for sysnonym - it starts with tilda
+  FT.EXPLAINCLI <index name> <search request>
+  # print all synonyms in all groups
+  FT.SYNDUMP <index name>
+  # update ( append )some of the group with new values
+  FT.SYNUPDATE <index name> <group id> <additional synonym 1> < additional synonym 2>
+  # synonym cannot be removed !!!
+  ```
 * CRUD operation for values in index
   * FT.CREATE
   ```redis-cli
@@ -1011,3 +1025,34 @@ Document Score = "amount of words" * TF-IDF
   FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong>
   FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong> LIMIT 100 5  
   ```
+  * autocomplete, suggestion - special dictionary 
+    * [add suggestion](https://oss.redislabs.com/redisearch/Commands/#ftsugadd)
+    ```redis-cli
+    # add suggestion, return amount of elements that already inside
+    FT.SUGADD <key> <typed query, case insensitive> <score>
+    # update score (summarize with existing) of suggestion, if exists; remove PAYLOAD without specifying
+    FT.SUGADD <key> <typed query, icase> <score> INCR
+    # save additional information with specific case ( WITHPAYLOADS will return it )
+    FT.SUGADD <key> <typed query, icase> <score> PAYLOAD <return value for query>
+    ```
+    * [get suggestion](https://oss.redislabs.com/redisearch/Commands/#ftsugget)
+    ```redis-cli
+    # return up to 5 suggestions
+    FT.SUGGET <key> <query>
+    # specify amount of return values - up to 10 return values 
+    FT.SUGGET <key> <query> MAX 10
+    # add Levenshtein distance 1 
+    FT.SUGGET <key> <query> FUZZY
+    # return also saved payload ( if was )
+    FT.SUGGET <key> <query> WITHPAYLOADS
+    ```
+    * [length of suggestions](https://oss.redislabs.com/redisearch/Commands/#ftsuglen)
+    ```redis-cli
+    FT.SUGLEN <key>
+    ```
+    * [delete suggestion](https://oss.redislabs.com/redisearch/Commands/#ftsugdel)
+    ```redis-cli
+    FT.SUGDEL <key> <query>
+    UNLINK <key>
+    ```
+    
