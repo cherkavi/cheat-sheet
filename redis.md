@@ -810,6 +810,15 @@ limits:
   ... SCHEMA my-field TEXT NOSTEM
   ```
   * TAG SEPARATOR <ascii char> - separator between tags
+* changing existing
+  ```redis-cli
+  FT.ALTER all already have added documents will not be changed
+  ```
+* drop index
+  ```redis-cli
+  FT.DROP <index name>
+  ```
+
 * add value to index, adding value to index
   ```redis-cli
   # FT.ADD <index name> <document id> <score> FIELDS <field name> <field value> <field name> <field value>
@@ -856,18 +865,6 @@ https://oss.redislabs.com/redisearch/Commands/#ftsynadd
   # update ( append )some of the group with new values
   FT.SYNUPDATE <index name> <group id> <additional synonym 1> < additional synonym 2>
   # synonym cannot be removed !!!
-  ```
-* CRUD operation for values in index
-  * FT.CREATE
-  ```redis-cli
-  ```
-  * FT.DROP
-  ```redis-cli
-  # KEEPDOCS - not re-calculate hashes 
-  ```
-  * FT.ALTER all already have added documents will not be changed
-  ```redis-cli
-  FT.ADD my-fields SCHEMA add new-field text
   ```
 * [list of stop-words](https://oss.redislabs.com/redisearch/Stopwords/)  
 * advantages of using secondary indexing
