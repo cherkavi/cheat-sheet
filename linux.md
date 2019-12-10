@@ -712,6 +712,11 @@ grep -A 4
 grep --after 4
 ```
 
+### grep between, print between lines
+```
+oc describe pod/gateway-486-bawfps | awk '/Environment:/,/Mounts:/'
+```
+
 ### grep text into files
 ```
 grep -rn '.' -e '@Table'
