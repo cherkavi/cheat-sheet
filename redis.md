@@ -819,7 +819,7 @@ limits:
   FT.ADD my-fields math-expressions 1 FIELDS REPLACE field_names "ln 10 and sin 2.5 and cos 1"  
   # if a field is not a part of the schema (NOINDEX) - no re-index; if field is SORTABLE - sort will be updated
   FT.ADD my-fields math-expressions 1 FIELDS REPLACE PARTIAL field_names "ln 10 and sin 2.5 and cos 1"  
-  # index document with force without saving
+  # index document with force without saving fields
   FT.ADD my-fields math-expressions 1 FIELDS NOSAVE field_names "ln 10 and sin 2.5 and cos 1"  
   # specify a language
   FT.ADD my-fields math-expressions 1 FIELDS LANGUAGE Russian field_names "ln 10 and sin 2.5 and cos 1"  
@@ -836,6 +836,7 @@ limits:
   * document is marking for deletion, not removing immediately 
   * removing is executing in separate thread
   ```redis-cli
+  # delete document from index but underlying hash is not
   FT.DEL <index> <document ID>
   # delete also related hash map
   FT.DEL <index> <document ID> DD
@@ -1030,7 +1031,7 @@ Document Score = "amount of words" * TF-IDF
     ```redis-cli
     # add suggestion, return amount of elements that already inside
     FT.SUGADD <key> <typed query, case insensitive> <score>
-    # update score (summarize with existing) of suggestion, if exists; remove PAYLOAD without specifying
+    # update score (summarize with existing) of suggestion, if exists; remove PAYLOAD without specifying - UseCase: feedback from user that it is searchable query
     FT.SUGADD <key> <typed query, icase> <score> INCR
     # save additional information with specific case ( WITHPAYLOADS will return it )
     FT.SUGADD <key> <typed query, icase> <score> PAYLOAD <return value for query>
