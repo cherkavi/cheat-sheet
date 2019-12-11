@@ -98,19 +98,33 @@ check expiration date
 maprlogin print -ticketfile /tmp/maprticket_1000 # or another filename
 ```
 
-using file from previous command
+using file from previous command  
 ```bash
 cat /tmp/maprticket_1000 
 #oc create secret generic {name of secret/token} --from-file=/tmp/maprticket_1000 -n {project name}
 oc create secret generic {name of secret/token} --from-file=CONTAINER_TICKET=/tmp/maprticket_1000 -n {project name}
 ```
-or from content of file from previous command
+or from content of file from previous command  
 ```bash
 oc create secret generic {name of secret/token} --from-literal=CONTAINER_TICKET='dp.prod.ubs qEnHLE7UaW81NJaDehSH4HX+m9kcSg1UC5AzLO8HJTjhfJKrQWdHd82Aj0swwb3AsxLg==' -n {project name}
 ```
-check creation
+check creation  
 ```bash
 oc get secrets
+```
+secret mapping example, map secret  
+```json
+
+   ...
+   volumeMounts:
+          - name: mapr-ticket
+            mountPath: "/path/inside/container"
+            readOnly: true
+...            
+ volumes:
+        - name: mapr-ticket
+          secret:
+            secretName: my-ticket
 ```
 
 ### information about cluster
