@@ -762,9 +762,14 @@ XGROUP SETID numbers numbers-group $
   ```
 
 ## [redisearch](https://oss.redislabs.com/redisearch)
+* [redisearch commands](https://oss.redislabs.com/redisearch/Commands/)
 ![rdbms vs nosql vs redisearch](https://i.postimg.cc/5NdTx9V3/redis-secondary-index-overview.png)  
 ![redis index domain](https://i.postimg.cc/Hx3nTvJ0/redis-index-domain.png)  
 ![redis index processing](https://i.postimg.cc/T271SSvf/redis-index-processing.png)  
+```sh
+MODULE LOAD ./redisearch.so
+module list # ft
+```
 * creating index
 ```redis-cli
 FT.CREATE <index-name> [index level arguments] SCHEMA <name type options> <name type options> <...>
@@ -778,6 +783,12 @@ criterias:
 limits:  
   * up to 1024 fields
   * up to 128 text fields
+* find fields in index, get field types
+```redis-cli
+# keys ft:<name of index>/<field prefix>*
+keys ft:permits/neig*
+type ft:permits/neighbourhood # ft_invidx - textual index or tag
+```
 * creating index arguments, creating index options
   * STOPWORDS
     ```redis-cli
@@ -810,11 +821,14 @@ limits:
   ... SCHEMA my-field TEXT NOSTEM
   ```
   * TAG SEPARATOR <ascii char> - separator between tags
+  ```redis-cli
+  ... FT.CREATE <index name> SCHEMA <field name> TAG {SORTABLE}
+  ```
 * changing existing
   ```redis-cli
   FT.ALTER all already have added documents will not be changed
   ```
-* drop index
+* drop index, remove index, delete index
   ```redis-cli
   FT.DROP <index name>
   ```
@@ -881,9 +895,8 @@ https://oss.redislabs.com/redisearch/Commands/#ftsynadd
   * numeric ( numbers, timestamps )
   * tag ( collection of flags/words, no stemming; flags or enums )
   * geo ( location )
-* [redisearch commands](https://oss.redislabs.com/redisearch/Commands/)
 * ![redisearch vs rdbms](https://i.postimg.cc/Jn7ZJBTZ/redisearch-vs-rdbms.png)
-* TF-IDF - TermFrequency - Inverse Document Frequency   
+* TF-IDF - TermFrequency - Inverse Document Frequency  ( default scoring mechanism ) 
 ```
 TF-IDF = 1 + ln( number of documents / ( 1 + documents with term ) )
 Document Score = "amount of words" * TF-IDF
@@ -969,6 +982,7 @@ Document Score = "amount of words" * TF-IDF
   * search with numeric fields
   ```redis-cli
   FT.SEARCH permits "@construction_value:[1 300]" LIMIT 0 0
+  FT.SEARCH permits "@construction_value:[1 (300]" LIMIT 0 0
   FT.SEARCH permits "@construction_value:[1 300]|@description:in_process" LIMIT 0 0
   FT.SEARCH permits "@construction_value:[10 300]|@description:in_process" LIMIT 0 0
   # find certain numeric number - low/high ranges are equals
@@ -1000,6 +1014,23 @@ Document Score = "amount of words" * TF-IDF
   FT.SEARCH permits "@location:[-113.477 53.558 1 km]" LIMIT 0 0  
   FT.SEARCH permits "@location:[-113.50125915402455, 53.57593507222605 1 km] @neighbourhood:{Westwood|Eastwood}" LIMIT 0 0
   ```
+  * SORTBY ( field must be marked as SORTABLE )
+  ```redis-cli
+  FT.SEARCH permits "retail construction" HIGHLIGHTS SORTBY my-sortable-field ASC LIMIT 0 1   
+  ```
+  * SUMMARIZE
+    * LEN - amount of words to be output
+    * FRAGS - amount of fragments 
+    * SEPARATOR - sepearator for fragments
+    * RETURN - list of fields to be returned
+    * HIGHLIGHT - wrap results with markers
+    ```redis-cli
+    FT.SEARCH permits "work" RETURN 1 description 
+    FT.SEARCH permits "work" RETURN 2 description location
+    FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR ,
+    FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong>
+    FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong> LIMIT 100 5  
+    ```
   * HIGHLIGHTS
   ```redis-cli
   FT.SEARCH permits "retail construction" HIGHLIGHTS
@@ -1007,23 +1038,9 @@ Document Score = "amount of words" * TF-IDF
   FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description
   FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS description TAGS <strong> </strong>
   FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS 1 description TAGS "<strong>" "</strong>"
+  FT.SEARCH permits "retail construction" HIGHLIGHTS FIELDS 1 description TAGS "<strong>" "</strong>" RETURN 1 description
   ```
-  * SORTBY ( field must be marked as SORTABLE )
-  ```redis-cli
-  FT.SEARCH permits "retail construction" HIGHLIGHTS SORTBY my-sortable-field ASC LIMIT 0 1   
-  ```
-  * SUMMARIZE
-    * LEN - amount of words to be output
-    * FRAG - amount of fragments 
-    * SEPARATOR - sepearator for fragments
-  ```redis-cli
-  FT.SEARCH permits "work" RETURN 1 description 
-  FT.SEARCH permits "work" RETURN 2 description location
-  FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR ,
-  FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong>
-  FT.SEARCH permits "work" RETURN 1 description SUMMARIZE FIELDS 1 description FRAGS 1 LEN 5 SEPARATOR , HIGHLIGHT TAGS <strong> </strong> LIMIT 100 5  
-  ```
-  * autocomplete, suggestion - special dictionary 
+  * autocomplete, suggestion - special dictionary, separate type not belong to index
     * [add suggestion](https://oss.redislabs.com/redisearch/Commands/#ftsugadd)
     ```redis-cli
     # add suggestion, return amount of elements that already inside
