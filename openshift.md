@@ -223,6 +223,11 @@ spec:
         env:
           - name: MAPR_TICKETFILE_LOCATION
             value: "/tmp/maprticket_202208"        
+          # set environment variable from metadata
+          - name: PROJECT
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace            
       restartPolicy: Never
   backoffLimit: 4
 ```
