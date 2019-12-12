@@ -101,7 +101,9 @@ maprlogin print -ticketfile /tmp/maprticket_1000 # or another filename
 using file from previous command  
 ```bash
 cat /tmp/maprticket_1000 
-#oc create secret generic {name of secret/token} --from-file=/tmp/maprticket_1000 -n {project name}
+# create secret from file ( default name )
+oc create secret generic {name of secret/token} --from-file=/tmp/maprticket_1000 -n {project name}
+# create secret from file with specifying the name - CONTAINER_TICKET ( oc describe {name of secret} )
 oc create secret generic {name of secret/token} --from-file=CONTAINER_TICKET=/tmp/maprticket_1000 -n {project name}
 ```
 or from content of file from previous command  
