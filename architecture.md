@@ -1,9 +1,7 @@
 # Architecture 
-```
-Architecture != Tools & Frameworks
-Postponing decisions about Tooling and frameworks
-Focus on customer, not environment
-```
+* Architecture != Tools & Frameworks
+* Postponing decisions about Tooling and frameworks
+* Focus on customer, not environment
 
 # Architecture trade-offs
 * Build vs Buy
