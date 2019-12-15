@@ -10,6 +10,8 @@ Focus on customer, not environment
 * Coding vs Configuration
 * Product customisation
 
+![software architecture](https://i.postimg.cc/D0cMGPPc/software-architecture.png)
+
 # [Antipatterns](https://sourcemaking.com/antipatterns/software-architecture-antipatterns)
 
 ## Architecture cycle
@@ -17,7 +19,6 @@ Focus on customer, not environment
 
 ## Software architecture patterns
 [architecture patterns](https://i.postimg.cc/Gm8T42L4/architecture-patterns.png)
-
 
 # Useful links
 * [C4](https://leanpub.com/visualising-software-architecture)
