@@ -703,6 +703,9 @@ kubectl proxy
 kubectl exec -it {name of a pod}  -- bash -c "echo hi > /path/to/output/test.txt" 
 ```
 
+# Extending 
+## [custom controller](https://github.com/kubernetes/sample-controller)
+
 # Flannel
 ![deployment diagram](https://i.postimg.cc/d3ZwjhXd/flannel.png)
 restart nodes
