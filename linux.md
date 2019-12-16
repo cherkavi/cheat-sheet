@@ -1893,6 +1893,11 @@ git clone https://github.com/vim-airline/vim-airline ~/.vim/plugged/vim-airline
     ├── vim-airline
     └── vim-airline-themes
 ```
+---
+# vifm
+## colorschema
+copy to ```~/.config/vifm/colors``` [color scheme](https://vifm.info/colorschemes.shtml)  
+```:colorscheme <tab>```
 
 ---
 # visual code plugins
