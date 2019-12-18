@@ -115,9 +115,9 @@ chmod 700 ~/.ssh ;
 chmod 600 ~/.ssh/authorized_keys
 ```
 
-### install ssh
+### install ssh server, start ssh server, server ssh
 ```
-sudo apt get ssh
+sudo apt install ssh
 sudo service ssh start
 ```
 
