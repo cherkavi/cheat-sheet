@@ -327,9 +327,6 @@ IPYTHON and IPYTHON_OPTS are removed in Spark 2.0+. Remove these from the enviro
 just set variable to using Spart1 inside script: SPARK_MAJOR_VERSION=1
 ```
 
-# MapR
-![commands](https://i.postimg.cc/q7469wbf/mapr-commands.png)
-
 # Sqoop ( SQl to/from hadOOP )
 JDBC driver for jdbc url must present: $SQOOP_HOME/lib
 --- 
