@@ -391,7 +391,22 @@ javac -classpath `mapr classpath` MyProducer.java
 java -classpath `mapr classpath`:. MyProducer
 ```
 
-
+---
+# MDF4 reading
+```python
+header = mdfreader.mdfinfo4.Info4("file.MF4")
+header.keys()
+header['AT'].keys()
+header['AT'][768]['at_embedded_data']
+```
+```python
+info=mdfreader.mdfinfo()
+info.listChannels("file.MF4")
+```
+```python
+from asammdf import MDF4 as MDF
+mdf = MDF("file.MF4")
+```
 ---
 # HCatalog
 [documentation](https://cwiki.apache.org/confluence/display/Hive/HCatalog)
