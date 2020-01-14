@@ -211,7 +211,9 @@ stream_path="%2Fvantage%2Forchestration%2Fstreams%2Fpipeline"
 topic_name="gateway"
 host="https://ubsdpdesp000001.vantage.org"
 port=8082
- 
+
+# maprcli stream topic list -path $stream_path # need to replace %2 with /
+
 curl -u $curl_user:$curl_pass \
 --insecure -s -X GET \
 -H "Content-Type: application/vnd.kafka.v2+json" \
