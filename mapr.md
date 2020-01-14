@@ -1,5 +1,7 @@
 [MapR Academy](http://learn.mapr.com)
 [Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)
+![commands](https://i.postimg.cc/q7469wbf/mapr-commands.png)
+
 
 # Architecture examples
 ![connected drive](https://i.postimg.cc/LXCBm8b5/Connected-Car-Pipeline.png)
