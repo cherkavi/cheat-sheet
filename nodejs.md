@@ -3,6 +3,12 @@
 * [install Angular](https://cli.angular.io/)
 
 # npm
+## proxy
+```
+npm config ls
+npm config get https-proxy
+npm config set https-proxy [url:port]
+```
 ## check installation
 ```
 npm bin -g
