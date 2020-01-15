@@ -30,6 +30,14 @@ map_example:
 # flow-style
 map_example2: {element_1: one , element_2: two }
 ```
+more comples example - list of maps
+```yaml
+credentials:
+  - name: 'user1'
+    password: 'pass1'
+  - name: 'user2'
+    password: 'pass2'
+```
 
 
 ## comment
