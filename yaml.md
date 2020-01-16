@@ -100,12 +100,6 @@ users:
 ```
 
 ## TAG
-### assign external URI to tag ( external reference )
-should be defined inside metadata
-```yaml
-%TAG ! 
-```
-### local tag ( reference inside document )
 ### set data type for value
 * seq
 * map
@@ -122,7 +116,9 @@ id_1: 475123 !!str
 id_2: !!str 475123 
 ```
 
+### assign external URI to tag ( external reference )
+should be defined inside metadata
 ```yaml
-!TAGNAME
+%TAG ! 
 ```
-
+### local tag ( reference inside document )
