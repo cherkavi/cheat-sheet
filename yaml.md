@@ -47,7 +47,7 @@ credentials:
 
 
 ## multiline
-* new line preserving
+* one line string ( removing new line marker )
 ```yaml
 comments: >
 Attention, high I/O
@@ -55,7 +55,7 @@ since 2019-10-01.
 Fix in progress.
 ```
 
-* without new line 
+* each line of text - with new line marker ( new line preserving )
 ```yaml
 downtime_sch: |
 2019-10-05 - kernel upgrade
