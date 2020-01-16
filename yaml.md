@@ -13,7 +13,7 @@ host: ger-43
 datacenter:
 location: Germany
 cab: "13"
-cab_unit: "3"
+cab_unit: 3
 
 # block-style
 list_of_strings:
