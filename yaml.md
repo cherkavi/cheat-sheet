@@ -1,6 +1,9 @@
 # Yet Another Markup Language
 * [specification](https://yaml.org/spec/1.2/spec.html)
 
+## indentation
+2 spaces
+
 ## data types
 * string
 * number
@@ -44,6 +47,8 @@ credentials:
 ## comment
 ```yaml
 # this is comment in yaml
+user_name: cherkavi # comment after the value
+user_password: "my#secret#password"
 ```
 
 
@@ -77,23 +82,17 @@ name: second document
 name: third document
 ```
 
+## set local tag
+```yaml
+!TAGNAME
+```
 
 ## anchor
 ```yaml
 *ANCHORNAME
 ```
 
-
-## indentation
-2 spaces
-
-
 ## set URI
 ```yaml
 %TAG!uri:
-```
-
-## set local tag
-```yaml
-!TAGNAME
 ```
