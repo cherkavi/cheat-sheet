@@ -1,4 +1,5 @@
 # Yet Another Markup Language
+* [specification](https://yaml.org/spec/1.2/spec.html)
 
 ## data types
 * string
@@ -62,16 +63,26 @@ downtime_sch: |
 2019-02-02 - security fix
 ```
 
+## multi documents
+```yaml
+---
+name: first document
+
+---
+name: second document
+
+# not necessary marker ...
+...
+---
+name: third document
+```
+
+
 ## anchor
 ```yaml
 *ANCHORNAME
 ```
 
-## start of new directive
-```yaml
----
-
-```
 
 ## indentation
 2 spaces
