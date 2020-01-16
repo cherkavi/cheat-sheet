@@ -81,18 +81,48 @@ name: second document
 ---
 name: third document
 ```
+place of metadata, header
+```yaml
+# this is metadata storage place
+---
+name: first document
+```
 
-## set local tag
+## anchor, reference
+& - anchor  
+* - reference to anchor  
+```yaml
+users:
+  - name: a1 &user_a1    # define anchor "user_a1"
+    manager:
+  - name: a2
+    manager: *user_a1    # reference to anchor "user_a1"
+```
+
+## TAG
+### assign external URI to tag ( external reference )
+should be defined inside metadata
+```yaml
+%TAG ! 
+```
+### local tag ( reference inside document )
+### set data type for value
+* seq
+* map
+* str
+* int
+* float
+* null
+* binary
+* omap ( Ordered map )
+* set ( unordered set )
+```yaml
+name: Vitalii
+id_1: 475123 !!str
+id_2: !!str 475123 
+```
+
 ```yaml
 !TAGNAME
 ```
 
-## anchor
-```yaml
-*ANCHORNAME
-```
-
-## set URI
-```yaml
-%TAG!uri:
-```
