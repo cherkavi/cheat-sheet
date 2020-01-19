@@ -88,7 +88,7 @@ place of metadata, header
 name: first document
 ```
 
-## anchor, reference
+## anchor, reference  
 & - anchor  
 * - reference to anchor  
 ```yaml
@@ -97,6 +97,17 @@ users:
     manager:
   - name: a2
     manager: *user_a1    # reference to anchor "user_a1"
+```
+example with collection
+```yaml
+---
+host: my_host_01
+roles: &special_roles
+  - ssh_server
+  - apache_server
+---
+host: my_host_02
+roles: *special_roles
 ```
 
 ## TAG
