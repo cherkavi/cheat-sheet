@@ -89,8 +89,18 @@ name: first document
 ```
 
 ## anchor, reference  
-& - anchor  
-* - reference to anchor  
+& - anchor
+* - reference to anchor
+simple reference
+```yaml
+---
+host: my_host_01
+description: &AUTO_GENERATE standard host without specific roles
+---
+host: my_host_02
+description: *AUTO_GENERATE
+```
+reference to map
 ```yaml
 users:
   - name: a1 &user_a1    # define anchor "user_a1"
