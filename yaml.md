@@ -119,6 +119,9 @@ id_2: !!str 475123
 ### assign external URI to tag ( external reference )
 should be defined inside metadata
 ```yaml
-%TAG ! 
+%TAG ! tag:hostdata:de_muc
+---
+# reference id is: DE_MUC
+location: !DE_MUC Cosimabad   
 ```
 ### local tag ( reference inside document )
