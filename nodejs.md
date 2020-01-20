@@ -4,23 +4,35 @@
 
 # npm
 ## proxy
-```
+```sh
 npm config ls
 npm config get https-proxy
 npm config set https-proxy [url:port]
 ```
 ## check installation
-```
+```sh
 npm bin -g
 ```
 
-## print high level packages
+## permission denied for folder /usr/lib
+```sh
+# create new folder where node will place all packages
+mkdir ~/.npm-global
+
+# Configure npm to use new folder
+npm config set prefix '~/.npm-global'
+
+# update your settings in ```vim ~/.profile```
+export PATH=~/.npm-global/bin:$PATH
 ```
+
+## print high level packages
+```sh
 npm list -g --depth=0
 ```
 
 ## reinstall package globally
-```
+```sh
 # npm search @angular
 npm uninstall -g @angular/cli
 npm cache clear --force
@@ -28,7 +40,7 @@ npm install -g @angular/cli
 ```
 
 ## build project ( install dependencies )
-```
+```sh
 npm install
 npm start
 ```
