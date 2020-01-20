@@ -45,10 +45,6 @@ must work:
 ./pg_ctl -D "/dev/shm/pgsql-data/data" -l "/dev/shm/pgsql-log/pgsql.log" stop
 ```
 
-### list of all db
-```
-./psql --username postgres --list
-```
 
 ### change access from external addresses
 find /dev/shm/pgsql-data/data -name "postgresql.conf"
@@ -60,7 +56,6 @@ find /dev/shm/pgsql-data/data -name "pg_hba.conf"
 host    all             all              0.0.0.0/0                       md5
 host    all             all              ::/0                            md5
 ```
-
 
 ### jdbc url
 ```
@@ -77,4 +72,31 @@ url:
     <artifactId>postgresql</artifactId>
     <version>9.1-901-1.jdbc4</version>
 </dependency>
+```
+
+## DB requests
+
+### list of all databases, ad-hoc
+```sh
+psql --username postgres --list
+```
+
+### execute request, ad-hoc
+```sh
+psql -w -U user_name -d database_name -c "SELECT 1"
+```
+
+### connect to db 
+```sh
+# connect
+psql -U workflowmonitoring -d workflowmonitoringdb
+# exit
+\q
+```
+
+```sql
+-- list of all databases
+\l
+-- list of all tables
+SELECT table_name FROM information_schema.tables WHERE table_schema='public';
 ```
