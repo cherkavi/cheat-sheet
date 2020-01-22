@@ -30,9 +30,23 @@ user@ext_host:~$ wget 134.190.2.5:8091/echo
 ```
 
 ### tunnel, port forwarding from outside to localmachine
+```sh
+# ssh -R <remoteport>:<local host name>:<local port> <hostname>
+# localy service on port 9092 should be started
+# and remotelly you can reach it out just using 127.0.0.1:7777
+ssh -R 7777:127.0.0.1:9092 localhost
 ```
-ssh -R <remoteport>:<local host name>:<local port> <hostname>
-ssh -R 9020:127.0.0.1:9092 localhost
+
+### tunnel for remote machine with proxy, local proxy for remote machine, remote proxy access
+local=======>remote   
+after that, remote can use local as proxy
+
+```sh
+# locally proxy server on port 9999 should be started
+ssh -D 9999 127.0.0.1 -t ssh -R 7777:127.0.0.1:9999 username@192.118.112.13
+
+# from remote machine you can execute 
+wget -e use_proxy=yes -e http_proxy=127.0.0.1:7777 https://google.com
 ```
 
 ### possible solution to detect remote client
