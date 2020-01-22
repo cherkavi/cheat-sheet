@@ -889,6 +889,18 @@ wget http://host:9090/wd-only/1005000.zip --directory-prefix="/home/temp/out"
 wget --no-check-certificate https://musan999999.mueq.adas.intel.com:8888/data-api/session/
 ```
 
+### wget proxy, wget via proxy
+```
+wget -e use_proxy=yes -e http_proxy=127.0.0.1:7777 https://mail.ubsgroup.net/
+```
+or just with settings file "~/.wgetrc"
+```properties
+use_proxy = on
+http_proxy =  http://username:password@proxy.server.address:port/
+https_proxy =  http://username:password@proxy.server.address:port/
+ftp_proxy =  http://username:password@proxy.server.address:port/
+```
+
 ### zip files, zip all files
 ```
 zip -r bcm-1003.zip *
