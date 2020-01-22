@@ -38,8 +38,21 @@ ssh -R 7777:127.0.0.1:9092 localhost
 ```
 
 ### tunnel for remote machine with proxy, local proxy for remote machine, remote proxy access
+//TODO
 local=======>remote   
 after that, remote can use local as proxy
+
+first of all start local proxy (proxychains or redsock)
+```sh
+sudo apt install privoxy
+sudo vim /etc/privoxy/config
+# listen-address  127.0.0.1:9999
+# forward-socks5t / http://my-login:passw@proxy.zur:8080 .
+# forward-socks4a / http://my-login:passw@proxy.zur:8080 .
+# or 
+# forward   /      http://my-login:passw@proxy.zur:8080
+systemctl start privoxy
+```
 
 ```sh
 # locally proxy server on port 9999 should be started
