@@ -691,6 +691,10 @@ rm -rf  -- !(exclude-filename.sh)
 ```
 
 ### cron
+cron activating
+```sh
+sudo service cron status
+```
 all symbols '%' must be converted to '\%'
 ```
 crontab -e
