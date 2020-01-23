@@ -691,6 +691,10 @@ rm -rf  -- !(exclude-filename.sh)
 ```
 
 ### cron
+where is file located
+```sh
+sudo less /var/spool/cron/crontabs/$USER
+```
 cron activating
 ```sh
 sudo service cron status
