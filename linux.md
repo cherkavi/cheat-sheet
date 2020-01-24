@@ -691,6 +691,7 @@ rm -rf  -- !(exclude-filename.sh)
 ```
 
 ### cron
+**You have to escape the % signs with \%**
 where is file located
 ```sh
 sudo less /var/spool/cron/crontabs/$USER
