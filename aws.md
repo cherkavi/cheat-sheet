@@ -1,6 +1,7 @@
-[free courses](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
-[official documentation](https://docs.aws.amazon.com/)  
-[cli](https://docs.aws.amazon.com/cli/latest/index.html)
+[sdk](https://aws.amazon.com/tools/)  
+
+## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
+### installation of AWS cli
 ```sh
 # installation
 apt install aws
@@ -9,7 +10,10 @@ aws configuration
 # example of adding user to group 
 aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 ```
+## documentation, education 
+[official documentation](https://docs.aws.amazon.com/)  
 [whitepapers](https://aws.amazon.com/whitepapers)  
+[free courses](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
 [interactive documentation example](https://interactive.linuxacademy.com/diagrams/ProjectOmega2.html)   
 ![news](https://i.postimg.cc/zvSj5SxJ/aws-2019-re-invent.png)  
 
