@@ -10,6 +10,9 @@ aws configuration
 # example of adding user to group 
 aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 ```
+## Identity Access Manager
+[IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)  
+
 ## documentation, education 
 [official documentation](https://docs.aws.amazon.com/)  
 [whitepapers](https://aws.amazon.com/whitepapers)  
