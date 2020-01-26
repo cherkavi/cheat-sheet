@@ -31,3 +31,7 @@
 * [blog about modeling](http://renewableplus.blogspot.com/2017/03/modeling-applications-technology-in.html)
 * [blog examples](https://www.hosiaisluoma.fi/blog/archimate-examples/)
 ![archimate 3 layers](https://i.postimg.cc/904Rb3GK/archimate3-layers.png)  
+
+![archimate aspects](https://i.postimg.cc/BbmmWbML/archimate-01.png)  
+![archimate general](https://i.postimg.cc/T3zCvZq9/archimate-03.png)  
+![archimate metamodel](https://i.postimg.cc/fLZCJmPS/archimate-04.png)  
