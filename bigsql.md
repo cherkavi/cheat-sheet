@@ -1,3 +1,6 @@
+# DataSets
+[global search for datasets](https://datasetsearch.research.google.com/)  
+[datasets on kaggle](https://www.kaggle.com/datasets)  
 ---
 # BigSQL
 ![overview](https://s19.postimg.cc/lmevs5koz/bigsql-overview.png)
