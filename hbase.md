@@ -1,17 +1,31 @@
 # HBase
-- distributed, column-oriented persistent multidimensional sorted map
-- storing column-family into memory/disc
-- disc = hdfs or filesystem
-- column family has 'veracity' - version of the record based on timestamp
-- Value = Table + RowKey + *Family* + Column + *Timestamp*
-
+* distributed, 
+* column-oriented persistent multidimensional sorted map
+* autoscale
+* storing column-family into memory/disc
+* disc = hdfs or filesystem
+* column familty (limited number) can be configured to:
+  * compress
+  * versions count
+  * TimeToLive 'veracity'
+  * in memory/on disc
+  * separate file
+* key - is byte[], value is byte[]
+* scan by key
+* scan by keys range
+* schema free
+* each record has a version
+* TableName - filename
+* record looks like: RowKey ; *ColumnFamilyName* ; ColumnName ; *Timestamp*
+![record](https://i.postimg.cc/HL2PqYnD/hbase-record.png)
+* table can divide into number of regions (sorted be key with start...end keys and controlled by HMaster ) 
+* region has default size 256Mb
 ```
 data is sparse - a lot of column has null values
 fast retrieving data by 'key of the row' + 'column name'
 contains from: (HBase HMaster) *---> (HBase Region Server)
 ```
 SQL for Hbase - [Phoenix SQL](https://phoenix.apache.org/)
-
 
 ## Why HBase
 ![hbase-why.png](https://s19.postimg.cc/43tj55w4j/hbase-why.png)
