@@ -7,7 +7,10 @@
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
 ## Key concepts
 * DAG
-a graph object representing your data pipeline
+a graph object representing your data pipeline.  
+Should be:
+  * idempotent ( execution of many times without side effect )
+  * can be retried automatically
 * Operator
 Describe a single task in your data pipeline
 * Task
