@@ -148,8 +148,62 @@ with DAG('airflow_tutorial_v01',
 ```python
 # settings.json should be placed in the same folder as dag description
 # configuration should contains: dags_folder = /usr/local/airflow/dags
-def get_tsa_request_body():
+def get_request_body():
     with open(f"{str(Path(__file__).parent.parent)}/dags/settings.json", "r") as f:
         request_body = json.load(f)
         return json.dumps(request_body)
+```
+
+* collaboration between tasks, custom functions
+```python
+COLLABORATION_TASK_ID="mydag_first_call"
+
+def status_checker(resp):
+    job_status = resp.json()["status"]
+    return job_status in ["SUCCESS", "FAILURE"]
+
+def cleanup_response(response):
+    return response.strip()
+
+def create_http_operator(connection_id=MYDAG_CONNECTION_ID):
+    return SimpleHttpOperator(
+        task_id=COLLABORATION_TASK_ID,
+        http_conn_id=connection_id,
+        method="POST",
+        endpoint="v2/endpoint",
+        data="{\"id\":111333222}",
+        headers={"Content-Type": "application/json"},
+        # response will be pushed to xcom with COLLABORATION_TASK_ID
+        xcom_push=True,
+        log_response=True,
+    )
+
+
+def second_http_call(connection_id=MYDAG_CONNECTION_ID):
+    return HttpSensor(
+        task_id="mydag_second_task",
+        http_conn_id=connection_id,
+        method="GET",
+        endpoint="v2/jobs/{{ parse_response(ti.xcom_pull(task_ids='" + COLLABORATION_TASK_ID + "' )) }}",
+        response_check=status_checker,
+        poke_interval=15,
+        depends_on_past=True,
+        wait_for_downstream=True,
+    )
+
+
+with DAG(
+    default_args=default_args,
+    dag_id="dag_name",
+    max_active_runs=1,
+    default_view="graph",
+    concurrency=1,
+    schedule_interval=None,
+    catchup=False,
+    # custom function definition
+    user_defined_macros={"parse_response": cleanup_response},
+) as dag:
+    first_operator = first_http_call()
+    second_operator = second_http_call()
+    first_operator >> second_operator
 ```
