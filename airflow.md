@@ -75,39 +75,6 @@ check workspace
 airflow --help
 ```
 
-## DAG example
-should be placed into "dag" folder ( default: %AIRFLOW%/dag )
-* minimal
-```
-from airflow import DAG
-
-with DAG('airflow_tutorial_v01',
-         default_args=default_args, 
-         schedule_interval='0 * * * *',
-         ) as dag:
-    print(dag)
-```
-
-* simple
-```
-from airflow import DAG
-from datetime import date, timedelta, datetime
-
-arguments = {
-    'owner': 'me',
-    'start_date': dt.datetime(2019, 4, 13),
-    'retries': 1,
-    'retry_delay': dt.timedelta(minutes=5),
-}
-
-with DAG('airflow_tutorial_v01',
-         default_args=default_args, 
-         schedule_interval='0 * * * *',
-         default_args=arguments
-         ) as dag:
-    print(dag)
-```
-
 ## operator types ( BaseOperator )
 * action
 * transfer ( data )
@@ -142,4 +109,47 @@ curl -X POST --user tech-user \
 
 # check running
 curl -X GET --user ibeo_gt-s https://airflow.local/api/experimental/dags/ibeo_gt/dag_runs | jq '.[] | if .state=="running" then . else empty end'
+```
+
+## DAG example
+should be placed into "dag" folder ( default: %AIRFLOW%/dag )
+* minimal
+```python
+from airflow import DAG
+
+with DAG('airflow_tutorial_v01',
+         default_args=default_args, 
+         schedule_interval='0 * * * *',
+         ) as dag:
+    print(dag)
+```
+
+* simple
+```python
+from airflow import DAG
+from datetime import date, timedelta, datetime
+
+arguments = {
+    'owner': 'me',
+    'start_date': dt.datetime(2019, 4, 13),
+    'retries': 1,
+    'retry_delay': dt.timedelta(minutes=5),
+}
+
+with DAG('airflow_tutorial_v01',
+         default_args=default_args, 
+         schedule_interval='0 * * * *',
+         default_args=arguments
+         ) as dag:
+    print(dag)
+```
+
+* reading settings files ( dirty way )
+```python
+# settings.json should be placed in the same folder as dag description
+# configuration should contains: dags_folder = /usr/local/airflow/dags
+def get_tsa_request_body():
+    with open(f"{str(Path(__file__).parent.parent)}/dags/settings.json", "r") as f:
+        request_body = json.load(f)
+        return json.dumps(request_body)
 ```
