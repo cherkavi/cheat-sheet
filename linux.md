@@ -429,11 +429,18 @@ KillMode=process
 [Install]
 WantedBy=multi-user.target
 ```
-```
-sudo systemctl enable YOUR_SERVICE_NAME
-sudo systemctl start YOUR_SERVICE_NAME
-sudo systemctl status YOUR_SERVICE_NAME
-sudo systemctl daemon-reload YOUR_SERVICE_NAME
+
+managing services
+```sh
+# alternative of chkconfig
+# alternative of sysv-rc-conf
+
+# list all services
+systemctl --all
+systemctl enable YOUR_SERVICE_NAME
+systemctl start YOUR_SERVICE_NAME
+systemctl status YOUR_SERVICE_NAME
+systemctl daemon-reload YOUR_SERVICE_NAME
 ```
 
 reset X-server, re-start xserver, reset linux gui
