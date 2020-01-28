@@ -26,7 +26,7 @@ Combination of all above
 ![statuses](https://i.postimg.cc/g2kd76Z5/airflow-statuses.png)
 
 ## [Airflow install on python virtualenv]
-```
+```sh
 # create python virtual env
 python3 -m venv airflow-env
 source airflow-env/bin/activate
@@ -54,24 +54,24 @@ docker-compose -f docker-compose-LocalExecutor.yml up -d
 ```
 
 ## [Airflow virtual environment](https://github.com/hgrif/airflow-tutorial)
-```
+```sh
 python env create -f environment.yml
 source activate airflow-tutorial
 ```
 
 ## [Airflow Virtual machine](https://marclamberti.com/form-course-material-100/)
 credentials
-```
+```sh
 ssh -p 2200 airflow@localhost
 # passw: airflow
 ```
 activate workspace
-```
+```sh
 source .sandbox/bin/activate
 ```
 ## commands
 check workspace
-```
+```sh
 airflow --help
 ```
 
@@ -86,7 +86,7 @@ airflow --help
 
 # REST API
 ## trigger DAG - python
-```
+```python
 import urllib2
 import json
 
@@ -102,7 +102,7 @@ print(f.read())
 ```
 
 ## trigger DAG - bash
-```
+```sh
 curl -X POST --user tech-user \     
     --data '{"conf":{"session_id": "bff2-08275862a9b0"}}' \
     https://airflow.local/api/experimental/dags/ibeo_gt/dag_runs
