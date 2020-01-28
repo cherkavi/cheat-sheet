@@ -245,13 +245,32 @@ maprcli dashboard info -json
 ```
 
 # posix client
-```
+keys
+```sh
 $ wget -O - https://package.mapr.com/releases/pub/maprgpg.key | sudo apt-key add -
+```
+
 add these lines to /etc/apt/sources.list:
 ```
- deb https://package.mapr.com/releases/v6.1.0/ubuntu binary trusty
- deb https://package.mapr.com/releases/MEP/MEP-6.0.0/ubuntu binary trusty
+deb https://package.mapr.com/releases/v6.1.0/ubuntu binary trusty
+deb https://package.mapr.com/releases/MEP/MEP-6.0.0/ubuntu binary trusty
 ```
-$ apt-get update
-$ apt-get install mapr-posix-client-platinum
+
+installation
+```sh
+apt-get update
+# apt-get install mapr-posix-client-basic
+apt-get install mapr-posix-client-platinum
+```
+
+configuration
+```sh
+sudo mkdir /mapr
+sudo scp $USERNAME@$EDGE_NODE:/opt/mapr/conf/mapr-clusters.conf /opt/mapr/conf/mapr-clusters.conf
+sudo scp $USERNAME@$EDGE_NODE:/opt/mapr/conf/ssl_truststore /opt/mapr/conf/ssl_truststore
+```
+
+login
+```sh
+echo "$PASSWORD" | maprlogin password -user $USERNAME -out /tmp/mapruserticket
 ```
