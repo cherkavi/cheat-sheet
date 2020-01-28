@@ -111,7 +111,7 @@ curl -X POST --user tech-user \
 curl -X GET --user ibeo_gt-s https://airflow.local/api/experimental/dags/ibeo_gt/dag_runs | jq '.[] | if .state=="running" then . else empty end'
 ```
 
-## DAG example
+## [DAG examples](https://github.com/apache/airflow/tree/master/airflow/example_dags)
 should be placed into "dag" folder ( default: %AIRFLOW%/dag )
 * minimal
 ```python
