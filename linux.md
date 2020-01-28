@@ -1772,6 +1772,11 @@ echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnm
 xdg-mime query default x-scheme-handler/http
 ```
 
+### open file with default editor, default viewer, with more appropriate viewr
+```sh
+rifle <path to file>
+```
+
 ## install haskell
 ```
 sudo apt-get install haskell-stack
