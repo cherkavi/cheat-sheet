@@ -129,17 +129,17 @@ with DAG('airflow_tutorial_v01',
 from airflow import DAG
 from datetime import date, timedelta, datetime
 
-arguments = {
-    'owner': 'me',
-    'start_date': dt.datetime(2019, 4, 13),
+default_arguments = {
+    'owner': 'test-datetime-now',
+    'start_date': datetime.now(),
     'retries': 1,
-    'retry_delay': dt.timedelta(minutes=5),
+    'retry_delay': timedelta(minutes=5),
+    'catchup': False
 }
 
-with DAG('airflow_tutorial_v01',
-         default_args=default_args, 
-         schedule_interval='0 * * * *',
-         default_args=arguments
+with DAG('dummy_echo_dag',
+         default_args=default_arguments,
+         schedule_interval='*/15 * * * *'
          ) as dag:
     print(dag)
 ```
