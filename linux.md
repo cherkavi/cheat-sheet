@@ -1893,6 +1893,7 @@ Right move-right 10
 
 ---
 # useful links:
+* [vnc alternative - connect to existing session](http://www.karlrunge.com/x11vnc/)
 * [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
 * [jira editing shortcuts](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)
 * [i3 window manager shortcuts](https://i3wm.org/docs/refcard.html)
