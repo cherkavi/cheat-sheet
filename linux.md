@@ -1378,8 +1378,17 @@ sudo snap set system proxy.http="http://user:password@proxy.muc:8080"
 sudo snap set system proxy.https="http://user:password@proxy.muc:8080"
 ```
 
-### apache
+### apache server
 [manage httpd](https://httpd.apache.org/docs/current/stopping.html)
+```sh
+# apache server installation, apache server run, web server run, webserver start
+sudo su
+yum install httpd
+service httpd start
+chkconfig httpd
+chkconfig httpd on
+vim /var/www/html/index.html
+```
 
 ### tools:
 - [ETL](www.talend.com)
