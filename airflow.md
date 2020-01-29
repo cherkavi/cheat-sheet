@@ -128,20 +128,24 @@ with DAG('airflow_tutorial_v01',
 ```python
 from airflow import DAG
 from datetime import date, timedelta, datetime
+from airflow.models import BaseOperator
+from airflow.operators.bash_operator import BashOperator
 
 default_arguments = {
-    'owner': 'test-datetime-now',
-    'start_date': datetime.now(),
-    'retries': 1,
-    'retry_delay': timedelta(minutes=5),
-    'catchup': False
+    'owner': 'airflow'
+    ,'start_date': datetime(2016,1,1) # do not do that: datetime.now()
+    ,'retries': 1
+    #,'retry_delay': timedelta(minutes=5)
+    #,'catchup': False - not working here
+    ,'depends_on_past': False
 }
 
-with DAG('dummy_echo_dag',
-         default_args=default_arguments,
-         schedule_interval='*/15 * * * *'
+with DAG(dag_id='dummy_echo_dag_10'
+         ,default_args=default_arguments
+         ,schedule_interval="*/5 * * * *"
+         ,catchup=False
          ) as dag:
-    print(dag)
+    BashOperator(task_id='bash_example', bash_command="date", dag=dag)    
 ```
 
 * reading settings files ( dirty way )
