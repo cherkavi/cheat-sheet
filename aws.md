@@ -1,5 +1,7 @@
 [sdk](https://aws.amazon.com/tools/)  
 
+## [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
+
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
 ### installation of AWS cli
 ```sh
