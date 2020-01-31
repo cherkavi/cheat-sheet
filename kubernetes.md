@@ -177,6 +177,7 @@ temporary
 kubectl get pods --context=minikube
 ```
 
+# CLI
 ## access cluster
 * reverse proxy 
   activate proxy from current node
@@ -385,6 +386,8 @@ minikube addons enable ingress
 ```
 
 ## deployment
+to see deployment from external world, remote access to pod, deployment access:  
+user ----> Route -----> Service ----> Deployment
 ![main schema](https://i.postimg.cc/6pfGpWvN/deployment-high-level.png)
 
 ## start dummy container

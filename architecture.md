@@ -8,6 +8,7 @@
 * Coding vs Configuration
 * Product customisation
 
+![architecture context](https://i.postimg.cc/3rG2VYKf/architecture-context.png)
 ![software architecture](https://i.postimg.cc/D0cMGPPc/software-architecture.png)
 
 # [Antipatterns](https://sourcemaking.com/antipatterns/software-architecture-antipatterns)

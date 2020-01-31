@@ -1,5 +1,7 @@
 [sdk](https://aws.amazon.com/tools/)  
 
+## [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
+
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
 ### installation of AWS cli
 ```sh
@@ -16,11 +18,15 @@ aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 ## EC2
 [purchases options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
 
-## documentation, education 
-[official documentation](https://docs.aws.amazon.com/)  
-[whitepapers](https://aws.amazon.com/whitepapers)  
-[free courses](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
-[interactive documentation example](https://interactive.linuxacademy.com/diagrams/ProjectOmega2.html)   
+## documentation
+* [official documentation](https://docs.aws.amazon.com/)  
+* [whitepapers](https://aws.amazon.com/whitepapers)  
+* [interactive documentation example](https://interactive.linuxacademy.com/diagrams/ProjectOmega2.html)   
+
+# education 
+* [free courses](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
+* [amazon free training](https://www.aws.training/)  
+
 ![news](https://i.postimg.cc/zvSj5SxJ/aws-2019-re-invent.png)  
 
 upcoming courses:

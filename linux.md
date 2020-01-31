@@ -429,11 +429,18 @@ KillMode=process
 [Install]
 WantedBy=multi-user.target
 ```
-```
-sudo systemctl enable YOUR_SERVICE_NAME
-sudo systemctl start YOUR_SERVICE_NAME
-sudo systemctl status YOUR_SERVICE_NAME
-sudo systemctl daemon-reload YOUR_SERVICE_NAME
+
+managing services
+```sh
+# alternative of chkconfig
+# alternative of sysv-rc-conf
+
+# list all services
+systemctl --all
+systemctl enable YOUR_SERVICE_NAME
+systemctl start YOUR_SERVICE_NAME
+systemctl status YOUR_SERVICE_NAME
+systemctl daemon-reload YOUR_SERVICE_NAME
 ```
 
 reset X-server, re-start xserver, reset linux gui
@@ -1371,8 +1378,17 @@ sudo snap set system proxy.http="http://user:password@proxy.muc:8080"
 sudo snap set system proxy.https="http://user:password@proxy.muc:8080"
 ```
 
-### apache
+### apache server
 [manage httpd](https://httpd.apache.org/docs/current/stopping.html)
+```sh
+# apache server installation, apache server run, web server run, webserver start
+sudo su
+yum install httpd
+service httpd start
+chkconfig httpd
+chkconfig httpd on
+vim /var/www/html/index.html
+```
 
 ### tools:
 - [ETL](www.talend.com)
@@ -1771,6 +1787,11 @@ sudo update-initramfs -u -k all
 xdg-mime query default x-scheme-handler/http
 ```
 
+### open file with default editor, default viewer, with more appropriate viewr
+```sh
+rifle <path to file>
+```
+
 ## install haskell
 ```
 sudo apt-get install haskell-stack
@@ -1878,6 +1899,7 @@ Right move-right 10
 
 ---
 # useful links:
+* [vnc alternative - connect to existing session](http://www.karlrunge.com/x11vnc/)
 * [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
 * [jira editing shortcuts](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)
 * [i3 window manager shortcuts](https://i3wm.org/docs/refcard.html)

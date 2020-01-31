@@ -1,20 +1,46 @@
-## Pig
-free data structure ( Hive - fixed data structure )
-function names, names of relations, fields are case sensitive 
+## Pig ( PigLatin )
+* all operators will be translated to MapReduce  
+* accessible operations:
+  * join dataset
+  * sort dataset
+  * filter dataset
+  * data types
+  * group by
+  * user defined functions
+* free data structure ( Hive - fixed data structure )  
+* function names, names of relations, fields are case sensitive   
 ---
-execute into local mode
+### execution 
+* execute into local mode
 ```
 pig -x local
 pig -x local <filename>
 ```
-data types
+* execute on cluster using mapreduce
+```
+pig -x mapreduce
+pig -x mapreduce <filename>
+```
+### building blocks
+associations with SQL
+```
+# just a value, like "hello", 15...
+cell  -> field
+# (15, 4.2, "hello")
+row   -> tuple
+# { (15, 4.2, "first"), (16, 5.3,"second") }
+table -> bag
+```
+
+### data types
 ```
 map: [1#red, 2#yellow, 3#green]
 bag: (1, red), (2, yellow), (3, green)
 tuple: (1,red)
 atom: int, long, float, double, chararray, bytearray
 ```
-load data from file
+### input output
+loading data from file
 ```
 /* load data from file and use semicolon delimiter, default delimiter = \t */
 LOAD <path to file/folder> USING PigStorage(';') AS (userId: chararray, timestamp: long ); 
@@ -24,8 +50,8 @@ LOAD <path to file/folder> USING JsonLoader() -- json format
 LOAD <path to file/folder> USING BinStorage() -- for internal using 
 ```
 [custom delimiter implementation](https://stackoverflow.com/questions/26354949/how-to-load-files-with-different-delimiter-each-time-in-piglatin#26356592)
----
-save data
+
+saving data into file
 > operation will fail, if directory exists
 ```
 STORE <var name> INTO <path to directory>
@@ -34,7 +60,7 @@ STORE <var name> INTO <path to directory> USING BinStorage()
 STORE <var name> INTO <path to directory> USING PigDump()
 STORE <var name> INTO <path to directory> USING JsonStorage()
 ```
----
+### CLI
 using command line parameters into PigLating script
 ```
 ./pig -param dir='/opt/data/import' myscript.pig
@@ -55,7 +81,7 @@ command line
 ```
 ./pig -param_file custom_parameters.values myscript.org
 ```
----
+### operators
 describe variable, print type
 ```
 DESCRIBE <var name>;
@@ -79,6 +105,8 @@ ILLUSTRATE <var name>;
 group into new variable
 ```
 {bag} = GROUP <var name> by <field name>;
+# result will be
+# {field_value, (tuple of values)}
 ```
 example
 ```
@@ -200,10 +228,10 @@ dump result;
 ```
 
 accessible nested functions:
-* distinct
-* filter
-* limit
-* order by
+* DISTINCT
+* FILTER {var} BY {field} MATCHES
+* LIMIT ( like SQL limit )
+* ORDER {var} BY {field}
 ---
 # functions 
 * FLATTEN - flat map for tuples ( and nested elements )
