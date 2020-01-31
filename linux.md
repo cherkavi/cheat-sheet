@@ -1755,9 +1755,15 @@ alt-F2 r
 sudo ubuntu-drivers autoinstall
 ```
 
-### sudo without password
+### sudo without password, apple keyboard
 ```
 echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
+```
+
+### apple keyboard, alternative 
+```sh
+echo 'options hid_apple fnmode=2 iso_layout=0 swap_opt_cmd=0' | sudo tee /etc/modprobe.d/hid_apple.conf
+sudo update-initramfs -u -k all
 ```
 
 ### default type, detect default browser, mime types
