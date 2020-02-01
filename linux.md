@@ -100,9 +100,15 @@ gpg --keyserver keyserver.ubuntu.com --recv-keys D09FB15F1A24768DDF1FA29CCFEEF31
 
 ### connect to remote machine via ssh without credentials
 ```
+# generate new RSA keys, create RSA
 ssh-keygen -t rsa
 ```
 ( check created file /home/{user}/.ssh/id_rsa )
+```sh
+# if you have copied it, check permissions
+chmod 700 ~/.ssh
+chmod 700 ~/.ssh/*
+```
 
 ```
 ssh-copy-id {username}@{machine ip}:{port}
