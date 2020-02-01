@@ -20,7 +20,10 @@ docker system info
 ```sh
 sudo groupadd docker
 sudo usermod -aG docker $USER # add current user into docker group
+# restart service
 sudo service docker restart
+# restart daemon
+systemctl daemon-reload
 ```
 
 Issue:
