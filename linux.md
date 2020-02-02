@@ -259,6 +259,10 @@ sort with reverse order
 ```
 sort -r <filename>
 ```
+### print file with line numbers, output linenumbers
+```
+cat -n <filename>
+```
 
 ### split and merge big files
 ```
