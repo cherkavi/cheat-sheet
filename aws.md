@@ -27,6 +27,8 @@ aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 * [free courses](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
 * [amazon free training](https://www.aws.training/)  
 
+## solutions
+![serverless](https://i.postimg.cc/PxNrBPf9/aws-serverless.png)
 ![news](https://i.postimg.cc/zvSj5SxJ/aws-2019-re-invent.png)  
 
 upcoming courses:
