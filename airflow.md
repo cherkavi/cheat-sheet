@@ -12,10 +12,10 @@ Should be:
   * idempotent ( execution of many times without side effect )
   * can be retried automatically
 * [Operator](https://airflow.apache.org/docs/1.10.1/howto/operator.html) describe a single task in your data pipeline
- * action - perform actions ( BashOperator, PythonOperator, EmailOperator... )
- * transfer - move data from one system to another ( SftpOperator, S3FileTransformOperator, HiveOperator.... )
+ * action - perform actions ( airflow.operators.BashOperator, airflow.operators.PythonOperator, airflow.operators.EmailOperator... )
+ * transfer - move data from one system to another ( SftpOperator, S3FileTransformOperator, airflow.operators.HiveOperator.... )
  ( don't use it for BigData - source->executor machine->destination )
- * sensor - waiting for arriving data to predefined location
+ * sensor - waiting for arriving data to predefined location ( airflow.contrib.sensors.file_sensor.FileSensor )
  has a method #poke that is calling repeatedly until it returns True
 * Task
 An instance of an operator
