@@ -86,15 +86,19 @@ git merge-base --is-ancestor <ancestor_commit> <descendant_commit>; if [[ 1 -eq 
 ```
 
 ### check last commits for specific branch, last commits in branch
-```
+```sh
 git log -5 develop
 ```
 ### check files only for last commits
-```
+```sh
 git log -5 develop --name-only
 ```
-### pretty log with tree
+### check last commits by author, commits from all branches
 ```
+git log -10 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --all --author "Cherkashyn"
+```
+### pretty log with tree
+```sh
 git log --all --graph --decorate --oneline --simplify-by-decoration
 ```
 
