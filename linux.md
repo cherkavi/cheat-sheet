@@ -1026,7 +1026,7 @@ curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "u
 * curl --silent -X GET http://google.com
 * curl  http://google.com 2>/dev/null
 
-### curl certificate skipping
+### curl certificate skipping, curl ssl, curl https, curl skip ssl
 ```
 curl --insecure -s -X GET http://google.com
 ```
