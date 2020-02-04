@@ -310,7 +310,7 @@ docker ps -a
 docker ps -a --filter "name=redis-lab" --format "{{.Names}} {{.Command}}"
 ```
 
-### join to executed container
+### join to executed container, connect to container, rsh, sh on container
 ```
 docker attach {CONTAINER ID}
 # docker exec --interactive --tty {CONTAINER ID} /bin/sh
