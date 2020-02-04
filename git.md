@@ -73,11 +73,16 @@ git branch --merged | egrep -v "(^\*|master|in-progress)" | xargs git branch -d
 git rev-parse "remotes/origin/release-6.0.0"
 ```
 
-### check all branches for certain commit ( is commit in branch, is branch contains commit )
+### check all branches for certain commit ( is commit in branch, is branch contains commit ), commit include in 
 ```
 git branch --all --contains 0ff27c79738a6ed718baae3e18c74ba87f16a314
 git branch --all --contains {name-of-the-branch}
 git branch --all --merged 0ff27c79738a6ed718baae3e18c74ba87f16a314
+```
+
+### is certain commit included in another, commit before, commit after
+```sh
+git merge-base --is-ancestor <ancestor_commit> <descendant_commit>; if [[ 1 -eq "$?" ]]; then echo "NOT included"; else echo "included"; fi
 ```
 
 ### check last commits for specific branch, last commits in branch
