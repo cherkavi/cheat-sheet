@@ -11,11 +11,12 @@ a graph object representing your data pipeline.
 Should be:
   * idempotent ( execution of many times without side effect )
   * can be retried automatically
-* [Operator](https://airflow.apache.org/docs/1.10.1/howto/operator.html)
-Describe a single task in your data pipeline
+* [Operator](https://airflow.apache.org/docs/1.10.1/howto/operator.html) describe a single task in your data pipeline
  * action - perform actions ( BashOperator, PythonOperator, EmailOperator... )
  * transfer - move data from one system to another ( SftpOperator, S3FileTransformOperator, HiveOperator.... )
+ ( don't use it for BigData - source->executor machine->destination )
  * sensor - waiting for arriving data to predefined location
+ has a method #poke that is calling repeatedly until it returns True
 * Task
 An instance of an operator
 * Task Instance
