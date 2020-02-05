@@ -674,6 +674,11 @@ at <date and time>
 ^D
 ```
 
+### print all files that process is reading
+```
+strace -e open,access <command to run application>
+```
+
 ### find process by name
 ```
 ps fC firefox
