@@ -436,3 +436,7 @@ else
 	exit 1
 fi
 ```
+
+## advices
+### fix commit to wrong branch
+![fix wrong branch commit](https://i.postimg.cc/TYVLR89Y/git-wrong-branch-commit.png)
