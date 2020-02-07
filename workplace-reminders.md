@@ -1,5 +1,11 @@
 # How to speedup your working activities, small advices about workplace improvements
 
+## Linux 
+### list of useful application:
+* [screen shot](https://github.com/ksnip/ksnip)
+* [local console in browser](https://github.com/subhra74/linux-web-console)
+* [remote server utility](https://github.com/subhra74/snowflake)
+
 ## JIRA
 ### Jira Query Language, JQL
 [jql search](https://www.atlassian.com/blog/jira-software/jql-the-most-flexible-way-to-search-jira-14)
