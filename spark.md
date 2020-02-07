@@ -12,7 +12,7 @@ two ways you can improve the performance of your Spark application:
 * tuning the degree of parallelism
 * avoiding the shuffle of large amounts of data 
 ```
-
+![RDD](https://i.postimg.cc/SKNzTZcQ/RDD.png)
 
 ### modes
 * local - run in the same VM
