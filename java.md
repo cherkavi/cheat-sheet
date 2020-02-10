@@ -471,4 +471,40 @@ curl -X POST --user weblogic:weblogic1 -H X-Requested-By:weblogic -H Accept:appl
    , "targets": ["pportal_group"]
 }
 ```
-# [ADR](https://github.com/joelparkerhenderson/architecture_decision_record)
+# OpenXava
+```
+OpenXava create new project from DataSource
+	1 - switch to workspace %OPENXAVA%/workspace
+	2 - open project OpenXavaTemplate
+	3 - execute ant script: CreateNewProject.xml
+	4 - enter name of project (Monolith) 
+	5 - import new project into workspace ( import existing project )
+	6 - replace dialect - %OPENXAVA%/workspace/Monolith/persistence/hibernate.cfg.xml
+	7 - replace dialect - %OPENXAVA%/workspace/Monolith/persistence/META-INF/persistence.xml
+	8 - create hibernate mapping from Database ( by JBoss tool )
+	8.1 - create Hibernate console
+	8.2 - create Hibernate Code Generation Configuration
+	8.3 - run Hibernate Code Generation Configuration
+	9 - add annotations:
+	9.1 - add import to each Domain file: 
+		import javax.persistence.*;
+		import org.openxava.annotations.*;
+	9.2 - add annotations to each column:
+ 	    @Id
+	    // GeneratedValue(strategy=GenerationType.AUTO)
+	    @Hidden
+	    @Column(name = "value_id", length=36, nullable = false)
+	    private String valueId;
+	
+    	    @Required
+    	    @Column(name = "group", length = 20, nullable = false)
+	    private String group;
+	
+	10 - add openxava annotations to each Entity:
+	11 - execute ant compile ( %OPENXAVA%/workspace/Monolith/  )
+	12 - execute ant deployWar ( %OPENXAVA%/workspace/Monolith/  )
+	13 - execute tomcat
+	14 - goto 
+		http://localhost:8080/Monolith/modules/Value
+		<     tomcat   path ><Project >       < entity name >
+```
