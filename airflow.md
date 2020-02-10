@@ -147,10 +147,10 @@ curl -X GET --user ibeo_gt-s https://airflow.local/api/experimental/dags/ibeo_gt
 # number of physical python processes the scheduler can run
 parallelism
 
-# number of DagRuns
+# number of DagRuns - will be concurrency in dag execution, don't use in case of dependencies of dag-runs
 max_active_runs_per_dag
 
-# number of tast instances that are running simultaneously per dag
+# number of tast instances that are running simultaneously per DagRun ( amount of TaskInstances inside one DagRun )
 dag_concurrency
 ```
 
