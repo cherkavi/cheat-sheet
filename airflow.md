@@ -7,22 +7,22 @@
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
 ## Key concepts
 * DAG
-a graph object representing your data pipeline.  
+a graph object representing your data pipeline ( collection of tasks ).  
 Should be:
   * idempotent ( execution of many times without side effect )
   * can be retried automatically
 * [Operator](https://airflow.apache.org/docs/1.10.1/howto/operator.html) describe a single task in your data pipeline
- * action - perform actions ( airflow.operators.BashOperator, airflow.operators.PythonOperator, airflow.operators.EmailOperator... )
- * transfer - move data from one system to another ( SftpOperator, S3FileTransformOperator, airflow.operators.HiveOperator.... )
+ * **action** - perform actions ( airflow.operators.BashOperator, airflow.operators.PythonOperator, airflow.operators.EmailOperator... )
+ * **transfer** - move data from one system to another ( SftpOperator, S3FileTransformOperator, airflow.operators.HiveOperator.... )
  ( don't use it for BigData - source->executor machine->destination )
- * sensor - waiting for arriving data to predefined location ( airflow.contrib.sensors.file_sensor.FileSensor )
+ * **sensor** - waiting for arriving data to predefined location ( airflow.contrib.sensors.file_sensor.FileSensor )
  has a method #poke that is calling repeatedly until it returns True
 * Task
 An instance of an operator
 * Task Instance
 Represents a specific run of a task = DAG + Task + Point of time
 * Workflow
-Combination of all above
+Combination of Dags, Operators, Tasks, TaskInstances
 
 ## Architecture overview
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
@@ -34,14 +34,16 @@ Combination of all above
   * read user request  
   * UI  
 * Scheduler
-  * scan folder "%AIRFLOW%/dags" ( default location )
+  * scan folder "%AIRFLOW%/dags" ( config:dag_folder ) and with timeout ( config:dag_dir_list_interval )
   * monitor execution "start_date" + "schedule_interval", write "execution_date" ( last time executed )
-  * create DagRun ( instance of DAG )
+  * create DagRun ( instance of DAG ) and fill DagBag ( with interval config:worker_refresh_interval )
     * start_date ( start_date must be in past, start_date+schedule_interval must be in future )
     * end_date
     * retries
     * retry_delay
-    * schedule_interval ( cron presets: @once, @hourly, @daily, @weekly, @monthly, @yearly )
+    * schedule_interval (cron:str / datetime.timedelta) ( cron presets: @once, @hourly, @daily, @weekly, @monthly, @yearly )
+    * catchup ( config:catchup_by_default ) or "BackFill" ( fill previous executions from start_date )
+* Metadatabase
    
 
 ## [Airflow install on python virtualenv]
@@ -77,7 +79,7 @@ docker-compose -f docker-compose-LocalExecutor.yml up -d
 python env create -f environment.yml
 source activate airflow-tutorial
 ```
-
+  
 ## [Airflow Virtual machine](https://marclamberti.com/form-course-material-100/)
 credentials
 ```sh
@@ -167,7 +169,7 @@ default_arguments = {
     ,'start_date': datetime(2016,1,1) # do not do that: datetime.now()
     ,'retries': 1
     #,'retry_delay': timedelta(minutes=5)
-    #,'catchup': False - not working here
+    #,'catchup': False - will be re-writed from ConfigFile !!!
     ,'depends_on_past': False
 }
 
