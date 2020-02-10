@@ -115,6 +115,18 @@ curl -X POST --user tech-user \
 curl -X GET --user ibeo_gt-s https://airflow.local/api/experimental/dags/ibeo_gt/dag_runs | jq '.[] | if .state=="running" then . else empty end'
 ```
 
+## DAG
+### task dependencies in DAG
+```python
+# Task1 -> Task2 -> Task3
+t1.set_downstream(t2);t2.set_downstream(t3)
+t1 >> t2 >> t3
+
+t3.set_upstream(t2);t2.set_upstream(t1)
+t3 << t2 << t1
+```
+
+
 ## [DAG examples](https://github.com/apache/airflow/tree/master/airflow/example_dags)
 should be placed into "dag" folder ( default: %AIRFLOW%/dag )
 * minimal
