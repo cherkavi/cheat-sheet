@@ -131,7 +131,7 @@ f = urllib2.urlopen(req)
 print(f.read())
 ```
 
-## trigger DAG - bash
+## trig DAG
 ```sh
 curl -X POST --user tech-user \     
     --data '{"conf":{"session_id": "bff2-08275862a9b0"}}' \
@@ -139,6 +139,19 @@ curl -X POST --user tech-user \
 
 # check running
 curl -X GET --user ibeo_gt-s https://airflow.local/api/experimental/dags/ibeo_gt/dag_runs | jq '.[] | if .state=="running" then . else empty end'
+```
+
+## configuration
+### [multi-tasks](https://github.com/cherkavi/cheat-sheet/blob/master/development-process.md#concurrency-vs-parallelism)
+```
+# number of physical python processes the scheduler can run
+parallelism
+
+# number of DagRuns
+max_active_runs_per_dag
+
+# number of tast instances that are running simultaneously per dag
+dag_concurrency
 ```
 
 ## DAG
@@ -193,7 +206,7 @@ with DAG(dag_id='dummy_echo_dag_10'
 * reading settings files ( dirty way )
 ```python
 # settings.json should be placed in the same folder as dag description
-# configuration should contains: dags_folder = /usr/local/airflow/dags
+# configuration shoulhttps://github.com/cherkavi/cheat-sheet/blob/master/development-process.md#concurrency-vs-parallelismd contains: dags_folder = /usr/local/airflow/dags
 def get_request_body():
     with open(f"{str(Path(__file__).parent.parent)}/dags/settings.json", "r") as f:
         request_body = json.load(f)
