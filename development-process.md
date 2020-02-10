@@ -1,5 +1,5 @@
 [Architecture Decision Records](https://github.com/joelparkerhenderson/architecture_decision_record)  
-Concurrency vs Parallelism
+## Concurrency vs Parallelism
 * concurent system - multiply actions in progress ( can be/not executed in the same time )
 * parallel system  - multiply actions in progress and executed in the same time ( executed simultaneously )
 ![programmers mistakes](https://i.postimg.cc/fWPPqJfd/sketch-programmers-mistakes.png)
