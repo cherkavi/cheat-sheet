@@ -34,7 +34,6 @@ Combination of Dags, Operators, Tasks, TaskInstances
   * read user request  
   * UI  
 * Scheduler 
-  * type: Sequential/Celery
   * scan folder "%AIRFLOW%/dags" ( config:dag_folder ) and with timeout ( config:dag_dir_list_interval )
   * monitor execution "start_date" + "schedule_interval", write "execution_date" ( last time executed )
   * create DagRun ( instance of DAG ) and fill DagBag ( with interval config:worker_refresh_interval )
@@ -44,8 +43,13 @@ Combination of Dags, Operators, Tasks, TaskInstances
     * retry_delay
     * schedule_interval (cron:str / datetime.timedelta) ( cron presets: @once, @hourly, @daily, @weekly, @monthly, @yearly )
     * catchup ( config:catchup_by_default ) or "BackFill" ( fill previous executions from start_date )
+* Executor
+  * type: LocalExecutor, SequentialExecutor, CeleryExecutor, DaskExecutor
 * Metadatabase
   * [types](https://docs.sqlalchemy.org/en/13/dialects/index.html)
+  * configuration:
+    * sql_alchemy_conn
+    * sql_alchemy_pool_enabled
    
 
 ## [Airflow install on python virtualenv]
