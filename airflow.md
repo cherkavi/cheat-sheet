@@ -29,6 +29,21 @@ Combination of all above
 ![multi node](https://i.postimg.cc/MGyy4DGJ/airflow-architecture-multinode.png)
 ![statuses](https://i.postimg.cc/g2kd76Z5/airflow-statuses.png)
 
+### components
+* WebServer  
+  * read user request  
+  * UI  
+* Scheduler
+  * scan folder "%AIRFLOW%/dags" ( default location )
+  * monitor execution "start_date" + "schedule_interval", write "execution_date" ( last time executed )
+  * create DagRun ( instance of DAG )
+    * start_date ( start_date must be in past, start_date+schedule_interval must be in future )
+    * end_date
+    * retries
+    * retry_delay
+    * schedule_interval ( cron presets: @once, @hourly, @daily, @weekly, @monthly, @yearly )
+   
+
 ## [Airflow install on python virtualenv]
 ```sh
 # create python virtual env
