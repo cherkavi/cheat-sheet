@@ -275,6 +275,8 @@ RestAssured
 body("brands.size()")
 ```
 
+## [Test playground](https://github.com/in28minutes/spring-boot-rest-api-playground)
+
 ## Sonar
 ### skip checking by code checker
 ```
