@@ -154,6 +154,21 @@ max_active_runs_per_dag
 dag_concurrency
 ```
 
+### different configuration of executor
+### LocalExecutor with PostgreSQL
+```properties
+executor = LocalExecutor
+sql_alchemy_conn = postgresql+psycopg2://airflow@localhost:5432/airflow_metadata
+```
+### CeleryExecutor with PostgreSQL and RabbitMQ ( recommended for prod )
+```properties
+executor = CeleryExecutor
+sql_alchemy_conn = postgresql+psycopg2://airflow@localhost:5432/airflow_metadata
+broker_url = pyamqp://admin:rabbitmq@localhost/
+result_backend = db+postgresql://airflow@localhost:5432/airflow_metadata
+worker_log_server_port = 8899
+```
+
 ## DAG
 ### task dependencies in DAG
 ```python
