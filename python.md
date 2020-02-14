@@ -56,7 +56,7 @@ debian
 apt-get install -y --no-install-recommends python3-pip
 ```
 
-### pip install with proxy, pip install proxy
+### pip install with proxy, pip install proxy, pip proxy, pip via proxy
 ```
 pip install --proxy=http://proxy.muc:8080
 ```
