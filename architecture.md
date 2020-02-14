@@ -14,11 +14,19 @@
 
 # [Antipatterns](https://sourcemaking.com/antipatterns/software-architecture-antipatterns)
 
-## Architecture cycle
+# Architecture cycle
 [architecture cycle](https://i.postimg.cc/VNXSFVb1/architecture-cycle.png)
 
-## Software architecture patterns
+# Software architecture patterns
 [architecture patterns](https://i.postimg.cc/Gm8T42L4/architecture-patterns.png)
+
+# Architecture Decision Records
+* Priority
+* Stakeholders
+* Status
+* Owners ( lead of activities )
+* Assumptions
+* Risks
 
 # Useful links
 * [C4](https://leanpub.com/visualising-software-architecture)
