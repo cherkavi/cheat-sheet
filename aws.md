@@ -25,8 +25,9 @@ complete -C `locate aws_completer` aws
 ```sh
 aws s3 mb s3://my-bucket-name
 aws s3 ls
-aws s3 cp /path/to/file s3://my-bucket-name
+aws s3 cp /path/to/file-name.with_extension s3://my-bucket-name
 aws s3 ls s3://my-bucket-name
+aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
 ```
 
 ## EC2
