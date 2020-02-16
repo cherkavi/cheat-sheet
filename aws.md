@@ -12,6 +12,12 @@ aws configuration
 # example of adding user to group 
 aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 ```
+### console command complition, console completion
+```sh
+pip3 install awscli
+complete -C `locate aws_completer` aws
+```
+
 ## Identity Access Manager
 [IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)  
 
