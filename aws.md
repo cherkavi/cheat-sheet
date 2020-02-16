@@ -21,6 +21,14 @@ complete -C `locate aws_completer` aws
 ## Identity Access Manager
 [IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)  
 
+## S3
+```sh
+aws s3 mb s3://my-bucket-name
+aws s3 ls
+aws s3 cp /path/to/file s3://my-bucket-name
+aws s3 ls s3://my-bucket-name
+```
+
 ## EC2
 [purchases options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
 
