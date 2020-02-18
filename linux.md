@@ -1644,6 +1644,12 @@ ENDTIME=`date +%s.%N`
 TIMEDIFF=`echo "$ENDTIME - $STARTTIME" | bc | awk -F"." '{print $1"."substr($2,1,3)}'`
 ```
 
+## language translator 
+```sh
+sudo apt-get install translate-shell
+trans -source de -target ru -brief "german sentance"
+```
+
 ## vim
 [vim cheat sheet](http://najomi.org/vim)
 ### copy-paste
