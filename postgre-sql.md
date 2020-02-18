@@ -99,9 +99,27 @@ psql -U workflowmonitoring -d workflowmonitoringdb
 \q
 ```
 
+### command inside client
 ```sql
+-- help
+\h
+\?
+
+-- 
 -- list of all databases
 \l
 -- list of all tables
 SELECT table_name FROM information_schema.tables WHERE table_schema='public';
+-- list of all tables
+\dt
+-- list of all views
+\dv
+-- describe object
+\d my_table_name
+-- save output of query to file
+\o
+-- execute external file
+\i 
+-- execute command line
+\!
 ```
