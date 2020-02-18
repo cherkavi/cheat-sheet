@@ -73,7 +73,8 @@ export http_proxy="http://host:3128/"
 }
 ```
 ```bash
-sudo service docker restart
+# restart docker with daemon
+sudo systemctl daemon-reload && sudo systemctl restart docker
 ```
 * /etc/systemd/system/docker.service.d/http-proxy.conf
 ```
