@@ -1918,6 +1918,11 @@ Up move-up 10
 Right move-right 10
 ```
 
+## calendar, week number
+```
+gcal --with-week-number
+```
+
 ---
 # useful links:
 * [vnc alternative - connect to existing session](http://www.karlrunge.com/x11vnc/)
