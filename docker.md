@@ -353,11 +353,13 @@ docker diff {CONTAINER ID}
 ### show all layers command+size, reverse engineering of container, print dockerfile
 ```
 docker history --no-trunc {CONTAINER ID}
+docker image history --no-trunc {CONTAINER ID}
 ```
 
 ### docker running image information
 ```
 docker inspect
+docker image inspect
 docker inspect -f '{{.HostConfig.PortBindings}}' {CONTAINER ID}
 ```
 
