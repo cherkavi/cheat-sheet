@@ -86,6 +86,11 @@ psql --username postgres --list
 psql -w -U user_name -d database_name -c "SELECT 1"
 ```
 
+### execute prepared sql file
+```
+psql -w -U user_name -d database_name -a -f /path/to/file.sql
+```
+
 ### connect to db 
 ```sh
 # connect
