@@ -1398,7 +1398,8 @@ sudo snap set system proxy.https="http://user:password@proxy.muc:8080"
 ```sh
 # apache server installation, apache server run, web server run, webserver start
 sudo su
-yum install httpd
+yum update -y
+yum install -y httpd
 service httpd start
 chkconfig httpd
 chkconfig httpd on
