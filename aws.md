@@ -33,6 +33,10 @@ aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
 ## EC2
 [purchases options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
 
+## ELB
+[ELB troubleshooting](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html)
+
+---
 ## documentation
 * [official documentation](https://docs.aws.amazon.com/)  
 * [whitepapers](https://aws.amazon.com/whitepapers)  
