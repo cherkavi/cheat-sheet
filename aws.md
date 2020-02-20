@@ -36,6 +36,17 @@ aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
 ## ELB
 [ELB troubleshooting](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html)
 
+## Lambda
+### [Python Zappa](https://github.com/Miserlou/Zappa)
+```sh
+virtualenv env
+source env/bin/activate
+# update your settings https://github.com/Miserlou/Zappa#advanced-settings
+zappa init
+zappa deploy dev
+zappa update dev
+```
+
 ---
 ## documentation
 * [official documentation](https://docs.aws.amazon.com/)  
