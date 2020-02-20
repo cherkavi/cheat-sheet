@@ -2,6 +2,13 @@
 
 ## [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
 
+## Visual tools
+* CloudFormation
+* [CloudCraft](https://cloudcraft.co/)
+* [VisualOps](https://visualops.readthedocs.io/)
+* [draw.io](https://draw.io)
+* []()
+
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
 ### installation of AWS cli
 ```sh
