@@ -7,7 +7,6 @@
 * [CloudCraft](https://cloudcraft.co/)
 * [VisualOps](https://visualops.readthedocs.io/)
 * [draw.io](https://draw.io)
-* []()
 
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
 ### installation of AWS cli
@@ -63,6 +62,8 @@ zappa deploy dev
 zappa update dev
 ```
 
+## Route53
+### [resource record types](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html)
 ---
 ## documentation
 * [official documentation](https://docs.aws.amazon.com/)  
