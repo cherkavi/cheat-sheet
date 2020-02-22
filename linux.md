@@ -62,7 +62,7 @@ ssh -D 9999 127.0.0.1 -t ssh -R 7777:127.0.0.1:9999 username@192.118.112.13
 wget -e use_proxy=yes -e http_proxy=127.0.0.1:7777 https://google.com
 ```
 
-### possible solution to detect remote client
+### possible solution to detect remote client to your machine
 ```
 # open access
 ping -s 120 -c 1 146.255.193.66
@@ -86,6 +86,20 @@ sudo sshfs -o allow_other,IdentityFile=~/.ssh/id_rsa vcherkashyn@190.17.19.11:/r
 sudo apt install curlftpfs
 sudo mkdir /mnt/samsung-note
 curlftpfs testuser:testpassword@192.168.178.20:2221 /mnt/samsung-note/
+```
+
+### list drives, drive list, attached drives
+```sh
+lsblk
+fdisk -l
+```
+
+### create filesystem, format drive
+```sh
+sudo mkfs -t xfs /dev/xvdb
+```
+```sh
+sudo mke2fs /dev/xvdb
 ```
 
 ### gpg signature check, asc signature check, crt signature check
