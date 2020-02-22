@@ -15,9 +15,22 @@
 apt install aws
 # set up user
 aws configuration
-# example of adding user to group 
-aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 ```
+### profiling
+```sh
+vim ~/.aws/credentials
+```
+```
+[cherkavi-user]
+aws_access_key_id = AKI...
+aws_secret_access_key = ur1DxNvEn...
+```
+using profiling
+>  --region, --output, --profile 
+```sh
+aws s3 ls --profile cherkavi-user
+```
+
 ### console command complition, console completion
 ```sh
 pip3 install awscli
@@ -26,6 +39,10 @@ complete -C `locate aws_completer` aws
 
 ## Identity Access Manager
 [IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)  
+```sh
+# example of adding user to group 
+aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
+```
 
 ## S3
 ```sh
