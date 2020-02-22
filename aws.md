@@ -8,6 +8,7 @@
 * [VisualOps](https://visualops.readthedocs.io/)
 * [draw.io](https://draw.io)
 
+---
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
 ### installation of AWS cli
 ```sh
@@ -31,19 +32,23 @@ using profiling
 aws s3 ls --profile cherkavi-user
 ```
 
-### console command complition, console completion
+### console command completion, console completion
 ```sh
 pip3 install awscli
 complete -C `locate aws_completer` aws
 ```
 
-## Identity Access Manager
+
+---
+## IAM - Identity Access Manager
 [IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)  
 ```sh
 # example of adding user to group 
 aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 ```
 
+
+---
 ## S3
 ```sh
 aws s3 mb s3://my-bucket-name
@@ -53,12 +58,37 @@ aws s3 ls s3://my-bucket-name
 aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
 ```
 
+---
 ## EC2
 [purchases options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
+```sh
+# list ec2, ec2 list, instances list
+aws ec2 describe-instances --profile $AWS_PROFILE --region $AWS_REGION --filters Name=tag-key,Values=test
+```
 
+---
+## EBS
+attach new volume
+```sh
+# list volumes
+sudo lsblk
+sudo fdisk -l
+# describe volume from previous command - /dev/xvdf
+sudo file -s /dev/xvdf
+# !!! new partitions !!! format volume
+# sudo mkfs -t xfs /dev/xvdf
+# or # sudo mke2fs /dev/xvdf
+# attach volume
+sudo mkdir /external-drive
+sudo mount /dev/xvdf /external-drive
+```
+
+---
 ## ELB
 [ELB troubleshooting](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html)
 
+
+---
 ## Lambda
 ### [development tools](https://aws.amazon.com/serverless/developer-tools/)
 * Apex
@@ -79,13 +109,19 @@ zappa deploy dev
 zappa update dev
 ```
 
+
+---
 ## Route53
 ### [resource record types](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html)
+
+
 ---
-## documentation
+## DOCUMENTATION
 * [official documentation](https://docs.aws.amazon.com/)  
 * [whitepapers](https://aws.amazon.com/whitepapers)  
 * [interactive documentation example](https://interactive.linuxacademy.com/diagrams/ProjectOmega2.html)   
+* [cli ec2](https://docs.aws.amazon.com/cli/latest/reference/ec2/)
+* [cli s3](https://docs.aws.amazon.com/cli/latest/reference/s3/)
 
 # education 
 * [free courses](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
