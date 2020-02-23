@@ -70,6 +70,17 @@ pip install --index-url http://cc-artifactory.mynetwork.net my_own_package
 pip install --user .
 ```
 
+### setup.py
+#### install
+```sh
+python setup.py install
+```
+#### uninstall
+```
+python setup.py install --record list_of_files.txt
+cat list_of_files.txt | xargs sudo rm -rf
+```
+
 ### list of packages
 ```
 pip list

@@ -2035,3 +2035,5 @@ scala-lang.scala
 visualstudioexptteam.vscodeintellicode
 miguel-savignano.terminal-runner
 ```
+---
+# [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
