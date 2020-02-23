@@ -69,3 +69,11 @@ npm start --prefix /path/to/api "special_app_marker_for_ps_aux"
 ```
 PORT=$PORT npm start --prefix $PROJECT_HOME/api
 ```
+
+
+# [yarn](https://yarnpkg.com/) package manager
+## [installation](https://classic.yarnpkg.com/en/docs/install#debian-stable)
+## [configuration](https://classic.yarnpkg.com/en/docs/cli/config/)
+```sh
+yarn config list
+```
