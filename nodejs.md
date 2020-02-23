@@ -9,6 +9,16 @@ npm config ls
 npm config get https-proxy
 npm config set https-proxy [url:port]
 ```
+## proxy in .npmrc
+```sh
+vim ~/.npmrc
+```
+```properties
+proxy=http://user:passw$@proxy.muc:8080/
+https-proxy=http://user:passw$@proxy.muc:8080/
+;prefix=~/.npm-global
+```
+
 ## check installation
 ```sh
 npm bin -g
