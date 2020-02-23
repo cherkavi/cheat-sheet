@@ -52,9 +52,17 @@ aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 ## S3
 ```sh
 aws s3 mb s3://my-bucket-name
+# list of all s3
 aws s3 ls
+# copy to s3
 aws s3 cp /path/to/file-name.with_extension s3://my-bucket-name
-aws s3 ls s3://my-bucket-name
+# create folder, s3 mkdir
+aws s3api put-object --bucket my-bucket-name --key foldername/
+# sync folder with remote s3 folder
+aws s3 sync /paht/to/some/folder s3://my-bucket-name/some/folder
+# list of all objects
+aws s3 ls --recursive s3://my-bucket-name 
+# download file
 aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
 ```
 
