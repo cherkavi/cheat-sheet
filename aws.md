@@ -67,6 +67,43 @@ aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
 ```
 
 ---
+## Athena
+### simple data  
+s3://my-bucket-001/temp/
+```csv
+column-1,column-2,column3
+1,one,first
+2,two,second
+3,three,third
+4,four,fourth
+5,five,fifth
+```
+### create database
+```sql
+CREATE DATABASE IF NOT EXISTS cherkavi_database_001 COMMENT 'csv example' LOCATION 's3://my-bucket-001/temp/';
+```
+
+### create table
+```sql
+CREATE EXTERNAL TABLE IF NOT EXISTS num_sequence (id int,column_name string,column_value string)
+ROW FORMAT DELIMITED
+      FIELDS TERMINATED BY ','
+      ESCAPED BY '\\'
+      LINES TERMINATED BY '\n'
+    LOCATION 's3://my-bucket-001/temp/';
+
+--- another way to create table 
+CREATE EXTERNAL TABLE num_sequence2 (id int,column_name string,column_value string)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' 
+WITH SERDEPROPERTIES ("separatorChar" = ",", "escapeChar" = "\\") 
+LOCATION 's3://my-bucket-001/temp/'    
+```
+### execute query
+```sql
+select * from num_sequence;
+```
+
+---
 ## EC2
 [purchases options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
 ```sh
