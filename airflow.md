@@ -44,7 +44,7 @@ Combination of Dags, Operators, Tasks, TaskInstances
     * schedule_interval (cron:str / datetime.timedelta) ( cron presets: @once, @hourly, @daily, @weekly, @monthly, @yearly )
     * catchup ( config:catchup_by_default ) or "BackFill" ( fill previous executions from start_date )
 * Executor
-  * type: LocalExecutor, SequentialExecutor, CeleryExecutor, DaskExecutor
+  * type: LocalExecutor(multiply task in parallel), SequentialExecutor, CeleryExecutor, DaskExecutor
 * Metadatabase
   * [types](https://docs.sqlalchemy.org/en/13/dialects/index.html)
   * configuration:
@@ -145,7 +145,7 @@ curl -X GET --user ibeo_gt-s https://airflow.local/api/experimental/dags/ibeo_gt
 ## configuration
 ### [multi-tasks](https://github.com/cherkavi/cheat-sheet/blob/master/development-process.md#concurrency-vs-parallelism)
 ```
-# number of physical python processes the scheduler can run
+# number of physical python processes the scheduler can run, task (processes) that running in parallel 
 parallelism
 
 # number of DagRuns - will be concurrency in dag execution, don't use in case of dependencies of dag-runs
