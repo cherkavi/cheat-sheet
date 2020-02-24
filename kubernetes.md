@@ -449,6 +449,7 @@ kubectl get pods
 kubectl get pods --namespace kube-system
 kubectl get pods --show-labels
 kubectl get pods --output=wide --selector="run=load-balancer-example" 
+kubectl get pods --namespace training --field-selector="status.phase==Running,status.phase!=Unknown"
 kubectl get service --output=wide
 kubectl get service --output=wide --selector="app=helloworld"
 kubectl get deployments
