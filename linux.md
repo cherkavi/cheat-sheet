@@ -675,6 +675,11 @@ bash
 exec ls -la
 ```
 
+### execute command from string, execute string, run string
+```sh
+echo "ls" | xargs -i sh -c "{}"
+```
+
 ### disconnect from terminal and let command be runned
 ```
 ctrl-Z
