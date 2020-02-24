@@ -162,12 +162,21 @@ executor = LocalExecutor
 sql_alchemy_conn = postgresql+psycopg2://airflow@localhost:5432/airflow_metadata
 ```
 ### CeleryExecutor with PostgreSQL and RabbitMQ ( recommended for prod )
+settings
 ```properties
 executor = CeleryExecutor
 sql_alchemy_conn = postgresql+psycopg2://airflow@localhost:5432/airflow_metadata
+# RabbitMQ UI: localhost:15672
 broker_url = pyamqp://admin:rabbitmq@localhost/
 result_backend = db+postgresql://airflow@localhost:5432/airflow_metadata
 worker_log_server_port = 8899
+```
+start Celery worker node
+```sh
+# just a start worker process
+airflow worker
+# start with two child worker process - the same as 'worker_concurrency" in airflow.cfg
+airflow worker -c 2 
 ```
 
 ## DAG
