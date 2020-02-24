@@ -67,6 +67,7 @@ pip install apache-airflow
 
 # init workflow
 airflow initdb 
+# airflow resetdb - for reseting all data 
 airflow scheduler &
 airflow webserver -p 8080 &
 echo "localhost:8080"
