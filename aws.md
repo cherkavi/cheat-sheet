@@ -135,6 +135,8 @@ sudo mount /dev/xvdf /external-drive
 
 ---
 ## Lambda
+### API Gateway 
+enter point for created Lambdas
 ### [development tools](https://aws.amazon.com/serverless/developer-tools/)
 * Apex
 * [Python Zappa](https://github.com/Miserlou/Zappa)
