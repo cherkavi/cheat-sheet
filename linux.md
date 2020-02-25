@@ -2060,4 +2060,12 @@ visualstudioexptteam.vscodeintellicode
 miguel-savignano.terminal-runner
 ```
 ---
-# [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
+# Utilities 
+* [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
+* md2html, markdown to html
+```sh
+sudo apt-get update
+sudo apt-get install -y python3-sphinx
+pip3 install recommonmark sphinx-markdown-tables --user
+sphinx-build "/path/to/source" "/path/to/build" .
+```
