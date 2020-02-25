@@ -1091,7 +1091,7 @@ xmllint --noout file.xml; echo $?
 echo output.json | jq .
 ```
 
-### [parsing json, json processing](https://stedolan.github.io/jq/manual/)
+### [json parsing, parse json, parsing json, json processing](https://stedolan.github.io/jq/manual/)
 [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})
 ```bash
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
@@ -1099,6 +1099,19 @@ jq ".[] | .name"
 
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
 jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
+
+# convert from yaml to json, retrieve values from json, convert to csv
+cat temp-pod.yaml | yq - r -j --prettyPrint | jq '[.metadata.namespace, .metadata.name, .spec.template.spec.nodeSelector."kubernetes.io/hostname"] | @csv'
+```
+
+### [parsing yaml, yaml processing](https://mikefarah.gitbook.io/yq/)
+#### [yq examples](https://metacpan.org/pod/distribution/ETL-Yertl/bin/yq)
+```sh
+# read value
+cat k8s-pod.yaml | yq r - --printMode pv  "metadata.name"
+
+# convert to JSON
+cat k8s-pod.yaml | yq - r -j --prettyPrint
 ```
 
 ### chmod recursively
@@ -1258,6 +1271,12 @@ sudo openconnect --no-cert-check --no-proxy {ip-address} --user={user name} ---s
 example with reading redis collaboration ( package sniffer )
 ```sh
 sudo ngrep -W byline -d docker0 -t '' 'port 6379'
+```
+### debug connection, print collaboration with remote service, sniffer
+```sh
+#                    1------------     2--------------------     3--------------
+sudo tcpdump -nvX -v src port 6443 and src host 10.140.26.10 and dst port not 22
+# and, or, not
 ```
 
 ### DNS
@@ -2041,4 +2060,12 @@ visualstudioexptteam.vscodeintellicode
 miguel-savignano.terminal-runner
 ```
 ---
-# [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
+# Utilities 
+* [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
+* md2html, markdown to html
+```sh
+sudo apt-get update
+sudo apt-get install -y python3-sphinx
+pip3 install recommonmark sphinx-markdown-tables --user
+sphinx-build "/path/to/source" "/path/to/build" .
+```
