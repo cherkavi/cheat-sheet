@@ -1101,6 +1101,11 @@ echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "ag
 jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
 ```
 
+### [parsing yaml, yaml processing](https://mikefarah.gitbook.io/yq/)
+```sh
+cat k8s-pod.yaml | yq r - --printMode pv  "metadata.name"
+```
+
 ### chmod recursively
 ```
 chmod -R +x <folder name>
