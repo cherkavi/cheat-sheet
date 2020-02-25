@@ -1091,7 +1091,7 @@ xmllint --noout file.xml; echo $?
 echo output.json | jq .
 ```
 
-### [parsing json, json processing](https://stedolan.github.io/jq/manual/)
+### [json parsing, parse json, parsing json, json processing](https://stedolan.github.io/jq/manual/)
 [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})
 ```bash
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
@@ -1099,12 +1099,19 @@ jq ".[] | .name"
 
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
 jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
+
+# convert from yaml to json, retrieve values from json, convert to csv
+cat temp-pod.yaml | yq - r -j --prettyPrint | jq '[.metadata.namespace, .metadata.name, .spec.template.spec.nodeSelector."kubernetes.io/hostname"] | @csv'
 ```
 
 ### [parsing yaml, yaml processing](https://mikefarah.gitbook.io/yq/)
 #### [yq examples](https://metacpan.org/pod/distribution/ETL-Yertl/bin/yq)
 ```sh
+# read value
 cat k8s-pod.yaml | yq r - --printMode pv  "metadata.name"
+
+# convert to JSON
+cat k8s-pod.yaml | yq - r -j --prettyPrint
 ```
 
 ### chmod recursively
