@@ -161,6 +161,13 @@ zappa update dev
 
 
 ---
+## SNS
+```
+aws sns list-topics --profile $AWS_PROFILE --region $AWS_REGION
+aws sns list-subscriptions-by-topic --profile $AWS_PROFILE --region $AWS_REGION --topic-arn {topic arn from previous command}
+```
+
+---
 ## DOCUMENTATION
 * [official documentation](https://docs.aws.amazon.com/)  
 * [whitepapers](https://aws.amazon.com/whitepapers)  
