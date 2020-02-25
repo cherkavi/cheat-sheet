@@ -1102,6 +1102,7 @@ jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
 ```
 
 ### [parsing yaml, yaml processing](https://mikefarah.gitbook.io/yq/)
+#### [yq examples](https://metacpan.org/pod/distribution/ETL-Yertl/bin/yq)
 ```sh
 cat k8s-pod.yaml | yq r - --printMode pv  "metadata.name"
 ```
