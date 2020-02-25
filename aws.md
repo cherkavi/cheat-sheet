@@ -161,7 +161,17 @@ zappa update dev
 
 
 ---
-## DOCUMENTATION
+## CloudWatch
+```
+ metrics +--+
+/            +--> events +----> alarm
+  logs+-----+
++----------------------------------+
+        dashboards
+```
+
+---
+# DOCUMENTATION
 * [official documentation](https://docs.aws.amazon.com/)  
 * [whitepapers](https://aws.amazon.com/whitepapers)  
 * [interactive documentation example](https://interactive.linuxacademy.com/diagrams/ProjectOmega2.html)   
