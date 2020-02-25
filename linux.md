@@ -1264,6 +1264,12 @@ example with reading redis collaboration ( package sniffer )
 ```sh
 sudo ngrep -W byline -d docker0 -t '' 'port 6379'
 ```
+### debug connection, print collaboration with remote service, sniffer
+```sh
+#                    1------------     2--------------------     3--------------
+sudo tcpdump -nvX -v src port 6443 and src host 10.140.26.10 and dst port not 22
+# and, or, not
+```
 
 ### DNS
 ```
