@@ -44,7 +44,7 @@ Combination of Dags, Operators, Tasks, TaskInstances
     * schedule_interval (cron:str / datetime.timedelta) ( cron presets: @once, @hourly, @daily, @weekly, @monthly, @yearly )
     * catchup ( config:catchup_by_default ) or "BackFill" ( fill previous executions from start_date )
 * Executor
-  * type: LocalExecutor, SequentialExecutor, CeleryExecutor, DaskExecutor
+  * type: LocalExecutor(multiply task in parallel), SequentialExecutor, CeleryExecutor, DaskExecutor
 * Metadatabase
   * [types](https://docs.sqlalchemy.org/en/13/dialects/index.html)
   * configuration:
@@ -67,6 +67,7 @@ pip install apache-airflow
 
 # init workflow
 airflow initdb 
+# airflow resetdb - for reseting all data 
 airflow scheduler &
 airflow webserver -p 8080 &
 echo "localhost:8080"
@@ -144,7 +145,7 @@ curl -X GET --user ibeo_gt-s https://airflow.local/api/experimental/dags/ibeo_gt
 ## configuration
 ### [multi-tasks](https://github.com/cherkavi/cheat-sheet/blob/master/development-process.md#concurrency-vs-parallelism)
 ```
-# number of physical python processes the scheduler can run
+# number of physical python processes the scheduler can run, task (processes) that running in parallel 
 parallelism
 
 # number of DagRuns - will be concurrency in dag execution, don't use in case of dependencies of dag-runs
@@ -161,12 +162,21 @@ executor = LocalExecutor
 sql_alchemy_conn = postgresql+psycopg2://airflow@localhost:5432/airflow_metadata
 ```
 ### CeleryExecutor with PostgreSQL and RabbitMQ ( recommended for prod )
+settings
 ```properties
 executor = CeleryExecutor
 sql_alchemy_conn = postgresql+psycopg2://airflow@localhost:5432/airflow_metadata
+# RabbitMQ UI: localhost:15672
 broker_url = pyamqp://admin:rabbitmq@localhost/
 result_backend = db+postgresql://airflow@localhost:5432/airflow_metadata
 worker_log_server_port = 8899
+```
+start Celery worker node
+```sh
+# just a start worker process
+airflow worker
+# start with two child worker process - the same as 'worker_concurrency" in airflow.cfg
+airflow worker -c 2 
 ```
 
 ## DAG

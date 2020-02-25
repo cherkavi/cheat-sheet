@@ -135,6 +135,8 @@ sudo mount /dev/xvdf /external-drive
 
 ---
 ## Lambda
+### API Gateway 
+enter point for created Lambdas
 ### [development tools](https://aws.amazon.com/serverless/developer-tools/)
 * Apex
 * [Python Zappa](https://github.com/Miserlou/Zappa)
@@ -165,6 +167,16 @@ zappa update dev
 ```
 aws sns list-topics --profile $AWS_PROFILE --region $AWS_REGION
 aws sns list-subscriptions-by-topic --profile $AWS_PROFILE --region $AWS_REGION --topic-arn {topic arn from previous command}
+```
+
+---
+## CloudWatch
+```
+ metrics +--+
+/            +--> events +----> alarm
+  logs+-----+
++----------------------------------+
+        dashboards
 ```
 
 ---
