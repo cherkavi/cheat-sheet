@@ -1,12 +1,11 @@
 [sdk](https://aws.amazon.com/tools/)  
 
-## [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
-
-## Visual tools
-* CloudFormation
-* [CloudCraft](https://cloudcraft.co/)
-* [VisualOps](https://visualops.readthedocs.io/)
-* [draw.io](https://draw.io)
+## url to cli documentation 
+```sh
+current_browser="google-chrome"
+current_topic="sns"
+alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_topic}/index.html"'
+```
 
 ---
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
@@ -131,6 +130,10 @@ sudo mount /dev/xvdf /external-drive
 ---
 ## ELB
 [ELB troubleshooting](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html)
+```sh
+# documentation 
+current_topic="elb"; cli-doc
+```
 
 
 ---
@@ -164,9 +167,22 @@ zappa update dev
 
 ---
 ## SNS
-```
+```sh
+current_topic="sns"; cli-doc
+
+### list of topics
 aws sns list-topics --profile $AWS_PROFILE --region $AWS_REGION
+#### open browser with sns dashboard
+google-chrome "https://"$AWS_REGION".console.aws.amazon.com/sns/v3/home?region="$AWS_REGION"#/topics"
+
+### list of subscriptions
 aws sns list-subscriptions-by-topic --profile $AWS_PROFILE --region $AWS_REGION --topic-arn {topic arn from previous command}
+
+### send example
+    #--message file://message.txt
+aws sns publish  --profile $AWS_PROFILE --region $AWS_REGION \
+    --topic-arn "arn:aws:sns:us-west-2:123456789012:my-topic" \
+    --message "hello from aws cli"
 ```
 
 ---
@@ -180,12 +196,24 @@ aws sns list-subscriptions-by-topic --profile $AWS_PROFILE --region $AWS_REGION 
 ```
 
 ---
+## [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
+
+---
+## Visual tools
+* CloudFormation
+* [CloudCraft](https://cloudcraft.co/)
+* [VisualOps](https://visualops.readthedocs.io/)
+* [draw.io](https://draw.io)
+
+
+---
 ## DOCUMENTATION
 * [official documentation](https://docs.aws.amazon.com/)  
 * [whitepapers](https://aws.amazon.com/whitepapers)  
 * [interactive documentation example](https://interactive.linuxacademy.com/diagrams/ProjectOmega2.html)   
 * [cli ec2](https://docs.aws.amazon.com/cli/latest/reference/ec2/)
 * [cli s3](https://docs.aws.amazon.com/cli/latest/reference/s3/)
+* [cli sns](https://docs.aws.amazon.com/cli/latest/reference/sns/index.html)
 
 # education 
 * [free courses](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
