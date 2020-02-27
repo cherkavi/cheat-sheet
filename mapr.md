@@ -245,32 +245,45 @@ maprcli dashboard info -json
 ```
 
 # posix client
-keys
+## keys
 ```sh
 $ wget -O - https://package.mapr.com/releases/pub/maprgpg.key | sudo apt-key add -
 ```
 
-add these lines to /etc/apt/sources.list:
+## add these lines to /etc/apt/sources.list:
 ```
 deb https://package.mapr.com/releases/v6.1.0/ubuntu binary trusty
 deb https://package.mapr.com/releases/MEP/MEP-6.0.0/ubuntu binary trusty
 ```
 
-installation
+## installation
 ```sh
 apt-get update
 # apt-get install mapr-posix-client-basic
 apt-get install mapr-posix-client-platinum
 ```
 
-configuration
+## configuration
 ```sh
 sudo mkdir /mapr
 sudo scp $USERNAME@$EDGE_NODE:/opt/mapr/conf/mapr-clusters.conf /opt/mapr/conf/mapr-clusters.conf
 sudo scp $USERNAME@$EDGE_NODE:/opt/mapr/conf/ssl_truststore /opt/mapr/conf/ssl_truststore
 ```
 
-login
+## login
 ```sh
 echo "$PASSWORD" | maprlogin password -user $USERNAME -out /tmp/mapruserticket
+```
+
+## issues
+### with test execution ( scala, java )
+```text
+Can not find IP for host: maprdemo.mapr.io
+```
+solution
+```sh
+# hard way
+rm -rf /opt/mapr
+# soft way
+vim /opt/mapr/conf/mapr-clusters.conf
 ```
