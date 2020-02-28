@@ -42,7 +42,19 @@ bin/spark-submit
 --driver-java-options "-Dlog4j.configuration=file:log4j-local-usage-only.xml" \
 --jars <jar1>,<jar2>,<jar3>
 < application arguments>
+# or
+bin/spark-submit 
+--class <main class>
+--master <local[n] | spark:<masterurl> | yarn-client/yarn-master | mesos:<mesosurl> >
+--deploy-mode <client | cluster>
+--conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
+--driver-java-options "-Dlog4j.configuration=file:log4j-local-usage-only.xml" \
+--jars <jar1>,<jar2>
+<jar with main>
+< application arguments>
+
 ```
+
 * conf/spark-env.sh
 * log4j.properties
 ```
@@ -665,6 +677,18 @@ spark-shell --deploy-mode client --master yarn
 ## inline execution, execute file from command line
 ```
 spark-shell -i /path/to/file.scala
+```
+## spark-shell to spark-submit
+code
+```
+object SparkEnterPoint{
+  def main(args: Array[String]): Unit = {
+    val spark = SparkSession.builder().appName("traffic-sign-scan").getOrCreate()
+    import spark.sqlContext.implicits._
+    println(spark)
+    ...
+  }
+}
 ```
 ## execute spark-shell with parameters
 ```
