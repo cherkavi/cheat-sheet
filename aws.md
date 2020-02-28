@@ -103,6 +103,12 @@ select * from num_sequence;
 ```
 
 ---
+## CloudFront
+```sh
+Region <>---------- AvailabilityZone <>--------- EdgeLocation
+```
+
+---
 ## EC2
 [purchases options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
 ```sh
@@ -140,6 +146,9 @@ current_topic="elb"; cli-doc
 ## Lambda
 ### API Gateway 
 enter point for created Lambdas
+```sh
+google-chrome "https://"$AWS_REGION".console.aws.amazon.com/lambda/home?region="$AWS_REGION"#/functions"
+```
 ### [development tools](https://aws.amazon.com/serverless/developer-tools/)
 * Apex
 * [Python Zappa](https://github.com/Miserlou/Zappa)
@@ -172,27 +181,40 @@ current_topic="sns"; cli-doc
 
 ### list of topics
 aws sns list-topics --profile $AWS_PROFILE --region $AWS_REGION
-#### open browser with sns dashboard
+#### sns dashboard web
 google-chrome "https://"$AWS_REGION".console.aws.amazon.com/sns/v3/home?region="$AWS_REGION"#/topics"
 
 ### list of subscriptions
 aws sns list-subscriptions-by-topic --profile $AWS_PROFILE --region $AWS_REGION --topic-arn {topic arn from previous command}
 
-### send example
+### send example via cli
     #--message file://message.txt
 aws sns publish  --profile $AWS_PROFILE --region $AWS_REGION \
     --topic-arn "arn:aws:sns:us-west-2:123456789012:my-topic" \
     --message "hello from aws cli"
+
+### send message via web 
+google-chrome "https://"$AWS_REGION".console.aws.amazon.com/sns/v3/home?region="$AWS_REGION"#/publish/topic/topics/"$AWS_SNS_TOPIC_ARN
 ```
 
 ---
 ## CloudWatch
 ```
- metrics +--+
-/            +--> events +----> alarm
-  logs+-----+
-+----------------------------------+
+ metrics----+
+            ---> events -----> alarm
+  logs------+
+--------------------------------------
         dashboards
+```
+
+---
+## CloudFormation
+```
+# cloudformation web
+google-chrome "https://"$AWS_REGOIN".console.aws.amazon.com/cloudformation/home?region="$AWS_REGION"#"
+
+# cloudformation designer web
+google-chrome "https://"$AWS_REGION".console.aws.amazon.com/cloudformation/designer/home?region="$AWS_REGION
 ```
 
 ---
