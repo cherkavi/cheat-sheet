@@ -91,16 +91,35 @@ spark.serializer=org.apache.spark.serializer.KryoSerializer
 ...
 ```
 
-### Spark submit with log info, logger output
+### Spark submit with log info, logger output, spark-submit logger
 ```sh
-export SPARK_SUBMIT_OPTS="-Dlog4j.debug=true -Dlog4j.configuration=log4j-local-usage-only.xml"
+export SPARK_SUBMIT_OPTS="-Dlog4j.configuration=log4j.properties"
+# or
+# export SPARK_SUBMIT_OPTS="-Dlog4j.debug=true -Dlog4j.configuration=log4j-local-usage-only.xml"
 
-/opt/mapr/spark/spark-2.3.2/bin/spark-submit --master yarn --deploy-mode cluster \
+/opt/mapr/spark/spark-2.3.2/bin/spark-submit \
+  --conf "spark.driver.extraJavaOptions=-Dlog4jspark.root.logger=ERROR,console" 
+  --master yarn --deploy-mode cluster \
   --queue projects_my_queue \
   --name ${USER}_v1-GroundValuesGeneration-${SESSION_ID} \
   ...
 ```
-and log4j.xml
+log4j.properties
+```properties
+# Set everything to be logged to the console
+log4j.rootCategory=INFO, console
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.target=System.err
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{1}: %m%n
+
+# Settings to quiet third party logs that are too verbose
+log4j.logger.org.eclipse.jetty=WARN
+log4j.logger.org.eclipse.jetty.util.component.AbstractLifeCycle=ERROR
+log4j.logger.org.apache.spark.repl.SparkIMain$exprTyper=INFO
+log4j.logger.org.apache.spark.repl.SparkILoop$SparkILoopInterpreter=INFO
+```
+log4j.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
