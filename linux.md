@@ -262,17 +262,20 @@ shutdown -r now
 ```
 
 ### sort, order
-```
+```sh
+# simple sort
 sort <filename>
-```
-sort by column ( space delimiter )
-```
+
+#  sort by column ( space delimiter )
 sort -k 3 <filename>
-```
-sort with reverse order
-```
+
+# sort by column number, with delimiter, with digital value ( 01, 02....10,11 )
+sort -g -k 11 -t "/" session.list
+
+# sort with reverse order
 sort -r <filename>
 ```
+
 ### print file with line numbers, output linenumbers
 ```
 cat -n <filename>
