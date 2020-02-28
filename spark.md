@@ -13,7 +13,6 @@ two ways you can improve the performance of your Spark application:
 * avoiding the shuffle of large amounts of data 
 ```
 ![RDD](https://i.postimg.cc/SKNzTZcQ/RDD.png)
-
 ### modes
 * local - run in the same VM
 * standalone - simple cluster manager
@@ -667,6 +666,11 @@ spark-shell --deploy-mode client --master yarn
 ```
 spark-shell -i /path/to/file.scala
 ```
+## execute spark-shell with parameters
+```
+spark-shell -i <(echo 'val theDate = "my data" ' ; cat <file-name>)
+```
+
 ## inline execution and exit after execution
 ```
  spark-shell -i script.scala << END_FILE_MARKER
@@ -674,7 +678,7 @@ spark-shell -i /path/to/file.scala
 END_FILE_MARKER
 ```
 
-## execute shell with additional jar, in debug mode 
+## execute shell with additional jar, in debug mode spark-shell
 ```
 spark-shell \
 --jars "/home/some_path/solr-rest_2.11-0.1.jar,/home/someuser/.ivy2/cache/org.json/json/bundles/json-20180813.jar" \
