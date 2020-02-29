@@ -80,6 +80,18 @@ myvar=23 # defined in a :vars section, interpreted as a string
 ansible-playbook -i "ubs000015.vantage.org , " mkdir.yaml 
 ansible all -i "ubs000015.vantage.org , " -u my_remote-user -m ping
 ```
+simple file for creating one folder
+```yaml
+- hosts: all
+  tasks:
+    - name: Creates directory
+      file:
+        path: ~/spark-submit/trafficsigns
+        state: directory
+        mode: 0775
+
+    - debug: msg='folder was created for host {{ ansible_host }}'
+```
 
 ## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters, extra variables, external variables
 ```sh
