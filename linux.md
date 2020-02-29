@@ -134,13 +134,20 @@ sshpass -p my_password ssh my_user@192.178.192.10
 ```
 
 automate copying password
+```sh
+./ssh-copy.expect my_user ubsad00015.vantage.org "my_passw" 
 ```
+```sh
 #!/usr/bin/expect -f
-spawn ssh-copy-id vcherkashyn@host000159
-expect "(yes/no)?"
+set user [lindex $argv 0];
+set host [lindex $argv 1];
+set password [lindex $argv 2];
+
+spawn ssh-copy-id $user@$host
+expect "])?"
 send "yes\n"
 expect "password: "
-send "$env(MY_PASSWORD)\n"
+send "$password\n"
 expect eof
 ```
 
