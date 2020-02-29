@@ -89,6 +89,11 @@ simple file for creating one folder
         path: ~/spark-submit/trafficsigns
         state: directory
         mode: 0775
+    - name: copy all files from folder
+      copy: 
+        src: "/home/projects/ubs/current-task/nodes/ansible/files" 
+        dest: ~/spark-submit/trafficsigns
+        mode: 0775
 
     - debug: msg='folder was created for host {{ ansible_host }}'
 ```
