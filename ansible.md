@@ -62,6 +62,18 @@ roles_path = ~/repos/project1/roles:~/repos/project2/roles
 ansible-config view
 ```
 
+## inventory
+### ini file
+```properties
+# example cfg file
+[web]
+host1
+host2 ansible_port=222 # defined inline, interpreted as an integer
+
+[web:vars]
+http_port=8080 # all members of 'web' will inherit these
+myvar=23 # defined in a :vars section, interpreted as a string
+```
 
 ## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters, extra variables, external variables
 ```
