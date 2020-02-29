@@ -75,9 +75,10 @@ http_port=8080 # all members of 'web' will inherit these
 myvar=23 # defined in a :vars section, interpreted as a string
 ```
 
-## execute ansible-playbook for one host only, one host, one remove server
+## execute ansible for one host only, one host, one remove server
 ```sh
 ansible-playbook -i "ubs000015.vantage.org , " mkdir.yaml 
+ansible all -i "ubs000015.vantage.org , " -u my_remote-user -m ping
 ```
 
 ## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters, extra variables, external variables
