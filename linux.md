@@ -202,7 +202,7 @@ rsync -avh /tmp/local-folder/ root@remote-host:/tmp/remote-folder
 rsync -azh /tmp/local-folder/ -e 'ssh -p 2233' root@remote-host:/tmp/remote-folder
 ```
 
-### create directory on remote machine, create folder remotely
+### create directory on remote machine, create folder remotely, ssh execute command, ssh remote execution
 ```
 ssh user@host "mkdir -p /target/path/"
 ```
