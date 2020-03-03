@@ -207,6 +207,15 @@ rsync -azh /tmp/local-folder/ -e 'ssh -p 2233' root@remote-host:/tmp/remote-fold
 ssh user@host "mkdir -p /target/path/"
 ```
 
+### ssh execute command and detach, ssh execute detached
+```sh
+each_node="bpde00013.ubsbank.org"
+REMOTE_SCRIPT="/opt/app/1.sh"
+REMOTE_OUTPUT_LOG="/var/log/1.output"
+
+ssh $REMOTE_USER"@"$each_node "nohup $REMOTE_SCRIPT </dev/null > $REMOTE_OUTPUT_LOG 2>&1 &"
+```
+
 ### here document, sftp batch command with bash
 ```
 sftp -P 2222 my_user@localhost << END_FILE_MARKER
