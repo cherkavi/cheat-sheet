@@ -75,7 +75,7 @@ http_port=8080 # all members of 'web' will inherit these
 myvar=23 # defined in a :vars section, interpreted as a string
 ```
 
-## execute with specific remote python version, remote python
+## execute with specific remote python version, remote python, rewrite default variables, rewrite variables, override variable  
 ```
 --extra-vars "remote_folder=$REMOTE_FOLDER ansible_python_interpreter=/usr/bin/python"
 ```
