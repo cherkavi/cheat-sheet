@@ -199,11 +199,13 @@ rsync -r /tmp/first-folder/ /tmp/second-folder
 
 # sync remote folder to local ( copy FROM remote )
 rsync -avz user@ubspdesp013.vantage.org:~/test-2020-02-28  /home/projects/temp/test-2020-02-28
-# sync remote folder to local with specific port ( copy FROM remote )
+# sync remote folder to local ( copy FROM remote ) with specific port 
 rsync -avz -e 'ssh -p 2233' user@ubspdesp013.vantage.org:~/test-2020-02-28  /home/projects/temp/test-2020-02-28
 
 # sync local folder to remote ( copy TO remote )
 rsync -avz /home/projects/temp/test-2020-02-28  user@ubspdesp013.vantage.org:~/test-2020-02-28  
+# sync local folder to remote ( copy TO remote ) include exclude
+rsync -avz --include "*.txt" exclude "*.bin" /home/projects/temp/test-2020-02-28  user@ubspdesp013.vantage.org:~/test-2020-02-28  
 ```
 
 ### create directory on remote machine, create folder remotely, ssh execute command, ssh remote execution
