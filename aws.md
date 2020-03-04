@@ -188,9 +188,9 @@ aws sns publish  --profile $AWS_PROFILE --region $AWS_REGION \
 ---
 ## CloudWatch
 ```
- metrics +--+
-/            +--> events +----> alarm
-  logs+-----+
+ Metrics-----\
+             +--->Events------>Alarm
+  Logs-------/
 +----------------------------------+
         dashboards
 ```
