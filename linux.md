@@ -2072,6 +2072,7 @@ vscjava.vscode-java-debug
 peterjausovec.vscode-docker
 ryu1kn.edit-with-shell
 inu1255.easy-shell
+tyriar.terminal-tabs
 vscjava.vscode-java-dependency
 vscjava.vscode-java-pack
 vscjava.vscode-java-test
