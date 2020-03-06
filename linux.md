@@ -2096,6 +2096,7 @@ miguel-savignano.terminal-runner
 ---
 # Utilities 
 * [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
+* automation for browsers, automate repited actions: iMacros
 * md2html, markdown to html
 ```sh
 sudo apt-get update
