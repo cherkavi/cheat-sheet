@@ -207,6 +207,14 @@ rsync -avz /home/projects/temp/test-2020-02-28  user@ubspdesp013.vantage.org:~/t
 # sync local folder to remote ( copy TO remote ) include exclude
 rsync -avz --include "*.txt" exclude "*.bin" /home/projects/temp/test-2020-02-28  user@ubspdesp013.vantage.org:~/test-2020-02-28  
 ```
+```bash
+function cluster-prod-generation-sync-to(){
+  if [[ $1 == "" ]]; then
+      return 1
+  fi
+  rsync -avz . $USER_GT_LOGIN@ubsdpd00013.vantage.org:~/$1
+}
+```
 
 ### create directory on remote machine, create folder remotely, ssh execute command, ssh remote execution
 ```
