@@ -1044,6 +1044,15 @@ done
 locate -ir "/zip$" | sed -n '2p'
 ```
 
+### issue with windows/unix carriage return
+```txt
+/usr/bin/bash^M: bad interpreter: No such file or directory
+```
+solution
+```
+sed -i -e 's/\r$//' Archi-Ubuntu.sh 
+```
+
 ### calculate amount of strings
 ```
 ps -aux | awk 'BEGIN{a=0}{a=a+1}END{print a}'
@@ -2027,6 +2036,12 @@ sudo apt install libgconf-2-4
 sudo ln -s /lib/x86_64-linux-gnu/libudev.so.1 /lib/x86_64-linux-gnu/libudev.so.0
 
 sudo ln -s /opt/bluejeans/bluejeans-bin /usr/bin/bluejeans
+```
+---
+# smb client, samba client
+```
+smbclient -U $SAMBA_CLIENT_GROUP//$SAMBA_CLIENT_USER \
+//europe.ubs.corp/win_drive/xchange/Zurich/some/folder
 ```
 ---
 # vim
