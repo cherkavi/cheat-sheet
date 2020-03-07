@@ -1,10 +1,21 @@
 [sdk](https://aws.amazon.com/tools/)  
 
+## init variables
+```
+AWS_SNS_TOPIC_ARN=arn:aws:sns:eu-central-1:85153298123:gmail-your-name
+AWS_KEY_PAIR=/path/to/file/key-pair.pem
+AWS_PROFILE=aws-user
+AWS_REGION=eu-central-1
+
+# initialization from external script
+. /home/projects/current-project/aws.sh
+```
+
 ## url to cli documentation 
 ```sh
 current_browser="google-chrome"
-current_topic="sns"
-alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_topic}/index.html"'
+current_doc_topic="sns"
+alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html"'
 ```
 
 ---
@@ -28,7 +39,7 @@ aws_secret_access_key = ur1DxNvEn...
 using profiling
 >  --region, --output, --profile 
 ```sh
-aws s3 ls --profile cherkavi-user
+aws s3 ls --profile $AWS_PROFILE
 ```
 
 ### console command completion, console completion
@@ -138,7 +149,7 @@ sudo mount /dev/xvdf /external-drive
 [ELB troubleshooting](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html)
 ```sh
 # documentation 
-current_topic="elb"; cli-doc
+current_doc_topic="elb"; cli-doc
 ```
 
 
@@ -149,6 +160,28 @@ enter point for created Lambdas
 ```sh
 google-chrome "https://"$AWS_REGION".console.aws.amazon.com/lambda/home?region="$AWS_REGION"#/functions"
 ```
+### invoke function from CLI
+```sh
+aws lambda invoke  \
+--profile $AWS_PROFILE --region $AWS_REGION \
+--function-name current-time \
+output.log
+```
+IAM->Policies->Create policy
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:*:*:function:*"
+        }
+    ]
+}```
+
+
 ### [development tools](https://aws.amazon.com/serverless/developer-tools/)
 * Apex
 * [Python Zappa](https://github.com/Miserlou/Zappa)
@@ -177,7 +210,7 @@ zappa update dev
 ---
 ## SNS
 ```sh
-current_topic="sns"; cli-doc
+current_doc_topic="sns"; cli-doc
 
 ### list of topics
 aws sns list-topics --profile $AWS_PROFILE --region $AWS_REGION
