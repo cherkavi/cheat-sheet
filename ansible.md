@@ -9,11 +9,11 @@
 
 
 ## installation
-```
+```sh
 yum install ansible
 apt install ansible
 ```
-```
+```sh
 pip3 install ansible 
 # for python2 - default installation 
 pip install ansible
@@ -21,7 +21,7 @@ pip install ansible
 remote machine should have 'python' - 'gather_facts: False' or 'gather_facts: no' otherwise
 
 ## uninstall
-```
+```sh
 rm -rf $HOME/.ansible
 rm -rf $HOME/.ansible.cfg
 sudo rm -rf /usr/local/lib/python2.7/dist-packages/ansible
@@ -52,43 +52,83 @@ ansible-config dump
 
 ### configuration for external roles
 filename: ~/.ansible.cfg
-```
+```properties
 [defaults]
 roles_path = ~/repos/project1/roles:~/repos/project2/roles
 ```
 
 ### check configuration
-```
+```sh
 ansible-config view
 ```
 
+## inventory
+### ini file
+```properties
+# example cfg file
+[web]
+host1
+host2 ansible_port=222 # defined inline, interpreted as an integer
+
+[web:vars]
+http_port=8080 # all members of 'web' will inherit these
+myvar=23 # defined in a :vars section, interpreted as a string
+```
+
+## execute with specific remote python version, remote python, rewrite default variables, rewrite variables, override variable  
+```
+--extra-vars "remote_folder=$REMOTE_FOLDER ansible_python_interpreter=/usr/bin/python"
+```
+
+## execute ansible for one host only, one host, one remove server
+```sh
+ansible-playbook -i "ubs000015.vantage.org , " mkdir.yaml 
+ansible all -i "ubs000015.vantage.org , " -u my_remote-user -m ping
+```
+simple file for creating one folder
+```yaml
+- hosts: all
+  tasks:
+    - name: Creates directory
+      file:
+        path: ~/spark-submit/trafficsigns
+        state: directory
+        mode: 0775
+    - name: copy all files from folder
+      copy: 
+        src: "/home/projects/ubs/current-task/nodes/ansible/files" 
+        dest: ~/spark-submit/trafficsigns
+        mode: 0775
+
+    - debug: msg='folder was created for host {{ ansible_host }}'
+```
 
 ## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters, extra variables, external variables
-```
+```sh
 ansible-playbook -i inventory.ini playbook.yml --extra-vars "$*"
 ```
 with path to file for external parameters, additional variables from external file
-```
+```sh
 ansible-playbook -i inventory.ini playbook.yml --extra-vars @/path/to/var.properties
 ansible-playbook playbook.yml --extra-vars=@/path/to/var.properties
 ```
 
 ## external variables inline
-```
+```sh
 ansible-playbook playbook.yml --extra-vars="oc_project=scenario-test mapr_stream_path=/mapr/prod.zurich/vantage/scenario-test"
 ```
 
 ## check is it working, ad-hoc command
-```
+```sh
 ansible remote* -i inventory.ini -m "ping"
 ansible remote* -i inventory.ini --module-name "ping"
 ```
-```
+```sh
 ansible remote* -i inventory.ini -a "hostname"
 ```
 
 ## loop example
-```
+```sh
     - name: scripts {{ item }}
       template:
         mode: 0777 
@@ -101,18 +141,18 @@ ansible remote* -i inventory.ini -a "hostname"
 ```
 
 ## repeat execution
-```
+```sh
 --limit {playbookfile}.retry
 ```
 
 ## start with task, execute from task, begin with task, skip previous tasks
-```
+```sh
 ansible-playbook playbook.yml --start-at-task="name of the start to be started from"
 ```
 
 ## replace variables inside file to dedicated file, move vars to separate file
 * before
-```
+```yaml
    vars:
       db_user: my_user
       db_password: my_password
@@ -122,15 +162,15 @@ ansible-playbook playbook.yml --start-at-task="name of the start to be started f
 * after 
 *( 'vars' block is empty )*
 filepath: 
-```
+```sh
 ./host_vars/id_of_the_server
 ```
 or groupvars:
-```
+```sh
 ./group_vars/id_of_the_group_into_square_brakets
 ```
 code
-```
+```yaml
 db_user: my_user
 db_password: my_password
 ansible_ssh_pass: my_ssh_password 
@@ -140,11 +180,11 @@ ansible_host: 192.168.1.14
 ## move code to separate file, tasks into file
 cut code from original file and paste it into separate file ( with appropriate alignment !!! ),
 write instead of the code:
-```
+```yaml
     - include: path_to_folder/path_to_file
 ```
 approprate file should be created:
-```
+```sh
 ./path_to_folder/path_to_file
 ```
 
@@ -220,7 +260,7 @@ import pdb
 pdb.set_trace()
 ```
 run until breakpoint
-```
+```sh
 until 9999
 next
 ```
@@ -233,14 +273,14 @@ ansible localhost -m setup
 ```
 
 ## task print all variables 
-```
+```yaml
 - name: "Ansible | List all known variables and facts"
   debug:
     var: hostvars[inventory_hostname]
 ```
 
 ## ansible-console 
-```
+```sh
 ansible-console
 debug msg="my custom message"
 shell pwd
@@ -250,23 +290,20 @@ shell pwd
 TBD
 
 # error handling, try catch
----
 ## stop execution of steps (of playbook) when at least one server will throw error
-```
+```yaml
   any_errors_fatal:true
 ```
-
 ## not to throw error for one certain task
-```
+```yaml
  - mail:
      to: 1@yahoo.com
      subject: info
      body: das ist information
    ignore_errors: yes
 ```
-
 ## fail when, fail by condition, parse log file for errors
-```
+```yaml
   - command: cat /var/log/server.log
     register: server_log_file
     failed_when : "'ERROR' in server_log_file.stdout"
@@ -295,7 +332,7 @@ file name from path (return 'script.sh')
 {{ "/etc/program/script.sh" | basename }}
 ```
 ## copy file and rename it, pipe replace suffix
-```
+```yaml
 - name: Create DAG config
   template: src={{ item }} dest={{ airflow_dag_dir }}/config/{{ item | basename | regex_replace('\.j2','') }}
   with_fileglob:
@@ -305,7 +342,7 @@ file name from path (return 'script.sh')
 
 ## directives for Jinja
 for improving indentation globally in file, add one of next line in the beginning
-```
+```yaml
 #jinja2: lstrip_blocks: True
 #jinja2: trim_blocks:False
 #jinja2: lstrip_blocks: True, trim_blocks: True

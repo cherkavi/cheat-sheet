@@ -214,7 +214,7 @@ current_doc_topic="sns"; cli-doc
 
 ### list of topics
 aws sns list-topics --profile $AWS_PROFILE --region $AWS_REGION
-#### sns dashboard web
+#### open browser with sns dashboard
 google-chrome "https://"$AWS_REGION".console.aws.amazon.com/sns/v3/home?region="$AWS_REGION"#/topics"
 
 ### list of subscriptions
@@ -233,10 +233,10 @@ google-chrome "https://"$AWS_REGION".console.aws.amazon.com/sns/v3/home?region="
 ---
 ## CloudWatch
 ```
- metrics----+
-            ---> events -----> alarm
-  logs------+
---------------------------------------
+ Metrics-----\
+             +--->Events------>Alarm
+  Logs-------/
++----------------------------------+
         dashboards
 ```
 

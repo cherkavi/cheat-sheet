@@ -134,13 +134,20 @@ sshpass -p my_password ssh my_user@192.178.192.10
 ```
 
 automate copying password
+```sh
+./ssh-copy.expect my_user ubsad00015.vantage.org "my_passw" 
 ```
+```sh
 #!/usr/bin/expect -f
-spawn ssh-copy-id vcherkashyn@host000159
-expect "(yes/no)?"
+set user [lindex $argv 0];
+set host [lindex $argv 1];
+set password [lindex $argv 2];
+
+spawn ssh-copy-id $user@$host
+expect "])?"
 send "yes\n"
 expect "password: "
-send "my_password\n"
+send "$password\n"
 expect eof
 ```
 
@@ -189,15 +196,38 @@ cp -var /path/to/folder /another/path/to/folder
 ```bash
 # local sync
 rsync -r /tmp/first-folder/ /tmp/second-folder
-# remote sync
-rsync -avh /tmp/local-folder/ root@remote-host:/tmp/remote-folder
-# remote sync with specific port
-rsync -azh /tmp/local-folder/ -e 'ssh -p 2233' root@remote-host:/tmp/remote-folder
+
+# sync remote folder to local ( copy FROM remote )
+rsync -avz user@ubspdesp013.vantage.org:~/test-2020-02-28  /home/projects/temp/test-2020-02-28
+# sync remote folder to local ( copy FROM remote ) with specific port 
+rsync -avz -e 'ssh -p 2233' user@ubspdesp013.vantage.org:~/test-2020-02-28  /home/projects/temp/test-2020-02-28
+
+# sync local folder to remote ( copy TO remote )
+rsync -avz /home/projects/temp/test-2020-02-28  user@ubspdesp013.vantage.org:~/test-2020-02-28  
+# sync local folder to remote ( copy TO remote ) include exclude
+rsync -avz --include "*.txt" exclude "*.bin" /home/projects/temp/test-2020-02-28  user@ubspdesp013.vantage.org:~/test-2020-02-28  
+```
+```bash
+function cluster-prod-generation-sync-to(){
+  if [[ $1 == "" ]]; then
+      return 1
+  fi
+  rsync -avz . $USER_GT_LOGIN@ubsdpd00013.vantage.org:~/$1
+}
 ```
 
-### create directory on remote machine, create folder remotely
+### create directory on remote machine, create folder remotely, ssh execute command, ssh remote execution
 ```
 ssh user@host "mkdir -p /target/path/"
+```
+
+### ssh execute command and detach, ssh execute detached
+```sh
+each_node="bpde00013.ubsbank.org"
+REMOTE_SCRIPT="/opt/app/1.sh"
+REMOTE_OUTPUT_LOG="/var/log/1.output"
+
+ssh $REMOTE_USER"@"$each_node "nohup $REMOTE_SCRIPT </dev/null > $REMOTE_OUTPUT_LOG 2>&1 &"
 ```
 
 ### here document, sftp batch command with bash
@@ -262,17 +292,20 @@ shutdown -r now
 ```
 
 ### sort, order
-```
+```sh
+# simple sort
 sort <filename>
-```
-sort by column ( space delimiter )
-```
+
+#  sort by column ( space delimiter )
 sort -k 3 <filename>
-```
-sort with reverse order
-```
+
+# sort by column number, with delimiter, with digital value ( 01, 02....10,11 )
+sort -g -k 11 -t "/" session.list
+
+# sort with reverse order
 sort -r <filename>
 ```
+
 ### print file with line numbers, output linenumbers
 ```
 cat -n <filename>
@@ -1009,6 +1042,15 @@ done
 ### print line by number from output, line from pipeline
 ```
 locate -ir "/zip$" | sed -n '2p'
+```
+
+### issue with windows/unix carriage return
+```txt
+/usr/bin/bash^M: bad interpreter: No such file or directory
+```
+solution
+```
+sed -i -e 's/\r$//' Archi-Ubuntu.sh 
 ```
 
 ### calculate amount of strings
@@ -1996,6 +2038,12 @@ sudo ln -s /lib/x86_64-linux-gnu/libudev.so.1 /lib/x86_64-linux-gnu/libudev.so.0
 sudo ln -s /opt/bluejeans/bluejeans-bin /usr/bin/bluejeans
 ```
 ---
+# smb client, samba client
+```
+smbclient -U $SAMBA_CLIENT_GROUP//$SAMBA_CLIENT_USER \
+//europe.ubs.corp/win_drive/xchange/Zurich/some/folder
+```
+---
 # vim
 ## [vim plugin](https://github.com/junegunn/vim-plug)
 file ```.vimrc``` should have next content: 
@@ -2047,6 +2095,7 @@ vscjava.vscode-java-debug
 peterjausovec.vscode-docker
 ryu1kn.edit-with-shell
 inu1255.easy-shell
+tyriar.terminal-tabs
 vscjava.vscode-java-dependency
 vscjava.vscode-java-pack
 vscjava.vscode-java-test
@@ -2062,6 +2111,7 @@ miguel-savignano.terminal-runner
 ---
 # Utilities 
 * [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
+* automation for browsers, automate repited actions: iMacros
 * md2html, markdown to html
 ```sh
 sudo apt-get update

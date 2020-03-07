@@ -1,4 +1,5 @@
 [shortcuts](http://midnight-commander.org/wiki/doc/filePanels/hotkeys)
+[cheet-sheet](http://www.softpanorama.org/OFM/MC/cheetsheet.shtml)
 
 | Shortcut   |            Description                                        |
 | -----------|---------------------------------------------------------------|

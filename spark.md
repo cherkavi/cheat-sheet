@@ -13,7 +13,6 @@ two ways you can improve the performance of your Spark application:
 * avoiding the shuffle of large amounts of data 
 ```
 ![RDD](https://i.postimg.cc/SKNzTZcQ/RDD.png)
-
 ### modes
 * local - run in the same VM
 * standalone - simple cluster manager
@@ -43,7 +42,19 @@ bin/spark-submit
 --driver-java-options "-Dlog4j.configuration=file:log4j-local-usage-only.xml" \
 --jars <jar1>,<jar2>,<jar3>
 < application arguments>
+# or
+bin/spark-submit 
+--class <main class>
+--master <local[n] | spark:<masterurl> | yarn-client/yarn-master | mesos:<mesosurl> >
+--deploy-mode <client | cluster>
+--conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
+--driver-java-options "-Dlog4j.configuration=file:log4j-local-usage-only.xml" \
+--jars <jar1>,<jar2>
+<jar with main>
+< application arguments>
+
 ```
+
 * conf/spark-env.sh
 * log4j.properties
 ```
@@ -80,16 +91,35 @@ spark.serializer=org.apache.spark.serializer.KryoSerializer
 ...
 ```
 
-### Spark submit with log info, logger output
+### Spark submit with log info, logger output, spark-submit logger
 ```sh
-export SPARK_SUBMIT_OPTS="-Dlog4j.debug=true -Dlog4j.configuration=log4j-local-usage-only.xml"
+export SPARK_SUBMIT_OPTS="-Dlog4j.configuration=log4j.properties"
+# or
+# export SPARK_SUBMIT_OPTS="-Dlog4j.debug=true -Dlog4j.configuration=log4j-local-usage-only.xml"
 
-/opt/mapr/spark/spark-2.3.2/bin/spark-submit --master yarn --deploy-mode cluster \
+/opt/mapr/spark/spark-2.3.2/bin/spark-submit \
+  --conf "spark.driver.extraJavaOptions=-Dlog4jspark.root.logger=ERROR,console" 
+  --master yarn --deploy-mode cluster \
   --queue projects_my_queue \
   --name ${USER}_v1-GroundValuesGeneration-${SESSION_ID} \
   ...
 ```
-and log4j.xml
+log4j.properties
+```properties
+# Set everything to be logged to the console
+log4j.rootCategory=INFO, console
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.target=System.err
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{1}: %m%n
+
+# Settings to quiet third party logs that are too verbose
+log4j.logger.org.eclipse.jetty=WARN
+log4j.logger.org.eclipse.jetty.util.component.AbstractLifeCycle=ERROR
+log4j.logger.org.apache.spark.repl.SparkIMain$exprTyper=INFO
+log4j.logger.org.apache.spark.repl.SparkILoop$SparkILoopInterpreter=INFO
+```
+log4j.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
@@ -667,6 +697,23 @@ spark-shell --deploy-mode client --master yarn
 ```
 spark-shell -i /path/to/file.scala
 ```
+## spark-shell to spark-submit
+code
+```
+object SparkEnterPoint{
+  def main(args: Array[String]): Unit = {
+    val spark = SparkSession.builder().appName("traffic-sign-scan").getOrCreate()
+    import spark.sqlContext.implicits._
+    println(spark)
+    ...
+  }
+}
+```
+## execute spark-shell with parameters
+```
+spark-shell -i <(echo 'val theDate = "my data" ' ; cat <file-name>)
+```
+
 ## inline execution and exit after execution
 ```
  spark-shell -i script.scala << END_FILE_MARKER
@@ -674,7 +721,7 @@ spark-shell -i /path/to/file.scala
 END_FILE_MARKER
 ```
 
-## execute shell with additional jar, in debug mode 
+## execute shell with additional jar, in debug mode spark-shell
 ```
 spark-shell \
 --jars "/home/some_path/solr-rest_2.11-0.1.jar,/home/someuser/.ivy2/cache/org.json/json/bundles/json-20180813.jar" \
