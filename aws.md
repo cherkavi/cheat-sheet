@@ -162,9 +162,28 @@ google-chrome "https://"$AWS_REGION".console.aws.amazon.com/lambda/home?region="
 ```
 ### invoke function from CLI
 ```sh
+# example of execution
 aws lambda invoke  \
 --profile $AWS_PROFILE --region $AWS_REGION \
 --function-name current-time \
+--payload '{"key1": "value-1"}' \
+output.log
+
+# example of execution with payload
+aws lambda invoke  \
+--profile $AWS_PROFILE --region $AWS_REGION \
+--function-name current-time \
+--payload '{"key1": "value-1"}' \
+output.log
+
+
+# example of asynchronic execution with payload
+# !!! with SNS downstream execution !!! 
+aws lambda invoke  \
+--profile $AWS_PROFILE --region $AWS_REGION \
+--function-name current-time \
+--invocation-type Event \
+--payload '{"key1": "value-1"}' \
 output.log
 ```
 IAM->Policies->Create policy
