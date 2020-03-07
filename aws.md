@@ -155,21 +155,27 @@ current_doc_topic="elb"; cli-doc
 
 ---
 ## Lambda
-### API Gateway 
+### API Gateway, Lambda url, remote invocation url
+```sh
+google-chrome https://"$AWS_REGION".console.aws.amazon.com/apigateway/main/apis?region="$AWS_REGION"
+# API -> Stages
+```
+### Lambda function editor
 enter point for created Lambdas
 ```sh
 google-chrome "https://"$AWS_REGION".console.aws.amazon.com/lambda/home?region="$AWS_REGION"#/functions"
 ```
-### invoke function from CLI
+
+### invoke function from CLI, lambda execution
 ```sh
-# example of execution
+# example of lambda execution
 aws lambda invoke  \
 --profile $AWS_PROFILE --region $AWS_REGION \
 --function-name current-time \
 --payload '{"key1": "value-1"}' \
 output.log
 
-# example of execution with payload
+# example of lambda execution with payload
 aws lambda invoke  \
 --profile $AWS_PROFILE --region $AWS_REGION \
 --function-name current-time \
@@ -177,7 +183,7 @@ aws lambda invoke  \
 output.log
 
 
-# example of asynchronic execution with payload
+# example of asynchronic lambda execution with payload
 # !!! with SNS downstream execution !!! 
 aws lambda invoke  \
 --profile $AWS_PROFILE --region $AWS_REGION \
