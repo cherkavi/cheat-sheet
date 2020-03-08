@@ -61,6 +61,10 @@ aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 ---
 ## S3
 ```sh
+$current_browser https://console.aws.amazon.com/s3/home?region=$AWS_REGION
+```
+
+```sh
 aws s3 mb s3://my-bucket-name
 # list of all s3
 aws s3 ls
@@ -74,6 +78,23 @@ aws s3 sync /paht/to/some/folder s3://my-bucket-name/some/folder
 aws s3 ls --recursive s3://my-bucket-name 
 # download file
 aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
+```
+
+policy
+```json
+{
+	"Version": "2012-10-17",
+	"Id": "policy-bucket-001",
+	"Statement": [
+		{
+			"Sid": "statement-bucket-001",
+			"Effect": "Allow",
+			"Principal": "*", 
+			"Action": "s3:GetObject",
+			"Resource": "arn:aws:s3:::YOUR_BUCKET_NAME/*"
+		}
+	]
+}
 ```
 
 ---
