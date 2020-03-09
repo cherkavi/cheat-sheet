@@ -320,8 +320,18 @@ google-chrome "https://"$AWS_REGION".console.aws.amazon.com/cloudformation/desig
 * [free courses](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
 * [amazon free training](https://www.aws.training/)  
 
-## solutions
+## decisions
+### way of building architecture
+![way of building architecture](https://i.postimg.cc/bNzJNzLn/aws-architecture.png)  
+### cloud advisor
+![cloud-advisor](https://i.postimg.cc/28251PXK/aws-cloudadvisor.png)  
+### fault tolerance, high performance
+![serverless](https://i.postimg.cc/rwswxQBF/aws-fault-availability.jpg)  
+### shared responsibility, users
+![serverless](https://i.postimg.cc/y8GYP0Kh/aws-shared-model.png)  
+### serverless
 ![serverless](https://i.postimg.cc/PxNrBPf9/aws-serverless.png)
+### news
 ![news](https://i.postimg.cc/zvSj5SxJ/aws-2019-re-invent.png)  
 
 upcoming courses:
