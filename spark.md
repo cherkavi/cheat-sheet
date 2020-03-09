@@ -781,3 +781,8 @@ df.map( v=> (v.getAs[Map[String, String]]("processedLabel"), v.getAs[String]("pr
 ```
 :load <path to file>
 ```
+
+## rdd print schema
+```scala
+preparedRdd.take(n).foreach(println)
+```
