@@ -1868,6 +1868,15 @@ rm -rf .gnome .gnome2 .gconf .gconfd .metacity .cache .dbus .dmrc .mission-contr
 alt-F2 r
 ```
 
+### adjust Gnome desktop shortcuts, gnome shortcuts
+```sh
+dconf-editor
+```
+gnome keybinding
+```
+/org/gnome/desktop/wm/keybindings
+```
+
 ### install drivers, update drivers ubuntu
 ```
 sudo ubuntu-drivers autoinstall
