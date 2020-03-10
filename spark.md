@@ -574,12 +574,12 @@ cache() == persist() == persist(StorageLevel.MEMORY_ONLY)
 rdd.unpersist()
 ```
 # Use cases
-* Bad use case: using SQL DB like key and values
+* Bad use case: using SQL DB like key and values ( OLTP style )
 ```
 select * from table1 where id_key='1234'
 select * from table1 where id_key like '%1234%'
 ```
-* Good use case: using like ExtractTransformLoad
+* Good use case: using like ExtractTransformLoad ( OLAP style )
 * Bad use case: each insert will create new file
 ```
 insert into table1 select * from table2
