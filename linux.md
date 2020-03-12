@@ -1731,15 +1731,6 @@ sudo apt-get install translate-shell
 trans -source de -target ru -brief "german sentance"
 ```
 
-## vim
-[vim cheat sheet](http://najomi.org/vim)
-### copy-paste
-* v - *visual* selection ( start selection )
-* y - *yank* ( end selection )
-* p - *paste* into position
-* u - *undo* last changes
-* ctrl-r - *redo* last changes
-
 ## sound
 ### join files
 ```
@@ -2054,6 +2045,27 @@ smbclient -U $SAMBA_CLIENT_GROUP//$SAMBA_CLIENT_USER \
 ```
 ---
 # vim
+[vim cheat sheet](http://najomi.org/vim)
+## copy-paste
+* v - *visual* selection ( start selection )
+* y - *yank* ( end selection )
+* p - *paste* into position
+* u - *undo* last changes
+* ctrl-r - *redo* last changes
+
+## read output of command 
+```
+:read !ls -la
+```
+
+## vim execute selection  
+```
+1) select text with v-visual mode
+2) semicolon
+3) w !sh
+:'<,'>w !sh
+```
+
 ## [vim plugin](https://github.com/junegunn/vim-plug)
 file ```.vimrc``` should have next content: 
 ```
