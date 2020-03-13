@@ -114,6 +114,15 @@ airflow --help
    * BaseSensorOperator
    * poke method is responsible for waiting
 
+# Access to DB
+```gui
+Admin -> Connections -> postgres_default  
+# adjust login, password
+Data Profiling->Ad Hoc Query-> postgres_default  
+```
+```sql
+select * from dag_run;
+```
 
 # REST API
 ## trigger DAG - python
