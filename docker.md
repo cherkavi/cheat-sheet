@@ -1,6 +1,15 @@
 Docker
 ======
 ### [online playground](https://labs.play-with-docker.com)
+### Ecosystem
+* Docker Daemon
+* Docker Volume - store persist data
+* Docker Client - CLI, gui analogue ( Kitematic )
+* Docker Compose - Python app over Docker Daemon
+
+* Docker Swarm
+* Docker HUB
+* Docker Cloud
 
 ### information about docker itself
 ```
