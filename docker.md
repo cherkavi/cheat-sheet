@@ -283,11 +283,27 @@ docker inspect {CONTAINER ID} | grep -i NETWORK
 docker volume create {volume name}
 ```
 
-### inspect volume, check volume
+### inspect volume, check volume, read data from volume, inspect data locally
 ```
 docker volume inspect {volume name}
 ```
-( "Mountpoint" will show real position )
+```json
+[
+    {
+        "CreatedAt": "2020-03-12T22:07:53+01:00",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/snap/docker/common/var-lib-docker/volumes/cd72b76daf3c66de443c05dfde77090d5e5499e0f2a0024f9ae9246177b1b86e/_data",
+        "Name": "cd72b76daf3c66de443c05dfde77090d5e5499e0f2a0024f9ae9246177b1b86e",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+```
+```sh
+# inspect Mountpoint
+ls -la /var/snap/docker/common/var-lib-docker/volumes/cd72b76daf3c66de443c05dfde77090d5e5499e0f2a0024f9ae9246177b1b86e/_data
+```
 
 ### list of all volumes
 ```
