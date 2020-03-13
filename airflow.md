@@ -143,6 +143,18 @@ curl -X GET --user ibeo_gt-s https://airflow.local/api/experimental/dags/ibeo_gt
 ```
 
 ## configuration
+### rewrite configuration with environment variables
+example of overwriting configuration from config file by env-variables
+```properties
+[core]
+airflow_home='/path/to/airflow'
+dags_folder='/path/to/dags'
+```
+```bash
+AIRFLOW__CORE__DAGS_FOLDER='/path/to/new-dags-folder'
+AIRFLOW__CORE__AIRFLOW_HOME='/path/to/new-version-of-airflow'
+```
+
 ### [multi-tasks](https://github.com/cherkavi/cheat-sheet/blob/master/development-process.md#concurrency-vs-parallelism)
 ```
 # number of physical python processes the scheduler can run, task (processes) that running in parallel 
