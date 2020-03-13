@@ -3,6 +3,7 @@
 * [how to](https://airflow.apache.org/howto/index.html)
 * [podcast](https://soundcloud.com/the-airflow-podcast)
 * [tutorial](https://github.com/hgrif/airflow-tutorial)
+* [blog](https://marclamberti.com/blog/)
 
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
 ## Key concepts
