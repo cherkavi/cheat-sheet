@@ -390,3 +390,49 @@ with DAG(
     second_operator = second_http_call()
     first_operator >> second_operator
 ```
+
+## Plugins
+[official documentation](https://airflow.apache.org/docs/stable/plugins.html)  
+[examples of airflow plugins](https://github.com/airflow-plugins)  
+* Operators: They describe a single task in a workflow. Derived from BaseOperator.
+* Sensors: They are a particular subtype of Operators used to wait for an event to happen. Derived from BaseSensorOperator
+* Hooks: They are used as interfaces between Apache Airflow and external systems.  Derived from BaseHook
+* Executors: They are used to actually execute the tasks. Derived from BaseExecutor
+* Admin Views: Represent base administrative view from Flask-Admin allowing to create web
+interfaces. Derived from flask_admin.BaseView (new page = Admin Views + Blueprint )
+* Blueprints: Represent a way to organize flask application into smaller and re-usable application. A blueprint defines a collection of views, static assets and templates. Derived from flask.Blueprint (new page = Admin Views + Blueprint )
+* Menu Link: Allow to add custom links to the navigation menu in Apache Airflow. Derived from flask_admin.base.MenuLink
+* Macros: way to pass dynamic information into task instances at runtime. They are tightly coupled with Jinja Template.
+
+plugin template
+```python
+# init.py
+
+from airflow.plugins_manager import AirflowPlugin
+from elasticsearch_plugin.hooks.elasticsearch_hook import ElasticsearchHook
+
+# Views / Blueprints / MenuLinks are instantied objects
+class MyPlugin(AirflowPlugin):
+	name 			= "my_plugin"
+	operators 		= [MyOperator]
+	sensors			= []
+	hooks			= [MyHook]
+	executors		= []
+	admin_views		= []
+	flask_blueprints	= []
+	menu_links		= []
+```
+
+```sh
+my_plugin/
+├── __init__.py
+├── hooks
+│   ├── my_hook.py
+│   └── __init__.py
+├── menu_links
+│   ├── my_link.py
+│   └── __init__.py
+├── operators
+    ├── my_operator.py
+    └── __init__.py
+```
