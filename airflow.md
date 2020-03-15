@@ -248,9 +248,9 @@ Exchange information between multiply tasks - "cross communication".
 <Key> <Value> <Timestamp>  
 Object must be serializable  
 Some operators ( BashOperator, SimpleHttpOperator, ... ) have parameter xcom_push=True - last std.output/http.response will be pushed  
-Some operators (PythonOperator) has ability to return - will be automatically pushed to XCOM
+Some operators (PythonOperator) has ability to "return" value from function ( defined in operator ) - will be automatically pushed to XCOM  
 Saved in Metadabase, also additional data: "execution_date", "task_id", "dag_id"  
-"execution_date" means hide(skip) everything( same task_id, dag_id... ) before this date 
+"execution_date" means hide(skip) everything( same task_id, dag_id... ) before this date  
 ```python
 xcom_push(key="name_of_value", value="some value")
 xcom_pull(task_ids="name_of_task_with_push")
