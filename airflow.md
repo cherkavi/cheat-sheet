@@ -226,6 +226,7 @@ subdag_task = SubDagOperator(subdag=DAG(SUBDAG_PARENT_NAME+"."+SUBDAG_NAME,sched
 ```
 
 ### hooks
+collaboration with external sources via "connections"  
 * [official airflow hooks](https://airflow.apache.org/docs/stable/_api/airflow/hooks/index.html)
 * [SparkSubmitHook, FtpHook, JenkinsHook....](https://airflow.apache.org/docs/stable/_modules/airflow/contrib/hooks.html)
 
