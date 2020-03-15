@@ -67,7 +67,7 @@ export AIRFLOW_HOME=`pwd`/airflow
 pip install apache-airflow
 ```
 
-## [Airflow start on python]
+## [Airflow start on python, nacked start, start components, start separate components, start locally]
 ```sh
 # init workflow
 airflow initdb 
