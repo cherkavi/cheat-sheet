@@ -217,6 +217,17 @@ t3.set_upstream(t2);t2.set_upstream(t1)
 t3 << t2 << t1
 ```
 
+### task information, task metainformation, task context
+```python
+def python_operator_core_func(**context):
+   print(context['task_instance'])
+   # the same as previous
+   # manipulate with task-instance inside custom function, context inside custom function
+   context.get('ti').xcom_push(key="k1", value="v1")
+...   
+PythonOperator(task_id="python_example", python_callable=python_operator_core_func, provide_context=True )
+```
+
 ### sub-dags
 ```python
 from airflow.operators.subdag_operator import SubDagOperator
@@ -231,18 +242,21 @@ collaboration with external sources via "connections"
 * [SparkSubmitHook, FtpHook, JenkinsHook....](https://airflow.apache.org/docs/stable/_modules/airflow/contrib/hooks.html)
 
 ### XCOM, Cross-communication
-GUI: Admin -> Xcoms
+GUI: Admin -> Xcoms  
+Should be manually cleaned up  
 Exchange information between multiply tasks - "cross communication".  
 <Key> <Value> <Timestamp>  
 Object must be serializable  
-Some operators ( BashOperator, SimpleHttpOperator, ... ) have parameter xcom_push=True - last std.output/http.response will be pushed
+Some operators ( BashOperator, SimpleHttpOperator, ... ) have parameter xcom_push=True - last std.output/http.response will be pushed  
 Some operators (PythonOperator) has ability to return - will be automatically pushed to XCOM
 Saved in Metadabase, also additional data: "execution_date", "task_id", "dag_id"  
 "execution_date" means hide(skip) everything( same task_id, dag_id... ) before this date 
 ```python
-xcom_push()
+xcom_push(key="name_of_value", value="some value")
 xcom_pull(task_ids="name_of_task_with_push")
 ```
+
+
 
 ## [DAG examples](https://github.com/apache/airflow/tree/master/airflow/example_dags)
 should be placed into "dag" folder ( default: %AIRFLOW%/dag )
