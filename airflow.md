@@ -259,6 +259,19 @@ xcom_pull(task_ids="name_of_task_with_push")
 ### branching, select next step, evaluate next task
 ![branching](https://i.postimg.cc/T3pRNS4F/airflow-branching.png)
 !!! don't use "depends_on_past"
+```python
+def check_for_activated_source():
+	 return "mysql"
+
+branch_task = BranchPythonOperator(task_id='branch_task', python_callable=check_for_activated_source, provide_context=True)
+mysql_task 	= BashOperator(task_id='mysql', bash_command='echo "MYSQL is activated"')
+postgresql_task = BashOperator(task_id='postgresql', bash_command='echo "PostgreSQL is activated"')
+mongo_task 	= BashOperator(task_id='mongo', bash_command='echo "Mongo is activated"')
+
+branch_task >> mysql_task
+branch_task >> postgresql_task
+branch_task >> mongo_task
+```
 
 
 ## [DAG examples](https://github.com/apache/airflow/tree/master/airflow/example_dags)
