@@ -65,7 +65,10 @@ export AIRFLOW_HOME=`pwd`/airflow
 
 # install workflow
 pip install apache-airflow
+```
 
+## [Airflow start on python]
+```sh
 # init workflow
 airflow initdb 
 # airflow resetdb - for reseting all data 
@@ -79,6 +82,7 @@ airflow serve_logs
 # sudo apt install sqllite3
 # sqllite3 $AIRFLOW_HOME/airflow.db
 ```
+
 ## [Airflow docker](https://github.com/cherkavi/docker-images/tree/master/airflow)
 ```sh
 # * copy your dags to ``` .dags```
