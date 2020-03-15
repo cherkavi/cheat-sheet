@@ -4,6 +4,7 @@
 * [podcast](https://soundcloud.com/the-airflow-podcast)
 * [tutorial](https://github.com/hgrif/airflow-tutorial)
 * [blog](https://marclamberti.com/blog/)
+* [examples](https://github.com/cherkavi/docker-images/blob/master/airflow/airflow-dag-examples.zip)
 
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
 ## Key concepts
@@ -216,6 +217,13 @@ t3.set_upstream(t2);t2.set_upstream(t1)
 t3 << t2 << t1
 ```
 
+### sub-dags
+```python
+from airflow.operators.subdag_operator import SubDagOperator
+...
+subdag_task = SubDagOperator(subdag=DAG(SUBDAG_PARENT_NAME+"."+SUBDAG_NAME,schedule_interval=parent_dag.schedule_interval, start_date=parent_dag.start_date,catchup=False))
+...
+```
 
 ## [DAG examples](https://github.com/apache/airflow/tree/master/airflow/example_dags)
 should be placed into "dag" folder ( default: %AIRFLOW%/dag )
