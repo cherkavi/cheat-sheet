@@ -274,6 +274,21 @@ branch_task >> postgresql_task
 branch_task >> mongo_task
 ```
 
+### Service Level Agreement, SLA
+GUI: Browse->SLA Misses  
+```python
+def log_sla_miss(dag, task_list, blocking_task_list, slas, blocking_tis):
+    print("SLA was missed on DAG {0}s by task id {1}s with task list: {2} which are " \
+	"blocking task id {3}s with task list: {4}".format(dag.dag_id, slas, task_list, blocking_tis, blocking_task_list))
+
+...
+
+# call back function for missed SLA
+with DAG('sla_dag', default_args=default_args, sla_miss_callback=log_sla_miss, schedule_interval="*/1 * * * *", catchup=False) as dag:
+  t0 = DummyOperator(task_id='t0')
+	 t1 = BashOperator(task_id='t1', bash_command='sleep 15', sla=timedelta(seconds=5), retries=0)
+ 	t0 >> t1
+```
 
 ## [DAG examples](https://github.com/apache/airflow/tree/master/airflow/example_dags)
 should be placed into "dag" folder ( default: %AIRFLOW%/dag )
