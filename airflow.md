@@ -258,6 +258,7 @@ xcom_pull(task_ids="name_of_task_with_push")
 
 ### branching, select next step, evaluate next task
 ![branching](https://i.postimg.cc/T3pRNS4F/airflow-branching.png)
+!!! don't use "depends_on_past"
 
 
 ## [DAG examples](https://github.com/apache/airflow/tree/master/airflow/example_dags)
