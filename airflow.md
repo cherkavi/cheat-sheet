@@ -230,6 +230,20 @@ collaboration with external sources via "connections"
 * [official airflow hooks](https://airflow.apache.org/docs/stable/_api/airflow/hooks/index.html)
 * [SparkSubmitHook, FtpHook, JenkinsHook....](https://airflow.apache.org/docs/stable/_modules/airflow/contrib/hooks.html)
 
+### XCOM, Cross-communication
+GUI: Admin -> Xcoms
+Exchange information between multiply tasks - "cross communication".  
+<Key> <Value> <Timestamp>  
+Object must be serializable  
+Some operators ( BashOperator, SimpleHttpOperator, ... ) have parameter xcom_push=True - last std.output/http.response will be pushed
+Some operators (PythonOperator) has ability to return - will be automatically pushed to XCOM
+Saved in Metadabase, also additional data: "execution_date", "task_id", "dag_id"  
+"execution_date" means hide(skip) everything( same task_id, dag_id... ) before this date 
+```python
+xcom_push()
+xcom_pull(task_ids="name_of_task_with_push")
+```
+
 ## [DAG examples](https://github.com/apache/airflow/tree/master/airflow/example_dags)
 should be placed into "dag" folder ( default: %AIRFLOW%/dag )
 * minimal
