@@ -225,6 +225,10 @@ subdag_task = SubDagOperator(subdag=DAG(SUBDAG_PARENT_NAME+"."+SUBDAG_NAME,sched
 ...
 ```
 
+### hooks
+* [official airflow hooks](https://airflow.apache.org/docs/stable/_api/airflow/hooks/index.html)
+* [SparkSubmitHook, FtpHook, JenkinsHook....](https://airflow.apache.org/docs/stable/_modules/airflow/contrib/hooks.html)
+
 ## [DAG examples](https://github.com/apache/airflow/tree/master/airflow/example_dags)
 should be placed into "dag" folder ( default: %AIRFLOW%/dag )
 * minimal
