@@ -261,12 +261,13 @@ xcom_pull(task_ids="name_of_task_with_push")
 !!! don't use "depends_on_past"
 ```python
 def check_for_activated_source():
-	 return "mysql"
+  # return name ( str ) of the task
+  return "mysql_task"
 
-branch_task = BranchPythonOperator(task_id='branch_task', python_callable=check_for_activated_source, provide_context=True)
-mysql_task 	= BashOperator(task_id='mysql', bash_command='echo "MYSQL is activated"')
-postgresql_task = BashOperator(task_id='postgresql', bash_command='echo "PostgreSQL is activated"')
-mongo_task 	= BashOperator(task_id='mongo', bash_command='echo "Mongo is activated"')
+branch_task = BranchPythonOperator(task_id='branch_task', python_callable=check_for_activated_source)
+mysql_task 	= BashOperator(task_id='mysql_task', bash_command='echo "MYSQL is activated"')
+postgresql_task = BashOperator(task_id='postgresql_task', bash_command='echo "PostgreSQL is activated"')
+mongo_task 	= BashOperator(task_id='mongo_task', bash_command='echo "Mongo is activated"')
 
 branch_task >> mysql_task
 branch_task >> postgresql_task
