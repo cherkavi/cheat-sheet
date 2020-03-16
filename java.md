@@ -510,3 +510,6 @@ OpenXava create new project from DataSource
 		http://localhost:8080/Monolith/modules/Value
 		<     tomcat   path ><Project >       < entity name >
 ```
+
+# Version differences
+![java 8 to 9](https://i.postimg.cc/MHynycjm/java-8-9.png)
