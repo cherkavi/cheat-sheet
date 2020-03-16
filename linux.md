@@ -2140,3 +2140,8 @@ sudo apt-get install -y python3-sphinx
 pip3 install recommonmark sphinx-markdown-tables --user
 sphinx-build "/path/to/source" "/path/to/build" .
 ```
+* keepass
+```sh
+sudo add-apt-repository ppa:jtaylor/keepass
+sudo apt-get update && sudo apt-get install keepass2
+```
