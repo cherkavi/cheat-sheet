@@ -766,8 +766,39 @@ df.toJSON.take(10)
 
 // get value from sql.Row
 df.map( v=> (v.getAs[Map[String, String]]("processedLabel"), v.getAs[String]("projectName"), v.getAs[String]("sessionId"), v.getAs[Long]("timestamp")  ) )
-
 ```
+## elastic read
+```scala
+
+val spark = SparkSession.builder().getOrCreate()
+//val sc = spark.sparkContext
+//sc.getConf.set("es.port", esHost.getPort).set("es.host", esHost.getHost) DOESN'T TAKE ANY AFFECT
+
+val rdd = spark.read
+  .format("org.elasticsearch.spark.sql")
+  .option("es.nodes.wan.only", "true")
+  .option("es.net.ssl", "true")
+  .option("es.net.ssl.truststore.location", s"file://$trustStorePath")
+  .option("es.port", esHost.getPort)
+  .option("es.mapping.id", "id")
+  .option("es.nodes", s"${esHost.getProtocol}://${esHost.getHost}")
+  .load(esHost.getIndexAndType)
+```
+
+## elastic write
+```scala
+labelsWithId.write
+  .format("org.elasticsearch.spark.sql")
+  .option("es.nodes.wan.only", "true")
+  .option("es.net.ssl", "true")
+  .option("es.net.ssl.truststore.location", s"file://$trustStorePath")
+  .option("es.port", esHost.getPort)
+  .option("es.mapping.id", "id")
+  .option("es.nodes", s"${esHost.getProtocol}://${esHost.getHost}")
+  .mode("Append")
+  .save(esHost.getIndexAndType)
+```
+
 ## read history
 ```
 :history
