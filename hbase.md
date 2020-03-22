@@ -117,6 +117,7 @@ get 'mytable1', 'row0015'
 ```
 
 # Java
+* [java examples from google](https://cloud.google.com/bigtable/docs/samples-hbase-java-hello)
 ## java app 
 ```
 java \
