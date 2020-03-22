@@ -287,6 +287,20 @@ google-chrome "https://"$AWS_REGION".console.aws.amazon.com/sns/v3/home?region="
 ```
 
 ---
+## Kinesis
+### kinesis cli
+```sh
+# write record
+aws kinesis put-record --stream-name my_kinesis_stream --partition_key "my_partition_key_1" --data "{'first':'1'}"
+# describe stream
+aws kinesis describe-stream --stream-name my_kinesis_stream 
+# get records
+aws kinesis get-shard-iterator --stream-name my_kinesis_stream --shard-id "shardId-000000000" --shard-iterator-type TRIM_HORIZON
+aws kinesis get-records --shard-iterator 
+```
+### [Kinesis Data Generetor](https://awslabs.github.io/amazon-kinesis-data-generator/)
+
+---
 ## CloudFormation
 ```
 # cloudformation web
