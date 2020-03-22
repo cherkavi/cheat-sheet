@@ -33,6 +33,7 @@
 * [C4](https://leanpub.com/visualising-software-architecture)
 * [C4 model](https://c4model.com/)
 * 97 things every architect should know
+* [value proposition template](https://www.strategyzer.com/canvas/value-proposition-canvas)
 
 # Archimate
 ## useful links
