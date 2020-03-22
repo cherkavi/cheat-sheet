@@ -139,7 +139,7 @@ Result result = mytable1.get(record);
 ## update record
 ```java
 Put row=new Put(Bytes.toBytes("rowKey"));
-row.add(Bytes.toBytes("column_family"), Bytes.toBytes("column"), Bytes.toBytes("value1"))
+row.add(Bytes.toBytes("column_family"), Bytes.toBytes("column"), Bytes.toBytes("value1"));
 table.put(row);
 ```
 ```java
@@ -180,4 +180,20 @@ public static void main(String[] args) throws IOException {
 }
 
 }
+```
+
+## delete value
+```java
+Delete row=new Delete(Bytes.toBytes("rowKey"));
+row.deleteColumn(Bytes.toBytes("column_family"), Bytes.toBytes("column"));
+table.delete(row);
+```
+
+## batch operation
+```java
+Put put = 
+Get get = 
+
+Object[] results = new Object[2];
+table.batch(List.of(put, get), results);
 ```
