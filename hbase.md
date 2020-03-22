@@ -106,7 +106,7 @@ scan 'my_space:mytable1', {STARTROW=>"00223cfd-8b50-979d29164e72:1220", STOPROW=
 echo " scan 'my_space:mytable1', {STARTROW=>"00223cfd-8b50-979d29164e72:1220", STOPROW=>"00223cfd-8b50-979d29164e72:1520"} " | hbase shell > out.txt
 ```
 
-* insert data
+* insert data, update data
 ```
 put 'mytable1', 'row0015', 'cf:MyColumnFamily2', 'my value 01'
 ```
@@ -128,4 +128,10 @@ java \
     --file-meta-table-name {{ file_meta_table }} \
     --component-state-table-name {{ component_state_table }} \
     --session-id $1
+```
+## update record
+```java
+Put row=new Put(Bytes.toBytes("rowKey"));
+row.add(Bytes.toBytes("column_family"), Bytes.toBytes("column"), Bytes.toBytes("value1"))
+table.put(row);
 ```
