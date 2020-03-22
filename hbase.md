@@ -137,7 +137,7 @@ java \
   // scan.setFilter(new FirstKeyOnlyFilter());
   ResultScanner scanner = this.table.getScanner(scan);
   
-  for ( Result result : scanner) {
+  for ( Result result : scanner) { // each next() call - RPC call to server
     System.out.println(result);
   }
   scanner.close();
