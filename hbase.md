@@ -129,6 +129,12 @@ java \
     --component-state-table-name {{ component_state_table }} \
     --session-id $1
 ```
+## get value
+```java
+Get record = new Get(Bytes.toBytes("row_key"));
+record.addColumn(bytes.toBytes("column_family"), bytes.toBytes("column_name"));
+Result result = mytable1.get(record);
+```
 ## update record
 ```java
 Put row=new Put(Bytes.toBytes("rowKey"));
