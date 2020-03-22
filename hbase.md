@@ -130,6 +130,20 @@ java \
     --component-state-table-name {{ component_state_table }} \
     --session-id $1
 ```
+## scan values
+```java
+  Scan scan = new Scan(Bytes.toBytes(startAndStopRow), Bytes.toBytes(startAndStopRow));
+  scan.addColumn(FAMILY_NAME, COLUMN_NAME);
+  // scan.setFilter(new FirstKeyOnlyFilter());
+  ResultScanner scanner = this.table.getScanner(scan);
+  
+  for ( Result result : scanner) {
+    System.out.println(result);
+  }
+  scanner.close();
+}
+```
+
 ## get value
 ```java
 Get record = new Get(Bytes.toBytes("row_key"));
