@@ -135,3 +135,42 @@ Put row=new Put(Bytes.toBytes("rowKey"));
 row.add(Bytes.toBytes("column_family"), Bytes.toBytes("column"), Bytes.toBytes("value1"))
 table.put(row);
 ```
+```java
+package com.learn.hbase.client;
+
+import java.io.IOException;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.client.Connection;
+import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.Put;
+import org.apache.hadoop.hbase.client.Table;
+import org.apache.hadoop.hbase.util.Bytes;
+
+public class PutHBaseClient {
+
+public static void main(String[] args) throws IOException {
+
+  Configuration conf = HBaseConfiguration.create();
+
+  Connection connection = ConnectionFactory.createConnection(conf);
+  Table table = connection.getTable(TableName.valueOf("test"));
+  try {
+
+    Put put1 = new Put(Bytes.toBytes("row1"));
+
+    put1.addColumn(Bytes.toBytes("cf"), Bytes.toBytes("qual1"), Bytes.toBytes("ValueOneForPut1Qual1"));
+    put1.addColumn(Bytes.toBytes("cf"), Bytes.toBytes("qual2"), Bytes.toBytes("ValueOneForPut1Qual2"));
+
+    table.put(put1);
+
+  } finally {
+    table.close();
+    connection.close();
+  }
+
+}
+
+}
+```
