@@ -1,4 +1,5 @@
 # [ansible](https://www.ansible.com/)
+* [cheat-sheet](https://cheat.readthedocs.io/en/latest/ansible/index.html)
 * [best practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)
 * [ansible modules](https://docs.ansible.com/ansible/latest/modules/modules_by_category.html)
 * [ansible roles](https://galaxy.ansible.com/)
