@@ -198,9 +198,21 @@ tasks:
   tags:
   - flag_activation
 ```
+multitag, multi-tag
+```yaml
+tasks:
+- template
+    src: template/activation.sh.j2
+    dest: /usr/bin/activation.sh
+  tags:
+  - [flag_activation, flag_skip]
+```
+
 ```sh
 ansible-playbook previous-block.yml --skip-tags "flag_activation"
+# ansible-playbook previous-block.yml --skip-tags=flag_activation
 # ansible-playbook previous-block.yml --tags "flag_activation"
+# ansible-playbook previous-block.yml --tags=flag_activation
 ```
 # Debug
 ## [debug playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_debugger.html)
