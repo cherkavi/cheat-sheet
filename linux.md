@@ -1383,7 +1383,7 @@ rm ~/.ssh/known_hosts
 ```
 
 ### proxy
-* for user /etc/profile.d/proxy.sh
+* proxy local, proxy for user /etc/profile.d/proxy.sh
 ```
 export HTTP_PROXY=http://webproxy.host:3128
 export http_proxy=http://webproxy.host:3128
@@ -1393,7 +1393,7 @@ export NO_PROXY="localhost,127.0.0.1,.host,.viola.local"
 export no_proxy="localhost,127.0.0.1,.host,.viola.local"
 ```
 
-* #### global /etc/apt/apt.conf 
+* #### global proxy, proxy global, system proxy, proxy system /etc/apt/apt.conf 
 ```
 Acquire::http::proxy "http://proxy.company.com:80/";
 Acquire::https::proxy "https://proxy.company.com:80/";
@@ -1401,7 +1401,7 @@ Acquire::ftp::proxy "ftp://proxy.company.com:80/";
 Acquire::socks5::proxy "socks://127.0.0.1:1080/";
 ```
 
-* #### global /etc/environment
+* #### global proxy, proxy global, system proxy, proxy system /etc/environment
 ```
 http_proxy=http://webproxy.host:3128
 no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
