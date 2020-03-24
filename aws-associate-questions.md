@@ -1,3 +1,7 @@
 ![050-060](https://i.postimg.cc/P5F5vbRk/aws-associate-050-060.png)
 ![061-070](https://i.postimg.cc/PrBst08Y/aws-associate-61-70.png)
 ![071-084](https://i.postimg.cc/sX0HTZY7/aws-associate-071-084.png)
+![085-098](https://i.postimg.cc/MTcqcXxY/aws-associate-085-098.png)
+![099-110](https://i.postimg.cc/ZR1Z6Z5z/aws-associate-099-110.png)
+![111-124](https://i.postimg.cc/qRp24VT0/aws-associate-111-124.png)
+![125-136](https://i.postimg.cc/tRMnmVY9/aws-associate-125-136.png)
