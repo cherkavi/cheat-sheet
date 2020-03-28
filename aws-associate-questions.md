@@ -5,3 +5,5 @@
 ![099-110](https://i.postimg.cc/ZR1Z6Z5z/aws-associate-099-110.png)
 ![111-124](https://i.postimg.cc/qRp24VT0/aws-associate-111-124.png)
 ![125-136](https://i.postimg.cc/tRMnmVY9/aws-associate-125-136.png)
+![137-149](https://i.postimg.cc/3wjHBzRD/aws-associate-137-149.png)
+![151-162](https://i.postimg.cc/Fzz5hRxj/aws-associate-151-162.png)
