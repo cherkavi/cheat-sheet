@@ -18,7 +18,11 @@ current_doc_topic="sns"
 alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html"'
 ```
 
----
+## create policy from error output of aws-cli command:
+```
+aws iam list-groups 2>&1 | /home/projects/bash-example/awk-policy-json.sh
+```
+
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
 ### installation of AWS cli
 ```sh
@@ -48,19 +52,25 @@ pip3 install awscli
 complete -C `locate aws_completer` aws
 ```
 
-
 ---
 ## IAM - Identity Access Manager
 [IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)  
 ```sh
+current_doc_topic="iam"
+cli-doc
+```
+
+```sh
+aws iam list-users 
 # example of adding user to group 
 aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 ```
 
-
 ---
 ## S3
 ```sh
+current_doc_topic='s3'
+cli-doc
 $current_browser https://console.aws.amazon.com/s3/home?region=$AWS_REGION
 ```
 
