@@ -2046,6 +2046,12 @@ smbclient -U $SAMBA_CLIENT_GROUP//$SAMBA_CLIENT_USER \
 ---
 # vim
 [vim cheat sheet](http://najomi.org/vim)
+
+## vim pipe
+```sh
+echo "hello vim " | vim - -c "set number"
+```
+
 ## copy-paste
 * v - *visual* selection ( start selection )
 * y - *yank* ( end selection )

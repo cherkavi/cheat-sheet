@@ -24,6 +24,24 @@ git reset --hard
 git reset --hard origin/master
 ```
 
+### restore removed file, restore deleted file, find removed file, show removed file
+```
+# find full path to the file 
+file_name="integration_test.sh.j2"
+git log --diff-filter=D --name-only | grep $file_name
+
+# find last log messages 
+full_path="ansible/roles/data-ingestion/templates/integration_test.sh.j2"
+git log -2 --name-only -- $full_path
+
+second_log_commit="99994ccef3dbb86c713a44815ab5ffa"
+
+# restore file from specific commit
+git checkout $second_log_commit -- $full_path
+# show removed file 
+git show $second_log_commit:$full_path
+```
+
 ### remove last commit and put HEAD to previous one
 ```
 git reset --hard HEAD~1
