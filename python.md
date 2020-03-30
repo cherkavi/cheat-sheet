@@ -144,11 +144,18 @@ pip install tornado==2.1.1
 pip install virtualenv
 ```
 ```
-python3 -m venv virtual_env
+# create 
+python3 -m virtualenv virtual_env
+
+# activate
 source virtual_env/bin/activate
-# deactivate
+
+# commands will be executed into virtual env
 pip install wheel 
 python3 
+
+# exit from virtual environment
+deactivate
 ```
 
 ### install list of artifacts
