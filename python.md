@@ -160,6 +160,7 @@ cat requirements.txt | xargs -I {} ./pip3 install {}
 ```
 where requirements.txt is:
 ```
+-r requirements-base.txt
 docker==3.7.0
 enum34==1.1.6
 flask-restful==0.3.7
