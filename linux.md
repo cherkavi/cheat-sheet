@@ -2152,15 +2152,26 @@ sudo add-apt-repository ppa:jtaylor/keepass
 sudo apt-get update && sudo apt-get install keepass2
 ```
 * vnc
-installation
+ * installation
 ```sh
 sudo apt install xfce4
 sudo apt install tightvncserver
 ```
-~/.vnc/
-```sh
+ * ~/.vnc/xstartup
 ```
+#!/bin/sh
 
+# Fix to make GNOME and GTK stuff work
+export XKL_XMODMAP_DISABLE=1
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
+xrdb $HOME/.Xresources
+xsetroot -solid grey
+xfce4-session &
+/usr/lib/gnome-settings-daemon/gsd-xsettings &
+```
+ * vnc commands
 ```sh
 # start server
 vncserver -geometry 1920x1080
@@ -2176,19 +2187,4 @@ vncserver -geometry 1920x1080 -fp "/usr/share/fonts/X11/misc,/usr/share/fonts/X1
 ps aux | grep vnc
 # kill server
 vncserver -kill :1
-```
-xstartup
-```
-#!/bin/sh
-
-# Fix to make GNOME and GTK stuff work
-export XKL_XMODMAP_DISABLE=1
-unset SESSION_MANAGER
-unset DBUS_SESSION_BUS_ADDRESS
-
-xrdb $HOME/.Xresources
-xsetroot -solid grey
-xfce4-session &
-/usr/lib/gnome-settings-daemon/gsd-xsettings &
-
 ```
