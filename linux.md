@@ -2151,3 +2151,44 @@ sphinx-build "/path/to/source" "/path/to/build" .
 sudo add-apt-repository ppa:jtaylor/keepass
 sudo apt-get update && sudo apt-get install keepass2
 ```
+* vnc
+installation
+```sh
+sudo apt install xfce4
+sudo apt install tightvncserver
+```
+~/.vnc/
+```sh
+```
+
+```sh
+# start server
+vncserver -geometry 1920x1080
+
+## Couldn't start Xtightvnc; trying default font path.
+## Please set correct fontPath in the vncserver script.
+## Couldn't start Xtightvnc process.
+
+# start server
+vncserver -geometry 1920x1080 -fp "/usr/share/fonts/X11/misc,/usr/share/fonts/X11/Type1,built-ins"
+
+# check started
+ps aux | grep vnc
+# kill server
+vncserver -kill :1
+```
+xstartup
+```
+#!/bin/sh
+
+# Fix to make GNOME and GTK stuff work
+export XKL_XMODMAP_DISABLE=1
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
+xrdb $HOME/.Xresources
+xsetroot -solid grey
+xfce4-session &
+/usr/lib/gnome-settings-daemon/gsd-xsettings &
+
+```
