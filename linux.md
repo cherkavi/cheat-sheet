@@ -1190,6 +1190,10 @@ dpkg --print-architecture
 dpkg --print-foreign-architectures
 sudo apt-get install libglib2.0-0:i386 libgtk2.0-0:i386
 ```
+### installed package check, check package
+```
+apt list <name of package>
+```
 
 ### Debian update package
 ```
