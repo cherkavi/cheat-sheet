@@ -886,6 +886,18 @@ apt install dateutils
 dateutils.ddiff -i '%Y%m%d%H%M%S' -f '%y %m %d %H %M %S' 20160312000101 20170817040001
 ```
 
+### adjust time, adjust clock, sync clock, computer clock
+/etc/systemd/timesyncd.conf.d/90-time-sync.conf
+```sh
+[Time]
+NTP=ntp.ubuntu.com
+FallbackNTP=ntp.ubuntu.com
+```
+restart time sync service
+```sh
+timedatectl set-ntp true && systemctl restart systemd-timesyncd.service
+```
+
 ### replace character into string
 ```
 array = echo $result | tr {}, ' ' 
