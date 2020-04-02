@@ -294,7 +294,7 @@ git commit --amend -m "<new message>"
 git log --pretty=format:"%h - %an, %ar : %s" <commit SHA> -1
 ```
 
-### git into different repository
+### git into different repository, different folder, another folder, not current directory
 ```
 git --git-dir C:\project\horus\.git  branch --all
 ```
