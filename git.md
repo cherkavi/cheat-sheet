@@ -211,6 +211,10 @@ git checkout $branch_source -- $file_name
 git diff $branch_source $file_name
 
 ```
+### show all tags
+```
+git show-ref --tags
+```
 
 ### conflict files, show conflicts
 ```sh
@@ -296,7 +300,7 @@ git log --pretty=format:"%h - %an, %ar : %s" <commit SHA> -1
 
 ### git into different repository, different folder, another folder, not current directory
 ```
-git --git-dir C:\project\horus\.git  branch --all
+git --git-dir=C:\project\horus\.git  --work-tree=C:\project\horus  branch --all
 ```
 
 ### show remote url
