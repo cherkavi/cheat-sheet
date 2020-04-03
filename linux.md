@@ -937,6 +937,11 @@ unzip file.zip -d output_folder
 wget -qO- https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz | tar xvz - -C /target/directory
 ```
 
+### untar
+```sh
+tar zxvf backup.tgz
+```
+
 ### pipeline chain 'to file'
 ```
 echo "hello from someone" | tee --append out.txt
