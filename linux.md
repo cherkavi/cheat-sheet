@@ -2199,6 +2199,8 @@ xfce4-session &
 ```sh
 # start server
 vncserver -geometry 1920x1080
+# full command
+vncserver :3 -desktop X -auth /home/qqtavt1/.Xauthority -geometry 1920x1080 -depth 24 -rfbwait 120000 -rfbauth /home/qqtavt1/.vnc/passwd -rfbport 5903 -fp /usr/share/fonts/X11/misc,/usr/share/fonts/X11/Type1 -co /etc/X11/rgb
 
 ## Couldn't start Xtightvnc; trying default font path.
 ## Please set correct fontPath in the vncserver script.
