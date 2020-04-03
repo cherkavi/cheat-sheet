@@ -803,7 +803,7 @@ systemctl restart cron
 ```
 grep -nr "text for search" .
 ```
-### grep only in certain folder without recursion
+### grep only in certain folder without recursion, grep current folder, grep in current dir
 ```
 # need to set * or mask for files in folder !!!
 grep -s "search_string" /path/to/folder/*
