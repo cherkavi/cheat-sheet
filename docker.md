@@ -401,14 +401,16 @@ or for file /etc/docker/daemon.json
 
 ## Save
 ------
-### docker save/commit
-```
-docker commit {CONTAINER ID} <new image name>
+### docker save changed container, commit changes
+```sh
+# select container that should be saved with command: docker ps
+docker commit {CONTAINER_ID} <new image name>
 ```
 
-### docker save/commit
+### container new name, rename container, container new label
 ```
-docker tag {CONTAINER ID} <TAG NAME[:TAG VERSION]>
+# change name of container
+docker tag {IMAGE_ID} <TAG NAME[:TAG VERSION]>
 ```
 
 ### docker save - image with layers and history
