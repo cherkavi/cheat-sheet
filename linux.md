@@ -2180,6 +2180,7 @@ sudo apt-get update && sudo apt-get install keepass2
 ```sh
 sudo apt install xfce4
 sudo apt install tightvncserver
+sudo apt install x11vnc
 ```
  * ~/.vnc/xstartup
 ```
@@ -2213,4 +2214,11 @@ vncserver -geometry 1920x1080 -fp "/usr/share/fonts/X11/misc,/usr/share/fonts/X1
 ps aux | grep vnc
 # kill server
 vncserver -kill :1
+```
+  * vnc start, x11vnc start
+```
+#export DISPLAY=:0
+#Xvfb $DISPLAY -screen 0 1920x1080x16 &
+# sleep 1
+x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
 ```
