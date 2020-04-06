@@ -2222,3 +2222,8 @@ vncserver -kill :1
 # sleep 1
 x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
 ```
+* vnc client, vnc viewer, vnc player
+```sh
+# !!! don't use Remmina !!!
+sudo apt install xvnc4viewer
+```
