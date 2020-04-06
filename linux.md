@@ -2176,7 +2176,7 @@ sudo add-apt-repository ppa:jtaylor/keepass
 sudo apt-get update && sudo apt-get install keepass2
 ```
 * vnc
- * installation
+ * vnc installation
 ```sh
 sudo apt install xfce4
 sudo apt install tightvncserver
