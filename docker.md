@@ -593,6 +593,7 @@ ENV JAR=$app_name.jar
 # bash command
 # docker build --tag rviz-image --build-arg ROS_VERSION=latest .
 # 
+ARG ROS_VERSION
 FROM cc-artifactory.ubsgroup.com/docker/ros:${ROS_VERSION}
 ```
 
