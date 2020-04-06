@@ -584,9 +584,16 @@ docker build --build-arg http_proxy=proxy.muc:8080 --build-arg https_proxy=proxy
 ```
 
 ### build with parameters inside dockerfile 
-```
+```Dockerfile
 ARG app_name
 ENV JAR=$app_name.jar
+```
+
+```Dockerfile
+# bash command
+# docker build --tag rviz-image --build-arg ROS_VERSION=latest .
+# 
+FROM cc-artifactory.ubsgroup.com/docker/ros:${ROS_VERSION}
 ```
 
 
