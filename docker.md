@@ -275,7 +275,11 @@ docker inspect {CONTAINER ID} | grep -i NETWORK
   'container:<name|id>': reuse another container's network stack
   '<network-name>|<network-id>': connect to a user-defined network
 ```
-
+## mount folder, map folder, mount directory, map directory
+```sh
+working_dir="/path/to/working/folder"
+docker run --volume $working_dir:/work -p 6900-6910:5900-5910 --name my_own_container -it ubuntu:18.04 /bin/sh
+```
 
 ## Volumes
 ### create volume
