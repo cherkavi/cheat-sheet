@@ -2219,6 +2219,7 @@ vncserver -kill :1
 ```
 #export DISPLAY=:0
 #Xvfb $DISPLAY -screen 0 1920x1080x16 &
+#Xvfb $DISPLAY -screen 0 1920x1080x24 # not more that 24 bit for color
 # sleep 1
 x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
 ```
