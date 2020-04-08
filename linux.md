@@ -761,7 +761,16 @@ rm -rf  -- !(exclude-filename.sh)
 ```
  youtube-dl --list-formats https://www.youtube.com/watch?v=nhq8e9eE_L8
  youtube-dl --format 22 https://www.youtube.com/watch?v=nhq8e9eE_L8
+```
 
+### screen video recording, screen recording
+```sh
+# start recording
+# add-apt-repository ppa:savoury1/ffmpeg4 && apt update && apt install -y ffmpeg
+ffmpeg -y -video_size 1280x1024 -framerate 20 -f x11grab -i :0.0 /output/out.mp4
+
+# stop recording
+ps aux | grep ffmpeg | head -n 1 | awk '{print $2}' | xargs kill --signal INT 
 ```
 
 ### cron
