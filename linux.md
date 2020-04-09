@@ -88,6 +88,18 @@ sudo mkdir /mnt/samsung-note
 curlftpfs testuser:testpassword@192.168.178.20:2221 /mnt/samsung-note/
 ```
 
+### mount windows folder, mount windows shared folder
+```sh
+sudo apt install nfs-common
+sudo apt install cifs-utils
+
+sudo mkdir -p /mnt/windows-computer
+USER_NAME='my-username'
+USER_DOMAIN='ZUR'
+USER_SERVER='//u015029.ubsbank.net/home$/x453337/'
+sudo mount -t cifs -o auto,gid=$(id -g),uid=$(id -u),username=$USER_NAME,domain=$USER_DOMAIN,vers=2.1 $USER_SERVER /mnt/windows-computer
+```
+
 ### list drives, drive list, attached drives
 ```sh
 lsblk
