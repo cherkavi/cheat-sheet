@@ -825,6 +825,34 @@ The routing mesh built into Docker Swarm means that any port that is published a
 
 
 # issues
+## docker image contain your local proxy credentials, remove credentials from docker container
+container that you built locally contains your proxy credentials
+```
+# execution inside container
+docker exec -it {container name} /bin/sh
+env
+# showing your credentials
+```
+*solution*
+* remove your credentials from file ~/.docker/config.json
+```json
+{
+ { proxies:{
+     default: {httpProxy: "your value"}
+   }
+  }
+}
+```
+* build container with "--build-arg"
+```sh
+docker build \
+--tag $BUILD_IMAGE_NAME  \
+--build-arg http_proxy=$http_proxy \
+--build-arg https_proxy=$https_proxy \
+--build-arg no_proxy=$no_proxy \
+.
+```
+
 ## docker login
 ```
 Error response from daemon: Get https://docker-registry-default.dplapps.adv.org/v2/: x509: certificate signed by unknown authority
