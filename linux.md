@@ -1682,6 +1682,12 @@ convert -geometry 400x600 -density 100x100 -quality 100 test-pdf.pdf test-pdf.jp
 barcode -o 1112.pdf -e "code39" -b "1112" -u "mm" -g 50x50
 ```
 
+### qr code online generator
+```
+http://goqr.me/api/doc/create-qr-code/
+http://api.qrserver.com/v1/create-qr-code/?data=HelloWorld!&size=100x100
+```
+
 ### bar code finder
 ```
 apt install zbar-tool
