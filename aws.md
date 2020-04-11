@@ -321,6 +321,8 @@ google-chrome "https://"$AWS_REGOIN".console.aws.amazon.com/cloudformation/home?
 # cloudformation designer web
 google-chrome "https://"$AWS_REGION".console.aws.amazon.com/cloudformation/designer/home?region="$AWS_REGION
 ```
+### CloudFormation macros
+![cloud formation macros](https://i.postimg.cc/BQMY5xmx/aws-cloud-formation-macros.png)
 
 ---
 ## [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)

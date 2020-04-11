@@ -1584,6 +1584,11 @@ execute re-mapping, permanent solution
 xmodmap $HOME/.config/xmodmap-hjkl
 ```
 
+## remap reset, reset xmodmap
+```sh
+setxkbmap -option
+```
+
 ## terminal title
 ```
 set-title(){
