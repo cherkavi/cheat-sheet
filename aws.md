@@ -25,6 +25,8 @@ alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/referenc
 aws iam list-groups 2>&1 | /home/projects/bash-example/awk-policy-json.sh
 ```
 
+## [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
+
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
 ### installation of AWS cli
 ```sh
