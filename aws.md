@@ -1,4 +1,5 @@
-[sdk](https://aws.amazon.com/tools/)  
+* [sdk](https://aws.amazon.com/tools/)  
+* shell script ``` apt install aws-shell ```
 
 ## init variables
 ```
