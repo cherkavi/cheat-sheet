@@ -20,6 +20,7 @@ alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/referenc
 ```
 
 ## create policy from error output of aws-cli command:
+>User is not authorized to perform
 ```
 aws iam list-groups 2>&1 | /home/projects/bash-example/awk-policy-json.sh
 ```
@@ -94,17 +95,17 @@ aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
 policy
 ```json
 {
-	"Version": "2012-10-17",
-	"Id": "policy-bucket-001",
-	"Statement": [
-		{
-			"Sid": "statement-bucket-001",
-			"Effect": "Allow",
-			"Principal": "*", 
-			"Action": "s3:GetObject",
-			"Resource": "arn:aws:s3:::YOUR_BUCKET_NAME/*"
-		}
-	]
+    "Version": "2012-10-17",
+    "Id": "policy-bucket-001",
+    "Statement": [
+        {
+            "Sid": "statement-bucket-001",
+            "Effect": "Allow",
+            "Principal": "*", 
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::YOUR_BUCKET_NAME/*"
+        }
+    ]
 }
 ```
 
