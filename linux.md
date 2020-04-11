@@ -1569,8 +1569,8 @@ create file '~/.Xmodmap'
 xev | grep keysym
 ```
 
-### remap [jlki] to [Left, Right, Down, Up]
-file .Xmodmap
+### remap [hjkl] to [Left, Down, Up, Right], cursor hjkl
+content of $HOME/.config/xmodmap-hjkl
 ```
 keycode 66 = Mode_switch
 keysym j = j J Left 
@@ -1578,9 +1578,10 @@ keysym l = l L Right
 keysym i = i I Up
 keysym k = k K Down
 ```
-execute re-mapping
-```
-xmodmap .Xmodmap
+execute re-mapping, permanent solution
+```sh
+# vim /etc/profile
+xmodmap $HOME/.config/xmodmap-hjkl
 ```
 
 ## terminal title
