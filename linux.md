@@ -7,7 +7,7 @@
 ```
 ssh -D <localport> <user>@<remote host>
 ```
-and checking if it is working for 'ssh -D 7772 cherkavi@151.190.211.1'
+and checking if it is working for 'ssh -D 7772 cherkavi@15pos1.190.211.1'
 ```
 ssh -o "ProxyCommand nc -x 127.0.0.1:7772 %h %p" cherkavi@151.190.211.47
 ```
@@ -731,11 +731,18 @@ ctrl-Z
 disown -a && exit
 ```
 
-### postponed execution
-```
-at <date and time>
-> "write commands"
+### postponed execution, execute command by timer, execute command from now, timer command
+> for graphical applications DISPLAY must be specified
+* using built-in editor
+```sh
+at now + 5 minutes
+at> DISPLAY=:0 rifle /path/to/image
 ^D
+```
+* using inline execution
+```sh
+echo "rifle /path/to/image/task.png" | at now + 1 min
+echo "rifle /path/to/image/task.png" | at 11:01
 ```
 
 ### print all files that process is reading
