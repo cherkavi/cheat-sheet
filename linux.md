@@ -2268,3 +2268,12 @@ x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
 # !!! don't use Remmina !!!
 sudo apt install xvnc4viewer
 ```
+* timer, terminal timer, console timer
+```
+sudo apt install sox libsox-fmt-mp3
+https://github.com/rlue/timer
+sudo curl -o /usr/bin/timer https://raw.githubusercontent.com/rlue/timer/master/bin/timer
+sudo chmod +x /usr/bin/timer
+# set timer for 5 min 
+timer 5
+```
