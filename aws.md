@@ -190,6 +190,9 @@ current_doc_topic="elb"; cli-doc
 
 ---
 ## Lambda
+### examples
+* https://d1.awsstatic.com/whitepapers/architecture/AWS-Serverless-Applications-Lens.pdf
+
 ### API Gateway, Lambda url, remote invocation url
 ```sh
 google-chrome https://"$AWS_REGION".console.aws.amazon.com/apigateway/main/apis?region="$AWS_REGION"
