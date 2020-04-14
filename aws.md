@@ -21,8 +21,11 @@ alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/referenc
 
 ## create policy from error output of aws-cli command:
 >User is not authorized to perform
+> AccessDeniedException
 ```
 aws iam list-groups 2>&1 | /home/projects/bash-example/awk-policy-json.sh
+# or just copy it
+echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-example/awk-policy-json.sh
 ```
 
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
@@ -68,6 +71,13 @@ aws iam list-users
 aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 ```
 
+---
+## VPC
+example of creating subnetwork:
+```text
+VPC: 172.31.0.0    
+Subnetwork: 172.31.0.0/16, 172.31.0.0/26, 172.31.0.64/26
+```
 ---
 ## S3
 ```sh
@@ -241,6 +251,7 @@ IAM->Policies->Create policy
 
 
 ### [development tools](https://aws.amazon.com/serverless/developer-tools/)
+* IntellijIDEA
 * Apex
 * [Python Zappa](https://github.com/Miserlou/Zappa)
 * [AWS SAM](https://github.com/awslabs/serverless-application-model)
@@ -248,6 +259,64 @@ IAM->Policies->Create policy
 * [aws-serverless-java-container](https://github.com/awslabs/aws-serverless-java-container)
 * Chalice
 ...
+
+#### [IntellijIDEA](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/getting-started.html)
+* install plugin: AWS Toolkit, 
+* right bottom corner - select Region, select Profile
+    > profile must have: 
+    ```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListRoleTags",
+                "iam:GetPolicy",
+                "iam:ListRolePolicies"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:policy/*",
+                "arn:aws:iam::*:role/*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "iam:ListRoles",
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "arn:aws:iam::*:role/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": "*"
+        }
+    ]
+}
+    ```
+* New->Project->AWS
+* create new Python file from template ( my_aws_func.py )
+```python
+import json
+def lambda_handler(event, context):
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
+```
+* <Shift><Shift> Create Lambda Function, specify handler: my_aws_func.lambda_handler
+
+#### aws sam
+```bash
+pip3 install aws-sam-cli
+```
 
 #### Python Zappa
 ```sh
