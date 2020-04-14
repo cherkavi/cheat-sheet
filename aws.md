@@ -28,6 +28,8 @@ aws iam list-groups 2>&1 | /home/projects/bash-example/awk-policy-json.sh
 echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-example/awk-policy-json.sh
 ```
 
+## [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
+
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
 ### installation of AWS cli
 ```sh
@@ -198,6 +200,9 @@ current_doc_topic="elb"; cli-doc
 
 ---
 ## Lambda
+### examples
+* https://d1.awsstatic.com/whitepapers/architecture/AWS-Serverless-Applications-Lens.pdf
+
 ### API Gateway, Lambda url, remote invocation url
 ```sh
 google-chrome https://"$AWS_REGION".console.aws.amazon.com/apigateway/main/apis?region="$AWS_REGION"

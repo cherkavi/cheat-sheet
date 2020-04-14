@@ -7,7 +7,7 @@
 ```
 ssh -D <localport> <user>@<remote host>
 ```
-and checking if it is working for 'ssh -D 7772 cherkavi@151.190.211.1'
+and checking if it is working for 'ssh -D 7772 cherkavi@15pos1.190.211.1'
 ```
 ssh -o "ProxyCommand nc -x 127.0.0.1:7772 %h %p" cherkavi@151.190.211.47
 ```
@@ -731,11 +731,18 @@ ctrl-Z
 disown -a && exit
 ```
 
-### postponed execution
-```
-at <date and time>
-> "write commands"
+### postponed execution, execute command by timer, execute command from now, timer command
+> for graphical applications DISPLAY must be specified
+* using built-in editor
+```sh
+at now + 5 minutes
+at> DISPLAY=:0 rifle /path/to/image
 ^D
+```
+* using inline execution
+```sh
+echo "rifle /path/to/image/task.png" | at now + 1 min
+echo "rifle /path/to/image/task.png" | at 11:01
 ```
 
 ### print all files that process is reading
@@ -2260,4 +2267,13 @@ x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
 ```sh
 # !!! don't use Remmina !!!
 sudo apt install xvnc4viewer
+```
+* timer, terminal timer, console timer
+```
+sudo apt install sox libsox-fmt-mp3
+https://github.com/rlue/timer
+sudo curl -o /usr/bin/timer https://raw.githubusercontent.com/rlue/timer/master/bin/timer
+sudo chmod +x /usr/bin/timer
+# set timer for 5 min 
+timer 5
 ```
