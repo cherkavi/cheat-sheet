@@ -741,8 +741,8 @@ at> DISPLAY=:0 rifle /path/to/image
 ```
 * using inline execution
 ```sh
-echo "rifle /path/to/image/task.png" | at now + 1 min
-echo "rifle /path/to/image/task.png" | at 11:01
+echo "DISPLAY=:0 rifle /path/to/image/task.png" | at now + 1 min
+echo "DISPLAY=:0 rifle /path/to/image/task.png" | at 11:01
 ```
 
 ### print all files that process is reading
