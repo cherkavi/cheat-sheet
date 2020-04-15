@@ -1912,6 +1912,10 @@ BEGIN{
 ```
 find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
 ```
+### calculcate size of files by type, list of files, sort files by size
+```sh
+du -hs * | sort -h
+```
 
 ### reset Gnome to default
 ```
