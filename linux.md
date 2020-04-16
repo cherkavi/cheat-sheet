@@ -2259,7 +2259,7 @@ vncserver :3 -desktop X -auth /home/qqtavt1/.Xauthority -geometry 1920x1080 -dep
 ## Please set correct fontPath in the vncserver script.
 ## Couldn't start Xtightvnc process.
 
-# start server
+# start server with new monitor
 vncserver -geometry 1920x1080 -fp "/usr/share/fonts/X11/misc,/usr/share/fonts/X11/Type1,built-ins"
 
 # check started
@@ -2274,6 +2274,9 @@ vncserver -kill :1
 #Xvfb $DISPLAY -screen 0 1920x1080x24 # not more that 24 bit for color
 # sleep 1
 x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
+
+# just show current desktop 
+x11vnc
 ```
 * vnc client, vnc viewer, vnc player
 ```sh
