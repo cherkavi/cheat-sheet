@@ -73,6 +73,14 @@ ping -s 122 -c 1 146.255.193.66
 ping -s 123 -c 1 146.255.193.66
 ```
 
+### open ports, open connections, listening ports
+```sh
+# list of open files
+sudo lsof -i -P -n | grep LISTEN
+# list of open connections
+sudo netstat -tulpan | grep LISTEN
+```
+
 ### mount remote filesystem via ssh, map folder via ssh, ssh remote folder
 ```
 sudo mkdir /mnt/vendor-cluster-prod
