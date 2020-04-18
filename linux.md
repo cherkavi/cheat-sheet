@@ -73,6 +73,14 @@ ping -s 122 -c 1 146.255.193.66
 ping -s 123 -c 1 146.255.193.66
 ```
 
+### open ports, open connections, listening ports
+```sh
+# list of open files
+sudo lsof -i -P -n | grep LISTEN
+# list of open connections
+sudo netstat -tulpan | grep LISTEN
+```
+
 ### mount remote filesystem via ssh, map folder via ssh, ssh remote folder
 ```
 sudo mkdir /mnt/vendor-cluster-prod
@@ -741,8 +749,8 @@ at> DISPLAY=:0 rifle /path/to/image
 ```
 * using inline execution
 ```sh
-echo "rifle /path/to/image/task.png" | at now + 1 min
-echo "rifle /path/to/image/task.png" | at 11:01
+echo "DISPLAY=:0 rifle /path/to/image/task.png" | at now + 1 min
+echo "DISPLAY=:0 rifle /path/to/image/task.png" | at 11:01
 ```
 
 ### print all files that process is reading
@@ -1912,6 +1920,10 @@ BEGIN{
 ```
 find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
 ```
+### calculcate size of files by type, list of files, sort files by size
+```sh
+du -hs * | sort -h
+```
 
 ### reset Gnome to default
 ```
@@ -2247,7 +2259,7 @@ vncserver :3 -desktop X -auth /home/qqtavt1/.Xauthority -geometry 1920x1080 -dep
 ## Please set correct fontPath in the vncserver script.
 ## Couldn't start Xtightvnc process.
 
-# start server
+# start server with new monitor
 vncserver -geometry 1920x1080 -fp "/usr/share/fonts/X11/misc,/usr/share/fonts/X11/Type1,built-ins"
 
 # check started
@@ -2262,6 +2274,9 @@ vncserver -kill :1
 #Xvfb $DISPLAY -screen 0 1920x1080x24 # not more that 24 bit for color
 # sleep 1
 x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
+
+# just show current desktop 
+x11vnc
 ```
 * vnc client, vnc viewer, vnc player
 ```sh

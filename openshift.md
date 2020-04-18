@@ -418,7 +418,42 @@ spec:
 ### Persistent Volume with Persistent Volume Claim example
 For MapR cluster, be aware about
 MapR ticket-file ----<>Secret-----<>PV------<>PVC
+
+### create secret token if it not exist
+creating secret 
+* login into mapr
+```bash
+echo $CLUSTER_PASSWORD | maprlogin password -user $CLUSTER_USER
 ```
+* check secret for existence
+```bash
+oc get secrets -n $OPENSHIFT_NAMESPACE
+```
+* re-create secret
+```bash
+# delete secret 
+oc delete secret/volume-token-ground-truth
+cat /tmp/maprticket_1000
+
+# create secret from file
+ticket_name="cluster-user--mapr-prd-ticket-1536064"
+file_name=$ticket_name".txt"
+project_name="tsa"
+## copy file from cluster to local folder
+scp -r cluster-user@jump.server:/full/path/to/$file_name .
+oc create secret generic $ticket_name --from-file=$file_name -n $OPENSHIFT_NAMESPACE
+oc create secret generic volume-token-ground-truth --from-file=CONTAINER_TICKET=/tmp/maprticket_1000 -n $OPENSHIFT_NAMESPACE
+oc create secret generic volume-token-ground-truth --from-literal=CONTAINER_TICKET='dp.prod.zurich qEnHLE7UaW81NJaDehSH4HX+m9kcSg1UC5AzLO8HJTjhfJKrQWdHd82Aj0swwb3AsxLg==' -n $OPENSHIFT_NAMESPACE
+
+```
+* check created ticket
+```bash
+maprlogin print -ticketfile /tmp/maprticket_1000
+oc describe secret volume-token-ground-truth
+```
+
+using secret   
+```yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -457,7 +492,7 @@ spec:
       storage: 1G
 ```
 ### service example
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
