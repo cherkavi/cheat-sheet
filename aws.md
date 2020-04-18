@@ -98,6 +98,8 @@ aws s3 cp /path/to/file-name.with_extension s3://my-bucket-name
 aws s3api put-object --bucket my-bucket-name --key foldername/
 # sync folder with remote s3 folder
 aws s3 sync /paht/to/some/folder s3://my-bucket-name/some/folder
+# sync folder with remote s3 folder with public access
+aws s3 sync /paht/to/some/folder s3://my-bucket-name/some/folder --acl public-read
 # list of all objects
 aws s3 ls --recursive s3://my-bucket-name 
 # download file
@@ -119,6 +121,11 @@ policy
         }
     ]
 }
+```
+
+add access to AccessControlList
+```dotnetcli
+aws s3api put-object-acl --bucket public-technik-bucket --key external-resources/index3.html --acl public-read
 ```
 
 ---
