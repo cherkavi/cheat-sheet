@@ -102,6 +102,8 @@ aws s3 sync /paht/to/some/folder s3://my-bucket-name/some/folder
 aws s3 sync /paht/to/some/folder s3://my-bucket-name/some/folder --acl public-read
 # list of all objects
 aws s3 ls --recursive s3://my-bucket-name 
+# list of all object by specified path ( / at the end must be )
+aws s3 ls --recursive s3://my-bucket-name/my-sub-path/
 # download file
 aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
 ```
