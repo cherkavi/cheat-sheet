@@ -126,8 +126,26 @@ policy
 ```
 
 add access to AccessControlList
-```dotnetcli
-aws s3api put-object-acl --bucket public-technik-bucket --key external-resources/index3.html --acl public-read
+policy
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObjectAcl",
+                "s3:PutObjectAcl"
+            ],
+            "Resource": "arn:aws:s3:::*/*"
+        }
+    ]
+}
+```
+
+```sh
+aws s3api put-object-acl --bucket <bucket name> --key <path to file> --acl public-read
 ```
 
 ---
@@ -217,25 +235,27 @@ current_doc_topic="elb"; cli-doc
 google-chrome https://"$AWS_REGION".console.aws.amazon.com/apigateway/main/apis?region="$AWS_REGION"
 # API -> Stages
 ```
-### Lambda function editor
+### Lambda function editor, list of all functions
 enter point for created Lambdas
 ```sh
 google-chrome "https://"$AWS_REGION".console.aws.amazon.com/lambda/home?region="$AWS_REGION"#/functions"
 ```
 
+https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/functions/back2ussr-user-get?tab=configuration
+
 ### invoke function from CLI, lambda execution
 ```sh
+LAMBDA_NAME="function_name"
 # example of lambda execution
 aws lambda invoke  \
 --profile $AWS_PROFILE --region $AWS_REGION \
---function-name current-time \
---payload '{"key1": "value-1"}' \
+--function-name $LAMBDA_NAME \
 output.log
 
 # example of lambda execution with payload
 aws lambda invoke  \
 --profile $AWS_PROFILE --region $AWS_REGION \
---function-name current-time \
+--function-name $LAMBDA_NAME \
 --payload '{"key1": "value-1"}' \
 output.log
 
@@ -244,7 +264,7 @@ output.log
 # !!! with SNS downstream execution !!! 
 aws lambda invoke  \
 --profile $AWS_PROFILE --region $AWS_REGION \
---function-name current-time \
+--function-name $LAMBDA_NAME \
 --invocation-type Event \
 --payload '{"key1": "value-1"}' \
 output.log
