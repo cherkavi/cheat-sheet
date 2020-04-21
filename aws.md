@@ -12,12 +12,13 @@ AWS_REGION=eu-central-1
 . /home/projects/current-project/aws.sh
 ```
 
-## url to cli documentation, faq, collection of questions
+## url to cli documentation, faq, collection of questions, UI 
 ```sh
 current_browser="google-chrome"
 current_doc_topic="sns"
 alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html"'
 alias faq='$current_browser "https://aws.amazon.com/${current_doc_topic}/faqs/"'
+alias console='$current_browser "https://console.aws.amazon.com/${current_doc_topic}/home?region=$AWS_REGION"'
 ```
 
 ## create policy from error output of aws-cli command:
@@ -66,6 +67,8 @@ complete -C `locate aws_completer` aws
 ```sh
 current_doc_topic="iam"
 cli-doc
+faq
+console
 ```
 
 ```sh
@@ -76,6 +79,13 @@ aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 
 ---
 ## VPC
+```sh
+current_doc_topic="vpc"
+cli-doc
+faq
+console
+```
+
 example of creating subnetwork:
 ```text
 VPC: 172.31.0.0    
@@ -86,7 +96,8 @@ Subnetwork: 172.31.0.0/16, 172.31.0.0/26, 172.31.0.64/26
 ```sh
 current_doc_topic='s3'
 cli-doc
-$current_browser https://console.aws.amazon.com/s3/home?region=$AWS_REGION
+faq
+console
 ```
 
 ```sh
@@ -151,6 +162,14 @@ aws s3api put-object-acl --bucket <bucket name> --key <path to file> --acl publi
 
 ---
 ## [Athena](https://docs.aws.amazon.com/athena/latest)
+```sh
+current_doc_topic="athena"
+cli-doc
+faq
+console
+```
+
+```
 ### simple data  
 s3://my-bucket-001/temp/
 ```csv
@@ -189,11 +208,25 @@ select * from num_sequence;
 ---
 ## CloudFront
 ```sh
+current_doc_topic="cloudfront"
+cli-doc
+faq
+console
+```
+
+```sh
 Region <>---------- AvailabilityZone <>--------- EdgeLocation
 ```
 
 ---
 ## EC2
+```sh
+current_doc_topic="ec2"
+cli-doc
+faq
+console
+```
+
 [purchases options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
 ```sh
 # list ec2, ec2 list, instances list
@@ -202,6 +235,12 @@ aws ec2 describe-instances --profile $AWS_PROFILE --region $AWS_REGION --filters
 
 ---
 ## EBS
+```sh
+current_doc_topic="ebs"
+cli-doc
+faq
+```
+
 attach new volume
 ```sh
 # list volumes
@@ -219,6 +258,12 @@ sudo mount /dev/xvdf /external-drive
 
 ---
 ## ELB
+```sh
+current_doc_topic="elb"
+cli-doc
+faq
+```
+
 [ELB troubleshooting](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html)
 ```sh
 # documentation 
@@ -229,9 +274,12 @@ current_doc_topic="elb"; cli-doc
 ---
 ## Lambda
 ```sh
-### documentation
-current_doc_topic="lambda"; cli-doc
+current_doc_topic="lambda"
+cli-doc
+faq
+console
 ```
+
 ### examples
 * https://d1.awsstatic.com/whitepapers/architecture/AWS-Serverless-Applications-Lens.pdf
 
@@ -390,6 +438,13 @@ zappa update dev
 
 ---
 ## DynamoDB
+```sh
+current_doc_topic="dynamodb"
+cli-doc
+faq
+console
+```
+
 [documentation](https://github.com/awsdocs/amazon-dynamodb-developer-guide/tree/master/doc_source)
 ```sh
 $current_browser https://$AWS_REGION.console.aws.amazon.com/dynamodb/home?region=$AWS_REGION#tables:
@@ -406,13 +461,24 @@ key id must be Numeric
 
 ---
 ## Route53
+```sh
+current_doc_topic="route53"
+cli-doc
+faq
+console
+```
+
 ### [resource record types](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html)
 
 
 ---
 ## SNS
 ```sh
-current_doc_topic="sns"; cli-doc
+current_doc_topic="sns"
+cli-doc
+faq
+console
+
 
 ### list of topics
 aws sns list-topics --profile $AWS_PROFILE --region $AWS_REGION
@@ -434,6 +500,13 @@ google-chrome "https://"$AWS_REGION".console.aws.amazon.com/sns/v3/home?region="
 
 ---
 ## CloudWatch
+```sh
+current_doc_topic="cloudwatch"
+cli-doc
+faq
+console
+```
+
 ```
  Metrics-----\
              +--->Events------>Alarm
@@ -444,6 +517,13 @@ google-chrome "https://"$AWS_REGION".console.aws.amazon.com/sns/v3/home?region="
 
 ---
 ## Kinesis
+```sh
+current_doc_topic="kinesis"
+cli-doc
+faq
+console
+```
+
 ### kinesis cli
 ```sh
 # write record
@@ -458,18 +538,22 @@ aws kinesis get-records --shard-iterator
 
 ---
 ## CloudFormation
-```
-# cloudformation web
-google-chrome "https://"$AWS_REGOIN".console.aws.amazon.com/cloudformation/home?region="$AWS_REGION"#"
+```sh
+current_doc_topic="cloudformation"
+cli-doc
+faq
+console
 
 # cloudformation designer web
 google-chrome "https://"$AWS_REGION".console.aws.amazon.com/cloudformation/designer/home?region="$AWS_REGION
 ```
+
 ### CloudFormation macros
 ![cloud formation macros](https://i.postimg.cc/BQMY5xmx/aws-cloud-formation-macros.png)
 
 ---
-## [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
+## Security
+### [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
 
 ---
 ## Visual tools
