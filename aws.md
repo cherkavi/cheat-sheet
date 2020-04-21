@@ -12,11 +12,12 @@ AWS_REGION=eu-central-1
 . /home/projects/current-project/aws.sh
 ```
 
-## url to cli documentation 
+## url to cli documentation, faq, collection of questions
 ```sh
 current_browser="google-chrome"
 current_doc_topic="sns"
 alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html"'
+alias faq='$current_browser "https://aws.amazon.com/${current_doc_topic}/faqs/"'
 ```
 
 ## create policy from error output of aws-cli command:
@@ -227,6 +228,10 @@ current_doc_topic="elb"; cli-doc
 
 ---
 ## Lambda
+```sh
+### documentation
+current_doc_topic="lambda"; cli-doc
+```
 ### examples
 * https://d1.awsstatic.com/whitepapers/architecture/AWS-Serverless-Applications-Lens.pdf
 
@@ -240,8 +245,6 @@ enter point for created Lambdas
 ```sh
 google-chrome "https://"$AWS_REGION".console.aws.amazon.com/lambda/home?region="$AWS_REGION"#/functions"
 ```
-
-https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/functions/back2ussr-user-get?tab=configuration
 
 ### invoke function from CLI, lambda execution
 ```sh
@@ -279,10 +282,33 @@ IAM->Policies->Create policy
             "Effect": "Allow",
             "Action": "lambda:InvokeFunction",
             "Resource": "arn:aws:lambda:*:*:function:*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "dynamodb:PutItem",
+                "dynamodb:GetItem",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:*:*:table/*",
+                "arn:aws:logs:eu-central-1:8557202:log-group:/aws/lambda/function-name-1:*"
+            ]
         }
     ]
-}```
+}
 
+```
+
+lambda logs, check logs
+```
+### lambda all logs
+google-chrome "https://"$AWS_REGION".console.aws.amazon.com/cloudwatch/home?region="$AWS_REGION"#logs:
+### lambda part of logs
+google-chrome "https://"$AWS_REGION".console.aws.amazon.com/cloudwatch/home?region="$AWS_REGION"#logStream:group=/aws/lambda/"$LAMBDA_NAME";streamFilter=typeLogStreamPrefix"
+```
 
 ### [development tools](https://aws.amazon.com/serverless/developer-tools/)
 * IntellijIDEA
@@ -362,6 +388,21 @@ zappa deploy dev
 zappa update dev
 ```
 
+---
+## DynamoDB
+[documentation](https://github.com/awsdocs/amazon-dynamodb-developer-guide/tree/master/doc_source)
+```sh
+$current_browser https://$AWS_REGION.console.aws.amazon.com/dynamodb/home?region=$AWS_REGION#tables:
+```
+
+### put_item issue
+```text
+Type mismatch for key id expected: N actual: S"
+```
+key id must be Numeric
+```json
+{"id": 10003, "id_value":  "cherkavi_value3"}
+```
 
 ---
 ## Route53
