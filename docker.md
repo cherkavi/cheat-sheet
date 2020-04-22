@@ -415,7 +415,7 @@ or for file /etc/docker/daemon.json
 docker commit {CONTAINER_ID} <new image name>
 ```
 
-### container new name, rename container, container new label
+### container new name, rename container, container new tag
 ```
 # change name of container
 docker tag {IMAGE_ID} <TAG NAME[:TAG VERSION]>
@@ -650,6 +650,11 @@ RUN groupadd -g 2053 r-d-ubs-technical-user
 RUN useradd -ms /bin/bash -m -u 2056 -g 2053 customer2description
 # activate user
 USER customer2description
+```
+
+### read labels from container, read container labels, LABEL commands from container
+```sh
+docker inspect  --format '{{ .Config.Labels }}' cc-artifactory.ubsroup.net/docker/ros-automation:latest
 ```
 
 Examples
