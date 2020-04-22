@@ -136,6 +136,21 @@ echo "" | docker login docker-registry.local.org
 echo $?
 ```
 
+issue
+```
+...
+6c01b5a53aac: Waiting 
+2c6ac8e5063e: Waiting 
+cc967c529ced: Waiting 
+unauthorized: authentication required
+```
+solution
+```
+rm -rf ~/.docker/config.json
+# or just remove one record inside "auths" block with your url-repo
+docker logout url-repo
+```
+
 ## restart Docker service
 ```
 sudo systemctl daemon-reload
