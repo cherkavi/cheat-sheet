@@ -118,9 +118,12 @@ aws s3 ls --recursive s3://my-bucket-name
 aws s3 ls --recursive s3://my-bucket-name/my-sub-path/
 # download file
 aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
+# upload file and make it public
+aws s3api put-object-acl --bucket <bucket name> --key <path to file> --acl public-read
 ```
 
 policy
+* Bucket Policies - bucket level
 ```json
 {
     "Version": "2012-10-17",
@@ -136,9 +139,7 @@ policy
     ]
 }
 ```
-
-add access to AccessControlList
-policy
+* Access Control List - individual objects level
 ```json
 {
     "Version": "2012-10-17",
@@ -156,9 +157,6 @@ policy
 }
 ```
 
-```sh
-aws s3api put-object-acl --bucket <bucket name> --key <path to file> --acl public-read
-```
 
 ---
 ## [Athena](https://docs.aws.amazon.com/athena/latest)
