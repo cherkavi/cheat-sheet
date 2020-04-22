@@ -1735,6 +1735,14 @@ function clipboard-copy-file(){
 alias clipboard-print="xclip -out -selection clipboard"
 ```
 
+## bluetooth
+```sh
+sudo apt install bluez-tools
+bt-device --list
+bt-device --disconnect 00:18:09:EC:BE:FD
+bt-device --connect 00:18:09:EC:BE:FD
+```
+
 ## screenshot, copy screen
 ```
 screenshot(){
