@@ -237,8 +237,9 @@ subdag_task = SubDagOperator(subdag=DAG(SUBDAG_PARENT_NAME+"."+SUBDAG_NAME,sched
 ...
 ```
 
-### hooks
+### [hooks](https://airflow.readthedocs.io/en/stable/howto/custom-operator.html#hooks)
 collaboration with external sources via "connections"  
+Hooks act as an interface to communicate with the external shared resources in a DAG.  
 * [official airflow hooks](https://airflow.apache.org/docs/stable/_api/airflow/hooks/index.html)
 * [SparkSubmitHook, FtpHook, JenkinsHook....](https://airflow.apache.org/docs/stable/_modules/airflow/contrib/hooks.html)
 
