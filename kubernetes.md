@@ -726,6 +726,13 @@ kubectl delete pods kube-flannel-ds-amd64-zsfz  --grace-period=0 --force
 kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 kubectl create  -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
+install flannel 
+```
+# apply this with possible issue with installation: 
+# kube-flannel.yml": daemonsets.apps "kube-flannel-ds-s390x" is forbidden: User "system:node:name-of-my-server" cannot get daemonsets.apps in the namespace "kube-system"
+# sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml
+sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
 
 read logs
 ```
