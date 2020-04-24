@@ -44,7 +44,7 @@ Combination of Dags, Operators, Tasks, TaskInstances
     * retries
     * retry_delay
     * schedule_interval (cron:str / datetime.timedelta) ( cron presets: @once, @hourly, @daily, @weekly, @monthly, @yearly )
-    * catchup ( config:catchup_by_default ) or "BackFill" ( fill previous executions from start_date )
+    * catchup ( config:catchup_by_default ) or "BackFill" ( fill previous executions from start_date ) actual for scheduler only
 * Executor
   * type: LocalExecutor(multiply task in parallel), SequentialExecutor, CeleryExecutor, DaskExecutor
 * Metadatabase
