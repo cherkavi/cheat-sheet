@@ -178,6 +178,13 @@ kubectl get pods --context=minikube
 ```
 
 # CLI
+## kubernetes version, k8s version
+```sh
+kubeadm version
+```
+one of the field will be like:
+GitVersion:"v1.11.1"
+
 ## access cluster
 * reverse proxy 
   activate proxy from current node
