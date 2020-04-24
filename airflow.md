@@ -221,6 +221,7 @@ t3 << t2 << t1
 ```python
 def python_operator_core_func(**context):
    print(context['task_instance'])
+   context["dag_run"].conf['dag_run_argument']
    # the same as previous
    # manipulate with task-instance inside custom function, context inside custom function
    context.get('ti').xcom_push(key="k1", value="v1")
