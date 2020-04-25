@@ -194,6 +194,22 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 # kubectl get nodes
 ```
 
+# logs 
+```
+### Master
+## API Server, responsible for serving the API
+/var/log/kube-apiserver.log 
+## Scheduler, responsible for making scheduling decisions
+/var/log/kube-scheduler.log
+## Controller that manages replication controllers
+/var/log/kube-controller-manager.log
+### Worker Nodes
+## Kubelet, responsible for running containers on the node
+/var/log/kubelet.log
+## Kube Proxy, responsible for service load balancing
+/var/log/kube-proxy.log
+```
+
 # CLI
 ## kubernetes version, k8s version
 ```sh
