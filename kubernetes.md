@@ -762,10 +762,20 @@ kubectl create  -f https://raw.githubusercontent.com/coreos/flannel/master/Docum
 ```
 install flannel 
 ```
-# apply this with possible issue with installation: 
-# kube-flannel.yml": daemonsets.apps "kube-flannel-ds-s390x" is forbidden: User "system:node:name-of-my-server" cannot get daemonsets.apps in the namespace "kube-system"
+### apply this with possible issue with installation: 
+## kube-flannel.yml": daemonsets.apps "kube-flannel-ds-s390x" is forbidden: User "system:node:name-of-my-server" cannot get daemonsets.apps in the namespace "kube-system"
 # sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml
-sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+## Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+# sudo kubectl -n kube-system apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+
+## print all logs
+journalctl -f -u kubelet.service
+# $KUBELET_NETWORK_ARGS in 
+# /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+
+# ideal way, not working properly in most cases
+sudo kubectl -n kube-system apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 
 read logs
