@@ -476,7 +476,7 @@ minikube service helloworld-service --url
 kube-apiserver --service-node-port-range=30000-40000
 ```
 
-## describe resources
+## describe resources, information about resources, inspect resources, inspect pod
 ```
 kubectl describe deployment {name of deployment}
 kubectl describe service {name of service}
