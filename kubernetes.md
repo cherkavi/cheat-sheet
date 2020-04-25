@@ -782,6 +782,10 @@ journalctl -f -u kubelet.service
 
 # ideal way, not working properly in most cases
 sudo kubectl -n kube-system apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+# check 
+ps aux | grep flannel
+# root     13046  0.4  0.0 645968 24748 ?        Ssl  10:49   0:00 /opt/bin/flanneld --ip-masq --kube-subnet-mgr
 ```
 
 read logs
