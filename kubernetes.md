@@ -177,20 +177,24 @@ temporary
 kubectl get pods --context=minikube
 ```
 
-# [install on ubuntu, install ubuntu, installation ubuntu](https://vitux.com/install-and-deploy-kubernetes-on-ubuntu/)
+# [install on ubuntu, install ubuntu, installation ubuntu, ubuntu installation](https://vitux.com/install-and-deploy-kubernetes-on-ubuntu/)
 ```sh
 # FROM ubuntu:18
+# environment
 sudo apt install docker.io
 sudo systemctl enable docker
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 sudo apt install curl
+# kube
 sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 sudo apt install kubeadm
 sudo swapoff -a
+# init for using flannel
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+# !!! install flannel ( or weave.... )
 # kubectl get nodes
 ```
 
