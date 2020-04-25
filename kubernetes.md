@@ -704,7 +704,8 @@ kubeadm join 10.14.26.210:6443 --token 7h0dmx.2v5oe1jwed --discovery-token-ca-ce
 go to node, clean up and apply token
 ```
 ssh {node address}
-rm -rf /etc/kubernetes
+# hard way: rm -rf /etc/kubernetes
+kubeadm reset
 # apply token from previous step with additional flag: --ignore-preflight-errors=all
 kubeadm join 10.14.26.210:6443 --token 7h0dmx.2v5oe1jwed --discovery-token-ca-cert-hash sha256:1d28ebf950316b8f3fdf680af5619ea2682707f2e966fc0 --ignore-preflight-errors=all
 ```
