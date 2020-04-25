@@ -189,7 +189,7 @@ sudo apt install curl
 sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 sudo apt install kubeadm
 sudo swapoff -a
-# init for using flannel
+# init for using flannel ( check inside kube-flannel.yaml section net-conf.json/Network )
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 rm -rf $HOME/.kube
 mkdir -p $HOME/.kube
@@ -780,12 +780,19 @@ journalctl -f -u kubelet.service
 # $KUBELET_NETWORK_ARGS in 
 # /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 
-# ideal way, not working properly in most cases
+## ideal way, not working properly in most cases
 sudo kubectl -n kube-system apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
-# check 
+## check installation 
 ps aux | grep flannel
 # root     13046  0.4  0.0 645968 24748 ?        Ssl  10:49   0:00 /opt/bin/flanneld --ip-masq --kube-subnet-mgr
+
+ifconfig
+cni0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 10.244.0.1  netmask 255.255.255.0  broadcast 0.0.0.0
+flannel.1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
+        inet 10.244.0.0  netmask 255.255.255.255  broadcast 0.0.0.0
+
 ```
 
 read logs
