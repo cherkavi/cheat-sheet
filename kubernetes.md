@@ -757,7 +757,8 @@ restart nodes
 ```sh
 # remove died pods
 kubectl delete pods kube-flannel-ds-amd64-zsfz  --grace-period=0 --force
-kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+# delete all resources from file and ignore not found
+kubectl delete -f --ignore-not-found https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 kubectl create  -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 install flannel 
