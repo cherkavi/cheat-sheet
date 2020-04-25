@@ -132,7 +132,7 @@ minikube completion bash
 minikube start
 ```
 
-## uninstall kubectl, uninstall minikube
+## uninstall kube, uninstall kubectl, uninstall minikube
 ```
 kubectl delete node --all
 kubectl delete pods --all
@@ -144,6 +144,11 @@ launchctl stop localkube.service
 launchctl disable localkube.service
 
 sudo kubeadm reset
+## network cleaining up 
+# sudo ip link del cni0
+# sudo ip link del flannel.1
+# sudo systemctl restart network
+
 rm -rf ~/.kube ~/.minikube
 sudo rm -rf /usr/local/bin/localkube /usr/local/bin/minikube
 sudo rm -rf /etc/kubernetes/
