@@ -177,7 +177,7 @@ temporary
 kubectl get pods --context=minikube
 ```
 
-# [install on ubuntu](https://vitux.com/install-and-deploy-kubernetes-on-ubuntu/)
+# [install on ubuntu, install ubuntu, installation ubuntu](https://vitux.com/install-and-deploy-kubernetes-on-ubuntu/)
 ```sh
 # FROM ubuntu:18
 sudo apt install docker.io
