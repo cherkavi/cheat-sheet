@@ -7,3 +7,8 @@
 ![125-136](https://i.postimg.cc/tRMnmVY9/aws-associate-125-136.png)
 ![137-149](https://i.postimg.cc/3wjHBzRD/aws-associate-137-149.png)
 ![151-162](https://i.postimg.cc/Fzz5hRxj/aws-associate-151-162.png)
+![163-174](https://i.postimg.cc/G2rWM4X0/aws-associate-163-174.png)
+![177-194](https://i.postimg.cc/xCRWB9ZX/aws-associate-177-194.png)
+![195-207](https://i.postimg.cc/L58rprdN/aws-associate-195-207.png)
+![209-229](https://i.postimg.cc/QxPv24fJ/aws-associate-209-229.png)
+![232-250](https://i.postimg.cc/4x9js6Mk/aws-associate-232-250.png)
