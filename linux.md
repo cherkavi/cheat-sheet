@@ -656,6 +656,12 @@ find . -maxdepth 5 -mindepth 5
 find . -type d -name "dist" ! -path  "*/node_modules/*"
 ```
 
+### folder size, dir size, directory size, size directory, size folder size of folder, size of directory
+```
+sudo du -shc ./*
+sudo du -shc ./* | sort -rh | head -5
+```
+
 ### yum ( app search )
 ```
 yum list {pattern}
