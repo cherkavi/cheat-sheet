@@ -204,6 +204,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 # kubectl get nodes
 ```
 
+# [upgrade k8s](https://platform9.com/blog/kubernetes-upgrade-the-definitive-guide-to-do-it-yourself/)
+
+
 # logs 
 ```
 ### Master
