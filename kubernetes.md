@@ -39,7 +39,7 @@ useful links
   pip install kubernetes
   ```
 ---
-# Architecture
+# [Architecture](https://kubernetes.io/docs/concepts/overview/components/)
 ![architecture](https://i.postimg.cc/RFpnbwgc/k8s-architecture.png)
 ![architecture](https://i.postimg.cc/ZnbpGZzJ/k8s-architecture-overview.png)
 ![architecture](https://i.postimg.cc/6pKPX9KY/k8s-architecture-overview.png)
