@@ -764,6 +764,11 @@ kubectl exec -it {name of a pod}  -- bash -c "echo hi > /path/to/output/test.txt
 # Extending 
 ## [custom controller](https://github.com/kubernetes/sample-controller)
 
+# Weave
+```bash
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+```
+
 # Flannel
 ![deployment diagram](https://i.postimg.cc/d3ZwjhXd/flannel.png)
 restart nodes
