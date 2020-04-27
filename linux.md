@@ -1978,6 +1978,10 @@ sudo update-initramfs -u -k all
 ```
 xdg-mime query default x-scheme-handler/http
 ```
+open in default browser
+```sh
+x-www-browser http://localhost:9090
+```
 
 ### open file with default editor, default viewer, with more appropriate viewr
 ```sh
