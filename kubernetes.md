@@ -830,9 +830,6 @@ kubectl get svc --namespace=kube-system | grep kube-dns
 kubectl logs --namespace=kube-system coredns-78fcd94-7tlpw | tail
 ```
 
-# Flannel
-![architecture](https://i.postimg.cc/1X49qNcb/flannel.png)
-
 # Helm
 [documentation](https://docs.helm.sh/)
 ## Architecture
