@@ -1,4 +1,3 @@
----
 # useful links
 * [links collections](https://github.com/ramitsurana/awesome-kubernetes)
 * [git source](https://github.com/kubernetes/dashboard)
