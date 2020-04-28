@@ -21,30 +21,30 @@
 * [playground](https://www.katacoda.com/courses/kubernetes/playground)
 * [ibmcloud](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
 
-
 # workplace installation
 * completion
-  ```bash
-  source <(kubectl completion bash)
-  source <(kubectl completion zsh)
-  ```
+```bash
+source <(kubectl completion bash)
+# source <(kubectl completion zsh)
+```
 * trace logging
-  ```bash
-  rm -rf ~/.kube/cache
-  kubectl get pods -v=6
-  kubectl get pods -v=7
-  kubectl get pods -v=8
-  ```
+```bash
+rm -rf ~/.kube/cache
+kubectl get pods -v=6
+kubectl get pods -v=7
+kubectl get pods -v=8
+```
 * explain yaml schema
-  ```
-  kubectl explain pods
-  kubectl explain pods --recursive
-  kubectl explain pods --recursive --api-version=autoscaling/v2beta1
-  ```
+```bash
+kubectl explain pods
+kubectl explain pods --recursive
+kubectl explain pods --recursive --api-version=autoscaling/v2beta1
+```
 * python client
-  ```bash
-  pip install kubernetes
-  ```
+```bash
+pip install kubernetes
+```
+
 ---
 # [Architecture](https://kubernetes.io/docs/concepts/overview/components/)
 ![architecture](https://i.postimg.cc/RFpnbwgc/k8s-architecture.png)
