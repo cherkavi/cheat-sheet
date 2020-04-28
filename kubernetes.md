@@ -1,34 +1,41 @@
 ---
-useful links
-* [main tutorial](https://kubernetes.io/docs/tutorials/)
+# useful links
+* [links collections](https://github.com/ramitsurana/awesome-kubernetes)
 * [git source](https://github.com/kubernetes/dashboard)
 * [architecture](https://kubernetes.io/docs/reference/glossary/?architecture=true)
 * [cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+* [docs task by section](https://kubernetes.io/docs/tasks/)
+* [troubleshooting](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/)
+
+## tutorials
+* [main tutorial](https://kubernetes.io/docs/tutorials/)
 * [tutorial](https://kubernetes.io/docs/tutorials/)
 * [tutorial external](https://academy.level-up.one/p/learn-kubernetes-from-a-devops-guru-kubernetes-docker)
 * [interactive course](https://www.katacoda.com/courses/kubernetes)
 * [interactive course](https://www.katacoda.com/contino/courses/kubernetes)
 * [interactive course helm](https://www.katacoda.com/aptem/scenarios/helm)
-* [docs task by section](https://kubernetes.io/docs/tasks/)
+
+## playground and examples
 * [k8s examples](https://github.com/wardviaene/kubernetes-course)
 * [playground](https://labs.play-with-k8s.com/)
 * [playground](https://www.katacoda.com/courses/kubernetes/playground)
 * [ibmcloud](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
-* [troubleshooting](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/)
-* some tricks
-  * completion
+
+
+# workplace installation
+* completion
   ```bash
   source <(kubectl completion bash)
   source <(kubectl completion zsh)
   ```
-  * trace logging
+* trace logging
   ```bash
   rm -rf ~/.kube/cache
   kubectl get pods -v=6
   kubectl get pods -v=7
   kubectl get pods -v=8
   ```
-  * explain yaml schema
+* explain yaml schema
   ```
   kubectl explain pods
   kubectl explain pods --recursive
