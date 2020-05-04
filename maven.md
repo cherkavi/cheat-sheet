@@ -79,9 +79,12 @@ org.scoverage:scoverage-maven-plugin:1.3.0:report
 mvn scoverage:report --projects :artifact_id
 ```
 
-### single test running, start one test
-https://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.html
-
+### single test running, start one test, certain test
+https://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.html  
+```bash
+# scala
+mvn clean -Dsuites=*SpeedLimitSignalsSpec* test
+```
 ### cobertura help, 
 ```
 mvn cobertura:help -Ddetail=true
