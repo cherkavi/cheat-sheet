@@ -1245,6 +1245,12 @@ ONE="this is a test"; echo $ONE
 sudo http_proxy='http://user:@proxy.muc:8080' apt install meld
 ```
 
+### install version of app, install specific version, accessible application version
+```sh
+sudo apt list -a [name of the package]
+sudo apt list -a kubeadm
+```
+
 ### install package for another architecture, install x86 on x64
 ```
 dpkg --add-architecture i386
