@@ -814,6 +814,21 @@ flannel.1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
 
 ```
 
+change settings and restart
+```json
+kubectl edit cm kube-flannel-cfg -n kube-system
+# net-conf.json: | { "Network": "10.244.0.0/16", "Backend": { "Type": "vxlan" } }
+
+# Wipe current CNI network interfaces remaining the old network pool:
+sudo ip link del cni0; sudo ip link del flannel.1
+
+# Re-spawn Flannel and CoreDNS pods respectively:
+kubectl delete pod --selector=app=flannel -n kube-system
+kubectl delete pod --selector=k8s-app=kube-dns -n kube-system
+
+# waiting for restart of all services
+```
+
 read logs
 ```
 kubectl logs --namespace kube-system kube-flannel-ds-amd64-j4frw -c kube-flannel 
