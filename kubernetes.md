@@ -166,29 +166,6 @@ sudo apt-get autoremove
 docker system prune -af --volumes
 ```
 
-## cleanup node
-```bash
-# clean up for worker
-sudo rm -rf /etc/cni/net.d
-sudo rm -rf /opt/cni/bin
-sudo rm -rf /var/lib/kubelet 
-sudo rm -rf /var/lib/cni 
-sudo rm -rf /etc/kubernetes
-sudo rm -rf /run/calico 
-sudo rm -rf /run/flannel 
-
-sudo rm -rf /etc/ceph 
-sudo rm -rf /opt/rke
-sudo rm -rf /var/lib/calico 
-sudo rm -rf /var/lib/etcd
-
-sudo rm -rf /var/log/containers 
-sudo rm -rf /var/log/pods 
-
-# rancher full reset !!!
-sudo rm -rf /var/lib/rancher/*
-sudo rm -rf /var/lib/rancher-log/*
-```
 
 ## start without VirtualBox/KVM
 ```
@@ -213,6 +190,17 @@ kubectl get pods --context=minikube
 ```
 
 # [install on ubuntu, install ubuntu, installation ubuntu, ubuntu installation](https://vitux.com/install-and-deploy-kubernetes-on-ubuntu/)
+
+# update software
+```bash
+# check accessible list
+sudo apt list | grep kube
+# update system info
+sudo apt-get update
+# install one package
+sudo apt-get install -y kubeadm=1.18.2-00
+```
+
 ```sh
 # FROM ubuntu:18
 # environment
@@ -233,6 +221,52 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 # !!! install flannel ( or weave.... )
 # kubectl get nodes
 ```
+
+# install via rancher
+```bash
+docker stop rancher
+docker rm rancher
+
+# -it --entrypoint="/bin/bash" \
+docker run -d --restart=unless-stopped \
+  --name rancher \
+  -v /var/lib/rancher:/var/lib/rancher \
+  -v /var/lib/rancher-log:/var/log \
+  -p 9080:80 -p 9443:443 \
+  -e HTTP_PROXY="http://qqml:mlfu\$1@proxy.muc:8080" \
+  -e HTTPS_PROXY="http://qqml:mlfu\$1@proxy.muc:8080" \
+  -e NO_PROXY="localhost,127.0.0.1,127.0.0.0/8,10.0.0.0/8,192.168.0.0/16" \
+  rancher/rancher:latest
+```
+
+
+# uninstall
+## cleanup node
+```bash
+# clean up for worker
+## !!! most important !!!
+sudo rm -rf /etc/cni/net.d
+
+sudo rm -rf /opt/cni/bin
+sudo rm -rf /var/lib/kubelet 
+sudo rm -rf /var/lib/cni 
+sudo rm -rf /etc/kubernetes
+sudo rm -rf /run/calico 
+sudo rm -rf /run/flannel 
+
+sudo rm -rf /etc/ceph 
+sudo rm -rf /opt/rke
+sudo rm -rf /var/lib/calico 
+sudo rm -rf /var/lib/etcd
+
+sudo rm -rf /var/log/containers 
+sudo rm -rf /var/log/pods 
+
+# rancher full reset !!!
+sudo rm -rf /var/lib/rancher/*
+sudo rm -rf /var/lib/rancher-log/*
+```
+
 
 # [upgrade k8s](https://platform9.com/blog/kubernetes-upgrade-the-definitive-guide-to-do-it-yourself/)
 
