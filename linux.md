@@ -212,6 +212,13 @@ the same as local copy folder
 ```
 cp -var /path/to/folder /another/path/to/folder
 ```
+
+### copy file with saving all attributes, copy attributes, copy file with attributes
+```bash
+cp -r --preserve=mode,ownership,timestamps /path/to/src /path/to/dest
+cp -r --preserve=all /path/to/src /path/to/dest
+```
+
 ### syncronize folders, copy everything between folders
 ```bash
 # local sync
