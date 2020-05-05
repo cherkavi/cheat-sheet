@@ -166,6 +166,30 @@ sudo apt-get autoremove
 docker system prune -af --volumes
 ```
 
+## cleanup node
+```bash
+# clean up for worker
+sudo rm -rf /etc/cni/net.d
+sudo rm -rf /opt/cni/bin
+sudo rm -rf /var/lib/kubelet 
+sudo rm -rf /var/lib/cni 
+sudo rm -rf /etc/kubernetes
+sudo rm -rf /run/calico 
+sudo rm -rf /run/flannel 
+
+sudo rm -rf /etc/ceph 
+sudo rm -rf /opt/rke
+sudo rm -rf /var/lib/calico 
+sudo rm -rf /var/lib/etcd
+
+sudo rm -rf /var/log/containers 
+sudo rm -rf /var/log/pods 
+
+# rancher full reset !!!
+sudo rm -rf /var/lib/rancher/*
+sudo rm -rf /var/lib/rancher-log/*
+```
+
 ## start without VirtualBox/KVM
 ```
 export MINIKUBE_WANTUPDATENOTIFICATION=false
