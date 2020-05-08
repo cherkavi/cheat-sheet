@@ -406,6 +406,10 @@ kubectl delete namespace {name of namespace}
   * created by objects
   * anonymous user ( not authenticated )
 
+### exeternal applications, user management, managing users
+- https://github.com/sighupio/permission-manager
+- https://blog.kubernauts.io/permission-manager-rbac-management-for-kubernetes-ed46c2f38cfb
+
 ## configuration, configmap
 ### create configmap
 example of configuration
