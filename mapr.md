@@ -275,6 +275,21 @@ sudo scp $USERNAME@$EDGE_NODE:/opt/mapr/conf/ssl_truststore /opt/mapr/conf/ssl_t
 echo "$PASSWORD" | maprlogin password -user $USERNAME -out /tmp/mapruserticket
 ```
 
+## Drill
+```bash
+# login
+maprlogin password
+echo $CLUSTER_PASSWORD | maprlogin password -user $CLUSTER_USER
+export MAPR_TICKETFILE_LOCATION=$(maprlogin print | grep "keyfile" | awk '{print $3}')
+
+# open drill
+/opt/mapr/drill/drill-1.14.0/bin/sqlline -u "jdbc:drill:drillbit=ubs000103.vantagedp.com:31010;auth=MAPRSASL"
+```
+example of querying data 
+```sql
+select sessionId, isReprocessable from dfs.`/mapr/dp.prod.zurich/vantage/data/store/processed/0171eabfceff/reprocessable/part-00000-63dbcc0d1bed-c000.snappy.parquet`;
+```
+
 ## issues
 ### with test execution ( scala, java )
 ```text
