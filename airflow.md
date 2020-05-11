@@ -392,6 +392,50 @@ with DAG(
     second_operator = second_http_call()
     first_operator >> second_operator
 ```
+* execute list of tasks from external source, subdag, task loop
+```python
+
+def trigger_export_task(session, uuid, config):
+    def trigger_dag(context: Dict, dag_run: DagRunOrder) -> DagRunOrder:
+        dag_run.payload = config
+        return dag_run
+
+    return AwaitableTriggerDagRunOperator(
+        trigger_dag_id=DAG_ID_ROSBAG_EXPORT_CACHE,
+        task_id=f"{session}_{uuid}",
+        python_callable=trigger_dag,
+        trigger_rule=TriggerRule.ALL_DONE,
+    )
+
+# DAG Definition
+with DAG(
+    dag_id=DAG_NAME_WARMUP_ROSBAG_EXPORT_CACHE,
+    default_args={"start_date": datetime(2020, 4, 20), **DEFAULT_DAG_PARAMS},
+    default_view="graph",
+    orientation="LR",
+    doc_md=__doc__,
+    schedule_interval=SCHEDULE_DAILY_AFTERNOON,
+    catchup=False,
+) as dag:
+    # generate export configs
+    dag_modules = _get_dag_modules_containing_sessions()
+    export_configs = _get_configs(dag_modules, NIGHTLY_SESSION_CONFIG)
+
+    # generate task queues/branches
+    NUM_TASK_QUEUES = 30
+    task_queues = [[] for i in range(NUM_TASK_QUEUES)]
+
+    # generate tasks (one task per export config) and assign them to queues/branches (rotative)
+    for i, ((session, uuid), conf) in enumerate(export_configs.items()):
+        queue = task_queues[i % NUM_TASK_QUEUES]
+        queue.append(trigger_export_task(session, uuid, conf))
+
+        # set dependency to previous task
+        if len(queue) > 1:
+            queue[-2] >> queue[-1]
+
+```
+
 
 ## Plugins
 [official documentation](https://airflow.apache.org/docs/stable/plugins.html)  
