@@ -1435,9 +1435,15 @@ sudo passwd test
 sudo userdel -r test
 ```
 
-### print all logged in users
-```
+### print all logged in users, active users, connected users
+```bash
 users
+```
+```bash
+w
+```
+```bash
+who --all
 ```
 
 ### print all users registered into system
