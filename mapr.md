@@ -290,6 +290,21 @@ example of querying data
 select sessionId, isReprocessable from dfs.`/mapr/dp.prod.zurich/vantage/data/store/processed/0171eabfceff/reprocessable/part-00000-63dbcc0d1bed-c000.snappy.parquet`;
 ```
 
+## MapRDB
+Show info
+```bash
+maprcli table info -path /vantage/deploy/data-access-video/images -json
+```
+Granting Access Permissions for User
+```bash
+maprcli table cf edit -path /vantage/deploy/data-access-video/images -cfname default -readperm u:tech_user_name
+```
+Create an index for the thumbnail MapR JSON DB in order to speed up: (query to find all sessionIds with existing thumbnails)
+```bash
+--query {"$select":"sessionId","$where":{"$eq":{"frameThumbnail":0}}}  
+maprcli table index add -path /vantage/deploy/data-access-video/images -index frameNumber_id -indexedfields frameThumbnail
+```
+
 ## issues
 ### with test execution ( scala, java )
 ```text
