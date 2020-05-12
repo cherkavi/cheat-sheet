@@ -21,6 +21,11 @@
 * [ibmcloud](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
 
 # workplace installation
+* kubectl installation
+```
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.4/bin/linux/amd64/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
+```
 * kubectl autocompletion
 ```bash
 source <(kubectl completion bash)
