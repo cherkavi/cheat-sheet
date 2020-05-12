@@ -535,10 +535,14 @@ kubectl create -f /path/to/controller.yml
 kubectl apply -f /path/to/controller.yml
 ```
 
-## create service fastly
+## create service, expose service, inline service fastly
 ```
 kubectl expose deployment helloworld-deployment --type=NodePort --name=helloworld-service
 kubectl expose deployment helloworld-deployment --external-ip="172.17.0.13" --port=8000 --target-port=80
+```
+## port forwarding, expose service
+```bash
+kubectl port-forward svc/my_service 8080 --namespace my_namespace
 ```
 
 ## reach out service
