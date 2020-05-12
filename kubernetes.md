@@ -21,10 +21,15 @@
 * [ibmcloud](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
 
 # workplace installation
-* completion
+* kubectl autocompletion
 ```bash
 source <(kubectl completion bash)
 # source <(kubectl completion zsh)
+```
+or
+```bash
+# source /usr/share/bash-completion/bash_completion
+kubectl completion bash >/etc/bash_completion.d/kubectl
 ```
 * trace logging
 ```bash
