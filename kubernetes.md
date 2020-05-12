@@ -430,6 +430,21 @@ kubectl get rolebindings.rbac.authorization.k8s.io --all-namespaces
 # describe one of bindings
 kubectl describe rolebindings.rbac.authorization.k8s.io/max1___template-namespaced-resources___developer___max1 --namespace ml-fusion 
 ```
+Direct request to api, user management curl
+```bash
+TOKEN="Authorization: Basic YWRtaW46b2xnYSZ2aXRhbGlp"
+curl -X GET -H "$TOKEN" http://localhost:4000/api/list-users
+```
+
+etcd querying, etcd request key-values
+```
+docker exec -ti `docker ps | grep etcd | awk '{print $1}'` /bin/sh
+etcdctl get / --prefix --keys-only
+# etcdctl --endpoints=http://localhost:2379 get / --prefix --keys-only
+etcdctl  get / --prefix --keys-only | grep permis
+etcdctl  get /registry/namespaces/permission-manager -w=json
+```
+
 
 ## configuration, configmap
 ### create configmap
