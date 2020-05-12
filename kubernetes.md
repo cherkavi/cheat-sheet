@@ -194,6 +194,11 @@ temporary
 kubectl get pods --context=minikube
 ```
 
+## kubectl using different config file, kubectl config, different config kubectl
+```bash
+kubectl --kubeconfig=/home/user/.kube/config-student1 get pods
+```
+
 # [install on ubuntu, install ubuntu, installation ubuntu, ubuntu installation](https://vitux.com/install-and-deploy-kubernetes-on-ubuntu/)
 
 # update software
