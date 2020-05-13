@@ -422,6 +422,7 @@ kubectl delete namespace {name of namespace}
   * anonymous user ( not authenticated )
 
 ### exeternal applications, user management, managing users
+![rbac](https://i.postimg.cc/K84dywbN/k8s-rbac.png)
 - https://github.com/sighupio/permission-manager
 - https://blog.kubernauts.io/permission-manager-rbac-management-for-kubernetes-ed46c2f38cfb
 ```
