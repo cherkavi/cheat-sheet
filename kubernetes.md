@@ -433,6 +433,7 @@ ps aux | grep kube-apiserver
 # --authorization-mode=Node,RBAC
 ```
 
+```bash
 # read existing roles 
 kubectl get clusterRoles
 # describe roles created by permission-management
@@ -449,13 +450,17 @@ kubectl get rolebindings.rbac.authorization.k8s.io --all-namespaces
 kubectl describe ClusterRoleBinding/student1___template-cluster-resources___read-only
 kubectl describe rolebindings.rbac.authorization.k8s.io/student1___template-namespaced-resources___developer___students --namespace students 
 ```
+
 Direct request to api, user management curl
 ```bash
 TOKEN="Authorization: Basic YWRtaW46b2xnYSZ2aXRhbGlp"
 curl -X GET -H "$TOKEN" http://localhost:4000/api/list-users
 ```
 
-etcd querying, etcd request key-values
+## etcd
+### etcdctl installation 
+untar etcdctl from https://github.com/etcd-io/etcd/releases  
+### etcd querying, etcd request key-values
 ```
 docker exec -ti `docker ps | grep etcd | awk '{print $1}'` /bin/sh
 etcdctl get / --prefix --keys-only
