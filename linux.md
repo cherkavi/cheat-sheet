@@ -1402,11 +1402,12 @@ sudo tcpdump -nvX -v src port 6443 and src host 10.140.26.10 and dst port not 22
 
 ### DNS
 ```
-systemd-resolve --status
-```
-```
+# current dns
+sudo cat /etc/resolv.conf
+# resolving hostname
 dig {hostname}
-
+#
+systemd-resolve --status
 ```
 
 ### encrypt file, decrypt file
