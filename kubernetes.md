@@ -426,15 +426,28 @@ kubectl delete namespace {name of namespace}
 - https://github.com/sighupio/permission-manager
 - https://blog.kubernauts.io/permission-manager-rbac-management-for-kubernetes-ed46c2f38cfb
 ```
+be sure that your kube-apiserver is using RBAC autorization
+```bash
+ps aux | grep kube-apiserver
+# expected output
+# --authorization-mode=Node,RBAC
+```
+
 # read existing roles 
 kubectl get clusterRoles
 # describe roles created by permission-management
 kubectl describe clusterRoles/template-namespaced-resources___developer
+kubectl describe clusterRoles/template-namespaced-resources___operation
 
 # get all rolebindings
+kubectl get RoleBinding --all-namespaces
+kubectl get ClusterRoleBinding  --all-namespaces
 kubectl get rolebindings.rbac.authorization.k8s.io --all-namespaces
+
+
 # describe one of bindings
-kubectl describe rolebindings.rbac.authorization.k8s.io/max1___template-namespaced-resources___developer___max1 --namespace ml-fusion 
+kubectl describe ClusterRoleBinding/student1___template-cluster-resources___read-only
+kubectl describe rolebindings.rbac.authorization.k8s.io/student1___template-namespaced-resources___developer___students --namespace students 
 ```
 Direct request to api, user management curl
 ```bash
