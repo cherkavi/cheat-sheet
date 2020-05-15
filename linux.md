@@ -2158,6 +2158,13 @@ smbclient -U $SAMBA_CLIENT_GROUP//$SAMBA_CLIENT_USER \
 //europe.ubs.corp/win_drive/xchange/Zurich/some/folder
 ```
 ---
+# Terminator
+## plugins
+* https://askubuntu.com/questions/700015/set-path-for-terminator-to-lookup-for-plugins
+* https://github.com/gstavrinos/terminator-jump-up
+* https://github.com/mikeadkison/terminator-google/blob/master/google.py
+
+---
 # vim
 [vim cheat sheet](http://najomi.org/vim)
 
