@@ -1,13 +1,19 @@
 
+# solutions
+* [corda](https://docs.corda.net/docs/corda-os/4.4/cordapp-overview.html)
+
+
 # education links
 * [interactive learning](https://www.bitdegree.org/course/learn-solidity-space-doggos)
 * [stupid interactive learning](https://cryptozombies.io/)
+
 
 # bitcoin
 * [wiki](https://en.bitcoin.it/wiki/Main_Page)
 * [proof of work is a piece of data which is difficult (costly, time-consuming) to produce but easy for others to verify](https://en.bitcoin.it/wiki/Proof_of_work)
 * Mining -  Byzantine Generals Problem
 * ![bitcoin pillars](https://s19.postimg.cc/7lprsldqr/bitcoin-tech-pillars.png)
+
 
 ---
 NSA paper, 1996: "How To Make A Mint: The Cryptography of Anonymous Electronic Cash". 
