@@ -982,6 +982,21 @@ kubectl get svc --namespace=kube-system | grep kube-dns
 kubectl logs --namespace=kube-system coredns-78fcd94-7tlpw | tail
 ```
 
+simple POD, dummy pod, waiting pod
+```
+kind: Pod
+apiVersion: v1
+metadata:
+  name: sleep-dummy-pod
+  namespace: students
+spec:
+  containers:
+    - name: sleep-dummy-pod
+      image: ubuntu
+      command: ["/bin/bash", "-ec", "while :; do echo '.'; sleep 3600 ; done"]
+  restartPolicy: Never
+```
+
 # Helm
 [documentation](https://docs.helm.sh/)
 ## Architecture
