@@ -115,6 +115,15 @@ git log -5 develop --name-only
 ```
 git log -10 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --all --author "Cherkashyn"
 ```
+### list of files by author
+```bash
+git whatchanged --author="Cherkashyn" --name-only 
+```
+### often changes by author
+```bash
+git log --author="Cherkashyn" --name-status --diff-filter=M | grep "^M" | sort | uniq -c | sort -rh
+```
+
 ### pretty log with tree
 ```sh
 git log --all --graph --decorate --oneline --simplify-by-decoration
