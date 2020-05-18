@@ -204,6 +204,33 @@ kubectl get pods --context=minikube
 kubectl --kubeconfig=/home/user/.kube/config-student1 get pods
 ```
 
+## kubectl config with rancher, rancher with kubectl, rancher kubectl config
+* certificate-authority-data - from admin account
+* token - Bearer Token
+```yaml
+apiVersion: v1
+clusters:
+- cluster:
+    server: "https://10.14.22.20:9443/k8s/clusters/c-7w47z"
+    certificate-authority-data: "....tLUVORCBDRVJUSUZJQ0FURS0tLS0t"
+  name: "ev-cluster"
+
+contexts:
+- context:
+    user: "ev-user"
+    cluster: "ev-cluster"
+  name: "ev-context"
+
+current-context: "ev-context"
+
+kind: Config
+preferences: {}
+users:
+- name: "ev-user"
+  user:  
+    token: "token-6g4gv:lq4wbw4lmwtxkblmbbsbd7hc5j56v2ssjvfkxd"
+```
+
 # [install on ubuntu, install ubuntu, installation ubuntu, ubuntu installation](https://vitux.com/install-and-deploy-kubernetes-on-ubuntu/)
 
 # update software
