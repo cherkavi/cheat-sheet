@@ -1429,6 +1429,8 @@ sudo useradd test
 sudo useradd --create-home test --groups sudo 
 # set password for new user
 sudo passwd test
+# set default bash shell 
+chsh --shell /bin/bash tecmint
 ```
 
 ### remove user
