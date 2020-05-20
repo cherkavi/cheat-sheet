@@ -39,6 +39,11 @@ show databases;
 use {databasename};
 ```
 
+### print all tables
+```sql
+show tables;
+```
+
 ###version
 SELECT VERSION();
 
