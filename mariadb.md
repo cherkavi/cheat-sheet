@@ -51,6 +51,13 @@ show columns from table_name;
 select * from information_schema.columns where TABLE_NAME='listings_dir' and COLUMN_NAME like '%PRODUCT%';
 ```
 
+### print all tables and all columns
+```sql
+select table_name, column_name, data_type from information_schema.columns
+ where TABLE_NAME like '%some_prefix'
+order by TABLE_NAME, ORDINAL_POSITION
+```
+
 ###version
 SELECT VERSION();
 
