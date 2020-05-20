@@ -44,6 +44,12 @@ use {databasename};
 show tables;
 ```
 
+### print all columns in table, show table structure
+```sql
+describe table_name;
+show columns from table_name;
+```
+
 ###version
 SELECT VERSION();
 
