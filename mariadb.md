@@ -48,6 +48,7 @@ show tables;
 ```sql
 describe table_name;
 show columns from table_name;
+select * from information_schema.columns where TABLE_NAME='listings_dir' and COLUMN_NAME like '%PRODUCT%';
 ```
 
 ###version
