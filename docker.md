@@ -858,6 +858,19 @@ docker unpause {container name}
 The routing mesh built into Docker Swarm means that any port that is published at the service level will be exposed on every node in the swarm. Requests to a published service port will be automatically routed to a container of the service that is running in the swarm.
 ```
 
+# docker daemon
+```sh
+## start docker daemon process
+sudo dockerd 
+# start in debug mode
+sudo dockerd -D 
+# start in listening mode
+sudo dockerd -H 0.0.0.0:5555 
+
+# using client with connection to remove docker daemon
+docker -H 127.0.0.1:5555 ps
+```
+
 
 # issues
 ## docker image contain your local proxy credentials, remove credentials from docker container
