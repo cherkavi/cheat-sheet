@@ -23,6 +23,14 @@ mysql --user=root --password=root
 docker exec -it mysql-container  /usr/bin/mysql  --user=root --password=root
 ```
 
+### import db export db, archive, backup, restore
+```sh
+# backup
+mysqldump -u mysql_user -p DATABASE_NAME > backup.sql
+# restore
+ mysql -u mysql_user -p DATABASE < backup.sql
+```
+
 ###execute sql file with mysqltool
 * inside mysql 
 ```
