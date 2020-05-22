@@ -26,6 +26,7 @@ easy_install.main( ["-U","termcolor"] )
 ```
 
 ## package manager pip
+### [find package in browser](https://pypi.org/)
 ### find package by name
 ```
 pip search {search key}
