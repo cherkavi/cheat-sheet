@@ -145,10 +145,11 @@ pip install virtualenv
 ```
 ```
 # create 
-python3 -m virtualenv virtual_env
+#python3 -m virtualenv venv
+virtualenv venv
 
 # activate
-source virtual_env/bin/activate
+source venv/bin/activate
 
 # commands will be executed into virtual env
 pip install wheel 
