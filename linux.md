@@ -1862,6 +1862,13 @@ sudo awk -F: '($3>=LIMIT) && ($3!=65534) {print $1}' /etc/passwd | tee - | egrep
 sudo cp /etc/gshadow /opt/gshadow-export
 ```
 
+# Sqlite
+## copy scripts to database
+```sh
+# sudo apt-get install sqlite3
+cat src/scripts.sql | sqlite3 src/db.sqlite
+```
+
 # AWK
 ### single quota escape
 ```
