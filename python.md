@@ -340,3 +340,9 @@ Project settings -> Facets -> expand Python click on child -> Python Interpreter
 Then:
 Project settings -> Modules -> Expand module -> Python -> Dependencies -> select Python module SDK
 ```
+
+# sql, sqlgenerator, codegenerator, sqlalchemy
+```
+pip3 install sqlacodegen
+sqlacodegen sqlite:///db.sqlite > generated-code.txt
+```
