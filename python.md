@@ -345,4 +345,8 @@ Project settings -> Modules -> Expand module -> Python -> Dependencies -> select
 ```
 pip3 install sqlacodegen
 sqlacodegen sqlite:///db.sqlite > generated-code.txt
+
+# Flask approach
+pip3 install flask-sqlacodegen
+flask-sqlacodegen --flask sqlite:///db.sqlite > generated-code.txt
 ```
