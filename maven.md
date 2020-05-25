@@ -649,3 +649,28 @@ mvn  org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy -Dmaven.test.skip
 		</profile>
 ```
 mvn sonar:sonar
+
+
+### smallest pom.xml, init pom.xml, start pom.xml
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>workplace</name>
+  <url>http://maven.apache.org</url>
+  
+  <groupId>com.cherkashyn.vitalii.startup.searchcorrector</groupId>
+  <artifactId>workplace</artifactId>
+	
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
+```
