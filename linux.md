@@ -2346,3 +2346,22 @@ sudo chmod +x /usr/bin/timer
 # set timer for 5 min 
 timer 5
 ```
+
+## gnome keyring
+```text
+raise InitError("Failed to unlock the collection!")
+```
+
+```sh
+# kill all "keyring-daemon" sessions
+# clean up all previous runs
+rm ~/.local/share/keyrings/*
+ls -la ~/.local/share/keyrings/
+
+dbus-run-session -- bash
+gnome-keyring-daemon --unlock
+# type your password, <enter> <Ctrl-D>
+keyring set cc.user cherkavi
+keyring get cc.user cherkavi
+
+```
