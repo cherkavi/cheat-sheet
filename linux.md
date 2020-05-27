@@ -1416,7 +1416,7 @@ gpg --symmetric {filename}
 gpg --decrypt {filename}
 ```
 
-### add user into special group
+### add user into special group, add user to group
 * adduser {username} {destination group name}
 * edit file /etc/group
 ```
@@ -1431,6 +1431,14 @@ sudo useradd --create-home test --groups sudo
 sudo passwd test
 # set default bash shell 
 chsh --shell /bin/bash tecmint
+```
+
+### sudo for user, user sudo, temporary provide sudo
+```
+sudo adduser vitalii sudo
+# close all opened sessions
+# after your work done
+sudo deluser vitalii sudo
 ```
 
 ### remove user
