@@ -2294,9 +2294,11 @@ sudo apt-get update && sudo apt-get install keepass2
 ```sh
 sudo apt install xfce4
 sudo apt install tightvncserver
+# only for specific purposes
 sudo apt install x11vnc
 ```
- * ~/.vnc/xstartup
+ * ~/.vnc/xstartup, file for starting vncserver
+ chmod +x ~/.vnc/xstartup
 ```
 #!/bin/sh
 
@@ -2304,17 +2306,18 @@ sudo apt install x11vnc
 export XKL_XMODMAP_DISABLE=1
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
+startxfce4 &
 
-xrdb $HOME/.Xresources
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
 xsetroot -solid grey
-xfce4-session --display=$DISPLAY &
-/usr/lib/gnome-settings-daemon/gsd-xsettings &
+vncconfig -iconic &
 ```
  * vnc commands
 ```sh
 # start server
 vncserver -geometry 1920x1080
-# full command
+# full command, $DISPLAY can be ommited in favoud to use "next free screen"
 vncserver $DISPLAY -rfbport 5903 -desktop X -auth /home/qqtavt1/.Xauthority -geometry 1920x1080 -depth 24 -rfbwait 120000 -rfbauth /home/qqtavt1/.vnc/passwd  -fp /usr/share/fonts/X11/misc,/usr/share/fonts/X11/Type1 -co /etc/X11/rgb
 
 ## Couldn't start Xtightvnc; trying default font path.
@@ -2329,11 +2332,15 @@ ps aux | grep vnc
 # kill server
 vncserver -kill :1
 ```
-  * vnc start, x11vnc start
+  
+  * vnc start, x11vnc start, connect to existing display, vnc for existing display
 ```
 #export DISPLAY=:0
 #Xvfb $DISPLAY -screen 0 1920x1080x16 &
 #Xvfb $DISPLAY -screen 0 1920x1080x24 # not more that 24 bit for color
+
+#startxfce4 --display=$DISPLAY &
+
 # sleep 1
 x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
 
