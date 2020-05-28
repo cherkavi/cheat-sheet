@@ -527,7 +527,7 @@ docker network ls | grep "bridge"
 docker network rm $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
 ```
 
-### delete docker
+### delete docker, remove docker, uninstall docker
 ```
 sudo apt remove docker.io
 sudo rm -rf /etc/systemd/system/docker.service
