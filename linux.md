@@ -1462,6 +1462,11 @@ sudo deluser vitalii sudo
 sudo userdel -r test
 ```
 
+### execute sudo with current env variables, sudo env var
+```
+sudo -E <command>
+```
+
 ### print all logged in users, active users, connected users
 ```bash
 users
