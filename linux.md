@@ -144,6 +144,7 @@ chmod 700 ~/.ssh
 chmod 700 ~/.ssh/*
 ```
 
+#### copy ssh key to remote machine, 
 ```
 ssh-copy-id {username}@{machine ip}:{port}
 ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no vcherkashyn@bmw000013.adv.org
@@ -182,11 +183,25 @@ remove credentials ( undo previous command )
 ssh-keygen -f "/home/{user}/.ssh/known_hosts" -R "10.140.240.105"
 ```
 
-the same, but manually:
+copy ssh key to remote machine, but manually:
 ```
 cat .ssh/id_rsa.pub | ssh {username}@{ip}:{port} "cat >> ~/.ssh/authorized_keys"
 chmod 700 ~/.ssh ;
 chmod 600 ~/.ssh/authorized_keys
+```
+
+### manage multiply keys
+```sh
+$ ls ~/.ssh
+-rw-------  id_rsa
+-rw-------  id_rsa_bmw
+-rw-r--r--  id_rsa_bmw.pub
+-rw-r--r--  id_rsa.pub
+```
+```sh
+$ cat ~/.ssh/config 
+IdentityFile ~/.ssh/id_rsa_bmw
+IdentityFile ~/.ssh/id_rsa
 ```
 
 ### install ssh server, start ssh server, server ssh
