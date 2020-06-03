@@ -649,3 +649,71 @@ mvn  org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy -Dmaven.test.skip
 		</profile>
 ```
 mvn sonar:sonar
+
+
+### smallest pom.xml, init pom.xml, start pom.xml
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>workplace</name>
+  <url>http://maven.apache.org</url>
+  
+  <groupId>com.cherkashyn.vitalii.startup.searchcorrector</groupId>
+  <artifactId>workplace</artifactId>
+	
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
+```
+
+
+# Archetypes
+## The desired archetype does not exist
+```sh
+# https://repository.apache.org/content/groups/snapshots-group/org/apache/camel/archetypes/3.4.0-SNAPSHOT/maven-metadata.xml
+#   -DarchetypePackaging=pom \
+#   -Dpackaging=pom \
+mvn archetype:generate\
+  -X \
+  -DarchetypeGroupId=org.apache.camel \
+  -DarchetypeVersion=3.4.0-SNAPSHOT \
+  -DarchetypeArtifactId=archetypes \
+  -DarchetypeRepository=https://repository.apache.org/content/groups/snapshots-group | grep resolution
+
+# or original 
+mvn archetype:generate \
+  -DarchetypeGroupId=org.apache.camel.archetypes \
+  -DarchetypeArtifactId=camel-archetype-java \
+  -DarchetypeVersion=3.4.0-SNAPSHOT \
+  -DarchetypeRepository=https://repository.apache.org/content/groups/snapshots-group
+```
+
+```sh
+vim $HOME/.m2/repository/archetype-catalog.xml
+```
+
+```xml
+# https://maven.apache.org/archetype/archetype-models/archetype-catalog/archetype-catalog.html
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-catalog  xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-catalog/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-catalog/1.0.0 http://maven.apache.org/xsd/archetype-catalog-1.0.0.xsd">
+  <archetypes>
+    <archetype>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>archetypes</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+        <repository>https://repository.apache.org/content/groups/snapshots-group</repository>
+        <description>Apache camel archetype</description>
+    </archetype>
+  </archetypes>
+</archetype-catalog>
+```

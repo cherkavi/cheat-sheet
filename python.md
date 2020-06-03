@@ -26,6 +26,7 @@ easy_install.main( ["-U","termcolor"] )
 ```
 
 ## package manager pip
+### [find package in browser](https://pypi.org/)
 ### find package by name
 ```
 pip search {search key}
@@ -145,10 +146,11 @@ pip install virtualenv
 ```
 ```
 # create 
-python3 -m virtualenv virtual_env
+#python3 -m virtualenv venv
+virtualenv venv
 
 # activate
-source virtual_env/bin/activate
+source venv/bin/activate
 
 # commands will be executed into virtual env
 pip install wheel 
@@ -337,4 +339,14 @@ Project settings -> Facets -> expand Python click on child -> Python Interpreter
 
 Then:
 Project settings -> Modules -> Expand module -> Python -> Dependencies -> select Python module SDK
+```
+
+# sql, sqlgenerator, codegenerator, sqlalchemy
+```
+pip3 install sqlacodegen
+sqlacodegen sqlite:///db.sqlite > generated-code.txt
+
+# Flask approach
+pip3 install flask-sqlacodegen
+flask-sqlacodegen --flask sqlite:///db.sqlite > generated-code.txt
 ```

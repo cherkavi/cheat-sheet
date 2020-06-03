@@ -172,6 +172,17 @@ to see debug log, need to add next jars into classpath:
 * log4j-api-2.10.0.jar
 * log4j-1.2.14.jar
 ---
+slf4j logging
+```
+lib/log4j-core-2.11.0.jar:\
+lib/log4j-api-2.11.0.jar:\
+lib/log4j-slf4j-impl-2.11.0.jar:\
+```
+and execute
+```sh
+java -Dlog4j2.debug=true 
+```
+
 config file example
 ```
 flyway.driver=oracle.jdbc.OracleDriver

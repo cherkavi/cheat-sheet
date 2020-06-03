@@ -144,6 +144,7 @@ chmod 700 ~/.ssh
 chmod 700 ~/.ssh/*
 ```
 
+#### copy ssh key to remote machine, 
 ```
 ssh-copy-id {username}@{machine ip}:{port}
 ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no vcherkashyn@bmw000013.adv.org
@@ -182,11 +183,25 @@ remove credentials ( undo previous command )
 ssh-keygen -f "/home/{user}/.ssh/known_hosts" -R "10.140.240.105"
 ```
 
-the same, but manually:
+copy ssh key to remote machine, but manually:
 ```
 cat .ssh/id_rsa.pub | ssh {username}@{ip}:{port} "cat >> ~/.ssh/authorized_keys"
 chmod 700 ~/.ssh ;
 chmod 600 ~/.ssh/authorized_keys
+```
+
+### manage multiply keys
+```sh
+$ ls ~/.ssh
+-rw-------  id_rsa
+-rw-------  id_rsa_bmw
+-rw-r--r--  id_rsa_bmw.pub
+-rw-r--r--  id_rsa.pub
+```
+```sh
+$ cat ~/.ssh/config 
+IdentityFile ~/.ssh/id_rsa_bmw
+IdentityFile ~/.ssh/id_rsa
 ```
 
 ### install ssh server, start ssh server, server ssh
@@ -585,9 +600,10 @@ python -c 'import os.path; print(os.path.realpath("symlinkName"))'
 basename {file}
 ```
 
-### folder name from path
+### folder name from path, folder of file, file directory, file folder
 ```
 dirname {file}
+nautilus "$(dirname -- "$PATH_TO_SVG_CONFLUENCE")"
 ```
 
 ### print full path to files inside folder
@@ -661,6 +677,12 @@ find . -maxdepth 5 -mindepth 5
 ### find with excluding folders, find exclude
 ```sh
 find . -type d -name "dist" ! -path  "*/node_modules/*"
+```
+
+### find function declaration, print function, show function
+```
+type <function name>
+declare -f <function name>
 ```
 
 ### folder size, dir size, directory size, size directory, size folder size of folder, size of directory
@@ -1416,7 +1438,7 @@ gpg --symmetric {filename}
 gpg --decrypt {filename}
 ```
 
-### add user into special group
+### add user into special group, add user to group
 * adduser {username} {destination group name}
 * edit file /etc/group
 ```
@@ -1433,9 +1455,22 @@ sudo passwd test
 chsh --shell /bin/bash tecmint
 ```
 
+### sudo for user, user sudo, temporary provide sudo
+```
+sudo adduser vitalii sudo
+# close all opened sessions
+# after your work done
+sudo deluser vitalii sudo
+```
+
 ### remove user
 ```
 sudo userdel -r test
+```
+
+### execute sudo with current env variables, sudo env var
+```
+sudo -E <command>
 ```
 
 ### print all logged in users, active users, connected users
@@ -1862,6 +1897,13 @@ sudo awk -F: '($3>=LIMIT) && ($3!=65534) {print $1}' /etc/passwd | tee - | egrep
 sudo cp /etc/gshadow /opt/gshadow-export
 ```
 
+# Sqlite
+## copy scripts to database
+```sh
+# sudo apt-get install sqlite3
+cat src/scripts.sql | sqlite3 src/db.sqlite
+```
+
 # AWK
 ### single quota escape
 ```
@@ -2279,9 +2321,11 @@ sudo apt-get update && sudo apt-get install keepass2
 ```sh
 sudo apt install xfce4
 sudo apt install tightvncserver
+# only for specific purposes
 sudo apt install x11vnc
 ```
- * ~/.vnc/xstartup
+ * ~/.vnc/xstartup, file for starting vncserver
+ chmod +x ~/.vnc/xstartup
 ```
 #!/bin/sh
 
@@ -2289,18 +2333,19 @@ sudo apt install x11vnc
 export XKL_XMODMAP_DISABLE=1
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
+startxfce4 &
 
-xrdb $HOME/.Xresources
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
 xsetroot -solid grey
-xfce4-session &
-/usr/lib/gnome-settings-daemon/gsd-xsettings &
+vncconfig -iconic &
 ```
  * vnc commands
 ```sh
 # start server
 vncserver -geometry 1920x1080
-# full command
-vncserver :3 -desktop X -auth /home/qqtavt1/.Xauthority -geometry 1920x1080 -depth 24 -rfbwait 120000 -rfbauth /home/qqtavt1/.vnc/passwd -rfbport 5903 -fp /usr/share/fonts/X11/misc,/usr/share/fonts/X11/Type1 -co /etc/X11/rgb
+# full command, $DISPLAY can be ommited in favoud to use "next free screen"
+vncserver $DISPLAY -rfbport 5903 -desktop X -auth /home/qqtavt1/.Xauthority -geometry 1920x1080 -depth 24 -rfbwait 120000 -rfbauth /home/qqtavt1/.vnc/passwd  -fp /usr/share/fonts/X11/misc,/usr/share/fonts/X11/Type1 -co /etc/X11/rgb
 
 ## Couldn't start Xtightvnc; trying default font path.
 ## Please set correct fontPath in the vncserver script.
@@ -2314,11 +2359,15 @@ ps aux | grep vnc
 # kill server
 vncserver -kill :1
 ```
-  * vnc start, x11vnc start
+  
+  * vnc start, x11vnc start, connect to existing display, vnc for existing display
 ```
 #export DISPLAY=:0
 #Xvfb $DISPLAY -screen 0 1920x1080x16 &
 #Xvfb $DISPLAY -screen 0 1920x1080x24 # not more that 24 bit for color
+
+#startxfce4 --display=$DISPLAY &
+
 # sleep 1
 x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
 
@@ -2338,4 +2387,23 @@ sudo curl -o /usr/bin/timer https://raw.githubusercontent.com/rlue/timer/master/
 sudo chmod +x /usr/bin/timer
 # set timer for 5 min 
 timer 5
+```
+
+## gnome keyring
+```text
+raise InitError("Failed to unlock the collection!")
+```
+
+```sh
+# kill all "keyring-daemon" sessions
+# clean up all previous runs
+rm ~/.local/share/keyrings/*
+ls -la ~/.local/share/keyrings/
+
+dbus-run-session -- bash
+gnome-keyring-daemon --unlock
+# type your password, <enter> <Ctrl-D>
+keyring set cc.user cherkavi
+keyring get cc.user cherkavi
+
 ```

@@ -1,3 +1,8 @@
+# default set of libraries 
+```
+$HOME/.groovy/lib
+```
+
 ### to parse json
 JSON slurper
 
