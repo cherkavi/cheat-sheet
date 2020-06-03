@@ -1,5 +1,6 @@
 * [sdk](https://aws.amazon.com/tools/)  
 * shell script ``` apt install aws-shell ```
+* [online trainings](https://www.aws.training/)
 
 ## init variables
 ```
