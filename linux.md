@@ -679,6 +679,12 @@ find . -maxdepth 5 -mindepth 5
 find . -type d -name "dist" ! -path  "*/node_modules/*"
 ```
 
+### find function declaration, print function, show function
+```
+type <function name>
+declare -f <function name>
+```
+
 ### folder size, dir size, directory size, size directory, size folder size of folder, size of directory
 ```
 sudo du -shc ./*
