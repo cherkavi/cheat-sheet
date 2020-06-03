@@ -445,9 +445,49 @@ console
 ```
 
 [documentation](https://github.com/awsdocs/amazon-dynamodb-developer-guide/tree/master/doc_source)
+[documentation developer guide](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
 ```sh
 $current_browser https://$AWS_REGION.console.aws.amazon.com/dynamodb/home?region=$AWS_REGION#tables:
 ```
+
+```sh
+# create table from CLI
+aws dynamodb create-table \
+--table-name my_table \
+--attribute-definitions \
+  AttributeName=column_id,AttributeType=N \
+  AttributeName=column_name,AttributeType=S \
+--key-schema \
+  AttributeName=column_id,KeyType=HASH \
+  AttributeName=column_anme,KeyType=RANGE \
+--billing-mode=PAY_PER_REQUEST \
+--region=$AWS_REGION
+
+# write item, write into DynamoDB
+aws dynamodb put-item \
+--table-name my_table \
+--item '{"column_1":{"N":1}, "column_2":{"S":"first record"} }'
+--region=$AWS_REGION
+--return-consumed-capacity TOTAL
+
+# update item 
+aws dynamodb put-item \
+--table-name my_table \
+--key '{"column_1":{"N":1}, "column_2":{"S":"first record"} }'
+--update-expression "SET country_name=:new_name"
+--expression-attribute-values '{":new_name":{"S":"first"} }'
+--region=$AWS_REGION
+--return-value ALL_NEW
+
+# select records
+aws dynamodb query \
+  --table-name my_table \
+  --key-condition-expression "column_1 = :id" \
+  --expression-attribute-values '{":id":{"N":"1"}}' \
+  --region=$AWS_REGION
+  --output=table
+```
+
 
 ### put_item issue
 ```text
