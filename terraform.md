@@ -1,7 +1,3 @@
-Workflow
-![workflow](https://i.postimg.cc/qvXLs2D1/terraform-workflow.png)
-
-
 # Links
 * [registry](https://registry.terraform.io/)
 * [documentation](https://www.terraform.io/docs/index.html)
@@ -10,6 +6,21 @@ Workflow
 * [providers](https://www.terraform.io/docs/providers/)
 * [cloud providers](https://www.terraform.io/docs/providers/type/major-index.html)  
 * [terraform examples](https://www.terraform.io/intro/examples/index.html)
+
+
+Workflow
+![workflow](https://i.postimg.cc/qvXLs2D1/terraform-workflow.png)
+* workflow
+  * [different version of terraform](https://github.com/tfutils/tfenv)
+* valid
+  * [check errors](https://github.com/terraform-linters/tflint)
+* state
+  * [create from aws](https://github.com/dtan4/terraforming)
+* src
+  * [create dependency graph](https://github.com/28mm/blast-radius)
+* plan
+  * [pretty print for output plan](https://github.com/coinbase/terraform-landscape)
+  
 
 
 # cli
