@@ -1,4 +1,5 @@
 # Links
+* [registry](https://registry.terraform.io/)
 * [documentation](https://www.terraform.io/docs/index.html)
 * [configuration language](https://www.terraform.io/docs/configuration/index.html)
 * [cli commands](https://www.terraform.io/docs/commands/index.html)
@@ -44,4 +45,48 @@ terraform show
 
 terraform console
 # docker_image.apache.id
+```
+
+## [variables](https://www.terraform.io/docs/configuration/variables.html)
+### input variables
+usage inside the code
+```json
+some_resource "resource-name" {
+  resource_parameter = var.p1
+}
+```
+possible way for input variables:
+* terraform.tfvars, terraform.tfvars.json
+  ```json
+  variable "p1" {
+     default = "my own default value"
+  }
+  ```
+* cli
+  * cli var
+  ```sh
+  terraform apply -var 'p1=this is my parameter'
+  terraform apply -var='p1=this is my parameter'  
+  terraform apply -var='p1=["this","is","my","parameter"]'  
+  terraform apply -var='p1={"one":"this","two":"is"}'    
+  ```
+  * cli var file  
+  ```sh
+  terraform apply -var-file="staging.tfvars"
+  ```
+  ```json
+  p1 = "this is my param"
+  p2 = [
+    "one", 
+    "two", 
+  ]
+  p3 = {
+    "one": "first",
+    "two": "second"
+  }
+  ```
+* environment variables
+```sh
+export TF_VAR_p1="this is my parameter"
+export TF_VAR_p1=["this","is","my","parameter"]  
 ```
