@@ -9,6 +9,15 @@
 
 
 # cli
+## [cli configuration file](https://www.terraform.io/docs/commands/cli-config.html)
+```sh
+cat ~/.terraformrc
+```
+```properties
+plugin_cache_dir   = "$HOME/.terraform.d/plugin-cache"
+disable_checkpoint = true
+```
+
 ```sh
 # download plugins into folder .terraform
 terraform init 
