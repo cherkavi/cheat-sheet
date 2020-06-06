@@ -1,3 +1,7 @@
+Workflow
+![workflow](https://i.postimg.cc/qvXLs2D1/terraform-workflow.png)
+
+
 # Links
 * [registry](https://registry.terraform.io/)
 * [documentation](https://www.terraform.io/docs/index.html)
