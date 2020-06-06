@@ -101,3 +101,20 @@ terraform execution example
 ```sh
 terraform output my_input_param
 ```
+
+# backend
+Holding information about
+* current state  
+* configuration
+
+[configuration example](https://medium.com/faun/terraform-remote-backend-demystified-cb4132b95057)
+```json
+terraform {  
+    backend "s3" {
+        bucket  = "aws-terraform-remote-store"
+        encrypt = true
+        key     = "terraform.tfstate"    
+        region  = "eu-west-1"  
+    }
+}
+```
