@@ -20,20 +20,6 @@ Workflow
   * [create dependency graph](https://github.com/28mm/blast-radius)
 * plan
   * [pretty print for output plan](https://github.com/coinbase/terraform-landscape)
-  
-
-
-# cli
-[list of the commands](https://www.terraform.io/docs/commands/index.html)
-## [cli configuration file](https://www.terraform.io/docs/commands/cli-config.html)
-```sh
-cat ~/.terraformrc
-```
-```properties
-plugin_cache_dir   = "$HOME/.terraform.d/plugin-cache"
-disable_checkpoint = true
-```
-
 ```sh
 # download plugins into folder .terraform
 terraform init 
@@ -71,7 +57,20 @@ terraform show
 terraform console
 # docker_image.apache.id
 ```
+  
 
+# cli
+[list of the commands](https://www.terraform.io/docs/commands/index.html)
+## [cli configuration file](https://www.terraform.io/docs/commands/cli-config.html)
+```sh
+cat ~/.terraformrc
+```
+```properties
+plugin_cache_dir   = "$HOME/.terraform.d/plugin-cache"
+disable_checkpoint = true
+```
+
+# [HCL configuration language](https://www.terraform.io/docs/configuration/index.html)
 ## [variables](https://www.terraform.io/docs/configuration/variables.html)
 ### input variables
 usage inside the code
