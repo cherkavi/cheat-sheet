@@ -11,7 +11,7 @@
 Workflow
 ![workflow](https://i.postimg.cc/qvXLs2D1/terraform-workflow.png)
 * workflow
-  * [different version of terraform](https://github.com/tfutils/tfenv)
+  * [manage different versions of terraform at one place](https://github.com/tfutils/tfenv)
 * valid
   * [check errors](https://github.com/terraform-linters/tflint)
 * state
