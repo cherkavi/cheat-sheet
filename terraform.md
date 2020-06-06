@@ -5,7 +5,7 @@
 * [cli commands](https://www.terraform.io/docs/commands/index.html)
 * [providers](https://www.terraform.io/docs/providers/)
 * [cloud providers](https://www.terraform.io/docs/providers/type/major-index.html)  
-* [terraform examples](https://github.com/cherkavi/terraform)
+* [terraform examples](https://www.terraform.io/intro/examples/index.html)
 
 
 # cli
