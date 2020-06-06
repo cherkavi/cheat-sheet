@@ -90,3 +90,14 @@ possible way for input variables:
 export TF_VAR_p1="this is my parameter"
 export TF_VAR_p1=["this","is","my","parameter"]  
 ```
+### output variables
+terraform code
+```json
+output "my_output_param" {
+   value = some_resource.value.sub_param_1
+}
+```
+terraform execution example
+```sh
+terraform output my_input_param
+```
