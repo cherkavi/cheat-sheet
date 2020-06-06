@@ -9,6 +9,7 @@
 
 
 # cli
+[list of the commands](https://www.terraform.io/docs/commands/index.html)
 ## [cli configuration file](https://www.terraform.io/docs/commands/cli-config.html)
 ```sh
 cat ~/.terraformrc
