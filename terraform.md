@@ -39,6 +39,10 @@ terraform apply
 terraform apply -auto-approve
 terraform apply will-by-applied.zip
 
+# apply state from another file 
+# skip warning: cannot import state with lineage
+terraform state push -force terraform.tfstate
+
 # remove all resources
 terraform destroy
 
@@ -146,6 +150,21 @@ terraform workspace show
 terraform workspace select default
 terraform workspace select attempt_1
 ```
+some inner mechanism
+```
+# workspace with name "default"
+.terraform.tfstate
+.terraform.tfstate.backup
+./terraform.tfstate.d
+
+# workspace with name "attempt_1"
+./terraform.tfstate.d/attempt_1
+./terraform.tfstate.d/attempt_1/terraform.tfstate.backup
+./terraform.tfstate.d/attempt_1/terraform.tfstate
+
+# workspace with name "attempt_2" - has not applied yet
+./terraform.tfstate.d/attempt_2
+``` 
 
 # backend
 Holding information about
