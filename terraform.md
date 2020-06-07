@@ -129,6 +129,24 @@ terraform execution example
 terraform output my_input_param
 ```
 
+## workspace
+![workspace](https://i.postimg.cc/mrzXt9Ld/terraform-workspaces.png)
+example of usage in configuration 
+```hcl
+resource "aws_instance" "one_of_resources" {
+  tags = {
+    Name = "web - ${terraform.workspace}"
+  }
+}
+```
+```sh
+terraform workspace list
+terraform workspace new attempt_1
+terraform workspace show
+terraform workspace select default
+terraform workspace select attempt_1
+```
+
 # backend
 Holding information about
 * current state  
