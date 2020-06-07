@@ -35,6 +35,8 @@
 * 97 things every architect should know
 * [value proposition template](https://www.strategyzer.com/canvas/value-proposition-canvas)
 
+# Togaf
+![base-target](https://i.postimg.cc/SxzC9f9z/togaf-base-target.png)
 # Archimate
 ## useful links
 * [specification](https://pubs.opengroup.org/architecture/archimate3-doc/)
