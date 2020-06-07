@@ -47,6 +47,9 @@ show databases;
 use {databasename};
 ```
 
+### user <-> role
+![user role relationship](https://i.postimg.cc/bv0dRDrg/mysql-user-role.png)
+
 ### print all tables
 ```sql
 show tables;
