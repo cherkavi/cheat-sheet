@@ -37,14 +37,15 @@
 
 # Togaf
 ![base-target](https://i.postimg.cc/SxzC9f9z/togaf-base-target.png)
-# Archimate
+![togaf layers](https://i.postimg.cc/904Rb3GK/archimate3-layers.png)  
+![togaf aspects](https://i.postimg.cc/BbmmWbML/archimate-01.png)  
+![togaf metamodel](https://i.postimg.cc/fLZCJmPS/archimate-04.png)  
+
+## Archimate
 ## useful links
 * [specification](https://pubs.opengroup.org/architecture/archimate3-doc/)
 * [guide](https://www.visual-paradigm.com/guide/archimate/full-archimate-viewpoints-guide/)
 * [how to draw diagrams](https://www.visual-paradigm.com/support/documents/vpuserguide/4455/4409/86421_howtodrawarc.html)
 * [blog about modeling](http://renewableplus.blogspot.com/2017/03/modeling-applications-technology-in.html)
 * [blog examples](https://www.hosiaisluoma.fi/blog/archimate-examples/)
-![archimate 3 layers](https://i.postimg.cc/904Rb3GK/archimate3-layers.png)  
 
-![archimate aspects](https://i.postimg.cc/BbmmWbML/archimate-01.png)  
-![archimate metamodel](https://i.postimg.cc/fLZCJmPS/archimate-04.png)  
