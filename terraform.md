@@ -20,6 +20,9 @@ Workflow
   * [create dependency graph](https://github.com/28mm/blast-radius)
 * plan
   * [pretty print for output plan](https://github.com/coinbase/terraform-landscape)
+
+![commands](https://i.postimg.cc/RZ8khXTJ/terraform-commands.png)
+  
 ```sh
 # download plugins into folder .terraform
 terraform init 
