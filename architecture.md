@@ -36,6 +36,7 @@
 * [value proposition template](https://www.strategyzer.com/canvas/value-proposition-canvas)
 
 # Togaf
+![togaf phases](https://pubs.opengroup.org/architecture/archimate3-doc/ts_archimate_3.1-final_files/image299.png | height=150)
 ![base-target](https://i.postimg.cc/SxzC9f9z/togaf-base-target.png)
 ![togaf layers](https://i.postimg.cc/904Rb3GK/archimate3-layers.png)  
 ![togaf aspects](https://i.postimg.cc/BbmmWbML/archimate-01.png)  
