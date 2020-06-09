@@ -691,6 +691,26 @@ sudo du -shc ./*
 sudo du -shc ./* | sort -rh | head -5
 ```
 
+### free space, space size, dir size
+```sh
+df -ha
+df -hT /
+
+# size of folder
+du -sh /home
+
+# size my sub-folders
+du -mh /home
+
+# print first 5 leaders of size-consumers
+# slow way: du -a /home | sort -n -r | head -n 5
+sudo du -shc ./* | sort -rh | head -5
+
+du -ch /home
+# find only files with biggest size ( top 5 )
+find -type f -exec du -Sh {} + | sort -rh | head -n 5
+```
+
 ### yum ( app search )
 ```
 yum list {pattern}
