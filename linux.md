@@ -658,7 +658,7 @@ find / -mmin 2
 find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs -I {} sudo rm -r {} \; >/dev/null 2>&1
 ```
 
-### find files/folders by regexp and older than 240 min
+### find files/folders by regexp and older than 240 min, find depth
 ```
 find /tmp -maxdepth 1 -mmin +240 -iname "[0-9]*\-[0-9]" | xargs -I {} sudo rm -r {} \; >/dev/null 2>&1
 ```
