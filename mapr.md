@@ -304,6 +304,18 @@ Create an index for the thumbnail MapR JSON DB in order to speed up: (query to f
 --query {"$select":"sessionId","$where":{"$eq":{"frameThumbnail":0}}}  
 maprcli table index add -path /vantage/deploy/data-access-video/images -index frameNumber_id -indexedfields frameThumbnail
 ```
+[manipulate with MapRDB via DbShell](https://mapr.com/docs/61/ReferenceGuide/dbshell-find-findbyid.html)
+```sh
+mapr dbshell
+find /mapr/prod/vantage/orchestration/tables/metadata --q {"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}
+find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2
+```
+example of inline execution
+```sh
+echo 'find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2' | tee script.out
+mapr dbshell --cmdfile script.out
+rm script.out
+```
 
 ## issues
 ### with test execution ( scala, java )
