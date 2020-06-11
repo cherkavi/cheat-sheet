@@ -600,7 +600,7 @@ python -c 'import os.path; print(os.path.realpath("symlinkName"))'
 basename {file}
 ```
 
-### folder name from path, folder of file, file directory, file folder
+### folder name from path, folder of file, file directory, file folder, parent folder, parent dir
 ```
 dirname {file}
 nautilus "$(dirname -- "$PATH_TO_SVG_CONFLUENCE")"
