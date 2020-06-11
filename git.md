@@ -311,6 +311,13 @@ git log --pretty=format:"%h - %an, %ar : %s" <commit SHA> -1
 ```
 git --git-dir=C:\project\horus\.git  --work-tree=C:\project\horus  branch --all
 ```
+```sh
+find . -name ".git" -maxdepth 2 | while read each_file
+do
+   echo $each_file
+   git --git-dir=$each_file --work-tree=`dirname $each_file` status
+done
+```
 
 ### show remote url
 ```
