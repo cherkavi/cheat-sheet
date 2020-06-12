@@ -218,6 +218,16 @@ Region <>---------- AvailabilityZone <>--------- EdgeLocation
 ```
 
 ---
+## Secrets manager
+```sh
+current_doc_topic="secretsmanager"
+cli-doc
+faq
+console
+```
+[boto3 python lib](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/secretsmanager.html#SecretsManager.Client.describe_secret)
+
+---
 ## EC2
 ```sh
 current_doc_topic="ec2"
@@ -230,6 +240,11 @@ console
 ```sh
 # list ec2, ec2 list, instances list
 aws ec2 describe-instances --profile $AWS_PROFILE --region $AWS_REGION --filters Name=tag-key,Values=test
+```
+connect to launched instance
+```sh
+INSTANCE_PUBLIC_DNS="ec2-52-29-176.eu-central-1.compute.amazonaws.com"
+ssh -i $AWS_KEY_PAIR ubuntu@$INSTANCE_PUBLIC_DNS
 ```
 
 ---
