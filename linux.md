@@ -600,7 +600,7 @@ python -c 'import os.path; print(os.path.realpath("symlinkName"))'
 basename {file}
 ```
 
-### folder name from path, folder of file, file directory, file folder
+### folder name from path, folder of file, file directory, file folder, parent folder, parent dir
 ```
 dirname {file}
 nautilus "$(dirname -- "$PATH_TO_SVG_CONFLUENCE")"
@@ -1083,6 +1083,16 @@ w3m {filename}
 ### open in browser, open url
 ```
 sensible-browser http://localhost:3000/api/status
+```
+
+### image resize, image size, image rotation
+```sh
+# without distortion
+convert marketing.png -resize 100x100 marketing-100-100.png
+# mandatory size, image will be distorted
+convert marketing.png -resize 100x100 marketing-100-100.png
+# rotate and change quality
+convert marketing.png -rotate 90 -charcoal 4 -quality 50 marketing.png
 ```
 
 ### wget to console
@@ -1627,6 +1637,26 @@ service httpd start
 chkconfig httpd
 chkconfig httpd on
 vim /var/www/html/index.html
+```
+debian
+```
+# installation
+sudo su
+apt update -y
+apt install -y apache2
+
+# service 
+sudo systemctl status apache2.service
+sudo systemctl start apache2.service
+
+# change index html
+vim /var/www/html/index.html
+
+# Uncomplicated FireWall
+ufw app list
+ufw allow 'Apache'
+ufw status
+
 ```
 
 ### tools:
