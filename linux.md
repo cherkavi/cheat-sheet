@@ -1638,6 +1638,26 @@ chkconfig httpd
 chkconfig httpd on
 vim /var/www/html/index.html
 ```
+debian
+```
+# installation
+sudo su
+apt update -y
+apt install -y apache2
+
+# service 
+sudo systemctl status apache2.service
+sudo systemctl start apache2.service
+
+# change index html
+vim /var/www/html/index.html
+
+# Uncomplicated FireWall
+ufw app list
+ufw allow 'Apache'
+ufw status
+
+```
 
 ### tools:
 - [ETL](www.talend.com)
