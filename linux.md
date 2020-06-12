@@ -1085,6 +1085,16 @@ w3m {filename}
 sensible-browser http://localhost:3000/api/status
 ```
 
+### image resize, image size, image rotation
+```sh
+# without distortion
+convert marketing.png -resize 100x100 marketing-100-100.png
+# mandatory size, image will be distorted
+convert marketing.png -resize 100x100 marketing-100-100.png
+# rotate and change quality
+convert marketing.png -rotate 90 -charcoal 4 -quality 50 marketing.png
+```
+
 ### wget to console
 ```
 wget -O- http://{host}:8500/wd-only/getBrandXml.jsp?brand=229099017 > /dev/null  2>&1
