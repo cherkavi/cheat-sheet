@@ -885,6 +885,12 @@ systemctl stop cron
 systemctl restart cron
 ```
 
+### skip first line, pipe skip line
+```sh
+# skip first line in output
+docker ps -a | awk '{print $1}' | tail -n +2
+```
+
 ### error to null
 ```
 ./hbase.sh 2>/dev/null
