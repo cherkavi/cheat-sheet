@@ -1214,7 +1214,7 @@ curl -X POST http://localhost:8983/test -H "Content-Type: application/json" --da
 curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "userid=1234" http://mysuperserver/media/upload/
 ```
 
-### curl without progress
+### curl without progress, curl silent
 * curl -s -X GET http://google.com
 * curl --silent -X GET http://google.com
 * curl  http://google.com 2>/dev/null
@@ -1243,6 +1243,19 @@ curl -c cookie-from-url-com.txt -X GET url.com
 ### curl with encoding to another codepage, from win1251 to utf8
 ```sh
 curl "http://some.resource/read_book.php?id=66258&p=1" | iconv --from-code WINDOWS-1251 --to-code UTF-8
+```
+
+### curl status code, curl response code
+```sh
+airflow_trigger(){
+  SESSION_ID=$1
+  ENDPOINT=$2
+  BODY='{"conf":{"session_id":"'$SESSION_ID'","branch":"merge_labels"}}'
+  curl --silent -w "response-code: %{http_code}\n" --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT
+  return $?
+}
+DAG_NAME='labeling'
+airflow_trigger $each_session "https://airflow.vantage.org/api/experimental/dags/$DAG_NAME/dag_runs"
 ```
 
 ### xml pretty print, xml format
