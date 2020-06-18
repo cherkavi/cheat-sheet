@@ -111,7 +111,8 @@ print(site.getsitepackages())
 ```
 import pip
 pip.__version__
-pip.main("install", "wheels")
+pip.main(["install", "wheels"])
+#pip.main("install", "wheels")
 ```
 fix for version 9 and 10
 ```
