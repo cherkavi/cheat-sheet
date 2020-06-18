@@ -1091,8 +1091,19 @@ w3m {filename}
 sensible-browser http://localhost:3000/api/status
 ```
 
+### image format, image size, image information
+```
+# sudo apt-get install imagemagick
+identify -verbose image.png
+
+# https://imagemagick.org/script/escape.php
+identify -format "%m" image.png     # format type 
+identify -format "%wx%h" image.png  # width x height
+```
+
 ### image resize, image size, image rotation
 ```sh
+# sudo apt-get install imagemagick
 # without distortion
 convert marketing.png -resize 100x100 marketing-100-100.png
 # mandatory size, image will be distorted
