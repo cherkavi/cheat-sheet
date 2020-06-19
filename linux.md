@@ -1031,6 +1031,10 @@ ls -1 *.zip | xargs -I{} unzip -p {} brand.xml  | grep instant-limit | grep "\\.
 ```
 unzip file.zip -d output_folder
 ```
+### unzip without asking for action 
+```
+unzip -o file.zip -d output_folder
+```
 
 ### unzip tar file from url, wget unzip, wget untar
 ```
@@ -1153,6 +1157,12 @@ ftp_proxy =  http://username:password@proxy.server.address:port/
 ```
 zip -r bcm-1003.zip *
 ```
+
+### zip file without saving path, zip path cleanup
+```
+zip --junk_paths bcm-1003.zip *
+```
+
 ### using parameters for aliases
 ```
 alias sublime_editor=/Applications/SublimeEditor/Sublime
