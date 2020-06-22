@@ -639,7 +639,7 @@ create/update file:
 ./roles/{project/role name}/meta/main.yml
 ```
 
-## execute role, role execution, start role locally
+## execute role, role execution, start role locally, local start, role local execution
 ```sh
 ansible localhost \
     --extra-vars="deploy_application=1" \
@@ -649,6 +649,9 @@ ansible localhost \
     -m include_role \
     -a name="new_application/new_role"
 ```
+where "include_role" - module to run ( magic word )   
+where "new_application/new_role" - subfolder to role 
+where @group_vars/all/default/all.yaml - sub-path to yaml file with additional variables
 
 ## console output with applied roles should looks like
 ```
