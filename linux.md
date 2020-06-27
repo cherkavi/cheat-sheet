@@ -427,13 +427,17 @@ sudo rm /etc/apt/sources.list.d/inkscape.dev*
 ### avoid to put command into history, hide password into history, avoid history
 add space before command
 
-### bash settings, history lookup
+### bash settings, history lookup with arrows, tab autocomplete
 ~/.inputrc
 ```
 "\e[A": history-search-backward
 "\e[B": history-search-forward
 set show-all-if-ambiguous on
 set completion-ignore-case on
+TAB: menu-complete
+"\e[Z": menu-complete-backward
+set show-all-if-unmodified on
+set show-all-if-ambiguous on
 ```
 
 ### script settings
