@@ -2,6 +2,12 @@
 * shell script ``` apt install aws-shell ```
 * [online trainings](https://www.aws.training/)
 
+### console command completion, console completion
+```sh
+pip3 install awscli
+complete -C `locate aws_completer` aws
+```
+
 ## init variables
 ```
 AWS_SNS_TOPIC_ARN=arn:aws:sns:eu-central-1:85153298123:gmail-your-name
@@ -56,10 +62,16 @@ using profiling
 aws s3 ls --profile $AWS_PROFILE
 ```
 
-### console command completion, console completion
-```sh
-pip3 install awscli
-complete -C `locate aws_completer` aws
+---
+## check configuration
+```bash
+vim ~/.aws/credentials
+
+aws configure list
+aws configure get region --profile $AWS_PROFILE
+aws configure get aws_access_key_id
+aws configure get default.aws_access_key_id
+aws configure get $AWS_PROFILE.aws_access_key_id
 ```
 
 ---
@@ -102,11 +114,14 @@ console
 ```
 
 ```sh
-aws s3 mb s3://my-bucket-name
+AWS_BUCKET_NAME="my-bucket-name"
+aws s3 mb s3://$AWS_BUCKET_NAME
 # list of all s3
 aws s3 ls
+# get bucket location
+aws s3api get-bucket-location --bucket $AWS_BUCKET_NAME
 # copy to s3
-aws s3 cp /path/to/file-name.with_extension s3://my-bucket-name
+aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME
 # create folder, s3 mkdir
 aws s3api put-object --bucket my-bucket-name --key foldername/
 # sync folder with remote s3 folder
@@ -226,6 +241,25 @@ faq
 console
 ```
 [boto3 python lib](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/secretsmanager.html#SecretsManager.Client.describe_secret)
+
+```sh
+# CLI example
+aws secretsmanager get-secret-value --secret-id LinkedIn_project_Web_LLC --region $AWS_REGION --profile cherkavi-user
+```
+readonly policy
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "secretsmanager:GetSecretValue",
+            "Resource": "arn:aws:secretsmanager:*:*:secret:*"
+        }
+    ]
+}
+```
 
 ---
 ## EC2
