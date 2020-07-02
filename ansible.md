@@ -367,6 +367,24 @@ for improving indentation only for the block
 </div>
 ```
 
+## directives for loop, for last, loop last
+```
+[
+{% for stream in streams %}
+    {
+        "stream": "{{ stream.stream_name }}",
+        "classN": "{{ stream.class_name }}",
+        "script": "{{ stream.script_name }}",
+        "sibFolders": [
+        {% for folder in stream.sub_folders %}
+            "{{ folder }}"{% if not loop.last %},{% endif %}
+        {% endfor %}
+        ]
+    }{% if not loop.last %},{% endif %}
+{% endfor %}
+]
+```
+
 ## escaping
 just a symbol
 ```
