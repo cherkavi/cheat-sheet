@@ -1894,6 +1894,12 @@ alias clipboard-print="xclip -out -selection clipboard"
 
 ## bluetooth
 ```sh
+# connect and disconnect headphones
+bluetoothctl connect 00:18:09:EC:BE:FD
+bluetoothctl disconnect 00:18:09:EC:BE:FD
+# for manual 
+```
+```sh
 sudo apt install bluez-tools
 bt-device --list
 bt-device --disconnect 00:18:09:EC:BE:FD
