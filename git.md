@@ -123,6 +123,15 @@ git whatchanged --author="Cherkashyn" --name-only
 ```bash
 git log --author="Cherkashyn" --name-status --diff-filter=M | grep "^M" | sort | uniq -c | sort -rh
 ```
+### commit show files, files by commit
+```sh
+git diff-tree --no-commit-id --name-only -r ec3772
+```
+
+### commit diff, show changes by commit, commit changes 
+```sh
+git diff ec3772~ ec3772
+```
 
 ### pretty log with tree
 ```sh
