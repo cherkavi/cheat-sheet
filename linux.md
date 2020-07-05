@@ -73,12 +73,14 @@ ping -s 122 -c 1 146.255.193.66
 ping -s 123 -c 1 146.255.193.66
 ```
 
-### open ports, open connections, listening ports
+### open ports, open connections, listening ports, application by port, application port, process port, pid port
 ```sh
 # list of open files
 sudo lsof -i -P -n | grep LISTEN
 # list of open connections
 sudo netstat -tulpan | grep LISTEN
+# print pid of process that occupying 9999 port
+sudo ss -tulpan 'sport = :9999'
 ```
 
 ### mount remote filesystem via ssh, map folder via ssh, ssh remote folder
