@@ -354,3 +354,43 @@ pip3 install flask-sqlacodegen
 flask-sqlacodegen --flask sqlite:///db.sqlite > generated-code.txt
 
 ```
+# Alembic 
+
+## migration
+```bash
+# step #1 
+alembic init datastorage_mysql
+
+# step #2 
+# check your "sqlalchemy.url" in "ini file"
+# check your "target_metadata" in "env.py"
+# target_metadata = Base.metadata # from database.models import Base
+
+# step #3
+# generate current difference between model and 
+export PYTHONPATH=$PYTHONPATH:$(pwd)/src
+alembic --config alembic-local.ini revision --autogenerate -m "baseline" 2>out.txt
+
+alembic --config alembic-local.ini history
+
+alembic --config alembic-local.ini upgrade head
+
+```
+
+## reset alembic
+```sql
+delete from alembic_version where 1=1;
+```
+```bash
+rm datastorage_mysql/versions/*
+```
+
+## supplementary steps
+```bash
+# step set marker in DB
+# create table if not exists alembic_version
+alembic --config alembic-local.ini current
+
+# upgrade to specific revision
+alembic --config alembic-local.ini upgrade cfaf8359a319 --sql 
+```
