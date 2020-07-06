@@ -904,7 +904,10 @@ docker ps -a | awk '{print $1}' | tail -n +2
 
 ### stderr to stdout, error to out
 ```
-sudo python3 echo.py 2>&1 > out.txt
+sudo python3 echo.py > out.txt 2>&1 &
+sudo python3 echo.py &> out.txt &
+sudo python3 echo.py > out.txt &
+
 ```
 
 ### grep with line number
