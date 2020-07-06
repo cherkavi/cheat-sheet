@@ -902,6 +902,11 @@ docker ps -a | awk '{print $1}' | tail -n +2
 ./hbase.sh 2>/dev/null
 ```
 
+### stderr to stdout, error to out
+```
+sudo python3 echo.py 2>&1 > out.txt
+```
+
 ### grep with line number
 ```
 grep -nr "text for search" .
