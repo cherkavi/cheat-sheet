@@ -1702,8 +1702,48 @@ vim /var/www/html/index.html
 ufw app list
 ufw allow 'Apache'
 ufw status
-
 ```
+
+#### activate ssl module
+```bash
+sudo a2enmod ssl
+# sudo a2dismod ssl
+
+# tutorial
+vim /usr/share/doc/apache2/README.Debian.gz
+
+# creating self-signed certificates
+sudo make-ssl-cert generate-default-snakeoil --force-overwrite
+
+# check certificates
+sudo ls -la /etc/ssl/certs/ssl-cert-snakeoil.pem
+sudo ls -la /etc/ssl/private/ssl-cert-snakeoil.key
+```
+
+#### cert configuration
+vim /etc/apache2/sites-available/default-ssl.conf
+```conf
+                SSLCertificateFile      /etc/ssl/certs/ssl-cert-snakeoil.pem
+                SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+```
+#### restart apache
+sudo service apache2 restart
+
+
+-----
+Another tutorial 
+https://www.digicert.com/easy-csr/openssl.htm
+https://www.digicert.com/kb/csr-ssl-installation/ubuntu-server-with-apache2-openssl.htm
+
+Generating a RSA private key
+```bash
+openssl req -new -newkey rsa:2048 \
+-nodes -out cherkavideveloper.csr \
+-keyout cherkavideveloper.key \
+-subj "/C=DE/ST=Bavaria/L=München/O=cherkavi/CN=cherkavi developer" \
+```
+SSLCertificateFile "/path/to/www.example.com.cert"
+SSLCertificateKeyFile "/path/to/www.example.com.key"
 
 ### tools:
 - [ETL](www.talend.com)
@@ -2511,18 +2551,6 @@ keyring get cc.user cherkavi
 ```
 
 ## certification 
-```
-### creating self-signed certificates
-sudo make-ssl-cert generate-default-snakeoil --force-overwrite
-### check certificates
-sudo ls -la /etc/ssl/certs/ssl-cert-snakeoil.pem
-sudo ls -la /etc/ssl/private/ssl-cert-snakeoil.key
-```
------
-Another tutorial 
-https://www.digicert.com/easy-csr/openssl.htm
-https://www.digicert.com/kb/csr-ssl-installation/ubuntu-server-with-apache2-openssl.htm
-
 Generating a RSA private key
 ```bash
 openssl req -new -newkey rsa:2048 \
