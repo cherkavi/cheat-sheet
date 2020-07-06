@@ -2509,3 +2509,24 @@ keyring set cc.user cherkavi
 keyring get cc.user cherkavi
 
 ```
+
+## certification 
+```
+### creating self-signed certificates
+sudo make-ssl-cert generate-default-snakeoil --force-overwrite
+### check certificates
+sudo ls -la /etc/ssl/certs/ssl-cert-snakeoil.pem
+sudo ls -la /etc/ssl/private/ssl-cert-snakeoil.key
+```
+-----
+Another tutorial 
+https://www.digicert.com/easy-csr/openssl.htm
+https://www.digicert.com/kb/csr-ssl-installation/ubuntu-server-with-apache2-openssl.htm
+
+Generating a RSA private key
+```bash
+openssl req -new -newkey rsa:2048 \
+-nodes -out cherkavideveloper.csr \
+-keyout cherkavideveloper.key \
+-subj "/C=DE/ST=Bavaria/L=München/O=cherkavi/CN=cherkavi developer" \
+```
