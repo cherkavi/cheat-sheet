@@ -1354,6 +1354,12 @@ mkdir -p some-folder/{1..10}/{one,two,three}
 ONE="this is a test"; echo $ONE
 ```
 
+# activate environment variables from file, env file, export env, export all env
+```bash
+source .env.local
+export $(cut -d= -f1 .env.local)
+```
+
 ### system log file
 ```
 /var/log/syslog
