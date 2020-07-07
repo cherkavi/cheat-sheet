@@ -1354,10 +1354,12 @@ mkdir -p some-folder/{1..10}/{one,two,three}
 ONE="this is a test"; echo $ONE
 ```
 
-# activate environment variables from file, env file, export env, export all env
+# activate environment variables from file, env file, export env, export all env, all variable from file, all var export
 ```bash
 source .env.local
 export $(cut -d= -f1 .env.local)
+# if you have comments in file
+export `cat .env.dockerfile | awk -F= '{if($1 !~ "#"){print $1}}'`
 ```
 
 ### system log file
