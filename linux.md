@@ -617,6 +617,11 @@ nautilus "$(dirname -- "$PATH_TO_SVG_CONFLUENCE")"
 ls -d <path to folder>/*
 ```
 
+### ls directory, ls current folder, ls path, ls by path
+```sh
+find $FOLDER -maxdepth 4 -mindepth 4 | xargs ls -lad
+```
+
 ### real path to link
 ```
 readlink 'path to symlink'
