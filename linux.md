@@ -1032,9 +1032,15 @@ echo "hello World" | tr '[:lower:]' '[:upper:]
 echo "hello World 1234 woww" | tr -dc 'a-zA-Z'
 ```
 
-### replace text in all files of current directory 
+### replace text in all files of current directory, replace inline, replace inplace
 ```bash
 sed --in-place 's/LinkedIn/Yahoo/g' *
+```
+
+### no editor replacement, no vi no vim no nano, add line without editor, edit property without editor
+```
+# going to add new line in property file without editor
+sed --in-place 's/\[General\]/\[General\]\nenable_trusted_host_check=0/g' matomo-php.ini
 ```
 
 ### generate random string 
