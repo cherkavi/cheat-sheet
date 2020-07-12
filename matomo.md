@@ -1,14 +1,15 @@
-[privacy](https://matomo.org/docs/privacy)
-[DNT removing](https://forum.matomo.org/t/browser-do-not-track-kills-active-opt-out-ability/36116)
-[privacy cookie](https://matomo.org/faq/new-to-piwik/how-can-i-still-track-a-visitor-without-cookies-even-if-they-decline-the-cookie-consent/)
-[tracking API](https://developer.matomo.org/api-reference/tracking-api)
-[customize Matomo Tag](http://127.0.0.1:8080/index.php?module=CoreAdminHome&action=trackingCodeGenerator&idSite=1&period=day&date=yesterday)
+Useful links:
+* [privacy](https://matomo.org/docs/privacy)
+* [DNT removing](https://forum.matomo.org/t/browser-do-not-track-kills-active-opt-out-ability/36116)
+* [privacy cookie](https://matomo.org/faq/new-to-piwik/how-can-i-still-track-a-visitor-without-cookies-even-if-they-decline-the-cookie-consent/)
+* [tracking API](https://developer.matomo.org/api-reference/tracking-api)
+* [customize Matomo Tag](http://127.0.0.1:8080/index.php?module=CoreAdminHome&action=trackingCodeGenerator&idSite=1&period=day&date=yesterday)
 
-[matomo DB schema](https://developer.matomo.org/guides/database-schema)
-[matomo DB schema trace](https://developer.matomo.org/guides/log-data)
+* [matomo DB schema](https://developer.matomo.org/guides/database-schema)
+* [matomo DB schema trace](https://developer.matomo.org/guides/log-data)
 
-[matomo customization](https://matomo.org/docs/include-piwik-in-your-project/)
-[matomo debug container](https://developer.matomo.org/guides/tagmanager/debugging#:~:text=layer%2C%20and%20more.-,Activating%20the%20debug%20mode,the%20bottom%20of%20the%20website)
+* [matomo customization](https://matomo.org/docs/include-piwik-in-your-project/)
+* [matomo debug container](https://developer.matomo.org/guides/tagmanager/debugging#:~:text=layer%2C%20and%20more.-,Activating%20the%20debug%20mode,the%20bottom%20of%20the%20website)
 [track training](https://matomo.org/tag-manager-training/)
 
 
@@ -77,6 +78,7 @@ sed --in-place 's/debug = 0/debug = 1/g' /var/www/html/config/config.ini.php
 In Chrome will not work due default DNT 
 ```bash
 http://127.0.0.1:8080/matomo.php?idsite=4&rec=1
+# Settings->Privacy->Users opt-out->Support Do Not Track preference-> Disable ( not recommended )
 ```
 **need to de-activate **
 
