@@ -128,3 +128,30 @@ select * from matomo_log_conversion --  contains conversions (actions that match
 select * from matomo_log_conversion_item --  contains e-commerce conversion items
 ```
 
+
+client example ( head only )
+```html
+    <head>
+        <title>matomo-test</title>
+
+        <!-- Matomo -->
+        <script type="text/javascript">
+            var _paq = window._paq || [];
+            /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+            _paq.push(["setDoNotTrack", false]);
+
+          </script>
+          <!-- End Matomo Code -->
+
+  
+        <!-- Matomo Tag Manager -->
+        <script type="text/javascript">
+            var _mtm = _mtm || [];
+            _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src='http://localhost:8080/js/container_1uvttUpc.js'; s.parentNode.insertBefore(g,s);
+            </script>
+            <!-- End Matomo Tag Manager -->
+
+</head>
+```
