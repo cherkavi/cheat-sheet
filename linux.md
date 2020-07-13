@@ -2590,3 +2590,19 @@ openssl req -new -newkey rsa:2048 \
 -keyout cherkavideveloper.key \
 -subj "/C=DE/ST=Bavaria/L=München/O=cherkavi/CN=cherkavi developer" \
 ```
+
+## video camera, camera settings, [webcam setup](https://wiki.archlinux.org/index.php/Webcam_setup)
+```sh
+# camera utils installation
+sudo apt install v4l-utils
+sudo apt install qv4l2
+# list of devices
+v4l2-ctl --list-devices
+# list of settings
+v4l2-ctl -d /dev/video0 --list-ctrls
+```
+camera settings example
+```sh
+# /etc/udev/rules.d/99-logitech-default-zoom.rules
+SUBSYSTEM=="video4linux", KERNEL=="video[0-9]*", ATTRS{product}=="HD Pro Webcam C920", ATTRS{serial}=="BBBBFFFF", RUN="/usr/bin/v4l2-ctl -d $devnode --set-ctrl=zoom_absolute=170"
+```
