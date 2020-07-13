@@ -1365,12 +1365,15 @@ mkdir -p some-folder/{1..10}/{one,two,three}
 ONE="this is a test"; echo $ONE
 ```
 
-# activate environment variables from file, env file, export env, export all env, all variable from file, all var export
+# activate environment variables from file, env file, export env, export all env, all variable from file, all var export, env var file
 ```bash
-source .env.local
-export $(cut -d= -f1 .env.local)
+FILE_WITH_VAR=.env.local
+source $FILE_WITH_VAR
+export $(cut -d= -f1 $FILE_WITH_VAR)
+
 # if you have comments in file
-export `cat .env.dockerfile | awk -F= '{if($1 !~ "#"){print $1}}'`
+source $FILE_WITH_VAR
+export `cat $FILE_WITH_VAR | awk -F= '{if($1 !~ "#"){print $1}}'`
 ```
 
 ### system log file
