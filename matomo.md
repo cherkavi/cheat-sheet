@@ -4,6 +4,8 @@ Useful links:
 * [privacy cookie](https://matomo.org/faq/new-to-piwik/how-can-i-still-track-a-visitor-without-cookies-even-if-they-decline-the-cookie-consent/)
 * [tracking API](https://developer.matomo.org/api-reference/tracking-api)
 * [customize Matomo Tag](http://127.0.0.1:8080/index.php?module=CoreAdminHome&action=trackingCodeGenerator&idSite=1&period=day&date=yesterday)
+* [matomo forum](https://forum.matomo.org/)
+* https://github.com/matomo-org/tag-manager/tree/master/Template/Trigger
 
 * [matomo DB schema](https://developer.matomo.org/guides/database-schema)
 * [matomo DB schema trace](https://developer.matomo.org/guides/log-data)
