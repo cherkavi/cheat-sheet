@@ -1,18 +1,17 @@
 Useful links:
+* [video tutorial](https://matomo.org/docs/videos/)
+* [track training](https://matomo.org/tag-manager-training/)
+* [data layer, custom triggers](https://developer.matomo.org/guides/tagmanager/datalayer)
 * [privacy](https://matomo.org/docs/privacy)
 * [DNT removing](https://forum.matomo.org/t/browser-do-not-track-kills-active-opt-out-ability/36116)
 * [privacy cookie](https://matomo.org/faq/new-to-piwik/how-can-i-still-track-a-visitor-without-cookies-even-if-they-decline-the-cookie-consent/)
 * [tracking API](https://developer.matomo.org/api-reference/tracking-api)
 * [customize Matomo Tag](http://127.0.0.1:8080/index.php?module=CoreAdminHome&action=trackingCodeGenerator&idSite=1&period=day&date=yesterday)
-* [matomo forum](https://forum.matomo.org/)
-* https://github.com/matomo-org/tag-manager/tree/master/Template/Trigger
 
 * [matomo DB schema](https://developer.matomo.org/guides/database-schema)
 * [matomo DB schema trace](https://developer.matomo.org/guides/log-data)
-
 * [matomo customization](https://matomo.org/docs/include-piwik-in-your-project/)
 * [matomo debug container](https://developer.matomo.org/guides/tagmanager/debugging#:~:text=layer%2C%20and%20more.-,Activating%20the%20debug%20mode,the%20bottom%20of%20the%20website)
-[track training](https://matomo.org/tag-manager-training/)
 
 
 Download docker-compose files 
@@ -156,4 +155,25 @@ client example ( head only )
             <!-- End Matomo Tag Manager -->
 
 </head>
+```
+
+```sql
+select * from matomo_log_visit --  contains one entry per visit (returning visitor)
+select * from matomo_log_action --  contains all the type of actions possible on the website (e.g. unique URLs, page titles, download URLs…)
+select * from matomo_log_link_visit_action --  contains one entry per action of a visitor (page view, …)
+select * from matomo_log_conversion --  contains conversions (actions that match goals) that happen during a visit
+select * from matomo_log_conversion_item --  contains e-commerce conversion items
+```
+
+[DataLayer](https://developer.matomo.org/guides/tagmanager/datalayer)
+```js
+var _mtm = window._mtm = window._mtm || [];
+var _paq = window._paq = window._paq || [];
+
+_paq.push(['setCustomVariable',1,"list-id","13,14,15,16","page"]);
+
+window._mtm.push({'event': 'fire-showing-search-window'});
+// select * from matomo_log_link_visit_action
+
+// _paq.push(['trackPageView']);
 ```
