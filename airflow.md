@@ -435,6 +435,58 @@ with DAG(
             queue[-2] >> queue[-1]
 
 ```
+* task branching, task logic of moving, tasks order execution depends on parameters
+```python
+with DAG(default_args=DAG_DEFAULT_ARGS,
+         dag_id=DAG_CONFIG['dag_id'],
+         schedule_interval=DAG_CONFIG.get('schedule_interval', None)) as dag:
+
+    def return_branch(**kwargs):
+        decision = kwargs['dag_run'].conf.get('branch', 'run_markerers')
+        if decision == 'run_markerers':
+            return 'run_markerers'
+        if decision == 'merge_markers':
+            return 'merge_markers'
+        if decision == 'index_merged_markers':
+            return 'index_merged_markers'
+        if decision == 'index_single_markers':
+            return 'index_single_markers'
+        if decision == 'index_markers':
+            return ['index_single_markers', 'index_merged_markers']
+        else:
+            return 'run_markerers'
+
+
+    fork_op = BranchPythonOperator(
+        task_id='fork_marker_jobs',
+        provide_context=True,
+        python_callable=return_branch,
+    )
+
+    run_markerers_op = SparkSubmitOperator(
+        task_id='run_markerers',
+        trigger_rule='none_failed',
+    )
+
+    merge_markers_op = SparkSubmitOperator(
+        task_id='merge_markers',
+        trigger_rule='none_failed',
+    )
+
+    index_merged_markers_op = SparkSubmitOperator(
+        task_id='index_merged_markers',
+        trigger_rule='none_failed',
+    )
+
+    index_single_markers_op = SparkSubmitOperator(
+        task_id='index_single_markers',
+        trigger_rule='none_failed',
+    )
+
+    fork_op >> run_markerers_op >> merge_markers_op >> index_merged_markers_op
+    run_markerers_op >> index_single_markers_op
+
+```
 
 
 ## Plugins
