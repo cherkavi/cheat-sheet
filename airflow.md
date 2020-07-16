@@ -436,12 +436,17 @@ with DAG(
 
 ```
 * task branching, task logic of moving, tasks order execution depends on parameters
+https://www.astronomer.io/guides/airflow-branch-operator/
 ```python
 with DAG(default_args=DAG_DEFAULT_ARGS,
          dag_id=DAG_CONFIG['dag_id'],
          schedule_interval=DAG_CONFIG.get('schedule_interval', None)) as dag:
 
     def return_branch(**kwargs):
+        """
+	start point (start task) of the execution 
+	( everything else after start point will be executed )
+	"""
         decision = kwargs['dag_run'].conf.get('branch', 'run_markerers')
         if decision == 'run_markerers':
             return 'run_markerers'
