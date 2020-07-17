@@ -13,6 +13,11 @@ Useful links:
 * [matomo customization](https://matomo.org/docs/include-piwik-in-your-project/)
 * [matomo debug container](https://developer.matomo.org/guides/tagmanager/debugging#:~:text=layer%2C%20and%20more.-,Activating%20the%20debug%20mode,the%20bottom%20of%20the%20website)
 
+Domain:
+```
+TAG <>---T----Variable
+         L----Trigger(s)
+```
 
 Download docker-compose files 
 ```sh
