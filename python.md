@@ -355,7 +355,7 @@ flask-sqlacodegen --flask sqlite:///db.sqlite > generated-code.txt
 
 ```
 # Alembic 
-
+![migration schema](https://i.postimg.cc/tJSJWfFc/alembic.png)
 ## migration
 ```bash
 # step #1 
