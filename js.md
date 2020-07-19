@@ -1,4 +1,4 @@
-Workplace with Visual code
+### Workplace with Visual code
 * download addon: firefox-devtools.vscode-firefox-debug
 * .vscode/launch.json
 ```
@@ -24,3 +24,19 @@ Workplace with Visual code
 }
 ```
 * user settings -> find "firefox" -> "Firefox: Executable", write path to "Firefox Developer Edition"
+
+* create file in the root: jsconfig.json
+```json
+{
+    "compilerOptions": {
+        "target": "ES6"
+    },    
+}
+```
+
+### check variables
+```js
+  <script>
+    'use strict';
+```
+
