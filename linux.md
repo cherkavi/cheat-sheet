@@ -1272,6 +1272,7 @@ curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "u
 ```
 ### curl escape, curl special symbols
 ```sh
+# https://kb.objectrocket.com/elasticsearch/elasticsearch-cheatsheet-of-the-most-important-curl-requests-252
 curl -X GET "https://elasticsearch-label-search-prod.vantage.org/autolabel/_search?size=100&q=moto:*&pretty"
 ```
 
