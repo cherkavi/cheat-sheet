@@ -1270,6 +1270,10 @@ curl -X POST http://localhost:8983/test -H "Content-Type: application/json" --da
 # or with multipart body
 curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "userid=1234" http://mysuperserver/media/upload/
 ```
+### curl escape, curl special symbols
+```sh
+curl -X GET "https://elasticsearch-label-search-prod.vantage.org/autolabel/_search?size=100&q=moto:*&pretty"
+```
 
 ### curl without progress, curl silent
 * curl -s -X GET http://google.com
