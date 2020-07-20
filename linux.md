@@ -1380,7 +1380,7 @@ export `cat $FILE_WITH_VAR | awk -F= '{if($1 !~ "#"){print $1}}'`
 ```
 /var/log/syslog
 ```
-### Debian install package via proxy
+### Debian install package via proxy, apt install proxy, apt proxy
 ```
 sudo http_proxy='http://user:@proxy.muc:8080' apt install meld
 ```
