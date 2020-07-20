@@ -192,6 +192,12 @@ chmod 700 ~/.ssh ;
 chmod 600 ~/.ssh/authorized_keys
 ```
 
+### ssh fingerprint, ssh checking
+```
+ssh -o StrictHostKeyChecking=no user@ubsp00013.vantage.org
+sshpass -p my_password ssh -o StrictHostKeyChecking=no my_user@ubsp00013.vantage.org
+```
+
 ### manage multiply keys
 ```sh
 $ ls ~/.ssh
