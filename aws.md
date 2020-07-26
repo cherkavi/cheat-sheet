@@ -284,6 +284,9 @@ ssh -i $AWS_KEY_PAIR ubuntu@$INSTANCE_PUBLIC_DNS
 reading information about current instance, local ip address, my ip address, connection to current instance, instance reflection, instance metadata, instance description
 ```sh
 curl -X GET http://169.254.169.254/latest/meta-data/
+curl -X GET http://169.254.169.254/latest/meta-data/iam/security-credentials/
+curl -X GET http://169.254.169.254/latest/api/token
+
 ```
 
 ---
