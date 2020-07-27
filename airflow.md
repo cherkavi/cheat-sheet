@@ -129,6 +129,16 @@ Data Profiling->Ad Hoc Query-> postgres_default
 ```sql
 select * from dag_run;
 ```
+via PostgreConnection
+```
+    clear_xcom = PostgresOperator(
+        task_id='clear_xcom',
+        provide_context=True,
+        postgres_conn_id='airflow-postgres',
+        trigger_rule="all_done",
+        sql="delete from xcom where dag_id LIKE 'my_dag%'",
+        dag=dag)
+```
 
 # REST API
 ## trigger DAG - python
