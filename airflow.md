@@ -225,7 +225,10 @@ def python_operator_core_func(**context):
    # the same as previous
    # manipulate with task-instance inside custom function, context inside custom function
    //  context['ti'].xcom_push(key="k1", value="v1")
-   context.get('ti').xcom_push(key="k1", value="v1")
+   context.get("ti").xcom_push(key="k1", value="v1")
+   
+   // and after that pull it and read first value
+   // context.get("ti").xcom_pull(task_ids="name_of_task_with_push")[0]
 ...   
 PythonOperator(task_id="python_example", python_callable=python_operator_core_func, provide_context=True, do_xcom_push=True )
 ```
