@@ -433,6 +433,33 @@ with DAG(
     second_operator = second_http_call()
     first_operator >> second_operator
 ```
+* avoid declaration of Jinja inside parameters
+```python 
+# not working !!!!
+    maprdb_read_session_metadata = SimpleHttpOperator(
+        task_id=MAPRDB_REST_API_TASK_ID,
+        method="GET",
+        http_conn_id="{{ dag_run.conf['session_id'] }}",
+        endpoint=api_endpoint,
+        data={"fields": [JOB_CONF["field_name"], ]},
+        log_response=True,
+        xcom_push=True
+```
+```
+# WORKING !!!
+    api_endpoint = "{{ dag_run.conf['session_id'] }}"
+    maprdb_read_session_metadata = SimpleHttpOperator(
+        task_id=MAPRDB_REST_API_TASK_ID,
+        method="GET",
+        http_conn_id=JOB_CONF["http_conn_id"],
+        endpoint=api_endpoint,
+        data={"fields": [JOB_CONF["field_name"], ]},
+        log_response=True,
+        xcom_push=True
+    )
+
+```
+
 * execute list of tasks from external source, subdag, task loop
 ```python
 
