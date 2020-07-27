@@ -435,29 +435,16 @@ with DAG(
 ```
 * avoid declaration of Jinja inside parameters
 ```python 
-# not working !!!!
+    # api_endpoint = "{{ dag_run.conf['session_id'] }}"
     maprdb_read_session_metadata = SimpleHttpOperator(
         task_id=MAPRDB_REST_API_TASK_ID,
         method="GET",
         http_conn_id="{{ dag_run.conf['session_id'] }}",
-        endpoint=api_endpoint,
+	# sometimes not working and need to create external variable like api_endpoint !!!!
+        endpoint="{{ dag_run.conf['session_id'] }}",
         data={"fields": [JOB_CONF["field_name"], ]},
         log_response=True,
         xcom_push=True
-```
-```
-# WORKING !!!
-    api_endpoint = "{{ dag_run.conf['session_id'] }}"
-    maprdb_read_session_metadata = SimpleHttpOperator(
-        task_id=MAPRDB_REST_API_TASK_ID,
-        method="GET",
-        http_conn_id=JOB_CONF["http_conn_id"],
-        endpoint=api_endpoint,
-        data={"fields": [JOB_CONF["field_name"], ]},
-        log_response=True,
-        xcom_push=True
-    )
-
 ```
 * logging, log output, print log
 ```
