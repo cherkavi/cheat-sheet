@@ -459,7 +459,11 @@ with DAG(
     )
 
 ```
-
+* logging, log output, print log
+```
+import logging
+logging.info("some logs")
+```
 * execute list of tasks from external source, subdag, task loop
 ```python
 
