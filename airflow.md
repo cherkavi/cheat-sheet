@@ -224,6 +224,7 @@ def python_operator_core_func(**context):
    context["dag_run"].conf['dag_run_argument']
    # the same as previous
    # manipulate with task-instance inside custom function, context inside custom function
+   //  context['ti'].xcom_push(key="k1", value="v1")
    context.get('ti').xcom_push(key="k1", value="v1")
 ...   
 PythonOperator(task_id="python_example", python_callable=python_operator_core_func, provide_context=True, do_xcom_push=True )
