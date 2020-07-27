@@ -243,6 +243,32 @@ def python_operator_core_func(**context):
 PythonOperator(task_id="python_example", python_callable=python_operator_core_func, provide_context=True, do_xcom_push=True )
 ```
 
+### retrieve all values from XCOM 
+```python
+from datetime import datetime
+from airflow import DAG
+from airflow.operators.python_operator import PythonOperator
+from airflow.utils.timezone import make_aware
+from airflow.models import XCom
+
+def pull_xcom_call(**kwargs):
+    # !!! hard-coded value 
+    execution_date = make_aware(datetime(2020, 7, 24, 23, 45, 17, 00))
+    xcom_values = XCom.get_many(dag_ids=["data_pipeline"], include_prior_dates=True, execution_date=execution_date)
+    print('XCom.get_many >>>', xcom_values)
+    
+    get_xcom_with_ti = kwargs['ti'].xcom_pull(dag_id="data_pipeline", include_prior_dates=True)
+    print('ti.xcom_pull with include_prior_dates >>>', get_xcom_with_ti)
+
+
+xcom_pull_task = PythonOperator(
+    task_id='xcom_pull_task',
+    dag=dag, # here need to set DAG 
+    python_callable=pull_xcom_call,
+    provide_context=True
+)
+```
+
 ### sub-dags
 ```python
 from airflow.operators.subdag_operator import SubDagOperator
