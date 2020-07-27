@@ -239,6 +239,7 @@ def python_operator_core_func(**context):
    
    // and after that pull it and read first value
    // context.get("ti").xcom_pull(task_ids="name_of_task_with_push")[0]
+   // context.get("ti").xcom_pull(task_ids=["name_of_task_with_push", "name_another_task_to_push"])[0]
 ...   
 PythonOperator(task_id="python_example", python_callable=python_operator_core_func, provide_context=True, do_xcom_push=True )
 ```
