@@ -115,6 +115,10 @@ git log -5 develop --name-only
 ```
 git log -10 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --all --author "Cherkashyn"
 ```
+### list of authors, list of users, list of all users
+```sh
+git shortlog -sne --all
+```
 ### list of files by author
 ```bash
 git whatchanged --author="Cherkashyn" --name-only 
