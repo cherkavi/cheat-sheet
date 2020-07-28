@@ -30,7 +30,7 @@ Combination of Dags, Operators, Tasks, TaskInstances
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
 ![multi node](https://i.postimg.cc/MGyy4DGJ/airflow-architecture-multinode.png)
 ![statuses](https://i.postimg.cc/g2kd76Z5/airflow-statuses.png)
-
+![task lifecycle](https://airflow.apache.org/docs/stable/_images/task_lifecycle_diagram.png)
 ### components
 * WebServer  
   * read user request  
