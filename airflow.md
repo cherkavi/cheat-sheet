@@ -8,6 +8,7 @@
 
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
 ## Key concepts
+[official documentation of key concepts](https://airflow.apache.org/docs/stable/concepts.html)
 * DAG
 a graph object representing your data pipeline ( collection of tasks ).  
 Should be:
