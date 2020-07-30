@@ -596,6 +596,11 @@ base_color=normal=brightgray,black:marked=brightcyan,black:selected=black,lightg
 mc --nocolor
 ```
 
+### find all symlinks
+```
+ls -lR . | grep ^l
+```
+
 ### full path to file, file behind symlink, absolute path to file
 ```
 readlink -f {file}
