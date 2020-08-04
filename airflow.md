@@ -552,6 +552,39 @@ with DAG(default_args=DAG_DEFAULT_ARGS,
     run_markerers_op >> index_single_markers_op
 
 ```
+* access to dag runs, access to dag instances, set dags state
+```
+from airflow.models import DagRun
+from airflow.operators.python_operator import PythonOperator
+from airflow.utils.db import provide_session
+from airflow.utils.state import State
+from airflow.utils.trigger_rule import TriggerRule
+
+@provide_session
+def stop_unfinished_dag_runs(trigger_task_id, session=None, **context):
+    dros = context["ti"].xcom_pull(task_ids=trigger_task_id)
+    run_ids = list(map(lambda dro: dro.run_id, dros))
+
+    # identify unfinished DAG runs of rosbag_export
+    dr = DagRun
+    running_dags = session.query(dr).filter(dr.run_id.in_(run_ids), dr.state.in_(State.unfinished())).all()
+
+    if running_dags and len(running_dags)>0:
+        # set status failed
+        for dag_run in running_dags:
+            dag_run.set_state(State.FAILED)
+        print("set unfinished DAG runs to FAILED")
+
+
+def dag_run_cleaner_task(trigger_task_id):
+    return PythonOperator(
+        task_id=dag_config.DAG_RUN_CLEAN_UP_TASK_ID,
+        python_callable=stop_unfinished_dag_runs,
+        provide_context=True,
+        op_args=[trigger_task_id]
+    )
+```
+
 
 
 ## Plugins
