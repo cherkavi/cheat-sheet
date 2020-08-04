@@ -585,6 +585,40 @@ def dag_run_cleaner_task(trigger_task_id):
     )
 ```
 
+* trig and wait, run another dag and wait
+```python
+from airflow.models import BaseOperator
+from airflow.operators.dagrun_operator import DagRunOrder
+
+from airflow_common.operators.awaitable_trigger_dag_run_operator import \
+    AwaitableTriggerDagRunOperator
+from airflow_dags_manual_labeling_export.ad_labeling_export.config import \
+    dag_config
+
+
+def _run_another(context, dag_run_obj: DagRunOrder):
+    # config from parent dag run
+    config = context["dag_run"].conf.copy()
+    config["context"] = dag_config.DAG_CONTEXT
+    dag_run_obj.payload = config
+
+    dag_run_obj.run_id = f"{dag_config.DAG_ID}_triggered_{context['execution_date']}"
+    return dag_run_obj
+
+
+def trig_another_dag() -> BaseOperator:
+    """
+    trig another dag
+    :return: initialized TriggerDagRunOperator
+    """
+    return AwaitableTriggerDagRunOperator(
+        task_id=dag_config.TRIGGER_MANUAL_LABEL_EXPORT_DAG_TASK_ID,
+        trigger_dag_id=dag_config.MANUAL_LABEL_EXPORT_DAG_ID,
+        python_callable=_run_another,
+        do_xcom_push=True,
+    )
+```
+
 
 
 ## Plugins
