@@ -612,8 +612,8 @@ def trig_another_dag() -> BaseOperator:
     :return: initialized TriggerDagRunOperator
     """
     return AwaitableTriggerDagRunOperator(
-        task_id=dag_config.TRIGGER_MANUAL_LABEL_EXPORT_DAG_TASK_ID,
-        trigger_dag_id=dag_config.MANUAL_LABEL_EXPORT_DAG_ID,
+        task_id="task_id",
+        trigger_dag_id="dag_id",
         python_callable=_run_another,
         do_xcom_push=True,
     )
