@@ -2215,6 +2215,18 @@ gnome keybinding
 /org/gnome/desktop/wm/keybindings
 ```
 
+### gnome extension manual installation
+```
+gnome-shell --version
+path_to_extension=~/Downloads/switcherlandau.fi.v28.shell-extension.zip
+
+plugin_uuid=`unzip -c $path_to_extension metadata.json | grep uuid | cut -d \" -f4`
+plugin_dir="$HOME/.local/share/gnome-shell/extensions/$plugin_uuid"
+mkdir -p $plugin_dir
+unzip -q $path_to_extension -d $plugin_dir/
+sudo systemctl restart gdm
+```
+
 ### install drivers, update drivers ubuntu
 ```
 sudo ubuntu-drivers autoinstall
