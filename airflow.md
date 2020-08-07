@@ -452,6 +452,12 @@ with DAG(
 import logging
 logging.info("some logs")
 ```
+* logging for task, task log
+```python
+ task_instance = context['ti']
+ task_instance.log.info("some logs for task")
+```
+
 * execute list of tasks from external source, subdag, task loop
 ```python
 
