@@ -2480,6 +2480,40 @@ git clone https://github.com/vim-airline/vim-airline ~/.vim/plugged/vim-airline
     └── vim-airline-themes
 ```
 ---
+# taskwarrior
+```sh
+task add what I need to do
+task add wait:2min  finish call
+task waiting
+task 25 modify wait:2min
+task 25 edit
+task 25 delete
+task 25 done
+task project:'BMW'
+task priority:high 
+task next
+```
+doc:
+* https://taskwarrior.org/docs/using_dates.html
+* https://taskwarrior.org/docs/durations.html
+
+extension:
+* https://github.com/ValiValpas/taskopen
+  installation issue: sudo cpan JSON
+  commands:
+```sh 
+  task 13 annotate -- ~/checklist.txt
+  task 13 annotate https://translate.google.com
+  task 13 denotate
+  taskopen 1
+
+  # add notes
+  task 1 annotate Notes
+  taskopen 1
+```
+  
+  
+---
 # vifm
 ## colorschema
 copy to ```~/.config/vifm/colors``` [color scheme](https://vifm.info/colorschemes.shtml)  
