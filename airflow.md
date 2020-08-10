@@ -245,7 +245,8 @@ def python_operator_core_func(**context):
 PythonOperator(task_id="python_example", python_callable=python_operator_core_func, provide_context=True, do_xcom_push=True )
 ```
 
-### task context without context, task jinja template
+### task context without context, task jinja template, jinja macros
+[magic numbers for jinja template](https://airflow.apache.org/docs/stable/macros-ref.html)
 ```
 def out_of_context_function():
    return_value = ("{{ ti.xcom_pull(task_ids='name_of_task_with_push')[0] }}")
