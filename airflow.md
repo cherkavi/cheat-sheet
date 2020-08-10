@@ -245,6 +245,12 @@ def python_operator_core_func(**context):
 PythonOperator(task_id="python_example", python_callable=python_operator_core_func, provide_context=True, do_xcom_push=True )
 ```
 
+### task context without context, task jinja template
+```
+def out_of_context_function():
+   return_value = ("{{ ti.xcom_pull(task_ids='name_of_task_with_push')[0] }}")
+```
+
 ### retrieve all values from XCOM 
 ```python
 from datetime import datetime
