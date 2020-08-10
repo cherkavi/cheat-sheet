@@ -285,9 +285,26 @@ export MAPR_TICKETFILE_LOCATION=$(maprlogin print | grep "keyfile" | awk '{print
 # open drill
 /opt/mapr/drill/drill-1.14.0/bin/sqlline -u "jdbc:drill:drillbit=ubs000103.vantagedp.com:31010;auth=MAPRSASL"
 ```
-example of querying data 
+drill querying data 
 ```sql
 select sessionId, isReprocessable from dfs.`/mapr/dp.prod.zurich/vantage/data/store/processed/0171eabfceff/reprocessable/part-00000-63dbcc0d1bed-c000.snappy.parquet`;
+```
+
+drill http
+```sh
+# obtain cookie from server
+curl -H "Content-Type: application/x-www-form-urlencoded" \
+  -k -c cookies.txt -s \
+  -d "j_username=$DRILL_USER" \
+  --data-urlencode "j_password=$DRILL_PASS" \
+  https://mapr-web.vantage.zur:21103/j_security_check
+
+# SQL request
+curl -k -b cookies.txt -X POST \
+-H "Content-Type: application/json" \
+-w "response-code: %{http_code}\n" \
+-d '{"queryType":"SQL", "query":  "select loggerTimestamp, key, `value` from dfs.`/mapr/dp.zurich/some-file-on-cluster` limit 10"}' \
+https://mapr-web.vantage.zur:21103/query.json
 ```
 
 ## MapRDB
