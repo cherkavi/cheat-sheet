@@ -1834,6 +1834,12 @@ create file '~/.Xmodmap'
 xev | grep keysym
 ```
 
+### key code, scan code, keyboard code
+```
+sudo evtest 
+sudo evtest /dev/input/event21
+```
+
 ### remap [hjkl] to [Left, Down, Up, Right], cursor hjkl
 content of $HOME/.config/xmodmap-hjkl
 ```
@@ -1886,9 +1892,10 @@ configuration
 ```
 xinput_calibration
 ```
-list of all devices
+list of all devices, device list, list of devices
 ```
 xinput --list
+cat /proc/bus/input/devices
 ```
 permanent applying
 ```
