@@ -2506,7 +2506,10 @@ doc:
 
 extension:
 * https://github.com/ValiValpas/taskopen
-  installation issue: sudo cpan JSON
+  installation issue: 
+```sh
+sudo cpan JSON
+```
   commands:
 ```sh 
   task 13 annotate -- ~/checklist.txt
