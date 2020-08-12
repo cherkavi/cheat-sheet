@@ -191,9 +191,10 @@ docker images --all
 ---
 ### [run container automatically, run on start, autorun, autostart ](https://docs.docker.com/config/containers/start-containers-automatically/)
 ```
-docker run -d --restart=unless-stopped \
-  rancher/rancher:latest
+docker run -d --restart=unless-stopped {CONTAINER ID}
+# docker update --restart=no {CONTAINER ID}
 ```
+|----|------------|
 | no |	Do not automatically restart the container. (the default) |
 | on-failure |	Restart the container if it exits due to an error, which manifests as a non-zero exit code. |
 | always |	Always restart the container if it stops. If it is manually stopped, it is restarted only when Docker daemon restarts or the container itself is manually restarted. (See the second bullet listed in restart policy details) |
