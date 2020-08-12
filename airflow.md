@@ -631,7 +631,41 @@ def trig_another_dag() -> BaseOperator:
         do_xcom_push=True,
     )
 ```
+* smart skip, skip task
+```
+from airflow.models import DAG
+from airflow.operators.python_operator import BranchPythonOperator
+from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.python_operator import PythonOperator
+from airflow.models.skipmixin import SkipMixin
 
+class SelectOperator(PythonOperator, SkipMixin):
+
+    def _substract_by_taskid(self, task_list, filtered_ids):
+        return filter( lambda task_instance: task_instance.task_id not in filtered_ids, task_list);
+
+    def execute(self, context):
+        condition = super().execute(context)
+        # self.skip(context['dag_run'], context['ti'].execution_date, downstream_tasks)
+
+        self.log.info(">>>  SelectOperator")
+        self.log.info(">>> Condition %s", condition)
+        downstream_tasks = context['task'].get_flat_relatives(upstream=False)
+	
+        # self.log.info(">>> Downstream task_ids %s", downstream_tasks)
+        # filtered_tasks = list(self._substract_by_taskid(downstream_tasks, condition))
+        # self.log.info(">>> Filtered task_ids %s", filtered_tasks)
+        # self.skip(context['dag_run'], context['ti'].execution_date, filtered_tasks)        
+        
+        self.skip_all_except(context['ti'], condition)
+        self.log.info(">>>>>>>>>>>>>>>>>>>")
+
+with DAG('autolabelling_example', description='First DAG', schedule_interval=None, start_date=datetime(2018, 11, 1), catchup=False) as dag:
+    def fork_label_job_branch(**context):
+        return ['index_single_labels']        
+
+    fork_operator = SelectOperator(task_id=FORK_LABEL_TASK_ID, provide_context=True, python_callable=fork_label_job_branch)
+```
 
 
 ## Plugins
