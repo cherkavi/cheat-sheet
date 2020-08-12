@@ -481,6 +481,12 @@ docker wait {CONTAINER ID}
 docker stop {CONTAINER ID}
 ```
 
+### stop restarted container, compose stop, stop autostart, stop restarting
+```
+docker update --restart=no {CONTAINER ID}
+docker stop {CONTAINER ID}
+```
+
 ### pause/unpause executing container
 ```
 docker pause {CONTAINER ID}
