@@ -307,6 +307,19 @@ curl -k -b cookies.txt -X POST \
 https://mapr-web.vantage.zur:21103/query.json
 ```
 
+drill java
+[src code](https://github.com/cherkavi/java-code-example/blob/master/drill/src/main/java/DrillCollaboration.java)
+```sh
+/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.222/jre/bin/java \
+-Ddrill.customAuthFactories=org.apache.drill.exec.rpc.security.maprsasl.MapRSaslFactory \
+-Djava.security.auth.login.config=/opt/mapr/conf/mapr.login.conf \
+-Dzookeeper.sasl.client=false \
+-Dlog.path=/opt/mapr/drill/drill-1.14.0/logs/sqlline.log \
+-Dlog.query.path=/opt/mapr/drill/drill-1.14.0/logs/sqlline_queries/data_api-s_sqlline_queries.json \
+-cp /opt/mapr/drill/drill-1.14.0/conf:/opt/mapr/drill/drill-1.14.0/jars/*:/opt/mapr/drill/drill-1.14.0/jars/ext/*:/opt/mapr/drill/drill-1.14.0/jars/3rdparty/*:/opt/mapr/drill/drill-1.14.0/jars/classb/*:/opt/mapr/drill/drill-1.14.0/jars/3rdparty/linux/*:drill_jdbc-1.0-SNAPSHOT.jar \
+DrillCollaboration
+```
+
 ## MapRDB
 Show info
 ```bash
