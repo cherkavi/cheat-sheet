@@ -290,8 +290,11 @@ drill querying data
 select sessionId, isReprocessable from dfs.`/mapr/dp.prod.zurich/vantage/data/store/processed/0171eabfceff/reprocessable/part-00000-63dbcc0d1bed-c000.snappy.parquet`;
 ```
 
-drill http
+[drill http](https://docs.datafabric.hpe.com/61/Drill/drill-web-permissions.html)
 ```sh
+# check status
+curl --insecure -X GET https://mapr-web.vantage.zur:21103/status
+
 # obtain cookie from server
 curl -H "Content-Type: application/x-www-form-urlencoded" \
   -k -c cookies.txt -s \
