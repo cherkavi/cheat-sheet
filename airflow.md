@@ -659,6 +659,19 @@ def trig_another_dag() -> BaseOperator:
         do_xcom_push=True,
     )
 ```
+* read input parameters from REST API call
+```sh
+DAG_NAME="my_dag"
+PARAM_1="my_own_param1"
+PARAM_2="my_own_param2"
+ENDPOINT="https://prod.airflow.vantage.zur/api/experimental/dags/$DAG_NAME/dag_runs"
+BODY='{"configuration_of_call":{"parameter1":"'$PARAM_1'","parameters2":"'$PARAM_2'"}}'
+curl --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT
+```
+```python
+decision = context['dag_run'].configuration_of_call.get('parameter1', 'default_value')
+```
+
 * smart skip, skip task
 ```
 from airflow.models import DAG
