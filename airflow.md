@@ -325,6 +325,34 @@ branch_task >> postgresql_task
 branch_task >> mongo_task
 ```
 
+### branching with avoiding unexpected run, fix branching
+```
+from airflow.operators.python_operator import PythonOperator
+from airflow.models.skipmixin import SkipMixin
+
+ def fork_label_determinator(**context):
+            decision = context['dag_run'].conf.get('branch', 'default')
+	    return "run_task_1"
+
+        all_tasks = set([task1, task2, task3])
+        class SelectOperator(PythonOperator, SkipMixin):
+            def execute(self, context):
+                condition = super().execute(context)
+                self.log.info(">>> Condition %s", condition)
+                if condition=="run_task_1":
+                    self.skip(context['dag_run'], context['ti'].execution_date, list(all_tasks-set([task1,])) )
+                    return
+
+        # not working properly - applied workaround
+        # fork_label = BranchPythonOperator(
+        fork_label = SelectOperator(
+            task_id=FORK_LABEL_TASK_ID,
+            provide_context=True,
+            python_callable=fork_label_determinator,
+            dag=dag_subdag
+        )
+```
+
 ### Service Level Agreement, SLA
 GUI: Browse->SLA Misses  
 ```python
