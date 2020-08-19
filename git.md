@@ -85,6 +85,23 @@ git fetch --prune
 git branch --merged | egrep -v "(^\*|master|in-progress)" | xargs git branch -d
 ```
 
+### remove commit, remove wrong commit
+```
+commit1=10141d299ac14cdadaca4dd586195309020
+commit2=b6f2f57a82810948eeb4b7e7676e031a634 # should be removed and not important
+commit3=be82bf6ad93c8154b68fe2199bc3e52dd69
+
+current_branch=my_branch
+current_branch_ghost=my_branch_2
+
+git checkout $commit1
+git checkout -b $current_branch_ghost
+git cherry-pick $commit3
+git push --force origin HEAD:$current_branch
+git reset --hard origin/$current_branch
+git branch -d $current_branch_ghost
+```
+
 
 ### check hash-code of the branch
 ```
