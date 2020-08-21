@@ -124,6 +124,12 @@ git merge-base --is-ancestor <ancestor_commit> <descendant_commit>; if [[ 1 -eq 
 ```sh
 git log -5 develop
 ```
+
+### check last commits for subfolder, check last commits for author
+```
+git log -10 --author "Frank Newman" -- data-api
+```
+
 ### check files only for last commits
 ```sh
 git log -5 develop --name-only
