@@ -332,7 +332,7 @@ git revert <commit>
 git commit --amend -m "<new message>"
 ```
 
-### git show author of the commit
+### git show author of the commit, log commit, show commits only
 ```
 git log --pretty=format:"%h - %an, %ar : %s" <commit SHA> -1
 ```
