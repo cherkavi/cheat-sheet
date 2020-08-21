@@ -322,6 +322,15 @@ git diff {hash}~ {hash}
 git cherry-pick -n {commit-hash}
 ```
 
+### git cherry pick, git cherry-pick conflict
+```sh
+# in case of merge conflict during cherry-pick
+git cherry-pick --continue
+git cherry-pick --abort
+git cherry-pick --skip
+# !!! don't use "git commit" 
+```
+
 ### git revert commit
 ```
 git revert <commit>
