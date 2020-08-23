@@ -302,6 +302,14 @@ curl -H "Content-Type: application/x-www-form-urlencoded" \
   --data-urlencode "j_password=$DRILL_PASS" \
   https://mapr-web.vantage.zur:21103/j_security_check
 
+# obtain version
+curl -k -b cookies.txt -X POST \
+-H "Content-Type: application/json" \
+-w "response-code: %{http_code}\n" \
+-d '{"queryType":"SQL", "query": "select * from sys.version"}' \
+https://mapr-web.vantage.zur:21103/query.json
+
+
 # SQL request
 curl -k -b cookies.txt -X POST \
 -H "Content-Type: application/json" \
