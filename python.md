@@ -352,8 +352,12 @@ sqlacodegen mysql+oursql://user:password@localhost/dbname
 # Flask approach
 pip3 install flask-sqlacodegen
 flask-sqlacodegen --flask sqlite:///db.sqlite > generated-code.txt
-
 ```
+# sql client
+```
+pip install -U mycli
+```
+
 # Alembic 
 ![migration schema](https://i.postimg.cc/tJSJWfFc/alembic.png)
 ## migration
