@@ -519,7 +519,7 @@ esac
 
 exit 0
 ```
-or
+or custom service, service destination
 ```bash
 sudo vim /etc/systemd/system/YOUR_SERVICE_NAME.service
 ```
@@ -531,7 +531,7 @@ Wants=network.target
 After=syslog.target network-online.target
 
 [Service]
-Type=simple
+Type=simplesystemctl
 ExecStart=YOUR_COMMAND_HERE
 Restart=on-failure
 RestartSec=10
@@ -540,6 +540,31 @@ KillMode=process
 [Install]
 WantedBy=multi-user.target
 ```
+
+service with docker container, service dockerized app
+```text
+[Unit]
+Description=Python app 
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=5
+Restart=always
+ExecStartPre=-/usr/bin/docker stop app
+ExecStartPre=-/usr/bin/docker rm app
+ExecStart=/usr/bin/docker run \
+    --env-file /home/user/.env.app \
+    --name app \
+    --publish 5001:5001 \
+    appauth
+ExecStop=/usr/bin/docker stop app
+
+[Install]
+WantedBy=multi-user.target
+```
+
+
 
 managing services
 ```sh
@@ -552,7 +577,9 @@ systemctl enable YOUR_SERVICE_NAME
 systemctl start YOUR_SERVICE_NAME
 systemctl status YOUR_SERVICE_NAME
 systemctl daemon-reload YOUR_SERVICE_NAME
+systemctl stop YOUR_SERVICE_NAME
 ```
+
 
 reset X-server, re-start xserver, reset linux gui
 ubuntu only
