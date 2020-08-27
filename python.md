@@ -353,9 +353,11 @@ sqlacodegen mysql+oursql://user:password@localhost/dbname
 pip3 install flask-sqlacodegen
 flask-sqlacodegen --flask sqlite:///db.sqlite > generated-code.txt
 ```
-# sql client
+# sql client, console mysql client, mysql console
 ```
 pip install -U mycli
+
+# for activating multiline mode 'F3'
 ```
 
 # Alembic 
