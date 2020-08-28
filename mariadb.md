@@ -65,7 +65,7 @@ select * from information_schema.columns where TABLE_NAME='listings_dir' and COL
 ### add column 
 ```sql
 -- pay attention to quotas around names
-ALTER TABLE `some_table` ADD `json_source` varchar(32) NOT NULL;
+ALTER TABLE `some_table` ADD `json_source` varchar(32) NOT NULL DEFAULT '';
 ```
 
 ### print all tables and all columns
