@@ -62,6 +62,12 @@ show columns from table_name;
 select * from information_schema.columns where TABLE_NAME='listings_dir' and COLUMN_NAME like '%PRODUCT%';
 ```
 
+### add column 
+```sql
+-- pay attention to quotas around names
+ALTER TABLE `some_table` ADD `json_source` varchar(32) NOT NULL;
+```
+
 ### print all tables and all columns
 ```sql
 select table_name, column_name, data_type from information_schema.columns
