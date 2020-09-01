@@ -25,10 +25,19 @@ docker exec -it mysql-container  /usr/bin/mysql  --user=root --password=root
 
 ### import db export db, archive, backup, restore
 ```sh
-# backup
-mysqldump -u mysql_user -p DATABASE_NAME > backup.sql
+# prerequisites
+## try just to connect to db
+mysql --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --database=masterdb --password=my_passw
+## docker mysql client 
+docker run -it mariadb mysql --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --database=masterdb --password=my_passw
+
+# backup ( pay attention to 'database' key )
+mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw --databases masterdb > backup.sql
+
 # restore
  mysql -u mysql_user -p DATABASE < backup.sql
+ 
+ 
 ```
 
 ###execute sql file with mysqltool
