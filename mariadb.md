@@ -1,13 +1,13 @@
 [documentation](https://mariadb.com/kb/en/)
 
-###execute docker container ( utf8 ):
+### execute docker container ( utf8 ):
 ```
 docker pull mariadb
 
 docker run --name mysql-container --volume /my/local/folder/data:/var/lib/mysql --publish 3306:3306 --env MYSQL_ROOT_PASSWORD=root --detach mariadb --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 ```
 
-###execute docker container, create DB with specific name, execute all scripts in folder:
+### execute docker container, create DB with specific name, execute all scripts in folder:
 ```
 docker pull mariadb
 
@@ -15,7 +15,7 @@ docker run --name mysql-container --volume /my/local/folder/data:/var/lib/mysql 
 
 ```
 
-###connect to mysql shell tool:
+### connect to mysql shell tool:
 ```
 mysql --user=root --password=root
 ```
@@ -33,14 +33,16 @@ docker run -it mariadb mysql --host=mysql-dev-eu.a.db.ondigitalocean.com --user=
 
 # backup ( pay attention to 'database' key )
 mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw --databases masterdb > backup.sql
+mysqldump --extended-insert --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw --databases masterdb | sed 's$),($),\n($g' > backup.sql
+mysqldump --extended-insert=FALSE --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw --databases masterdb > backup.sql
+mysqldump --tab=/path/to/folder/with/tables --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw --databases masterdb > backup.sql
 
 # restore
- mysql -u mysql_user -p DATABASE < backup.sql
- 
+mysql -u mysql_user -p DATABASE < backup.sql
  
 ```
 
-###execute sql file with mysqltool
+### execute sql file with mysqltool
 * inside mysql 
 ```
 source /path/to/file.sql
@@ -86,10 +88,10 @@ select table_name, column_name, data_type from information_schema.columns
 order by TABLE_NAME, ORDINAL_POSITION
 ```
 
-###version
+### version
 SELECT VERSION();
 
-###example of spring config
+### example of spring config
 * MariaDB
 ```
 ds.setMaximumPoolSize(20);
@@ -110,7 +112,7 @@ jdbc.dialect: org.hibernate.dialect.MySQL57InnoDBDialect
 jdbc:mysql://localhost:3306/bpmnui?serverTimezone=Europe/Brussels
 ```
 
-###maven dependency
+### maven dependency
 * MySQL
 ```
 ds.setDriverClassName("com.mysql.jdbc.Driver");
@@ -131,7 +133,7 @@ ds.setDriverClassName("org.mariadb.jdbc.Driver");
 </dependency>
 ```
 
-###create database:
+### create database:
 ```
 DROP DATABASE IF EXISTS {databasename};
 CREATE DATABASE {databasename}
