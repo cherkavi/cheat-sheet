@@ -484,7 +484,7 @@ curl -X POST --user weblogic:weblogic1 -H X-Requested-By:weblogic -H Accept:appl
    , "targets": ["pportal_group"]
 }
 ```
-# OpenXava
+# [OpenXava](https://openxava.org/)
 ```
 OpenXava create new project from DataSource
 	1 - switch to workspace %OPENXAVA%/workspace
