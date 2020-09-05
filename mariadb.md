@@ -139,3 +139,15 @@ CREATE DATABASE {databasename}
   CHARACTER SET = 'utf8'
   COLLATE = 'utf8_general_ci';
 ```
+
+### subquery returns more than one row
+```
+select 
+    u.name_f, 
+    u.name_l, 
+    (select GROUP_CONCAT(pp.title, '')
+    from hlm_practices pp where user_id=100
+    )
+from hlm_user u 
+where u.user_id = 100;
+```
