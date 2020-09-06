@@ -1070,9 +1070,11 @@ echo "hello World" | tr '[:lower:]' '[:upper:]
 echo "hello World 1234 woww" | tr -dc 'a-zA-Z'
 ```
 
-### replace text in all files of current directory, replace inline, replace inplace
+### replace text in all files of current directory, replace inline, replace inplace, inline replace
 ```bash
 sed --in-place 's/LinkedIn/Yahoo/g' *
+# replace tab symbol with comma symbol
+sed --in-place 's/\t/,/g' one_file.txt
 ```
 
 ### no editor replacement, no vi no vim no nano, add line without editor, edit property without editor
