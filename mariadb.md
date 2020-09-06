@@ -65,6 +65,13 @@ use {databasename};
 show tables;
 ```
 
+### print all tables and all columns
+```sql
+select table_name, column_name, data_type from information_schema.columns
+ where TABLE_NAME like 'some_prefix%'
+order by TABLE_NAME, ORDINAL_POSITION
+```
+
 ### print all columns in table, show table structure
 ```sql
 describe table_name;
@@ -80,12 +87,6 @@ ALTER TABLE `some_table` ADD `json_source` varchar(32) NOT NULL DEFAULT '';
 ALTER TABLE `some_table` MODIFY `json_source` varchar(32) NULL;
 ```
 
-### print all tables and all columns
-```sql
-select table_name, column_name, data_type from information_schema.columns
- where TABLE_NAME like '%some_prefix'
-order by TABLE_NAME, ORDINAL_POSITION
-```
 
 ### version
 SELECT VERSION();
