@@ -1291,6 +1291,8 @@ curl -u username:password http://example.com
 ```
 curl -X PUT -H "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charset=ISO-8859-1" -H "x-username: cherkavi" -d@put-request.data http://q-brands-app01.wirecard.sys:9000/draft/brands/229099017/model/country-configurations
 ```
+
+### curl POST example
 ```
 curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: application/json" --data '{"add":"data"}'
 ```
@@ -1303,6 +1305,8 @@ curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Conte
 curl -X POST http://localhost:8983/test -H "Content-Type: application/json" --data-binary '@/path/to/file.json'
 # or with multipart body
 curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "userid=1234" http://mysuperserver/media/upload/
+# POST request GET style
+curl -X POST "http://localhost:8888/api/v1/notification/subscribe?email=one%40mail.ru&country=2&state=517&city=qWkbs&articles=true&questions=true&listings=true" -H "accept: application/json"
 ```
 ### curl escape, curl special symbols
 ```sh
