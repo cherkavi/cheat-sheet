@@ -1,4 +1,4 @@
-Docker
+# Docker
 ======
 ### [online playground](https://labs.play-with-docker.com)
 ### Ecosystem
@@ -10,6 +10,10 @@ Docker
 * Docker Swarm
 * Docker HUB
 * Docker Cloud
+
+### Tools
+* [layer explorer](https://github.com/wagoodman/dive)
+
 
 ### information about docker itself
 ```
