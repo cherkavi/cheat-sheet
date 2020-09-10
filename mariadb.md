@@ -42,7 +42,20 @@ mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 -
 
 # restore
 mysql -u mysql_user -p DATABASE < backup.sql
- 
+```
+
+#### backup issue: during backup strange message appears: "Enter password:" even with password in command line
+```sh
+vim .my.cnf
+```
+```properties
+[mysqldump]
+user=mysqluser
+password=secret
+```
+```sh
+# !!! without password !!!
+mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 masterdb table_1 table_2 > backup.sql
 ```
 
 ### execute sql file with mysqltool
