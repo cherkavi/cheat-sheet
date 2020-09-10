@@ -1429,9 +1429,24 @@ export `cat $FILE_WITH_VAR | awk -F= '{if($1 !~ "#"){print $1}}'`
 ```
 /var/log/syslog
 ```
-### Debian install package via proxy, apt install proxy, apt proxy
+### Debian install package via proxy, apt install proxy, apt proxy, apt update proxy
 ```
 sudo http_proxy='http://user:@proxy.muc:8080' apt install meld
+```
+#### proxy places, change proxy, update proxy, system proxy
+> remember about escaping bash spec chars ( $,.@.... )
+* .bashrc
+* /etc/environment
+* /etc/systemd/system/docker.service.d/http-proxy.conf
+* /etc/apt/auth.conf
+```sh
+Acquire::http::Proxy "http://username:password@proxyhost:port";
+Acquire::https::Proxy "http://username:password@proxyhost:port";
+```
+* snap 
+```sh
+sudo snap set system proxy.http="http://user:password@proxy.zur:8080"
+sudo snap set system proxy.https="http://user:password@proxy.zur:8080"
 ```
 
 ### install version of app, install specific version, accessible application version
