@@ -22,6 +22,7 @@
 
 ## tools
 * [cli manager](https://github.com/derailed/k9s)
+* [log collector](https://github.com/wercker/stern)
 
 # workplace installation
 * kubectl installation
