@@ -20,6 +20,9 @@
 * [playground](https://www.katacoda.com/courses/kubernetes/playground)
 * [ibmcloud](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
 
+## tools
+* [cli manager](https://github.com/derailed/k9s)
+
 # workplace installation
 * kubectl installation
 ```
