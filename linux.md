@@ -242,6 +242,12 @@ cp -r --preserve=mode,ownership,timestamps /path/to/src /path/to/dest
 cp -r --preserve=all /path/to/src /path/to/dest
 ```
 
+### change owner
+```sh
+# change owner recursively for current folder and subfolders
+sudo chown -R $USER .
+```
+
 ### syncronize folders, copy everything between folders
 ```bash
 # local sync
