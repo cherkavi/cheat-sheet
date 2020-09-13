@@ -41,6 +41,17 @@ systemctl daemon-reload
 
 Issue:
 ```
+Couldn't connect to Docker daemon at http+docker://localhost - is it running?
+```
+```sh
+sudo usermod -a -G docker $USER
+sudo systemctl enable docker # Auto-start on boot
+sudo systemctl start docker # Start right now
+# reboot
+```
+
+
+```
 Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock
 ```
 logout and login again
