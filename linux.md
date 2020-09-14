@@ -1898,10 +1898,10 @@ sudo evtest /dev/input/event21
 content of $HOME/.config/xmodmap-hjkl
 ```
 keycode 66 = Mode_switch
-keysym j = j J Left 
+keysym h = h H Left 
 keysym l = l L Right
-keysym i = i I Up
-keysym k = k K Down
+keysym k = k K Up
+keysym j = j J Down
 ```
 execute re-mapping, permanent solution
 ```sh
