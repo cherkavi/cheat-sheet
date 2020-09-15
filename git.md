@@ -12,6 +12,8 @@ export GIT_CURL_VERBOSE=1
 ```
 git clean --dry-run
 git clean -f -q
+# remove all remote non-used branches
+git remote prune origin
 ```
 
 ### restore
