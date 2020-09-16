@@ -196,6 +196,11 @@ or
    email=vitalii.cherkashyn@bmw.de
 ```
 
+### default editor, set editor
+```sh
+git config --global core.editor "vim"
+```
+
 ### avoid to enter login/password
 ```
 git config --global credential.helper store
