@@ -2283,7 +2283,7 @@ gnome keybinding
 /org/gnome/desktop/wm/keybindings
 ```
 
-### gnome extension manual installation
+### gnome extension manual installation, gnome ext folder
 ```
 gnome-shell --version
 path_to_extension=~/Downloads/switcherlandau.fi.v28.shell-extension.zip
