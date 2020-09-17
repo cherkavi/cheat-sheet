@@ -1936,6 +1936,13 @@ echo "just a text string" | base64 | base64 --decode
 md5sum
 ```
 
+## hardware serial numbers, hardware id, hardware version, system info
+```sh
+sudo dmidecode --string system-serial-number
+sudo dmidecode --string processor-family
+sudo dmidecode --string system-manufacturer
+```
+
 ## Touch screen
 ### calibration
 tool installation
