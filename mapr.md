@@ -288,7 +288,10 @@ export MAPR_TICKETFILE_LOCATION=$(maprlogin print | grep "keyfile" | awk '{print
 drill querying data 
 ```sql
 select sessionId, isReprocessable from dfs.`/mapr/dp.prod.zurich/vantage/data/store/processed/0171eabfceff/reprocessable/part-00000-63dbcc0d1bed-c000.snappy.parquet`;
+-- or even 
+select sessionId, isReprocessable from dfs.`/mapr/dp.prod.zurich/vantage/data/store/processed/*/*/part-00000-63dbcc0d1bed-c000.snappy.parquet`;
 ```
+!!! important: you should avoid colon ':' symbol in path ( explicitly or implicitly with asterix )
 
 [drill http](https://docs.datafabric.hpe.com/61/Drill/drill-web-permissions.html)
 ```sh
