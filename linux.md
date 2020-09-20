@@ -192,6 +192,12 @@ chmod 700 ~/.ssh ;
 chmod 600 ~/.ssh/authorized_keys
 ```
 
+### ssh fingerprint, ssh checking
+```
+ssh -o StrictHostKeyChecking=no user@ubsp00013.vantage.org
+sshpass -p my_password ssh -o StrictHostKeyChecking=no my_user@ubsp00013.vantage.org
+```
+
 ### manage multiply keys
 ```sh
 $ ls ~/.ssh
@@ -234,6 +240,12 @@ cp -var /path/to/folder /another/path/to/folder
 ```bash
 cp -r --preserve=mode,ownership,timestamps /path/to/src /path/to/dest
 cp -r --preserve=all /path/to/src /path/to/dest
+```
+
+### change owner
+```sh
+# change owner recursively for current folder and subfolders
+sudo chown -R $USER .
 ```
 
 ### syncronize folders, copy everything between folders
@@ -513,7 +525,7 @@ esac
 
 exit 0
 ```
-or
+or custom service, service destination
 ```bash
 sudo vim /etc/systemd/system/YOUR_SERVICE_NAME.service
 ```
@@ -525,7 +537,7 @@ Wants=network.target
 After=syslog.target network-online.target
 
 [Service]
-Type=simple
+Type=simplesystemctl
 ExecStart=YOUR_COMMAND_HERE
 Restart=on-failure
 RestartSec=10
@@ -534,6 +546,31 @@ KillMode=process
 [Install]
 WantedBy=multi-user.target
 ```
+
+service with docker container, service dockerized app
+```text
+[Unit]
+Description=Python app 
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=5
+Restart=always
+ExecStartPre=-/usr/bin/docker stop app
+ExecStartPre=-/usr/bin/docker rm app
+ExecStart=/usr/bin/docker run \
+    --env-file /home/user/.env.app \
+    --name app \
+    --publish 5001:5001 \
+    appauth
+ExecStop=/usr/bin/docker stop app
+
+[Install]
+WantedBy=multi-user.target
+```
+
+
 
 managing services
 ```sh
@@ -546,7 +583,9 @@ systemctl enable YOUR_SERVICE_NAME
 systemctl start YOUR_SERVICE_NAME
 systemctl status YOUR_SERVICE_NAME
 systemctl daemon-reload YOUR_SERVICE_NAME
+systemctl stop YOUR_SERVICE_NAME
 ```
+
 
 reset X-server, re-start xserver, reset linux gui
 ubuntu only
@@ -588,6 +627,11 @@ base_color=normal=brightgray,black:marked=brightcyan,black:selected=black,lightg
 ```
 ```
 mc --nocolor
+```
+
+### find all symlinks
+```
+ls -lR . | grep ^l
 ```
 
 ### full path to file, file behind symlink, absolute path to file
@@ -1032,9 +1076,11 @@ echo "hello World" | tr '[:lower:]' '[:upper:]
 echo "hello World 1234 woww" | tr -dc 'a-zA-Z'
 ```
 
-### replace text in all files of current directory, replace inline, replace inplace
+### replace text in all files of current directory, replace inline, replace inplace, inline replace
 ```bash
 sed --in-place 's/LinkedIn/Yahoo/g' *
+# replace tab symbol with comma symbol
+sed --in-place 's/\t/,/g' one_file.txt
 ```
 
 ### no editor replacement, no vi no vim no nano, add line without editor, edit property without editor
@@ -1251,6 +1297,8 @@ curl -u username:password http://example.com
 ```
 curl -X PUT -H "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charset=ISO-8859-1" -H "x-username: cherkavi" -d@put-request.data http://q-brands-app01.wirecard.sys:9000/draft/brands/229099017/model/country-configurations
 ```
+
+### curl POST example
 ```
 curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: application/json" --data '{"add":"data"}'
 ```
@@ -1263,6 +1311,13 @@ curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Conte
 curl -X POST http://localhost:8983/test -H "Content-Type: application/json" --data-binary '@/path/to/file.json'
 # or with multipart body
 curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "userid=1234" http://mysuperserver/media/upload/
+# POST request GET style
+curl -X POST "http://localhost:8888/api/v1/notification/subscribe?email=one%40mail.ru&country=2&state=517&city=qWkbs&articles=true&questions=true&listings=true" -H "accept: application/json"
+```
+### curl escape, curl special symbols
+```sh
+# https://kb.objectrocket.com/elasticsearch/elasticsearch-cheatsheet-of-the-most-important-curl-requests-252
+curl -X GET "https://elasticsearch-label-search-prod.vantage.org/autolabel/_search?size=100&q=moto:*&pretty"
 ```
 
 ### curl without progress, curl silent
@@ -1380,9 +1435,24 @@ export `cat $FILE_WITH_VAR | awk -F= '{if($1 !~ "#"){print $1}}'`
 ```
 /var/log/syslog
 ```
-### Debian install package via proxy
+### Debian install package via proxy, apt install proxy, apt proxy, apt update proxy
 ```
 sudo http_proxy='http://user:@proxy.muc:8080' apt install meld
+```
+#### proxy places, change proxy, update proxy, system proxy
+> remember about escaping bash spec chars ( $,.@.... )
+* .bashrc
+* /etc/environment
+* /etc/systemd/system/docker.service.d/http-proxy.conf
+* /etc/apt/auth.conf
+```sh
+Acquire::http::Proxy "http://username:password@proxyhost:port";
+Acquire::https::Proxy "http://username:password@proxyhost:port";
+```
+* snap 
+```sh
+sudo snap set system proxy.http="http://user:password@proxy.zur:8080"
+sudo snap set system proxy.https="http://user:password@proxy.zur:8080"
 ```
 
 ### install version of app, install specific version, accessible application version
@@ -1818,14 +1888,20 @@ create file '~/.Xmodmap'
 xev | grep keysym
 ```
 
+### key code, scan code, keyboard code
+```
+sudo evtest 
+sudo evtest /dev/input/event21
+```
+
 ### remap [hjkl] to [Left, Down, Up, Right], cursor hjkl
 content of $HOME/.config/xmodmap-hjkl
 ```
 keycode 66 = Mode_switch
-keysym j = j J Left 
+keysym h = h H Left 
 keysym l = l L Right
-keysym i = i I Up
-keysym k = k K Down
+keysym k = k K Up
+keysym j = j J Down
 ```
 execute re-mapping, permanent solution
 ```sh
@@ -1860,6 +1936,13 @@ echo "just a text string" | base64 | base64 --decode
 md5sum
 ```
 
+## hardware serial numbers, hardware id, hardware version, system info
+```sh
+sudo dmidecode --string system-serial-number
+sudo dmidecode --string processor-family
+sudo dmidecode --string system-manufacturer
+```
+
 ## Touch screen
 ### calibration
 tool installation
@@ -1870,9 +1953,10 @@ configuration
 ```
 xinput_calibration
 ```
-list of all devices
+list of all devices, device list, list of devices
 ```
 xinput --list
+cat /proc/bus/input/devices
 ```
 permanent applying
 ```
@@ -2199,6 +2283,18 @@ gnome keybinding
 /org/gnome/desktop/wm/keybindings
 ```
 
+### gnome extension manual installation, gnome ext folder
+```
+gnome-shell --version
+path_to_extension=~/Downloads/switcherlandau.fi.v28.shell-extension.zip
+
+plugin_uuid=`unzip -c $path_to_extension metadata.json | grep uuid | cut -d \" -f4`
+plugin_dir="$HOME/.local/share/gnome-shell/extensions/$plugin_uuid"
+mkdir -p $plugin_dir
+unzip -q $path_to_extension -d $plugin_dir/
+sudo systemctl restart gdm
+```
+
 ### install drivers, update drivers ubuntu
 ```
 sudo ubuntu-drivers autoinstall
@@ -2451,6 +2547,43 @@ git clone https://github.com/vim-airline/vim-airline ~/.vim/plugged/vim-airline
     ├── vim-airline
     └── vim-airline-themes
 ```
+---
+# taskwarrior
+```sh
+task add what I need to do
+task add wait:2min  finish call
+task waiting
+task 25 modify wait:2min
+task 25 edit
+task 25 delete
+task 25 done
+task project:'BMW'
+task priority:high 
+task next
+```
+doc:
+* https://taskwarrior.org/docs/using_dates.html
+* https://taskwarrior.org/docs/durations.html
+
+extension:
+* https://github.com/ValiValpas/taskopen
+  installation issue: 
+```sh
+sudo cpan JSON
+```
+  commands:
+```sh 
+  task 13 annotate -- ~/checklist.txt
+  task 13 annotate https://translate.google.com
+  task 13 denotate
+  taskopen 1
+
+  # add notes
+  task 1 annotate Notes
+  taskopen 1
+```
+  
+  
 ---
 # vifm
 ## colorschema

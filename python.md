@@ -352,8 +352,16 @@ sqlacodegen mysql+oursql://user:password@localhost/dbname
 # Flask approach
 pip3 install flask-sqlacodegen
 flask-sqlacodegen --flask sqlite:///db.sqlite > generated-code.txt
-
 ```
+# sql client, console mysql client, mysql console, db cli
+[commands](https://www.mycli.net/commands)
+```
+pip install -U mycli
+mycli --user my_user --password my_password --host my_host.com --port 3310 --database my_database --execute 'show tables'
+
+# for activating multiline mode 'F3'
+```
+
 # Alembic 
 ![migration schema](https://i.postimg.cc/tJSJWfFc/alembic.png)
 ## migration

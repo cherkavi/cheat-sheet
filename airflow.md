@@ -8,6 +8,7 @@
 
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
 ## Key concepts
+[official documentation of key concepts](https://airflow.apache.org/docs/stable/concepts.html)
 * DAG
 a graph object representing your data pipeline ( collection of tasks ).  
 Should be:
@@ -30,7 +31,7 @@ Combination of Dags, Operators, Tasks, TaskInstances
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
 ![multi node](https://i.postimg.cc/MGyy4DGJ/airflow-architecture-multinode.png)
 ![statuses](https://i.postimg.cc/g2kd76Z5/airflow-statuses.png)
-
+![task lifecycle](https://airflow.apache.org/docs/stable/_images/task_lifecycle_diagram.png)
 ### components
 * WebServer  
   * read user request  
@@ -129,6 +130,16 @@ Data Profiling->Ad Hoc Query-> postgres_default
 ```sql
 select * from dag_run;
 ```
+via PostgreConnection
+```
+    clear_xcom = PostgresOperator(
+        task_id='clear_xcom',
+        provide_context=True,
+        postgres_conn_id='airflow-postgres',
+        trigger_rule="all_done",
+        sql="delete from xcom where dag_id LIKE 'my_dag%'",
+        dag=dag)
+```
 
 # REST API
 ## trigger DAG - python
@@ -224,9 +235,47 @@ def python_operator_core_func(**context):
    context["dag_run"].conf['dag_run_argument']
    # the same as previous
    # manipulate with task-instance inside custom function, context inside custom function
-   context.get('ti').xcom_push(key="k1", value="v1")
+   //  context['ti'].xcom_push(key="k1", value="v1")
+   context.get("ti").xcom_push(key="k1", value="v1")
+   
+   // and after that pull it and read first value
+   // context.get("ti").xcom_pull(task_ids="name_of_task_with_push")[0]
+   // context.get("ti").xcom_pull(task_ids=["name_of_task_with_push", "name_another_task_to_push"])[0]
 ...   
 PythonOperator(task_id="python_example", python_callable=python_operator_core_func, provide_context=True, do_xcom_push=True )
+```
+
+### task context without context, task jinja template, jinja macros
+[magic numbers for jinja template](https://airflow.apache.org/docs/stable/macros-ref.html)
+```
+def out_of_context_function():
+   return_value = ("{{ ti.xcom_pull(task_ids='name_of_task_with_push')[0] }}")
+```
+
+### retrieve all values from XCOM 
+```python
+from datetime import datetime
+from airflow import DAG
+from airflow.operators.python_operator import PythonOperator
+from airflow.utils.timezone import make_aware
+from airflow.models import XCom
+
+def pull_xcom_call(**kwargs):
+    # !!! hard-coded value 
+    execution_date = make_aware(datetime(2020, 7, 24, 23, 45, 17, 00))
+    xcom_values = XCom.get_many(dag_ids=["data_pipeline"], include_prior_dates=True, execution_date=execution_date)
+    print('XCom.get_many >>>', xcom_values)
+    
+    get_xcom_with_ti = kwargs['ti'].xcom_pull(dag_id="data_pipeline", include_prior_dates=True)
+    print('ti.xcom_pull with include_prior_dates >>>', get_xcom_with_ti)
+
+
+xcom_pull_task = PythonOperator(
+    task_id='xcom_pull_task',
+    dag=dag, # here need to set DAG 
+    python_callable=pull_xcom_call,
+    provide_context=True
+)
 ```
 
 ### sub-dags
@@ -274,6 +323,34 @@ mongo_task 	= BashOperator(task_id='mongo_task', bash_command='echo "Mongo is ac
 branch_task >> mysql_task
 branch_task >> postgresql_task
 branch_task >> mongo_task
+```
+
+### branching with avoiding unexpected run, fix branching
+```
+from airflow.operators.python_operator import PythonOperator
+from airflow.models.skipmixin import SkipMixin
+
+ def fork_label_determinator(**context):
+            decision = context['dag_run'].conf.get('branch', 'default')
+	    return "run_task_1"
+
+        all_tasks = set([task1, task2, task3])
+        class SelectOperator(PythonOperator, SkipMixin):
+            def execute(self, context):
+                condition = super().execute(context)
+                self.log.info(">>> Condition %s", condition)
+                if condition=="run_task_1":
+                    self.skip(context['dag_run'], context['ti'].execution_date, list(all_tasks-set([task1,])) )
+                    return
+
+        # not working properly - applied workaround
+        # fork_label = BranchPythonOperator(
+        fork_label = SelectOperator(
+            task_id=FORK_LABEL_TASK_ID,
+            provide_context=True,
+            python_callable=fork_label_determinator,
+            dag=dag_subdag
+        )
 ```
 
 ### Service Level Agreement, SLA
@@ -392,6 +469,30 @@ with DAG(
     second_operator = second_http_call()
     first_operator >> second_operator
 ```
+* avoid declaration of Jinja inside parameters
+```python 
+    # api_endpoint = "{{ dag_run.conf['session_id'] }}"
+    maprdb_read_session_metadata = SimpleHttpOperator(
+        task_id=MAPRDB_REST_API_TASK_ID,
+        method="GET",
+        http_conn_id="{{ dag_run.conf['session_id'] }}",
+	# sometimes not working and need to create external variable like api_endpoint !!!!
+        endpoint="{{ dag_run.conf['session_id'] }}",
+        data={"fields": [JOB_CONF["field_name"], ]},
+        log_response=True,
+        xcom_push=True
+```
+* logging, log output, print log
+```
+import logging
+logging.info("some logs")
+```
+* logging for task, task log
+```python
+ task_instance = context['ti']
+ task_instance.log.info("some logs for task")
+```
+
 * execute list of tasks from external source, subdag, task loop
 ```python
 
@@ -491,6 +592,120 @@ with DAG(default_args=DAG_DEFAULT_ARGS,
     fork_op >> run_markerers_op >> merge_markers_op >> index_merged_markers_op
     run_markerers_op >> index_single_markers_op
 
+```
+* access to dag runs, access to dag instances, set dags state
+```
+from airflow.models import DagRun
+from airflow.operators.python_operator import PythonOperator
+from airflow.utils.db import provide_session
+from airflow.utils.state import State
+from airflow.utils.trigger_rule import TriggerRule
+
+@provide_session
+def stop_unfinished_dag_runs(trigger_task_id, session=None, **context):
+    dros = context["ti"].xcom_pull(task_ids=trigger_task_id)
+    run_ids = list(map(lambda dro: dro.run_id, dros))
+
+    # identify unfinished DAG runs of rosbag_export
+    dr = DagRun
+    running_dags = session.query(dr).filter(dr.run_id.in_(run_ids), dr.state.in_(State.unfinished())).all()
+
+    if running_dags and len(running_dags)>0:
+        # set status failed
+        for dag_run in running_dags:
+            dag_run.set_state(State.FAILED)
+        print("set unfinished DAG runs to FAILED")
+
+
+def dag_run_cleaner_task(trigger_task_id):
+    return PythonOperator(
+        task_id=dag_config.DAG_RUN_CLEAN_UP_TASK_ID,
+        python_callable=stop_unfinished_dag_runs,
+        provide_context=True,
+        op_args=[trigger_task_id]
+    )
+```
+
+* trig and wait, run another dag and wait
+```python
+from airflow.models import BaseOperator
+from airflow.operators.dagrun_operator import DagRunOrder
+
+from airflow_common.operators.awaitable_trigger_dag_run_operator import \
+    AwaitableTriggerDagRunOperator
+from airflow_dags_manual_labeling_export.ad_labeling_export.config import \
+    dag_config
+
+
+def _run_another(context, dag_run_obj: DagRunOrder):
+    # config from parent dag run
+    config = context["dag_run"].conf.copy()
+    config["context"] = dag_config.DAG_CONTEXT
+    dag_run_obj.payload = config
+
+    dag_run_obj.run_id = f"{dag_config.DAG_ID}_triggered_{context['execution_date']}"
+    return dag_run_obj
+
+
+def trig_another_dag() -> BaseOperator:
+    """
+    trig another dag
+    :return: initialized TriggerDagRunOperator
+    """
+    return AwaitableTriggerDagRunOperator(
+        task_id="task_id",
+        trigger_dag_id="dag_id",
+        python_callable=_run_another,
+        do_xcom_push=True,
+    )
+```
+* read input parameters from REST API call
+```sh
+DAG_NAME="my_dag"
+PARAM_1="my_own_param1"
+PARAM_2="my_own_param2"
+ENDPOINT="https://prod.airflow.vantage.zur/api/experimental/dags/$DAG_NAME/dag_runs"
+BODY='{"configuration_of_call":{"parameter1":"'$PARAM_1'","parameters2":"'$PARAM_2'"}}'
+curl --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT
+```
+```python
+decision = context['dag_run'].configuration_of_call.get('parameter1', 'default_value')
+```
+
+* smart skip, skip task
+```
+from airflow.models import DAG
+from airflow.operators.python_operator import BranchPythonOperator
+from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.python_operator import PythonOperator
+from airflow.models.skipmixin import SkipMixin
+
+class SelectOperator(PythonOperator, SkipMixin):
+
+    def _substract_by_taskid(self, task_list, filtered_ids):
+        return filter( lambda task_instance: task_instance.task_id not in filtered_ids, task_list);
+
+    def execute(self, context):
+        condition = super().execute(context)
+        # self.skip(context['dag_run'], context['ti'].execution_date, downstream_tasks)
+
+        self.log.info(">>>  SelectOperator")
+        self.log.info(">>> Condition %s", condition)
+        downstream_tasks = context['task'].get_flat_relatives(upstream=False)
+	
+        # self.log.info(">>> Downstream task_ids %s", downstream_tasks)
+        # filtered_tasks = list(self._substract_by_taskid(downstream_tasks, condition))
+        # self.log.info(">>> Filtered task_ids %s", filtered_tasks)
+        # self.skip(context['dag_run'], context['ti'].execution_date, filtered_tasks)        
+        
+        self.skip_all_except(context['ti'], condition)
+        self.log.info(">>>>>>>>>>>>>>>>>>>")
+
+with DAG('autolabelling_example', description='First DAG', schedule_interval=None, start_date=datetime(2018, 11, 1), catchup=False) as dag:
+    def fork_label_job_branch(**context):
+        return ['index_single_labels']        
+
+    fork_operator = SelectOperator(task_id=FORK_LABEL_TASK_ID, provide_context=True, python_callable=fork_label_job_branch)
 ```
 
 

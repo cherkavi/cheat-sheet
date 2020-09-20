@@ -20,6 +20,13 @@
 * [playground](https://www.katacoda.com/courses/kubernetes/playground)
 * [ibmcloud](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
 
+## tools
+* [cli manager](https://github.com/derailed/k9s)
+* [smart shell for kubectl](https://github.com/cloudnativelabs/kube-shell)
+* [log collector](https://github.com/wercker/stern)
+* [prompt for K8S](https://github.com/jonmosco/kube-ps1)
+* [realtime changes in cluster](https://github.com/pulumi/kubespy)
+
 # workplace installation
 * kubectl installation
 ```

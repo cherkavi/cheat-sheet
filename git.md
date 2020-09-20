@@ -12,6 +12,8 @@ export GIT_CURL_VERBOSE=1
 ```
 git clean --dry-run
 git clean -f -q
+# remove all remote non-used branches
+git remote prune origin
 ```
 
 ### restore
@@ -85,6 +87,23 @@ git fetch --prune
 git branch --merged | egrep -v "(^\*|master|in-progress)" | xargs git branch -d
 ```
 
+### remove commit, remove wrong commit
+```
+commit1=10141d299ac14cdadaca4dd586195309020
+commit2=b6f2f57a82810948eeb4b7e7676e031a634 # should be removed and not important
+commit3=be82bf6ad93c8154b68fe2199bc3e52dd69
+
+current_branch=my_branch
+current_branch_ghost=my_branch_2
+
+git checkout $commit1
+git checkout -b $current_branch_ghost
+git cherry-pick $commit3
+git push --force origin HEAD:$current_branch
+git reset --hard origin/$current_branch
+git branch -d $current_branch_ghost
+```
+
 
 ### check hash-code of the branch
 ```
@@ -107,6 +126,12 @@ git merge-base --is-ancestor <ancestor_commit> <descendant_commit>; if [[ 1 -eq 
 ```sh
 git log -5 develop
 ```
+
+### check last commits for subfolder, check last commits for author
+```
+git log -10 --author "Frank Newman" -- data-api
+```
+
 ### check files only for last commits
 ```sh
 git log -5 develop --name-only
@@ -114,6 +139,10 @@ git log -5 develop --name-only
 ### check last commits by author, commits from all branches
 ```
 git log -10 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --all --author "Cherkashyn"
+```
+### list of authors, list of users, list of all users
+```sh
+git shortlog -sne --all
 ```
 ### list of files by author
 ```bash
@@ -165,6 +194,11 @@ or
 [user]
    name=Vitalii Cherkashyn
    email=vitalii.cherkashyn@bmw.de
+```
+
+### default editor, set editor
+```sh
+git config --global core.editor "vim"
 ```
 
 ### avoid to enter login/password
@@ -301,6 +335,15 @@ git diff {hash}~ {hash}
 git cherry-pick -n {commit-hash}
 ```
 
+### git cherry pick, git cherry-pick conflict
+```sh
+# in case of merge conflict during cherry-pick
+git cherry-pick --continue
+git cherry-pick --abort
+git cherry-pick --skip
+# !!! don't use "git commit" 
+```
+
 ### git revert commit
 ```
 git revert <commit>
@@ -311,7 +354,7 @@ git revert <commit>
 git commit --amend -m "<new message>"
 ```
 
-### git show author of the commit
+### git show author of the commit, log commit, show commits only
 ```
 git log --pretty=format:"%h - %an, %ar : %s" <commit SHA> -1
 ```

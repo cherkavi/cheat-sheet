@@ -1,4 +1,4 @@
-Docker
+# Docker
 ======
 ### [online playground](https://labs.play-with-docker.com)
 ### Ecosystem
@@ -10,6 +10,10 @@ Docker
 * Docker Swarm
 * Docker HUB
 * Docker Cloud
+
+### Tools
+* [layer explorer](https://github.com/wagoodman/dive)
+
 
 ### information about docker itself
 ```
@@ -36,6 +40,17 @@ systemctl daemon-reload
 ```
 
 Issue:
+```
+Couldn't connect to Docker daemon at http+docker://localhost - is it running?
+```
+```sh
+sudo usermod -a -G docker $USER
+sudo systemctl enable docker # Auto-start on boot
+sudo systemctl start docker # Start right now
+# reboot
+```
+
+
 ```
 Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock
 ```
@@ -191,9 +206,11 @@ docker images --all
 ---
 ### [run container automatically, run on start, autorun, autostart ](https://docs.docker.com/config/containers/start-containers-automatically/)
 ```
-docker run -d --restart=unless-stopped \
-  rancher/rancher:latest
+docker run -d --restart=unless-stopped {CONTAINER ID}
+# docker update --restart=no {CONTAINER ID}
 ```
+|value|description|
+|:----:|------------|
 | no |	Do not automatically restart the container. (the default) |
 | on-failure |	Restart the container if it exits due to an error, which manifests as a non-zero exit code. |
 | always |	Always restart the container if it stops. If it is manually stopped, it is restarted only when Docker daemon restarts or the container itself is manually restarted. (See the second bullet listed in restart policy details) |
@@ -478,6 +495,12 @@ docker wait {CONTAINER ID}
 
 ### stop executing container
 ```
+docker stop {CONTAINER ID}
+```
+
+### stop restarted container, compose stop, stop autostart, stop restarting
+```
+docker update --restart=no {CONTAINER ID}
 docker stop {CONTAINER ID}
 ```
 
