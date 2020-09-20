@@ -23,9 +23,9 @@ AWS_REGION=eu-central-1
 ```sh
 current_browser="google-chrome"
 current_doc_topic="sns"
-alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html"'
-alias faq='$current_browser "https://aws.amazon.com/${current_doc_topic}/faqs/"'
-alias console='$current_browser "https://console.aws.amazon.com/${current_doc_topic}/home?region=$AWS_REGION"'
+alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html" &'
+alias faq='$current_browser "https://aws.amazon.com/${current_doc_topic}/faqs/" &'
+alias console='$current_browser "https://console.aws.amazon.com/${current_doc_topic}/home?region=$AWS_REGION" &'
 ```
 
 ## create policy from error output of aws-cli command:
