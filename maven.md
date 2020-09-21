@@ -197,6 +197,10 @@ mvn -X | grep settings.xml
     </proxy>
   </proxies>
 ```
+or
+```sh
+mvn compile -Dhttp.proxyHost=10.10.0.100 -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=localhost|127.0.0.1 -Dhttp.proxyUser=baeldung -Dhttp.proxyPassword=changeme
+```
 
 ## Plugins:
 
