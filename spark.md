@@ -38,7 +38,8 @@ bin/spark-submit
 --class <main class>
 --master <local[n] | spark:<masterurl> | yarn-client/yarn-master | mesos:<mesosurl> >
 --deploy-mode <client | cluster>
---conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
+--conf "spark.driver.extraJavaOptions=-verbose:class"
+--conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps -verbose:class"
 --driver-java-options "-Dlog4j.configuration=file:log4j-local-usage-only.xml" \
 --jars <jar1>,<jar2>,<jar3>
 < application arguments>
