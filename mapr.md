@@ -335,6 +335,11 @@ DrillCollaboration
 ```
 
 ## MapRDB
+https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html
+Create table 
+```bash
+maprclitable create -path <path_in_maprfs> 
+```
 Show info
 ```bash
 maprcli table info -path /vantage/deploy/data-access-video/images -json
@@ -348,6 +353,9 @@ Create an index for the thumbnail MapR JSON DB in order to speed up: (query to f
 ```bash
 --query {"$select":"sessionId","$where":{"$eq":{"frameThumbnail":0}}}  
 maprcli table index add -path /vantage/deploy/data-access-video/images -index frameNumber_id -indexedfields frameThumbnail
+# maprclitable index add -path <path> -index <name> -indexedfields<fields>
+maprclitable index list -path <path>
+maprclitable cfcreate / delete / list
 ```
 [manipulate with MapRDB via DbShell](https://mapr.com/docs/61/ReferenceGuide/dbshell-find-findbyid.html)
 ```sh
