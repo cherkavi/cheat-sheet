@@ -110,6 +110,18 @@ USER_SERVER='//u015029.ubsbank.net/home$/x453337/'
 sudo mount -t cifs -o auto,gid=$(id -g),uid=$(id -u),username=$USER_NAME,domain=$USER_DOMAIN,vers=2.1 $USER_SERVER /mnt/windows-computer
 ```
 
+### mount usb drive permanently
+```sh
+sudo vim /etc/fstab
+```
+```text
+/dev/disk/by-uuid/8765-4321    /media/usb-drive         vfat   0   0
+```
+copy everything from ```mount```
+```text
+/dev/sdd5 on /media/user1/e91bd98f-7a13-43ef-9dce-60d3a2f15558 type ext4 (rw,nosuid,nodev,relatime,uhelper=udisks2)
+```
+
 ### list drives, drive list, attached drives
 ```sh
 lsblk
