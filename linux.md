@@ -1656,6 +1656,11 @@ sudo adduser vitalii sudo
 sudo deluser vitalii sudo
 ```
 
+### admin rights for script, sudo rights for script
+```
+sudo -E bash -c 'python3'
+```
+
 ### remove user
 ```
 sudo userdel -r test
