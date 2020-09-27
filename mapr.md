@@ -335,6 +335,11 @@ DrillCollaboration
 ```
 
 ## MapRDB
+https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html
+Create table 
+```bash
+maprclitable create -path <path_in_maprfs> 
+```
 Show info
 ```bash
 maprcli table info -path /vantage/deploy/data-access-video/images -json
@@ -342,13 +347,18 @@ maprcli table info -path /vantage/deploy/data-access-video/images -json
 Granting Access Permissions for User
 ```bash
 maprcli table cf edit -path /vantage/deploy/data-access-video/images -cfname default -readperm u:tech_user_name
+maprcli table cf edit -path /vantage/deploy/data-access-video/images -cfname default -readperm "u:tech_user_name | u:tech_user_name2"
 ```
 Create an index for the thumbnail MapR JSON DB in order to speed up: (query to find all sessionIds with existing thumbnails)
 ```bash
 --query {"$select":"sessionId","$where":{"$eq":{"frameThumbnail":0}}}  
 maprcli table index add -path /vantage/deploy/data-access-video/images -index frameNumber_id -indexedfields frameThumbnail
+# maprclitable index add -path <path> -index <name> -indexedfields<fields>
+maprclitable index list -path <path>
+maprclitable cfcreate / delete / list
 ```
-[manipulate with MapRDB via DbShell](https://mapr.com/docs/61/ReferenceGuide/dbshell-find-findbyid.html)
+[manipulate with MapRDB via DbShell](https://docs.datafabric.hpe.com/61/ReferenceGuide/mapr_dbshell.htm)
+* https://mapr.com/docs/61/ReferenceGuide/dbshell-find-findbyid.html
 ```sh
 mapr dbshell
 find /mapr/prod/vantage/orchestration/tables/metadata --q {"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}

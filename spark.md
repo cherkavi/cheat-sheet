@@ -38,7 +38,8 @@ bin/spark-submit
 --class <main class>
 --master <local[n] | spark:<masterurl> | yarn-client/yarn-master | mesos:<mesosurl> >
 --deploy-mode <client | cluster>
---conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
+--conf "spark.driver.extraJavaOptions=-verbose:class"
+--conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps -verbose:class"
 --driver-java-options "-Dlog4j.configuration=file:log4j-local-usage-only.xml" \
 --jars <jar1>,<jar2>,<jar3>
 < application arguments>
@@ -662,7 +663,6 @@ GraphLoader.edgeListFile(sc, path_to_file)
 ```
 
 
-
 # Scala examples
 ```
 val input = sc.textFile("data/stations/*")
@@ -687,6 +687,7 @@ spark.driver.extraClassPath  pathOfJarsWithCommaSeprated
 
 * after start
 scala> :require /path/to/file.jar
+
 
 # spark shell, spark-shell, spark2-shell
 ## local execution
@@ -733,6 +734,11 @@ useful changes for local debugging
 spark-shell --master local --deploy-mode client \
 ...
 ```
+
+## avoid jar hell, library shadowing, different versions of libraries usage
+https://cloud.google.com/blog/products/data-analytics/managing-java-dependencies-apache-spark-applications-cloud-dataproc
+* shaded jar
+* maven relocations
 
 ## execute shell with additional parameters
 ```
