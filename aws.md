@@ -139,7 +139,7 @@ aws s3api put-object-acl --bucket <bucket name> --key <path to file> --acl publi
 ```
 
 policy
-* Bucket Policies - bucket level
+* Bucket Policy, public read ( Block all public access - Off )
 ```json
 {
     "Version": "2012-10-17",
