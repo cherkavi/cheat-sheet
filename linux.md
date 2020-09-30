@@ -1155,6 +1155,19 @@ vi wrap( :set wrap, :set nowrap )
 ```
 export PROMPT_COMMAND="echo -n \[\$(date +%H:%M:%S)\]\ "
 ```
+.bashrc of ubuntu
+```bash
+if [ "$color_prompt" = yes ]; then
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$(date +%d%m_%H%M)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+else
+#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u:\$(date +%d.%m_%H:%M)\w\$ '
+
+fi
+unset color_prompt force_color_prompt
+```
 
 ### last executed exit code
 ```
