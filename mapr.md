@@ -363,7 +363,8 @@ mapr dbshell
 desc /full/path/to/maprdb/table
 ```
 [manipulate with MapRDB via DbShell](https://docs.datafabric.hpe.com/61/ReferenceGuide/HBaseShellforMapR-DB.html)
-* https://mapr.com/docs/61/ReferenceGuide/dbshell-find-findbyid.html
+* [find by id](https://mapr.com/docs/61/ReferenceGuide/dbshell-find-findbyid.html)
+* [query data](https://docs.datafabric.hpe.com/61/ReferenceGuide/dbshell-find-query.html)
 ```sh
 mapr dbshell
 find /mapr/prod/vantage/orchestration/tables/metadata --q {"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}
