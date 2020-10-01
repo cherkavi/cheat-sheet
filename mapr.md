@@ -357,8 +357,14 @@ maprcli table index add -path /vantage/deploy/data-access-video/images -index fr
 maprclitable index list -path <path>
 maprclitable cfcreate / delete / list
 ```
-[manipulate with MapRDB via DbShell](https://docs.datafabric.hpe.com/61/ReferenceGuide/mapr_dbshell.htm)
-* https://mapr.com/docs/61/ReferenceGuide/dbshell-find-findbyid.html
+Describe data, describe table 
+```
+mapr dbshell
+desc /full/path/to/maprdb/table
+```
+[manipulate with MapRDB via DbShell](https://docs.datafabric.hpe.com/61/ReferenceGuide/HBaseShellforMapR-DB.html)
+* [find by id](https://mapr.com/docs/61/ReferenceGuide/dbshell-find-findbyid.html)
+* [query data](https://docs.datafabric.hpe.com/61/ReferenceGuide/dbshell-find-query.html)
 ```sh
 mapr dbshell
 find /mapr/prod/vantage/orchestration/tables/metadata --q {"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}

@@ -158,6 +158,15 @@ CREATE DATABASE {databasename}
   COLLATE = 'utf8_general_ci';
 ```
 
+### create table, autoincrement
+```
+create table IF NOT EXISTS `hlm_auth_ext`(
+  `auth_ext_id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `uuid` varchar(64) NOT NULL,
+)  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+```
+
 ### subquery returns more than one row
 ```
 select 
