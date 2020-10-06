@@ -359,6 +359,12 @@ git commit --amend -m "<new message>"
 git log --pretty=format:"%h - %an, %ar : %s" <commit SHA> -1
 ```
 
+### show author, blame, annotation, line editor, show editor
+```
+git blame path/to/file
+git blame path/to/file | grep search_line
+```
+
 ### git into different repository, different folder, another folder, not current directory
 ```
 git --git-dir=C:\project\horus\.git  --work-tree=C:\project\horus  branch --all
