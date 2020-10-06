@@ -1689,7 +1689,7 @@ sudo -E bash -c 'python3'
 sudo userdel -r test
 ```
 
-### execute sudo with current env variables, sudo env var
+### execute sudo with current env variables, sudo env var, sudo with proxy
 ```
 sudo -E <command>
 ```
