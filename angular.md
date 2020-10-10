@@ -337,3 +337,10 @@ export class AppComponent {
 ```app.component.html
     <p [@myOwnAnimation]='state'  (click)="animateMe()" style="text-align: center"> animation</p>
 ```
+
+# Test
+## execute single test
+```
+ng test --include='**/service/*.spec.ts'
+npm run test -- --include='**/service/*.spec.ts'
+```
