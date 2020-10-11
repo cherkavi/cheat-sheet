@@ -178,3 +178,12 @@ select
 from hlm_user u 
 where u.user_id = 100;
 ```
+
+### case search, case sensitive, case insensitive
+```sql
+-- case insensitive search
+AND q.summary LIKE '%my_criteria%'
+
+-- case sensitive ( if at least one operand is binary string )
+AND q.summary LIKE BINARY '%my_criteria%'
+```
