@@ -228,6 +228,7 @@ IdentityFile ~/.ssh/id_rsa
 ```
 sudo apt install ssh
 sudo service ssh start
+sudo vim /etc/ssh/sshd_config
 ```
 
 ### copy from local machine to remote one, remote copy
