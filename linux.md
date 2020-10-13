@@ -226,8 +226,18 @@ IdentityFile ~/.ssh/id_rsa
 
 ### install ssh server, start ssh server, server ssh
 ```
+# sudo apt install openssh-server
 sudo apt install ssh
+
 sudo service ssh start
+
+# sudo systemsctl status ssh
+sudo service ssh status
+
+# firewall ubuntu
+sudo ufw allow ssh
+
+# configuration
 sudo vim /etc/ssh/sshd_config
 ```
 
