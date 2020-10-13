@@ -26,6 +26,10 @@
 > https://docs.openshift.org/latest/minishift/using/index.html
 
 ### install client
+debian
+```sh
+sudo apt install oc
+```
 download appropriate release 
 ```
 https://api.github.com/repos/openshift/origin/releases/latest
