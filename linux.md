@@ -240,6 +240,10 @@ sudo ufw allow ssh
 # configuration
 sudo vim /etc/ssh/sshd_config
 ```
+for enabling/disabling password using
+```text
+PasswordAuthentication yes
+```
 
 ### copy from local machine to remote one, remote copy
 ```
