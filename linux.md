@@ -94,6 +94,10 @@ Proxy   proxy-url:proxy-port
 NoProxy localhost, 127.0.0.*, 10.*, 192.168.*, *.zur
 Listen  3128
 ```
+or globally
+```
+sudo vim /etc/cntlm.conf
+```
 > ~/bin/proxy-start.sh
 ```sh
 #!/bin/sh
@@ -120,6 +124,7 @@ export _JAVA_OPTIONS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=3128 -Dhttps.p
 > check status
 ```sh
 sudo invoke-rc.d cntlm status
+ss -lt | grep 3128
 ```
 
 
