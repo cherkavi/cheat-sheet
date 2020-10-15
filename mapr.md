@@ -397,3 +397,12 @@ rm -rf /opt/mapr
 # soft way
 vim /opt/mapr/conf/mapr-clusters.conf
 ```
+
+### common issue
+```
+Caused by: javax.security.auth.login.LoginException: Unable to obtain MapR credentials
+	at com.mapr.security.maprsasl.MaprSecurityLoginModule.login(MaprSecurityLoginModule.java:228)
+```
+```
+echo "passw" | maprlogin password -user my_user_name
+```
