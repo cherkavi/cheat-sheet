@@ -275,6 +275,13 @@ sudo scp $USERNAME@$EDGE_NODE:/opt/mapr/conf/ssl_truststore /opt/mapr/conf/ssl_t
 echo "$PASSWORD" | maprlogin password -user $USERNAME -out /tmp/mapruserticket
 ```
 
+## Yarn
+```
+yarn application -list -appStates ALL
+yarn logs -applicationId application_1540813402987_9262 
+```
+
+
 ## Drill
 ```bash
 # login
