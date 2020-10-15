@@ -12,6 +12,9 @@ System.getProperties().put("http.proxyPort", "someProxyPort");
 
 -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=3129
 ```
+```sh
+export _JAVA_OPTIONS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|*.ubsgroup.net|*.zur -Dhttps.nonProxyHosts=localhost|*.ubsgroup.net|*.muc"
+```
 
 ### execute application from java, execute sub-process, start program
 #### start and waiting for finish
