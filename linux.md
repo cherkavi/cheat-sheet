@@ -62,6 +62,68 @@ ssh -D 9999 127.0.0.1 -t ssh -R 7777:127.0.0.1:9999 username@192.118.112.13
 wget -e use_proxy=yes -e http_proxy=127.0.0.1:7777 https://google.com
 ```
 
+### local proxy cntlm, cntlm proxy
+```text
+  app_1 --.
+           \
+  app_2 --- ---> local proxy <---> External Proxy <---> WWW
+   ...     /
+  app_n --'
+```
+> install cntlm
+```sh
+# temporarily set proxy variables for curl and brew to work in this session
+$ export http_proxy=http://<user>:<password>@proxy-url:proxy-port
+$ export https_proxy=$http_proxy
+
+# update & upgrade apt
+$ sudo --preserve-env=http_proxy,https_proxy apt-get update
+$ sudo --preserve-env=http_proxy,https_proxy apt-get upgrade
+
+# finally, install cntlm
+sudo --preserve-env=http_proxy,https_proxy apt-get install cntlm
+```
+> edit configuration
+```sh
+vim ~/.config/cntlm/cntlm.conf
+```
+```
+Username user-name
+Domain  domain-name
+Proxy   proxy-url:proxy-port
+NoProxy localhost, 127.0.0.*, 10.*, 192.168.*, *.zur
+Listen  3128
+```
+> ~/bin/proxy-start.sh
+```sh
+#!/bin/sh
+
+pidfile=~/.config/cntlm/cntlm.pid
+
+if [ -f $pidfile ]; then
+kill "$(cat $pidfile)"
+sleep 2
+fi
+
+cntlm -c ~/.config/cntlm/cntlm.conf -P $pidfile -I
+```
+> source ~/bin/proxy-settings.sh
+```
+proxy_url="http://127.0.0.1:3128"
+export http_proxy=$proxy_url
+export https_proxy=$http_proxy
+export HTTP_PROXY=$http_proxy
+export HTTPS_PROXY=$http_proxy
+
+export _JAVA_OPTIONS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=3128 -Dhttps.nonProxyHosts=localhost|*.ubsgroup.net|*.muc -Dhttp.nonProxyHosts=localhost|*.ubsgroup.net|*.zur"
+```
+> check status
+```sh
+sudo invoke-rc.d cntlm status
+```
+
+
+
 ### possible solution to detect remote client to your machine
 ```
 # open access
