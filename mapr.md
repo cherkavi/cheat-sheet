@@ -380,10 +380,12 @@ desc /full/path/to/maprdb/table
 [manipulate with MapRDB via DbShell](https://docs.datafabric.hpe.com/61/ReferenceGuide/HBaseShellforMapR-DB.html)
 * [find by id](https://mapr.com/docs/61/ReferenceGuide/dbshell-find-findbyid.html)
 * [query data](https://docs.datafabric.hpe.com/61/ReferenceGuide/dbshell-find-query.html)
+* [query with dbshell](https://docs.datafabric.hpe.com/60/MapR-DB/JSON_DB/QueryWithDBShell.html)
 ```sh
 mapr dbshell
 find /mapr/prod/vantage/orchestration/tables/metadata --q {"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}
-find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2
+find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2 --offset 2 --where {"$eq":{"session_id":"9aaa13577-ad80"}} --orderby created_time
+find /mapr/prod/vantage/orchestration/tables/metadata --c {"$eq":{"session_id":"9aaa13577-ad80"}}
 ```
 example of inline execution
 ```sh
