@@ -1183,6 +1183,11 @@ sed --in-place 's/\t/,/g' one_file.txt
 sed --in-place 's/\[General\]/\[General\]\nenable_trusted_host_check=0/g' matomo-php.ini
 ```
 
+### date formatting, datetime formatting
+```sh
+date +%H:%M:%S:%s
+```
+
 ### generate random string 
 ```
 urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | tr '[:upper:]' '[:lower:]' | head -n 1
