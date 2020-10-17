@@ -1776,6 +1776,18 @@ sudo -E bash -c 'python3'
 sudo userdel -r test
 ```
 
+### create group, assign user to group, user check group, user group
+```
+sudo groupadd new_group
+usermod --append --groups new_group my_user
+id my_user
+```
+
+### create folder for group, assign group to folder
+```
+chgrp new_group /path/to/folder
+```
+
 ### execute sudo with current env variables, sudo env var, sudo with proxy
 ```
 sudo -E <command>
