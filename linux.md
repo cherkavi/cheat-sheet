@@ -1934,7 +1934,20 @@ vim /var/www/html/index.html
 ufw app list
 ufw allow 'Apache'
 ufw status
+
+# enable module
+a2enmod rewrite
+
+# disable module
+# http://manpages.ubuntu.com/manpages/trusty/man8/a2enmod.8.html
+a2dismod rewrite
+
+# enable or disable site/virtual host
+# http://manpages.ubuntu.com/manpages/trusty/man8/a2ensite.8.html
+a2dissite *.conf
+a2ensite my_public_special.conf
 ```
+
 
 #### activate ssl module
 ```bash
