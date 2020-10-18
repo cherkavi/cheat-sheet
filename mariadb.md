@@ -100,6 +100,9 @@ describe table_name;
 show columns from table_name;
 select * from information_schema.columns where TABLE_NAME='listings_dir' and COLUMN_NAME like '%PRODUCT%';
 ```
+```sh
+mycli mysql://user:passw@host:port/schema --execute "select table_name, column_name, data_type  from information_schema.columns where TABLE_NAME like 'hlm%' order by TABLE_NAME, ORDINAL_POSITION;" | awk -F '\t' '{print $1","$2","$3}' > columns
+```
 
 ### add column 
 ```sql
