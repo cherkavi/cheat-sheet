@@ -23,6 +23,11 @@ mysql --user=root --password=root
 docker exec -it mysql-container  /usr/bin/mysql  --user=root --password=root
 ```
 
+#### mycli connect
+```
+mycli mysql://user_name:passw@mysql_host:mysql_port/schema
+```
+
 ### import db export db, archive, backup, restore
 ```sh
 # prerequisites
