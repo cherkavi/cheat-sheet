@@ -834,6 +834,15 @@ type <function name>
 declare -f <function name>
 ```
 
+### builtin, overwrite command, rewrite command
+```
+cd()
+{
+   # builtin going to execute not current, but genuine function
+   builtin cd /home/projects
+}
+```
+
 ### folder size, dir size, directory size, size directory, size folder size of folder, size of directory
 ```
 sudo du -shc ./*
