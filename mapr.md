@@ -349,7 +349,7 @@ drill java
 DrillCollaboration
 ```
 
-## MapRDB
+## MapRDB ( DBShell )
 https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html
 Create table 
 ```bash
@@ -387,6 +387,27 @@ find /mapr/prod/vantage/orchestration/tables/metadata --q {"$select":["mdf4Path.
 find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2 --offset 2 --where {"$eq":{"session_id":"9aaa13577-ad80"}} --orderby created_time
 find /mapr/prod/vantage/orchestration/tables/metadata --c {"$eq":{"session_id":"9aaa13577-ad80"}}
 ```
+complex query
+```json
+find /tbl --q {"$select":"a.c.e",
+            "$where":{
+                     "$and":[
+                             {"$eq":{"a.b[0].boolean":false}},
+                             {"$or":[
+                                     {"$ne":{"a.c.d":5}},
+                                     {"$gt":{"a.b[1].decimal":1}},
+                                     {"$lt":{"a.b[1].decimal":10}}
+                                     ]
+                              }
+                             ]
+                      }
+               }
+```
+query with counting amount of elements in array
+```
+find //tables/session --query {"$select":["_id"],"$where":{"$and":[{"$eq":{"vin":"BX77777"}},{"$sizeof":{"labelEvents":{"$ge":1}}}]}}
+```
+
 example of inline execution
 ```sh
 echo 'find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2' | tee script.out
