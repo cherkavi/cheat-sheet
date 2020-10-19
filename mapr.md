@@ -381,6 +381,8 @@ desc /full/path/to/maprdb/table
 * [find by id](https://mapr.com/docs/61/ReferenceGuide/dbshell-find-findbyid.html)
 * [query data](https://docs.datafabric.hpe.com/61/ReferenceGuide/dbshell-find-query.html)
 * [query with dbshell](https://docs.datafabric.hpe.com/60/MapR-DB/JSON_DB/QueryWithDBShell.html)
+* [OJAI Query Condition Syntax](https://docs.datafabric.hpe.com/62/MapR-DB/JSON_DB/QueryingJSONDocumentFields.html)
+* [query conditions and operators](https://docs.datafabric.hpe.com/62/MapR-DB/JSON_DB/OJAIQueryConditionOperators.html)
 ```sh
 mapr dbshell
 find /mapr/prod/vantage/orchestration/tables/metadata --q {"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}
