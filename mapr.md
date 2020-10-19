@@ -394,6 +394,15 @@ mapr dbshell --cmdfile script.out
 rm script.out
 ```
 
+example of execution via mapr web, web mapr
+```
+ MAPR_USER='user'
+ MAPR_PASSWORD='password'
+SESSION='d99-4a-ac-0cbd'
+curl --silent  --insecure  -X GET -u $MAPR_USER:$MAPR_PASSWORD  https://mapr-web.vantage.zur:2002/api/v2/table//vantage/orchestration/tables/sessions/document/$SESSION | jq "." | grep labelEvent
+
+```
+
 ## issues
 ### with test execution ( scala, java )
 ```text
