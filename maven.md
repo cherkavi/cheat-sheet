@@ -40,12 +40,16 @@ mvn org.qunix:structure-maven-plugin:modules
 
 
 ### buld only one module, single module build
-```
+```sh
 mvn -pl common/common-utils clean install
 ```
 or build with all dependencies
-```
+```sh
 mvn --threads 2C --projects common/common-utils -am clean install
+```
+or build 
+```sh
+mvn clean package -pl '!:processing-common,!:processing-mapr-ojai-common'
 ```
 
 ### dry run 
