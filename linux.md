@@ -2456,6 +2456,14 @@ unzip -q $path_to_extension -d $plugin_dir/
 sudo systemctl restart gdm
 ```
 
+### gnome settings, gnome list of settings
+```sh
+# all gnome settings
+gsettings list-recursively 
+# one settings
+org.gnome.desktop.background picture-uri
+```
+
 ### install drivers, update drivers ubuntu
 ```
 sudo ubuntu-drivers autoinstall
