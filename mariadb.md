@@ -23,10 +23,15 @@ mysql --user=root --password=root
 docker exec -it mysql-container  /usr/bin/mysql  --user=root --password=root
 ```
 
-#### mycli connect
+### mycli connect
 ```
 mycli mysql://user_name:passw@mysql_host:mysql_port/schema
 ```
+#### .myclirc settings for vertical output
+```properties
+auto_vertical_output = True
+```
+
 
 ### import db export db, archive, backup, restore
 ```sh
