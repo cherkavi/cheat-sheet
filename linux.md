@@ -380,6 +380,12 @@ REMOTE_OUTPUT_LOG="/var/log/1.output"
 ssh $REMOTE_USER"@"$each_node "nohup $REMOTE_SCRIPT </dev/null > $REMOTE_OUTPUT_LOG 2>&1 &"
 ```
 
+### ssh xserver, ssh graphical
+```sh
+export DISPLAY=:0.0
+xterm
+```
+
 ### here document, sftp batch command with bash
 ```
 sftp -P 2222 my_user@localhost << END_FILE_MARKER
