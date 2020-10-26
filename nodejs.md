@@ -36,6 +36,8 @@ npm config set prefix '~/.npm-global'
 export PATH=~/.npm-global/bin:$PATH
 ```
 
+## [npm commands](https://docs.npmjs.com/cli-documentation/cli)
+
 ## print high level packages
 ```sh
 npm list -g --depth=0
