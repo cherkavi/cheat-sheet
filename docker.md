@@ -179,8 +179,13 @@ sudo systemctl restart docker.service
 Images
 ------
 ### search image into registry, find image, catalog search
-```
+```sh
 docker search <text of search>
+```
+
+### inspect image in repository
+```sh
+skopeo inspect docker://registry.fedoraproject.org/fedora:latest
 ```
 
 ### pull image from repository
@@ -194,6 +199,12 @@ docker pull cc-artifactory.myserver.net/some-path/<image name>:<image version>
 ### push image to local repo
 ```
 docker push cc-artifactory.myserver.net/some-path/<image name>:<image version>
+```
+
+### copy images between registries
+```
+skopeo copy docker://quay.io/buildah/stable docker://registry.internal.company.com/buildah
+
 ```
 
 ### show all local images
