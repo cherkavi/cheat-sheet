@@ -1,6 +1,9 @@
 # Linux
 
-* [cheat sheet cmd](http://cheat.sh/)  
+* [cheat sheet cmd](http://cheat.sh/)
+  ```sh
+  curl cheat.sh/ls
+  ```
 * [Security cheat sheet](https://www.jaiminton.com/cheatsheet/DFIR)
 
 ### socket proxy, proxy to remote machine
