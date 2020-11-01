@@ -177,7 +177,11 @@ create table IF NOT EXISTS `hlm_auth_ext`(
   `auth_ext_id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `uuid` varchar(64) NOT NULL,
 )  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+```
 
+### show ddl, ddl for table, ddl table
+```
+SHOW CREATE TABLE yourTableName;
 ```
 
 ### subquery returns more than one row
