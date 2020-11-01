@@ -200,3 +200,11 @@ AND q.summary LIKE '%my_criteria%'
 -- case sensitive ( if at least one operand is binary string )
 AND q.summary LIKE BINARY '%my_criteria%'
 ```
+
+### date diff, compare date, datetime substraction
+```sql
+----- return another date with shifting by interval
+-- (now() - interval 1 day)
+----- return amount of days between two dates
+-- datediff(now(), datetime_field_in_db )
+```
