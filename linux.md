@@ -2285,6 +2285,45 @@ sudo lshw -class disk -short
 sudo dd bs=4M if=/home/my-user/Downloads/archlinux-2019.07.01-x86_64.iso of=/dev/sdb status=progress && sync
 ```
 
+## startup disk with splitting, 
+```bash
+# detect disks
+sudo lshw -class disk -short
+sudo fdisk -l
+
+# format drive
+DEST_DRIVE=/dev/sdb
+sudo dd if=/dev/zero of=$DEST_DRIVE  bs=512  count=1
+# sudo mke2fs -t xfs $DEST_DRIVE
+
+# split drive, split disk, split usb
+sudo parted $DEST_DRIVE
+```
+
+```
+print
+rm 1
+rm 2
+
+mklabel kali
+msdos
+
+mkpart primary ext4 0.0 5GB
+I
+
+mkpart extended ntfs 5GB -1s
+
+print 
+set 1 boot on
+set 2 lba on
+quit
+```
+
+```sh
+sudo fdisk -l
+sudo dd if=/full/path/to/live.iso of=/dev/sdc2 status=progress && sync
+```
+
 ## Elapsed time between two commands
 ```
 STARTTIME=$SECONDS
