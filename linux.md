@@ -2920,3 +2920,16 @@ camera settings example
 # /etc/udev/rules.d/99-logitech-default-zoom.rules
 SUBSYSTEM=="video4linux", KERNEL=="video[0-9]*", ATTRS{product}=="HD Pro Webcam C920", ATTRS{serial}=="BBBBFFFF", RUN="/usr/bin/v4l2-ctl -d $devnode --set-ctrl=zoom_absolute=170"
 ```
+
+## wacom tablet, wacom graphical tablet, map wacom, map tablet, tablet to display
+```sh
+# detect your monitors and select one of the output like 'HDMI-1'
+xrandr --listmonitors
+
+# detect all wacom devices
+xinput | grep -i wacom | awk -F 'id=' '{print $2}' | awk '{print $1}' | while read each_input_device
+do
+	xinput map-to-output $each_input_device HDMI-1
+done
+
+```
