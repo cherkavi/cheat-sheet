@@ -2285,7 +2285,17 @@ sudo lshw -class disk -short
 sudo dd bs=4M if=/home/my-user/Downloads/archlinux-2019.07.01-x86_64.iso of=/dev/sdb status=progress && sync
 ```
 
-## startup disk with splitting, 
+## create usb live with persistence, usb persistence, stick persistence
+```sh
+sudo add-apt-repository universe
+sudo add-apt-repository ppa:mkusb/ppa
+sudo apt-get update
+sudo apt install --install-recommends mkusb mkusb-nox usb-pack-efi
+mkusb
+# Install, persistent live, upefi
+```
+
+## split usb drive, split disk
 ```bash
 # detect disks
 sudo lshw -class disk -short
@@ -2318,10 +2328,8 @@ set 1 boot on
 set 2 lba on
 quit
 ```
-
 ```sh
 sudo fdisk -l
-sudo dd if=/full/path/to/live.iso of=/dev/sdc2 status=progress && sync
 ```
 
 ## Elapsed time between two commands
