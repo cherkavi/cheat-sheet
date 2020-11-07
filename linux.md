@@ -1347,6 +1347,11 @@ wget http://host:9090/wd-only/1005000.zip --directory-prefix="/home/temp/out"
 wget --no-check-certificate https://musan999999.mueq.adas.intel.com:8888/data-api/session/
 ```
 
+### wget with specific timeout
+```
+wget --tries=1 --timeout=5 --no-check-certificate https://musan999999.mueq.adas.intel.com:8888/data-api/session/
+```
+
 ### wget proxy, wget via proxy
 ```
 wget -e use_proxy=yes -e http_proxy=127.0.0.1:7777 https://mail.ubsgroup.net/
@@ -1502,6 +1507,11 @@ airflow_trigger(){
 }
 DAG_NAME='labeling'
 airflow_trigger $each_session "https://airflow.vantage.org/api/experimental/dags/$DAG_NAME/dag_runs"
+```
+
+### curl execution time
+```
+curl --max-time 10 -so /dev/null -w '%{time_total}\n' google.com
 ```
 
 ### xml pretty print, xml format
