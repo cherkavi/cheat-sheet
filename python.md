@@ -352,6 +352,7 @@ sqlacodegen mysql+oursql://user:password@localhost/dbname
 # Flask approach
 pip3 install flask-sqlacodegen
 flask-sqlacodegen --flask sqlite:///db.sqlite > generated-code.txt
+flask-sqlacodegen --flask mysql+pymysql://admin:admin@localhost:3310/masterdb > generated-code.txt
 ```
 # sql client, console mysql client, mysql console, db cli
 [commands](https://www.mycli.net/commands)
