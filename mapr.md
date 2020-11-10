@@ -300,7 +300,7 @@ export MAPR_TICKETFILE_LOCATION=$(maprlogin print | grep "keyfile" | awk '{print
 record
 ```
 
-drill querying data 
+### drill querying data 
 ```sql
 select sessionId, isReprocessable from dfs.`/mapr/dp.prod.zurich/vantage/data/store/processed/0171eabfceff/reprocessable/part-00000-63dbcc0d1bed-c000.snappy.parquet`;
 -- or even 
@@ -336,7 +336,7 @@ curl -k -b cookies.txt -X POST \
 https://mapr-web.vantage.zur:21103/query.json
 ```
 
-drill java
+### drill java
 [src code](https://github.com/cherkavi/java-code-example/blob/master/drill/src/main/java/DrillCollaboration.java)
 ```sh
 /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.222/jre/bin/java \
@@ -347,6 +347,17 @@ drill java
 -Dlog.query.path=/opt/mapr/drill/drill-1.14.0/logs/sqlline_queries/data_api-s_sqlline_queries.json \
 -cp /opt/mapr/drill/drill-1.14.0/conf:/opt/mapr/drill/drill-1.14.0/jars/*:/opt/mapr/drill/drill-1.14.0/jars/ext/*:/opt/mapr/drill/drill-1.14.0/jars/3rdparty/*:/opt/mapr/drill/drill-1.14.0/jars/classb/*:/opt/mapr/drill/drill-1.14.0/jars/3rdparty/linux/*:drill_jdbc-1.0-SNAPSHOT.jar \
 DrillCollaboration
+```
+
+### drill special commands
+increasing amount of parallel processing threads
+```sql
+set planner.width.max_per_node=10;
+```
+
+show errors in log
+```sql
+ALTER SESSION SET `exec.errors.verbose`=true;
 ```
 
 ## MapRDB ( DBShell )
