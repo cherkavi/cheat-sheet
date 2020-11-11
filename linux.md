@@ -179,6 +179,14 @@ USER_DOMAIN='ZUR'
 USER_SERVER='//u015029.ubsbank.net/home$/x453337/'
 sudo mount -t cifs -o auto,gid=$(id -g),uid=$(id -u),username=$USER_NAME,domain=$USER_DOMAIN,vers=2.1 $USER_SERVER /mnt/windows-computer
 ```
+#### mount issue
+```
+bad option;  for several filesystems (e.g. nfs, cifs) you might need a /sbin/mount.<type> helper program.
+```
+```
+sudo apt-get install nfs-common
+sudo apt-get install cifs-utils
+```
 
 ### mount usb drive permanently
 ```sh
