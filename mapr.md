@@ -434,7 +434,13 @@ example of execution via mapr web, web mapr
  MAPR_PASSWORD='password'
 SESSION='d99-4a-ac-0cbd'
 curl --silent  --insecure  -X GET -u $MAPR_USER:$MAPR_PASSWORD  https://mapr-web.vantage.zur:2002/api/v2/table//vantage/orchestration/tables/sessions/document/$SESSION | jq "." | grep labelEvent
+```
 
+## [HttpFS](https://hadoop.apache.org/docs/current/hadoop-hdfs-httpfs/index.html)
+```sh
+curl -X PUT "https://ubssp000007:14000/webhdfs/v1/tmp/example?op=mkdirs" -k -u "user":"passw"
+vim /mapr/dc.stg.zurich/tmp/1.txt
+curl  -X GET "https://ubssp000007:14000/webhdfs/v1/tmp/1.txt?op=open" -k -u "user":"passw"
 ```
 
 ## issues
