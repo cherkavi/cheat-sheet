@@ -1436,7 +1436,7 @@ find -cmin -2
 curl -u username:password http://example.com
 ```
 
-### curl header
+### curl head
 ```
 curl --head http://example.com
 ```
@@ -1486,7 +1486,7 @@ curl --insecure -s -X GET http://google.com
 ```sh
 curl --verbose --insecure -s -X GET http://google.com
 ```
-### curl cookie
+### curl cookie, curl header cookie
 chrome extension ```cookies.txt```
 ```sh
 # send predefined cookie to url
@@ -1494,6 +1494,9 @@ curl -b path-to-cookie-file.txt -X GET url.com
 
 # send cookie from command line
 curl --cookie "first_cookie=123;second_cookie=456;third_cookie=789" -X GET url.com
+
+# send cookie from command line 
+curl 'http://localhost:8000/members/json-api/auth/user' -H 'Cookie: PHPSESSID=5c5dddcd96b9f2f41c2d2f87e799feac'
 
 # collect cookie from remote url and save in file
 curl -c cookie-from-url-com.txt -X GET url.com
