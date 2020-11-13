@@ -400,6 +400,8 @@ find /mapr/prod/vantage/orchestration/tables/metadata --q {"$select":["mdf4Path.
 find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2 --offset 2 --where {"$eq":{"session_id":"9aaa13577-ad80"}} --orderby created_time
 find /mapr/prod/vantage/orchestration/tables/metadata --c {"$eq":{"session_id":"9aaa13577-ad80"}}
 ```
+!!! important !!!, id only, no data in output but "_id":  if you don't see all fields in the output, try to change user ( you don't have enough rights )
+
 complex query
 ```json
 find /tbl --q {"$select":"a.c.e",
