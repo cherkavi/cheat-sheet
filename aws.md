@@ -1,3 +1,4 @@
+* [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
 * [sdk](https://aws.amazon.com/tools/)  
 * shell script ``` apt install aws-shell ```
 * [online trainings](https://www.aws.training/)
