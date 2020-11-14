@@ -6,7 +6,8 @@
 ### console command completion, console completion
 ```sh
 pip3 install awscli
-complete -C `locate aws_completer` aws
+#complete -C `locate aws_completer` aws
+complete -C /usr/local/bin/aws_completer aws
 ```
 
 ## init variables
