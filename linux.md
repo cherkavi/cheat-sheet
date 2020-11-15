@@ -2546,7 +2546,7 @@ org.gnome.desktop.background picture-uri
 sudo ubuntu-drivers autoinstall
 ```
 
-### sudo without password, apple keyboard
+### sudo without password, apple keyboard, sudo script without password
 ```
 echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
 ```
