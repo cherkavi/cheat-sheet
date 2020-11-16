@@ -37,6 +37,11 @@ auto_vertical_output = True
 mycli mysql://user_name:passw@mysql_host:mysql_port/schema --execute "select * from dual"
 mycli mysql://user_name:passw@mysql_host:mysql_port/schema < some-sql.txt
 ```
+```
+mycli mysql://user_name:passw@mysql_host:mysql_port/schema
+help;
+source some-sql.txt;
+```
 
 
 ### import db export db, archive, backup, restore
