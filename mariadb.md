@@ -83,6 +83,12 @@ source /path/to/file.sql
 ```
 mysql -h hostname -u user database < path/to/test.sql
 ```
+* via docker
+```
+docker run -it --volume $(pwd):/work mariadb mysql --host=eu-do-user.ondigitalocean.com --user=admin --port=25060 --database=master_db --password=pass
+# docker exec --volume $(pwd):/work -it mariadb
+source /work/zip-code-us.sql
+```
 
 ### show databases and switch to one of them:
 ```
