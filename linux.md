@@ -1953,6 +1953,9 @@ sudo systemctl restart snapd.service
 ```
 sudo snap set system proxy.http="http://user:password@proxy.muc:8080"
 sudo snap set system proxy.https="http://user:password@proxy.muc:8080"
+export proxy_http="http://user:password@proxy.muc:8080"
+export proxy_https="http://user:password@proxy.muc:8080"
+sudo snap search visual 
 ```
 
 ### apache server
