@@ -2549,6 +2549,16 @@ org.gnome.desktop.background picture-uri
 sudo ubuntu-drivers autoinstall
 ```
 
+### zbook nvidia hp zbook hp nvidia
+```
+sudo prime select query
+# should be nvidia
+sudo ubuntu-drivers devices
+# sudo ubuntu-drivers autoinstall - don't use it
+sudo apt install nvidia driver-455
+# or 390, 415, .... and restart
+```
+
 ### sudo without password, apple keyboard, sudo script without password
 ```
 echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
