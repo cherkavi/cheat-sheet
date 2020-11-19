@@ -6,6 +6,22 @@
   ```
 * [Security cheat sheet](https://www.jaiminton.com/cheatsheet/DFIR)
 
+### place for scripts, permanent script
+```
+# system wide for all users
+/etc/environment
+/etc/profile
+/etc/profile.d/my_new_update.sh
+
+# during user login
+~/.bash_profile
+~/.profile
+
+# during open the terminal
+~/.bashrc
+
+```
+
 ### socket proxy, proxy to remote machine
 ```
 ssh -D <localport> <user>@<remote host>
@@ -129,8 +145,6 @@ export _JAVA_OPTIONS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=3128 -Dhttps.p
 sudo invoke-rc.d cntlm status
 ss -lt | grep 3128
 ```
-
-
 
 ### possible solution to detect remote client to your machine
 ```
