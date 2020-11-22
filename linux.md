@@ -1648,6 +1648,18 @@ sudo apt-get install libglib2.0-0:i386 libgtk2.0-0:i386
 apt list <name of package>
 ```
 
+### package update package mark 
+```sh
+apt mark hold kubeadm
+# install: this package is marked for installation.
+# deinstall (remove): this package is marked for removal.
+# purge: this package, and all its configuration files, are marked for removal.
+# hold: this package cannot be installed, upgraded, removed, or purged.
+# unhold: 
+# auto: auto installed
+# manual: manually installed
+```
+
 ### Debian update package
 ```
 sudo apt-get install --only-upgrade {packagename}
