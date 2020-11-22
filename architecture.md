@@ -12,6 +12,7 @@
 ![architecture context](https://i.postimg.cc/3rG2VYKf/architecture-context.png)
 ![architecture styles](https://i.postimg.cc/5yD8PZcn/architecture-types.png)
 ![software architecture](https://i.postimg.cc/D0cMGPPc/software-architecture.png)
+![architecture antipatterns](https://i.postimg.cc/Kz3gQFy8/architecture-antipatterns.png)
 
 # [Antipatterns](https://sourcemaking.com/antipatterns/software-architecture-antipatterns)
 
