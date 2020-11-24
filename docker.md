@@ -747,6 +747,11 @@ chmod +x docker-compose-Linux-x86_64
 sudo mv docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
 sudo apt-get install  --only-upgrade docker
 ```
+## check installation from python
+```python
+import docker
+import compose
+```
 
 ## variables in compose file
 ```docker
