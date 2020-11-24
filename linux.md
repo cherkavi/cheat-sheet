@@ -541,6 +541,10 @@ cut -c1-15,20-50
 /var/log/messages
 /var/log/syslog
 ```
+### repository list of all repositories
+```
+sudo cat /etc/apt/sources.list*
+```
 
 ### add repository
 ```
