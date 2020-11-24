@@ -11,6 +11,13 @@
 * Docker HUB
 * Docker Cloud
 
+### installation ( Debian )
+```
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
 ### Tools
 * [layer explorer](https://github.com/wagoodman/dive)
 
