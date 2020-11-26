@@ -199,6 +199,11 @@ create table IF NOT EXISTS `hlm_auth_ext`(
 )  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
 
+### create column if not exists
+```
+ALTER TABLE test ADD COLUMN IF NOT EXISTS column_a VARCHAR(255);
+```
+
 ### show ddl, ddl for table, ddl table
 ```
 SHOW CREATE TABLE yourTableName;
