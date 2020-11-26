@@ -24,8 +24,11 @@ docker exec -it mysql-container  /usr/bin/mysql  --user=root --password=root
 ```
 
 ### mycli connect
-```
+```bash
 mycli mysql://user_name:passw@mysql_host:mysql_port/schema
+# via ssh 
+mycli --ssh-user heritageweb --ssh-host 55.55.55.54 mysql://user_name:passw@mysql_host:mysql_port/schema
+#   --ssh-user, --ssh-password
 ```
 #### .myclirc settings for vertical output
 ```properties
