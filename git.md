@@ -249,6 +249,12 @@ git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201
 git show --name-only --oneline `git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201`
 ```
 
+### difference for log changes
+```
+git log -1 --patch 
+git log -1 --patch -- path/to/controller_email.py
+```
+
 ### copying from another branch, copy file branch
 ```
 branch_source="master"
