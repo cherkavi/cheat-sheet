@@ -2,6 +2,7 @@
 * [sdk](https://aws.amazon.com/tools/)  
 * shell script ``` apt install aws-shell ```
 * [online trainings](https://www.aws.training/)
+* [youtube videos](https://hackmd.io/@gekart)
 
 ### console command completion, console completion
 ```sh
