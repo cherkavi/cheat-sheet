@@ -789,6 +789,13 @@ docker-compose config
 docker-compose up -d
 ```
 
+## start with re-creating all containers
+```bash
+docker-compose up --force-recreate
+# start without re-creation
+docker-compose up --no-recreate
+```
+
 ## docker-compose find folder with image
 default name of image contains name of the folder like a prefix
 ( but underscore and minus signs can be removed )
