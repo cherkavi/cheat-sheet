@@ -1111,13 +1111,13 @@ sed -n 's/^search_string//p' /path/to/folder/*
 grep -s "search-string" * .*
 ```
 
-### grep line before
+### grep before
 ```
 grep -B 4
 grep --before 4
 ```
 
-### grep line after
+### grep after
 ```
 grep -A 4
 grep --after 4
@@ -1163,6 +1163,11 @@ grep -ir --include=README.md ".*base" 2>/dev/null
 ### grep without permission denied
 ```
 grep -ir --include=README.md "base" 2>/dev/null
+```
+
+### grep filename, grep name
+```
+grep -lir 'password'
 ```
 
 ### inner join for two files, compare string from different files
