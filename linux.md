@@ -2167,6 +2167,13 @@ sudo dmidecode --string processor-family
 sudo dmidecode --string system-manufacturer
 ```
 
+## equipment system devices
+```sh
+inxi -C
+inxi --memory
+inxi -CfxCa
+```
+
 ## Touch screen
 ### calibration
 tool installation
