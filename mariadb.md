@@ -221,6 +221,18 @@ from hlm_user u
 where u.user_id = 100;
 ```
 
+
+### date diff, compare date, datetime substraction
+```sql
+----- return another date with shifting by interval
+-- (now() - interval 1 day)
+----- return amount of days between two dates
+-- datediff(now(), datetime_field_in_db )
+```
+
+# Search
+
+## simple search
 ### case search, case sensitive, case insensitive
 ```sql
 -- case insensitive search
@@ -230,10 +242,20 @@ AND q.summary LIKE '%my_criteria%'
 AND q.summary LIKE BINARY '%my_criteria%'
 ```
 
-### date diff, compare date, datetime substraction
+## similar search
+### sounds like
 ```sql
------ return another date with shifting by interval
--- (now() - interval 1 day)
------ return amount of days between two dates
--- datediff(now(), datetime_field_in_db )
+select count(*) from users where soundex(name_first) = soundex('vitali');
+select count(*) from listing where soundex(description) like concat('%', soundex('asylum'),'%');
+```
+
+## full text fuzzy search
+### search match 
+```
+SELECT pages.*,
+       MATCH (head, body) AGAINST ('some words') AS relevance,
+       MATCH (head) AGAINST ('some words') AS title_relevance
+FROM pages
+WHERE MATCH (head, body) AGAINST ('some words')
+ORDER BY title_relevance DESC, relevance DESC
 ```
