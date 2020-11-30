@@ -209,6 +209,17 @@ ALTER TABLE test ADD COLUMN IF NOT EXISTS column_a VARCHAR(255);
 SHOW CREATE TABLE yourTableName;
 ```
 
+### table indexes of table
+```sql
+SHOW INDEX FROM my_table_name;
+```
+
+### table constraints of table, show constraints
+```sql
+select COLUMN_NAME, CONSTRAINT_NAME, REFERENCED_COLUMN_NAME, REFERENCED_TABLE_NAME from information_schema.KEY_COLUMN_USAGE where TABLE_NAME = 'my_table_name';
+```
+
+
 ### subquery returns more than one row
 ```
 select 
