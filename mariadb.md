@@ -270,3 +270,47 @@ FROM pages
 WHERE MATCH (head, body) AGAINST ('some words')
 ORDER BY title_relevance DESC, relevance DESC
 ```
+
+
+# custom function, UDF
+```sql
+DROP FUNCTION if exists `digits_only`;
+DELIMITER $$
+
+CREATE FUNCTION `digits_only`(in_string VARCHAR(100) CHARACTER SET utf8)
+RETURNS VARCHAR(100)
+NO SQL
+BEGIN
+
+    DECLARE ctrNumber VARCHAR(50);
+    DECLARE finNumber VARCHAR(50) DEFAULT '';
+    DECLARE sChar VARCHAR(1);
+    DECLARE inti INTEGER DEFAULT 1;
+
+    -- swallow all exceptions, continue in any exception
+    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+    BEGIN
+
+    END;
+
+    IF LENGTH(in_string) > 0 THEN
+        WHILE(inti <= LENGTH(in_string)) DO
+            SET sChar = SUBSTRING(in_string, inti, 1);
+            SET ctrNumber = FIND_IN_SET(sChar, '0,1,2,3,4,5,6,7,8,9');
+            IF ctrNumber > 0 THEN
+                SET finNumber = CONCAT(finNumber, sChar);
+            END IF;
+            SET inti = inti + 1;
+        END WHILE;
+        IF LENGTH(finNumber) > 0 THEN
+            RETURN finNumber;
+        ELSE
+            RETURN NULL;
+        END IF;
+    ELSE
+        RETURN NULL;
+    END IF;
+END$$
+DELIMITER ;
+
+```
