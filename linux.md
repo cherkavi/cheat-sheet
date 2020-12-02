@@ -837,6 +837,11 @@ find . -name "*.j2" -o -name "*.yaml"
 find / -mmin 2
 ```
 
+### delete files that older that 5 days
+```sh
+find ./my_dir -mtime +5 -type f -delete
+```
+
 ### find files/folders by name and older than 240 min
 ```
 find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs -I {} sudo rm -r {} \; >/dev/null 2>&1
