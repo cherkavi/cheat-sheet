@@ -202,6 +202,12 @@ sudo apt-get install nfs-common
 sudo apt-get install cifs-utils
 ```
 
+### mount usb drive temporary mount disk
+```sh
+sudo mount /dev/sdd    /media/tina-team
+umount /dev/sdd
+```
+
 ### mount usb drive permanently
 ```sh
 sudo vim /etc/fstab
