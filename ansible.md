@@ -104,6 +104,19 @@ simple file for creating one folder
     - debug: msg='folder was created for host {{ ansible_host }}'
 ```
 
+## execute ansible locally, local execution
+```sh
+# --extra-vars="mapr_stream_path={{ some_variable_from_previous_files }}/some-argument" \
+
+ansible localhost \
+    --extra-vars="deploy_application=1" \
+    --extra-vars=@group_vars/all/vars/all.yml \
+    --extra-vars=@group_vars/ubs-staging/vars/ubs-staging.yml \
+    -m include_role \
+    -a name="roles/labeler"
+```
+
+
 ## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters, extra variables, external variables
 ```sh
 ansible-playbook -i inventory.ini playbook.yml --extra-vars "$*"
