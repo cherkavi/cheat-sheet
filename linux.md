@@ -769,6 +769,11 @@ mc --nocolor
 ls -lR . | grep ^l
 ```
 
+### grep asterix, grep between
+```
+cat secrets | grep ".*Name.*Avvo.*"
+```
+
 ### full path to file, file behind symlink, absolute path to file
 ```
 readlink -f {file}
