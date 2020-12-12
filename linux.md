@@ -1794,6 +1794,15 @@ nmcli connection
 nmcli connection up id {name from previous command}
 nmcli connection down id {name of connection}
 ```
+
+### connect to wifi
+```sh
+wifi_code='188790542'
+point="FRITZ!Box 7400 YO"
+nmcli device wifi connect  "$point" password $wifi_code
+# sudo cat /etc/NetworkManager/system-connections/*
+```
+
 ### raw vpn connection
 ```
 sudo openconnect --no-proxy {ip-address} --user={user name}
