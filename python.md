@@ -403,3 +403,10 @@ alembic --config alembic-local.ini current
 # upgrade to specific revision
 alembic --config alembic-local.ini upgrade cfaf8359a319 --sql 
 ```
+
+# GUI
+## PySimpleGUI
+```
+sudo apt-get install python3-tk
+pip3 install PySimpleGUI
+```
