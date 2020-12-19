@@ -136,6 +136,10 @@ ALTER TABLE `some_table` ADD `json_source` varchar(32) NOT NULL DEFAULT '';
 -- don't use 'ALTER COLUMN'
 ALTER TABLE `some_table` MODIFY `json_source` varchar(32) NULL;
 ```
+### rename column
+```
+alter table messages rename column sent_time to sent_email_time;
+```
 
 
 ### version
