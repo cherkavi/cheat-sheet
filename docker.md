@@ -797,6 +797,11 @@ docker-compose up --force-recreate
 docker-compose up --no-recreate
 ```
 
+## start compose with additional variables
+```
+docker-compose -f docker-compose.yaml build --force-rm --build-arg MY_LOCAL_VAR
+```
+
 ## docker-compose find folder with image
 default name of image contains name of the folder like a prefix
 ( but underscore and minus signs can be removed )
