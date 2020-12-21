@@ -802,6 +802,11 @@ docker-compose up --no-recreate
 docker-compose -f docker-compose.yaml build --force-rm --build-arg MY_LOCAL_VAR
 ```
 
+## start compose with multiply files
+```
+docker-compose -f docker-file1.yaml -f docker-file2.yaml -f docker-file3.yaml up
+```
+
 ## docker-compose find folder with image
 default name of image contains name of the folder like a prefix
 ( but underscore and minus signs can be removed )
