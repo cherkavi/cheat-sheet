@@ -3072,14 +3072,18 @@ SUBSYSTEM=="video4linux", KERNEL=="video[0-9]*", ATTRS{product}=="HD Pro Webcam 
 ```
 
 ## wacom tablet, wacom graphical tablet, map wacom, map tablet, tablet to display
+> your wacom device has two modes - PC/Android, for switching between them - press and keep for 3-4 sec two outermost buttons.
 ```sh
 # detect your monitors and select one of the output like 'HDMI-1'
 xrandr --listmonitors
 
 # detect all wacom devices
+# xsetwacom --list devices
 xinput | grep -i wacom | awk -F 'id=' '{print $2}' | awk '{print $1}' | while read each_input_device
 do
+	# xsetwacom set 21 MapToOutput 2560x1440+1080+0
 	xinput map-to-output $each_input_device HDMI-1
 done
-
 ```
+
+
