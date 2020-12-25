@@ -774,6 +774,11 @@ ls -lR . | grep ^l
 cat secrets | grep ".*Name.*Avvo.*"
 ```
 
+### grep exclude, grep without folder
+```
+grep -ir --exclude-dir=node_modules "getServerSideProps"
+```
+
 ### full path to file, file behind symlink, absolute path to file
 ```
 readlink -f {file}
