@@ -249,7 +249,7 @@ git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201
 git show --name-only --oneline `git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201`
 ```
 
-### difference for log changes
+### difference for log changes, diff log, log diff
 ```
 git log -1 --patch 
 git log -1 --patch -- path/to/controller_email.py
