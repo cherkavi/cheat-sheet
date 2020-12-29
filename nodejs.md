@@ -79,3 +79,18 @@ PORT=$PORT npm start --prefix $PROJECT_HOME/api
 ```sh
 yarn config list
 ```
+
+# NextJS
+* [Next.js Documentation](https://nextjs.org/docs)
+* [Learn Next.js](https://nextjs.org/learn)
+* [the Next.js GitHub repository](https://github.com/vercel/next.js/)
+```sh
+npx create-next-app my-app
+```
+start nextjs
+```sh
+npm run-script build
+npm run-script start
+# or ( the same for debug )
+node server.js
+```
