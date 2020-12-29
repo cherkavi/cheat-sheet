@@ -1424,12 +1424,12 @@ zip -r bcm-1003.zip *
 ```
 
 ### zip file without saving path, zip path cleanup
-```
+```sh
 zip --junk_paths bcm-1003.zip *
 ```
 
 ### using parameters for aliases
-```
+```sh
 alias sublime_editor=/Applications/SublimeEditor/Sublime
 
 subl(){
@@ -1437,8 +1437,14 @@ subl(){
 }
 ```
 
-### [sed cheat sheet](https://gist.github.com/ssstonebraker/6140154), replace
+### print alias, print function
+```sh
+alias sublime_editor
+type subl
 ```
+
+### [sed cheat sheet](https://gist.github.com/ssstonebraker/6140154), replace
+```sh
 replace "name" with "nomen" string
 sed 's/name/nomen/g'
 
@@ -1446,7 +1452,7 @@ sed 's/name/nomen/g'
 # echo "there is a test is not a sentence" | sed 's/is/are/2'
 ```
 example of replacing all occurences in multiply files
-```
+```sh
 for each_file in `find -name "*.java"`; do
 	sed --in-place 's/vodkafone/cherkavi/g' $each_file
 done
