@@ -302,6 +302,14 @@ chmod 700 ~/.ssh ;
 chmod 600 ~/.ssh/authorized_keys
 ```
 
+issue broken pipe ssh
+> vim ~/.ssh/config
+```
+Host *
+    ServerAliveInterval 30
+    ServerAliveCountMax 5
+```
+
 ### ssh fingerprint, ssh checking
 ```
 ssh -o StrictHostKeyChecking=no user@ubsp00013.vantage.org
