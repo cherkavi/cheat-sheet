@@ -12,10 +12,14 @@ docker run --name mysql-container --volume /my/local/folder/data:/var/lib/mysql 
 docker pull mariadb
 
 docker run --name mysql-container --volume /my/local/folder/data:/var/lib/mysql --volume /my/path/to/sql:/docker-entrypoint-initdb.d --publish 3306:3306 --env MYSQL_ROOT_PASSWORD=root --env MYSQL_DATABASE={databasename} --detach mariadb --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-
 ```
 
-### connect to mysql shell tool:
+### config file, conf file
+```sh
+cat /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+
+### connect to mysql using shell tool:
 ```
 mysql --user=root --password=root
 ```
