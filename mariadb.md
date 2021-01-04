@@ -58,6 +58,10 @@ source some-sql.txt;
 mysql --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --database=masterdb --password=my_passw
 ## docker mysql client 
 docker run -it mariadb mysql --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --database=masterdb --password=my_passw
+## enable server logging !!!
+### server-id = 1
+### log_bin = /var/log/mysql/mysql-bin.log
+sudo sed -i '/server-id/s/^#//g' /etc/mysql/mysql.conf.d/mysqld.cnf && sudo sed -i '/log_bin/s/^#//g' /etc/mysql/mysql.conf.d/mysqld.cnf
 
 # backup ( pay attention to 'database' key )
 mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb > backup.sql
@@ -65,11 +69,18 @@ mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 -
 mysqldump --extended-insert --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw --databases masterdb | sed 's$),($),\n($g' > backup.sql
 mysqldump --extended-insert=FALSE --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw --databases masterdb > backup.sql
 
+mysqldump --databases ghost_prod --master-data=2 --single-transaction --order-by-primary -r backup.sql -u ghost -p
+
 # backup only selected tables 
 mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb table_1 table_2 > backup.sql
 
-# restore
+# restore #1
 mysql -u mysql_user -p DATABASE < backup.sql
+# restore #2 
+mysql -u mysql_user -p 
+use DATABASE
+source /home/user/backup.sql
+
 ```
 
 #### backup issue: during backup strange message appears: "Enter password:" even with password in command line

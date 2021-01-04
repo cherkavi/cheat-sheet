@@ -3,6 +3,7 @@
 * shell script ``` apt install aws-shell ```
 * [online trainings](https://www.aws.training/)
 * [youtube videos](https://hackmd.io/@gekart)
+* [Architecture](https://wa.aws.amazon.com/index.en.html)
 
 ### console command completion, console completion
 ```sh
@@ -117,10 +118,14 @@ console
 ```
 
 ```sh
-AWS_BUCKET_NAME="my-bucket-name"
+# make bucket - create bucket with globally unique name
+AWS_BUCKET_NAME="my-bucket-name" 
 aws s3 mb s3://$AWS_BUCKET_NAME
+aws s3 mb s3://$AWS_BUCKET_NAME --region us-east-1 
 # list of all s3
 aws s3 ls
+aws s3api list-buckets
+aws s3api list-buckets --query "Buckets[].Name"
 # get bucket location
 aws s3api get-bucket-location --bucket $AWS_BUCKET_NAME
 # copy to s3
@@ -128,9 +133,9 @@ aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME
 # create folder, s3 mkdir
 aws s3api put-object --bucket my-bucket-name --key foldername/
 # sync folder with remote s3 folder
-aws s3 sync /paht/to/some/folder s3://my-bucket-name/some/folder
+aws s3 sync /path/to/some/folder s3://my-bucket-name/some/folder
 # sync folder with remote s3 folder with public access
-aws s3 sync /paht/to/some/folder s3://my-bucket-name/some/folder --acl public-read
+aws s3 sync /path/to/some/folder s3://my-bucket-name/some/folder --acl public-read
 # list of all objects
 aws s3 ls --recursive s3://my-bucket-name 
 # list of all object by specified path ( / at the end must be )
@@ -290,7 +295,8 @@ reading information about current instance, local ip address, my ip address, con
 curl -X GET http://169.254.169.254/latest/meta-data/
 curl -X GET http://169.254.169.254/latest/meta-data/iam/security-credentials/
 curl -X GET http://169.254.169.254/latest/api/token
-
+# public ip 
+curl -X GET http://169.254.169.254/latest/meta-data/public-ipv4
 ```
 
 ---
@@ -300,6 +306,11 @@ current_doc_topic="ebs"
 cli-doc
 faq
 ```
+
+> snapshot can be created from one ESB
+> snapshot can be copied to another region
+> volume can be created from snapshot and attached to EC2
+> ESB --> Snapshot --> copy to region --> Snapshot --> ESB --> attach to EC2
 
 attach new volume
 ```sh
@@ -648,6 +659,10 @@ console
 google-chrome "https://"$AWS_REGION".console.aws.amazon.com/cloudformation/designer/home?region="$AWS_REGION
 ```
 
+```sh
+aws cloudformation describe-stacks --region us-east-1
+```
+
 ### CloudFormation macros
 ![cloud formation macros](https://i.postimg.cc/BQMY5xmx/aws-cloud-formation-macros.png)
 
@@ -701,3 +716,4 @@ upcoming courses:
   * http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html
   * http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html
   * https://aws.amazon.com/aup/
+* https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html
