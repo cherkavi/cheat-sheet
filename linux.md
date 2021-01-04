@@ -624,8 +624,13 @@ fc
 
 ### folder into bash script
 working folder
-```
+```sh
 pwd
+```
+
+### process directory process working dir
+```sh
+pwdx <process id>
 ```
 
 ### bash reading content of the file to command-line parameter
