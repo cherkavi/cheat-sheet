@@ -2009,6 +2009,13 @@ systemctl status {service name}
 journalctl -u {service name} -e
 # print all units
 journalctl -F _SYSTEMD_UNIT
+
+# system log
+journalctl -f -l 
+# system log for app log
+$ journalctl -f -l -u python -u mariadb
+# system log since 300 second
+$ journalctl -f -l -u httpd -u mariadb --since -300
 ```
 
 check settings
