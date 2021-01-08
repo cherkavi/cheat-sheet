@@ -2476,6 +2476,12 @@ sudo apt-get install translate-shell
 trans -source de -target ru -brief "german sentance"
 ```
 
+## video
+### join mp4 fusion mp4
+```
+ffmpeg -i video.mp4 -i audio.mp4 output.mp4
+```
+
 ## sound
 ### join files
 ```
