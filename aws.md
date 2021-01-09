@@ -283,6 +283,8 @@ console
 ```sh
 # list ec2, ec2 list, instances list
 aws ec2 describe-instances --profile $AWS_PROFILE --region $AWS_REGION --filters Name=tag-key,Values=test
+# example
+aws ec2 describe-instances --region us-east-1 --filters "Name=tag:Name,Values=ApplicationInstance"
 ```
 connect to launched instance
 ```sh

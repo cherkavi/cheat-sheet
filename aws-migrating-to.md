@@ -122,3 +122,44 @@ e|------------------------------|------------|
 * Experiment with services and copy of data
 * Iterate with another experiment ( using other services )
 * Deploying to AWS
+
+## Percona XtraBackup
+### installation
+```sh
+wget https://repo.percona.com/apt/percona-release_latest.$(lsb_release -sc)_all.deb
+sudo dpkg -i percona-release_latest.$(lsb_release -sc)_all.deb
+sudo apt-get update
+# MySQL 5.6, 5.7; for MySQL 8.0 - XtraBackup 8.0
+sudo apt-get -y install percona-xtrabackup-24
+```
+
+### create backup
+```
+sudo xtrabackup --backup --stream=tar --user=my_user --password=my_password | gzip -c > /home/ubuntu/xtrabackup.tar.gz
+```
+
+### list of policies for role
+```
+AWSApplicationDiscoveryAgentAccess
+AmazonS3FullAccess
+AWSCloud9Administrator
+RDS-Policy
+CF-Policy
+IAM-Policy
+```
+
+### create new instance with db
+```
+aws rds restore-db-instance-from-s3  --db-instance-identifier ghost-db-mysql --db-instance-class db.t2.large  --engine mysql  --source-engine mysql  --source-engine-version 5.7.22  --s3-bucket-name <FMI>  --s3-ingestion-role-arn "<FMI>"  --allocated-storage 100 --master-username admin  --master-user-password foobarfoobar --region <FMI>
+```
+
+### check status
+```
+aws rds describe-db-instances --db-instance-identifier ghost-db-mysql --region <FMI> --query DBInstances[0].DBInstanceStatus
+```
+
+## Database migration service
+* create replication instance
+* create source endpoint
+* create target endpoint
+* create database migration task
