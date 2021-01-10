@@ -1,7 +1,8 @@
 ## [database migration](https://aws.amazon.com/blogs/database/database-migration-what-do-you-need-to-know-before-you-start/)
 
 ## [Migration strategies](https://aws.amazon.com/blogs/enterprise-strategy/6-strategies-for-migrating-applications-to-the-cloud/)
-* rehost
+> evaluate->make plans->test plans->reformat plan->test plan->performing
+* rehost ( one-to-one )
   * Specify Migration Goals
   * Identify data to migrate
   * Discover components to migrate
@@ -13,7 +14,7 @@
   * Replicate application data
   * Migrate application components
   * Test
-* replatform
+* replatform (one-to-one with optimization, replace with existing AWS services )
   * Specify Migration Goals
   * Identify data to migrate
   * Discover components to migrate
@@ -26,7 +27,7 @@
   * Replicate application data
   * Migrate application components
   * Test
-* repurchase
+* repurchase ( using AWS services + AWS Marketplace with configured machines )
   * Specify Migration Goals
   * Identify data to migrate
   * Discover components to migrate
@@ -40,7 +41,7 @@
   * Replicate application data
   * Migrate application components
   * Test
-* refactor reachitect
+* refactor reachitect ( what should be re-architected -> SOA )
   * Specify Migration Goals
   * Identify data to migrate
   * Discover components to migrate
@@ -55,7 +56,7 @@
   * Replicate application data
   * Migrate application components
   * Test
-* retire
+* retire ( what may not be migrated )
   * Specify Migration Goals
   * Identify data to migrate
   * **Identify unnecessary components**
@@ -69,7 +70,7 @@
   * Replicate application data
   * Migrate application components
   * Test
-* retain
+* retain ( not ready, not necessary to migrate )
   * Specify Migration Goals
   * Identify data to migrate
   * **Identify best environment for each component**
