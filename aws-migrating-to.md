@@ -163,3 +163,19 @@ aws rds describe-db-instances --db-instance-identifier ghost-db-mysql --region <
 * create source endpoint
 * create target endpoint
 * create database migration task
+
+## CloudEndure 
+* [registration](www.cloudendure.com), get free migration license
+* [IAM policy](https://aws-tc-largeobjects.s3-us-west-2.amazonaws.com/DEV-AWS-MO-Migration/lab-4-cloud-endure/iampolicy.json)
+* Create user IAM user
+* CloudEndure->select source and destination regions
+* CloudEndure->Setup & Info->write down AccessKeyId & SecretAccessKey
+* CloudEndure->Machines How to Add Machines
+* Install agent on EC2 instance
+  ```sh
+  wget -O ./installer_linux.py https://console.cloudendure.com/installer_linux.py
+  sudo python ./installer_linux.py -t 0B7F-A786-6F8F-0727-08E2-0CB1-B758-7E41-4D03-7A47-8C2A-129A-8CFE-B115-09EA-A1EC --no-prompt
+  ```
+* CloudEndure->LaunchTargetMachines->TestMode ( check JobProgress )
+* EC2 instance list
+* check ip addresses in new EC2
