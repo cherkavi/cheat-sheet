@@ -175,6 +175,13 @@ def needToExecuteStage(stageName, func){
     }
 }
 ```
+## REST API
+```sh
+curl https://jenkins-stg.dpl.org/job/application/deployment/job/deploy-from-branch/buildWithParameters \
+  --user $DXC_USER:$DXC_PASS \
+  --data BRANCH_NAME=mdf4-download --data DESTINATION=data-portal-stg-1
+```
+
 
 ### sonar management
 obtaining
