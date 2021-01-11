@@ -8,6 +8,7 @@
 * [pipeline examples](https://github.com/jenkinsci/pipeline-examples)
 * [continuous delivery patterns](https://continuousdelivery.com/implementing/patterns/)
 * [continuous delivery architecture](https://continuousdelivery.com/implementing/architecture/)
+* [REST API](https://www.jenkins.io/doc/book/using/remote-access-api/)
 
 #### DSL
 * [jenkins dsl source code](https://github.com/jenkinsci/job-dsl-plugin)
