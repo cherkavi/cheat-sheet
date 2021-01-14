@@ -400,10 +400,13 @@ docker ps -a
 ```
 
 ### show container with filter, show container with format
+[output formatting](https://docs.docker.com/config/formatting/)
 ```
 # filter docker images by name 
 # output format - names with commands (https://github.com/BrianBland/docker/edit/master/api/client/formatter/formatter.go)
 docker ps -a --filter "name=redis-lab" --format "{{.Names}} {{.Command}}"
+docker ps -a --filter "name=redis-lab" --format "{{.Names}} {{.Command}}"
+docker ps -a --format "  {{.ID}} {{.Names}}"
 ```
 
 ### join to executed container, connect to container, rsh, sh on container
