@@ -387,8 +387,7 @@ sudo rm -rf /var/lib/rancher-log/*
 
 # [upgrade k8s](https://platform9.com/blog/kubernetes-upgrade-the-definitive-guide-to-do-it-yourself/)
 
-
-# logs 
+## logs 
 ```
 ### Master
 ## API Server, responsible for serving the API
@@ -429,6 +428,11 @@ GitVersion:"v1.11.1"
   curl https://{ip:port}/api --header @token.crt --insecure
   ```
   
+## connect to remote machine, rsh
+```
+# connect to remote machine
+kubectl --namespace namespace-metrics --kubeconfig=config-rancher exec -ti sm-grafana-deployment-5bdb64-6dnb8 -- /bin/sh
+```
 
 ## check namespaces
 ```
