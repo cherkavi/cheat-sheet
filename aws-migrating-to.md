@@ -1,5 +1,8 @@
 ## [database migration](https://aws.amazon.com/blogs/database/database-migration-what-do-you-need-to-know-before-you-start/)
 
+[TSO, Migration evaluation](https://aws.amazon.com/migration-evaluator/)
+[System Manager, System Manager Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)
+
 ## [Migration strategies](https://aws.amazon.com/blogs/enterprise-strategy/6-strategies-for-migrating-applications-to-the-cloud/)
 > evaluate->make plans->test plans->reformat plan->test plan->performing
 * rehost ( one-to-one )
@@ -165,7 +168,7 @@ aws rds describe-db-instances --db-instance-identifier ghost-db-mysql --region <
 * create target endpoint
 * create database migration task
 
-## CloudEndure 
+## [CloudEndure](https://aws.amazon.com/cloudendure-migration/)
 * [registration](www.cloudendure.com), get free migration license
 * [IAM policy](https://aws-tc-largeobjects.s3-us-west-2.amazonaws.com/DEV-AWS-MO-Migration/lab-4-cloud-endure/iampolicy.json)
 * Create user IAM user
