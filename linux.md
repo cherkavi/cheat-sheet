@@ -834,6 +834,16 @@ readlink 'path to symlink'
 which "program-name"
 ```
 
+### permission denied
+```sh
+# issue with permission ( usually on NFS or cluster )
+# find: '/mnt/nfs/ml-training-mongodb-pvc/journal': Permission denied
+# 
+# solution:
+sudo docker run --volume  /mnt/nfs:/nfs -it busybox /bin/sh
+chmod -R +r /nfs/ml-training-mongodb-pvc/journal
+```
+
 ### find file by name
 ```
 locate {file name}
