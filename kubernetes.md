@@ -49,6 +49,8 @@ rm -rf ~/.kube/cache
 kubectl get pods -v=6
 kubectl get pods -v=7
 kubectl get pods -v=8
+# with specific context file from ~/.kube, specific config
+kubectl --kubeconfig=config-rancher  get pods -v=8
 ```
 * explain yaml schema
 ```bash
