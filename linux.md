@@ -167,6 +167,12 @@ sudo netstat -tulpan | grep LISTEN
 sudo ss -tulpan 'sport = :9999'
 ```
 
+### mount drive to path mount
+```
+# <drive> <path>
+sudo mount /dev/sdd /tin
+```
+
 ### mount remote filesystem via ssh, map folder via ssh, ssh remote folder
 ```
 sudo mkdir /mnt/vendor-cluster-prod
