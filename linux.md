@@ -220,6 +220,11 @@ copy everything from ```mount```
 /dev/sdd5 on /media/user1/e91bd98f-7a13-43ef-9dce-60d3a2f15558 type ext4 (rw,nosuid,nodev,relatime,uhelper=udisks2)
 ```
 
+mount remote drive via network 
+```
+10.55.0.3:/mnt/disks/k8s-local-storage/nfs /mnt/nfs nfs rw,noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14 0 0
+```
+
 ### list drives, drive list, attached drives
 ```sh
 lsblk
