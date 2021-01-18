@@ -214,16 +214,33 @@ sudo mount /dev/sdd    /media/tina-team
 umount /dev/sdd
 ```
 
-### mount usb drive permanently mount
+### mount usb drive permanently mount, map drive
+```sh
+sudo mkdir /mnt/disks/k8s-local-storage1
+sudo chmod 755 /mnt/disks/k8s-local-storage1
+sudo ln -s /mnt/disks/k8s-local-storage1/nfs nfs1
+ls -la /mnt/disks
+ls -la /mnt
+
+sudo blkid
+sudo vim /etc/fstab
+# add record
+# UUID=42665716-1f89-44d4-881c-37b207aecb71 /mnt/disks/k8s-local-storage1 ext4 defaults 0 0
+
+# refresg fstab reload
+sudo mount -av
+ls /mnt/disks/k8s-local-storage1
+```
+option 2
 ```sh
 sudo vim /etc/fstab
-```
-```text
-/dev/disk/by-uuid/8765-4321    /media/usb-drive         vfat   0   0
-```
-copy everything from ```mount```
-```text
-/dev/sdd5 on /media/user1/e91bd98f-7a13-43ef-9dce-60d3a2f15558 type ext4 (rw,nosuid,nodev,relatime,uhelper=udisks2)
+# add line
+# /dev/disk/by-uuid/8765-4321    /media/usb-drive         vfat   0   0
+
+# copy everything from ```mount```
+# /dev/sdd5 on /media/user1/e91bd98f-7a13-43ef-9dce-60d3a2f15558 type ext4 (rw,nosuid,nodev,relatime,uhelper=udisks2)
+
+sudo mount -av
 ```
 
 mount remote drive via network 
@@ -234,6 +251,20 @@ mount remote drive via network
 ### drive uuid hdd uuid
 ```
 blkid
+```
+
+### nfs server
+```sh
+# nfs server 
+vim /etc/exports
+sudo exportfs -a
+sudo exportfs -v
+
+systemctl status nfs-server
+ll /sys/module/nfs/parameters/
+ll /sys/module/nfsd/parameters/
+
+nfsstat
 ```
 
 ### list drives, drive list, attached drives
