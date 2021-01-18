@@ -2248,6 +2248,8 @@ md5sum
 sudo dmidecode --string system-serial-number
 sudo dmidecode --string processor-family
 sudo dmidecode --string system-manufacturer
+# disk serial number
+sudo lshw -class disk
 ```
 
 ## equipment system devices
