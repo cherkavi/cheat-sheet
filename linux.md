@@ -208,7 +208,7 @@ sudo mount /dev/sdd    /media/tina-team
 umount /dev/sdd
 ```
 
-### mount usb drive permanently
+### mount usb drive permanently mount
 ```sh
 sudo vim /etc/fstab
 ```
@@ -223,6 +223,11 @@ copy everything from ```mount```
 mount remote drive via network 
 ```
 10.55.0.3:/mnt/disks/k8s-local-storage/nfs /mnt/nfs nfs rw,noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14 0 0
+```
+
+### drive uuid hdd uuid
+```
+blkid
 ```
 
 ### list drives, drive list, attached drives
