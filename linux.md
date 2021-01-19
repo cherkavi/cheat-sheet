@@ -174,6 +174,12 @@ sudo netstat -tulpan | grep LISTEN
 sudo ss -tulpan 'sport = :9999'
 ```
 
+### mount drive to path mount
+```
+# <drive> <path>
+sudo mount /dev/sdd /tin
+```
+
 ### mount remote filesystem via ssh, map folder via ssh, ssh remote folder
 ```
 sudo mkdir /mnt/vendor-cluster-prod
@@ -215,16 +221,57 @@ sudo mount /dev/sdd    /media/tina-team
 umount /dev/sdd
 ```
 
-### mount usb drive permanently
+### mount usb drive permanently mount, map drive
+```sh
+sudo mkdir /mnt/disks/k8s-local-storage1
+sudo chmod 755 /mnt/disks/k8s-local-storage1
+sudo ln -s /mnt/disks/k8s-local-storage1/nfs nfs1
+ls -la /mnt/disks
+ls -la /mnt
+
+sudo blkid
+sudo vim /etc/fstab
+# add record
+# UUID=42665716-1f89-44d4-881c-37b207aecb71 /mnt/disks/k8s-local-storage1 ext4 defaults 0 0
+
+# refresg fstab reload
+sudo mount -av
+ls /mnt/disks/k8s-local-storage1
+```
+option 2
 ```sh
 sudo vim /etc/fstab
+# add line
+# /dev/disk/by-uuid/8765-4321    /media/usb-drive         vfat   0   0
+
+# copy everything from ```mount```
+# /dev/sdd5 on /media/user1/e91bd98f-7a13-43ef-9dce-60d3a2f15558 type ext4 (rw,nosuid,nodev,relatime,uhelper=udisks2)
+
+sudo mount -av
 ```
-```text
-/dev/disk/by-uuid/8765-4321    /media/usb-drive         vfat   0   0
+
+mount remote drive via network 
 ```
-copy everything from ```mount```
-```text
-/dev/sdd5 on /media/user1/e91bd98f-7a13-43ef-9dce-60d3a2f15558 type ext4 (rw,nosuid,nodev,relatime,uhelper=udisks2)
+10.55.0.3:/mnt/disks/k8s-local-storage/nfs /mnt/nfs nfs rw,noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14 0 0
+```
+
+### drive uuid hdd uuid
+```
+blkid
+```
+
+### nfs server
+```sh
+# nfs server 
+vim /etc/exports
+sudo exportfs -a
+sudo exportfs -v
+
+systemctl status nfs-server
+ll /sys/module/nfs/parameters/
+ll /sys/module/nfsd/parameters/
+
+nfsstat
 ```
 
 ### list drives, drive list, attached drives
@@ -2245,6 +2292,8 @@ md5sum
 sudo dmidecode --string system-serial-number
 sudo dmidecode --string processor-family
 sudo dmidecode --string system-manufacturer
+# disk serial number
+sudo lshw -class disk
 ```
 
 ## equipment system devices
