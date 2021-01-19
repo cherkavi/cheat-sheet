@@ -33,8 +33,15 @@ ssh -o "ProxyCommand nc -x 127.0.0.1:7772 %h %p" cherkavi@151.190.211.47
 
 ### tunnel, port forwarding from local machine to outside
 ```
-ssh -L <localport>:<remote host>:<remote port> <hostname>
+ssh -L <local_port>:<remote_host from ssh_host>:<remote_port> <username>@<ssh_host>
+ssh -L <local_port>:<remote_host from ssh_host>:<remote_port> <ssh_host>
+
 ssh -L 28010:vldn337:8010 localhost
+ssh -L 28010:remote_host:8010 user_name@remote_host
+
+# destination service on the same machine as ssh_host
+# localport!=remote_port (28010!=8010)
+ssh -L 28010:127.0.0.1:8010 user_name@remote_host
 ```
 
 from local port 7000 to remote 5005

@@ -223,6 +223,12 @@ mvn javadoc:javadoc
  -Dmaven.javadoc.skip=true
  ```
 
+### jar without class, no class files
+```sh
+# put java files to proper place
+mkdir src/main/java
+```
+
 ### uber jar plugin, fat jar, jar with all dependencies, shade plugin
 ```
 <plugin>
