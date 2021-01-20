@@ -41,6 +41,7 @@ mvn org.qunix:structure-maven-plugin:modules
 
 ### buld only one module, single module build
 ```sh
+# mvn --projects common/common-utils clean install
 mvn -pl common/common-utils clean install
 ```
 or build with all dependencies
