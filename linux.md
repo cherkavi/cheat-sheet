@@ -261,17 +261,45 @@ blkid
 ```
 
 ### nfs server
+#### nfs install
 ```sh
-# nfs server 
-vim /etc/exports
+sudo apt install nfs-kernel-server
+systemctl status nfs-server
+nfsstat
+```
+#### nfs create mount point
+```sh
+# create point 
+sudo mkdir /mnt/disks/k8s-local-storage1
+# mount 
+sudo mount /dev/sdc /mnt/disks/k8s-local-storage1
+sudo chmod 755 /mnt/disks/k8s-local-storage1
+# createlink 
+sudo ln -s /mnt/disks/k8s-local-storage1/nfs nfs1
+
+# update storage
+sudo cat /etc/exports
+# /mnt/disks/k8s-local-storage1/nfs       10.55.0.0/16(rw,sync,no_subtree_check)
+
+# restart 
 sudo exportfs -a
 sudo exportfs -v
+```
 
-systemctl status nfs-server
+#### nfs parameters
+```sh
 ll /sys/module/nfs/parameters/
 ll /sys/module/nfsd/parameters/
+```
 
-nfsstat
+#### remote client for nfs mapping
+```sh
+sudo vim /etc/fstab
+# 10.55.0.3:/mnt/disks/k8s-local-storage/nfs /mnt/nfs nfs rw,noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14 0 0
+# 10.55.0.3:/mnt/disks/k8s-local-storage1/nfs /mnt/nfs1 nfs defaults 0 0
+
+# refresh mapping
+sudo mount -av
 ```
 
 ### list drives, drive list, attached drives
