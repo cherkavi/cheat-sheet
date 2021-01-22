@@ -469,6 +469,14 @@ HTTP_PROXY=muc.proxy
 HTTPS_PROXY=muc.proxy
 ```
 
+#### issue with git lfs
+```
+Encountered 1 file(s) that should have been pointers, but weren't:
+```
+```
+git lfs migrate import --no-rewrite path-to-file
+```
+
 
 ### configuration for proxy server, proxy configuration
 #### set proxy, using proxy
@@ -542,3 +550,5 @@ fi
 ## advices
 ### fix commit to wrong branch
 ![fix wrong branch commit](https://i.postimg.cc/TYVLR89Y/git-wrong-branch-commit.png)
+
+
