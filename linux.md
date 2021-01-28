@@ -172,6 +172,9 @@ sudo lsof -i -P -n | grep LISTEN
 sudo netstat -tulpan | grep LISTEN
 # print pid of process that occupying 9999 port
 sudo ss -tulpan 'sport = :9999'
+
+# open input output
+iotop
 ```
 
 ### mount drive to path mount
@@ -1910,7 +1913,9 @@ sudo service network-manager restart
 ```
 
 ### vpn connection, connect to network
-```
+```sh
+# status of all connections
+nmcli d
 nmcli connection
 nmcli connection up id {name from previous command}
 nmcli connection down id {name of connection}
