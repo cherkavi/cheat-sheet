@@ -255,6 +255,11 @@ oc rsh {name of pod}
 oc exec kafka-test-app "/usr/bin/java"
 ```
 
+### forward port forwarding
+```bash
+oc port-forward <pod-name> <ext-port>:<int-port>
+```
+
 ### [create app](https://access.redhat.com/documentation/en-us/openshift_enterprise/3.0/html/developer_guide/dev-guide-new-app)
 
 #### new app with "default" container 
