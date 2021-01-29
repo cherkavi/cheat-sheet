@@ -93,6 +93,11 @@ ssh suppress banner, ssh no invitation
 ssh -q my_server.org
 ```
 
+ssh verbosive, ssh log, debug ssh
+```sh
+ssh -vv my_server.org
+```
+
 ### local proxy cntlm, cntlm proxy
 ```text
   app_1 --.
