@@ -255,6 +255,11 @@ oc rsh {name of pod}
 oc exec kafka-test-app "/usr/bin/java"
 ```
 
+### copy file from pod
+```sh
+oc cp api-server-256-txa8n:/usr/src/cert/keystore_server /my/local/path
+```
+
 ### forward port forwarding
 ```bash
 oc port-forward <pod-name> <ext-port>:<int-port>
