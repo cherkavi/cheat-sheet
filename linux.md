@@ -88,6 +88,11 @@ ssh -D 9999 127.0.0.1 -t ssh -R 7777:127.0.0.1:9999 username@192.118.112.13
 wget -e use_proxy=yes -e http_proxy=127.0.0.1:7777 https://google.com
 ```
 
+ssh suppress banner, ssh no invitation
+```sh
+ssh -q my_server.org
+```
+
 ### local proxy cntlm, cntlm proxy
 ```text
   app_1 --.
