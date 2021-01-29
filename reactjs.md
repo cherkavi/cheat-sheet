@@ -1,6 +1,7 @@
 # ReactJS
 
-[doc](https://create-react-app.dev/)
+[doc](https://create-react-app.dev/)  
+[chrome plugin](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
 
 ## create project
 ```sh
