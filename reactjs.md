@@ -1,4 +1,6 @@
-# React
+# ReactJS
+
+[doc](https://create-react-app.dev/)
 
 ## create project
 ```sh
