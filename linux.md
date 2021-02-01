@@ -1287,6 +1287,7 @@ cat file.txt | grep -e "occurence1" | grep -e "occurence2"
 ### grep not included, grep NOT
 ```
 cat file.txt | grep -v "not-include-string"
+cat file.txt | grep -v -e "not-include-string" -e "not-include-another"
 ```
 
 ### grep with file mask
