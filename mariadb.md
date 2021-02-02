@@ -51,7 +51,7 @@ source some-sql.txt;
 ```
 
 
-### import db export db, archive, backup, restore
+### import db export db, archive, backup db, restore
 ```sh
 # prerequisites
 ## try just to connect to db
@@ -62,6 +62,9 @@ docker run -it mariadb mysql --host=mysql-dev-eu.a.db.ondigitalocean.com --user=
 ### server-id = 1
 ### log_bin = /var/log/mysql/mysql-bin.log
 sudo sed -i '/server-id/s/^#//g' /etc/mysql/mysql.conf.d/mysqld.cnf && sudo sed -i '/log_bin/s/^#//g' /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# mysqldump installation
+# sudo apt install mysql-client-core-8.0
 
 # backup ( pay attention to 'database' key )
 mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb > backup.sql
