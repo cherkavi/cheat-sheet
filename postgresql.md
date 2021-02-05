@@ -58,6 +58,13 @@ host    all             all              0.0.0.0/0                       md5
 host    all             all              ::/0                            md5
 ```
 
+### connect to db
+```sh
+pip install -U pgcli
+sudo apt install pgcli
+pgcli --host 10.14.22.20 --port 30063 --username admin --password adminpass --dbname my_db
+```
+
 ### jdbc url
 ```
 url:
