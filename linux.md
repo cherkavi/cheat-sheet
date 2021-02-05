@@ -8,18 +8,21 @@
 
 ### place for scripts, permanent script
 ```
-# system wide for all users
-/etc/environment
+### system wide for all users
+# System-wide .bashrc file for interactive bash(1) shells.
+/etc/bash.bashrc
+# system-wide .profile file for the Bourne shell (sh(1)
 /etc/profile
+/etc/environment
 /etc/profile.d/my_new_update.sh
 
-# during user login
+### during user login
 ~/.bash_profile
-~/.profile
+# executed by Bourne-compatible login shells.
+~/.profile 
 
-# during open the terminal
+# during open the terminal, executed by bash for non-login shells.
 ~/.bashrc
-
 ```
 
 ### socket proxy, proxy to remote machine
@@ -259,6 +262,9 @@ sudo vim /etc/fstab
 
 # copy everything from ```mount```
 # /dev/sdd5 on /media/user1/e91bd98f-7a13-43ef-9dce-60d3a2f15558 type ext4 (rw,nosuid,nodev,relatime,uhelper=udisks2)
+# /dev/sda1 on /media/kali/usbdata type fuseblk (rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other,blksize=4096,uhelper=udisks2)
+
+# systemctl daemon-reload
 
 sudo mount -av
 ```
@@ -1784,6 +1790,21 @@ Acquire::https::Proxy "http://username:password@proxyhost:port";
 ```sh
 sudo snap set system proxy.http="http://user:password@proxy.zur:8080"
 sudo snap set system proxy.https="http://user:password@proxy.zur:8080"
+```
+
+### snap installation issue
+```sh
+# leads to error: cannot connect to the server
+snap install <app>
+
+# Unmask the snapd.service:
+sudo systemctl unmask snapd.service
+
+# Enable it:
+systemctl enable snapd.service
+
+# Start it:
+systemctl start snapd.service
 ```
 
 ### install version of app, install specific version, accessible application version
