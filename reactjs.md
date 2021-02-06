@@ -1,8 +1,8 @@
 # ReactJS
 
-[my projects with examples](https://github.com/cherkavi/javascripting/tree/master/react)
+[my projects with examples](https://github.com/cherkavi/javascripting/tree/master/react)  
 [doc](https://create-react-app.dev/)  
-[chrome plugin](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
+[chrome plugin](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)  
 
 ## create project
 ```sh
