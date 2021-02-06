@@ -14,3 +14,24 @@ npx create-react-app my-app
 npm install --save-dev create-react-component-folder
 npx crcf myComponent
 ```
+
+## style pseudo selector
+```js
+# npm install --save radium
+
+import Radium from 'radium';
+style={
+   ':hover': {
+   	backgroundColor:"red"
+   },
+   '@media (min-witdh: 480px)':{
+   	width: "350px"
+   }
+}
+
+export default Radium(MyComponent);
+
+// for media - wrap root component with:
+// import { StyleRoot } from 'radium';
+// <StyleRoot> </StyleRoot>
+```
