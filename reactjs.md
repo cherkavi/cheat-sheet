@@ -4,6 +4,8 @@
 [doc](https://create-react-app.dev/)  
 [chrome plugin](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)  
 
+![NextJS ServerSideRendering](https://i.postimg.cc/L6nxk6BP/nextjs-ssr.png)
+
 ## create project
 ```sh
 npx create-react-app my-app
