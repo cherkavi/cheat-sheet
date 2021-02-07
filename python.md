@@ -410,3 +410,13 @@ alembic --config alembic-local.ini upgrade cfaf8359a319 --sql
 sudo apt-get install python3-tk
 pip3 install PySimpleGUI
 ```
+
+# Web frameworks lightweight
+* [bottle](http://bottlepy.org/)  
+* [CherryPy](http://www.cherrypy.org/)  
+* [Falcon](http://falconframework.org/)  
+* [FastAPI](https://www.starlette.io/)  
+* [Pyramid](https://trypyramid.com/)  
+* [Sanic](https://sanic.readthedocs.io/en/latest/)  
+* [Tornado](http://www.tornadoweb.org/)  
+
