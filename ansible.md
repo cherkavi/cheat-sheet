@@ -728,6 +728,7 @@ ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_
     - build-essential
     - python-pip
 ```
+
 ### [service](https://docs.ansible.com/ansible/latest/modules/service_module.html)
 ```
 - name: example of start unix service
@@ -753,6 +754,107 @@ add flag for verbosity:-vv (2) or -v (1)
     verbosity: 2
 ```
 
+### [copy](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html?extIdCarryOver=true&sc_cid=701f2000001OH7nAAG#ansible-collections-ansible-builtin-copy-module)
+```
+- name: Ensure MOTD file is in place
+  copy:
+    src: files/motd
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: 0644
+    
+- name: Ensure MOTD file is in place
+  copy:
+    content: "Welcome to this system."
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: 0644
+```
+
+### [template](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html#ansible-collections-ansible-builtin-template-module)
+```json
+- name: Ensure MOTD file is in place
+  template:
+    src: templates/motd.j2
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: 0644
+```
+
+### [user](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html)
+```json
+- name: Ensure user1 exists
+  user:
+    name: user1
+    group: users
+    groups: wheel
+    uid: 2001
+    password: "{{ 'mypassword' | password_hash('sha512') }}"
+    state: present
+```
+
+### [package](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html)
+```json
+- name: Ensure Apache package is installed
+  package:
+    name: httpd
+    state: present
+```
+
+### [firewalld](https://docs.ansible.com/ansible/latest/collections/ansible/posix/firewalld_module.html)
+```json
+- name: Ensure port 80 (http) is open
+  firewalld:
+    service: http
+    state: enabled
+    permanent: yes
+    immediate: yes
+```
+
+### [file](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html)
+```json
+- name: Ensure directory /app exists
+  file:
+    path: /app
+    state: directory
+    owner: user1
+    group: docker
+    mode: 0770
+```
+
+### [lineinfile](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html)
+```json
+- name: Ensure host my-own-host in hosts file
+  lineinfile:
+    path: /etc/hosts
+    line: 192.168.0.36 my-own-host
+    state: present
+    
+- name: Ensure root cannot login via ssh
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: PermitRootLogin no
+    state: present
+```
+
+### [unarchive](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/unarchive_module.html)
+```json
+- name: Extract content from archive
+  unarchive:
+    src: /home/user1/Download/app.tar.gz
+    dest: /app
+    remote_src: yes
+```
+
+### [command](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html)
+```json
+- name: Run bash script
+  command: "/home/user1/install-package.sh"
+```
 
 ### TBD
 * system
