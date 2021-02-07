@@ -1178,9 +1178,10 @@ rm -rf  -- !(exclude-filename.sh)
 ```
 
 ### youtube
+[installation](https://ytdl-org.github.io/youtube-dl/download.html)  
 ```
- youtube-dl --list-formats https://www.youtube.com/watch?v=nhq8e9eE_L8
- youtube-dl --format 22 https://www.youtube.com/watch?v=nhq8e9eE_L8
+youtube-dl --list-formats https://www.youtube.com/watch?v=nhq8e9eE_L8
+youtube-dl --format 22 https://www.youtube.com/watch?v=nhq8e9eE_L8
 ```
 
 ### screen video recording, screen recording
