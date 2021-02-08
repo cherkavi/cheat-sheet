@@ -51,6 +51,18 @@ npm cache clear --force
 npm install -g @angular/cli 
 ```
 
+## show package version
+```
+npm show styled-components@* version
+```
+
+## install package version
+```sh
+npm install styled-components@5.2.1
+# if you don't know certain version
+npm install styled-components@^3.0.0
+```
+
 ## build project ( install dependencies )
 ```sh
 npm install
