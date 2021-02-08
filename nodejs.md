@@ -84,6 +84,17 @@ npm start --prefix /path/to/api "special_app_marker_for_ps_aux"
 PORT=$PORT npm start --prefix $PROJECT_HOME/api
 ```
 
+## eject configuration to static files
+```sh
+npm run eject
+# config/webpack.config.dev.js
+# config/webpack.config.prod.js
+# config/webpackDevServer.config.js
+# config/env.js
+# config/paths.js
+# config/polyfills.js
+```
+
 
 # [yarn](https://yarnpkg.com/) package manager
 ## [installation](https://classic.yarnpkg.com/en/docs/install#debian-stable)
