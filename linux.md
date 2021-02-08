@@ -482,10 +482,15 @@ cp -r --preserve=all /path/to/src /path/to/dest
 sudo chown -R $USER .
 ```
 
-### syncronize folders, copy everything between folders
+### syncronize folders, copy everything between folders, diff folder
 ```bash
+# print diff 
+diff -qr /tmp/first-folder/ /tmp/second-folder
+
 # local sync
 rsync -r /tmp/first-folder/ /tmp/second-folder
+## Attributes Verbosive Unew-modification-time
+rsync -avu /tmp/first-folder/ /tmp/second-folder
 
 # sync remote folder to local ( copy FROM remote )
 rsync -avz user@ubspdesp013.vantage.org:~/test-2020-02-28  /home/projects/temp/test-2020-02-28
