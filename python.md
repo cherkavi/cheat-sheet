@@ -1,4 +1,5 @@
 # [python3 readiness](http://py3readiness.org/)
+# [list of frameworks](https://awesome-python.com/)
 
 ## proxy 
 ```
@@ -221,6 +222,11 @@ except ImportError:
     import simplejson as json
 ```
 
+### create executable environment
+```sh
+pex --python=python3 flask requests tornado -o samplepkg.pex
+```
+
 ### path to python, obtain python interpreter path
 ```
 import sys
@@ -246,11 +252,6 @@ eval(" print(a)")
 ```
 find - return -1 if not found
 index - throw exception if not found
-```
-
-### list of frameworks
-```
-awesome-python
 ```
 
 ### user libraries can be placed into the folder
