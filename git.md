@@ -180,6 +180,9 @@ git checkout -t remotes/origin/release
 ### copy file from another branch
 ```
 git checkout experiment -- deployment/connection_pool.py                                 
+git checkout origin/develop datastorage/mysql/scripts/_write_ddl.sh
+# print to stdout
+git show origin/develop:datastorage/mysql/scripts/_write_ddl.sh > _write_ddl.sh
 ```
 
 ### set username, global settings
