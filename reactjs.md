@@ -4,8 +4,6 @@
 [doc](https://create-react-app.dev/)  
 [chrome plugin](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)  
 
-![NextJS ServerSideRendering](https://i.postimg.cc/L6nxk6BP/nextjs-ssr.png)
-
 ## create project
 ```sh
 npx create-react-app my-app
@@ -16,6 +14,8 @@ npx create-react-app my-app
 npm install --save-dev create-react-component-folder
 npx crcf myComponent
 ```
+
+![type of components](https://i.postimg.cc/RhWJ08B2/ksnip-20210211-230707.png)
 
 ## style pseudo selector
 ```js
@@ -37,3 +37,6 @@ export default Radium(MyComponent);
 // import { StyleRoot } from 'radium';
 // <StyleRoot> </StyleRoot>
 ```
+
+![NextJS ServerSideRendering](https://i.postimg.cc/L6nxk6BP/nextjs-ssr.png)
+
