@@ -1482,8 +1482,11 @@ w3m {filename}
 ```
 
 ### open in browser, open url
-```
+```sh
 sensible-browser http://localhost:3000/api/status
+x-www-browser http://localhost:3000/api/status
+# for MacOS
+open http://localhost:3000/api/status
 ```
 
 ### image format, image size, image information
