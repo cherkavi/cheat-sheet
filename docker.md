@@ -768,6 +768,8 @@ import compose
 ```docker
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    # name of container for compose
+    container_name: app_admin
     ports:
       - "8081:80"
     environment:
