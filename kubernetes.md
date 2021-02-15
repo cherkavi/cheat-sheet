@@ -1105,6 +1105,70 @@ spec:
   restartPolicy: Never
 ```
 
+# NFS ( Network File System )
+## nfs server
+```sh
+# nfs server 
+vim /etc/exports
+# /mnt/disks/k8s-local-storage/nfs        10.55.0.0/16(rw,sync,no_subtree_check)
+# /mnt/disks/k8s-local-storage1/nfs       10.55.0.0/16(rw,sync,no_subtree_check)
+
+sudo exportfs -a
+sudo exportfs -v
+
+systemctl status nfs-server
+ll /sys/module/nfs/parameters/
+ll /sys/module/nfsd/parameters/
+sudo blkid
+sudo vim /etc/fstab
+# UUID=35c71cfa-6ee2-414a-5555-effc30555555 /mnt/disks/k8s-local-storage ext4 defaults 0 0
+# UUID=42665716-1f89-44d4-5555-37b207555555 /mnt/disks/k8s-local-storage1 ext4 defaults 0 0
+nfsstat
+```
+master. mount volume ( nfs server )
+```sh
+# create point 
+sudo mkdir /mnt/disks/k8s-local-storage1
+# mount 
+sudo mount /dev/sdc /mnt/disks/k8s-local-storage1
+sudo chmod 755 /mnt/disks/k8s-local-storage1
+# createlink 
+sudo ln -s /mnt/disks/k8s-local-storage1/nfs /mnt/nfs1
+ls -la /mnt/disks
+ls -la /mnt
+
+# update storage
+sudo cat /etc/exports
+# /mnt/disks/k8s-local-storage1/nfs       10.55.0.0/16(rw,sync,no_subtree_check)
+
+# restart 
+sudo exportfs -a
+sudo exportfs -v
+```
+
+## nfs client
+```sh
+sudo blkid
+
+sudo mkdir /mnt/nfs1
+sudo chmod 777 /mnt/nfs1
+
+sudo vim /etc/fstab
+# add record
+# 10.55.0.3:/mnt/disks/k8s-local-storage1/nfs /mnt/nfs1 nfs rw,noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14 0 0
+10.55.0.3:/mnt/disks/k8s-local-storage1/nfs /mnt/nfs1 nfs defaults 0 0
+
+# refresh fstab
+sudo mount -av
+
+# for server 
+ls /mnt/disks/k8s-local-storage
+ls /mnt/disks/k8s-local-storage1
+
+# for clients
+ls /mnt/disks/k8s-local-storage1
+```
+
 # Helm
 [documentation](https://docs.helm.sh/)
 ## Architecture
