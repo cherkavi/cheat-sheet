@@ -89,6 +89,7 @@ https://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.htm
 ```bash
 # scala
 mvn clean -Dsuites=*SpeedLimitSignalsSpec* test
+mvn -Dtest=DownloadServiceImplTest* test
 ```
 ### cobertura help, 
 ```
