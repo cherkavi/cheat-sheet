@@ -361,6 +361,8 @@ chmod 700 ~/.ssh/*
 ```
 ssh-copy-id {username}@{machine ip}:{port}
 ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no vcherkashyn@bmw000013.adv.org
+# manual execution
+cat ~/.ssh/id_rsa.pub | ssh vcherkashyn@bmw000013.adv.org 'cat >> ~/.ssh/authorized_keys'
 ```
 login without typing password
 ```
