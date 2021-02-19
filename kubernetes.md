@@ -843,6 +843,41 @@ kubectl get pv
 kubectl get pvc
 ```
 
+## [container lifecycle](https://v1-18.docs.kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/)
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle-demo
+spec:
+  containers:
+  - name: lifecycle-demo-container
+    image: nginx
+    lifecycle:
+      postStart:
+        exec:
+          command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
+      preStop:
+        exec:
+          command: ["/bin/sh","-c","nginx -s quit; while killall -0 nginx; do sleep 1; done"]
+```
+
+```yaml
+containers:
+  - name: lifecycle
+    image: busybox
+    lifecycle:
+      postStart:
+        exec:
+          command:
+            - "touch"
+            - "/var/log/lifecycle/post-start"
+      preStop:
+        httpGet:
+          path: "/abort"
+          port: 8080
+```
+
 ## Serverless
 * OpenFaas
 * Kubeless
