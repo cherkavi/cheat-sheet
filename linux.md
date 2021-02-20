@@ -988,7 +988,7 @@ find . -name "*.j2" -o -name "*.yaml"
 find / -mmin 2
 ```
 
-### delete files that older that 5 days
+### delete files that older than 5 days
 ```sh
 find ./my_dir -mtime +5 -type f -delete
 ```
