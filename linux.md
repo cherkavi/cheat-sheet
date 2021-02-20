@@ -991,6 +991,8 @@ find / -mmin 2
 ### delete files that older than 5 days
 ```sh
 find ./my_dir -mtime +5 -type f -delete
+# default variable, env var default
+find ${IMAGE_UPLOAD_TEMP_STORAGE:-/tmp/image_upload} -mtime +1 -type f -delete
 ```
 
 ### find files/folders by name and older than 240 min
