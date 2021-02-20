@@ -1216,10 +1216,19 @@ cron activating
 sudo service cron status
 ```
 all symbols '%' must be converted to '\%'
-```
+```sh
+# edit file
 crontab -e
+# list of all jobs
 crontab -l
 ```
+adding file with cron job
+```sh
+echo " * * * * echo `date` >> /out.txt" >> print-date.cron
+chmod +x print-date.cron
+crontab print-date.cron
+```
+
 logs
 ```
 sudo tail -f /var/log/syslog
