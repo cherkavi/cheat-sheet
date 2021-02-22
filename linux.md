@@ -1770,11 +1770,12 @@ cat k8s-pod.yaml | yq - r -j --prettyPrint
 ```
 chmod -R +x <folder name>
 
-# remove group access 
+# remove world access 
 chmod -R o-rwx /opt/sm-metrics/grafana-db/data
-# remove world access
+# remove group access
 chmod -R g-rwx /opt/sm-metrics/grafana-db/data
-
+# add rw access for current user
+chmod u+rw screenshot_overlayed.png
 ```
 ```
 find . -name "*.sql" -print0 | xargs -0 chmod 666
