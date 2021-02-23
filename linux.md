@@ -364,7 +364,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no vcherkashyn@bmw0000
 # manual execution
 cat ~/.ssh/id_rsa.pub | ssh vcherkashyn@bmw000013.adv.org 'cat >> ~/.ssh/authorized_keys'
 
-# check ssh-copy-id
+# check ssh-copy-id, check fingerprint
 ssh-keygen -F bmw000013.adv.org
 # return 0 ( and info line ), return 1 when not aware about the host
 ```
