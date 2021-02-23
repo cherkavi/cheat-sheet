@@ -364,9 +364,8 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no vcherkashyn@bmw0000
 # manual execution
 cat ~/.ssh/id_rsa.pub | ssh vcherkashyn@bmw000013.adv.org 'cat >> ~/.ssh/authorized_keys'
 
-# check ssh-copy-id, check fingerprint
-ssh-keygen -F bmw000013.adv.org
-# return 0 ( and info line ), return 1 when not aware about the host
+# output nothing when ssh key exists, ssh check
+ssh-copy-id user@ubssp000013.vantagedp.com 2>1
 ```
 login without typing password
 ```
@@ -417,10 +416,14 @@ Host *
     ServerAliveCountMax 5
 ```
 
-### ssh fingerprint, ssh checking
+### ssh fingerprint checking
 ```
 ssh -o StrictHostKeyChecking=no user@ubsp00013.vantage.org
 sshpass -p my_password ssh -o StrictHostKeyChecking=no my_user@ubsp00013.vantage.org
+
+# check ssh-copy-id, check fingerprint
+ssh-keygen -F bmw000013.adv.org
+# return 0 ( and info line ), return 1 when not aware about the host
 ```
 
 ### manage multiply keys
