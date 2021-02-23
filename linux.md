@@ -365,7 +365,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no vcherkashyn@bmw0000
 cat ~/.ssh/id_rsa.pub | ssh vcherkashyn@bmw000013.adv.org 'cat >> ~/.ssh/authorized_keys'
 
 # output nothing when ssh key exists, ssh check
-ssh-copy-id user@ubssp000013.vantagedp.com 2>1
+ssh-copy-id user@ubssp000013.vantagedp.com 2>/dev/null
 ```
 login without typing password
 ```
