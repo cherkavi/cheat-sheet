@@ -156,7 +156,6 @@ git log --author="Cherkashyn" --name-status --diff-filter=M | grep "^M" | sort |
 ```sh
 git diff-tree --no-commit-id --name-only -r ec3772
 ```
-
 ### commit diff, show changes by commit, commit changes 
 ```sh
 git diff ec3772~ ec3772
@@ -165,6 +164,11 @@ git diff ec3772~ ec3772
 ### pretty log with tree
 ```sh
 git log --all --graph --decorate --oneline --simplify-by-decoration
+```
+
+### commit message search commit
+```sh
+git log --name-only  --grep='XVIZ instance'
 ```
 
 ### show no-merged branches
