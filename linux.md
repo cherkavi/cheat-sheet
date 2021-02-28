@@ -2056,7 +2056,7 @@ sudo adduser vitalii sudo
 sudo deluser vitalii sudo
 ```
 
-### admin rights for script, sudo rights for script
+### admin rights for script, sudo rights for script, execute as root
 ```
 sudo -E bash -c 'python3'
 ```
