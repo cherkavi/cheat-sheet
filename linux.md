@@ -1168,16 +1168,28 @@ strace -e open,access <command to run application>
 ```
 
 ### find process by name
-```
+```sh
 ps fC firefox
 pgrep firefox
 ```
 
 pid of process by name
-```
+```sh
 pidof <app name>
 pidof chrome
 ```
+
+process list, process tree
+```sh
+ps axjf
+ps -ef --forest
+ps -fauxw
+```
+process full command, ps full, ps truncate
+```sh
+ps -ewwo pid,cmd
+```
+
 
 windows analogue of 'ps aux'
 ```
