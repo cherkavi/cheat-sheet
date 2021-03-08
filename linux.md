@@ -1542,6 +1542,11 @@ convert marketing.png -resize 100x100 marketing-100-100.png
 convert marketing.png -rotate 90 -charcoal 4 -quality 50 marketing.png
 ```
 
+### wget post
+```
+wget --method=POST http://{host}:9000/published/resources/10050001.zip
+```
+
 ### wget to console
 ```
 wget -O- http://{host}:8500/wd-only/getBrandXml.jsp?brand=229099017 > /dev/null  2>&1
