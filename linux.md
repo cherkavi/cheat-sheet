@@ -1971,6 +1971,9 @@ pdftk original.pdf stamp watermark.pdf output output.pdf
 * cat /etc/system-release
 * uname -a
 
+### [cidr calculator](https://cidr.xyz/)
+
+
 ### print all networks
 ```
 ip -4 a
