@@ -364,9 +364,8 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no vcherkashyn@bmw0000
 # manual execution
 cat ~/.ssh/id_rsa.pub | ssh vcherkashyn@bmw000013.adv.org 'cat >> ~/.ssh/authorized_keys'
 
-# check ssh-copy-id
-ssh-keygen -F bmw000013.adv.org
-# return 0 ( and info line ), return 1 when not aware about the host
+# output nothing when ssh key exists, ssh check
+ssh-copy-id user@ubssp000013.vantagedp.com 2>/dev/null
 ```
 login without typing password
 ```
@@ -417,10 +416,14 @@ Host *
     ServerAliveCountMax 5
 ```
 
-### ssh fingerprint, ssh checking
+### ssh fingerprint checking
 ```
 ssh -o StrictHostKeyChecking=no user@ubsp00013.vantage.org
 sshpass -p my_password ssh -o StrictHostKeyChecking=no my_user@ubsp00013.vantage.org
+
+# check ssh-copy-id, check fingerprint
+ssh-keygen -F bmw000013.adv.org
+# return 0 ( and info line ), return 1 when not aware about the host
 ```
 
 ### manage multiply keys
@@ -988,9 +991,11 @@ find . -name "*.j2" -o -name "*.yaml"
 find / -mmin 2
 ```
 
-### delete files that older that 5 days
+### delete files that older than 5 days
 ```sh
 find ./my_dir -mtime +5 -type f -delete
+# default variable, env var default
+find ${IMAGE_UPLOAD_TEMP_STORAGE:-/tmp/image_upload} -mtime +1 -type f -delete
 ```
 
 ### find files/folders by name and older than 240 min
@@ -1163,16 +1168,28 @@ strace -e open,access <command to run application>
 ```
 
 ### find process by name
-```
+```sh
 ps fC firefox
 pgrep firefox
 ```
 
 pid of process by name
-```
+```sh
 pidof <app name>
 pidof chrome
 ```
+
+process list, process tree
+```sh
+ps axjf
+ps -ef --forest
+ps -fauxw
+```
+process full command, ps full, ps truncate
+```sh
+ps -ewwo pid,cmd
+```
+
 
 windows analogue of 'ps aux'
 ```
@@ -1216,10 +1233,19 @@ cron activating
 sudo service cron status
 ```
 all symbols '%' must be converted to '\%'
-```
+```sh
+# edit file
 crontab -e
+# list of all jobs
 crontab -l
 ```
+adding file with cron job
+```sh
+echo " * * * * echo `date` >> /out.txt" >> print-date.cron
+chmod +x print-date.cron
+crontab print-date.cron
+```
+
 logs
 ```
 sudo tail -f /var/log/syslog
@@ -1516,6 +1542,11 @@ convert marketing.png -resize 100x100 marketing-100-100.png
 convert marketing.png -rotate 90 -charcoal 4 -quality 50 marketing.png
 ```
 
+### wget post
+```
+wget --method=POST http://{host}:9000/published/resources/10050001.zip
+```
+
 ### wget to console
 ```
 wget -O- http://{host}:8500/wd-only/getBrandXml.jsp?brand=229099017 > /dev/null  2>&1
@@ -1759,11 +1790,12 @@ cat k8s-pod.yaml | yq - r -j --prettyPrint
 ```
 chmod -R +x <folder name>
 
-# remove group access 
+# remove world access 
 chmod -R o-rwx /opt/sm-metrics/grafana-db/data
-# remove world access
+# remove group access
 chmod -R g-rwx /opt/sm-metrics/grafana-db/data
-
+# add rw access for current user
+chmod u+rw screenshot_overlayed.png
 ```
 ```
 find . -name "*.sql" -print0 | xargs -0 chmod 666
@@ -1944,6 +1976,9 @@ pdftk original.pdf stamp watermark.pdf output output.pdf
 * cat /etc/system-release
 * uname -a
 
+### [cidr calculator](https://cidr.xyz/)
+
+
 ### print all networks
 ```
 ip -4 a
@@ -2041,7 +2076,7 @@ sudo adduser vitalii sudo
 sudo deluser vitalii sudo
 ```
 
-### admin rights for script, sudo rights for script
+### admin rights for script, sudo rights for script, execute as root
 ```
 sudo -E bash -c 'python3'
 ```

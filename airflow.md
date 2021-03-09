@@ -226,6 +226,12 @@ t1 >> t2 >> t3
 
 t3.set_upstream(t2);t2.set_upstream(t1)
 t3 << t2 << t1
+
+# or set multiply dependency 
+upstream_tasks = t3.upstream_list
+upstream_tasks.append(t2)
+upstream_tasks.append(tt1)
+upstream_tasks >> t3
 ```
 
 ### task information, task metainformation, task context
