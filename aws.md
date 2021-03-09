@@ -4,6 +4,13 @@
 * [online trainings](https://www.aws.training/)
 * [youtube videos](https://hackmd.io/@gekart)
 * [Architecture](https://wa.aws.amazon.com/index.en.html)
+* [certification preparation](https://aws.amazon.com/certification/certification-prep/)
+* [hand on](https://aws.amazon.com/getting-started/hands-on/)
+* [serverless](https://serverlessland.com/)
+* [workshops](https://www.workshops.aws/)
+* [podcasts](https://awsstash.com/)
+* [labs](https://github.com/awslabs)
+* [samples](https://github.com/aws-samples)
 
 ### console command completion, console completion
 ```sh
@@ -13,35 +20,17 @@ complete -C /usr/local/bin/aws_completer aws
 ```
 
 ## init variables
-```
+### inline initialization
+```sh
 AWS_SNS_TOPIC_ARN=arn:aws:sns:eu-central-1:85153298123:gmail-your-name
 AWS_KEY_PAIR=/path/to/file/key-pair.pem
 AWS_PROFILE=aws-user
 AWS_REGION=eu-central-1
-
-# initialization from external script
+```
+### initialization from external script
+``` sh
 . /home/projects/current-project/aws.sh
 ```
-
-## url to cli documentation, faq, collection of questions, UI 
-```sh
-current_browser="google-chrome"
-current_doc_topic="sns"
-alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html" &'
-alias faq='$current_browser "https://aws.amazon.com/${current_doc_topic}/faqs/" &'
-alias console='$current_browser "https://console.aws.amazon.com/${current_doc_topic}/home?region=$AWS_REGION" &'
-```
-
-## create policy from error output of aws-cli command:
->User is not authorized to perform
-> AccessDeniedException
-```
-aws iam list-groups 2>&1 | /home/projects/bash-example/awk-policy-json.sh
-# or just copy it
-echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-example/awk-policy-json.sh
-```
-
-## [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
 
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
 ### installation of AWS cli
@@ -77,6 +66,27 @@ aws configure get aws_access_key_id
 aws configure get default.aws_access_key_id
 aws configure get $AWS_PROFILE.aws_access_key_id
 ```
+
+## url to cli documentation, faq, collection of questions, UI 
+```sh
+current_browser="google-chrome"
+current_doc_topic="sns"
+alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html" &'
+alias faq='$current_browser "https://aws.amazon.com/${current_doc_topic}/faqs/" &'
+alias console='$current_browser "https://console.aws.amazon.com/${current_doc_topic}/home?region=$AWS_REGION" &'
+```
+
+## create policy from error output of aws-cli command:
+>User is not authorized to perform
+> AccessDeniedException
+```
+aws iam list-groups 2>&1 | /home/projects/bash-example/awk-policy-json.sh
+# or just copy it
+echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-example/awk-policy-json.sh
+```
+
+## [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
+
 
 ---
 ## IAM - Identity Access Manager
@@ -300,6 +310,11 @@ curl -X GET http://169.254.169.254/latest/meta-data/iam/security-credentials/
 curl -X GET http://169.254.169.254/latest/api/token
 # public ip 
 curl -X GET http://169.254.169.254/latest/meta-data/public-ipv4
+```
+connect to launched instance without ssh
+```sh
+# ssm role should be provided for account
+aws ssm start-session --target i-00ac7eee --profile awsstudent --region us-east-1
 ```
 
 ---
