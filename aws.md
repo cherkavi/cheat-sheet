@@ -65,6 +65,7 @@ aws configure get region --profile $AWS_PROFILE
 aws configure get aws_access_key_id
 aws configure get default.aws_access_key_id
 aws configure get $AWS_PROFILE.aws_access_key_id
+aws configure get $AWS_PROFILE.aws_secret_access_key
 ```
 
 ## url to cli documentation, faq, collection of questions, UI 
