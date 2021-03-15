@@ -2035,6 +2035,17 @@ sudo tcpdump -nvX -v src port 6443 and src host 10.140.26.10 and dst port not 22
 # and, or, not
 ```
 
+### keystore
+```sh
+## generating ssl key stores
+keytool -genkeypair -keystore -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server -alias serverKey -dname "CN=localhost, OU=AD, O=UBS AG, L=Zurich, ST=Bavaria, C=DE" -keyalg RSA
+# enter password...
+
+## Importing ( updating, adding ) trusted SSL certificates
+keytool -import -file ~/Downloads/certificate.crt -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server -alias my-magic-number
+```
+
+
 ### DNS
 ```
 # current dns
