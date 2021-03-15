@@ -2037,6 +2037,9 @@ sudo tcpdump -nvX -v src port 6443 and src host 10.140.26.10 and dst port not 22
 
 ### keystore
 ```sh
+## list of certificates
+keytool -list -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server
+
 ## generating ssl key stores
 keytool -genkeypair -keystore -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server -alias serverKey -dname "CN=localhost, OU=AD, O=UBS AG, L=Zurich, ST=Bavaria, C=DE" -keyalg RSA
 # enter password...
