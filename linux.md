@@ -2532,6 +2532,12 @@ zbarimg <file>
 ```
 gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf test-pdf2.pdf test-pdf3.pdf test-pdf4.pdf
 ```
+
+### doc to pdf, convert to pdf
+```
+libreoffice --headless --convert-to pdf "/home/path/Dativ.doc" --outdir /tmp/output
+```
+
 ## zip
 ### unzip bz2
 ```
