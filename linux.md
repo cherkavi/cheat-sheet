@@ -1560,6 +1560,8 @@ wget -nv -O- http://{host}:8500/wd-only/getBrandXml.jsp?brand=229099017 2>/dev/n
 ### wget to specific file, download file to specific file
 ```
 wget -O out.zip http://{host}:9000/published/resources/10050001.zip
+# in case of complex output path
+curl -s http://{host}:9000/published/resources/10050001.zip --create-dirs -o /home/path/to/folder/file.zip
 ```
 
 ### wget to specific folder
@@ -2034,6 +2036,20 @@ sudo ngrep -W byline -d docker0 -t '' 'port 6379'
 sudo tcpdump -nvX -v src port 6443 and src host 10.140.26.10 and dst port not 22
 # and, or, not
 ```
+
+### keystore
+```sh
+## list of certificates
+keytool -list -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server
+
+## generating ssl key stores
+keytool -genkeypair -keystore -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server -alias serverKey -dname "CN=localhost, OU=AD, O=UBS AG, L=Zurich, ST=Bavaria, C=DE" -keyalg RSA
+# enter password...
+
+## Importing ( updating, adding ) trusted SSL certificates
+keytool -import -file ~/Downloads/certificate.crt -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server -alias my-magic-number
+```
+
 
 ### DNS
 ```
@@ -2518,6 +2534,12 @@ zbarimg <file>
 ```
 gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf test-pdf2.pdf test-pdf3.pdf test-pdf4.pdf
 ```
+
+### doc to pdf, convert to pdf
+```
+libreoffice --headless --convert-to pdf "/home/path/Dativ.doc" --outdir /tmp/output
+```
+
 ## zip
 ### unzip bz2
 ```
