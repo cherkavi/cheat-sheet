@@ -1560,6 +1560,8 @@ wget -nv -O- http://{host}:8500/wd-only/getBrandXml.jsp?brand=229099017 2>/dev/n
 ### wget to specific file, download file to specific file
 ```
 wget -O out.zip http://{host}:9000/published/resources/10050001.zip
+# in case of complex output path
+curl -s http://{host}:9000/published/resources/10050001.zip --create-dirs -o /home/path/to/folder/file.zip
 ```
 
 ### wget to specific folder
