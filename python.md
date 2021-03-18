@@ -208,6 +208,11 @@ pip install tornado --update
 pip uninstall {package name}
 ```
 
+### print dependency tree
+```python3
+pip install pipdeptree
+pipdeptree
+```
 
 ### import package by string name
 ```
