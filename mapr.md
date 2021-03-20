@@ -376,6 +376,13 @@ Granting Access Permissions for User
 maprcli table cf edit -path /vantage/deploy/data-access-video/images -cfname default -readperm u:tech_user_name
 maprcli table cf edit -path /vantage/deploy/data-access-video/images -cfname default -readperm "u:tech_user_name | u:tech_user_name2"
 ```
+Information about table
+```sh
+maprcli table info -path /vantage/data/store/processed/markers
+maprcli table cf list -path /vantage/data/store/processed/markers
+
+```
+
 Create an index for the thumbnail MapR JSON DB in order to speed up: (query to find all sessionIds with existing thumbnails)
 ```bash
 --query {"$select":"sessionId","$where":{"$eq":{"frameThumbnail":0}}}  

@@ -1,10 +1,11 @@
-## source code links
+## links
 * [useful links](http://www.programcreek.com/2012/11/top-100-java-developers-blogs/)
 * [source code examples](http://www.javased.com/)
 * [source code examples](https://searchcode.com)
 * [java 8 json](https://habr.com/company/luxoft/blog/280782/)
 * [java links](https://github.com/Vedenin/useful-java-links)
 * [profiler](https://www.yourkit.com/)
+* [byte code transformation](https://bytebuddy.net/#/)
 
 ### set proxy system properties
 ```
@@ -245,6 +246,18 @@ ssh -L 7000:127.0.0.1:5005 remote-user@134.190.200.205
 ```
 and your connection url will looks like: 127.0.0.1:7000
 
+### java agent
+```sh
+java -javaagent:<agent-path.jar>=<agent args> -jar <your-jar.jar>
+```
+
+### attach to process, agent to pid
+```java
+// Using com.sun.tools.attach.VirtualMachine:
+VirtualMachine vm = VirtualMachine.attach(pid)
+vm.loadAgent(jarPath, agentArgS)
+vm.detach()
+```
 
 ### JNDI datasource examples:
 ```
