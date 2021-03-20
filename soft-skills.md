@@ -8,6 +8,7 @@
 # how to learn
 ![how to learn technology](https://i.postimg.cc/kgRHVc24/how-to-learn-technology.png)
 ![how to learn fastly](https://i.postimg.cc/q7f523KG/how-to-learn-fastly.png)
+![how to remember](https://postimg.cc/xJTy0v5K)
 
 # negotiations
 [value proposition canvas, demands suggestion](https://esputnik.com/blog/chto-takoe-value-proposition-canvas)
