@@ -155,6 +155,9 @@ aws s3 ls --recursive s3://my-bucket-name
 aws s3 ls --recursive s3://my-bucket-name/my-sub-path/
 # download file
 aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
+# move file 
+aws s3 mv s3://$AWS_BUCKET_NAME/index.html s3://$AWS_BUCKET_NAME/index2.html
+# remove file 
 aws s3 rm  s3://my-bucket-name/file-name.with_extension --profile marketing-staging  --region us-east-1
 # upload file and make it public
 aws s3api put-object-acl --bucket <bucket name> --key <path to file> --acl public-read
