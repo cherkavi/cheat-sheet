@@ -245,6 +245,18 @@ ssh -L 7000:127.0.0.1:5005 remote-user@134.190.200.205
 ```
 and your connection url will looks like: 127.0.0.1:7000
 
+### java agent
+```sh
+java -javaagent:<agent-path.jar>=<agent args> -jar <your-jar.jar>
+```
+
+### attach to process, agent to pid
+```java
+// Using com.sun.tools.attach.VirtualMachine:
+VirtualMachine vm = VirtualMachine.attach(pid)
+vm.loadAgent(jarPath, agentArgS)
+vm.detach()
+```
 
 ### JNDI datasource examples:
 ```
