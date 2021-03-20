@@ -139,9 +139,14 @@ aws s3api list-buckets
 aws s3api list-buckets --query "Buckets[].Name"
 # get bucket location
 aws s3api get-bucket-location --bucket $AWS_BUCKET_NAME
-# copy to s3, upload file
+# copy to s3, upload file less than 5 Tb
 aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME
 aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME/path/on/s3/filename.ext
+# update metadata
+aws s3 cp test.txt s3://a-bucket/test.txt --metadata '{"x-amz-meta-cms-id":"34533452"}'
+# read metadata
+aws s3api head-object --bucket a-bucketbucket --key img/dir/legal-global/zach-walsh.jpeg
+
 
 # create folder, s3 mkdir
 aws s3api put-object --bucket my-bucket-name --key foldername/
