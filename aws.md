@@ -143,6 +143,12 @@ aws s3api get-bucket-location --bucket $AWS_BUCKET_NAME
 aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME
 aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME/path/on/s3/filename.ext
 
+# copy from s3 to s3
+aws s3 cp s3://$AWS_BUCKET_NAME/index.html s3://$AWS_BUCKET_NAME/index2.html
+
+# download file
+aws s3api get-object --bucket $AWS_BUCKET_NAME --key path/on/s3 /local/path
+
 # create folder, s3 mkdir
 aws s3api put-object --bucket my-bucket-name --key foldername/
 # sync folder with remote s3 folder
