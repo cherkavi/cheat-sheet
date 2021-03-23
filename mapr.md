@@ -231,6 +231,11 @@ maprlogin password -user {your cluster username} -duration 30:0:0 -renewal 90:0:
 maprlogin print
 maprlogin logout
 ```
+## login via ssh
+```
+execution_string="echo '"$CLUSTER_PASS"' | maprlogin password -user cherkavi "
+ssh $CLUSTER_USER@$CLUSTER_NODE $execution_string
+```
 
 ## check your credential, expiration date/time
 ```

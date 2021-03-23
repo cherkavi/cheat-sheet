@@ -105,7 +105,7 @@ git branch -d $current_branch_ghost
 ```
 
 
-### check hash-code of the branch
+### check hash-code of the branch, show commit hash code 
 ```
 git rev-parse "remotes/origin/release-6.0.0"
 ```
