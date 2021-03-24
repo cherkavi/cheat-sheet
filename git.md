@@ -115,6 +115,11 @@ git rev-parse "remotes/origin/release-6.0.0"
 git rev-parse HEAD
 ```
 
+### print branch name by hashcode
+```
+git ls-remote | grep <hashcode>
+```
+
 ### check all branches for certain commit ( is commit in branch, is branch contains commit ), commit include in 
 ```
 git branch --all --contains 0ff27c79738a6ed718baae3e18c74ba87f16a314
