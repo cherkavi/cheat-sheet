@@ -110,6 +110,11 @@ git branch -d $current_branch_ghost
 git rev-parse "remotes/origin/release-6.0.0"
 ```
 
+### print current hashcode
+```
+git rev-parse HEAD
+```
+
 ### check all branches for certain commit ( is commit in branch, is branch contains commit ), commit include in 
 ```
 git branch --all --contains 0ff27c79738a6ed718baae3e18c74ba87f16a314
