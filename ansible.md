@@ -81,10 +81,10 @@ myvar=23 # defined in a :vars section, interpreted as a string
 --extra-vars "remote_folder=$REMOTE_FOLDER ansible_python_interpreter=/usr/bin/python"
 ```
 
-## execute ansible for one host only, one host, one remove server
+## execute ansible for one host only, one host, one remove server, verbosity
 ```sh
 ansible-playbook -i "ubs000015.vantage.org , " mkdir.yaml 
-ansible all -i "ubs000015.vantage.org , " -u my_remote-user -m ping
+ansible all -i "ubs000015.vantage.org , " -u my_remote-user -m ping -vvv
 ```
 simple file for creating one folder
 ```yaml
