@@ -745,6 +745,13 @@ ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_
     name: flask
 ```
 
+### include variables import variables
+```json
+- name: External variables
+  include_vars: roles/marker-table/defaults/main.yaml
+  tags: deploy
+```
+
 ### echo
 add flag for verbosity:-vv (2) or -v (1)
 ```
