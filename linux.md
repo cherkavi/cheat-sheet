@@ -991,6 +991,11 @@ find . -name "*.j2" -o -name "*.yaml"
 find / -mmin 2
 ```
 
+### find with exec find md5sum
+```sh
+find . -exec md5sum {} \;
+```
+
 ### delete files that older than 5 days
 ```sh
 find ./my_dir -mtime +5 -type f -delete
