@@ -409,7 +409,7 @@ desc /full/path/to/maprdb/table
 * [query conditions and operators](https://docs.datafabric.hpe.com/62/MapR-DB/JSON_DB/OJAIQueryConditionOperators.html)
 ```sh
 mapr dbshell
-find /mapr/prod/vantage/orchestration/tables/metadata --q {"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}
+find /mapr/prod/vantage/orchestration/tables/metadata --query '{"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}'
 find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2 --offset 2 --where {"$eq":{"session_id":"9aaa13577-ad80"}} --orderby created_time
 find /mapr/prod/vantage/orchestration/tables/metadata --c {"$eq":{"session_id":"9aaa13577-ad80"}}
 ```
