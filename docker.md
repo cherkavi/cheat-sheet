@@ -310,6 +310,24 @@ docker run --network some-network --name my-redis -d redis
 docker run --network some-network --interactive --tty redis redis-cli -h my-redis
 ```
 
+### share network for docker-compose
+```sh
+docker network create --driver bridge my-local
+docker network inspect my-local
+docker network rm my-local
+```
+
+```yaml
+version: '3'
+services:
+    ...
+
+networks:
+    default:
+        external:
+            name: heritage-local
+```
+
 ### connecting containers via host, localhost connection, shares the host network stack and has access to the /etc/hosts for network communication
 ```sh
 docker run --rm   --name postgres-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 postgres
