@@ -363,6 +363,7 @@ flask-sqlacodegen --flask mysql+pymysql://admin:admin@localhost:3310/masterdb > 
 # sql client, console mysql client, mysql console, db cli
 [commands](https://www.mycli.net/commands)
 ```
+apt-get install mycli
 pip install -U mycli
 mycli --user my_user --password my_password --host my_host.com --port 3310 --database my_database --execute 'show tables'
 
