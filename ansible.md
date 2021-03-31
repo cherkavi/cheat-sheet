@@ -363,6 +363,16 @@ file name from path (return 'script.sh')
   template: src={{ item }} dest={{ airflow_dag_dir }}/config/{{ item | basename | regex_replace('\.j2','') }}
   with_fileglob:
     - ../airflow_dags/airflow_dags_gt/config/*.py.j2
+```
+
+## copy reverse copy from destination machine
+```
+- name: Fetch template
+  fetch:
+    src: '{{ only_file_name }}'
+    dest: '{{ destination_folder }}'
+    flat: yes
+  tags: deploy
 
 ```
 
