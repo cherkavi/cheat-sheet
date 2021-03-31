@@ -22,6 +22,7 @@ cat /etc/mysql/mysql.conf.d/mysqld.cnf
 ### connect to mysql using shell tool:
 ```
 mysql --user=root --password=root
+mysql --user=root --password=root --host=127.0.0.1 --port=3306
 ```
 ```
 docker exec -it mysql-container  /usr/bin/mysql  --user=root --password=root
