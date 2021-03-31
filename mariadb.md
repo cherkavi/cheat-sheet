@@ -126,6 +126,17 @@ use {databasename};
 ### user <-> role
 ![user role relationship](https://i.postimg.cc/bv0dRDrg/mysql-user-role.png)
 
+#### users 
+```sql
+show grants;
+SELECT host, user FROM mysql.user where user='www_admin'
+```
+
+#### grant access
+```sql
+GRANT ALL PRIVILEGES ON `www\_masterdb`.* TO `www_admin`@`%`;
+```
+
 ### print all tables
 ```sql
 show tables;
