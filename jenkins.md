@@ -176,6 +176,19 @@ def needToExecuteStage(stageName, func){
     }
 }
 ```
+### groovy escape quotes
+```
+String input = "this ain't easy"
+String escaped = "'" + input.replaceAll(/'/, /'"'"'/) + "'"
+println escaped
+// 'this ain'"'"'t easy'
+```
+
+```
+sh "mycommand --input ${escaped}"
+```
+
+
 ## REST API
 deploy with parameters
 ```sh
