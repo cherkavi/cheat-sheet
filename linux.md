@@ -2886,7 +2886,7 @@ sudo apt install nvidia driver-455
 
 ### sudo without password, apple keyboard, sudo script without password
 ```
-echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode"
+echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode" 2>/dev/null
 ```
 
 ### apple keyboard, alternative 
