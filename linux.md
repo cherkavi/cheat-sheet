@@ -665,7 +665,7 @@ cut -c1-15
 cut -c1-15,20-50
 ```
 
-### output to file without echo on screen
+### output to file without echo on screen, echo without typing on screen
 ```sh
 echo "text file" | grep "" > $random_script_filename
 ```
