@@ -1,4 +1,4 @@
-# Linux
+# Linux cheat sheet
 
 * [cheat sheet cmd](http://cheat.sh/)
   ```sh
