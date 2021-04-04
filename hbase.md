@@ -150,7 +150,7 @@ Get record = new Get(Bytes.toBytes("row_key"));
 record.addColumn(bytes.toBytes("column_family"), bytes.toBytes("column_name"));
 Result result = mytable1.get(record);
 ```
-## update record
+## put record
 ```java
 Put row=new Put(Bytes.toBytes("rowKey"));
 row.add(Bytes.toBytes("column_family"), Bytes.toBytes("column"), Bytes.toBytes("value1"));
@@ -194,6 +194,27 @@ public static void main(String[] args) throws IOException {
 }
 
 }
+```
+
+## update record
+* checkAndPut - compares the value with the current value from the hbase according to the passed CompareOp. CompareOp=EQUALS Adds the value to the put object if expected value is equal.  
+* checkAndMutate - compares the value with the current value from the hbase according to the passed CompareOp.CompareOp=EQUALS Adds the value to the rowmutation object if expected value is equal.  
+row mutation example
+```java 
+RowMutations mutations = new RowMutations(row);
+//add new columns
+Put put = new Put(row);
+put.add(cf, col1, v1);
+put.add(cf, col2, v2);
+
+Delete delete = new Delete(row);
+delete.deleteFamily(cf1, now);
+
+//delete column family and add new columns to same family
+mutations.add(delete);
+mutations.add(put);
+
+table.mutateRow(mutations);
 ```
 
 ## delete value
