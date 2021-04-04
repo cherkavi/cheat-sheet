@@ -130,7 +130,7 @@ java \
     --component-state-table-name {{ component_state_table }} \
     --session-id $1
 ```
-## scan values
+## [scan values](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Scan.html)
 ```java
   Scan scan = new Scan(Bytes.toBytes(startAndStopRow), Bytes.toBytes(startAndStopRow));
   scan.addColumn(FAMILY_NAME, COLUMN_NAME);
