@@ -226,6 +226,10 @@ table.mutateRow(mutations);
 Delete row=new Delete(Bytes.toBytes("rowKey"));
 row.deleteColumn(Bytes.toBytes("column_family"), Bytes.toBytes("column"));
 table.delete(row);
+# or
+table.deleteColumn(Bytes.toBytes("column_family"), Bytes.toBytes("column"), timestamp)
+table.deleteColumns(Bytes.toBytes("column_family"), Bytes.toBytes("column"), timestamp)
+table.deleteFamily(Bytes.toBytes("column_family"))
 ```
 
 ## batch operation
