@@ -136,11 +136,13 @@ java \
   scan.addColumn(FAMILY_NAME, COLUMN_NAME);
   // scan.setFilter(new FirstKeyOnlyFilter());
   ResultScanner scanner = this.table.getScanner(scan);
-  
-  for ( Result result : scanner) { // each next() call - RPC call to server
-    System.out.println(result);
+  try{
+   for ( Result result : scanner) { // each next() call - RPC call to server
+     System.out.println(result);
+   }
+  }finally{
+   scanner.close(); // !!! IMPORTANT !!!
   }
-  scanner.close();
 }
 ```
 
