@@ -149,7 +149,11 @@ java \
 Get record = new Get(Bytes.toBytes("row_key"));
 record.addColumn(bytes.toBytes("column_family"), bytes.toBytes("column_name"));
 Result result = mytable1.get(record);
+# or
+byte[] value = result.getValue(Bytes.toBytes("column_family"),Bytes.toBytes("column_name"))
 ```
+
+
 ## put record
 ```java
 Put row=new Put(Bytes.toBytes("rowKey"));
