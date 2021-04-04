@@ -17,7 +17,8 @@
 * each record has a version
 * TableName - filename
 * record looks like: RowKey ; *ColumnFamilyName* ; ColumnName ; *Timestamp*
-![record](https://i.postimg.cc/HL2PqYnD/hbase-record.png)
+![record](https://i.postimg.cc/HL2PqYnD/hbase-record.png)  
+![record-view](https://i.postimg.cc/cCQkWY1D/hBase.png)
 * table can divide into number of regions (sorted be key with start...end keys and controlled by HMaster ) 
 * region has default size 256Mb
 ```
