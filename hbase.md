@@ -242,3 +242,16 @@ Get get =
 Object[] results = new Object[2];
 table.batch(List.of(put, get), results);
 ```
+
+## create table
+```java
+Configuration config = HbaseConfiguration.create();
+
+HBaseAdmin admin = new HbaseAdmin(config);
+
+HTableDescriptor tableDescriptor = new HTableDescriptor(Bytes.toBytes("my_table1"));
+HColumnDescriptor columns = new HColumnDescriptor(Bytes.toBytes("column_family_1"));
+tableDescriptor.addFamily(columns);
+admin.createTable(tableDescriptor);
+admin.isTableAvailable(Bytes.toBytes("my_table1"));
+```
