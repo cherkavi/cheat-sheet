@@ -1,3 +1,4 @@
+[examples](https://dzone.com/articles/23-useful-elasticsearch-example-queries)
 [examples](https://www.tutorialspoint.com/elasticsearch)
 ```bash
 ELASTIC_HOST=https://elasticsearch-label-search-prod.apps.vantage.org
