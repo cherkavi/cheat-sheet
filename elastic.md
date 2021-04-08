@@ -1,5 +1,5 @@
+[examples](https://www.tutorialspoint.com/elasticsearch)
 ```bash
-# prod
 ELASTIC_HOST=https://elasticsearch-label-search-prod.apps.vantage.org
 
 curl -X GET $ELASTIC_HOST/_cluster/health?pretty=true
