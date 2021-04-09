@@ -2072,10 +2072,21 @@ dig {hostname}
 systemd-resolve --status
 ```
 
-### encrypt file, decrypt file
+### encrypt file, decrypt file, encode/decode
 ```
 gpg --symmetric {filename}
 gpg --decrypt {filename}
+```
+```bash
+# encrypt
+# openssl [encryption type] -in [original] -out [output file]
+openssl des3 -in original.txt -out original.txt.encrypted
+# decrypt
+# openssl [encryption type] -d -in [encrypted file] -out [original file]
+openssl des3 -d -in original.txt.encrypted -out original.txt
+
+# list of encryptors (des3):
+openssl enc -list
 ```
 
 ### add user into special group, add user to group
