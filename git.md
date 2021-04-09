@@ -126,11 +126,12 @@ git branch --all --contains 0ff27c79738a6ed718baae3e18c74ba87f16a314
 git branch --all --contains {name-of-the-branch}
 git branch --all --merged 0ff27c79738a6ed718baae3e18c74ba87f16a314
 ```
-
-### is certain commit included in another, commit before, commit after
+### is commit included in another, commit before, commit after, if commit in branch
 ```sh
-git merge-base --is-ancestor <ancestor_commit> <descendant_commit>; if [[ 1 -eq "$?" ]]; then echo "NOT included"; else echo "included"; fi
+git merge-base --is-ancestor <commit_or_branch> <is_commit_in_branch>; if [[ 1 -eq "$?" ]]; then echo "NOT included"; else echo "included"; fi
 ```
+
+
 
 ### check last commits for specific branch, last commits in branch
 ```sh
