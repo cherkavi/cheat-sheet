@@ -1689,6 +1689,7 @@ curl -X PUT -H "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charse
 ### curl POST example
 ```
 curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: application/json" --data '{"add":"data"}'
+curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: application/json" --data-raw '{"add":"data"}'
 ```
 ```
 curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: application/json" --data-binary '{"add":"data"}'
