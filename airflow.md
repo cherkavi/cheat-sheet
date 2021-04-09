@@ -158,15 +158,38 @@ f = urllib2.urlopen(req)
 print(f.read())
 ```
 
-## trig DAG
+## curl request
 ```sh
-curl -X POST --user tech-user \     
-    --data '{"conf":{"session_id": "bff2-08275862a9b0"}}' \
-    https://airflow.local/api/experimental/dags/ibeo_gt/dag_runs
-
-# check running
-curl -X GET --user ibeo_gt-s https://airflow.local/api/experimental/dags/ibeo_gt/dag_runs | jq '.[] | if .state=="running" then . else empty end'
+AIRFLOW_ENDPOINT="https://airflow.local/api/experimental"
+AIRFLOW_USER=my_user
+AIRFLOW_PASSWORD=my_passw
 ```
+
+### airflow test connection
+```bash
+curl -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X GET "$ENDPOINT/test"
+```
+
+### airflow create dag
+```bash
+REQUEST_BODY='{"conf":{"session_id": "bff2-08275862a9b0"}}'
+
+curl --data-binary $REQUEST_BODY -H "Content-Type: application/json" \
+-u $AIRFLOW_USER:$AIRFLOW_PASSWORD \
+-X POST $ENDPOINT"/dags/$DAG_NAME/dag_runs"
+```
+
+### airlfow check execution
+```
+curl -X GET -u $AIRFLOW_USER:$AIRFLOW_PASSWORD "$AIRFLOW_ENDPOINT/dags/$DAG_NAME/dag_runs" | jq '.[] | if .state=="running" then . else empty end'
+```
+
+### airflow get dag task
+```bash
+curl -u $AIRFLOW_USER:$AIRFLOW_PASSWORD \
+-X GET $ENDPOINT"dags/$DAG_NAME/dag_runs/$DATE_DAG_EXEC/tasks/$TASK_ID"
+```
+
 
 ## configuration
 ### rewrite configuration with environment variables
