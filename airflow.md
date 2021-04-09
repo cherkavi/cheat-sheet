@@ -176,18 +176,22 @@ REQUEST_BODY='{"conf":{"session_id": "bff2-08275862a9b0"}}'
 
 curl --data-binary $REQUEST_BODY -H "Content-Type: application/json" \
 -u $AIRFLOW_USER:$AIRFLOW_PASSWORD \
--X POST $ENDPOINT"/dags/$DAG_NAME/dag_runs"
+-X POST $ENDPOINT"/dags/$DAG_ID/dag_runs"
 ```
 
-### airlfow check execution
+### airlfow check dag execution
 ```
-curl -X GET -u $AIRFLOW_USER:$AIRFLOW_PASSWORD "$AIRFLOW_ENDPOINT/dags/$DAG_NAME/dag_runs" | jq '.[] | if .state=="running" then . else empty end'
+curl -X GET -u $AIRFLOW_USER:$AIRFLOW_PASSWORD "$AIRFLOW_ENDPOINT/dags/$DAG_ID/dag_runs" | jq '.[] | if .state=="running" then . else empty end'
 ```
 
 ### airflow get dag task
 ```bash
-curl -u $AIRFLOW_USER:$AIRFLOW_PASSWORD \
--X GET $ENDPOINT"dags/$DAG_NAME/dag_runs/$DATE_DAG_EXEC/tasks/$TASK_ID"
+curl -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X GET $AIRFLOW_ENDPOINT"/dags/$DAG_ID/dag_runs/$DATE_DAG_EXEC/tasks/$TASK_ID"
+```
+
+### airflow get task url
+```bash
+curl -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X GET "$AIRFLOW_ENDPOINT/task?dag_id=$DAG_ID&task_id=$TASK_ID&execution_date=$DATE_DAG_EXEC"
 ```
 
 
