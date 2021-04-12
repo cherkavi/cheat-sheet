@@ -7,6 +7,23 @@
 * [profiler](https://www.yourkit.com/)
 * [byte code transformation](https://bytebuddy.net/#/)
 
+### JMX
+```bash
+# command line argument
+-Dcom.sun.management.jmxremote.port=5006
+```
+```bash
+# OpenShift settings
+# connect to openshift
+$ oc login $OC_HOST:8443
+ 
+# forward the jmx ports
+$ oc port-forward $POD_NAME 5006
+ 
+# e.g. connect to the jmx port with visual vm
+visualvm --openjmx localhost:5006
+```
+
 ### set proxy system properties
 ```
 System.getProperties().put("http.proxyHost", "someProxyURL");
