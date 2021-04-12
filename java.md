@@ -23,7 +23,11 @@ jmap -dump:format=b,live,file=$PATH_TO_OUTPUT_HEAP_DUMP $JAVA_PROCESS_ID
 ### JMX
 ```bash
 # command line argument
+-Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.port=5006
+-Dcom.sun.management.jmxremote.local.only=false
+-Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.ssl=false
 ```
 ```bash
 # OpenShift settings
@@ -35,6 +39,33 @@ $ oc port-forward $POD_NAME 5006
  
 # e.g. connect to the jmx port with visual vm
 visualvm --openjmx localhost:5006
+```
+
+### java application debug, remote debug
+```bash
+-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+```
+you can create SSH tunnel between your local machine and remote:
+( execute next line from local machine )
+```bash
+ssh -L 7000:127.0.0.1:5005 $REMOTE_USER@$REMOTE_HOST
+```
+and your connection url will looks like: 127.0.0.1:7000
+
+### java agent
+```bash
+-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9010
+```
+```sh
+java -javaagent:<agent-path.jar>=<agent args> -jar <your-jar.jar>
+```
+
+### attach to process, agent to pid, java agent
+```java
+// Using com.sun.tools.attach.VirtualMachine:
+VirtualMachine vm = VirtualMachine.attach(pid)
+vm.loadAgent(jarPath, agentArgS)
+vm.detach()
 ```
 
 ### set proxy system properties
@@ -255,39 +286,6 @@ public class V1_9_9__insert_initial_gui_configurations implements JdbcMigration 
 <location>classpath:db.migration.initialize</location>
 ```
 
-### java application debug, remote debug
-```
--agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9010
-```
-```
--Dcom.sun.management.jmxremote
--Dcom.sun.management.jmxremote.port=9010
--Dcom.sun.management.jmxremote.local.only=false
--Dcom.sun.management.jmxremote.authenticate=false
--Dcom.sun.management.jmxremote.ssl=false
-```
-```
--Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
-```
-you can create SSH tunnel between your local machine and remote:
-( execute next line from local machine )
-```
-ssh -L 7000:127.0.0.1:5005 remote-user@134.190.200.205
-```
-and your connection url will looks like: 127.0.0.1:7000
-
-### java agent
-```sh
-java -javaagent:<agent-path.jar>=<agent args> -jar <your-jar.jar>
-```
-
-### attach to process, agent to pid
-```java
-// Using com.sun.tools.attach.VirtualMachine:
-VirtualMachine vm = VirtualMachine.attach(pid)
-vm.loadAgent(jarPath, agentArgS)
-vm.detach()
-```
 
 ### JNDI datasource examples:
 ```
