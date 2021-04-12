@@ -7,6 +7,19 @@
 * [profiler](https://www.yourkit.com/)
 * [byte code transformation](https://bytebuddy.net/#/)
 
+
+### heap dump, [jmap](https://docs.oracle.com/en/java/javase/14/docs/specs/man/jmap.html)
+```bash
+# find process id for target java process
+ps auxf
+
+# make heap dump
+jmap -histo $JAVA_PROCESS_ID
+jmap -clstats $JAVA_PROCESS_ID
+jmap -heap $JAVA_PROCESS_ID
+jmap -dump:format=b,live,file=$PATH_TO_OUTPUT_HEAP_DUMP $JAVA_PROCESS_ID
+```
+
 ### JMX
 ```bash
 # command line argument
