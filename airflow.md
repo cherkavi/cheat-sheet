@@ -87,6 +87,14 @@ airflow serve_logs
 ```
 
 ## [Airflow docker](https://github.com/cherkavi/docker-images/tree/master/airflow)
+[astro cli](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart)
+```bash
+astro dev init
+astro dev start
+astro dev ps
+astro dev stop
+```
+ 
 ```sh
 # * copy your dags to ``` .dags```
 docker-compose -f docker-compose-LocalExecutor.yml up -d
