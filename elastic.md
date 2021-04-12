@@ -2,12 +2,27 @@
 [examples](https://www.tutorialspoint.com/elasticsearch)  
 
 ```bash
+# common part
 ELASTIC_HOST=https://elasticsearch-label-search-prod.apps.vantage.org
 
+INDEX_NAME=ubs-single-autolabel
+```
+
+```bash
+# health check
 curl -X GET $ELASTIC_HOST/_cluster/health?pretty=true
+curl -X GET $ELASTIC_HOST/_cluster/health?pretty=true&level=shards
+curl -X GET "$ELASTIC_HOST/$INDEX_NAME
+
+# indexex info
 curl -X GET $ELASTIC_HOST/_cat/indices | grep ubs | grep label
-curl -X GET "$ELASTIC_HOST/ubs-single-autolabel/_search?q=front_vehicle.distance:>100&pretty=true"
-curl -X GET "$ELASTIC_HOST/ubs-single-autolabel/_search?q=front_vehicle.distance>100&pretty=true"
+curl -X GET $ELASTIC_HOST/_cat/count/$INDEX_NAME
+```
+
+```bash
+# request example
+curl -X GET "$ELASTIC_HOST/$INDEX_NAME/_search?q=front_vehicle.distance:>100&size=11&pretty=true"
+curl -X GET "$ELASTIC_HOST/$INDEX_NAME/_search?q=road_type:highway"
 ```
 
 ```bash
