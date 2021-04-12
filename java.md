@@ -50,7 +50,16 @@ you can create SSH tunnel between your local machine and remote:
 ```bash
 ssh -L 7000:127.0.0.1:5005 $REMOTE_USER@$REMOTE_HOST
 ```
-and your connection url will looks like: 127.0.0.1:7000
+and your connection url will looks like: 127.0.0.1:7000  
+or  
+connect with local openshift client
+```bash
+# connect to openshift
+$ oc login $OPENSHIFT_HOST:8443
+
+# forward the jmx ports
+$ oc port-forward $POD_NAME 5005
+```
 
 ### java agent
 ```bash
