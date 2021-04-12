@@ -1,6 +1,7 @@
 # ![Airflow](https://airbnb.io/img/projects/airflow3.png)
 * [Airflow apache](https://airflow.apache.org/)
 * [how to](https://airflow.apache.org/howto/index.html)
+* [OpenSource wrapper CLI](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart)
 * [podcast](https://soundcloud.com/the-airflow-podcast)
 * [tutorial](https://github.com/hgrif/airflow-tutorial)
 * [blog](https://marclamberti.com/blog/)
