@@ -479,3 +479,14 @@ Caused by: javax.security.auth.login.LoginException: Unable to obtain MapR crede
 ```
 echo "passw" | maprlogin password -user my_user_name
 ```
+
+### kerberos authentication
+possible issue
+* javax.security.sasl.SaslException: GSS initiate failed
+* rm: Failed to move to trash: hdfs://eqstaging/user/my_user/equinix-staging-deployment-51: Permission denied: user=dataquality, access=WRITE, inode="/user/my_user/deployment-sensor_msgs":ubsdeployer:ubsdeployer:drwxr-xr-x
+* No Kerberos credential available
+
+solution:
+* login into destination Edge node
+* execute 'kinit'
+
