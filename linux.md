@@ -1709,6 +1709,11 @@ curl -X POST "http://localhost:8888/api/v1/notification/subscribe?email=one%40ma
 curl -X GET "https://elasticsearch-label-search-prod.vantage.org/autolabel/_search?size=100&q=moto:*&pretty"
 ```
 
+### escape single quotas
+```
+echo "'" 'sentence' "'"
+```
+
 ### curl without progress, curl silent
 * curl -s -X GET http://google.com
 * curl --silent -X GET http://google.com
