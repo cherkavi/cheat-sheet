@@ -51,3 +51,9 @@
 * [blog about modeling](http://renewableplus.blogspot.com/2017/03/modeling-applications-technology-in.html)
 * [blog examples](https://www.hosiaisluoma.fi/blog/archimate-examples/)
 
+## resilient architecture
+* Timeouts
+* Graceful Degradation
+* Retries
+* Exponential Backoff
+* Circuit Breakers
