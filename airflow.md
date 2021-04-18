@@ -722,6 +722,15 @@ curl --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT
 decision = context['dag_run'].configuration_of_call.get('parameter1', 'default_value')
 ```
 
+* sensor example
+```python
+SensorFile(
+  task_id="sensor_file",
+  fs_conn_id="filesystem_connection_id_1", # Extras should have: {"path":"/path/to/folder/where/file/is/"}
+  file_path="my_file_name.txt"
+)
+```
+
 * smart skip, skip task
 ```
 from airflow.models import DAG
