@@ -439,11 +439,19 @@ from airflow.operators.bash_operator import BashOperator
 # airflow predefined intervals
 from airflow.utils.dates import days_ago
 
+def _hook_failure(error_contect):
+  print(error_context)
+  
+  
 # default argument for each task in DAG
 default_arguments = {
     'owner': 'airflow'
     ,'retries': 1
     ,'retry_delay': timedelta(minutes=5)
+    ,'email_on_failure':True
+    ,'email_on_retry':True
+    ,'email': "my@one.com" # smtp server must be set up
+    ,'on_failure_callback': _hook_failure
 }
 
 # when schedule_interval=None, then execution of DAG possible only with direct triggering 
