@@ -434,20 +434,20 @@ from airflow.operators.bash_operator import BashOperator
 # airflow predefined intervals
 from airflow.utils.dates import days_ago
 
+# default argument for each task in DAG
 default_arguments = {
     'owner': 'airflow'
-    ,'start_date': datetime(2016,1,1) # do not do that: datetime.now() # days_ago(3)
     ,'retries': 1
-    #,'retry_delay': timedelta(minutes=5)
-    #,'catchup': False - will be re-writed from ConfigFile !!!
-    ,'depends_on_past': False
+    ,'retry_delay': timedelta(minutes=5)
 }
 
 # when schedule_interval=None, then execution of DAG possible only with direct triggering 
 with DAG(dag_id='dummy_echo_dag_10'
-         ,default_args=default_arguments
-         ,schedule_interval="*/5 * * * *"
-         ,catchup=False
+          ,default_args=default_arguments
+          ,'start_date': datetime(2016,1,1) # do not do that: datetime.now() # days_ago(3)
+          ,schedule_interval="*/5 * * * *"
+    	  ,'catchup': False - will be re-writed from ConfigFile !!!
+          ,'depends_on_past': False
          ) as dag:
     # not necessary to specify dag=dag
     BashOperator(task_id='bash_example', bash_command="date", dag=dag)    
