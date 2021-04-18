@@ -649,7 +649,9 @@ from airflow.utils.state import State
 from airflow.utils.trigger_rule import TriggerRule
 
 @provide_session
+# custom parameter for operator 
 def stop_unfinished_dag_runs(trigger_task_id, session=None, **context):
+    print(context['my_custom_param'])
     dros = context["ti"].xcom_pull(task_ids=trigger_task_id)
     run_ids = list(map(lambda dro: dro.run_id, dros))
 
@@ -669,7 +671,8 @@ def dag_run_cleaner_task(trigger_task_id):
         task_id=dag_config.DAG_RUN_CLEAN_UP_TASK_ID,
         python_callable=stop_unfinished_dag_runs,
         provide_context=True,
-        op_args=[trigger_task_id]
+        op_args=[trigger_task_id], # custom parameter for operator
+    	op_kwargs={"my_custom_param": 5}
     )
 ```
 
