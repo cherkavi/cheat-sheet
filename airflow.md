@@ -16,10 +16,10 @@ Should be:
   * idempotent ( execution of many times without side effect )
   * can be retried automatically
 * [Operator](https://airflow.apache.org/docs/1.10.1/howto/operator.html) describe a single task in your data pipeline
- * **action** - perform actions ( airflow.operators.BashOperator, airflow.operators.PythonOperator, airflow.operators.EmailOperator... )
- * **transfer** - move data from one system to another ( SftpOperator, S3FileTransformOperator, MySqlOperator, SqliteOperator, PostgresOperator, MsSqlOperator, OracleOperator, JdbcOperator, airflow.operators.HiveOperator.... )
+  * **action** - perform actions ( airflow.operators.BashOperator, airflow.operators.PythonOperator, airflow.operators.EmailOperator... )
+  * **transfer** - move data from one system to another ( SftpOperator, S3FileTransformOperator, MySqlOperator, SqliteOperator, PostgresOperator, MsSqlOperator, OracleOperator, JdbcOperator, airflow.operators.HiveOperator.... )
  ( don't use it for BigData - source->executor machine->destination )
- * **sensor** - waiting for arriving data to predefined location ( airflow.contrib.sensors.file_sensor.FileSensor )
+  * **sensor** - waiting for arriving data to predefined location ( airflow.contrib.sensors.file_sensor.FileSensor )
  has a method #poke that is calling repeatedly until it returns True
 * Task
 An instance of an operator
@@ -47,8 +47,9 @@ Combination of Dags, Operators, Tasks, TaskInstances
     * retry_delay
     * schedule_interval (cron:str / datetime.timedelta) ( cron presets: @once, @hourly, @daily, @weekly, @monthly, @yearly )
     * catchup ( config:catchup_by_default ) or "BackFill" ( fill previous executions from start_date ) actual for scheduler only
-* Executor
+* Executor ( **How** task will be executed )
   * type: LocalExecutor(multiply task in parallel), SequentialExecutor, CeleryExecutor, DaskExecutor
+* Worker ( **Where** task will be executed )
 * Metadatabase
   * [types](https://docs.sqlalchemy.org/en/13/dialects/index.html)
   * configuration:
