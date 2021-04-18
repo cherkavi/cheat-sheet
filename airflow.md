@@ -264,6 +264,10 @@ t1 >> t2 >> t3
 t3.set_upstream(t2);t2.set_upstream(t1)
 t3 << t2 << t1
 
+from airflow.models.baseoperator import chain, cross_downstream
+chain(t1,t2,t3)
+cross_downstream([t1,t2], [t3,t4])
+
 # or set multiply dependency 
 upstream_tasks = t3.upstream_list
 upstream_tasks.append(t2)
