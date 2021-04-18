@@ -425,16 +425,18 @@ with DAG('airflow_tutorial_v01',
     print(dag)
 ```
 
-* simple
+* simple DAG
 ```python
 from airflow import DAG
 from datetime import date, timedelta, datetime
 from airflow.models import BaseOperator
 from airflow.operators.bash_operator import BashOperator
+# airflow predefined intervals
+from airflow.utils.dates import days_ago
 
 default_arguments = {
     'owner': 'airflow'
-    ,'start_date': datetime(2016,1,1) # do not do that: datetime.now()
+    ,'start_date': datetime(2016,1,1) # do not do that: datetime.now() # days_ago(3)
     ,'retries': 1
     #,'retry_delay': timedelta(minutes=5)
     #,'catchup': False - will be re-writed from ConfigFile !!!
