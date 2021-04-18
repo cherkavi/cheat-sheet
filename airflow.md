@@ -275,7 +275,7 @@ upstream_tasks.append(tt1)
 upstream_tasks >> t3
 ```
 
-### task information, task metainformation, task context
+### task information, task metainformation, task context, exchange 
 ```python
 def python_operator_core_func(**context):
    print(context['task_instance'])
@@ -288,6 +288,7 @@ def python_operator_core_func(**context):
    // and after that pull it and read first value
    // context.get("ti").xcom_pull(task_ids="name_of_task_with_push")[0]
    // context.get("ti").xcom_pull(task_ids=["name_of_task_with_push", "name_another_task_to_push"])[0]
+   return "value for saving in xcom" # key - return_value
 ...   
 PythonOperator(task_id="python_example", python_callable=python_operator_core_func, provide_context=True, do_xcom_push=True )
 ```
