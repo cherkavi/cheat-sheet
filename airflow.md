@@ -441,11 +441,13 @@ default_arguments = {
     ,'depends_on_past': False
 }
 
+# when schedule_interval=None, then execution of DAG possible only with direct triggering 
 with DAG(dag_id='dummy_echo_dag_10'
          ,default_args=default_arguments
          ,schedule_interval="*/5 * * * *"
          ,catchup=False
          ) as dag:
+    # not necessary to specify dag=dag
     BashOperator(task_id='bash_example', bash_command="date", dag=dag)    
 ```
 
