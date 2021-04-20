@@ -225,12 +225,15 @@ AIRFLOW__CORE__AIRFLOW_HOME='/path/to/new-version-of-airflow'
 ### [multi-tasks](https://github.com/cherkavi/cheat-sheet/blob/master/development-process.md#concurrency-vs-parallelism)
 ```
 # number of physical python processes the scheduler can run, task (processes) that running in parallel 
+# scope: Airflow
 parallelism
 
 # number of DagRuns - will be concurrency in dag execution, don't use in case of dependencies of dag-runs
+# scope: DAG.instance
 max_active_runs_per_dag
 
 # number of tast instances that are running simultaneously per DagRun ( amount of TaskInstances inside one DagRun )
+# scope: DAG.task
 dag_concurrency
 ```
 
