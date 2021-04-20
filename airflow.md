@@ -8,6 +8,7 @@
 * [examples](https://github.com/cherkavi/docker-images/blob/master/airflow/airflow-dag-examples.zip)
 
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
+
 ## Key concepts
 [official documentation of key concepts](https://airflow.apache.org/docs/stable/concepts.html)
 * DAG
@@ -27,6 +28,9 @@ An instance of an operator
 Represents a specific run of a task = DAG + Task + Point of time
 * Workflow
 Combination of Dags, Operators, Tasks, TaskInstances
+
+## configuration
+* executor/airflow.cfg
 
 ## Architecture overview
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
