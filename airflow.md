@@ -51,10 +51,10 @@ Combination of Dags, Operators, Tasks, TaskInstances
     * retry_delay
     * schedule_interval (cron:str / datetime.timedelta) ( cron presets: @once, @hourly, @daily, @weekly, @monthly, @yearly )
     * catchup ( config:catchup_by_default ) or "BackFill" ( fill previous executions from start_date ) actual for scheduler only
-* Executor ( **How** task will be executed )
+* Executor ( **How** task will be executed, how it will be queued )
   * type: LocalExecutor(multiply task in parallel), SequentialExecutor, CeleryExecutor, DaskExecutor
 * Worker ( **Where** task will be executed )
-* Metadatabase
+* Metadatabase ( task status )
   * [types](https://docs.sqlalchemy.org/en/13/dialects/index.html)
   * configuration:
     * sql_alchemy_conn
