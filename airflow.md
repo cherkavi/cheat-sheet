@@ -235,6 +235,14 @@ max_active_runs_per_dag
 # number of tast instances that are running simultaneously per DagRun ( amount of TaskInstances inside one DagRun )
 # scope: DAG.task
 dag_concurrency
+
+# number of tasks that can be executed in parallel
+# scope: DAG.task.type
+max_active_runs
+
+# run in parallel
+# scope: DAG.instance
+concurrency
 ```
 
 ### different configuration of executor
