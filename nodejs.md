@@ -1,5 +1,6 @@
 # installation
 * [install NodeJS](https://github.com/nodejs/help/wiki/Installation)
+* [node multiversion manager](https://github.com/nvm-sh/nvm)
 * [install Angular](https://cli.angular.io/)
 
 # npm
