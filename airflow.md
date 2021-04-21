@@ -16,6 +16,7 @@ a graph object representing your data pipeline ( collection of tasks ).
 Should be:
   * idempotent ( execution of many times without side effect )
   * can be retried automatically
+  * toggle should be "turned on" on UI for execution
 * [Operator](https://airflow.apache.org/docs/1.10.1/howto/operator.html) describe a single task in your data pipeline
   * **action** - perform actions ( airflow.operators.BashOperator, airflow.operators.PythonOperator, airflow.operators.EmailOperator... )
   * **transfer** - move data from one system to another ( SftpOperator, S3FileTransformOperator, MySqlOperator, SqliteOperator, PostgresOperator, MsSqlOperator, OracleOperator, JdbcOperator, airflow.operators.HiveOperator.... )
@@ -29,8 +30,9 @@ Represents a specific run of a task = DAG + Task + Point of time
 * Workflow
 Combination of Dags, Operators, Tasks, TaskInstances
 
-## configuration
+## configuration, settings
 * executor/airflow.cfg
+* [variables](https://marclamberti.com/blog/variables-with-apache-airflow/)
 
 ## Architecture overview
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
@@ -43,7 +45,7 @@ Combination of Dags, Operators, Tasks, TaskInstances
   * UI  
 * Scheduler 
   * scan folder "%AIRFLOW%/dags" ( config:dag_folder ) and with timeout ( config:dag_dir_list_interval )
-  * monitor execution "start_date" + "schedule_interval", write "execution_date" ( last time executed )
+  * monitor execution "start_date" ( + "schedule_interval", first run with start_date ), write "execution_date" ( last time executed )
   * create DagRun ( instance of DAG ) and fill DagBag ( with interval config:worker_refresh_interval )
     * start_date ( start_date must be in past, start_date+schedule_interval must be in future )
     * end_date
@@ -51,6 +53,7 @@ Combination of Dags, Operators, Tasks, TaskInstances
     * retry_delay
     * schedule_interval (cron:str / datetime.timedelta) ( cron presets: @once, @hourly, @daily, @weekly, @monthly, @yearly )
     * catchup ( config:catchup_by_default ) or "BackFill" ( fill previous executions from start_date ) actual for scheduler only
+    ( backfill is possible via command line )  
 * Executor ( **How** task will be executed, how it will be queued )
   * type: LocalExecutor(multiply task in parallel), SequentialExecutor, CeleryExecutor, DaskExecutor
 * Worker ( **Where** task will be executed )
@@ -62,6 +65,8 @@ Combination of Dags, Operators, Tasks, TaskInstances
    
 
 ## [Airflow install on python virtualenv]
+!!! python 3.6 
+
 ```sh
 # create python virtual env
 python3 -m venv airflow-env
@@ -136,6 +141,7 @@ airflow --help
    * poke method is responsible for waiting
 
 # Access to DB
+!!! create env variables for securing connection  
 ```gui
 Admin -> Connections -> postgres_default  
 # adjust login, password
@@ -185,6 +191,7 @@ curl -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X GET "$ENDPOINT/test"
 ```
 
 ### airflow create dag
+in case of removing dag (delete dag) - all metadata will me removed from database
 ```bash
 REQUEST_BODY='{"conf":{"session_id": "bff2-08275862a9b0"}}'
 
