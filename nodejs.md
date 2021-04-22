@@ -3,6 +3,77 @@
 * [node multiversion manager](https://github.com/nvm-sh/nvm)
 * [install Angular](https://cli.angular.io/)
 
+# node
+## command line arguments 
+### RUNNING YOUR CODE
+```sh
+# Evaluates the current argument as JavaScript
+node --eval
+# Checks the syntax of a script without executing it
+node --check
+# Opens the node.js REPL (Read-Eval-Print-Loop)
+node --interactive
+# Pre-loads a specic module at start-up
+node --require
+# Silences the deprecation warnings
+node --no-deprecation
+# Silences all warnings (including deprecations)
+node --no-warnings
+# Environment variable that you can use to set command line options
+echo $NODE_OPTIONS
+```
+### CODE HYGIENE
+```sh
+# Emits pending deprecation warnings
+node --pending-deprecation
+# Prints the stack trace for deprecations
+node --trace-deprecation
+Throws error on deprecation
+node --throw-deprecation
+Prints the stack trace for warnings
+node --trace-warnings
+```
+
+### INITIAL PROBLEM INVESTIGATION
+```sh
+# Generates node report on signal
+node --report-on-signal
+# Generates node report on fatal error
+node --report-on-fatalerror
+# Generates diagnostic report on uncaught exceptions
+node --report-uncaught-exception
+```
+
+### CONTROLLING/INVESTIGATING MEMORY USE
+```sh
+# Sets the size of the heap
+--max-old-space-size
+# Turns on gc logging
+--trace_gc
+# Enables heap proling
+--heap-prof
+# Generates heap snapshot on specied signal
+--heapsnapshot-signal=signal
+```
+
+### CPU PERFORMANCE INVESTIGATION
+```sh
+# Generates V8 proler output.
+--prof
+# Process V8 proler output generated using --prof
+--prof-process
+# Starts the V8 CPU proler on start up, and write the CPU prole to disk before exit
+--cpu-prof
+```
+
+### DEBUGGING
+```sh
+# Activates inspector on host:port and break at start of user script
+--inspect-brk[=[host:]port]
+# Activates inspector on host:port (default: 127.0.0.1:9229)
+--inspect[=[host:]port]
+```
+
 # npm
 ## proxy
 ```sh
