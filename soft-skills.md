@@ -13,3 +13,4 @@
 # negotiations
 [value proposition canvas, demands suggestion](https://esputnik.com/blog/chto-takoe-value-proposition-canvas)  
 ![for investors](https://i.postimg.cc/qq01bnsB/for-investor.jpg)  
+![state in negotiations](https://i.postimg.cc/SsG8RtD3/negotiations.png)
