@@ -1683,7 +1683,7 @@ curl -L http://example.com
 
 ### curl PUT example with file
 ```
-curl -X PUT -H "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charset=ISO-8859-1" -H "x-username: cherkavi" -d@put-request.data http://q-brands-app01.wirecard.sys:9000/draft/brands/229099017/model/country-configurations
+curl -X PUT --header "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charset=ISO-8859-1" -H "x-username: cherkavi" -d@put-request.data http://q-brands-app01.wirecard.sys:9000/draft/brands/229099017/model/country-configurations
 ```
 
 ### curl POST example
