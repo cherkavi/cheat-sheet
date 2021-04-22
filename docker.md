@@ -18,6 +18,8 @@ sudo apt install docker.io
 sudo systemctl start docker
 sudo systemctl enable docker
 ```
+### Architecture
+![architecture](https://i.postimg.cc/jqXQSC12/docker-architecture.png)
 
 ### Tools
 * [layer explorer](https://github.com/wagoodman/dive)
