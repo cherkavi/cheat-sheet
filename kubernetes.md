@@ -5,6 +5,7 @@
 * [cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 * [docs task by section](https://kubernetes.io/docs/tasks/)
 * [troubleshooting](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/)
+* [java application template generator](http://dekorate.io/)
 
 ## tutorials
 * [main tutorial](https://kubernetes.io/docs/tutorials/)
