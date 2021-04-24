@@ -1,5 +1,7 @@
 # ![Airflow](https://airbnb.io/img/projects/airflow3.png)
 * [Airflow apache](https://airflow.apache.org/)
+* [Airflow REST API](http://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html)
+* [Airflow source code](https://github.com/apache/airflow)
 * [how to](https://airflow.apache.org/howto/index.html)
 * [OpenSource wrapper CLI](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart)
 * [podcast](https://soundcloud.com/the-airflow-podcast)
@@ -54,6 +56,9 @@ Combination of Dags, Operators, Tasks, TaskInstances
     * schedule_interval (cron:str / datetime.timedelta) ( cron presets: @once, @hourly, @daily, @weekly, @monthly, @yearly )
     * catchup ( config:catchup_by_default ) or "BackFill" ( fill previous executions from start_date ) actual for scheduler only
     ( backfill is possible via command line )  
+    ```sh
+    airflow dags backfill -s 2021-04-01 -e 2021-04-05 --reset_dagruns my_dag_name
+    ```
 * Executor ( **How** task will be executed, how it will be queued )
   * type: LocalExecutor(multiply task in parallel), SequentialExecutor, CeleryExecutor, DaskExecutor
 * Worker ( **Where** task will be executed )
@@ -500,7 +505,8 @@ with DAG(dag_id='dummy_echo_dag_10'
     	  ,'catchup': False - will be re-writed from ConfigFile !!!
           ,'depends_on_past': False
          ) as dag:
-    # not necessary to specify dag=dag
+    # not necessary to specify dag=dag, source code inside BaseOperator:
+    # self.dag = dag or DagContext.get_current_dag()
     BashOperator(task_id='bash_example', bash_command="date", dag=dag)    
 ```
 
