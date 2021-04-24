@@ -64,7 +64,8 @@ Combination of Dags, Operators, Tasks, TaskInstances
     * sql_alchemy_pool_enabled
    
 
-## [Airflow install on python virtualenv]
+## installation
+### [Airflow install on python virtualenv]
 !!! python 3.6 
 
 ```sh
@@ -80,7 +81,7 @@ export AIRFLOW_HOME=`pwd`/airflow
 pip install apache-airflow
 ```
 
-## [Airflow start on python, nacked start, start components, start separate components, start locally]
+### [Airflow start on python, nacked start, start components, start separate components, start locally]
 ```sh
 # init workflow
 airflow initdb 
@@ -96,7 +97,7 @@ airflow serve_logs
 # sqllite3 $AIRFLOW_HOME/airflow.db
 ```
 
-## [Airflow docker](https://github.com/cherkavi/docker-images/tree/master/airflow)
+### [Airflow docker](https://github.com/cherkavi/docker-images/tree/master/airflow)
 [astro cli](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart)
 ```bash
 astro dev init
@@ -110,13 +111,13 @@ astro dev stop
 docker-compose -f docker-compose-LocalExecutor.yml up -d
 ```
 
-## [Airflow virtual environment](https://github.com/hgrif/airflow-tutorial)
+### [Airflow virtual environment](https://github.com/hgrif/airflow-tutorial)
 ```sh
 python env create -f environment.yml
 source activate airflow-tutorial
 ```
   
-## [Airflow Virtual machine](https://marclamberti.com/form-course-material-100/)
+### [Airflow Virtual machine](https://marclamberti.com/form-course-material-100/)
 credentials
 ```sh
 ssh -p 2200 airflow@localhost
@@ -126,6 +127,21 @@ activate workspace
 ```sh
 source .sandbox/bin/activate
 ```
+
+## update
+1. backup DB
+2. check you DAG for deprecations
+3. upgrade airflow
+	```sh
+	pip install "apache-airflow==2.0.1" --constraint constraint-file
+	```
+4. upgrade DB
+	```sh
+	airflow db upgrade
+	```
+5. restart all
+
+
 ## commands
 check workspace
 ```sh
