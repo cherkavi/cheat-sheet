@@ -831,6 +831,7 @@ with DAG('autolabelling_example', description='First DAG', schedule_interval=Non
     fork_operator = SelectOperator(task_id=FORK_LABEL_TASK_ID, provide_context=True, python_callable=fork_label_job_branch)
 ```
 
+![providers vs extras](https://i.postimg.cc/QM5sSPzz/airflow-providers-extras.png)
 ## Providers
 ```sh
 pip install apache-airflow-providers-presto
