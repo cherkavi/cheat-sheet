@@ -83,7 +83,9 @@ mkdir airflow
 export AIRFLOW_HOME=`pwd`/airflow
 
 # install workflow
-pip install apache-airflow
+AIRFLOW_VERSION=2.0.1
+PYTHON_VERSION=3.7
+pip install apache-airflow --constraint https://raw.githubusercontent.com/apache/airflow/constraints-$AIRFLOW_VERSION/constraints-$PYTHON_VERSION.txt
 ```
 
 ### [Airflow start on python, nacked start, start components, start separate components, start locally]
@@ -375,6 +377,11 @@ from airflow.operators.subdag_operator import SubDagOperator
 ...
 subdag_task = SubDagOperator(subdag=DAG(SUBDAG_PARENT_NAME+"."+SUBDAG_NAME,schedule_interval=parent_dag.schedule_interval, start_date=parent_dag.start_date,catchup=False))
 ...
+```
+
+### test task
+```
+airflow tasks test my_dag_name my_task_name 2021-04-01
 ```
 
 ### [hooks](https://airflow.readthedocs.io/en/stable/howto/custom-operator.html#hooks)
