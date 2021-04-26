@@ -411,6 +411,11 @@ git remote -v
 git remote set-url origin git@cc-github.my-network.net:adp/data-management.git
 ```
 
+### issue with removing files, issue with restoring files, can't restore file, can't remove file
+```
+git rm --cached -r .
+git reset --hard origin/master
+```
 
 ### clone operation under the hood
 if during the access ( clone, pull ) issue appear:
