@@ -999,6 +999,7 @@ find / -mmin 2
 ### find with exec find md5sum
 ```sh
 find . -exec md5sum {} \;
+find . -name "*.json" | while read each_file; do cat "$each_file" > "${each_file}".txt; done
 ```
 
 ### delete files that older than 5 days
