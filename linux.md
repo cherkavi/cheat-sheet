@@ -1748,6 +1748,8 @@ curl -c cookie-from-url-com.txt -X GET url.com
 curl "http://some.resource/read_book.php?id=66258&p=1" | iconv --from-code WINDOWS-1251 --to-code UTF-8
 ```
 
+### [curl with parsing, curl part of the page ](https://github.com/cherkavi/python-utilities/blob/master/html-scraping/lxml/curl-output-html-parser.py#L10)
+
 ### curl status code, curl response code
 ```sh
 airflow_trigger(){
