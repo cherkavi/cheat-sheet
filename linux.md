@@ -1355,6 +1355,11 @@ grep -ir "memory" --include="*.scala"
 grep -ir --include=README.md ".*base" 2>/dev/null
 ```
 
+### grep with filename
+```sh
+grep  -rH -A 2 "@angular/core"
+```
+
 ### grep without permission denied
 ```
 grep -ir --include=README.md "base" 2>/dev/null
