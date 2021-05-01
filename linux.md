@@ -2733,6 +2733,21 @@ sox 1.wav 2.wav 3.wav 4.wav output.wav
 ffmpeg -i 1.wav -i 2.wav -i 3.wav output.wav
 ```
 
+### output audio device, sound card, headphones
+```
+# list of all outputs
+pacmd list-sinks | grep -A 1 index
+# set default output as
+pacmd set-default-sink 16
+pacmd set-default-sink bluez_sink.00_18_09_EC_BE_FD.a2dp_sink
+
+# list of input devices
+pacmd list-sources | grep -A 1 index
+# set default input device
+pacmd set-default-source 6
+pacmd set-default-source alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_6__source
+```
+
 # MacOS
 ## bashrc replacement
 .bashrc - .bash_profile
