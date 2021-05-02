@@ -263,7 +263,7 @@ AIRFLOW__CORE__AIRFLOW_HOME='/path/to/new-version-of-airflow'
 core.parallelism
 ```
 
-![dag concurrency](https://i.postimg.cc/V60GhR5V/airflow-dag-concurrency.png)
+![dag concurrency](https://i.postimg.cc/QCyMMjjt/airflow-dag-concurrency.png)
 ```
 # * max number of tasks that can be running per DAG (across multiple DAG runs)
 # * number of tast instances that are running simultaneously per DagRun ( amount of TaskInstances inside one DagRun )
