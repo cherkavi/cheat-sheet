@@ -376,6 +376,7 @@ from airflow.utils.timezone import make_aware
 from airflow.models import XCom
 
 def pull_xcom_call(**kwargs):
+    # if you need only TaskInstance: pull_xcom_call(ti)
     # !!! hard-coded value 
     execution_date = make_aware(datetime(2020, 7, 24, 23, 45, 17, 00))
     xcom_values = XCom.get_many(dag_ids=["data_pipeline"], include_prior_dates=True, execution_date=execution_date)
