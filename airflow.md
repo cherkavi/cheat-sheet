@@ -474,6 +474,21 @@ from airflow.models.skipmixin import SkipMixin
         )
 ```
 
+
+### Trigger rules
+![trigger rules](https://i.postimg.cc/P5kjQCVH/airflow-trigger-rules.png)
+```python
+run_this_first >> branching
+branching >> branch_a >> follow_branch_a >> join
+branching >> branch_false >> join
+```
+![default trigger rules](https://airflow.apache.org/docs/apache-airflow/stable/_images/branch_without_trigger.png)
+```pyton
+join = DummyOperator(task_id='join', dag=dag, trigger_rule='none_failed_or_skipped')
+```
+![changed rule](https://airflow.apache.org/docs/apache-airflow/stable/_images/branch_with_trigger.png)
+
+
 ### Service Level Agreement, SLA
 GUI: Browse->SLA Misses  
 ```python
