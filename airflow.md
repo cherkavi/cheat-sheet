@@ -254,26 +254,47 @@ AIRFLOW__CORE__AIRFLOW_HOME='/path/to/new-version-of-airflow'
 ```
 
 ### [multi-tasks](https://github.com/cherkavi/cheat-sheet/blob/master/development-process.md#concurrency-vs-parallelism)
+[how to speedup airflow](https://airflow.apache.org/docs/apache-airflow/stable/faq.html#how-can-my-airflow-dag-run-faster)
+![core.parallelism](https://i.postimg.cc/kXWrGnJp/airflow-parallelism.png)
 ```
-# number of physical python processes the scheduler can run, task (processes) that running in parallel 
+# * maximum number of tasks running across an entire Airflow installation
+# * number of physical python processes the scheduler can run, task (processes) that running in parallel 
 # scope: Airflow
-parallelism
+core.parallelism
+```
 
-# number of DagRuns - will be concurrency in dag execution, don't use in case of dependencies of dag-runs
-# scope: DAG.instance
-max_active_runs_per_dag
-
-# number of tast instances that are running simultaneously per DagRun ( amount of TaskInstances inside one DagRun )
+![dag concurrency](https://i.postimg.cc/V60GhR5V/airflow-dag-concurrency.png)
+```
+# * max number of tasks that can be running per DAG (across multiple DAG runs)
+# * number of tast instances that are running simultaneously per DagRun ( amount of TaskInstances inside one DagRun )
 # scope: DAG.task
-dag_concurrency
+core.dag_concurrency
+```
 
-# number of tasks that can be executed in parallel
-# scope: DAG.task.type
-max_active_runs
-
-# run in parallel
+![max active runs per dag](https://i.postimg.cc/tJH5MGKs/airflow-max-active-runs-per-dag.png)
+```
+# * maximum number of active DAG runs, per DAG
+# * number of DagRuns - will be concurrency in dag execution, don't use in case of dependencies of dag-runs
 # scope: DAG.instance
-concurrency
+core.max_active_runs_per_dag
+```
+```python
+# Only allow one run of this DAG to be running at any given time, default value = core.max_active_runs_per_dag
+dag = DAG('my_dag_id', max_active_runs=1)
+```
+
+![task concurrency](https://i.postimg.cc/NfBD8Y8V/airflow-task-concurrency.png)
+```
+# Allow a maximum of 10 tasks to be running across a max of 2 active DAG runs
+dag = DAG('example2', concurrency=10, max_active_runs=2)
+# !!! pool: the pool to execute the task in. Pools can be used to limit parallelism for only a subset of tasks
+```
+
+```
+core.non_pooled_task_slot_count: number of task slots allocated to tasks not running in a pool
+scheduler.max_threads: how many threads the scheduler process should use to use to schedule DAGs
+celery.worker_concurrency: max number of task instances that a worker will process at a time if using CeleryExecutor
+celery.sync_parallelism: number of processes CeleryExecutor should use to sync task state
 ```
 
 ### different configuration of executor
