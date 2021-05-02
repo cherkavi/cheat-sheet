@@ -1,6 +1,17 @@
+#Elasticsearch
 [examples](https://dzone.com/articles/23-useful-elasticsearch-example-queries)  
 [examples](https://www.tutorialspoint.com/elasticsearch)  
 
+## installation
+```sh
+curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+sudo apt update && sudo apt install elasticsearch
+sudo systemctl start elasticsearch
+curl -X GET 'http://localhost:9200'
+```
+
+## collaboration
 ```bash
 # common part
 ELASTIC_HOST=https://elasticsearch-label-search-prod.apps.vantage.org
