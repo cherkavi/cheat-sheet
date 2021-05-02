@@ -9,6 +9,7 @@
 * [tutorial](https://github.com/hgrif/airflow-tutorial)
 * [blog](https://marclamberti.com/blog/)
 * [examples](https://github.com/cherkavi/docker-images/blob/master/airflow/airflow-dag-examples.zip)
+* [best practices](https://marclamberti.com/blog/apache-airflow-best-practices-1/)
 
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
 
@@ -476,6 +477,10 @@ from airflow.models.skipmixin import SkipMixin
 
 
 ### Trigger rules
+Task States:
+* succeed
+* skipped
+* failed
 ![trigger rules](https://i.postimg.cc/P5kjQCVH/airflow-trigger-rules.png)
 ```python
 run_this_first >> branching
@@ -487,6 +492,18 @@ branching >> branch_false >> join
 join = DummyOperator(task_id='join', dag=dag, trigger_rule='none_failed_or_skipped')
 ```
 ![changed rule](https://airflow.apache.org/docs/apache-airflow/stable/_images/branch_with_trigger.png)
+
+Trigger Rules:
+* default: ![all_success](https://i.postimg.cc/fRThrGsq/airflow-all-failed.png)
+* ![all_failed](https://i.postimg.cc/fRThrGsq/airflow-all-failed.png)
+* ![all_done](https://i.postimg.cc/jdhbvspJ/airflow-one-done.png)
+* ![one_success](https://i.postimg.cc/wMXdCH3Z/airflow-one-success.png)
+* ![one_failed](https://i.postimg.cc/Fz54C1F0/airflow-one-failed.png)
+* ![none_failed](https://i.postimg.cc/FK6mcD2W/airflow-none-failed.png)
+* 'none_skipped'
+* ![none_failed_or_skipped](https://i.postimg.cc/YS0MhJyL/airflow-none-failed-or-skipped.png)
+
+
 
 
 ### Service Level Agreement, SLA
