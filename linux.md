@@ -1350,9 +1350,12 @@ cat file.txt | grep -v -e "not-include-string" -e "not-include-another"
 grep -ir "memory" --include="*.scala"
 ```
 
-### grep with regexp
+### grep with regexp, grep regexp
 ```
 grep -ir --include=README.md ".*base" 2>/dev/null
+```
+```ch
+echo "BN_FASDLT/1/20200624T083332_20200624T083350_715488_BM60404_BN_FASDLT.MF4" | awk -F "/" '{print $NF}' | grep "[0-9]\{8\}"
 ```
 
 ### grep with filename
