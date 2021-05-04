@@ -429,6 +429,11 @@ Saved in Metadabase, also additional data: "execution_date", "task_id", "dag_id"
 xcom_push(key="name_of_value", value="some value")
 xcom_pull(task_ids="name_of_task_with_push")
 ```
+task state
+```python
+if ti.state not in ["success", "failed", "running"]:
+    return None
+```
 
 ### branching, select next step, evaluate next task, condition
 !!! don't use "depends_on_past"
