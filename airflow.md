@@ -10,6 +10,7 @@
 * [blog](https://marclamberti.com/blog/)
 * [examples](https://github.com/cherkavi/docker-images/blob/master/airflow/airflow-dag-examples.zip)
 * [best practices](https://marclamberti.com/blog/apache-airflow-best-practices-1/)
+* [task additional button on UI](https://airflow.apache.org/docs/apache-airflow/stable/howto/define_extra_link.html)
 
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
 
