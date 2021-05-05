@@ -2749,6 +2749,11 @@ pacmd list-sources | grep -A 1 index
 # set default input device
 pacmd set-default-source 6
 pacmd set-default-source alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_6__source
+
+# mute microphone mute source
+pacmd set-source-mute alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_6__source true
+# unmute microphone unmute source
+pacmd set-source-mute alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_6__source false
 ```
 
 # MacOS
