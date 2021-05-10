@@ -343,7 +343,7 @@ https://mapr-web.vantage.zur:21103/query.json
 ```
 
 ### drill java
-[src code](https://github.com/cherkavi/java-code-example/blob/master/drill/src/main/java/DrillCollaboration.java)
+[src code](https://github.com/cherkavi/java-code-example/blob/master/drill/src/main/java/drill/DrillCollaboration.java)
 ```sh
 /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.222/jre/bin/java \
 -Ddrill.customAuthFactories=org.apache.drill.exec.rpc.security.maprsasl.MapRSaslFactory \
