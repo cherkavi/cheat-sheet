@@ -1772,9 +1772,18 @@ DAG_NAME='labeling'
 airflow_trigger $each_session "https://airflow.vantage.org/api/experimental/dags/$DAG_NAME/dag_runs"
 ```
 
+```sh
+curl --show-error "http://some.resource/read_book.php?id=66258&p=1"
+```
+
 ### curl execution time
 ```
 curl --max-time 10 -so /dev/null -w '%{time_total}\n' google.com
+```
+
+### curl script curl replacement
+```sh
+curl "https://{foo,bar}.com/file_[1-4].webp" --output "#1_#2.webp"
 ```
 
 ### xml pretty print, xml format
