@@ -1,0 +1,425 @@
+# Linux applications
+
+## useful links:
+* [vnc alternative - connect to existing session](http://www.karlrunge.com/x11vnc/)
+* [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
+* [jira editing shortcuts](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)
+* [i3 window manager shortcuts](https://i3wm.org/docs/refcard.html)
+* [xmind settings](https://www.xmind.net/m/PuDC/)
+> XMind.ini: ```-vm  /home/user/.sdkman/candidates/java/8.0.222-zulu/bin/java ```
+* [awesome windows manager, battery widget](https://github.com/deficient/battery-widget)
+```bash
+echo $XDG_CONFIG_DIRS
+locate rc.lua
+```
+* [rainbow cursor](https://www.gnome-look.org/p/1300587/)
+```sh
+# place for mouse pointer, cursor, theme
+/usr/share/icons
+```
+
+## gnome keyring
+```text
+raise InitError("Failed to unlock the collection!")
+```
+
+```sh
+# kill all "keyring-daemon" sessions
+# clean up all previous runs
+rm ~/.local/share/keyrings/*
+ls -la ~/.local/share/keyrings/
+
+dbus-run-session -- bash
+gnome-keyring-daemon --unlock
+# type your password, <enter> <Ctrl-D>
+keyring set cc.user cherkavi
+keyring get cc.user cherkavi
+
+```
+
+## certification 
+Generating a RSA private key
+```bash
+openssl req -new -newkey rsa:2048 \
+-nodes -out cherkavideveloper.csr \
+-keyout cherkavideveloper.key \
+-subj "/C=DE/ST=Bavaria/L=München/O=cherkavi/CN=cherkavi developer" \
+```
+
+
+## Utilities 
+* [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
+* automation for browsers, automate repited actions: iMacros
+* md2html, markdown to html
+```sh
+sudo apt-get update
+sudo apt-get install -y python3-sphinx
+pip3 install recommonmark sphinx-markdown-tables --user
+sphinx-build "/path/to/source" "/path/to/build" .
+```
+* keepass
+```sh
+sudo add-apt-repository ppa:jtaylor/keepass
+sudo apt-get update && sudo apt-get install keepass2
+```
+* vnc
+ * vnc installation
+```sh
+sudo apt install xfce4
+sudo apt install tightvncserver
+# only for specific purposes
+sudo apt install x11vnc
+```
+ * ~/.vnc/xstartup, file for starting vncserver
+ chmod +x ~/.vnc/xstartup
+```
+#!/bin/sh
+
+# Fix to make GNOME and GTK stuff work
+export XKL_XMODMAP_DISABLE=1
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+startxfce4 &
+
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+xsetroot -solid grey
+vncconfig -iconic &
+```
+ * vnc commands
+```sh
+# start server
+vncserver -geometry 1920x1080
+# full command, $DISPLAY can be ommited in favoud to use "next free screen"
+vncserver $DISPLAY -rfbport 5903 -desktop X -auth /home/qqtavt1/.Xauthority -geometry 1920x1080 -depth 24 -rfbwait 120000 -rfbauth /home/qqtavt1/.vnc/passwd  -fp /usr/share/fonts/X11/misc,/usr/share/fonts/X11/Type1 -co /etc/X11/rgb
+
+## Couldn't start Xtightvnc; trying default font path.
+## Please set correct fontPath in the vncserver script.
+## Couldn't start Xtightvnc process.
+
+# start server with new monitor
+vncserver -geometry 1920x1080 -fp "/usr/share/fonts/X11/misc,/usr/share/fonts/X11/Type1,built-ins"
+
+# check started
+ps aux | grep vnc
+# kill server
+vncserver -kill :1
+```
+  
+  * vnc start, x11vnc start, connect to existing display, vnc for existing display
+```
+#export DISPLAY=:0
+#Xvfb $DISPLAY -screen 0 1920x1080x16 &
+#Xvfb $DISPLAY -screen 0 1920x1080x24 # not more that 24 bit for color
+
+#startxfce4 --display=$DISPLAY &
+
+# sleep 1
+x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
+
+# just show current desktop 
+x11vnc
+```
+* vnc client, vnc viewer, vnc player
+```sh
+# !!! don't use Remmina !!!
+sudo apt install xvnc4viewer
+```
+* timer, terminal timer, console timer
+```
+sudo apt install sox libsox-fmt-mp3
+https://github.com/rlue/timer
+sudo curl -o /usr/bin/timer https://raw.githubusercontent.com/rlue/timer/master/bin/timer
+sudo chmod +x /usr/bin/timer
+# set timer for 5 min 
+timer 5
+```
+
+## vim
+[vim cheat sheet](http://najomi.org/vim)
+
+### vim pipe
+```sh
+echo "hello vim " | vim - -c "set number"
+```
+
+### copy-paste
+* v - *visual* selection ( start selection )
+* y - *yank* ( end selection )
+* p - *paste* into position
+* u - *undo* last changes
+* ctrl-r - *redo* last changes
+
+### read output of command 
+```
+:read !ls -la
+```
+
+### vim execute selection  
+```
+1) select text with v-visual mode
+2) semicolon
+3) w !sh
+:'<,'>w !sh
+```
+
+### [vim plugin](https://github.com/junegunn/vim-plug)
+file ```.vimrc``` should have next content: 
+```
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+call plug#end()
+
+set laststatus=1
+```
+```sh
+git clone https://github.com/vim-airline/vim-airline ~/.vim/plugged/vim-airline
+```
+
+
+### .vim folder example
+```
+.vim
+├── autoload
+│   └── plug.vim
+├── colors
+│   └── wombat.vim
+├── pack
+│   └── plugins
+└── plugged
+    ├── goyo.vim
+    ├── lightline.vim
+    ├── limelight.vim
+    ├── seoul256.vim
+    ├── vim-airline
+    └── vim-airline-themes
+```
+
+
+## vifm
+### colorschema
+copy to ```~/.config/vifm/colors``` [color scheme](https://vifm.info/colorschemes.shtml)  
+```:colorscheme <tab>```
+
+## visual code plugins
+```
+vscjava.vscode-java-debug
+peterjausovec.vscode-docker
+ryu1kn.edit-with-shell
+inu1255.easy-shell
+tyriar.terminal-tabs
+vscjava.vscode-java-dependency
+vscjava.vscode-java-pack
+vscjava.vscode-java-test
+redhat.java
+yzhang.markdown-all-in-one
+vscjava.vscode-maven
+ms-python.python
+liximomo.remotefs
+scala-lang.scala
+visualstudioexptteam.vscodeintellicode
+miguel-savignano.terminal-runner
+```
+
+## taskwarrior
+```sh
+task add what I need to do
+task add wait:2min  finish call
+task waiting
+task 25 modify wait:2min
+task 25 edit
+task 25 delete
+task 25 done
+task project:'BMW'
+task priority:high 
+task next
+```
+doc:
+* https://taskwarrior.org/docs/using_dates.html
+* https://taskwarrior.org/docs/durations.html
+
+extension:
+* https://github.com/ValiValpas/taskopen
+  installation issue: 
+```sh
+sudo cpan JSON
+```
+  commands:
+```sh 
+  task 13 annotate -- ~/checklist.txt
+  task 13 annotate https://translate.google.com
+  task 13 denotate
+  taskopen 1
+
+  # add notes
+  task 1 annotate Notes
+  taskopen 1
+```
+
+## Terminator
+### plugins
+* https://askubuntu.com/questions/700015/set-path-for-terminator-to-lookup-for-plugins
+* https://github.com/gstavrinos/terminator-jump-up
+* https://github.com/mikeadkison/terminator-google/blob/master/google.py
+
+
+## bluejeans installation ubuntu 18+
+```sh
+# retrieve all html anchors from url, html tags from url
+curl -X GET https://www.bluejeans.com/downloads | grep -o '<a .*href=.*>' | sed -e 's/<a /\n<a /g' | sed -e 's/<a .*href=['"'"'"]//' -e 's/["'"'"'].*$//' -e '/^$/ d' | grep rp
+
+sudo alien --to-deb bluejeans-1.37.22.x86_64.rpm 
+sudo dpkg -i bluejeans_1.37.22-2_amd64.deb 
+
+sudo apt install libgconf-2-4 
+sudo ln -s /lib/x86_64-linux-gnu/libudev.so.1 /lib/x86_64-linux-gnu/libudev.so.0
+
+sudo ln -s /opt/bluejeans/bluejeans-bin /usr/bin/bluejeans
+```
+
+## smb client, samba client
+```
+smbclient -U $SAMBA_CLIENT_GROUP//$SAMBA_CLIENT_USER \
+//europe.ubs.corp/win_drive/xchange/Zurich/some/folder
+```
+
+## i3wm
+### [custom status bar](https://py3status.readthedocs.io/en/latest/intro.html#installation)
+
+### exit from i3 window manager
+```
+bindsym $mod+Shift+e exec i3-msg exit
+```
+
+## icaclient
+### [download receiver](https://www.citrix.de/downloads/citrix-receiver/)
+### sudo apt remove icaclient
+```sh
+sudo dpkg --add-architecture i386
+```
+### install dependencies
+```sh
+#sudo apt-get install ia32-libs ia32-libs-i386 libglib2.0-0:i386 libgtk2.0-0:i386
+sudo apt-get install libglib2.0-0:i386 libgtk2.0-0:i386
+sudo apt-get install gcc-multilib
+sudo apt-get install libwebkit-1.0-2:i386 libwebkitgtk-1.0-0:i386
+sudo dpkg --install icaclient_13.10.0.20_amd64.deb
+```
+
+### mc color, midnight commander
+file:~/.mc/ini
+```
+[Colors]
+base_color=normal=brightgray,black:marked=brightcyan,black:selected=black,lightgray:directory=white,black:errors=red,black:executable=brightgreen,black:link=brightblue,black:stalelink=red,black:device=brightmagenta,black:special=brightcyan,black:core=lightgray,black:menu=white,black:menuhot=brightgreen,black:menusel=black,white:editnormal=brightgray,black:editmarked=black,brightgreen:editbold=brightred,cyan
+```
+```
+mc --nocolor
+```
+
+
+### install ssh server, start ssh server, server ssh
+```
+# sudo apt install openssh-server
+sudo apt install ssh
+
+sudo service ssh start
+
+# sudo systemsctl status ssh
+sudo service ssh status
+
+# firewall ubuntu
+sudo ufw allow ssh
+
+# configuration
+sudo vim /etc/ssh/sshd_config
+```
+for enabling/disabling password using
+```text
+PasswordAuthentication yes
+```
+
+### nfs server
+#### nfs install
+```sh
+sudo apt install nfs-kernel-server
+systemctl status nfs-server
+nfsstat
+```
+#### nfs create mount point
+```sh
+# create point 
+sudo mkdir /mnt/disks/k8s-local-storage1
+# mount 
+sudo mount /dev/sdc /mnt/disks/k8s-local-storage1
+sudo chmod 755 /mnt/disks/k8s-local-storage1
+# createlink 
+sudo ln -s /mnt/disks/k8s-local-storage1/nfs nfs1
+
+# update storage
+sudo cat /etc/exports
+# /mnt/disks/k8s-local-storage1/nfs       10.55.0.0/16(rw,sync,no_subtree_check)
+
+# restart 
+sudo exportfs -a
+sudo exportfs -v
+```
+
+#### nfs parameters
+```sh
+ll /sys/module/nfs/parameters/
+ll /sys/module/nfsd/parameters/
+```
+
+#### remote client for nfs mapping
+```sh
+sudo vim /etc/fstab
+# 10.55.0.3:/mnt/disks/k8s-local-storage/nfs /mnt/nfs nfs rw,noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14 0 0
+# 10.55.0.3:/mnt/disks/k8s-local-storage1/nfs /mnt/nfs1 nfs defaults 0 0
+
+# refresh mapping
+sudo mount -av
+```
+
+### youtube
+[installation](https://ytdl-org.github.io/youtube-dl/download.html)  
+```
+youtube-dl --list-formats https://www.youtube.com/watch?v=nhq8e9eE_L8
+youtube-dl --format 22 https://www.youtube.com/watch?v=nhq8e9eE_L8
+```
+
+### screen video recording, screen recording
+```sh
+# start recording
+# add-apt-repository ppa:savoury1/ffmpeg4 && apt update && apt install -y ffmpeg
+ffmpeg -y -video_size 1280x1024 -framerate 20 -f x11grab -i :0.0 /output/out.mp4
+
+# stop recording
+ps aux | grep ffmpeg | head -n 1 | awk '{print $2}' | xargs kill --signal INT 
+```
+
+### image format, image size, image information
+```
+# sudo apt-get install imagemagick
+identify -verbose image.png
+
+# https://imagemagick.org/script/escape.php
+identify -format "%m" image.png     # format type 
+identify -format "%wx%h" image.png  # width x height
+```
+
+### image resize, image size, image rotation
+```sh
+# sudo apt-get install imagemagick
+# without distortion
+convert marketing.png -resize 100x100 marketing-100-100.png
+# mandatory size, image will be distorted
+convert marketing.png -resize 100x100 marketing-100-100.png
+# rotate and change quality
+convert marketing.png -rotate 90 -charcoal 4 -quality 50 marketing.png
+```

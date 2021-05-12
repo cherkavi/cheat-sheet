@@ -279,48 +279,6 @@ mount remote drive via network
 blkid
 ```
 
-### nfs server
-#### nfs install
-```sh
-sudo apt install nfs-kernel-server
-systemctl status nfs-server
-nfsstat
-```
-#### nfs create mount point
-```sh
-# create point 
-sudo mkdir /mnt/disks/k8s-local-storage1
-# mount 
-sudo mount /dev/sdc /mnt/disks/k8s-local-storage1
-sudo chmod 755 /mnt/disks/k8s-local-storage1
-# createlink 
-sudo ln -s /mnt/disks/k8s-local-storage1/nfs nfs1
-
-# update storage
-sudo cat /etc/exports
-# /mnt/disks/k8s-local-storage1/nfs       10.55.0.0/16(rw,sync,no_subtree_check)
-
-# restart 
-sudo exportfs -a
-sudo exportfs -v
-```
-
-#### nfs parameters
-```sh
-ll /sys/module/nfs/parameters/
-ll /sys/module/nfsd/parameters/
-```
-
-#### remote client for nfs mapping
-```sh
-sudo vim /etc/fstab
-# 10.55.0.3:/mnt/disks/k8s-local-storage/nfs /mnt/nfs nfs rw,noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14 0 0
-# 10.55.0.3:/mnt/disks/k8s-local-storage1/nfs /mnt/nfs1 nfs defaults 0 0
-
-# refresh mapping
-sudo mount -av
-```
-
 ### list drives, drive list, attached drives
 ```sh
 lsblk
@@ -438,27 +396,6 @@ $ ls ~/.ssh
 $ cat ~/.ssh/config 
 IdentityFile ~/.ssh/id_rsa_bmw
 IdentityFile ~/.ssh/id_rsa
-```
-
-### install ssh server, start ssh server, server ssh
-```
-# sudo apt install openssh-server
-sudo apt install ssh
-
-sudo service ssh start
-
-# sudo systemsctl status ssh
-sudo service ssh status
-
-# firewall ubuntu
-sudo ufw allow ssh
-
-# configuration
-sudo vim /etc/ssh/sshd_config
-```
-for enabling/disabling password using
-```text
-PasswordAuthentication yes
 ```
 
 ### copy from local machine to remote one, remote copy
@@ -838,8 +775,6 @@ ExecStop=/usr/bin/docker stop app
 WantedBy=multi-user.target
 ```
 
-
-
 managing services
 ```sh
 # alternative of chkconfig
@@ -885,16 +820,6 @@ sudo service lightdm start
 apt-get install xdotool
 xdotool windowactivate $each_window 
 xdotool key --window $each_window Return alt+f e Down Down Return
-```
-
-### mc color, midnight commander
-file:~/.mc/ini
-```
-[Colors]
-base_color=normal=brightgray,black:marked=brightcyan,black:selected=black,lightgray:directory=white,black:errors=red,black:executable=brightgreen,black:link=brightblue,black:stalelink=red,black:device=brightmagenta,black:special=brightcyan,black:core=lightgray,black:menu=white,black:menuhot=brightgreen,black:menusel=black,white:editnormal=brightgray,black:editmarked=black,brightgreen:editbold=brightred,cyan
-```
-```
-mc --nocolor
 ```
 
 ### find all symlinks
@@ -1216,23 +1141,6 @@ output to log stop process
 rm -rf  -- !(exclude-filename.sh)
 ```
 
-### youtube
-[installation](https://ytdl-org.github.io/youtube-dl/download.html)  
-```
-youtube-dl --list-formats https://www.youtube.com/watch?v=nhq8e9eE_L8
-youtube-dl --format 22 https://www.youtube.com/watch?v=nhq8e9eE_L8
-```
-
-### screen video recording, screen recording
-```sh
-# start recording
-# add-apt-repository ppa:savoury1/ffmpeg4 && apt update && apt install -y ffmpeg
-ffmpeg -y -video_size 1280x1024 -framerate 20 -f x11grab -i :0.0 /output/out.mp4
-
-# stop recording
-ps aux | grep ffmpeg | head -n 1 | awk '{print $2}' | xargs kill --signal INT 
-```
-
 ### cron
 **You have to escape the % signs with \%**
 where is file located
@@ -1538,27 +1446,6 @@ sensible-browser http://localhost:3000/api/status
 x-www-browser http://localhost:3000/api/status
 # for MacOS
 open http://localhost:3000/api/status
-```
-
-### image format, image size, image information
-```
-# sudo apt-get install imagemagick
-identify -verbose image.png
-
-# https://imagemagick.org/script/escape.php
-identify -format "%m" image.png     # format type 
-identify -format "%wx%h" image.png  # width x height
-```
-
-### image resize, image size, image rotation
-```sh
-# sudo apt-get install imagemagick
-# without distortion
-convert marketing.png -resize 100x100 marketing-100-100.png
-# mandatory size, image will be distorted
-convert marketing.png -resize 100x100 marketing-100-100.png
-# rotate and change quality
-convert marketing.png -rotate 90 -charcoal 4 -quality 50 marketing.png
 ```
 
 ### wget post
@@ -2487,74 +2374,6 @@ inxi --memory
 inxi -CfxCa
 ```
 
-## Touch screen
-### calibration
-tool installation
-```
-sudo apt install xinput-calibrator
-```
-configuration
-```
-xinput_calibration
-```
-list of all devices, device list, list of devices
-```
-xinput --list
-cat /proc/bus/input/devices
-```
-permanent applying
-```
-vi /usr/share/X11/xorg.conf.d/80-touch.conf
-```
-disable device
-```
-xinput --disable {number from command --list}
-```
-
-## Keyboard Lenovo
-### middle button
-```bash
-# check input source - use name(s) for next command
-xinput
-# create file and add content
-sudo vim /usr/share/X11/xorg.conf.d/50-thinkpad.conf
-```
-```
-Section "InputClass"
-    Identifier  "Trackpoint Wheel Emulation"
-    MatchProduct    "Lenovo ThinkPad Compact USB Keyboard with TrackPoint|ThinkPad Extra Buttons"
-    MatchDevicePath "/dev/input/event*"
-    Option      "EmulateWheel"      "true"
-    Option      "EmulateWheelButton"    "2"
-    Option      "Emulate3Buttons"   "false"
-    Option      "XAxisMapping"      "6 7"
-    Option      "YAxisMapping"      "4 5"
-EndSection
-```
-
-### recover usb drive
-```
-sudo fdisk -l
-sudo lsblk
-sudo fsck /dev/sdb
-e2fsck -b 32768 /dev/sdb
-sudo e2fsck -b 32768 /dev/sdb
-sudo dd if=/dev/zero of=/dev/sdb
-sudo fdisk /dev/sdb
-sudo partprobe -s
-sudo mkfs.vfat -F 32 /dev/sdb
-sudo dd if=/dev/zero of=/dev/sdb bs=512 count=1
-sudo fdisk /dev/sdb
-```
-
-## home automation
-### DTMF generator
-```
-sox -n dtmf-1.wav synth 0.1 sine 697 sine 1209 channels 1
-sox -n dtmf-2.wav synth 0.1 sine 697 sine 1336 channels 1
-sox -n dtmf-3.wav synth 0.1 sine 697 sine 1477 channels 1
-```
-
 ## pdf
 ### convert pdf to image
 ```
@@ -2601,20 +2420,6 @@ function clipboard-copy-file(){
     xclip -in -selection c $1
 }
 alias clipboard-print="xclip -out -selection clipboard"
-```
-
-## bluetooth
-```sh
-# connect and disconnect headphones
-bluetoothctl connect 00:18:09:EC:BE:FD
-bluetoothctl disconnect 00:18:09:EC:BE:FD
-# for manual 
-```
-```sh
-sudo apt install bluez-tools
-bt-device --list
-bt-device --disconnect 00:18:09:EC:BE:FD
-bt-device --connect 00:18:09:EC:BE:FD
 ```
 
 ## screenshot, copy screen
@@ -2745,34 +2550,6 @@ sox 1.wav 2.wav 3.wav 4.wav output.wav
 ffmpeg -i 1.wav -i 2.wav -i 3.wav output.wav
 ```
 
-### output audio device, sound card, headphones
-```
-# list of all outputs
-pacmd list-sinks | grep -A 1 index
-# set default output as
-pacmd set-default-sink 16
-pacmd set-default-sink bluez_sink.00_18_09_EC_BE_FD.a2dp_sink
-
-# list of input devices
-pacmd list-sources | grep -A 1 index
-# set default input device
-pacmd set-default-source 6
-pacmd set-default-source alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_6__source
-
-# mute microphone mute source
-pacmd set-source-mute alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_6__source true
-# unmute microphone unmute source
-pacmd set-source-mute alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_6__source false
-```
-
-# MacOS
-## bashrc replacement
-.bashrc - .bash_profile
-
-## package manager
-brew
-
-
 ## copy users, import/export users
 ```
 sudo awk -F: '($3>=LIMIT) && ($3!=65534)' /etc/passwd > passwd-export
@@ -2786,96 +2563,6 @@ sudo cp /etc/gshadow /opt/gshadow-export
 ```sh
 # sudo apt-get install sqlite3
 cat src/scripts.sql | sqlite3 src/db.sqlite
-```
-
-# AWK
-### single quota escape
-```
-\x27
-```
-example:
-```
-a=$((a+`zip_textfiles part_0 part_0.txt | awk '{if(NF>=5){print $4"/"$5}}' | awk -F '/' '{print $14" "$15"/"$16"/"$17" "$18}' | python sql-update-files-with-md5sum.py`))
-
-awk '{print "a=$((a+`zip_textfiles "$2" "$2".txt | awk \x27 "}'
-| awk -F \'/\' \'{print $14\" \"$15\"/\"$16\"/\"$17\" \"$18}\' | python sql-update-files-with-md5sum.py\`)); echo \"update "$2".txt"}' > update-db-from-files.sh
-```
-
-### last index of, lastIndexOf, substring
-```
-head completed2.files.list  | awk -F '/' '{print substr($0, 1, length($0) - length($NF))}'
-```
-
-### awk another FieldSeparator
-```
-awk -F '<new delimiter>'
-```
-example of multi delimiter:
-```
-awk -F '[/, ]'
-```
-example of determination delimiter in code 
-```
-awk 'BEGIN{FS=",";}{print $2}'
-```
-
-### print NumberofFields
-```
-awk '{print NF}'
-```
-
-### awk print last column
-```
-awk '{print $NF}'
-```
-
-### print NumberofRow
-```
-awk '{print NR}'
-```
-
-### awk OutputFieldSeparator
-```
-awk 'BEGIN{OFS="<=>"}{print $1,$2,$3}'
-```
-
-### [awk example of applying function and conditions](https://www.gnu.org/software/gawk/manual/html_node/)
-```
-ps -aux | awk '{if(index($1,"a.vcherk")>0){print $0}}'
-ps -aux | awk '{print substr($0,1,20)}'
-```
-
-### awk execute script from file
-```
-awk -f <filename>
-```
-### awk print last element
-```
-print($NF)
-```
-### awk print all elements
-```
-print($0)
-```
-
-### awk complex search, print line below
-```
-BEGIN{
-  need_to_print = 0
-}
-{
-    if(need_to_print >0){
-        print $N
-        need_to_print = need_to_print - 1
-    }else{
-    if( index($N, "Exception")>0 && index($N, "WrongException")==0 )  {
-      if(index($N,"[ERROR")==1 || index($N,"[WARN")==1){
-        print $N
-        need_to_print = 3
-      }
-    }
-    }
-}
 ```
 
 ### calculcate size of files by type
@@ -2893,69 +2580,9 @@ expr 30 / 5
 myvar=$(expr 1 + 1)
 ```
 
-### reset Gnome to default
-```
-rm -rf .gnome .gnome2 .gconf .gconfd .metacity .cache .dbus .dmrc .mission-control .thumbnails ~/.config/dconf/user ~.compiz*
-```
-
-### restart Gnome shell
-```sh
-alt-F2 r
-```
-
-### adjust Gnome desktop shortcuts, gnome shortcuts
-```sh
-dconf-editor
-```
-gnome keybinding
-```
-/org/gnome/desktop/wm/keybindings
-```
-
-### gnome extension manual installation, gnome ext folder
-```
-gnome-shell --version
-path_to_extension=~/Downloads/switcherlandau.fi.v28.shell-extension.zip
-
-plugin_uuid=`unzip -c $path_to_extension metadata.json | grep uuid | cut -d \" -f4`
-plugin_dir="$HOME/.local/share/gnome-shell/extensions/$plugin_uuid"
-mkdir -p $plugin_dir
-unzip -q $path_to_extension -d $plugin_dir/
-sudo systemctl restart gdm
-```
-
-### gnome settings, gnome list of settings
-```sh
-# all gnome settings
-gsettings list-recursively 
-# one settings
-org.gnome.desktop.background picture-uri
-```
-
-### install drivers, update drivers ubuntu
-```
-sudo ubuntu-drivers autoinstall
-```
-
-### zbook nvidia hp zbook hp nvidia
-```
-sudo prime select query
-# should be nvidia
-sudo ubuntu-drivers devices
-# sudo ubuntu-drivers autoinstall - don't use it
-sudo apt install nvidia driver-455
-# or 390, 415, .... and restart
-```
-
 ### sudo without password, apple keyboard, sudo script without password
 ```
 echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode" 2>/dev/null
-```
-
-### apple keyboard, alternative 
-```sh
-echo 'options hid_apple fnmode=2 iso_layout=0 swap_opt_cmd=0' | sudo tee /etc/modprobe.d/hid_apple.conf
-sudo update-initramfs -u -k all
 ```
 
 ### default type, detect default browser, mime types
@@ -2986,14 +2613,6 @@ stack install toodles
 sudo apt install byobu
 ```
 
-## icaclient
-### [download receiver](https://www.citrix.de/downloads/citrix-receiver/)
-
-### sudo apt remove icaclient
-```sh
-sudo dpkg --add-architecture i386
-```
-
 ### check architecture
 ```sh
 dpkg --add-architecture i386
@@ -3001,38 +2620,6 @@ dpkg --print-architecture
 dpkg --print-foreign-architectures
 ```
 
-### install dependencies
-```sh
-#sudo apt-get install ia32-libs ia32-libs-i386 libglib2.0-0:i386 libgtk2.0-0:i386
-sudo apt-get install libglib2.0-0:i386 libgtk2.0-0:i386
-sudo apt-get install gcc-multilib
-sudo apt-get install libwebkit-1.0-2:i386 libwebkitgtk-1.0-0:i386
-sudo dpkg --install icaclient_13.10.0.20_amd64.deb
-```
-
-## i3wm
-### [custom status bar](https://py3status.readthedocs.io/en/latest/intro.html#installation)
-
-### exit from i3 window manager
-```
-bindsym $mod+Shift+e exec i3-msg exit
-```
-## external monitor settings, external screen, external display
-```monitor.sh
-#!/bin/sh
-xrandr --output $1
-xrandr --output $2 --auto --right-of $1
-xrandr --output $3 --auto --right-of $2
-```
-```
-xrandr | grep " connected" | awk '{print $1}'
- ./monitor.sh "DP-4" "DP-1-3" "eDP-1-1"
-```
-
-or just install 'arandr' and generate bash script 
-```
-sudo apt install arandr
-```
 ## move mouse, control X server
 ```
 apt-get install xdotool
@@ -3042,367 +2629,7 @@ xdotool mousemove 1800 500
 xdotool click 1
 ```
 
-## control mouse from keyboard
-```
-sudo apt-get install keynav
-killall keynav 
-cp /usr/share/doc/keynav/keynavrc ~/.keynavrc
-keynav ~/.keynavrc
-```
-example of custom configfile
-```
-clear
-daemonize
-Super+j start,cursorzoom 400 400
-Escape end
-shift+j cut-left
-shift+k cut-down
-shift+i cut-up
-shift+l cut-right
-j move-left
-k move-down
-i move-up
-l move-right
-space warp,click 1,end
-Return warp,click 1,end
-1 click 1
-2 click 2
-3 click 3
-w windowzoom
-c cursorzoom 400 400
-a history-back
-Left move-left 10
-Down move-down 10
-Up move-up 10
-Right move-right 10
-```
-
 ## calendar, week number
 ```
 gcal --with-week-number
 ```
-
----
-# useful links:
-* [vnc alternative - connect to existing session](http://www.karlrunge.com/x11vnc/)
-* [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
-* [jira editing shortcuts](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)
-* [i3 window manager shortcuts](https://i3wm.org/docs/refcard.html)
-* [xmind settings](https://www.xmind.net/m/PuDC/)
-> XMind.ini: ```-vm  /home/user/.sdkman/candidates/java/8.0.222-zulu/bin/java ```
-* [awesome windows manager, battery widget](https://github.com/deficient/battery-widget)
-```bash
-echo $XDG_CONFIG_DIRS
-locate rc.lua
-```
-* [rainbow cursor](https://www.gnome-look.org/p/1300587/)
-```sh
-# place for mouse pointer, cursor, theme
-/usr/share/icons
-```
-
----
-# bluejeans installation ubuntu 18+
-```sh
-# retrieve all html anchors from url, html tags from url
-curl -X GET https://www.bluejeans.com/downloads | grep -o '<a .*href=.*>' | sed -e 's/<a /\n<a /g' | sed -e 's/<a .*href=['"'"'"]//' -e 's/["'"'"'].*$//' -e '/^$/ d' | grep rp
-
-sudo alien --to-deb bluejeans-1.37.22.x86_64.rpm 
-sudo dpkg -i bluejeans_1.37.22-2_amd64.deb 
-
-sudo apt install libgconf-2-4 
-sudo ln -s /lib/x86_64-linux-gnu/libudev.so.1 /lib/x86_64-linux-gnu/libudev.so.0
-
-sudo ln -s /opt/bluejeans/bluejeans-bin /usr/bin/bluejeans
-```
----
-# smb client, samba client
-```
-smbclient -U $SAMBA_CLIENT_GROUP//$SAMBA_CLIENT_USER \
-//europe.ubs.corp/win_drive/xchange/Zurich/some/folder
-```
----
-# Terminator
-## plugins
-* https://askubuntu.com/questions/700015/set-path-for-terminator-to-lookup-for-plugins
-* https://github.com/gstavrinos/terminator-jump-up
-* https://github.com/mikeadkison/terminator-google/blob/master/google.py
-
----
-# vim
-[vim cheat sheet](http://najomi.org/vim)
-
-## vim pipe
-```sh
-echo "hello vim " | vim - -c "set number"
-```
-
-## copy-paste
-* v - *visual* selection ( start selection )
-* y - *yank* ( end selection )
-* p - *paste* into position
-* u - *undo* last changes
-* ctrl-r - *redo* last changes
-
-## read output of command 
-```
-:read !ls -la
-```
-
-## vim execute selection  
-```
-1) select text with v-visual mode
-2) semicolon
-3) w !sh
-:'<,'>w !sh
-```
-
-## [vim plugin](https://github.com/junegunn/vim-plug)
-file ```.vimrc``` should have next content: 
-```
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin('~/.vim/plugged')
-Plug 'vim-airline/vim-airline'
-call plug#end()
-
-set laststatus=1
-```
-```sh
-git clone https://github.com/vim-airline/vim-airline ~/.vim/plugged/vim-airline
-```
-
-
-## .vim folder example
-```
-.vim
-├── autoload
-│   └── plug.vim
-├── colors
-│   └── wombat.vim
-├── pack
-│   └── plugins
-└── plugged
-    ├── goyo.vim
-    ├── lightline.vim
-    ├── limelight.vim
-    ├── seoul256.vim
-    ├── vim-airline
-    └── vim-airline-themes
-```
----
-# taskwarrior
-```sh
-task add what I need to do
-task add wait:2min  finish call
-task waiting
-task 25 modify wait:2min
-task 25 edit
-task 25 delete
-task 25 done
-task project:'BMW'
-task priority:high 
-task next
-```
-doc:
-* https://taskwarrior.org/docs/using_dates.html
-* https://taskwarrior.org/docs/durations.html
-
-extension:
-* https://github.com/ValiValpas/taskopen
-  installation issue: 
-```sh
-sudo cpan JSON
-```
-  commands:
-```sh 
-  task 13 annotate -- ~/checklist.txt
-  task 13 annotate https://translate.google.com
-  task 13 denotate
-  taskopen 1
-
-  # add notes
-  task 1 annotate Notes
-  taskopen 1
-```
-  
-  
----
-# vifm
-## colorschema
-copy to ```~/.config/vifm/colors``` [color scheme](https://vifm.info/colorschemes.shtml)  
-```:colorscheme <tab>```
-
----
-# visual code plugins
-```
-vscjava.vscode-java-debug
-peterjausovec.vscode-docker
-ryu1kn.edit-with-shell
-inu1255.easy-shell
-tyriar.terminal-tabs
-vscjava.vscode-java-dependency
-vscjava.vscode-java-pack
-vscjava.vscode-java-test
-redhat.java
-yzhang.markdown-all-in-one
-vscjava.vscode-maven
-ms-python.python
-liximomo.remotefs
-scala-lang.scala
-visualstudioexptteam.vscodeintellicode
-miguel-savignano.terminal-runner
-```
----
-# Utilities 
-* [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
-* automation for browsers, automate repited actions: iMacros
-* md2html, markdown to html
-```sh
-sudo apt-get update
-sudo apt-get install -y python3-sphinx
-pip3 install recommonmark sphinx-markdown-tables --user
-sphinx-build "/path/to/source" "/path/to/build" .
-```
-* keepass
-```sh
-sudo add-apt-repository ppa:jtaylor/keepass
-sudo apt-get update && sudo apt-get install keepass2
-```
-* vnc
- * vnc installation
-```sh
-sudo apt install xfce4
-sudo apt install tightvncserver
-# only for specific purposes
-sudo apt install x11vnc
-```
- * ~/.vnc/xstartup, file for starting vncserver
- chmod +x ~/.vnc/xstartup
-```
-#!/bin/sh
-
-# Fix to make GNOME and GTK stuff work
-export XKL_XMODMAP_DISABLE=1
-unset SESSION_MANAGER
-unset DBUS_SESSION_BUS_ADDRESS
-startxfce4 &
-
-[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
-[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
-xsetroot -solid grey
-vncconfig -iconic &
-```
- * vnc commands
-```sh
-# start server
-vncserver -geometry 1920x1080
-# full command, $DISPLAY can be ommited in favoud to use "next free screen"
-vncserver $DISPLAY -rfbport 5903 -desktop X -auth /home/qqtavt1/.Xauthority -geometry 1920x1080 -depth 24 -rfbwait 120000 -rfbauth /home/qqtavt1/.vnc/passwd  -fp /usr/share/fonts/X11/misc,/usr/share/fonts/X11/Type1 -co /etc/X11/rgb
-
-## Couldn't start Xtightvnc; trying default font path.
-## Please set correct fontPath in the vncserver script.
-## Couldn't start Xtightvnc process.
-
-# start server with new monitor
-vncserver -geometry 1920x1080 -fp "/usr/share/fonts/X11/misc,/usr/share/fonts/X11/Type1,built-ins"
-
-# check started
-ps aux | grep vnc
-# kill server
-vncserver -kill :1
-```
-  
-  * vnc start, x11vnc start, connect to existing display, vnc for existing display
-```
-#export DISPLAY=:0
-#Xvfb $DISPLAY -screen 0 1920x1080x16 &
-#Xvfb $DISPLAY -screen 0 1920x1080x24 # not more that 24 bit for color
-
-#startxfce4 --display=$DISPLAY &
-
-# sleep 1
-x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
-
-# just show current desktop 
-x11vnc
-```
-* vnc client, vnc viewer, vnc player
-```sh
-# !!! don't use Remmina !!!
-sudo apt install xvnc4viewer
-```
-* timer, terminal timer, console timer
-```
-sudo apt install sox libsox-fmt-mp3
-https://github.com/rlue/timer
-sudo curl -o /usr/bin/timer https://raw.githubusercontent.com/rlue/timer/master/bin/timer
-sudo chmod +x /usr/bin/timer
-# set timer for 5 min 
-timer 5
-```
-
-## gnome keyring
-```text
-raise InitError("Failed to unlock the collection!")
-```
-
-```sh
-# kill all "keyring-daemon" sessions
-# clean up all previous runs
-rm ~/.local/share/keyrings/*
-ls -la ~/.local/share/keyrings/
-
-dbus-run-session -- bash
-gnome-keyring-daemon --unlock
-# type your password, <enter> <Ctrl-D>
-keyring set cc.user cherkavi
-keyring get cc.user cherkavi
-
-```
-
-## certification 
-Generating a RSA private key
-```bash
-openssl req -new -newkey rsa:2048 \
--nodes -out cherkavideveloper.csr \
--keyout cherkavideveloper.key \
--subj "/C=DE/ST=Bavaria/L=München/O=cherkavi/CN=cherkavi developer" \
-```
-
-## video camera, camera settings, [webcam setup](https://wiki.archlinux.org/index.php/Webcam_setup)
-```sh
-# camera utils installation
-sudo apt install v4l-utils
-sudo apt install qv4l2
-# list of devices
-v4l2-ctl --list-devices
-# list of settings
-v4l2-ctl -d /dev/video0 --list-ctrls
-```
-camera settings example
-```sh
-# /etc/udev/rules.d/99-logitech-default-zoom.rules
-SUBSYSTEM=="video4linux", KERNEL=="video[0-9]*", ATTRS{product}=="HD Pro Webcam C920", ATTRS{serial}=="BBBBFFFF", RUN="/usr/bin/v4l2-ctl -d $devnode --set-ctrl=zoom_absolute=170"
-```
-
-## wacom tablet, wacom graphical tablet, map wacom, map tablet, tablet to display
-> your wacom device has two modes - PC/Android, for switching between them - press and keep for 3-4 sec two outermost buttons.
-```sh
-# detect your monitors and select one of the output like 'HDMI-1'
-xrandr --listmonitors
-
-# detect all wacom devices
-# xsetwacom --list devices
-xinput | grep -i wacom | awk -F 'id=' '{print $2}' | awk '{print $1}' | while read each_input_device
-do
-	# xsetwacom set 21 MapToOutput 2560x1440+1080+0
-	xinput map-to-output $each_input_device HDMI-1
-done
-```
-
-
