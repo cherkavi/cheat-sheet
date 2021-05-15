@@ -577,6 +577,12 @@ with DAG(dag_id='dummy_echo_dag_10'
     # self.dag = dag or DagContext.get_current_dag()
     BashOperator(task_id='bash_example', bash_command="date", dag=dag)    
 ```
+* reading data from api call
+```python
+value_from_rest_api_call='{{ dag_run.conf["session_id"] }}'
+# or
+kwargs['dag_run'].conf.get('session_id', 'default_value_for_session_id')
+```
 
 * reading settings files ( dirty way )
 ```python
