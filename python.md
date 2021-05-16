@@ -45,7 +45,8 @@ ImportError: cannot import name 'sysconfig'
 solution
 ```
 # pip install
-sudo apt install python3-distutils
+# sudo apt install python3-distutils
+sudo apt install python3-pip
 ```
 
 ### upgrade pip
