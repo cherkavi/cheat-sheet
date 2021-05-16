@@ -588,6 +588,7 @@ with DAG(dag_id='dummy_echo_dag_10'
     BashOperator(task_id='bash_example', bash_command="date", dag=dag)    
 ```
 * reading data from api call
+https://airflow.apache.org/docs/apache-airflow/2.0.1/dag-run.html#external-triggers
 ```python
 value_from_rest_api_call='{{ dag_run.conf["session_id"] }}'
 # or
