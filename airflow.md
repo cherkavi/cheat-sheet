@@ -548,6 +548,7 @@ with DAG('airflow_tutorial_v01',
          catchup=False
          ) as dag:
     print(dag)
+    # next string will not work !!! only for Task/Operators values !!!!
     print("{{ dag_run.conf.get('sku', 'default_value_for_sku') }}" )
 ```
 
