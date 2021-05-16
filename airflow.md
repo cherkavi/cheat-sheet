@@ -538,15 +538,17 @@ with DAG('sla_dag', default_args=default_args, sla_miss_callback=log_sla_miss, s
 
 ## [DAG examples](https://github.com/apache/airflow/tree/master/airflow/example_dags)
 should be placed into "dag" folder ( default: %AIRFLOW%/dag )
-* minimal
+* minimal dag 
 ```python
 from airflow import DAG
+from datetime import datetime, timedelta
 
-with DAG('airflow_tutorial_v01',
-         default_args=default_args, 
-         schedule_interval='0 * * * *',
+with DAG('airflow_tutorial_v01', 
+         start_date=datetime(2015, 12, 1),
+         catchup=False
          ) as dag:
     print(dag)
+    print("{{ dag_run.conf.get('sku', 'default_value_for_sku') }}" )
 ```
 
 * simple DAG
@@ -576,10 +578,10 @@ default_arguments = {
 # when schedule_interval=None, then execution of DAG possible only with direct triggering 
 with DAG(dag_id='dummy_echo_dag_10'
           ,default_args=default_arguments
-          ,'start_date': datetime(2016,1,1) # do not do that: datetime.now() # days_ago(3)
+          ,start_date=datetime(2016,1,1) # do not do that: datetime.now() # days_ago(3)
           ,schedule_interval="*/5 * * * *"
-    	  ,'catchup': False - will be re-writed from ConfigFile !!!
-          ,'depends_on_past': False
+    	  ,catchup=False # - will be re-writed from ConfigFile !!!
+          ,depends_on_past=False
          ) as dag:
     # not necessary to specify dag=dag, source code inside BaseOperator:
     # self.dag = dag or DagContext.get_current_dag()
