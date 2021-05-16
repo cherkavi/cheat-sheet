@@ -74,8 +74,6 @@ Combination of Dags, Operators, Tasks, TaskInstances
 
 ## installation
 ### [Airflow install on python virtualenv]
-!!! python 3.6 
-
 ```sh
 # create python virtual env
 python3 -m venv airflow-env
@@ -87,7 +85,7 @@ export AIRFLOW_HOME=`pwd`/airflow
 
 # install workflow
 AIRFLOW_VERSION=2.0.1
-PYTHON_VERSION=3.7
+PYTHON_VERSION=3.8
 pip install apache-airflow --constraint https://raw.githubusercontent.com/apache/airflow/constraints-$AIRFLOW_VERSION/constraints-$PYTHON_VERSION.txt
 ```
 
