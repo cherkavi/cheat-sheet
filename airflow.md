@@ -84,9 +84,12 @@ mkdir airflow
 export AIRFLOW_HOME=`pwd`/airflow
 
 # install workflow
-AIRFLOW_VERSION=2.0.1
+AIRFLOW_VERSION=2.0.2
 PYTHON_VERSION=3.8
-pip install apache-airflow --constraint https://raw.githubusercontent.com/apache/airflow/constraints-$AIRFLOW_VERSION/constraints-$PYTHON_VERSION.txt
+
+pip install apache-airflow==$AIRFLOW_VERSION \
+ --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-$AIRFLOW_VERSION/constraints-$PYTHON_VERSION.txt"
+
 ```
 
 ### [Airflow start on python, nacked start, start components, start separate components, start locally]
