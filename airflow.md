@@ -100,6 +100,9 @@ airflow
 ```sh
 # init workflow
 airflow initdb 
+# create user first login
+airflow users  create --role Admin --username vitalii --email vcherkashyn@gmail.com --firstname Vitalii --lastname Cherkashyn --password my_secure_password
+
 # airflow resetdb - for reseting all data 
 airflow scheduler &
 airflow webserver -p 8080 &
