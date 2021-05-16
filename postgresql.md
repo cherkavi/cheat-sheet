@@ -83,6 +83,10 @@ url:
 ```
 
 ## DB requests
+### install client
+```
+sudo apt install postgresql-client-common
+```
 
 ### list of all databases, ad-hoc
 ```sh
