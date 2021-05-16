@@ -89,7 +89,11 @@ PYTHON_VERSION=3.8
 
 pip install apache-airflow==$AIRFLOW_VERSION \
  --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-$AIRFLOW_VERSION/constraints-$PYTHON_VERSION.txt"
+```
 
+### generate configuration file
+```sh
+airflow
 ```
 
 ### [Airflow start on python, nacked start, start components, start separate components, start locally]
