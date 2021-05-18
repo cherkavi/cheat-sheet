@@ -38,6 +38,10 @@ Combination of Dags, Operators, Tasks, TaskInstances
 ## configuration, settings
 * executor/airflow.cfg
 * [variables](https://marclamberti.com/blog/variables-with-apache-airflow/)
+	```python
+	from airflow.models import Variable
+	my_var = Variable.set("my_key", "my_value")
+	```
 
 ## Architecture overview
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
