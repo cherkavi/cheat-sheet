@@ -79,6 +79,9 @@ mysqldump --databases ghost_prod --master-data=2 --single-transaction --order-by
 # backup only selected tables 
 mysqldump --extended-insert=FALSE  --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb table_1 table_2 > backup.sql
 
+# backup only selected table with condition 
+mysqldump --extended-insert=FALSE  --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb table_1 --where="column_1=0" --no-create-info  > backup.sql
+
 
 ### restore #1
 mysql -u mysql_user -p DATABASE < backup.sql
