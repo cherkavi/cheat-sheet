@@ -353,3 +353,15 @@ END$$
 DELIMITER ;
 
 ```
+
+### insert datetime issue
+```
+-- `date_start_orig` datetime NOT NULL,
+(1292, "Incorrect datetime value: '0000-00-00 00:00:00' for column 'date_start_orig' at row 1")
+```
+to cure it:
+```
+'1970-01-02 00:00:00'
+-- or 
+SET SQL_MODE='ALLOW_INVALID_DATES';
+```
