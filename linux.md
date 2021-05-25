@@ -955,6 +955,11 @@ find . -type f -size +50000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 find . -maxdepth 5 -mindepth 5
 ```
 
+### find by mask find
+```sh
+find /mapr/vantage/data/store/processed/*/*/*/*/*/Metadata/file_info.json
+```
+
 ### find with excluding folders, find exclude
 ```sh
 find . -type d -name "dist" ! -path  "*/node_modules/*"
