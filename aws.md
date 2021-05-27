@@ -214,6 +214,11 @@ policy
 }
 ```
 
+---
+## RDS
+### PostgreSQL
+!!! important during creation need to set up next parameter:
+Additional configuration->Database options->Initial Database -> <name of your schema>
 
 ---
 ## [Athena](https://docs.aws.amazon.com/athena/latest)

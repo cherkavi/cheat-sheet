@@ -955,6 +955,11 @@ find . -type f -size +50000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
 find . -maxdepth 5 -mindepth 5
 ```
 
+### find by mask find
+```sh
+find /mapr/vantage/data/store/processed/*/*/*/*/*/Metadata/file_info.json
+```
+
 ### find with excluding folders, find exclude
 ```sh
 find . -type d -name "dist" ! -path  "*/node_modules/*"
@@ -1416,6 +1421,25 @@ else
 
 fi
 unset color_prompt force_color_prompt
+```
+### command line color prompt color console
+```sh
+# green
+export PS1=`printf "\033[31m$ staging \033[39m"`
+# red
+export PS1=`printf "\033[32m$ staging \033[39m"`
+```
+```md
+Color	Foreground	Background
+Black	\033[30m	\033[40m
+Red	\033[31m	\033[41m
+Green	\033[32m	\033[42m
+Orange	\033[33m	\033[43m
+Blue	\033[34m	\033[44m
+Magenta	\033[35m	\033[45m
+Cyan	\033[36m	\033[46m
+Light gray	\033[37m	\033[47m
+Fallback to distro's default	\033[39m	\033[49m
 ```
 
 ### last executed exit code

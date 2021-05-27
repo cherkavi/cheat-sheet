@@ -38,6 +38,10 @@ Combination of Dags, Operators, Tasks, TaskInstances
 ## configuration, settings
 * executor/airflow.cfg
 * [variables](https://marclamberti.com/blog/variables-with-apache-airflow/)
+	```python
+	from airflow.models import Variable
+	my_var = Variable.set("my_key", "my_value")
+	```
 
 ## Architecture overview
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
@@ -74,8 +78,6 @@ Combination of Dags, Operators, Tasks, TaskInstances
 
 ## installation
 ### [Airflow install on python virtualenv]
-!!! python 3.6 
-
 ```sh
 # create python virtual env
 python3 -m venv airflow-env
@@ -86,15 +88,25 @@ mkdir airflow
 export AIRFLOW_HOME=`pwd`/airflow
 
 # install workflow
-AIRFLOW_VERSION=2.0.1
-PYTHON_VERSION=3.7
-pip install apache-airflow --constraint https://raw.githubusercontent.com/apache/airflow/constraints-$AIRFLOW_VERSION/constraints-$PYTHON_VERSION.txt
+AIRFLOW_VERSION=2.0.2
+PYTHON_VERSION=3.8
+
+pip install apache-airflow==$AIRFLOW_VERSION \
+ --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-$AIRFLOW_VERSION/constraints-$PYTHON_VERSION.txt"
+```
+
+### generate configuration file
+```sh
+airflow
 ```
 
 ### [Airflow start on python, nacked start, start components, start separate components, start locally]
 ```sh
 # init workflow
 airflow initdb 
+# create user first login
+airflow users  create --role Admin --username vitalii --email vcherkashyn@gmail.com --firstname Vitalii --lastname Cherkashyn --password my_secure_password
+
 # airflow resetdb - for reseting all data 
 airflow scheduler &
 airflow webserver -p 8080 &
@@ -530,15 +542,18 @@ with DAG('sla_dag', default_args=default_args, sla_miss_callback=log_sla_miss, s
 
 ## [DAG examples](https://github.com/apache/airflow/tree/master/airflow/example_dags)
 should be placed into "dag" folder ( default: %AIRFLOW%/dag )
-* minimal
+* minimal dag 
 ```python
 from airflow import DAG
+from datetime import datetime, timedelta
 
-with DAG('airflow_tutorial_v01',
-         default_args=default_args, 
-         schedule_interval='0 * * * *',
+with DAG('airflow_tutorial_v01', 
+         start_date=datetime(2015, 12, 1),
+         catchup=False
          ) as dag:
     print(dag)
+    # next string will not work !!! only for Task/Operators values !!!!
+    print("{{ dag_run.conf.get('sku', 'default_value_for_sku') }}" )
 ```
 
 * simple DAG
@@ -568,14 +583,21 @@ default_arguments = {
 # when schedule_interval=None, then execution of DAG possible only with direct triggering 
 with DAG(dag_id='dummy_echo_dag_10'
           ,default_args=default_arguments
-          ,'start_date': datetime(2016,1,1) # do not do that: datetime.now() # days_ago(3)
+          ,start_date=datetime(2016,1,1) # do not do that: datetime.now() # days_ago(3)
           ,schedule_interval="*/5 * * * *"
-    	  ,'catchup': False - will be re-writed from ConfigFile !!!
-          ,'depends_on_past': False
+    	  ,catchup=False # - will be re-writed from ConfigFile !!!
+          ,depends_on_past=False
          ) as dag:
     # not necessary to specify dag=dag, source code inside BaseOperator:
     # self.dag = dag or DagContext.get_current_dag()
     BashOperator(task_id='bash_example', bash_command="date", dag=dag)    
+```
+* reading data from api call
+https://airflow.apache.org/docs/apache-airflow/2.0.1/dag-run.html#external-triggers
+```python
+value_from_rest_api_call='{{ dag_run.conf["session_id"] }}'
+# or
+kwargs['dag_run'].conf.get('session_id', 'default_value_for_session_id')
 ```
 
 * reading settings files ( dirty way )

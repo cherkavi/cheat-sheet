@@ -67,7 +67,7 @@ sudo sed -i '/server-id/s/^#//g' /etc/mysql/mysql.conf.d/mysqld.cnf && sudo sed 
 # mysqldump installation
 # sudo apt install mysql-client-core-8.0
 
-# backup ( pay attention to 'database' key )
+### backup ( pay attention to 'database' key )
 mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb > backup.sql
 # 'Access denied; you need (at least one of) the PROCESS privilege(s) for this operation' when trying to dump tablespaces
 mysqldump --no-tablespaces --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb > backup.sql
@@ -76,13 +76,14 @@ mysqldump --extended-insert --host=mysql-dev-eu.a.db.ondigitalocean.com --user=a
 mysqldump --extended-insert=FALSE --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw --databases masterdb > backup.sql
 mysqldump --databases ghost_prod --master-data=2 --single-transaction --order-by-primary -r backup.sql -u ghost -p
 
-
-
-
 # backup only selected tables 
-mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb table_1 table_2 > backup.sql
+mysqldump --extended-insert=FALSE  --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb table_1 table_2 > backup.sql
 
-# restore #1
+# backup only selected table with condition 
+mysqldump --extended-insert=FALSE  --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb table_1 --where="column_1=0" --no-create-info  > backup.sql
+
+
+### restore #1
 mysql -u mysql_user -p DATABASE < backup.sql
 # restore #2 
 mysql -u mysql_user -p 
@@ -351,4 +352,16 @@ BEGIN
 END$$
 DELIMITER ;
 
+```
+
+### insert datetime issue
+```
+-- `date_start_orig` datetime NOT NULL,
+(1292, "Incorrect datetime value: '0000-00-00 00:00:00' for column 'date_start_orig' at row 1")
+```
+to cure it:
+```
+'1970-01-02 00:00:00'
+-- or 
+SET SQL_MODE='ALLOW_INVALID_DATES';
 ```
