@@ -2,6 +2,7 @@
 * [sdk](https://aws.amazon.com/tools/)  
 * shell script ``` apt install aws-shell ```
 * [online trainings](https://www.aws.training/)
+* [online trainings, current education](https://www.aws.training/Account/Transcript/Current)
 * [youtube videos](https://hackmd.io/@gekart)
 * [Architecture](https://wa.aws.amazon.com/index.en.html)
 * [certification preparation](https://aws.amazon.com/certification/certification-prep/)
@@ -170,8 +171,12 @@ aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
 aws s3 mv s3://$AWS_BUCKET_NAME/index.html s3://$AWS_BUCKET_NAME/index2.html
 # remove file 
 aws s3 rm  s3://my-bucket-name/file-name.with_extension --profile marketing-staging  --region us-east-1
+# remove all 
+aws s3 rm s3://$AWS_S3_BUCKET_NAME --recursive --exclude "account.json" --include "*"
 # upload file and make it public
 aws s3api put-object-acl --bucket <bucket name> --key <path to file> --acl public-read
+# read file 
+aws s3api get-object --bucket <bucket-name> --key=<path on s3> <local output file>
 ```
 
 policy
