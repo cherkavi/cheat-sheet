@@ -607,10 +607,14 @@ cut -c1-15,20-50
 echo "text file" | grep "" > $random_script_filename
 ```
 
-### log information
-```
+### system log information, logging
+```sh
+# read log
+tail -f /var/log/syslog
+# write to system log
+ echo "test" | /usr/bin/logger -t cronjob
+
 /var/log/messages
-/var/log/syslog
 ```
 ### repository list of all repositories
 ```
