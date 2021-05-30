@@ -521,7 +521,10 @@ docker commit {CONTAINER_ID} <new image name>
 ### container new name, rename container, container new tag
 ```
 # change name of container
-docker tag {IMAGE_ID} <TAG NAME[:TAG VERSION]>
+docker tag {IMAGE_ID} <TAG_NAME[:TAG VERSION]>
+docker tag {TAG_1} {TAG_2}
+# untag
+docker rmi {TAG_NAME}
 ```
 
 ### docker save - image with layers and history
