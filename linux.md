@@ -612,7 +612,9 @@ echo "text file" | grep "" > $random_script_filename
 # read log
 tail -f /var/log/syslog
 # write to system log
- echo "test" | /usr/bin/logger -t cronjob
+echo "test" | /usr/bin/logger -t cronjob
+# write log message to another system
+logger --server 192.168.1.10 --tcp "This is just a simple log line"
 
 /var/log/messages
 ```
