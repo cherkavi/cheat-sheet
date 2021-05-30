@@ -7,7 +7,6 @@
 * Docker Volume - store persist data
 * Docker Client - CLI, gui analogue ( Kitematic )
 * Docker Compose - Python app over Docker Daemon
-
 * Docker Swarm
 * Docker HUB
 * Docker Cloud
@@ -582,17 +581,19 @@ docker kill --signal=9 {CONTAINER ID}
 just kill the terminal
 ```
 
-## Remove and Clean
+## Remove and Clean, docker cleanup
 ------
 ### remove all containers
-```
+```sh
 docker rm `docker ps -a | awk -F ' ' '{print $1}'`
 ```
 
 ### remove image
-```
+```sh
 docker rmi <IMAGE ID>
 docker rmi --force <IMAGE ID>
+# remove unused images
+sudo docker rmi `sudo docker images | grep "<none>" | awk '{print $3}'`
 ```
 
 ### remove volumes ( unused )
@@ -613,6 +614,8 @@ docker network rm $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
 
 ### delete docker, remove docker, uninstall docker
 ```
+sudo docker network ls
+
 sudo apt remove docker.io
 sudo rm -rf /etc/systemd/system/docker.service
 sudo rm -rf /etc/systemd/system/docker.socket
