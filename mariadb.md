@@ -280,6 +280,16 @@ where u.user_id = 100;
 -- datediff(now(), datetime_field_in_db )
 ```
 
+# check data
+```sql
+-- check url
+SELECT url FROM licenses WHERE length(url)>0 and url NOT REGEXP '^http*';
+-- check encoding
+SELECT subject FROM mails WHERE subject <> CONVERT(subject USING ASCII);
+-- check email address
+SELECT email FROM mails WHERE length(email)>0 and upper(email) NOT REGEXP '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$';
+```
+
 # Search
 
 ## simple search
@@ -354,7 +364,8 @@ DELIMITER ;
 
 ```
 
-### insert datetime issue
+# issues
+## insert datetime issue
 ```
 -- `date_start_orig` datetime NOT NULL,
 (1292, "Incorrect datetime value: '0000-00-00 00:00:00' for column 'date_start_orig' at row 1")
