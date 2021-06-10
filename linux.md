@@ -462,7 +462,7 @@ function cluster-prod-generation-sync-to(){
 ssh user@host "mkdir -p /target/path/"
 ```
 
-### ssh execute command and detach, ssh execute detached
+### ssh execute command and detach ssh execute detached ssh command SIGHUP Signal Hang UP
 ```sh
 each_node="bpde00013.ubsbank.org"
 REMOTE_SCRIPT="/opt/app/1.sh"
