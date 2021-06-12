@@ -56,6 +56,11 @@ using profiling
 aws s3 ls --profile $AWS_PROFILE
 ```
 
+### debugging
+```sh
+aws --debug s3 ls --profile $AWS_PROFILE
+```
+
 ---
 ## check configuration
 ```bash
