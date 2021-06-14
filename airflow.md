@@ -37,6 +37,7 @@ Combination of Dags, Operators, Tasks, TaskInstances
 
 ## configuration, settings
 * executor/airflow.cfg
+  * remove examples from UI (restart) load_examples = False
 * [variables](https://marclamberti.com/blog/variables-with-apache-airflow/)
 	```python
 	from airflow.models import Variable
