@@ -1357,6 +1357,7 @@ sed --in-place 's/\[General\]/\[General\]\nenable_trusted_host_check=0/g' matomo
 ### date formatting, datetime formatting, timestamp file, file with timestamp
 ```sh
 date +%H:%M:%S:%s
+date +%Y-%m-%d-%H:%M:%S:%s
 # output file with currenttime
 python3 /imap-message-reader.py > message_reader`date +%H:%M:%S`.txt
 ```
