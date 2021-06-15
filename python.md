@@ -370,6 +370,19 @@ mycli --user my_user --password my_password --host my_host.com --port 3310 --dat
 
 # for activating multiline mode 'F3'
 ```
+## Code Style code Formatter
+```sh
+sudo apt-get remove black && python3 -m pip install black==20.8b1
+black --line-length 100
+```
+
+## Test coverage
+```sh
+# cli tool
+pip3 install tox 
+# plugin for PyCharm: pytest-cov
+```
+
 
 # Alembic 
 ![migration schema](https://i.postimg.cc/tJSJWfFc/alembic.png)
