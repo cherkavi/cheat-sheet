@@ -1,9 +1,11 @@
 ## Drill
 ### start embedded
 ```
-cd ~
-curl -L 'http://www.apache.org/dyn/closer.lua?filename=drill/drill-1.5.0/apache-drill-1.19.0.tar.gz&action=download' | tar -vxzf -
-~/apache-drill-1.19.0/bin/sqlline -u jdbc:drill:zk=local
+# install drill 
+## https://drill.apache.org/download/
+mkdir /home/projects/drill
+cd /home/projects/drill
+curl -L 'https://www.apache.org/dyn/closer.lua?filename=drill/drill-1.19.0/apache-drill-1.19.0.tar.gz&action=download' | tar -vxzf -
 ```
 or 
 ```
@@ -13,7 +15,7 @@ tar xvfz apache-drill-1.6.0.tar.gz
 cd apache-drill-1.6.0
 ```
 
-create /home/projects/temp/drill-override.conf
+(skip for embedded ) create /home/projects/temp/drill-override.conf
 ```properties
 drill.exec: {
   cluster-id: "drillbits1",
@@ -21,7 +23,8 @@ drill.exec: {
 }
 ```
 
-create /home/projects/temp/conf/core-site.xml
+http://drill.apache.org/docs/s3-storage-plugin/
+vim apache-drill-1.19.0/conf/core-site.xml
 ```xml
 <configuration>
        <property>
@@ -36,12 +39,34 @@ create /home/projects/temp/conf/core-site.xml
            <name>fs.s3a.endpoint</name>
            <value>us-east-1</value>
        </property>
+       <property>
+           <name>fs.s3a.endpoint</name>
+           <value>s3.REGION.amazonaws.com</value>
+       </property>  
 </configuration>  
+```
 
+```sh
+# start drill locally
+cd /home/projects/drill
+# apache-drill-1.19.0/bin/sqlline -u jdbc:drill:zk=local
+./apache-drill-1.19.0/bin/drill-embedded
+
+Storage->S3->Update
+```json
+{
+  "type": "file",
+  "connection": "s3a://wond.../",
+  "config": {
+    "fs.s3a.secret.key": "nqGApjHh",
+    "fs.s3a.access.key": "AKIA6LW",
+    "fs.s3a.endpoint": "s3.us-east-1.amazonaws.com",
+    "fs.s3a.impl.disable.cache":"true"
+  },
 ```
 
 ### start docker
-```
+```sh
 docker run -it --name drill-1.19.0 -p 8047:8047 -v /home/projects/temp/drill/conf:/opt/drill/conf --detach apache/drill:1.19.0 /bin/bash 
 # docker ps -a | awk '{print $1}' | xargs docker rm {}
 x-www-browser http://localhost:8047
