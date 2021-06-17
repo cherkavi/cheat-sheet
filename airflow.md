@@ -107,6 +107,16 @@ pip install apache-airflow==$AIRFLOW_VERSION \
 airflow
 ```
 
+### change configuration file
+```
+dags_folder = /home/ubuntu/airflow/dags
+sql_alchemy_conn = postgresql+psycopg2://airflow:airflow@airflow-db.cpw.us-east-1.rds.amazonaws.com:5432/airflow
+load_examples=False
+dag_dir_list_interval = 30
+catchup_by_default = False
+auth_backend = airflow.api.auth.backend.basic_auth
+```
+
 ### [Airflow start on python, nacked start, start components, start separate components, start locally]
 ```sh
 # init workflow
