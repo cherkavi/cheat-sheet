@@ -3,6 +3,7 @@
 ### cheat sheets
 * https://devhints.io/react
 * https://www.freecodecamp.org/news/the-react-cheatsheet-for-2020/
+* https://reactjs.org/
 
 
 ### Workplace with Visual code
