@@ -570,6 +570,12 @@ else
 fi
 ```
 
+### git template message template
+```
+git --git-dir $DIR_PROJECT/integration-prototype/.git config commit.template $DIR_PROJECT/integration-prototype/.commit.template
+```
+
+
 ## advices
 ### fix commit to wrong branch
 ![fix wrong branch commit](https://i.postimg.cc/TYVLR89Y/git-wrong-branch-commit.png)
