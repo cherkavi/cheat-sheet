@@ -569,6 +569,10 @@ else
 	exit 1
 fi
 ```
+if you want to commit hooks, then create separate folder and put all files there
+```
+git --git-dir $DIR_PROJECT/integration-prototype/.git config core.hooksPath $DIR_PROJECT/integration-prototype/.git_hooks
+```
 
 ### git template message template
 ```
