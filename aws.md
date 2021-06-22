@@ -163,8 +163,10 @@ aws s3api get-object --bucket $AWS_BUCKET_NAME --key path/on/s3 /local/path
 
 # create folder, s3 mkdir
 aws s3api put-object --bucket my-bucket-name --key foldername/
-# sync folder with remote s3 folder
+# sync folder local to remote s3
 aws s3 sync /path/to/some/folder s3://my-bucket-name/some/folder
+# sync folder remote s3 to locacl
+aws s3 sync s3://my-bucket-name/some/folder /path/to/some/folder 
 # sync folder with remote s3 folder with public access
 aws s3 sync /path/to/some/folder s3://my-bucket-name/some/folder --acl public-read
 # list of all objects
