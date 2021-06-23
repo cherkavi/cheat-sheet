@@ -1730,6 +1730,8 @@ jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
 
 # convert from yaml to json, retrieve values from json, convert to csv
 cat temp-pod.yaml | yq - r -j --prettyPrint | jq '[.metadata.namespace, .metadata.name, .spec.template.spec.nodeSelector."kubernetes.io/hostname"] | @csv'
+
+echo '{"smart_collections":[{"id":270378401973},{"id":270378369205}]}' | jq '. "smart_collections" | .[] | .id'
 ```
 
 ### [parsing yaml, yaml processing](https://mikefarah.gitbook.io/yq/)
