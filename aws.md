@@ -55,7 +55,11 @@ using profiling
 ```sh
 aws s3 ls --profile $AWS_PROFILE
 ```
-
+### set AWS credentials via command line
+```sh
+aws configure set aws_access_key_id <yourAccessKey>
+aws configure set aws_secret_access_key <yourSecretKey>
+```
 ### debugging
 ```sh
 aws --debug s3 ls --profile $AWS_PROFILE
