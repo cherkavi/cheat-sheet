@@ -1,5 +1,8 @@
-## Drill
-### start embedded
+# Drill
+## official doc
+* [core modules](http://drill.apache.org/docs/core-modules/)
+
+## start embedded
 ```
 # install drill 
 ## https://drill.apache.org/download/
@@ -65,7 +68,7 @@ Storage->S3->Update
   },
 ```
 
-### start docker
+## start docker
 ```sh
 docker run -it --name drill-1.19.0 -p 8047:8047 -v /home/projects/temp/drill/conf:/opt/drill/conf --detach apache/drill:1.19.0 /bin/bash 
 # docker ps -a | awk '{print $1}' | xargs docker rm {}
@@ -73,7 +76,7 @@ x-www-browser http://localhost:8047
 
 ```
 
-### configuration after start
+## configuration after start
 http://localhost:8047/storage > s3 > Update (check below) > Enable
 ```json
   "connection": "s3a://wonder-dir...",
@@ -144,7 +147,7 @@ curl -k -b cookies.txt -X POST \
 https://mapr-web.vantage.zur:21103/query.json
 ```
 
-### drill java
+## drill java
 [src code](https://github.com/cherkavi/java-code-example/blob/master/drill/src/main/java/drill/DrillCollaboration.java)
 ```sh
 /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.222/jre/bin/java \
@@ -157,7 +160,7 @@ https://mapr-web.vantage.zur:21103/query.json
 DrillCollaboration
 ```
 
-### drill special commands
+## drill special commands
 increasing amount of parallel processing threads
 ```sql
 set planner.width.max_per_node=10;
