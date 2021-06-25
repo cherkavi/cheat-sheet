@@ -673,6 +673,10 @@ set -u
 
 # print each command before execution
 set -x
+
+# export source export variables
+set -a
+source file-with-variables.env
 ```
 
 ### execute command via default editor
