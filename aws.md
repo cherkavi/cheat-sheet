@@ -34,7 +34,7 @@ AWS_REGION=eu-central-1
 ```
 
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
-### installation of AWS cli
+### [installation of AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
 ```sh
 # installation
 apt install aws
