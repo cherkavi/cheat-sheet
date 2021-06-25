@@ -228,6 +228,18 @@ except ImportError:
     import simplejson as json
 ```
 
+### script execution ModuleNotFoundError
+when you execute your own project locally
+```text
+ModuleNotFoundError: No module named 'list_comparator'
+```
+```sh
+echo $PYTHONPATH
+export PYTHONPATH=$PYTHONPATH:"/home/projects/wondersign/integration-prototype"
+
+/home/projects/integration-prototype/list-comparator/venv/bin/python /home/projects/integration-prototype/list-comparator/list_comparator/data_api/tools/data_api_reader.py
+```
+
 ### create executable environment
 ```sh
 pex --python=python3 flask requests tornado -o samplepkg.pex
