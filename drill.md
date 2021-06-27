@@ -2,6 +2,14 @@
 ## official doc
 * [core modules](http://drill.apache.org/docs/core-modules/)
 
+## Architecture
+![components, phases](https://i.postimg.cc/7L6K7rBn/drill-architecture.png)
+### Components
+* Drill client ( connects to a Foreman, submits SQL statements, and receives results )
+• Foreman ( DrillBit server selected to maintain your session )
+• worker Drillbit servers ( do the actual work of running your query )
+• ZooKeeper server ( which coordinates the Drillbits within the Drill cluster and keep configuration )
+
 ## start embedded
 ```
 # install drill 
