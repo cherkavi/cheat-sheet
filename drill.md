@@ -51,18 +51,6 @@ cd apache-drill-1.6.0
 cd /home/projects/drill
 # apache-drill-1.19.0/bin/sqlline -u jdbc:drill:zk=local
 ./apache-drill-1.19.0/bin/drill-embedded
-
-Storage->S3->Update
-```json
-{
-  "type": "file",
-  "connection": "s3a://wond.../",
-  "config": {
-    "fs.s3a.secret.key": "nqGApjHh",
-    "fs.s3a.access.key": "AKIA6LW",
-    "fs.s3a.endpoint": "s3.us-east-1.amazonaws.com",
-    "fs.s3a.impl.disable.cache":"true"
-  },
 ```
 
 ## start docker
@@ -106,10 +94,12 @@ vim apache-drill-1.19.0/conf/core-site.xml
 ```
 
 ## configuration after start
-### s3 configuration
+plugin configuration: https://drill.apache.org/docs/s3-storage-plugin/
+
+### s3 configuration: Storage->S3->Update 
 http://localhost:8047/storage > s3 > Update (check below) > Enable
 ```json
-  "connection": "s3a://wonder-dir...",
+  "connection": "s3a://bucket_name",
   "config": {
     "fs.s3a.secret.key": "nqGApjHh2i...",
     "fs.s3a.access.key": "AKIA6LWYA...",
@@ -146,7 +136,9 @@ record
 
 ### drill querying data 
 ```sql
+-- execute it first
 show databases; -- show schemas;
+--------------------------------------------
 select sessionId, isReprocessable from dfs.`/mapr/dp.prod.zurich/vantage/data/store/processed/0171eabfceff/reprocessable/part-00000-63dbcc0d1bed-c000.snappy.parquet`;
 -- or even 
 select sessionId, isReprocessable from dfs.`/mapr/dp.prod.zurich/vantage/data/store/processed/*/*/part-00000-63dbcc0d1bed-c000.snappy.parquet`;
@@ -155,8 +147,8 @@ to_char(to_timestamp(my_column), 'yyyy-MM-dd HH:mm:ss')
 to_number(concat('0', mycolumn),'#')
 
 -- local filesystem
-SELECT filename, sku FROM dfs.`/home/projects/dataset/kagle-data-01` where sku is not null;
-SELECT filename, sku FROM dfs.root.`/kagle-data-01` where sku is not null
+SELECT filename, sku FROM dfs.`/home/projects/dataset/kaggle-data-01` where sku is not null;
+SELECT filename, sku FROM dfs.root.`/kaggle-data-01` where sku is not null
 
 ```
 !!! important: you should avoid colon ':' symbol in path ( explicitly or implicitly with asterix )
