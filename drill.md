@@ -46,6 +46,34 @@ tar xvfz apache-drill-1.6.0.tar.gz
 cd apache-drill-1.6.0
 ```
 
+```sh
+# start drill locally
+cd /home/projects/drill
+# apache-drill-1.19.0/bin/sqlline -u jdbc:drill:zk=local
+./apache-drill-1.19.0/bin/drill-embedded
+
+Storage->S3->Update
+```json
+{
+  "type": "file",
+  "connection": "s3a://wond.../",
+  "config": {
+    "fs.s3a.secret.key": "nqGApjHh",
+    "fs.s3a.access.key": "AKIA6LW",
+    "fs.s3a.endpoint": "s3.us-east-1.amazonaws.com",
+    "fs.s3a.impl.disable.cache":"true"
+  },
+```
+
+## start docker
+```sh
+docker run -it --name drill-1.19.0 -p 8047:8047 -v /home/projects/temp/drill/conf:/opt/drill/conf --detach apache/drill:1.19.0 /bin/bash 
+# docker ps -a | awk '{print $1}' | xargs docker rm {}
+x-www-browser http://localhost:8047
+
+```
+
+## configuration before start
 (skip for embedded ) create /home/projects/temp/drill-override.conf
 ```properties
 drill.exec: {
@@ -77,34 +105,8 @@ vim apache-drill-1.19.0/conf/core-site.xml
 </configuration>  
 ```
 
-```sh
-# start drill locally
-cd /home/projects/drill
-# apache-drill-1.19.0/bin/sqlline -u jdbc:drill:zk=local
-./apache-drill-1.19.0/bin/drill-embedded
-
-Storage->S3->Update
-```json
-{
-  "type": "file",
-  "connection": "s3a://wond.../",
-  "config": {
-    "fs.s3a.secret.key": "nqGApjHh",
-    "fs.s3a.access.key": "AKIA6LW",
-    "fs.s3a.endpoint": "s3.us-east-1.amazonaws.com",
-    "fs.s3a.impl.disable.cache":"true"
-  },
-```
-
-## start docker
-```sh
-docker run -it --name drill-1.19.0 -p 8047:8047 -v /home/projects/temp/drill/conf:/opt/drill/conf --detach apache/drill:1.19.0 /bin/bash 
-# docker ps -a | awk '{print $1}' | xargs docker rm {}
-x-www-browser http://localhost:8047
-
-```
-
 ## configuration after start
+### s3 configuration
 http://localhost:8047/storage > s3 > Update (check below) > Enable
 ```json
   "connection": "s3a://wonder-dir...",
@@ -116,6 +118,13 @@ http://localhost:8047/storage > s3 > Update (check below) > Enable
 ```
 should appear in "Enabled Storage Plugins"
 
+### filesystem configuration dfs configuration
+* activate dfs
+* [configure dfs](http://localhost:8047/storage/dfs)
+```
+workspaces-> root -> location
+> enter full path to filesystem
+```
 
 ## connect to existing on MapR 
 ```bash
@@ -144,6 +153,11 @@ select sessionId, isReprocessable from dfs.`/mapr/dp.prod.zurich/vantage/data/st
 -- with functions
 to_char(to_timestamp(my_column), 'yyyy-MM-dd HH:mm:ss')
 to_number(concat('0', mycolumn),'#')
+
+-- local filesystem
+SELECT filename, sku FROM dfs.`/home/projects/dataset/kagle-data-01` where sku is not null;
+SELECT filename, sku FROM dfs.root.`/kagle-data-01` where sku is not null
+
 ```
 !!! important: you should avoid colon ':' symbol in path ( explicitly or implicitly with asterix )
 
