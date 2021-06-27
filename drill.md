@@ -6,9 +6,29 @@
 ![components, phases](https://i.postimg.cc/7L6K7rBn/drill-architecture.png)
 ### Components
 * Drill client ( connects to a Foreman, submits SQL statements, and receives results )
-• Foreman ( DrillBit server selected to maintain your session )
-• worker Drillbit servers ( do the actual work of running your query )
-• ZooKeeper server ( which coordinates the Drillbits within the Drill cluster and keep configuration )
+* Foreman ( DrillBit server selected to maintain your session )
+* worker Drillbit servers ( do the actual work of running your query )
+* ZooKeeper server ( which coordinates the Drillbits within the Drill cluster and keep configuration )
+> necessary to register of all Drillbit servers
+
+### LifeCycle
+1. Parse the SQL statement into an internal parse tree ( Apache Calcite )
+> check sql query
+2. Perform semantic analysis on the parse tree by resolving names the selected data‐
+base, against the schema (set of tables) in that database ( Apache Calcite )
+> check "database/table" names ( not columns, not columns types, schema-on-read system !!! )
+3. Convert the SQL parse tree into a logical plan, which can be thought of as a block
+diagram of the major operations needed to perform the given query. ( Apache Calcite )
+4. Convert the logical plan into a physical plan by performing a cost-based optimi‐
+zation step that looks for the most efficient way to execute the logical plan.  
+> Drill Web Console -> QueryProfile 
+5. Convert the physical plan into an execution plan by determining how to distrib‐
+ute work across the available worker Drillbits.  
+6. Distribution
+> Major fragment - set of operators that can be done without exchange between DrillBits and grouped into a thread
+> Minor fragment - slice of Major Fragment ( for instance reading one file from folder ), distribution unit
+> Data affinity - place minor fragment to the same node where is data placed ( HDFS/MapR, where compute and storage are separate, like cloud - randomly ) 
+7. Collect all results (Minor fragments) on Foreman, provide results to client
 
 ## start embedded
 ```
