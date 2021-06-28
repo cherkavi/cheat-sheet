@@ -150,6 +150,8 @@ to_number(concat('0', mycolumn),'#')
 SELECT filepath, filename, sku FROM dfs.`/home/projects/dataset/kaggle-data-01` where sku is not null;
 SELECT filepath, filename, sku FROM dfs.root.`/kaggle-data-01` where sku is not null
 
+SELECT filepath, filename, t.version, t.car_info.boardnet_version catinfo FROM dfs.root.`/file_infos` t;
+SELECT t.row_data.start_time start_time, t.row_data.end_time end_time FROM ( SELECT flatten(file_info) AS row_data from dfs.root.`/file_infos/765f3c13-6c57-4400-acee-0177ca43610b/Metadata/file_info.json` ) AS t;
 ```
 !!! important: you should avoid colon ':' symbol in path ( explicitly or implicitly with asterix )
 
