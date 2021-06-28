@@ -147,8 +147,8 @@ to_char(to_timestamp(my_column), 'yyyy-MM-dd HH:mm:ss')
 to_number(concat('0', mycolumn),'#')
 
 -- local filesystem
-SELECT filename, sku FROM dfs.`/home/projects/dataset/kaggle-data-01` where sku is not null;
-SELECT filename, sku FROM dfs.root.`/kaggle-data-01` where sku is not null
+SELECT filepath, filename, sku FROM dfs.`/home/projects/dataset/kaggle-data-01` where sku is not null;
+SELECT filepath, filename, sku FROM dfs.root.`/kaggle-data-01` where sku is not null
 
 ```
 !!! important: you should avoid colon ':' symbol in path ( explicitly or implicitly with asterix )
