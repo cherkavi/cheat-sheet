@@ -674,31 +674,48 @@ minikube addons list
 minikube addons enable ingress
 ```
 
+## labels
+### show labels for each node
+```
+kubectl get nodes --show-labels
+```
+
+### add label to Node
+```
+kubectl label nodes {node name} my_label=my_value
+```
+
+### remove label from Node
+```
+kubectl label nodes {node name} my_label-
+```
+
+
 ## deployment
 to see deployment from external world, remote access to pod, deployment access:  
 user ----> Route -----> Service ----> Deployment
 ![main schema](https://i.postimg.cc/6pfGpWvN/deployment-high-level.png)
 
-## start dummy container
+### start dummy container
 ```
 kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
 ```
 
-## create deployment ( with replica set )
+### create deployment ( with replica set )
 ```
 kubectl run http --image=katacoda/docker-http-server:latest --replicas=1
 ```
 
-## scale deployment 
+### scale deployment 
 ```
 kubectl scale --replicas=3 deployment {name of the deployment}
 ```
 
-## create from yaml file
+### create from yaml file
 ```
 kubectl create -f /path/to/controller.yml
 ```
-# update yaml file
+### update yaml file
 ```
 kubectl apply -f /path/to/controller.yml
 ```
@@ -708,18 +725,18 @@ kubectl apply -f /path/to/controller.yml
 kubectl expose deployment helloworld-deployment --type=NodePort --name=helloworld-service
 kubectl expose deployment helloworld-deployment --external-ip="172.17.0.13" --port=8000 --target-port=80
 ```
-## port forwarding, expose service
+### port forwarding, expose service
 ```bash
 kubectl port-forward svc/my_service 8080 --namespace my_namespace
 ```
 
-## reach out service
+### reach out service
 ```
 minikube service helloworld-service
 minikube service helloworld-service --url
 ```
 
-## service port range
+### service port range
 ```
 kube-apiserver --service-node-port-range=30000-40000
 ```
@@ -760,7 +777,7 @@ minikube ip
 open 'kube-dns-....'/hostIP
 open 'kube-proxy-....'/hostIP
 
-## edit configuration of controller
+### edit configuration of controller
 ```
 kubectl edit pod hello-minikube-{some random hash}
 kubectl edit deploy hello-minikube
@@ -768,37 +785,37 @@ kubectl edit ReplicationControllers helloworld-controller
 kubectl set image deployment/helloworld-deployment {name of image}
 ```
 
-## rollout status
+### rollout status
 ```
 kubectl rollout status  deployment/helloworld-deployment
 ```
 
-## rollout history
+### rollout history
 ```
 kubectl rollout history  deployment/helloworld-deployment
 kubectl rollout undo deployment/helloworld-deployment
 kubectl rollout undo deployment/helloworld-deployment --to-revision={number of revision from 'history'}
 ```
 
-## delete running container
+### delete running container
 ```
 kubectl delete pod hello-minikube-6c47c66d8-td9p2
 ```
 
-## delete deployment
+### delete deployment
 ```
 kubectl delete deploy hello-minikube
 ```
-## delete ReplicationController
+### delete ReplicationController
 ```
 kubectl delete rc helloworld-controller
 ```
-## delete PV/PVC
+### delete PV/PVC
 ```
 oc delete pvc/pvc-scenario-output-prod
 ```
 
-## port forwarding from local to pod/deployment/service
+### port forwarding from local to pod/deployment/service
 next receipts allow to redirect 127.0.0.1:8080 to pod:6379
 ```
 kubectl port-forward redis-master-765d459796-258hz      8080:6379 
@@ -808,7 +825,7 @@ kubectl port-forward rs/redis-master                    8080:6379
 kubectl port-forward svc/redis-master                   8080:6379
 ```
 
-## NodeSelector for certain host
+### NodeSelector for certain host
 ```
 spec:
    template:
@@ -817,7 +834,7 @@ spec:
             kubernetes.io/hostname: gtxmachine1-ev
 ```
 
-## persistent volume
+### persistent volume
 ```
 kind: PersistentVolume
 apiVersion: v1
@@ -845,7 +862,7 @@ kubectl get pv
 kubectl get pvc
 ```
 
-## [container lifecycle](https://v1-18.docs.kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/)
+### [container lifecycle](https://v1-18.docs.kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/)
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -880,28 +897,13 @@ containers:
           port: 8080
 ```
 
-## Serverless
+### Serverless
 * OpenFaas
 * Kubeless
 * Fission
 * OpenWhisk
 
 
-## labels
-### show labels for each node
-```
-kubectl get nodes --show-labels
-```
-
-### add label to Node
-```
-kubectl label nodes {node name} my_label=my_value
-```
-
-### remove label from Node
-```
-kubectl label nodes {node name} my_label-
-```
 
 ### deploy Pod on Node with label
 ```
