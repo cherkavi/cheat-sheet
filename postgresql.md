@@ -63,6 +63,8 @@ host    all             all              ::/0                            md5
 pip install -U pgcli
 sudo apt install pgcli
 pgcli --host 10.14.22.20 --port 30063 --username admin --password adminpass --dbname my_db
+# pgcli save query result
+# \o [filename]                        | Send all query results to file.
 ```
 
 ### jdbc url
