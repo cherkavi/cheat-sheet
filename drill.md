@@ -213,6 +213,14 @@ curl -k -b cookies.txt -X POST \
 https://mapr-web.vantage.zur:21103/query.json
 ```
 
+## drill cli
+```
+!set outputformat 'csv'
+!record '/user/user01/query_output.csv'
+show databases
+!record
+```
+
 ## drill java
 [src code](https://github.com/cherkavi/java-code-example/blob/master/drill/src/main/java/drill/DrillCollaboration.java)
 ```sh
