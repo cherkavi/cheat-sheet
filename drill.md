@@ -70,6 +70,36 @@ drill.exec: {
 }
 ```
 
+### local filesystem dfs
+```json
+  "type": "file",
+  "connection": "file:///",
+  "workspaces": {
+    "json_files": {
+      "location": "/home/projects/dataset/test01",
+      "writable": false,
+      "defaultInputFormat": "json",
+      "allowAccessOutsideWorkspace": false
+    },
+    "tmp": {
+      "location": "/tmp",
+      "writable": true,
+      "defaultInputFormat": null,
+      "allowAccessOutsideWorkspace": false
+    },
+    "root": {
+      "location": "/",
+      "writable": false,
+      "defaultInputFormat": null,
+      "allowAccessOutsideWorkspace": false
+    }
+  },
+
+```
+```sql
+SELECT filepath, filename, sku FROM dfs.json_files.`/*` where sku is not null;
+```
+
 http://drill.apache.org/docs/s3-storage-plugin/
 vim apache-drill-1.19.0/conf/core-site.xml
 ```xml
