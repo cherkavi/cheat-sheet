@@ -63,8 +63,15 @@ host    all             all              ::/0                            md5
 pip install -U pgcli
 sudo apt install pgcli
 pgcli --host 10.14.22.20 --port 30063 --username admin --password adminpass --dbname my_db
+```
+save results to file
+```
 # pgcli save query result
 # \o [filename]                        | Send all query results to file.
+```
+```sql
+\copy (select sku from testaccount01_variant) to 'db-2.sku' csv header;
+COPY tablename TO '/tmp/output.csv' DELIMITER ',' CSV HEADER;
 ```
 
 ### jdbc url
