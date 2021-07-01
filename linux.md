@@ -2090,6 +2090,13 @@ chgrp new_group /path/to/folder
 sudo -E <command>
 ```
 
+### execute script with current env variables send to script
+```
+. ./airflow-get-log.sh
+source ./airflow-get-log.sh
+cat dag-runs-failed.id | . ./airflow-get-log.sh
+```
+
 ### print all logged in users, active users, connected users
 ```bash
 users
