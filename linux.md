@@ -2073,7 +2073,7 @@ sudo -E bash -c 'python3'
 sudo userdel -r test
 ```
 
-### create group, assign user to group, user check group, user group
+### create group, assign user to group, user check group, user group user roles hadoop
 ```
 sudo groupadd new_group
 usermod --append --groups new_group my_user
