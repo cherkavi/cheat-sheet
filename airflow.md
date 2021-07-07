@@ -3,6 +3,7 @@
 * [REST API](http://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html)
 * [source code](https://github.com/apache/airflow)
 * [providers, operators](https://airflow.apache.org/docs/apache-airflow-providers/packages-ref.html)
+  * [base operator parameters](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/models/baseoperator/index.html#module-airflow.models.baseoperator)
 * [how to](https://airflow.apache.org/howto/index.html)
 * [OpenSource wrapper CLI](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart)
 * [podcast](https://soundcloud.com/the-airflow-podcast)
