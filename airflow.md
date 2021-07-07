@@ -845,6 +845,24 @@ def dag_run_cleaner_task(trigger_task_id):
     	op_kwargs={"my_custom_param": 5}
     )
 ```
+	
+* python operator new style
+```python
+from airflow.operators.python import get_current_context	
+	
+@task
+def image_set_variant():
+    context = get_current_context()
+    task_instance = context["ti"]
+	
+
+with DAG(DAG_NAME,
+         start_date=datetime(2015, 12, 1),
+         catchup=False,
+         schedule_interval=None
+         ) as dag:
+    image_set_variant()
+```
 
 * trig and wait, run another dag and wait
 ```python
