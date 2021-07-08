@@ -23,6 +23,7 @@
 * sudo systemctl status jenkins
 
 ### master-slave
+![master-slave](https://i.postimg.cc/TwWL9QKK/jenkins-master-slave.png)  
 ![master-slave](https://i.postimg.cc/J72b0b13/jenkins-master-slave.png)
 
 ### manual clean up
