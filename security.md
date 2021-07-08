@@ -1,4 +1,9 @@
 # Security
+## exercises
+[web security](https://application.security/free/owasp-top-10)
+[api security](https://application.security/free/owasp-top-10-API)
+[aws security](https://application.security/free/kontra-aws-clould-top-10?utm_source=newsletter&utm_medium=email)
+
 ## certifications
 * GIAC - Global Information Assurance Certification
 * CISA - Certified Information Systems Auditor
