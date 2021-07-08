@@ -2,7 +2,7 @@
 * [cheat-sheet](https://cheat.readthedocs.io/en/latest/ansible/index.html)
 * [best practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)
 * [ansible modules](https://docs.ansible.com/ansible/latest/modules/modules_by_category.html)
-* [ansible roles](https://galaxy.ansible.com/)
+* [ansible roles, ansible galaxy, ready roles](https://galaxy.ansible.com/)
 * [examples](https://github.com/ansible/ansible-examples)
 * [examples 2](https://github.com/mmumshad/ansible-training-answer-keys)
 * [examples 3](https://github.com/mmumshad/ansible-training-answer-keys-2)
