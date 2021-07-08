@@ -384,9 +384,16 @@ mycli --user my_user --password my_password --host my_host.com --port 3310 --dat
 ```
 ## Code Style code Formatter
 ```sh
+# installation
 sudo apt-get remove black && python3 -m pip install black==20.8b1
+# execution
 black --line-length 100
+python -m black {file of directory}
 ```
+black with IDEA, black with PyCharm
+* install FileWatcher plugin
+* Tool to Run on Changes: Program: ~/.locl/bin/black
+* Tool to Run on Changes: Arguments: $FilePath$
 
 ## Test coverage
 ```sh
