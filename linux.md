@@ -507,6 +507,11 @@ mount -t tmpfs tmpfs /mnt/my-ram -o size=1024M
 watch -n 60 'ls -la | grep archive'
 ```
 
+### execute command in case of changes watch file
+```
+ls *.txt | entr firefox 
+```
+
 ### repeat last command
 ```
 !!
