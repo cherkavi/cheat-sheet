@@ -182,6 +182,12 @@ SELECT filepath, filename, sku FROM dfs.root.`/kaggle-data-01` where sku is not 
 
 SELECT filepath, filename, t.version, t.car_info.boardnet_version catinfo FROM dfs.root.`/file_infos` t;
 SELECT t.row_data.start_time start_time, t.row_data.end_time end_time FROM ( SELECT flatten(file_info) AS row_data from dfs.root.`/file_infos/765f3c13-6c57-4400-acee-0177ca43610b/Metadata/file_info.json` ) AS t;
+
+-- local file system complex query with inner!!! join
+SELECT hvl.startTime, hvl.endTime, hvl.labelValueDouble, hvl2.labelValueDouble 
+FROM dfs.`/vantage/data/store/95933/acfb-01747cefa4a9/single_labels/host_vehicle_latitude` hvl INNER JOIN dfs.`/vantage/data/store/95933/acfb-01747cefa4a9/single_labels/host_vehicle_longitude` hvl2
+ON hvl.startTime = hvl2.startTime
+WHERE hvl.startTime >= 1599823156000000000 AND hvl.startTime <= 1599824357080000000
 ```
 !!! important: you should avoid colon ':' symbol in path ( explicitly or implicitly with asterix )
 
