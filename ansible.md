@@ -1,7 +1,7 @@
 # [ansible](https://www.ansible.com/)
 * [cheat-sheet](https://cheat.readthedocs.io/en/latest/ansible/index.html)
 * [best practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)
-* [ansible modules](https://docs.ansible.com/ansible/latest/modules/modules_by_category.html)
+* [ansible modules](https://docs.ansible.com/ansible/latest/collections/all_plugins.html)
 * [ansible roles, ansible galaxy, ready roles](https://galaxy.ansible.com/)
 * [examples](https://github.com/ansible/ansible-examples)
 * [examples 2](https://github.com/mmumshad/ansible-training-answer-keys)
