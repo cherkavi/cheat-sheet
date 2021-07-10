@@ -121,7 +121,11 @@ ansible localhost \
 ```
 
 
-## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters, extra variables, external variables
+## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters, extra variables, external variables, env var
+```j2
+# variable from env
+{{ lookup('env','DB_VARIANT_USERNAME') }}
+```
 ```sh
 ansible-playbook -i inventory.ini playbook.yml --extra-vars "$*"
 ```
