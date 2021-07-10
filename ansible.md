@@ -249,6 +249,16 @@ change variables
 del(task.args['src'])
 task.args['src']="/new path to file"
 ```
+set variable
+```
+- name: Set Apache URL
+  set_fact:
+    apache_url: 'http://example.com/apache'
+    
+- name: Download Apache
+  shell: wget {{ apache_url }}    
+```
+
 manage palying
 ```
 redo
