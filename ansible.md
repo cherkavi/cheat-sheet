@@ -262,6 +262,7 @@ set variable
 - name: Download Apache
   shell: wget {{ apache_url }}    
 ```
+shell == ansible.builtin.shell
 
 manage palying
 ```
