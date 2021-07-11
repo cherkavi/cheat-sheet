@@ -366,6 +366,7 @@ normal celery worker output log
 [2021-07-11 08:23:47,305: INFO/MainProcess] mingle: sync complete
 [2021-07-11 08:23:47,344: INFO/MainProcess] celery@airflow-01-worker-01 ready.
 ```
+** in case of adding/removing Celery Workers - restart Airflow Flower **
 
 ## DAG
 ### task dependencies in DAG
