@@ -86,9 +86,9 @@ myvar=23 # defined in a :vars section, interpreted as a string
 ```sh
 ansible-playbook -i "ubs000015.vantage.org , " mkdir.yaml 
 
-ansible-playbook welcome-message.yaml -i airflow-test-account-01.ini --limit worker --extra-vars="ACCOUNT_ID=QA01" --user=ubuntu --ssh-extra-args="-i $EC2_KEY" 
+ansible-playbook welcome-message.yaml -i airflow-test-account-01.ini --limit worker --extra-vars="ACCOUNT_ID=QA01" --user=ubuntu --ssh-extra-args="-i $EC2_KEY" -vvv
 
-ansible all -i airflow-test-account-01.ini --user=ubuntu --ssh-extra-args="-i $EC2_KEY" -m "ping"
+ansible all -i airflow-test-account-01.ini --user=ubuntu --ssh-extra-args="-i $EC2_KEY" -m "ping" -vvv
 ansible main,worker -i airflow-test-account-01.ini --user=ubuntu --ssh-extra-args="-i $EC2_KEY" -m "ping"
 ```
 simple file for creating one folder
