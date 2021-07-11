@@ -358,6 +358,14 @@ airflow worker
 # start with two child worker process - the same as 'worker_concurrency" in airflow.cfg
 airflow worker -c 2 
 ```
+normal celery worker output log
+```
+[2021-07-11 08:23:46,260: INFO/MainProcess] Connected to amqp://dskcfg:**@toad.rmq.cloudamqp.com:5672/dskcf
+[2021-07-11 08:23:46,272: INFO/MainProcess] mingle: searching for neighbors
+[2021-07-11 08:23:47,304: INFO/MainProcess] mingle: sync with 1 nodes
+[2021-07-11 08:23:47,305: INFO/MainProcess] mingle: sync complete
+[2021-07-11 08:23:47,344: INFO/MainProcess] celery@airflow-01-worker-01 ready.
+```
 
 ## DAG
 ### task dependencies in DAG
