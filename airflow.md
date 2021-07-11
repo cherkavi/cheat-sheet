@@ -120,6 +120,9 @@ auth_backend = airflow.api.auth.backend.basic_auth
 
 ### [Airflow start on python, nacked start, start components, start separate components, start locally]
 ```sh
+# full path to airflow
+/home/ubuntu/.local/bin/airflow
+
 # init workflow
 airflow initdb 
 # create user first login
