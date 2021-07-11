@@ -285,6 +285,13 @@ quit
       var: result
 ```
 
+## env variables bashrc
+```sh
+- name: source bashrc
+  sudo: no   
+  shell: . /home/username/.bashrc && [the actual command you want run]
+```
+
 ## debug module
 argument file ( args.json )
 ```json
