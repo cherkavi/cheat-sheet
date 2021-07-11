@@ -190,7 +190,7 @@ pip install git+ssh://git@github.com/myuser/foo.git@my_version
 ### install package to specific folder
 ```
 pip install --target=/home/user/my/python/packages package_name
-export PYTHONPATH=$PYTHONPATH:"/home/user/my/python/packages"
+export PYTHONPATH=$PYTHONPATH:"/home/ubuntu/.local/lib/python3.8/site-packages/gunicorn"
 ```
 ### load package from specific folder inline
 ```
