@@ -292,6 +292,12 @@ quit
   shell: . /home/username/.bashrc && [the actual command you want run]
 ```
 
+## ec2 managing airflow ec2
+```
+export PATH=$PATH:/home/ubuntu/.local/bin
+nohup airflow webserver
+```
+
 ## debug module
 argument file ( args.json )
 ```json
