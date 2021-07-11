@@ -358,6 +358,11 @@ default value
 ```
 default path is {{ my_custom_path | default("/opt/program/script.sh") }}
 ```
+escape special characters
+```
+{{ '{{ filename }}.log' }}
+```
+
 operation with list
 ```
 {{ [1,2,3] | min }}
