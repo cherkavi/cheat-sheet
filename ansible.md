@@ -788,7 +788,7 @@ ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_
 ```
 
 ### echo
-add flag for verbosity:-vv (2) or -v (1)
+add flag for ```ansible``` or ```ansible-playbook```:-vvv(3) -vv (2) or -v (1)
 ```
 - debug:
     msg: ">>> {{ data_portal_deploy_folder }}/data-portal.jar"
