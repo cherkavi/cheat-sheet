@@ -292,6 +292,23 @@ quit
   shell: . /home/username/.bashrc && [the actual command you want run]
 ```
 
+## rsync copy files
+```
+  - name: copy source code
+    synchronize:
+      src: '{{ item.src }}'
+      dest: '{{ item.dest }}'
+      delete: yes
+      recursive: yes
+      rsync_opts:
+        - "--exclude=.git"
+        - "-avz"
+        - '-e ssh -i {{ key }} '
+    with_items:
+    - { src: '{{ path_to_repo }}/airflow-dag/airflow_shopify/', dest: '/home/ubuntu/airflow/airflow-dag/airflow_shopify/' }
+
+```
+
 ## ec2 managing airflow ec2
 ```
 export PATH=$PATH:/home/ubuntu/.local/bin
