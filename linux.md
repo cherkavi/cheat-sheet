@@ -2508,6 +2508,8 @@ dmesg -S
 
 ## disk usage
 ```
+df -ha
+# with visualization
 ncdu
 ```
 
