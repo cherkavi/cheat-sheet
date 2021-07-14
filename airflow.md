@@ -222,7 +222,7 @@ via PostgreConnection
         dag=dag)
 ```
 
-# REST API
+# [REST API](https://airflow.apache.org/docs/apache-airflow/2.0.2/stable-rest-api-ref.html#section/Trying-the-API)
 ## trigger DAG - python
 ```python
 import urllib2
@@ -280,6 +280,28 @@ curl -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X GET "$AIRFLOW_ENDPOINT/task?dag_id=$D
 ```bash
 BODY='{"dag_ids":["shopify_product_create"],"page_limit":30000}'
 curl -X POST "$AIRFLOW_URL/api/v1/dags/~/dagRuns/list" -H "Content-Type: application/json" --data-binary $BODY --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD" > dag-runs.json
+```
+
+### get list of dag-runs
+```bash
+curl -X GET "$AIRFLOW_URL/api/v1/dags/shopify_product_create/dagRuns" -H "Content-Type: application/json" --data-binary $BODY --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD"
+```
+
+### batch retrieve
+```bash
+BODY='{"dag_ids":["shopify_product_create"]}'
+curl -X POST "$AIRFLOW_URL/api/v1/dags/~/dagRuns/list" -H "Content-Type: application/json" --data-binary $BODY --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD" 
+
+DAG_ID=shopify_product_create
+TASK_ID=product_create
+DAG_RUN_ID=shopify_product_create_2021-06-15T18:59:35.1623783575Z_6062835
+alias get_airflow_log='curl -X GET --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD" $AIRFLOW_URL/api/v1/dags/$DAG_ID/dagRuns/$DAG_RUN_ID/taskInstances/$TASK_ID/logs/1'
+```
+
+### get list of tasks
+```sh
+BODY='{"dag_ids":["shopify_product_create"],"state":["failed"]}'
+curl -X POST "$AIRFLOW_URL/api/v1/dags/~/dagRuns/~/taskInstances/list" -H "Content-Type: application/json" --data-binary $BODY --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD" 
 ```
 
 
