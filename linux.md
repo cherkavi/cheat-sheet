@@ -1596,6 +1596,12 @@ sed -i -e 's/\r$//' Archi-Ubuntu.sh
 ps -aux | awk 'BEGIN{a=0}{a=a+1}END{print a}'
 ```
 
+### boolean value
+```
+true
+false
+```
+
 ### last changed files, last updated file
 ```
 find -cmin -2
