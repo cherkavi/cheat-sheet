@@ -132,9 +132,10 @@ Subnetwork: 172.31.0.0/16, 172.31.0.0/26, 172.31.0.64/26
 ---
 ## IGW
 public access internet outside access
-create gateway
-vpc -> route tables -> add route 
-
+1. create gateway
+2 .vpc -> route tables -> add route 
+Security Group
+1. inbound rules -> source 0.0.0.0/0
 ---
 ## S3
 ```sh
