@@ -130,6 +130,12 @@ VPC: 172.31.0.0
 Subnetwork: 172.31.0.0/16, 172.31.0.0/26, 172.31.0.64/26
 ```
 ---
+## IGW
+public access internet outside access
+create gateway
+vpc -> route tables -> add route 
+
+---
 ## S3
 ```sh
 current_doc_topic='s3'
