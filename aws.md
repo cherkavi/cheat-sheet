@@ -41,7 +41,12 @@ apt install aws
 # set up user
 aws configuration
 ```
-### profiling
+### [aws cli config](https://docs.aws.amazon.com/cli/latest/topic/config-vars.html)
+be aware about precedence:
+Credentials from environment variables have precedence over credentials from the shared credentials and AWS CLI config file.   
+Credentials specified in the shared credentials file have precedence over credentials in the AWS CLI config file. 
+
+
 ```sh
 vim ~/.aws/credentials
 ```
