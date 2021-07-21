@@ -280,6 +280,11 @@ where u.user_id = 100;
 -- datediff(now(), datetime_field_in_db )
 ```
 
+### value substitution string replace
+```sql
+select (case when unsubscribed>0 then 'true' else 'false' end) from lm_user limit 5;
+```
+
 # check data
 ```sql
 -- check url
