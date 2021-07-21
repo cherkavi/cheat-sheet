@@ -138,9 +138,9 @@ git merge-base --is-ancestor <commit_or_branch> <is_commit_in_branch>; if [[ 1 -
 git log -5 develop
 ```
 
-### check last commits for subfolder, check last commits for author
+### check last commits for subfolder, check last commits for author, last commit in folder
 ```
-git log -10 --author "Frank Newman" -- data-api
+git log -10 --author "Frank Newman" -- my-sub-folder-in-repo
 ```
 
 ### check files only for last commits
