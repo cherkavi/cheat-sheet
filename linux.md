@@ -1173,7 +1173,8 @@ sudo service cron status
 ```
 all symbols '%' must be converted to '\%'
 ```sh
-# edit file
+# edit file 
+# !!! last line should be empty !!!
 crontab -e
 # list of all jobs
 crontab -l
@@ -1183,6 +1184,14 @@ adding file with cron job
 echo " * * * * echo `date` >> /out.txt" >> print-date.cron
 chmod +x print-date.cron
 crontab print-date.cron
+```
+
+example of cron job with special parameters
+```sh
+HOME=/home/ubuntu
+0 */6 * * * /home/ubuntu/list-comparator-W3650915.sh >/dev/null 2>&1
+9 */6 * * * /home/ubuntu/list-comparator-W3653989.sh >/dev/null 2>&1
+
 ```
 
 logs
