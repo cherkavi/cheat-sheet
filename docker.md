@@ -82,6 +82,11 @@ Environment="HTTP_PROXY=http://webproxy.host.de:3128/" "NO_PROXY=localhost,127.0
 ```bash
 sudo shutdown -r now
 ```
+* /etc/sysconfig/docker
+```
+HTTP_PROXY="http://user01:password@10.10.10.10:8080"
+HTTPS_PROXY="https://user01:password@10.10.10.10:8080"
+```
 
 * ~/.docker/config.json
 ```
@@ -101,6 +106,8 @@ sudo shutdown -r now
 sudo systemctl daemon-reload && sudo systemctl restart docker
 # or
 sudo systemctl restart docker.service
+# or 
+sudo service docker restart
 ```
 
 
