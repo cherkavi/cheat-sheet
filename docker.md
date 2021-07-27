@@ -67,31 +67,22 @@ logout and login again
 
 
 ## proxy set up:
-* docker run --env-file environment.file {image name}
-> ( or via -e variables )
-
-```
-HTTP_PROXY=http://webproxy.host:3128
-http_proxy=http://webproxy.host:3128
-HTTPS_PROXY=http://webproxy.host:3128
-https_proxy=http://webproxy.host:3128
-NO_PROXY="localhost,127.0.0.1,.host.de,.viola.local"
-no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
-```
 * /etc/systemd/system/docker.service.d/10_docker_proxy.conf
 ```
 [Service]
 Environment=HTTP_PROXY=http://1.1.1.1:111
 Environment=HTTPS_PROXY=http://1.1.1.1:111
 ```
+or
+```
+[Service]    
+Environment="HTTP_PROXY=http://webproxy.host.de:3128/" "NO_PROXY=localhost,127.0.0.1,.host.de,.viola.local,.local"
+```
+
 ```bash
 sudo shutdown -r now
 ```
 
-* /etc/default/docker
-```
-export http_proxy="http://host:3128/"
-```
 * ~/.docker/config.json
 ```
 {
@@ -111,11 +102,25 @@ sudo systemctl daemon-reload && sudo systemctl restart docker
 # or
 sudo systemctl restart docker.service
 ```
-* /etc/systemd/system/docker.service.d/http-proxy.conf
+
+
+
+* docker run --env-file environment.file {image name}
+> ( or via -e variables )
+
 ```
-[Service]    
-Environment="HTTP_PROXY=http://webproxy.host.de:3128/" "NO_PROXY=localhost,127.0.0.1,.host.de,.viola.local,.local"
+HTTP_PROXY=http://webproxy.host:3128
+http_proxy=http://webproxy.host:3128
+HTTPS_PROXY=http://webproxy.host:3128
+https_proxy=http://webproxy.host:3128
+NO_PROXY="localhost,127.0.0.1,.host.de,.viola.local"
+no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ```
+* /etc/default/docker
+```
+export http_proxy="http://host:3128/"
+```
+
 * if all previous options not working ( due permission ) or you need to execute (apt install, wget, curl, ... ):
   * build arguments
   ```bash
