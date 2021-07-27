@@ -67,6 +67,7 @@ logout and login again
 
 
 ## proxy set up:
+### proxy for daemon
 * /etc/systemd/system/docker.service.d/10_docker_proxy.conf
 ```
 [Service]
@@ -88,6 +89,7 @@ HTTP_PROXY="http://user01:password@10.10.10.10:8080"
 HTTPS_PROXY="https://user01:password@10.10.10.10:8080"
 ```
 
+### proxy for docker client to pass proxy to containers
 * ~/.docker/config.json
 ```
 {
