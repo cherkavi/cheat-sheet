@@ -177,9 +177,13 @@ git diff ec3772~ ec3772
 git log --all --graph --decorate --oneline --simplify-by-decoration
 ```
 
-### commit message search commit
+### commit message search commit search message
 ```sh
+git log | grep -i jwt
+
+git log --all --grep='jwt'
 git log --name-only  --grep='XVIZ instance'
+git log -g --grep='jwt'
 ```
 
 ### show no-merged branches
