@@ -767,7 +767,17 @@ FROM cc-artifactory.ubsgroup.com/docker/ros:${ROS_VERSION}
 * docker login
 * docker tag <name of the container> <dockerhub username>/<name of the container>
 * docker push <dockerhub username>/<name of the container>
+```
+DOCKER_REGISTRY="default-image-registry.apps.vantage.org"
+IMAGE_LOCAL="ab1023fb0ac8"
+OC_PROJECT="stg-1"
+DOCKER_IMAGE_LOCAL_REPO=local
+DOCKER_IMAGE_LOCAL_TAG=drill_connector
 
+sudo docker tag $IMAGE_LOCAL $DOCKER_REGISTRY/$OC_PROJECT/$DOCKER_LOCAL_REPO:$DOCKER_LOCAL_TAG
+sudo docker push $DOCKER_REGISTRY/$OC_PROJECT/$DOCKER_LOCAL_REPO:$DOCKER_LOCAL_TAG
+
+```
 
 ### advices
 * for a starting points ( FROM ) using -alpine or -scratch images, for example: "FROM python:3.6.1-alpine"
