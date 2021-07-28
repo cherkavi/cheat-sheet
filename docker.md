@@ -40,12 +40,17 @@ docker system info
 
 ### how to skip typing "sudo" each time, without sudo
 ```sh
+# new group in sudo for docker
 sudo groupadd docker
-sudo usermod -aG docker $USER # add current user into docker group
+# add current user into docker group
+sudo usermod -aG docker $USER 
+
 # restart service
 sudo service docker restart
 # restart daemon
 systemctl daemon-reload
+# refresh sudo 
+sudo reboot
 ```
 
 Issue:
