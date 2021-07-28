@@ -615,6 +615,37 @@ with DAG('airflow_tutorial_v01',
     # next string will not work !!! only for Task/Operators values !!!!
     print("{{ dag_run.conf.get('sku', 'default_value_for_sku') }}" )
 ```
+	
+```python
+	DEFAULT_ARGS = {
+    'owner': 'airflow',
+    'depends_on_past': True,
+    'start_date': datetime(2015, 12, 1),
+    'email_on_failure': False,
+    'email_on_retry': False,
+    # 'retries': 3,
+    # 'retry_delay': timedelta(seconds=30),
+}
+
+with DAG(DAG_NAME,
+         start_date=datetime(2015, 12, 1),
+         catchup=False,
+         schedule_interval=None
+         catchup=True,
+         schedule_interval=None,
+         max_active_runs=1,
+         concurrency=1,
+         default_args=DEFAULT_ARGS
+         ) as dag:
+    PythonOperator(task_id="image_set_variant",
+                   python_callable=image_set_variant,
+                   provide_context=True,
+                   retries=3,
+                   retry_delay=timedelta(seconds=30),
+                   # retries=3,
+                   # retry_delay=timedelta(seconds=30),
+                   doc_md="""
+```
 
 * simple DAG
 ```python
