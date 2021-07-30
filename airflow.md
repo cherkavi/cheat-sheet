@@ -48,6 +48,13 @@ Combination of Dags, Operators, Tasks, TaskInstances
 	from airflow.models import Variable
 	my_var = Variable.set("my_key", "my_value")
 	```
+* connections as variables
+	```python
+	from airflow.hooks.base_hook import BaseHook
+	my_connection = BaseHook.get_connection("name_of_connection")
+	login = my_connection.login
+	pass = my_connection.password
+	```
 
 ## Architecture overview
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
