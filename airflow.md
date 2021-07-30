@@ -653,6 +653,11 @@ with DAG(DAG_NAME,
                    # retry_delay=timedelta(seconds=30),
                    doc_md="""
 ```
+```python
+# task concurrency
+t1 = BaseOperator(pool='my_custom_pool', task_concurrency=12)
+```
+	
 
 * simple DAG
 ```python
