@@ -466,9 +466,13 @@ git push --tags $remoteUrl
 ```
 
 ### git lfs
-```
+[package update](https://packagecloud.io/github/git-lfs/install)
+```sh
 echo 'deb http://http.debian.net/debian wheezy-backports main' > /etc/apt/sources.list.d/wheezy-backports-main.list
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+```
+tool installation
+```sh
 sudo apt-get install git-lfs
 git lfs install
 git lfs pull
