@@ -169,7 +169,7 @@ aws s3 cp test.txt s3://a-bucket/test.txt --metadata '{"x-amz-meta-cms-id":"3453
 # read metadata
 aws s3api head-object --bucket a-bucketbucket --key img/dir/legal-global/zach-walsh.jpeg
 # read version of object on S3
-aws s3api list-object-versions --bucket $AWS_BUCKET_NAME --key $FILE_KEY
+aws s3api list-object-versions --bucket $AWS_BUCKET_NAME --prefix $FILE_KEY
 
 # copy from s3 to s3
 aws s3 cp s3://$AWS_BUCKET_NAME/index.html s3://$AWS_BUCKET_NAME/index2.html
