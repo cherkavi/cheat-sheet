@@ -168,8 +168,6 @@ aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME/path/on/s3/fil
 aws s3 cp test.txt s3://a-bucket/test.txt --metadata '{"x-amz-meta-cms-id":"34533452"}'
 # read metadata
 aws s3api head-object --bucket a-bucketbucket --key img/dir/legal-global/zach-walsh.jpeg
-# read version of object on S3
-aws s3api list-object-versions --bucket $AWS_BUCKET_NAME --prefix $FILE_KEY
 
 # copy from s3 to s3
 aws s3 cp s3://$AWS_BUCKET_NAME/index.html s3://$AWS_BUCKET_NAME/index2.html
@@ -201,6 +199,12 @@ aws s3 rm s3://$AWS_S3_BUCKET_NAME --recursive --exclude "account.json" --includ
 aws s3api put-object-acl --bucket <bucket name> --key <path to file> --acl public-read
 # read file 
 aws s3api get-object --bucket <bucket-name> --key=<path on s3> <local output file>
+
+# read version of object on S3
+aws s3api list-object-versions --bucket $AWS_BUCKET_NAME --prefix $FILE_KEY
+# read file by version 
+aws s3api get-object --bucket $AWS_S3_BUCKET_NAME --version-id $VERSION_ID --key d3a274bb1aba08ce403a6a451c0298b9 /home/projects/temp/$VERSION_ID
+
 ```
 
 policy
