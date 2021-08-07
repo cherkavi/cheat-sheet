@@ -138,9 +138,9 @@ git merge-base --is-ancestor <commit_or_branch> <is_commit_in_branch>; if [[ 1 -
 git log -5 develop
 ```
 
-### check last commits for subfolder, check last commits for author
+### check last commits for subfolder, check last commits for author, last commit in folder
 ```
-git log -10 --author "Frank Newman" -- data-api
+git log -10 --author "Frank Newman" -- my-sub-folder-in-repo
 ```
 
 ### check files only for last commits
@@ -177,9 +177,13 @@ git diff ec3772~ ec3772
 git log --all --graph --decorate --oneline --simplify-by-decoration
 ```
 
-### commit message search commit
+### commit message search commit search message
 ```sh
+git log | grep -i jwt
+
+git log --all --grep='jwt'
 git log --name-only  --grep='XVIZ instance'
+git log -g --grep='jwt'
 ```
 
 ### show no-merged branches
@@ -462,9 +466,13 @@ git push --tags $remoteUrl
 ```
 
 ### git lfs
-```
+[package update](https://packagecloud.io/github/git-lfs/install)
+```sh
 echo 'deb http://http.debian.net/debian wheezy-backports main' > /etc/apt/sources.list.d/wheezy-backports-main.list
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+```
+tool installation
+```sh
 sudo apt-get install git-lfs
 git lfs install
 git lfs pull
@@ -569,6 +577,16 @@ else
 	exit 1
 fi
 ```
+if you want to commit hooks, then create separate folder and put all files there
+```
+git --git-dir $DIR_PROJECT/integration-prototype/.git config core.hooksPath $DIR_PROJECT/integration-prototype/.git_hooks
+```
+
+### git template message template
+```
+git --git-dir $DIR_PROJECT/integration-prototype/.git config commit.template $DIR_PROJECT/integration-prototype/.commit.template
+```
+
 
 ## advices
 ### fix commit to wrong branch

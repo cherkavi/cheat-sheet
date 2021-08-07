@@ -7,7 +7,6 @@
 * Docker Volume - store persist data
 * Docker Client - CLI, gui analogue ( Kitematic )
 * Docker Compose - Python app over Docker Daemon
-
 * Docker Swarm
 * Docker HUB
 * Docker Cloud
@@ -41,12 +40,17 @@ docker system info
 
 ### how to skip typing "sudo" each time, without sudo
 ```sh
+# new group in sudo for docker
 sudo groupadd docker
-sudo usermod -aG docker $USER # add current user into docker group
+# add current user into docker group
+sudo usermod -aG docker $USER 
+
 # restart service
 sudo service docker restart
 # restart daemon
 systemctl daemon-reload
+# refresh sudo 
+sudo reboot
 ```
 
 Issue:
@@ -68,31 +72,29 @@ logout and login again
 
 
 ## proxy set up:
-* docker run --env-file environment.file {image name}
-> ( or via -e variables )
-
-```
-HTTP_PROXY=http://webproxy.host:3128
-http_proxy=http://webproxy.host:3128
-HTTPS_PROXY=http://webproxy.host:3128
-https_proxy=http://webproxy.host:3128
-NO_PROXY="localhost,127.0.0.1,.host.de,.viola.local"
-no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
-```
+### proxy for daemon
 * /etc/systemd/system/docker.service.d/10_docker_proxy.conf
 ```
 [Service]
 Environment=HTTP_PROXY=http://1.1.1.1:111
 Environment=HTTPS_PROXY=http://1.1.1.1:111
 ```
+or
+```
+[Service]    
+Environment="HTTP_PROXY=http://webproxy.host.de:3128/" "NO_PROXY=localhost,127.0.0.1,.host.de,.viola.local,.local"
+```
+
 ```bash
 sudo shutdown -r now
 ```
+* /etc/sysconfig/docker
+```
+HTTP_PROXY="http://user01:password@10.10.10.10:8080"
+HTTPS_PROXY="https://user01:password@10.10.10.10:8080"
+```
 
-* /etc/default/docker
-```
-export http_proxy="http://host:3128/"
-```
+### proxy for docker client to pass proxy to containers
 * ~/.docker/config.json
 ```
 {
@@ -111,12 +113,28 @@ export http_proxy="http://host:3128/"
 sudo systemctl daemon-reload && sudo systemctl restart docker
 # or
 sudo systemctl restart docker.service
+# or 
+sudo service docker restart
 ```
-* /etc/systemd/system/docker.service.d/http-proxy.conf
+
+
+
+* docker run --env-file environment.file {image name}
+> ( or via -e variables )
+
 ```
-[Service]    
-Environment="HTTP_PROXY=http://webproxy.host.de:3128/" "NO_PROXY=localhost,127.0.0.1,.host.de,.viola.local,.local"
+HTTP_PROXY=http://webproxy.host:3128
+http_proxy=http://webproxy.host:3128
+HTTPS_PROXY=http://webproxy.host:3128
+https_proxy=http://webproxy.host:3128
+NO_PROXY="localhost,127.0.0.1,.host.de,.viola.local"
+no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
 ```
+* /etc/default/docker
+```
+export http_proxy="http://host:3128/"
+```
+
 * if all previous options not working ( due permission ) or you need to execute (apt install, wget, curl, ... ):
   * build arguments
   ```bash
@@ -522,7 +540,10 @@ docker commit {CONTAINER_ID} <new image name>
 ### container new name, rename container, container new tag
 ```
 # change name of container
-docker tag {IMAGE_ID} <TAG NAME[:TAG VERSION]>
+docker tag {IMAGE_ID} <TAG_NAME[:TAG VERSION]>
+docker tag {TAG_1} {TAG_2}
+# untag
+docker rmi {TAG_NAME}
 ```
 
 ### docker save - image with layers and history
@@ -582,17 +603,19 @@ docker kill --signal=9 {CONTAINER ID}
 just kill the terminal
 ```
 
-## Remove and Clean
+## Remove and Clean, docker cleanup
 ------
 ### remove all containers
-```
+```sh
 docker rm `docker ps -a | awk -F ' ' '{print $1}'`
 ```
 
 ### remove image
-```
+```sh
 docker rmi <IMAGE ID>
 docker rmi --force <IMAGE ID>
+# remove unused images
+sudo docker rmi `sudo docker images | grep "<none>" | awk '{print $3}'`
 ```
 
 ### remove volumes ( unused )
@@ -613,6 +636,8 @@ docker network rm $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
 
 ### delete docker, remove docker, uninstall docker
 ```
+sudo docker network ls
+
 sudo apt remove docker.io
 sudo rm -rf /etc/systemd/system/docker.service
 sudo rm -rf /etc/systemd/system/docker.socket
@@ -742,7 +767,17 @@ FROM cc-artifactory.ubsgroup.com/docker/ros:${ROS_VERSION}
 * docker login
 * docker tag <name of the container> <dockerhub username>/<name of the container>
 * docker push <dockerhub username>/<name of the container>
+```
+DOCKER_REGISTRY="default-image-registry.apps.vantage.org"
+IMAGE_LOCAL="ab1023fb0ac8"
+OC_PROJECT="stg-1"
+DOCKER_IMAGE_LOCAL_REPO=local
+DOCKER_IMAGE_LOCAL_TAG=drill_connector
 
+sudo docker tag $IMAGE_LOCAL $DOCKER_REGISTRY/$OC_PROJECT/$DOCKER_LOCAL_REPO:$DOCKER_LOCAL_TAG
+sudo docker push $DOCKER_REGISTRY/$OC_PROJECT/$DOCKER_LOCAL_REPO:$DOCKER_LOCAL_TAG
+
+```
 
 ### advices
 * for a starting points ( FROM ) using -alpine or -scratch images, for example: "FROM python:3.6.1-alpine"

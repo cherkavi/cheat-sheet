@@ -463,7 +463,7 @@ function cluster-prod-generation-sync-to(){
 ssh user@host "mkdir -p /target/path/"
 ```
 
-### ssh execute command and detach, ssh execute detached
+### ssh execute command and detach ssh execute detached ssh command SIGHUP Signal Hang UP
 ```sh
 each_node="bpde00013.ubsbank.org"
 REMOTE_SCRIPT="/opt/app/1.sh"
@@ -506,6 +506,11 @@ mount -t tmpfs tmpfs /mnt/my-ram -o size=1024M
 ### repeat command with predefined interval, execute command repeatedly
 ```
 watch -n 60 'ls -la | grep archive'
+```
+
+### execute command in case of changes watch file
+```
+ls *.txt | entr firefox 
 ```
 
 ### repeat last command
@@ -608,10 +613,16 @@ cut -c1-15,20-50
 echo "text file" | grep "" > $random_script_filename
 ```
 
-### log information
-```
+### system log information, logging
+```sh
+# read log
+tail -f /var/log/syslog
+# write to system log
+echo "test" | /usr/bin/logger -t cronjob
+# write log message to another system
+logger --server 192.168.1.10 --tcp "This is just a simple log line"
+
 /var/log/messages
-/var/log/syslog
 ```
 ### repository list of all repositories
 ```
@@ -668,6 +679,10 @@ set -u
 
 # print each command before execution
 set -x
+
+# export source export variables
+set -a
+source file-with-variables.env
 ```
 
 ### execute command via default editor
@@ -940,7 +955,7 @@ find ${IMAGE_UPLOAD_TEMP_STORAGE:-/tmp/image_upload} -mtime +1 -type f -delete
 find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs -I {} sudo rm -r {} \; >/dev/null 2>&1
 ```
 
-### find files/folders by regexp and older than 240 min, find depth
+### find files/folders by regexp and older than 240 min, find depth, find deep
 ```
 find /tmp -maxdepth 1 -mmin +240 -iname "[0-9]*\-[0-9]" | xargs -I {} sudo rm -r {} \; >/dev/null 2>&1
 ```
@@ -1159,7 +1174,8 @@ sudo service cron status
 ```
 all symbols '%' must be converted to '\%'
 ```sh
-# edit file
+# edit file 
+# !!! last line should be empty !!!
 crontab -e
 # list of all jobs
 crontab -l
@@ -1169,6 +1185,14 @@ adding file with cron job
 echo " * * * * echo `date` >> /out.txt" >> print-date.cron
 chmod +x print-date.cron
 crontab print-date.cron
+```
+
+example of cron job with special parameters
+```sh
+HOME=/home/ubuntu
+0 */6 * * * /home/ubuntu/list-comparator-W3650915.sh >/dev/null 2>&1
+9 */6 * * * /home/ubuntu/list-comparator-W3653989.sh >/dev/null 2>&1
+
 ```
 
 logs
@@ -1352,6 +1376,7 @@ sed --in-place 's/\[General\]/\[General\]\nenable_trusted_host_check=0/g' matomo
 ### date formatting, datetime formatting, timestamp file, file with timestamp
 ```sh
 date +%H:%M:%S:%s
+date +%Y-%m-%d-%H:%M:%S:%s
 # output file with currenttime
 python3 /imap-message-reader.py > message_reader`date +%H:%M:%S`.txt
 ```
@@ -1581,6 +1606,12 @@ sed -i -e 's/\r$//' Archi-Ubuntu.sh
 ps -aux | awk 'BEGIN{a=0}{a=a+1}END{print a}'
 ```
 
+### boolean value
+```
+true
+false
+```
+
 ### last changed files, last updated file
 ```
 find -cmin -2
@@ -1724,6 +1755,8 @@ jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
 
 # convert from yaml to json, retrieve values from json, convert to csv
 cat temp-pod.yaml | yq - r -j --prettyPrint | jq '[.metadata.namespace, .metadata.name, .spec.template.spec.nodeSelector."kubernetes.io/hostname"] | @csv'
+
+echo '{"smart_collections":[{"id":270378401973},{"id":270378369205}]}' | jq '. "smart_collections" | .[] | .id'
 ```
 
 ### [parsing yaml, yaml processing](https://mikefarah.gitbook.io/yq/)
@@ -2061,7 +2094,7 @@ sudo -E bash -c 'python3'
 sudo userdel -r test
 ```
 
-### create group, assign user to group, user check group, user group
+### create group, assign user to group, user check group, user group user roles hadoop
 ```
 sudo groupadd new_group
 usermod --append --groups new_group my_user
@@ -2076,6 +2109,13 @@ chgrp new_group /path/to/folder
 ### execute sudo with current env variables, sudo env var, sudo with proxy
 ```
 sudo -E <command>
+```
+
+### execute script with current env variables send to script
+```
+. ./airflow-get-log.sh
+source ./airflow-get-log.sh
+cat dag-runs-failed.id | . ./airflow-get-log.sh
 ```
 
 ### print all logged in users, active users, connected users
@@ -2484,6 +2524,8 @@ dmesg -S
 
 ## disk usage
 ```
+df -ha
+# with visualization
 ncdu
 ```
 

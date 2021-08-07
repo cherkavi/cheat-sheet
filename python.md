@@ -190,7 +190,7 @@ pip install git+ssh://git@github.com/myuser/foo.git@my_version
 ### install package to specific folder
 ```
 pip install --target=/home/user/my/python/packages package_name
-export PYTHONPATH=$PYTHONPATH:"/home/user/my/python/packages"
+export PYTHONPATH=$PYTHONPATH:"/home/ubuntu/.local/lib/python3.8/site-packages/gunicorn"
 ```
 ### load package from specific folder inline
 ```
@@ -226,6 +226,18 @@ try:
     import json
 except ImportError:
     import simplejson as json
+```
+
+### script execution ModuleNotFoundError
+when you execute your own project locally
+```text
+ModuleNotFoundError: No module named 'list_comparator'
+```
+```sh
+echo $PYTHONPATH
+export PYTHONPATH=$PYTHONPATH:"/home/projects/wondersign/integration-prototype"
+
+/home/projects/integration-prototype/list-comparator/venv/bin/python /home/projects/integration-prototype/list-comparator/list_comparator/data_api/tools/data_api_reader.py
 ```
 
 ### create executable environment
@@ -370,6 +382,26 @@ mycli --user my_user --password my_password --host my_host.com --port 3310 --dat
 
 # for activating multiline mode 'F3'
 ```
+## Code Style code Formatter
+```sh
+# installation
+sudo apt-get remove black && python3 -m pip install black==20.8b1
+# execution
+black --line-length 100
+python -m black {file of directory}
+```
+black with IDEA, black with PyCharm
+* install FileWatcher plugin
+* Tool to Run on Changes: Program: ~/.locl/bin/black
+* Tool to Run on Changes: Arguments: $FilePath$
+
+## Test coverage
+```sh
+# cli tool
+pip3 install tox 
+# plugin for PyCharm: pytest-cov
+```
+
 
 # Alembic 
 ![migration schema](https://i.postimg.cc/tJSJWfFc/alembic.png)
@@ -427,4 +459,5 @@ pip3 install PySimpleGUI
 * [Pyramid](https://trypyramid.com/)  
 * [Sanic](https://sanic.readthedocs.io/en/latest/)  
 * [Tornado](http://www.tornadoweb.org/)  
-
+* [Streamlit](https://docs.streamlit.io/en/stable/)
+* [viola](https://pypi.org/project/viola/)

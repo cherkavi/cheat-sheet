@@ -34,14 +34,19 @@ AWS_REGION=eu-central-1
 ```
 
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
-### installation of AWS cli
+### [installation of AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
 ```sh
 # installation
 apt install aws
 # set up user
 aws configuration
 ```
-### profiling
+### [aws cli config](https://docs.aws.amazon.com/cli/latest/topic/config-vars.html)
+be aware about precedence:
+Credentials from environment variables have precedence over credentials from the shared credentials and AWS CLI config file.   
+Credentials specified in the shared credentials file have precedence over credentials in the AWS CLI config file. 
+
+
 ```sh
 vim ~/.aws/credentials
 ```
@@ -54,6 +59,15 @@ using profiling
 >  --region, --output, --profile 
 ```sh
 aws s3 ls --profile $AWS_PROFILE
+```
+### set AWS credentials via command line
+```sh
+aws configure set aws_access_key_id <yourAccessKey>
+aws configure set aws_secret_access_key <yourSecretKey>
+```
+### debugging
+```sh
+aws --debug s3 ls --profile $AWS_PROFILE
 ```
 
 ---
@@ -121,6 +135,13 @@ VPC: 172.31.0.0
 Subnetwork: 172.31.0.0/16, 172.31.0.0/26, 172.31.0.64/26
 ```
 ---
+## IGW
+public access internet outside access
+1. create gateway
+2 .vpc -> route tables -> add route 
+Security Group
+1. inbound rules -> source 0.0.0.0/0
+---
 ## S3
 ```sh
 current_doc_topic='s3'
@@ -148,7 +169,6 @@ aws s3 cp test.txt s3://a-bucket/test.txt --metadata '{"x-amz-meta-cms-id":"3453
 # read metadata
 aws s3api head-object --bucket a-bucketbucket --key img/dir/legal-global/zach-walsh.jpeg
 
-
 # copy from s3 to s3
 aws s3 cp s3://$AWS_BUCKET_NAME/index.html s3://$AWS_BUCKET_NAME/index2.html
 
@@ -157,8 +177,10 @@ aws s3api get-object --bucket $AWS_BUCKET_NAME --key path/on/s3 /local/path
 
 # create folder, s3 mkdir
 aws s3api put-object --bucket my-bucket-name --key foldername/
-# sync folder with remote s3 folder
+# sync folder local to remote s3
 aws s3 sync /path/to/some/folder s3://my-bucket-name/some/folder
+# sync folder remote s3 to locacl
+aws s3 sync s3://my-bucket-name/some/folder /path/to/some/folder 
 # sync folder with remote s3 folder with public access
 aws s3 sync /path/to/some/folder s3://my-bucket-name/some/folder --acl public-read
 # list of all objects
@@ -177,6 +199,12 @@ aws s3 rm s3://$AWS_S3_BUCKET_NAME --recursive --exclude "account.json" --includ
 aws s3api put-object-acl --bucket <bucket name> --key <path to file> --acl public-read
 # read file 
 aws s3api get-object --bucket <bucket-name> --key=<path on s3> <local output file>
+
+# read version of object on S3
+aws s3api list-object-versions --bucket $AWS_BUCKET_NAME --prefix $FILE_KEY
+# read file by version 
+aws s3api get-object --bucket $AWS_S3_BUCKET_NAME --version-id $VERSION_ID --key d3a274bb1aba08ce403a6a451c0298b9 /home/projects/temp/$VERSION_ID
+
 ```
 
 policy

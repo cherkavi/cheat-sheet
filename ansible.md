@@ -1,8 +1,9 @@
 # [ansible](https://www.ansible.com/)
+* [variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html#)
 * [cheat-sheet](https://cheat.readthedocs.io/en/latest/ansible/index.html)
 * [best practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)
-* [ansible modules](https://docs.ansible.com/ansible/latest/modules/modules_by_category.html)
-* [ansible roles](https://galaxy.ansible.com/)
+* [ansible modules](https://docs.ansible.com/ansible/latest/collections/index_module.html)
+* [ansible roles, ansible galaxy, ready roles](https://galaxy.ansible.com/)
 * [examples](https://github.com/ansible/ansible-examples)
 * [examples 2](https://github.com/mmumshad/ansible-training-answer-keys)
 * [examples 3](https://github.com/mmumshad/ansible-training-answer-keys-2)
@@ -84,7 +85,11 @@ myvar=23 # defined in a :vars section, interpreted as a string
 ## execute ansible for one host only, one host, one remove server, verbosity
 ```sh
 ansible-playbook -i "ubs000015.vantage.org , " mkdir.yaml 
-ansible all -i "ubs000015.vantage.org , " -u my_remote-user -m ping -vvv
+
+ansible-playbook welcome-message.yaml -i airflow-test-account-01.ini --limit worker --extra-vars="ACCOUNT_ID=QA01" --user=ubuntu --ssh-extra-args="-i $EC2_KEY" -vvv
+
+ansible all -i airflow-test-account-01.ini --user=ubuntu --ssh-extra-args="-i $EC2_KEY" -m "ping" -vvv
+ansible main,worker -i airflow-test-account-01.ini --user=ubuntu --ssh-extra-args="-i $EC2_KEY" -m "ping"
 ```
 simple file for creating one folder
 ```yaml
@@ -117,7 +122,11 @@ ansible localhost \
 ```
 
 
-## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters, extra variables, external variables
+## execute ansible-playbook with external paramters, bash script ansible-playbook with parameters, extra variables, external variables, env var
+```j2
+# variable from env
+{{ lookup('env','DB_VARIANT_USERNAME') }}
+```
 ```sh
 ansible-playbook -i inventory.ini playbook.yml --extra-vars "$*"
 ```
@@ -245,6 +254,17 @@ change variables
 del(task.args['src'])
 task.args['src']="/new path to file"
 ```
+set variable
+```
+- name: Set Apache URL
+  set_fact:
+    apache_url: 'http://example.com/apache'
+    
+- name: Download Apache
+  shell: wget {{ apache_url }}    
+```
+shell == ansible.builtin.shell
+
 manage palying
 ```
 redo
@@ -273,6 +293,36 @@ quit
 
   - debug:
       var: result
+```
+
+## env variables bashrc
+```sh
+- name: source bashrc
+  sudo: no   
+  shell: . /home/username/.bashrc && [the actual command you want run]
+```
+
+## rsync copy files
+```
+  - name: copy source code
+    synchronize:
+      src: '{{ item.src }}'
+      dest: '{{ item.dest }}'
+      delete: yes
+      recursive: yes
+      rsync_opts:
+        - "--exclude=.git"
+        - "-avz"
+        - '-e ssh -i {{ key }} '
+    with_items:
+    - { src: '{{ path_to_repo }}/airflow-dag/airflow_shopify/', dest: '/home/ubuntu/airflow/airflow-dag/airflow_shopify/' }
+
+```
+
+## ec2 managing airflow ec2
+```
+export PATH=$PATH:/home/ubuntu/.local/bin
+nohup airflow webserver
 ```
 
 ## debug module
@@ -350,6 +400,11 @@ default value
 ```
 default path is {{ my_custom_path | default("/opt/program/script.sh") }}
 ```
+escape special characters
+```
+{{ '{{ filename }}.log' }}
+```
+
 operation with list
 ```
 {{ [1,2,3] | min }}
@@ -797,7 +852,7 @@ ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_
 ```
 
 ### echo
-add flag for verbosity:-vv (2) or -v (1)
+add flag for ```ansible``` or ```ansible-playbook```:-vvv(3) -vv (2) or -v (1)
 ```
 - debug:
     msg: ">>> {{ data_portal_deploy_folder }}/data-portal.jar"

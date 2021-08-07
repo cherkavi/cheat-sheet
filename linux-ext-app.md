@@ -18,6 +18,46 @@ locate rc.lua
 /usr/share/icons
 ```
 
+### gnome settings, gnome list of settings
+```sh
+# all gnome settings
+gsettings list-recursively 
+# one settings
+org.gnome.desktop.background picture-uri
+```
+
+### reset Gnome to default
+```
+rm -rf .gnome .gnome2 .gconf .gconfd .metacity .cache .dbus .dmrc .mission-control .thumbnails ~/.config/dconf/user ~.compiz*
+```
+
+### restart Gnome shell
+```sh
+alt-F2 r
+```
+
+### adjust Gnome desktop shortcuts, gnome shortcuts
+```sh
+dconf-editor
+```
+gnome keybinding
+```
+/org/gnome/desktop/wm/keybindings
+```
+
+### gnome extension manual installation, gnome ext folder
+```
+gnome-shell --version
+path_to_extension=~/Downloads/switcherlandau.fi.v28.shell-extension.zip
+
+plugin_uuid=`unzip -c $path_to_extension metadata.json | grep uuid | cut -d \" -f4`
+plugin_dir="$HOME/.local/share/gnome-shell/extensions/$plugin_uuid"
+mkdir -p $plugin_dir
+unzip -q $path_to_extension -d $plugin_dir/
+sudo systemctl restart gdm
+```
+
+
 ## gnome keyring
 ```text
 raise InitError("Failed to unlock the collection!")

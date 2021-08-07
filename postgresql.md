@@ -64,6 +64,15 @@ pip install -U pgcli
 sudo apt install pgcli
 pgcli --host 10.14.22.20 --port 30063 --username admin --password adminpass --dbname my_db
 ```
+save results to file
+```
+# pgcli save query result
+# \o [filename]                        | Send all query results to file.
+```
+```sql
+\copy (select sku from testaccount01_variant) to 'db-2.sku' csv header;
+COPY tablename TO '/tmp/output.csv' DELIMITER ',' CSV HEADER;
+```
 
 ### jdbc url
 ```
@@ -122,6 +131,7 @@ psql -U workflowmonitoring -d workflowmonitoringdb
 -- list of all databases
 \l
 -- list of all tables
+-- CREATE TABLE testaccount01_variant( id INTEGER PRIMARY KEY, variant_key VARCHAR(64));
 SELECT table_name FROM information_schema.tables WHERE table_schema='public';
 -- list of all tables
 \dt
@@ -135,4 +145,19 @@ SELECT table_name FROM information_schema.tables WHERE table_schema='public';
 \i 
 -- execute command line
 \!
+```
+
+### Common operations
+```sql
+-- create schema
+CREATE SCHEMA IF NOT EXISTS airflow_02;
+DROP SCHEMA IF EXISTS airflow_02;
+-- print all schemas
+select s.nspname as table_schema,
+       s.oid as schema_id,  
+       u.usename as owner
+from pg_catalog.pg_namespace s
+join pg_catalog.pg_user u on u.usesysid = s.nspowner
+order by table_schema;
+
 ```

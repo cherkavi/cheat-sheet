@@ -3,6 +3,7 @@
 * [REST API](http://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html)
 * [source code](https://github.com/apache/airflow)
 * [providers, operators](https://airflow.apache.org/docs/apache-airflow-providers/packages-ref.html)
+  * [base operator parameters](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/models/baseoperator/index.html#module-airflow.models.baseoperator)
 * [how to](https://airflow.apache.org/howto/index.html)
 * [OpenSource wrapper CLI](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart)
 * [podcast](https://soundcloud.com/the-airflow-podcast)
@@ -37,10 +38,22 @@ Combination of Dags, Operators, Tasks, TaskInstances
 
 ## configuration, settings
 * executor/airflow.cfg
+  * remove examples from UI (restart) 
+   	load_examples = False
+  * how much time a new DAGs should be picked up from the filesystem
+	min_file_process_interval = 0
+	dag_dir_list_interval = 60
 * [variables](https://marclamberti.com/blog/variables-with-apache-airflow/)
 	```python
 	from airflow.models import Variable
 	my_var = Variable.set("my_key", "my_value")
+	```
+* connections as variables
+	```python
+	from airflow.hooks.base_hook import BaseHook
+	my_connection = BaseHook.get_connection("name_of_connection")
+	login = my_connection.login
+	pass = my_connection.password
 	```
 
 ## Architecture overview
@@ -93,6 +106,8 @@ PYTHON_VERSION=3.8
 
 pip install apache-airflow==$AIRFLOW_VERSION \
  --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-$AIRFLOW_VERSION/constraints-$PYTHON_VERSION.txt"
+ # necessary !!!
+ exit 
 ```
 
 ### generate configuration file
@@ -100,8 +115,23 @@ pip install apache-airflow==$AIRFLOW_VERSION \
 airflow
 ```
 
+### change configuration file
+```
+dags_folder = /home/ubuntu/airflow/dags
+sql_alchemy_conn = postgresql+psycopg2://airflow:airflow@airflow-db.cpw.us-east-1.rds.amazonaws.com:5432/airflow
+load_examples=False
+dag_dir_list_interval = 30
+catchup_by_default = False
+auth_backend = airflow.api.auth.backend.basic_auth
+```
+
 ### [Airflow start on python, nacked start, start components, start separate components, start locally]
 ```sh
+# installed package
+/home/ubuntu/.local/lib/python3.8/site-packages
+# full path to airflow
+/home/ubuntu/.local/bin/airflow
+
 # init workflow
 airflow initdb 
 # create user first login
@@ -199,7 +229,7 @@ via PostgreConnection
         dag=dag)
 ```
 
-# REST API
+# [REST API](https://airflow.apache.org/docs/apache-airflow/2.0.2/stable-rest-api-ref.html#section/Trying-the-API)
 ## trigger DAG - python
 ```python
 import urllib2
@@ -251,6 +281,34 @@ curl -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X GET $AIRFLOW_ENDPOINT"/dags/$DAG_ID/d
 ### airflow get task url
 ```bash
 curl -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X GET "$AIRFLOW_ENDPOINT/task?dag_id=$DAG_ID&task_id=$TASK_ID&execution_date=$DATE_DAG_EXEC"
+```
+
+### airflow get all dag-runs
+```bash
+BODY='{"dag_ids":["shopify_product_create"],"page_limit":30000}'
+curl -X POST "$AIRFLOW_URL/api/v1/dags/~/dagRuns/list" -H "Content-Type: application/json" --data-binary $BODY --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD" > dag-runs.json
+```
+
+### get list of dag-runs
+```bash
+curl -X GET "$AIRFLOW_URL/api/v1/dags/shopify_product_create/dagRuns" -H "Content-Type: application/json" --data-binary $BODY --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD"
+```
+
+### batch retrieve
+```bash
+BODY='{"dag_ids":["shopify_product_create"]}'
+curl -X POST "$AIRFLOW_URL/api/v1/dags/~/dagRuns/list" -H "Content-Type: application/json" --data-binary $BODY --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD" 
+
+DAG_ID=shopify_product_create
+TASK_ID=product_create
+DAG_RUN_ID=shopify_product_create_2021-06-15T18:59:35.1623783575Z_6062835
+alias get_airflow_log='curl -X GET --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD" $AIRFLOW_URL/api/v1/dags/$DAG_ID/dagRuns/$DAG_RUN_ID/taskInstances/$TASK_ID/logs/1'
+```
+
+### get list of tasks
+```sh
+BODY='{"dag_ids":["shopify_product_create"],"state":["failed"]}'
+curl -X POST "$AIRFLOW_URL/api/v1/dags/~/dagRuns/~/taskInstances/list" -H "Content-Type: application/json" --data-binary $BODY --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD" 
 ```
 
 
@@ -336,6 +394,15 @@ airflow worker -c 2
 # default pool name: default_pool, default queue name: default 
 airflow celery worker --queues default
 ```
+normal celery worker output log
+```
+[2021-07-11 08:23:46,260: INFO/MainProcess] Connected to amqp://dskcfg:**@toad.rmq.cloudamqp.com:5672/dskcf
+[2021-07-11 08:23:46,272: INFO/MainProcess] mingle: searching for neighbors
+[2021-07-11 08:23:47,304: INFO/MainProcess] mingle: sync with 1 nodes
+[2021-07-11 08:23:47,305: INFO/MainProcess] mingle: sync complete
+[2021-07-11 08:23:47,344: INFO/MainProcess] celery@airflow-01-worker-01 ready.
+```
+** in case of adding/removing Celery Workers - restart Airflow Flower **
 
 ## DAG
 ### task dependencies in DAG
@@ -557,6 +624,42 @@ with DAG('airflow_tutorial_v01',
     # next string will not work !!! only for Task/Operators values !!!!
     print("{{ dag_run.conf.get('sku', 'default_value_for_sku') }}" )
 ```
+	
+```python
+	DEFAULT_ARGS = {
+    'owner': 'airflow',
+    'depends_on_past': True,
+    'start_date': datetime(2015, 12, 1),
+    'email_on_failure': False,
+    'email_on_retry': False,
+    # 'retries': 3,
+    # 'retry_delay': timedelta(seconds=30),
+}
+
+with DAG(DAG_NAME,
+         start_date=datetime(2015, 12, 1),
+         catchup=False,
+         schedule_interval=None
+         catchup=True,
+         schedule_interval=None,
+         max_active_runs=1,
+         concurrency=1,
+         default_args=DEFAULT_ARGS
+         ) as dag:
+    PythonOperator(task_id="image_set_variant",
+                   python_callable=image_set_variant,
+                   provide_context=True,
+                   retries=3,
+                   retry_delay=timedelta(seconds=30),
+                   # retries=3,
+                   # retry_delay=timedelta(seconds=30),
+                   doc_md="""
+```
+```python
+# task concurrency
+t1 = BaseOperator(pool='my_custom_pool', task_concurrency=12)
+```
+	
 
 * simple DAG
 ```python
@@ -823,6 +926,24 @@ def dag_run_cleaner_task(trigger_task_id):
         op_args=[trigger_task_id], # custom parameter for operator
     	op_kwargs={"my_custom_param": 5}
     )
+```
+	
+* python operator new style
+```python
+from airflow.operators.python import get_current_context	
+	
+@task
+def image_set_variant():
+    context = get_current_context()
+    task_instance = context["ti"]
+	
+
+with DAG(DAG_NAME,
+         start_date=datetime(2015, 12, 1),
+         catchup=False,
+         schedule_interval=None
+         ) as dag:
+    image_set_variant()
 ```
 
 * trig and wait, run another dag and wait

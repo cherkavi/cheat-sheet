@@ -34,8 +34,9 @@ jmap -dump:format=b,live,file=$PATH_TO_OUTPUT_HEAP_DUMP $JAVA_PROCESS_ID
 # connect to openshift
 $ oc login $OC_HOST:8443
  
-# forward the jmx ports
-$ oc port-forward $POD_NAME 5006
+# forward ports from localhost to pod
+# oc port-forward $POD_NAME <local port>:<remote port>
+$ oc port-forward $POD_NAME 5005
  
 # e.g. connect to the jmx port with visual vm
 visualvm --openjmx localhost:5006
