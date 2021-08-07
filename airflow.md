@@ -332,7 +332,9 @@ start Celery worker node
 # just a start worker process
 airflow worker
 # start with two child worker process - the same as 'worker_concurrency" in airflow.cfg
-airflow worker -c 2 
+airflow worker -c 2
+# default pool name: default_pool, default queue name: default 
+airflow celery worker --queues default
 ```
 
 ## DAG

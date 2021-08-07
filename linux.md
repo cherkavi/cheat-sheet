@@ -405,6 +405,7 @@ scp filename.txt cherkavi@129.191.200.15:~/temp/filename-from-local.txt
 ### copy from remote machine to local
 ```
 scp -r cherkavi@129.191.200.15:~/temp/filename-from-local.txt filename.txt 
+scp -i $EC2_KEY -r ubuntu@35.175.255.10:~/airflow/logs/shopify_product_create/product_create/2021-07-17T02:31:19.880705+00:00/1.log 1.log
 ```
 
 ### copy directory to remote machine, copy folder to remote machine

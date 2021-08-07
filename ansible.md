@@ -101,7 +101,7 @@ simple file for creating one folder
         dest: ~/spark-submit/trafficsigns
         mode: 0775
 
-    - debug: msg='folder was created for host {{ ansible_host }}'
+    - debug: msg='folder was amazoncreated for host {{ ansible_host }}'
 ```
 
 ## execute ansible locally, local execution
@@ -250,6 +250,16 @@ manage palying
 redo
 continue
 quit
+```
+
+```yaml
+- name: airflow setup for main (web server) and workers
+  hosts: all
+  tasks:
+  - name: airflow hostname
+    debug: msg="{{ lookup('vars', 'ansible_host') }}"      
+  - name: all variables from host
+    debug: msg="{{ vars }}"      
 ```
 
 ## debug command
@@ -491,11 +501,33 @@ export ANSIBLE_FILTER_PLUGINS=/full/path/to/folder/with/plugin
 ansible-playbook playbook.yml
 ```
 
-## lookup
+## lookups
 replace value from file with special format
 ```
 {{ lookup('csvfile', 'web_server file=credentials.csv delimiter=,') }}
 {{ lookup('ini', 'password section=web_server file=credentials.ini') }}
+```
+lookups variables
+```
+{{ hostvars[inventory_hostname]['somevar_' + other_var] }}
+
+For ‘non host vars’ you can use the vars lookup plugin:
+{{ lookup('vars', 'somevar_' + other_var) }}
+```
+
+```yaml
+- name: airflow setup for main (web server) and workers
+  hosts: all
+  tasks:
+  - name: airflow hostname
+    debug: msg="{{ lookup('vars', 'ansible_host') }}"      
+  - name: variable lookup
+    debug: msg="lookup data {{ lookup('vars', 'ansible_host')+lookup('vars', 'ansible_host') }}"
+  - name: read from ini, set variable
+    set_fact:
+      queues: "{{ lookup('ini', lookup('vars', 'ansible_host')+' section=queue file=airflow-'+lookup('vars', 'account_id')+'-workers.ini') }}"
+  - name: airflow lookup
+    debug: msg=" {{ '--queues '+lookup('vars', 'queues') if lookup('vars', 'queues') else '<default>'  }}"
 ```
 
 # inventory file
@@ -667,6 +699,8 @@ all folders of the imported project will be applied to your project ( tasks, var
 ## import task from role, role.task, task inside role
 ```yaml
 - hosts: localhost
+  # hosts: all
+  # hosts: <name of section from inventory file>
   tasks:
   - name: first step
     include_role:
