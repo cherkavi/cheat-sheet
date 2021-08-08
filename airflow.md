@@ -123,6 +123,8 @@ load_examples=False
 dag_dir_list_interval = 30
 catchup_by_default = False
 auth_backend = airflow.api.auth.backend.basic_auth
+expose_config = True
+dag_run_conf_overrides_params=True
 ```
 
 ### [Airflow start on python, nacked start, start components, start separate components, start locally]
@@ -258,19 +260,46 @@ AIRFLOW_PASSWORD=my_passw
 curl -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X GET "$ENDPOINT/test"
 ```
 
-### airflow create dag
+## airflow cli commandline console command
+https://airflow.apache.org/docs/apache-airflow/stable/usage-cli.html
+```sh
+# activation
+register-python-argcomplete airflow >> ~/.bashrc
+```
+```sh
+# dag list
+airflow list_dags
+airflow list_tasks dag_id
+airflow trigger_dag my-dag
+# triggering
+# https://airflow.apache.org/docs/apache-airflow/1.10.2/cli.html
+airflow trigger_dag -c ""  dag_id
+```
+
+
+### airflow create dag start dag run dag
+[doc run](https://airflow.apache.org/docs/apache-airflow/2.0.2/stable-rest-api-ref.html#operation/post_dag_run)
 in case of removing dag (delete dag) - all metadata will me removed from database
 ```bash
-REQUEST_BODY='{"conf":{"session_id": "bff2-08275862a9b0"}}'
+# !!! no spaces in request body !!!
+REQUEST_BODY='{"conf":{"session_id":"bff2-08275862a9b0"}}'
 
-curl --data-binary $REQUEST_BODY -H "Content-Type: application/json" \
--u $AIRFLOW_USER:$AIRFLOW_PASSWORD \
--X POST $ENDPOINT"/dags/$DAG_ID/dag_runs"
+# ec2-5-221-68-13.compute-1.amazonaws.com:8080/api/v1/dags/test_dag/dagRuns
+curl --data-binary $REQUEST_BODY -H "Content-Type: application/json" -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $AIRFLOW_URL"/api/v1/dags/$DAG_ID/dagRuns"
+```
+
+```sh
+# run dag from command line
+
+REQUEST_BODY='{"conf":{"sku":"bff2-08275862a9b0","pool_for_execution":"test_pool2"}}'
+DAG_ID="test_dag2"
+
+airflow dags trigger -c $REQUEST_BODY  $DAG_ID
 ```
 
 ### airlfow check dag execution
 ```
-curl -X GET -u $AIRFLOW_USER:$AIRFLOW_PASSWORD "$AIRFLOW_ENDPOINT/dags/$DAG_ID/dag_runs" | jq '.[] | if .state=="running" then . else empty end'
+curl -X GET -u $AIRFLOW_USER:$AIRFLOW_PASSWORD "$AIRFLOW_ENDPOINT/dags/$DAG_ID/dagRuns" | jq '.[] | if .state=="running" then . else empty end'
 ```
 
 ### airflow get dag task
@@ -311,6 +340,16 @@ BODY='{"dag_ids":["shopify_product_create"],"state":["failed"]}'
 curl -X POST "$AIRFLOW_URL/api/v1/dags/~/dagRuns/~/taskInstances/list" -H "Content-Type: application/json" --data-binary $BODY --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD" 
 ```
 
+### create variable
+```sh
+BODY="{\"key\":\"AWS_ACCESS_KEY_ID\",\"value\":\"${AWS_ACCESS_KEY_ID}\"}"
+curl --data-binary $BODY -H  "Content-Type: application/json" --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD" -X POST $CREATE_VAR_ENDPOINT
+```
+
+### create pool
+```sh
+curl -X POST "$AIRFLOW_URL/api/v1/pools" -H "Content-Type: application/json" --data '{"name":"product","slots":18}' --user "$AIRFLOW_USER:$AIRFLOW_PASSWORD"
+```
 
 ## configuration
 ### rewrite configuration with environment variables
@@ -624,6 +663,54 @@ with DAG('airflow_tutorial_v01',
     # next string will not work !!! only for Task/Operators values !!!!
     print("{{ dag_run.conf.get('sku', 'default_value_for_sku') }}" )
 ```
+
+```python
+from airflow import DAG
+from datetime import datetime, timedelta
+from airflow.operators.python import PythonOperator
+from airflow.utils.dates import days_ago
+
+def print_echo(**context):
+    print(context)
+    # next string will not work !!! only for Task/Operators values !!!!
+    print("{{ dag_run.conf.get('sku', 'default_value_for_sku') }}" )
+
+with DAG('test_dag', 
+         start_date=days_ago(100),
+         catchup=False,
+         schedule_interval=None,
+         ) as dag:
+    PythonOperator(task_id="print_echo",
+                   python_callable=print_echo,
+                   provide_context=True,
+                   retries=3,
+                   retry_delay=timedelta(seconds=30),
+                   # dag_run.conf is not working for pool !!!
+                   pool="{{ dag_run.conf.get('pool_for_execution', 'default_pool') }}",
+                   # retries=3,
+                   # retry_delay=timedelta(seconds=30),
+                   doc_md="this is doc for task")
+
+```
+
+```python
+# still not working !!!! impossible to select pool via parameters
+from airflow import DAG
+from airflow.operators.bash_operator import BashOperator
+from airflow.utils.dates import days_ago
+
+dag = DAG("test_dag2", schedule_interval=None, start_date=days_ago(2))
+dag_pool="{{ dag_run.conf['pool_for_execution'] }}"
+print(dag_pool)
+parameterized_task = BashOperator(
+    task_id='parameterized_task',
+    queue='collections',
+    pool=f"{dag_pool}",
+    bash_command=f"echo  {dag_pool}",
+    dag=dag,
+)
+print(f">>> {parameterized_task}")
+```
 	
 ```python
 	DEFAULT_ARGS = {
@@ -639,7 +726,6 @@ with DAG('airflow_tutorial_v01',
 with DAG(DAG_NAME,
          start_date=datetime(2015, 12, 1),
          catchup=False,
-         schedule_interval=None
          catchup=True,
          schedule_interval=None,
          max_active_runs=1,
@@ -653,7 +739,7 @@ with DAG(DAG_NAME,
                    retry_delay=timedelta(seconds=30),
                    # retries=3,
                    # retry_delay=timedelta(seconds=30),
-                   doc_md="""
+                   doc_md="this is doc for task")
 ```
 ```python
 # task concurrency
@@ -984,12 +1070,22 @@ def trig_another_dag() -> BaseOperator:
 DAG_NAME="my_dag"
 PARAM_1="my_own_param1"
 PARAM_2="my_own_param2"
-ENDPOINT="https://prod.airflow.vantage.zur/api/experimental/dags/$DAG_NAME/dag_runs"
+ENDPOINT="https://prod.airflow.vantage.zur/api/experimental/dags/$DAG_NAME/dagRuns"
 BODY='{"configuration_of_call":{"parameter1":"'$PARAM_1'","parameters2":"'$PARAM_2'"}}'
 curl --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT
 ```
 ```python
 decision = context['dag_run'].configuration_of_call.get('parameter1', 'default_value')
+```
+
+read system configuration 
+```python
+from airflow.configuration import conf
+# Secondly, get the value somewhere
+conf.get("core", "my_key")
+
+# Possible, set a value with
+conf.set("core", "my_key", "my_val")
 ```
 
 * sensor example

@@ -557,8 +557,14 @@ ansible-playbook playbook.yml
 ```
 
 ## lookups
-replace value from file with special format
+```sh
+# documentation
+ansible-doc -t lookup -l
+ansible-doc -t lookup csvfile
 ```
+
+replace value from file with special format
+```python
 {{ lookup('csvfile', 'web_server file=credentials.csv delimiter=,') }}
 {{ lookup('ini', 'password section=web_server file=credentials.ini') }}
 ```
