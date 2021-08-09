@@ -259,7 +259,7 @@ select COLUMN_NAME, CONSTRAINT_NAME, REFERENCED_COLUMN_NAME, REFERENCED_TABLE_NA
 ```
 
 
-### subquery returns more than one row
+### subquery returns more than one row, collect comma delimiter
 ```
 select 
     u.name_f, 
