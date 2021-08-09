@@ -742,6 +742,8 @@ with DAG(DAG_NAME,
                    retry_delay=timedelta(seconds=30),
                    # retries=3,
                    # retry_delay=timedelta(seconds=30),
+	           # https://github.com/apache/airflow/blob/866a601b76e219b3c043e1dbbc8fb22300866351/airflow/jobs/scheduler_job.py#L392
+	           # priority_weight=1 default is 1, more high will be executed earlier
                    doc_md="this is doc for task")
 ```
 ```python
