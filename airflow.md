@@ -60,6 +60,9 @@ Combination of Dags, Operators, Tasks, TaskInstances
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
 ![multi node](https://i.postimg.cc/MGyy4DGJ/airflow-architecture-multinode.png)
 ![statuses](https://i.postimg.cc/g2kd76Z5/airflow-statuses.png)
+from scheduled: https://github.com/apache/airflow/blob/866a601b76e219b3c043e1dbbc8fb22300866351/airflow/jobs/scheduler_job.py#L329
+to queued:https://github.com/apache/airflow/blob/866a601b76e219b3c043e1dbbc8fb22300866351/airflow/jobs/scheduler_job.py#L483
+
 ![task lifecycle](https://airflow.apache.org/docs/stable/_images/task_lifecycle_diagram.png)
 ### components
 * WebServer  
