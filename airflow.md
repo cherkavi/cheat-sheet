@@ -82,6 +82,10 @@ to queued:https://github.com/apache/airflow/blob/866a601b76e219b3c043e1dbbc8fb22
     ```sh
     airflow dags backfill -s 2021-04-01 -e 2021-04-05 --reset_dagruns my_dag_name
     ```
+    * print snapshot of task state tracked by executor
+    ```
+    pkill -f -USR2 "airflow scheduler"
+    ```
 * Executor ( **How** task will be executed, how it will be queued )
   * type: LocalExecutor(multiply task in parallel), SequentialExecutor, CeleryExecutor, DaskExecutor
 * Worker ( **Where** task will be executed )
