@@ -693,6 +693,8 @@ with DAG('test_dag',
                    provide_context=True,
                    retries=3,
                    retry_delay=timedelta(seconds=30),
+                   priority_weight=4,
+                   weight_rule=WeightRule.ABSOLUTE, # mandatory for exected priority behavior
                    # dag_run.conf is not working for pool !!!
                    pool="{{ dag_run.conf.get('pool_for_execution', 'default_pool') }}",
                    # retries=3,
