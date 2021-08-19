@@ -486,6 +486,12 @@ exit
 END_FILE_MARKER
 ```
 
+env variable enviroment variables replace
+```sh
+echo "${VAR_1}" | envsubst
+envsubst < path/to/file/with/variables > path/to/output/file
+```
+
 ### map folder to another path, mount dir to another location
 ```
 # map local /tmp folder to another path/drive
