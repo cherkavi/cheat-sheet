@@ -824,7 +824,7 @@ docker exec mysql-container sh -c 'exec mysqldump --all-databases -uroot -p"$MYS
 docker run --net=host -v /some/path/on/your/host:/sql -it arey/mysql-client --host=10.143.242.65 --port=3310 --user=root --password=example --database=files -e "source /sql/all-databases.sql"
 ```
 
-# Docker compose
+# docker compose
 
 ## [installation](https://github.com/docker/compose/releases)
 ```
@@ -862,6 +862,43 @@ MYSQL_PORT=3306
 ```
 ```sh
 docker-compose config
+```
+	
+## dependecies inheritance
+```yaml
+version: '3'
+
+
+base-airflow-common:
+  &airflow-common
+  build:
+    context: .
+    dockerfile: .docker/airflow-init.Dockerfile
+  env_file:
+      - .docker/.env
+  volumes:
+    - ./airflow-dag/wondersign_airflow_shopify/dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs
+  depends_on:
+    redis:
+      condition: service_healthy
+    db_variant:
+      condition: service_healthy
+
+
+services:
+
+  airflow-webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    restart: always	
 ```
 
 ## start in detached mode, up and detach
