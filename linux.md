@@ -958,7 +958,7 @@ find ${IMAGE_UPLOAD_TEMP_STORAGE:-/tmp/image_upload} -mtime +1 -type f -delete
 
 ### find files/folders by name and older than 240 min
 ```
-find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs -I {} sudo rm -r {} \; >/dev/null 2>&1
+find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs  --no-run-if-empty -I {} sudo rm -r {} \; >/dev/null 2>&1
 ```
 
 ### find files/folders by regexp and older than 240 min, find depth, find deep
