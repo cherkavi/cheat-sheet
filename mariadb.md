@@ -235,7 +235,7 @@ CREATE DATABASE {databasename}
 create table IF NOT EXISTS `hlm_auth_ext`(
   `auth_ext_id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `uuid` varchar(64) NOT NULL,
-)  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+)  ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8;
 ```
 
 ### create column if not exists
