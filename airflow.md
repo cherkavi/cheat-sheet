@@ -1197,3 +1197,35 @@ my_plugin/
     ├── my_operator.py
     └── __init__.py
 ```
+
+## Maintenance
+Metedata cleanup
+```sql
+-- "airflow_db_model": BaseJob.latest_heartbeat,
+select * from job where latest_heartbeat < (CURRENT_DATE - INTERVAL '10 DAY')::DATE;
+
+-- "airflow_db_model": DagRun.execution_date,
+select * from dag_run where execution_date < (CURRENT_DATE - INTERVAL '10 DAY')::DATE;
+
+-- "airflow_db_model": TaskInstance.execution_date,
+select * from task_instance where execution_date < (CURRENT_DATE - INTERVAL '10 DAY')::DATE;
+
+-- "airflow_db_model": Log.dttm,
+select * from log where dttm < (CURRENT_DATE - INTERVAL '10 DAY')::DATE;
+
+-- "age_check_column": XCom.execution_date,
+select * from xcom where execution_date < (CURRENT_DATE - INTERVAL '10 DAY')::DATE;
+
+-- "age_check_column": SlaMiss.execution_date,
+select * from sla_miss where execution_date < (CURRENT_DATE - INTERVAL '10 DAY')::DATE;
+
+-- "age_check_column": TaskReschedule.execution_date,
+select * from task_reschedule where execution_date < (CURRENT_DATE - INTERVAL '10 DAY')::DATE;
+
+-- "age_check_column": TaskFail.execution_date,
+select * from task_fail where execution_date < (CURRENT_DATE - INTERVAL '10 DAY')::DATE;
+
+-- "age_check_column": RenderedTaskInstanceFields.execution_date,
+select * from rendered_task_instance_fields where execution_date < (CURRENT_DATE - INTERVAL '10 DAY')::DATE;
+
+```
