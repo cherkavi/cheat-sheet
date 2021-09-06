@@ -1008,10 +1008,11 @@ sudo du -shc ./*
 sudo du -shc ./* | sort -rh | head -5
 ```
 
-### free space, space size, dir size
+### free space, space size, dir size, no space left
 ```sh
 df -ha
 df -hT /
+du -shx /* | sort -h
 
 # size of folder
 du -sh /home
