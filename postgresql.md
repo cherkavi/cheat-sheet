@@ -103,14 +103,14 @@ sudo apt-get install postgresql-client-12
 psql --username postgres --list
 ```
 
-### execute request, ad-hoc
+### execute query, ad-hoc
 ```sh
 psql -w -U user_name -d database_name -c "SELECT 1"
 ```
-
 ### execute prepared sql file
 ```
 psql -w -U user_name -d database_name -a -f /path/to/file.sql
+psql -h ${DB_VARIANT_HOST} -p ${DB_VARIANT_PORT} -U ${DB_VARIANT_USERNAME} -f query.sql
 ```
 
 ### connect to db 
