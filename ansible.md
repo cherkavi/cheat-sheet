@@ -227,7 +227,8 @@ tasks:
     src: template/activation.sh.j2
     dest: /usr/bin/activation.sh
   tags:
-  - [flag_activation, flag_skip]
+  - flag_activation
+  - flag_skip
 ```
 
 ```sh
