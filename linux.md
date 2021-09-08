@@ -1199,7 +1199,8 @@ example of cron job with special parameters
 HOME=/home/ubuntu
 0 */6 * * * /home/ubuntu/list-comparator-W3650915.sh >/dev/null 2>&1
 9 */6 * * * /home/ubuntu/list-comparator-W3653989.sh >/dev/null 2>&1
-
+# each 6 hours in specific hour
+25 1,7,13,19 * * * /home/ubuntu/list-comparator-W3651439.sh >/dev/null 2>&1
 ```
 
 logs
