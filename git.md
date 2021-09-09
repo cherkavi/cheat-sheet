@@ -416,6 +416,14 @@ done
 git remote -v
 ```
 
+### using authentication token
+example of using github.com
+```sh
+# Settings -> Developer settings
+# https://github.com/settings/apps
+git remote set-url origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitites.git
+```
+
 ### change remote url
 ```
 git remote set-url origin git@cc-github.my-network.net:adp/data-management.git
