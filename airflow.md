@@ -60,6 +60,10 @@ Combination of Dags, Operators, Tasks, TaskInstances
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
 ![multi node](https://i.postimg.cc/MGyy4DGJ/airflow-architecture-multinode.png)
 ![statuses](https://i.postimg.cc/g2kd76Z5/airflow-statuses.png)
+to scheduled: https://github.com/apache/airflow/blob/866a601b76e219b3c043e1dbbc8fb22300866351/airflow/jobs/scheduler_job.py#L810  
+from scheduled: https://github.com/apache/airflow/blob/866a601b76e219b3c043e1dbbc8fb22300866351/airflow/jobs/scheduler_job.py#L329  
+to queued:https://github.com/apache/airflow/blob/866a601b76e219b3c043e1dbbc8fb22300866351/airflow/jobs/scheduler_job.py#L483  
+
 ![task lifecycle](https://airflow.apache.org/docs/stable/_images/task_lifecycle_diagram.png)
 ### components
 * WebServer  
@@ -79,8 +83,12 @@ Combination of Dags, Operators, Tasks, TaskInstances
     ```sh
     airflow dags backfill -s 2021-04-01 -e 2021-04-05 --reset_dagruns my_dag_name
     ```
+    * print snapshot of task state tracked by executor
+    ```
+    pkill -f -USR2 "airflow scheduler"
+    ```
 * Executor ( **How** task will be executed, how it will be queued )
-  * type: LocalExecutor(multiply task in parallel), SequentialExecutor, CeleryExecutor, DaskExecutor
+  * type: LocalExecutor(multiple task in parallel), SequentialExecutor, CeleryExecutor, DaskExecutor
 * Worker ( **Where** task will be executed )
 * Metadatabase ( task status )
   * [types](https://docs.sqlalchemy.org/en/13/dialects/index.html)
@@ -685,6 +693,8 @@ with DAG('test_dag',
                    provide_context=True,
                    retries=3,
                    retry_delay=timedelta(seconds=30),
+                   priority_weight=4,
+                   weight_rule=WeightRule.ABSOLUTE, # mandatory for exected priority behavior
                    # dag_run.conf is not working for pool !!!
                    pool="{{ dag_run.conf.get('pool_for_execution', 'default_pool') }}",
                    # retries=3,
@@ -739,6 +749,8 @@ with DAG(DAG_NAME,
                    retry_delay=timedelta(seconds=30),
                    # retries=3,
                    # retry_delay=timedelta(seconds=30),
+	           # https://github.com/apache/airflow/blob/866a601b76e219b3c043e1dbbc8fb22300866351/airflow/jobs/scheduler_job.py#L392
+	           # priority_weight=1 default is 1, more high will be executed earlier
                    doc_md="this is doc for task")
 ```
 ```python
@@ -1184,4 +1196,50 @@ my_plugin/
 ├── operators
     ├── my_operator.py
     └── __init__.py
+```
+
+## Maintenance
+Metedata cleanup
+```sql
+-- https://github.com/teamclairvoyant/airflow-maintenance-dags/blob/master/db-cleanup/airflow-db-cleanup.py
+
+-- "airflow_db_model": BaseJob.latest_heartbeat,
+select count(*) from job where latest_heartbeat < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+
+-- "airflow_db_model": DagRun.execution_date,
+select count(*) from dag_run where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+
+-- "airflow_db_model": TaskInstance.execution_date,
+select count(*) from task_instance where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+
+-- "airflow_db_model": Log.dttm,
+select count(*) from log where dttm < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+
+-- "age_check_column": XCom.execution_date,
+select count(*) from xcom where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+
+-- "age_check_column": SlaMiss.execution_date,
+select count(*) from sla_miss where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+
+-- "age_check_column": TaskReschedule.execution_date,
+select count(*) from task_reschedule where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+
+-- "age_check_column": TaskFail.execution_date,
+select count(*) from task_fail where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+
+-- "age_check_column": RenderedTaskInstanceFields.execution_date,
+select count(*) from rendered_task_instance_fields where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+
+
+-----------------------------------------------------------------------------------------------------------
+delete from job where latest_heartbeat < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
+delete from dag_run where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
+delete from task_instance where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
+delete from log where dttm < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
+delete from xcom where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
+delete from sla_miss where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
+delete from task_reschedule where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
+delete from task_fail where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
+delete from rendered_task_instance_fields where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
+
 ```

@@ -402,6 +402,10 @@ pip3 install tox 
 # plugin for PyCharm: pytest-cov
 ```
 
+## run tests
+```sh
+python -m unittest airflow_shopify.shopify.test_shopify_common
+```
 
 # Alembic 
 ![migration schema](https://i.postimg.cc/tJSJWfFc/alembic.png)

@@ -291,9 +291,15 @@ git checkout $branch_source -- $file_name
 git diff $branch_source $file_name
 
 ```
-### show all tags
+### tags
 ```
+# fetch tags
+git fetch --all --tags -prune
+# list of all tags
+git tag
 git show-ref --tags
+# tag checkout tag
+git tags/1.0.13
 ```
 
 ### conflict files, show conflicts
@@ -408,6 +414,14 @@ done
 ### show remote url
 ```
 git remote -v
+```
+
+### using authentication token
+example of using github.com
+```sh
+# Settings -> Developer settings
+# https://github.com/settings/apps
+git remote set-url origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitites.git
 ```
 
 ### change remote url

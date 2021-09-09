@@ -486,6 +486,12 @@ exit
 END_FILE_MARKER
 ```
 
+env variable enviroment variables replace
+```sh
+echo "${VAR_1}" | envsubst
+envsubst < path/to/file/with/variables > path/to/output/file
+```
+
 ### map folder to another path, mount dir to another location
 ```
 # map local /tmp folder to another path/drive
@@ -952,7 +958,7 @@ find ${IMAGE_UPLOAD_TEMP_STORAGE:-/tmp/image_upload} -mtime +1 -type f -delete
 
 ### find files/folders by name and older than 240 min
 ```
-find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs -I {} sudo rm -r {} \; >/dev/null 2>&1
+find /tmp -maxdepth 1 -name "native-platform*" -mmin +240 | xargs  --no-run-if-empty -I {} sudo rm -r {} \; >/dev/null 2>&1
 ```
 
 ### find files/folders by regexp and older than 240 min, find depth, find deep
@@ -1002,10 +1008,11 @@ sudo du -shc ./*
 sudo du -shc ./* | sort -rh | head -5
 ```
 
-### free space, space size, dir size
+### free space, space size, dir size, no space left
 ```sh
 df -ha
 df -hT /
+du -shx /* | sort -h
 
 # size of folder
 du -sh /home
@@ -1192,7 +1199,8 @@ example of cron job with special parameters
 HOME=/home/ubuntu
 0 */6 * * * /home/ubuntu/list-comparator-W3650915.sh >/dev/null 2>&1
 9 */6 * * * /home/ubuntu/list-comparator-W3653989.sh >/dev/null 2>&1
-
+# each 6 hours in specific hour
+25 1,7,13,19 * * * /home/ubuntu/list-comparator-W3651439.sh >/dev/null 2>&1
 ```
 
 logs

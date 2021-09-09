@@ -119,6 +119,19 @@ roles: &special_roles
 host: my_host_02
 roles: *special_roles
 ```
+another yaml example, anchor reference
+```yaml
+base: &base
+    name: Everyone has same name
+
+foo: &foo
+    <<: *base
+    age: 10
+
+bar: &bar
+    <<: *base
+    age: 20  
+```
 
 ## TAG
 ### set data type for value

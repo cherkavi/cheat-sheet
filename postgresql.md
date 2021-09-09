@@ -103,14 +103,28 @@ sudo apt-get install postgresql-client-12
 psql --username postgres --list
 ```
 
-### execute request, ad-hoc
+### execute query, ad-hoc
 ```sh
 psql -w -U user_name -d database_name -c "SELECT 1"
 ```
-
 ### execute prepared sql file
 ```
 psql -w -U user_name -d database_name -a -f /path/to/file.sql
+psql -h ${DB_VARIANT_HOST} -p ${DB_VARIANT_PORT} -U ${DB_VARIANT_USERNAME} -f query.sql
+```
+
+### execute sql file without password 
+```sh
+# option 1 - via pgpass file
+echo "${DB_VARIANT_HOST}:${DB_VARIANT_PORT}:${DB_VARIANT_DATABASE}:${DB_VARIANT_USERNAME}:${DB_VARIANT_PASSWORD}" > ~/.pgpass
+chmod 0600 ~/.pgpass
+
+# option 2 - via export variable - has precedence over pgpass file
+unset PGPASSWORD
+export PGPASSWORD=$DB_VARIANT_PASSWORD
+echo $PGPASSWORD
+
+psql -h ${DB_VARIANT_HOST} -p ${DB_VARIANT_PORT} -d ${DB_VARIANT_DATABASE} -U ${DB_VARIANT_USERNAME} -f clean-airflow.sql
 ```
 
 ### connect to db 

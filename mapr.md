@@ -288,8 +288,8 @@ yarn logs -applicationId application_1540813402987_9262
 
 
 ## MapRDB ( DBShell )
-https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html
-Create table 
+https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html  
+[Create table](https://docs.datafabric.hpe.com/62/ClusterAdministration/data/tables/CreateTable.html)  
 ```bash
 maprclitable create -path <path_in_maprfs> 
 ```
