@@ -1327,6 +1327,11 @@ diff -w file1.txt file2.txt
 diff -c file1.txt file2.txt
 ```
 
+### show equal lines ( reverse diff )
+```sh
+fgrep -xf W3651292.sh W3659261.sh
+```
+
 ### show difference between two dates, date difference, time difference
 ```sh
 apt install dateutils
