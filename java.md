@@ -148,6 +148,9 @@ jar tvf WC2.jar
 java -verbose app
 ```
 
+### Security
+[collaboration with underlying system javacallbacks](https://docs.oracle.com/javase/8/docs/api/javax/security/auth/callback/Callback.html)
+
 ### LOG4j
 #### log4j configuration key for JVM 
 ```
