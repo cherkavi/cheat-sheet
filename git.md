@@ -302,6 +302,13 @@ git show-ref --tags
 git tags/1.0.13
 ```
 
+#### remove tag
+```
+git push --delete origin 1.1.0
+git push origin :refs/tags/1.1.0
+git fetch --all --tags -prune
+```
+
 ### conflict files, show conflicts
 ```sh
 git diff --name-only --diff-filter=U
