@@ -55,6 +55,7 @@ Combination of Dags, Operators, Tasks, TaskInstances
 	login = my_connection.login
 	pass = my_connection.password
 	```
+Remember, don’t put any get/set of variables outside of tasks.
 
 ## Architecture overview
 ![single node](https://i.postimg.cc/3xzBzNCm/airflow-architecture-singlenode.png)
