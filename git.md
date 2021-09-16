@@ -303,10 +303,15 @@ git tags/1.0.13
 ```
 
 #### remove tag
-```
+```sh
+# remove remote
 git push --delete origin 1.1.0
 git push origin :refs/tags/1.1.0
 git fetch --all --tags -prune
+
+# remove local 
+git tag -d 1.1.0
+git push origin :refs/tags/1.1.0
 ```
 
 ### conflict files, show conflicts
