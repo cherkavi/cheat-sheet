@@ -133,6 +133,9 @@ catchup_by_default = False
 auth_backend = airflow.api.auth.backend.basic_auth
 expose_config = True
 dag_run_conf_overrides_params=True
+
+# hide all Rendered Templates
+show_templated_fields=none
 ```
 
 ### [Airflow start on python, nacked start, start components, start separate components, start locally]
