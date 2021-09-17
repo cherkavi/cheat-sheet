@@ -2617,6 +2617,13 @@ sudo apt-get install translate-shell
 trans -source de -target ru -brief "german sentance"
 ```
 
+## gnome
+### remove emoji
+```sh
+ibus-setup
+# go to emojii and remove shortcuts
+```
+
 ## video
 ### join mp4 fusion mp4
 ```
