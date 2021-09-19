@@ -292,6 +292,15 @@ git diff $branch_source $file_name
 
 ```
 ### tags
+#### create tag 
+```
+git tag -a $newVersion -m 'deployment_jenkins_job' 
+```
+#### push tags only 
+```
+git push --tags $remoteUrl
+```
+#### show tags
 ```
 # fetch tags
 git fetch --all --tags -prune
@@ -301,7 +310,6 @@ git show-ref --tags
 # tag checkout tag
 git tags/1.0.13
 ```
-
 #### remove tag
 ```sh
 # remove remote
@@ -481,15 +489,6 @@ git archive --remote=ssh://https://github.com/cherkavi/cheat-sheet HEAD jenkins.
 git remote update origin --prune
 ```
 
-### create tag 
-```
-git tag -a $newVersion -m 'deployment_jenkins_job' 
-```
-
-### push tags only 
-```
-git push --tags $remoteUrl
-```
 
 ### git lfs
 [package update](https://packagecloud.io/github/git-lfs/install)
