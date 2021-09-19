@@ -270,6 +270,23 @@ AIRFLOW_ENDPOINT="https://airflow.local/api/experimental"
 AIRFLOW_USER=my_user
 AIRFLOW_PASSWORD=my_passw
 ```
+```sh
+function airflow-event-delete(){
+	if [ -z "$1" ]
+	then
+	   echo "first argument should have filename"
+	   exit 1
+	fi
+	
+	DAG_NAME="shopify_product_delete"
+	DAG_RUN_ID="manual_shopify_product_delete_"`date +%Y-%m-%d-%H:%M:%S:%s`
+	ENDPOINT="$AIRFLOW_URL/api/v1/dags/$DAG_NAME/dagRuns"
+	BODY="{\"conf\":{\"account_id\":\"$ACCOUNT_ID\",\"filename\":\"$1\"},\"dag_run_id\":\"$DAG_RUN_ID\"}"
+	echo $BODY
+	curl -H "Content-Type: application/json" --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT	
+}
+
+```
 
 ### airflow test connection
 ```bash
