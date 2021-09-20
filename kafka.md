@@ -24,6 +24,7 @@ topics subscriber
 group of consumers, have one Load Balancer for one group, 
 consumer instance from different group will receive own copy of message ( one message per group )
 
+[Error Handling](https://eng.uber.com/reliable-reprocessing/)
 
 # ZoopKeeper ( one instance per cluster )
 * must be started before using Kafka ( zookeeper-server-start.sh, kafka-server-start.sh )
