@@ -175,3 +175,7 @@ join pg_catalog.pg_user u on u.usesysid = s.nspowner
 order by table_schema;
 
 ```
+```sql
+# row number
+select ROW_NUMBER () OVER (ORDER BY sku), sku from w60be740099999931852ba405_variant group by sku;
+```
