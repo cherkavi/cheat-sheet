@@ -2058,8 +2058,17 @@ sudo systemctl restart systemd-resolved
 # current dns
 sudo cat /etc/resolv.conf
 # resolving hostname
-dig {hostname}
+dig google.com
 ```
+aws example, where 10.0.0.2 AWS DNS internal server
+```sudo vim /etc/resolv.conf```
+```
+# nameserver 127.0.0.53
+nameserver 10.0.0.2
+options edns0 trust-ad
+search ec2.internal
+```
+
 
 ### encrypt file, decrypt file, encode/decode
 ```
