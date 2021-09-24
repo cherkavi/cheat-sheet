@@ -343,7 +343,7 @@ cli-doc
 faq
 console
 ```
-
+    
 [purchases options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
 ```sh
 # list ec2, ec2 list, instances list
@@ -366,12 +366,25 @@ curl -X GET http://169.254.169.254/latest/api/token
 # public ip 
 curl -X GET http://169.254.169.254/latest/meta-data/public-ipv4
 ```
+
 connect to launched instance without ssh
 ```sh
 # ssm role should be provided for account
 aws ssm start-session --target i-00ac7eee --profile awsstudent --region us-east-1
 ```
 
+DNS issue space exceed
+```sh
+sudo systemctl restart systemd-resolved
+sudo vim /etc/resolv.conf
+```
+```text
+# nameserver 127.0.0.53
+nameserver 10.0.0.2
+options edns0 trust-ad
+search ec2.internal
+```
+    
 ---
 ## EBS
 ```sh
