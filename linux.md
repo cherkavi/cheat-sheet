@@ -1,4 +1,4 @@
-# Linux cheat sheet
+# Linux Debian cheat sheet
 
 * [cheat sheet cmd](http://cheat.sh/)
   ```sh
@@ -2047,12 +2047,18 @@ keytool -import -file ~/Downloads/certificate.crt -keystore ./src/main/resources
 
 ### DNS
 ```
+# check 
+sudo resolvectl status | grep "DNS Servers"
+systemd-resolve --status
+systemctl status systemd-resolved
+
+# restart
+sudo systemctl restart systemd-resolved
+
 # current dns
 sudo cat /etc/resolv.conf
 # resolving hostname
 dig {hostname}
-#
-systemd-resolve --status
 ```
 
 ### encrypt file, decrypt file, encode/decode
