@@ -722,6 +722,16 @@ pwdx <process id>
 original.sh $*
 ```
 
+### ubuntu install python
+```
+# ubuntu 18 python 3.8
+sudo apt install python3.8
+sudo rm /usr/bin/python3
+sudo ln -s /usr/bin/python3.8 /usr/bin/python3
+python3 --version
+python3 -m pip install --upgrade pip
+```
+
 ### auto execute during startup, autoexec
 ```
 folder: /etc/rc1.d ( rc2.d ... )
