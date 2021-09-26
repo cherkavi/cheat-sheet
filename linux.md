@@ -1444,10 +1444,7 @@ vi wrap( :set wrap, :set nowrap )
 |     n    | next occurence  |
 |     N    | prev occurence  |
 
-### command prompt, change console prompt
-```
-export PROMPT_COMMAND="echo -n \[\$(date +%H:%M:%S)\]\ "
-```
+### command prompt change console prompt console invitation
 .bashrc of ubuntu
 ```bash
 if [ "$color_prompt" = yes ]; then
@@ -1461,6 +1458,10 @@ else
 fi
 unset color_prompt force_color_prompt
 ```
+```sh
+export PROMPT_COMMAND="echo -n \[\$(date +%H:%M:%S)\]\ "
+```
+
 ### command line color prompt color console
 ```sh
 # green
