@@ -465,3 +465,11 @@ pip3 install PySimpleGUI
 * [Tornado](http://www.tornadoweb.org/)  
 * [Streamlit](https://docs.streamlit.io/en/stable/)
 * [viola](https://pypi.org/project/viola/)
+
+# Database
+## PostgreSQL
+```sh
+pip3 install psycopg2-binary
+# need to execute: yum install rpm-build
+pip3 install -U pip
+```
