@@ -1446,6 +1446,9 @@ vi wrap( :set wrap, :set nowrap )
 
 ### command prompt change console prompt console invitation
 .bashrc of ubuntu
+```sh
+export PS1="my_host $(date +%d%m_%H%M%S)>"
+```
 ```bash
 if [ "$color_prompt" = yes ]; then
 #    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
