@@ -2749,3 +2749,26 @@ xdotool click 1
 ```
 gcal --with-week-number
 ```
+## vnc server
+```sh
+# vnc server 
+sudo apt install tigervnc-standalone-server
+vncserver
+# for changing password
+vncpasswd
+# stop vnc server
+vncserver -kill :1
+# configuration
+
+vim ~/.vnc/xstartup
+# xrdb $HOME/.Xresources
+# startxfce4 &
+```
+vnc server with connecting to existing X session
+```
+sudo apt-get install tigervnc-scraping-server
+# password for VNC server
+vncpasswd
+# https://github.com/sebestyenistvan/runvncserver
+x0vncserver -passwordfile ~/.vnc/passwd -display :0
+```
