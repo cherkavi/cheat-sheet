@@ -131,7 +131,7 @@ pipmain(["install", "wheels"]);
 
 ### path to external artifacts, external index, pip configuration
 ```bash
-$ ​cat /etc/pip.conf 
+cat /etc/pip.conf 
 ```
 ```properties
 [global]
@@ -283,19 +283,16 @@ help contextlib
 pydoc contextlib
 ```
 
-### assign
-```
-b = "some value" if True else "another value"
-```
-
-### need to use
-```
-enumerate, zip
-```
-
 ### special methods
 ```
 __call__  <class instance>()
+```
+
+### special file name folder execution main execute main
+```
+mkdir ./my_folder
+touch ./my_folder/__main__.py
+python3 ./my_folder
 ```
 
 ### build rpm: python setup.py bdist_rpm
