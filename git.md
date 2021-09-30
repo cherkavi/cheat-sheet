@@ -439,7 +439,7 @@ git remote -v
 ### using authentication token personal access token
 example of using github.com
 ```sh
-# Settings -> Developer settings
+# Settings -> Developer settings -> Personal access tokens
 # https://github.com/settings/apps
 git remote set-url origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitites.git
 ```
