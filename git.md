@@ -449,6 +449,13 @@ git remote set-url origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitit
 git remote set-url origin git@cc-github.my-network.net:adp/data-management.git
 ```
 
+### git clone via https
+```
+git clone               https://$GIT_TOKEN@cc-github.group.net/swh/management.git
+git clone        https://oauth2:$GIT_TOKEN@cc-github.group.net/swh/management.git
+git clone https://$GIT_TOKEN:x-oauth-basic@cc-github.group.net/swh/management.git
+```
+
 ### issue with removing files, issue with restoring files, can't restore file, can't remove file
 ```
 git rm --cached -r .
