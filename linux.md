@@ -2465,6 +2465,12 @@ echo "just a text string" | base64 | base64 --decode
 md5sum
 ```
 
+## driver install hardware
+```sh
+sudo ubuntu-drivers autoinstall
+reboot
+```
+
 ## hardware serial numbers, hardware id, hardware version, system info
 ```sh
 sudo dmidecode --string system-serial-number
