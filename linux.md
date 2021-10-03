@@ -11,7 +11,7 @@
 ### system wide for all users
 # System-wide .bashrc file for interactive bash(1) shells.
 /etc/bash.bashrc
-# system-wide .profile file for the Bourne shell (sh(1)
+# system-wide .profile file for the Bourne shell sh(1)
 /etc/profile
 /etc/environment
 /etc/profile.d/my_new_update.sh
@@ -585,13 +585,13 @@ cat --lines=17000 big_text_file.txt
 ### unique lines (duplications) into file
 #### add counter and print result
 ```
-uniq -c
+uniq --count
 ```
 
 #### duplicates
 print only duplicates ( distinct )
 ```
-uniq -d
+uniq --repeated
 ```
 print all duplications
 ```
@@ -600,7 +600,7 @@ uniq -D
 
 #### unique
 ```
-uniq -u
+uniq --unique
 ```
 
 ### print column from file, split string with separator
