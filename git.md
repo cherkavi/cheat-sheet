@@ -451,6 +451,8 @@ git remote set-url origin git@cc-github.my-network.net:adp/data-management.git
 
 ### git clone via https
 ```
+# username - token
+# password - empty string
 git clone               https://$GIT_TOKEN@cc-github.group.net/swh/management.git
 git clone        https://oauth2:$GIT_TOKEN@cc-github.group.net/swh/management.git
 git clone https://$GIT_TOKEN:x-oauth-basic@cc-github.group.net/swh/management.git
