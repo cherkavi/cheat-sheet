@@ -91,6 +91,11 @@ https://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.htm
 mvn clean -Dsuites=*SpeedLimitSignalsSpec* test
 mvn -Dtest=DownloadServiceImplTest* test
 ```
+scalatest
+```sh
+mvn -Denable-scapegoat-report -Dintegration.skipTests -Dscoverage.skip -Djacoco.skip -Dsuites="*LabelerJobArgumentsTest" test 
+```
+
 ### cobertura help, 
 ```
 mvn cobertura:help -Ddetail=true
