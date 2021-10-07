@@ -161,6 +161,24 @@ SELECT table_name FROM information_schema.tables WHERE table_schema='public';
 \!
 ```
 
+### internal tables
+```
+select * from pg_tables;
+SELECT schemaname, relname FROM pg_stat_user_tables;  
+```
+
+### create database create user create role
+```sql
+CREATE USER $DB_VARIANT_USERNAME WITH PASSWORD '$DB_VARIANT_PASSWORD'
+GRANT $DB_VARIANT_USERNAME TO main_database;
+CREATE DATABASE $DB_VARIANT_DATABASE OWNER $DB_VARIANT_USERNAME;
+-- 
+CREATE USER qa_read_only_xxxxx WITH PASSWORD 'xxxxxxx';
+-- grant read only access 
+GRANT connect ON database w5a823c88301e9 TO qa_read_only_xxxxx;
+GRANT select on all tables in schema public to qa_read_only_xxxxx;
+```
+
 ### Common operations
 ```sql
 -- create schema
