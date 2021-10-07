@@ -1784,6 +1784,8 @@ jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
 cat temp-pod.yaml | yq - r -j --prettyPrint | jq '[.metadata.namespace, .metadata.name, .spec.template.spec.nodeSelector."kubernetes.io/hostname"] | @csv'
 
 echo '{"smart_collections":[{"id":270378401973},{"id":270378369205}]}' | jq '. "smart_collections" | .[] | .id'
+
+jq 'if .attributes[].attribute == "category" and (.attributes[].normalizedValues != null) and (.attributes[].normalizedValues | length )>1 then . else empty end'
 ```
 
 ### [parsing yaml, yaml processing](https://mikefarah.gitbook.io/yq/)
