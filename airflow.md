@@ -141,6 +141,9 @@ dag_run_conf_overrides_params=True
 
 # hide all Rendered Templates
 show_templated_fields=none
+
+[webserver]
+instance_name = "title name of web ui"
 ```
 
 ### [Airflow start on python, nacked start, start components, start separate components, start locally]
