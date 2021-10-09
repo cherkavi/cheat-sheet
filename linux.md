@@ -2426,6 +2426,7 @@ sudo evtest /dev/input/event21
 ```
 
 ### remap [hjkl] to [Left, Down, Up, Right], cursor hjkl
+[mapping list](https://wiki.linuxquestions.org/wiki/List_of_Keysyms_Recognised_by_Xmodmap)  
 content of $HOME/.config/xmodmap-hjkl
 ```
 keycode 66 = Mode_switch
