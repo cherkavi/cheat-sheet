@@ -2398,6 +2398,8 @@ SSLCertificateKeyFile "/path/to/www.example.com.key"
 ### show key codes
 ```
 xmodmap -pke
+# or take a look into "keycode ... " 
+xev 
 ```
 
 ### remap key 'Druck' to 'Win'
