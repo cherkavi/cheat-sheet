@@ -205,6 +205,8 @@ aws s3api list-object-versions --bucket $AWS_BUCKET_NAME --prefix $FILE_KEY
 # read file by version 
 aws s3api get-object --bucket $AWS_S3_BUCKET_NAME --version-id $VERSION_ID --key d3a274bb1aba08ce403a6a451c0298b9 /home/projects/temp/$VERSION_ID
 
+# history object history list
+aws s3api list-object-versions --bucket $AWS_S3_BUCKET_NAME --prefix $AWS_FILE_KEY | jq '.Versions[]' | jq '[.LastModified,.Key,.VersionId] | join(" ")' | grep -v "_response" | sort | sed "s/\"//g"
 ```
 
 policy
