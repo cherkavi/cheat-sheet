@@ -1781,7 +1781,10 @@ echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "ag
 jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
 
 # convert from yaml to json, retrieve values from json, convert to csv
-cat temp-pod.yaml | yq - r -j --prettyPrint | jq '[.metadata.namespace, .metadata.name, .spec.template.spec.nodeSelector."kubernetes.io/hostname"] | @csv'
+cat temp-pod.yaml | jq -r -j --prettyPrint | jq '[.metadata.namespace, .metadata.name, .spec.template.spec.nodeSelector."kubernetes.io/hostname"] | @csv'
+
+# multiply properties from sub-element
+aws s3api list-object-versions --bucket $AWS_S3_BUCKET_NAME --prefix $AWS_FILE_KEY | jq '.Versions[] | [.Key,.VersionId]'
 
 echo '{"smart_collections":[{"id":270378401973},{"id":270378369205}]}' | jq '. "smart_collections" | .[] | .id'
 
