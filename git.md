@@ -110,9 +110,10 @@ git branch -d $current_branch_ghost
 git rev-parse "remotes/origin/release-6.0.0"
 ```
 
-### print current hashcode
+### print current hashcode commit hash last commit hash
 ```
 git rev-parse HEAD
+git log -n 1 --pretty=format:'%h' > /tmp/gitHash.txt
 ```
 
 ### print branch name by hashcode
