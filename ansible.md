@@ -777,6 +777,21 @@ create/update file:
 ./roles/{project/role name}/meta/main.yml
 ```
 
+## local run local start playbook
+```yaml
+- hosts: localhost
+  tasks:
+  - name: Ansible create file with content example
+    copy:
+      dest: "/tmp/remote_server.txt"
+      content: |
+        dog
+        tiger
+```
+```sh
+ansible-playbook ansible-example.yml
+```
+
 ## execute role, role execution, start role locally, local start, role local execution
 ```sh
 ansible localhost \
