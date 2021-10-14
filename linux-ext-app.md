@@ -337,8 +337,9 @@ smbclient -U $SAMBA_CLIENT_GROUP//$SAMBA_CLIENT_USER \
 bindsym $mod+Shift+e exec i3-msg exit
 ```
 
-## icaclient
+## icaclient citrix 
 ### [download receiver](https://www.citrix.de/downloads/citrix-receiver/)
+### [download for linxu](https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html)
 ### sudo apt remove icaclient
 ```sh
 sudo dpkg --add-architecture i386
