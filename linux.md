@@ -1644,11 +1644,15 @@ false
 find -cmin -2
 ```
 
-## cURL
+## cURL command
 ### curl username, curl with user and password, curl credentials
 ```
 curl -u username:password http://example.com
+# basic authentication
+echo -n "${username}:${password}" | base64
+curl -v --insecure -X GET "https://codebeamer.ubsgroup.net:8443/cb/api/v3/wikipages/21313" -H "accept: application/json" -H "Authorization: Basic "`echo -n $TSS_USER:$TSS_PASSWORD | base64`
 ```
+
 
 ### curl head
 ```
@@ -2464,10 +2468,13 @@ set-title "my title for terminal"
 
 ## code/decode
 ### base64
-```
+```sh
 base64 cAdvisor-start.sh | base64 --decode
 echo "just a text string" | base64 | base64 --decode
+# !!! important !!! will produce line WITHOUT suffix "\n" 
+echo -n "just a text string " | base64 
 ```
+
 ### md5
 ```
 md5sum
