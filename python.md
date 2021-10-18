@@ -345,6 +345,20 @@ sudo cp geckodriver /usr/local/bin/
 ```
 
 ### [virtual environment automation, tox tool](https://tox.readthedocs.io/en/latest/)
+tox.ini
+```
+commands = pex . -c download_symbolic_link_creation.py --disable-cache -i {env:PIP_INDEX_URL} -r requirements.txt -o {env:PEX_OUTPUT_PATH} --python-shebang="/usr/bin/env python3.8"
+```
+setup.py
+```py
+from setuptools import setup
+
+setup(
+    name='download_python_app',
+    version='0.0.1',
+    scripts=['download_python_app/download_symbolic_link_creation.py']
+)
+```
 
 ## IDEA
 ### standard modules not found 
