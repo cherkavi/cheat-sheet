@@ -273,6 +273,17 @@ git show --name-only --oneline `git rev-list --author="Vitalii Cherkashyn" item-
 #  list of commits between two branches 
 git show --name-only --oneline `git rev-list d3ef784e62fdac97528a9f458b2e583ceee0ba3d..eec5683ed0fa5c16e930cd7579e32fc0af268191`
 ```
+
+#### list of commits between two tags
+```sh
+# git tag --list
+start_tag='1.0.13'
+end_tag='1.1.2'
+start_commit=$(git show-ref --hash $start_tag )
+end_commit=$(git show-ref --hash $end_tag )
+git show --name-only --oneline `git rev-list $start_commit..$end_commit`
+```
+
 #### all commits from tag till now
 ```sh
 start_tag='1.1.2'
@@ -314,9 +325,12 @@ git push --tags $remoteUrl
 ```
 # fetch tags
 git fetch --all --tags -prune
-# list of all tags
+
+# list of all tags list tag list
 git tag
+git tag --list
 git show-ref --tags
+
 # tag checkout tag
 git tags/1.0.13
 ```
