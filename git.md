@@ -263,13 +263,15 @@ git diff master -- myfile.cs
 git diff --staged
 ```
 
-### difference between two branches, list of commits
+### difference between two branches, list of commits, list of messages between two commits
 ```sh
 git rev-list master..search-client-solr
 # by author
 git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201
 # list of files that were changed
 git show --name-only --oneline `git rev-list --author="Vitalii Cherkashyn" item-598233..item-530201`
+#  list of commits between two branches 
+git show --name-only --oneline `git rev-list d3ef784e62fdac97528a9f458b2e583ceee0ba3d..eec5683ed0fa5c16e930cd7579e32fc0af268191`
 ```
 
 ### difference for log changes, diff log, log diff
@@ -311,6 +313,11 @@ git show-ref --tags
 # tag checkout tag
 git tags/1.0.13
 ```
+#### show tag hash
+```
+git show-ref -s 1.1.2
+```
+
 #### remove tag
 ```sh
 # remove remote
