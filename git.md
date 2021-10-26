@@ -387,7 +387,7 @@ git log --all -- "**db-update.py"
 git log --all -- db-scripts/src/main/python/db-diff/db-update.py
 ```
 
-### history of file, file changes, file authors
+### history of file, file changes file authors file log file
 ```sh
 git log path/to/file
 ```
