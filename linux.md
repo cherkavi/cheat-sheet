@@ -326,8 +326,11 @@ cat ~/.ssh/id_rsa.pub | ssh vcherkashyn@bmw000013.adv.org 'cat >> ~/.ssh/authori
 ssh-copy-id user@ubssp000013.vantagedp.com 2>/dev/null
 ```
 login without typing password
-```
+```sh
+# ssh
 sshpass -p my_password ssh my_user@192.178.192.10
+# ftp 
+sshpass -p $CHINA_PASS sftp -P $CHINA_JUMP_SERVER_PORT $CHINA_USER@$CHINA_JUMP_SERVER
 ```
 
 automate copying password
