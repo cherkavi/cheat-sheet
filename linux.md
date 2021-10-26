@@ -401,6 +401,10 @@ IdentityFile ~/.ssh/id_rsa
 ### copy from local machine to remote one, remote copy
 ```
 scp filename.txt cherkavi@129.191.200.15:~/temp/filename-from-local.txt
+
+sshpass -p $CHINA_PASS scp -P $CHINA_JUMP_SERVER_PORT 1.txt $CHINA_USER@$CHINA_JUMP_SERVER:
+sshpass -p $CHINA_PASS scp -P $CHINA_JUMP_SERVER_PORT 1.txt $CHINA_USER@$CHINA_JUMP_SERVER:~/
+sshpass -p $CHINA_PASS scp -P $CHINA_JUMP_SERVER_PORT 1.txt $CHINA_USER@$CHINA_JUMP_SERVER:~/1.txt
 ```
 ### copy from remote machine to local
 ```
