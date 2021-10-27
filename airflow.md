@@ -170,6 +170,35 @@ airflow serve_logs
 # sqllite3 $AIRFLOW_HOME/airflow.db
 ```
 
+### airflow start
+```sh
+export AIRFLOW_HOME=/home/ubuntu/airflow
+export PATH=$PATH:/home/ubuntu/.local/bin
+export AIRFLOW__WEBSERVER__INSTANCE_NAME="test-account-01"
+
+nohup airflow webserver -p 8080 --pid $AIRFLOW_HOME/airflow-webserver.pid > $AIRFLOW_HOME/airflow-webserver.log 2>&1 &
+nohup airflow scheduler --pid $AIRFLOW_HOME/airflow-scheduler.pid > $AIRFLOW_HOME/airflow-scheduler.log 2>&1 &
+nohup airflow celery flower -p 8081  > $AIRFLOW_HOME/airflow-celery-flower.log 2>&1 &
+```
+
+### airflow status
+```sh
+ps aux | grep airflow | grep webserver | awk '{print $14}' | grep webserver
+ps aux | grep airflow | grep scheduler | awk '{print $15}'
+ps aux | grep airflow | grep flower | awk '{print $14}'
+```
+
+### airflow stop
+```sh
+ps aux | grep airflow | grep webserver | awk '{print $2}' | xargs -I{} kill -15 {} || echo "webserver removed"
+rm $AIRFLOW_HOME/airflow-webserver.pid || echo "not exists"
+
+ps aux | grep airflow | grep scheduler | awk '{print $2}' | xargs -I{} kill -15 {} || echo "scheduler removed"
+rm $AIRFLOW_HOME/airflow-scheduler.pid || echo "not exists"
+
+ps aux | grep airflow | grep flower | awk '{print $2}' | xargs -I{} kill -15 {} || echo "flower removed"
+```
+
 ### [Airflow docker](https://github.com/cherkavi/docker-images/tree/master/airflow)
 [astro cli](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart)
 ```bash
