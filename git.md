@@ -346,6 +346,9 @@ git push --delete origin 1.1.0
 git push origin :refs/tags/1.1.0
 git fetch --all --tags -prune
 
+# or remove remote
+git push --delete origin 1.2.1
+
 # remove local 
 git tag -d 1.1.0
 git push origin :refs/tags/1.1.0
