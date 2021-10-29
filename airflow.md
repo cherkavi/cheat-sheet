@@ -298,6 +298,12 @@ print(f.read())
 
 ## curl request
 ```sh
+ENDPOINT="$AIRFLOW_URL/api/v1/dags/notification_send/dagRuns"
+BODY='{"conf":{"account_id":"xxx","message_type":"error","message_text":"test_curl"}}'
+curl --header "Content-Type: application/json" --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT
+```
+
+```sh
 AIRFLOW_ENDPOINT="https://airflow.local/api/experimental"
 AIRFLOW_USER=my_user
 AIRFLOW_PASSWORD=my_passw
