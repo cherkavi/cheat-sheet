@@ -34,6 +34,19 @@ and checking if it is working for 'ssh -D 7772 cherkavi@15pos1.190.211.1'
 ssh -o "ProxyCommand nc -x 127.0.0.1:7772 %h %p" cherkavi@151.190.211.47
 ```
 
+### jumpserver proxy jump host bastion 
+```sh
+# ssh root@35.35.13.49 -o "proxycommand ssh -W %h:%p -i /home/admin/.ssh/identity-bastionhost ubuntu@10.0.12.10"  -t "su - admin" 
+# ssh root@35.35.13.49 -t "su admin"  ssh -i /home/admin/.ssh/identity-bastionhost ubuntu@10.0.12.10
+# ssh root@35.35.13.49 "su admin && ssh -i /home/admin/.ssh/identity-bastionhost ubuntu@10.0.12.10"
+# ssh root@35.35.13.49 -t "su admin" "ssh -i /home/admin/.ssh/identity-bastionhost ubuntu@10.0.12.10"
+# ssh root@35.35.13.49 -t "su admin"  ubuntu@10.0.12.10
+
+# localhost ---->  35.35.13.49 ---->   10.0.12.10
+# all identity files must be placed on localhost !!!
+ssh -Ao ProxyCommand="ssh -W %h:%p -p 22 root@35.35.13.49" -i local-file-with-identity -p 22 ubuntu@10.0.12.10
+```
+
 ### tunnel, port forwarding from local machine to outside
 ```
 ssh -L <local_port>:<remote_host from ssh_host>:<remote_port> <username>@<ssh_host>
