@@ -46,6 +46,10 @@ ssh -o "ProxyCommand nc -x 127.0.0.1:7772 %h %p" cherkavi@151.190.211.47
 # all identity files must be placed on localhost !!!
 ssh -Ao ProxyCommand="ssh -W %h:%p -p 22 root@35.35.13.49" -i local-file-with-identity -p 22 ubuntu@10.0.12.10
 ```
+### scp bastion scp proxy scp copy via bastion
+```sh
+scp -o "ProxyCommand ssh -W %h:%p -p 22 $PROD_BASTION_USER@$PROD_BASTION_HOST" -i $EC2_KEY 1.md $EC2_USER@$EC2_HOST:~/
+```
 
 ### tunnel, port forwarding from local machine to outside
 ```
