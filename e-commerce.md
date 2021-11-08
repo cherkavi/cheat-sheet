@@ -6,3 +6,8 @@
 
 ##  e-mail broadcasting
 * https://mailchimp.com/
+
+## redirect
+* Easyredir - https://www.easyredir.com/
+* Redirection.io - https://redirection.io/
+* SiteDetour - https://sitedetour.com/  
