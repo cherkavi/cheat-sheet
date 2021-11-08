@@ -471,7 +471,7 @@ rsync -avz -e 'ssh -p 2233' user@ubspdesp013.vantage.org:~/test-2020-02-28  /hom
 # sync local folder to remote ( copy TO remote )
 rsync -avz /home/projects/temp/test-2020-02-28  user@ubspdesp013.vantage.org:~/test-2020-02-28  
 # sync local folder to remote ( copy TO remote ) include exclude
-rsync -avz --include "*.txt" exclude "*.bin" /home/projects/temp/test-2020-02-28  user@ubspdesp013.vantage.org:~/test-2020-02-28  
+rsync -avz --include "*.txt" --exclude "*.bin" /home/projects/temp/test-2020-02-28  user@ubspdesp013.vantage.org:~/test-2020-02-28  
 ```
 ```bash
 function cluster-prod-generation-sync-to(){
