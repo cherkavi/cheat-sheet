@@ -1675,6 +1675,9 @@ curl -u username:password http://example.com
 # basic authentication
 echo -n "${username}:${password}" | base64
 curl -v --insecure -X GET "https://codebeamer.ubsgroup.net:8443/cb/api/v3/wikipages/21313" -H "accept: application/json" -H "Authorization: Basic "`echo -n $TSS_USER:$TSS_PASSWORD | base64`
+
+# bearer authentication
+curl --insecure --location --oauth2-bearer $KEYCLOAK_TOKEN "https://portal.apps.devops.vantage.org/session-lister/v1/sessions/cc17d9f8-0f96-43e0-a0dc-xxxxxxx"
 ```
 
 
