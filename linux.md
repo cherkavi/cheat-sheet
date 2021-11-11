@@ -1315,8 +1315,8 @@ cat file.txt | grep -e "occurence1\|occurence2"
 ```
 
 ### grep AND operation
-```
-cat file.txt | grep -e "occurence1" | grep -e "occurence2"
+```sh
+cat file.txt | grep -e "occurence1.*occurence2"
 ```
 
 ### grep not included, grep NOT
