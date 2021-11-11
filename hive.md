@@ -5,6 +5,8 @@ fixed data structure ( Pig - free data structure )
 [description](https://hortonworks.com/apache/hive/)
 [cheat sheet](https://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/)
 [sql to hive](https://www.slideshare.net/hortonworks/sql-to-hive)
+[quick guide](https://www.tutorialspoint.com/hive/hive_quick_guide.htm)
+
 *not supported full SQL, especially:"
 - transactions
 - materialized view
@@ -27,15 +29,15 @@ out-of-process database
 ### hive command line interfaces
 [cheat sheet](https://hortonworks.com/blog/hive-cheat-sheet-for-sql-users/)
 run interpreter
-```
+```sh
 hive
 ```
 run existing script into file
-```
+```sh
 hive -f <filename>
 ```
 new interpreter
-```
+```sh
 beeline
 ```
 
