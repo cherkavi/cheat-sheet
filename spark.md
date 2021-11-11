@@ -30,10 +30,11 @@ http://<driver>:4040
 ( history server ) 
 
 * spark properties
-```
+```sh
 new SparkConf().set("spark.executor.memory","1g")
 ```
-```
+[spark cli spark command line](https://dwgeek.com/running-sql-using-spark-sql-command-line-interface-cli.html/)
+```sh
 bin/spark-submit 
 --class <main class>
 --master <local[n] | spark:<masterurl> | yarn-client/yarn-master | mesos:<mesosurl> >
