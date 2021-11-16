@@ -90,6 +90,11 @@ proxy=http://user:passw$@proxy.muc:8080/
 https-proxy=http://user:passw$@proxy.muc:8080/
 ;prefix=~/.npm-global
 ```
+## npm version
+```sh
+npm info coa
+npm info coa versions
+```
 
 ## check installation
 ```sh
