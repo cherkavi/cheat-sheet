@@ -465,7 +465,7 @@ rsync -avu /tmp/first-folder/ /tmp/second-folder
 
 # sync remote folder to local ( copy FROM remote )
 rsync -avz user@ubspdesp013.vantage.org:~/test-2020-02-28  /home/projects/temp/test-2020-02-28
-# sync remote folder to local ( copy FROM remote ) with specific port 
+# sync remote folder to local ( copy FROM remote ) with specific port with compression
 rsync -avz -e 'ssh -p 2233' user@ubspdesp013.vantage.org:~/test-2020-02-28  /home/projects/temp/test-2020-02-28
 
 # sync local folder to remote ( copy TO remote )
