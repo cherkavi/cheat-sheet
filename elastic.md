@@ -19,7 +19,10 @@ ELASTIC_HOST=https://elasticsearch-label-search-prod.apps.vantage.org
 INDEX_NAME=ubs-single-autolabel
 ```
 
-```bash
+```sh
+# version info
+curl -X GET $ELASTIC_HOST
+
 # health check
 curl -X GET $ELASTIC_HOST/_cluster/health?pretty=true
 curl -X GET $ELASTIC_HOST/_cluster/health?pretty=true&level=shards
