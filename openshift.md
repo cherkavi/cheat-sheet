@@ -310,6 +310,17 @@ oc describe job {job name}
 oc describe pod {pod name}
 ```
 
+### config map
+```sh
+# list of config maps
+oc get configmap
+
+# describe one of the config map 
+oc describe configmap data-api-config
+oc describe configmap gatekeeper-config
+
+```
+
 ### Grant permission to be able to access OpenShift REST API and discover services.
 ```
 oc policy add-role-to-user view -n {name of application/namespace} -z default
