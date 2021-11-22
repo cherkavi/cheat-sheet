@@ -472,6 +472,9 @@ rsync -avz -e 'ssh -p 2233' user@ubspdesp013.vantage.org:~/test-2020-02-28  /hom
 rsync -avz /home/projects/temp/test-2020-02-28  user@ubspdesp013.vantage.org:~/test-2020-02-28  
 # sync local folder to remote ( copy TO remote ) include exclude
 rsync -avz --include "*.txt" --exclude "*.bin" /home/projects/temp/test-2020-02-28  user@ubspdesp013.vantage.org:~/test-2020-02-28  
+
+# sync via bastion
+rsync -avz -e 'ssh -Ao ProxyCommand="ssh -W %h:%p -p 22 $PROD_BASTION_USER@$PROD_BASTION_HOST" -i '$EC2_KEY $SOURCE_FOLDER/requirements.txt $EC2_LIST_COMPARATOR_USER@$EC2_LIST_COMPARATOR_HOST:~/list-comparator/requirements.txt
 ```
 ```bash
 function cluster-prod-generation-sync-to(){
