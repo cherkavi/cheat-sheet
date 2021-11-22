@@ -319,7 +319,8 @@ console
 [boto3 python lib](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/secretsmanager.html#SecretsManager.Client.describe_secret)
 
 ```sh
-# CLI example
+### CLI example
+# read secret
 aws secretsmanager get-secret-value --secret-id LinkedIn_project_Web_LLC --region $AWS_REGION --profile cherkavi-user
 ```
 readonly policy
@@ -335,6 +336,10 @@ readonly policy
         }
     ]
 }
+```
+```sh
+# write secret
+aws secretsmanager put-secret-value --secret-id MyTestDatabaseSecret --secret-string file://mycreds.json
 ```
 
 ---
