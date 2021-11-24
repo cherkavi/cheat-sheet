@@ -1295,6 +1295,7 @@ select count(*) from rendered_task_instance_fields where execution_date < (CURRE
 
 
 -----------------------------------------------------------------------------------------------------------
+-- metadata cleanup database cleaning										       
 delete from job where latest_heartbeat < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
 delete from dag_run where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
 delete from task_instance where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
