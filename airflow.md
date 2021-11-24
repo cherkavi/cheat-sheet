@@ -1295,6 +1295,17 @@ select count(*) from rendered_task_instance_fields where execution_date < (CURRE
 
 
 -----------------------------------------------------------------------------------------------------------
+-- metadata redundant records check 
+select count(*) from job where latest_heartbeat < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+select count(*) from dag_run where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+select count(*) from task_instance where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+select count(*) from log where dttm < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+select count(*) from xcom where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+select count(*) from sla_miss where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+select count(*) from task_reschedule where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+select count(*) from task_fail where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+select count(*) from rendered_task_instance_fields where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;
+
 -- metadata cleanup database cleaning										       
 delete from job where latest_heartbeat < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
 delete from dag_run where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
@@ -1305,5 +1316,4 @@ delete from sla_miss where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::D
 delete from task_reschedule where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
 delete from task_fail where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
 delete from rendered_task_instance_fields where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
-
 ```
