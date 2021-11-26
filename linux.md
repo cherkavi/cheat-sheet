@@ -331,6 +331,10 @@ ssh-keygen -t rsa
 chmod 700 ~/.ssh
 chmod 700 ~/.ssh/*
 ```
+passphrase skip typing ssh-keygen without passphrase
+```sh
+eval `ssh-agent` ssh-add /home/users/vitalii.cherkashyn/.ssh/id_rsa
+```
 
 #### copy ssh key to remote machine, 
 ```
