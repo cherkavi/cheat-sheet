@@ -15,10 +15,10 @@ curl -X GET 'http://localhost:9200'
 ```bash
 # common part
 ELASTIC_HOST=https://elasticsearch-label-search-prod.apps.vantage.org
-
 INDEX_NAME=ubs-single-autolabel
 ```
 
+### check connection
 ```sh
 # version info
 curl -X GET $ELASTIC_HOST
@@ -26,22 +26,69 @@ curl -X GET $ELASTIC_HOST
 # health check
 curl -X GET $ELASTIC_HOST/_cluster/health?pretty=true
 curl -X GET $ELASTIC_HOST/_cluster/health?pretty=true&level=shards
-curl -X GET "$ELASTIC_HOST/$INDEX_NAME
+curl -X GET $ELASTIC_HOST/$INDEX_NAME
+```
 
-# indexex info
+
+### index
+#### index info
+```bash
+# all indexes
 curl -X GET $ELASTIC_HOST/_cat/indices | grep ubs | grep label
+# count records by index
 curl -X GET $ELASTIC_HOST/_cat/count/$INDEX_NAME
 ```
 
+#### create index from file
+```sh
+curl -X POST $ELASTIC_HOST/$INDEX_NAME/_mapping/label \
+-H 'Content-Type: application/json' \
+-d @labels_mappings.json
+```
+
+#### create index inline
+```sh
+json_mappings=`cat file_with_index.json`
+curl -X PUT $ELASTIC_HOST/$INDEX_NAME' -H 'Content-Type: application/json' \
+-d @- << EOF
+{
+	"mappings": $json_mappings,
+	"settings" : {
+        "index" : {
+            "number_of_shards" : 1,
+            "number_of_replicas" : 0
+        }
+    }
+}
+EOF
+```
+
+
+### search request query request
 ```bash
-# request example
 curl -X GET "$ELASTIC_HOST/$INDEX_NAME/_search?q=front_vehicle.distance:>100&size=11&pretty=true"
 curl -X GET "$ELASTIC_HOST/$INDEX_NAME/_search?q=road_type:highway"
 ```
-
 ```bash
 echo '{"query": {"match" : {"sessionId" : "a8b8-0174df8a3b3d"}}}' > request.json
 echo '{"query": { "range" : {"front_vehicle.distance": {"gte": 100}}}}' > request.json
 
 curl -X POST -H "Content-Type: application/json" -u $LABEL_SEARCH_USERNAME:$LABEL_SEARCH_PASSWORD -d @request.json "$ELASTIC_HOST/$ELASTIC_INDEX/_search"
+```
+
+### remove records delete records
+```sh
+curl -X PUT $ELASTIC_HOST/$INDEX_NAME/_delete_by_query' -H 'Content-Type: application/json' \
+-d @- << EOF
+{
+    "query": {
+        "term": {
+            "sessionId.keyword": {
+                "value": "8a140c23-420c-3bf0a285",
+                "boost": 1.0
+            }
+        }
+    }
+}
+EOF
 ```
