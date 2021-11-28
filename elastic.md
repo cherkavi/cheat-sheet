@@ -31,6 +31,8 @@ curl -X GET $ELASTIC_HOST/$INDEX_NAME
 
 
 ### index
+[create index](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/indices-create-index.html)
+[mapping](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/mapping.html)
 #### index info
 ```bash
 # all indexes
@@ -44,12 +46,16 @@ curl -X GET $ELASTIC_HOST/_cat/count/$INDEX_NAME
 curl -X POST $ELASTIC_HOST/$INDEX_NAME/_mapping/label \
 -H 'Content-Type: application/json' \
 -d @labels_mappings.json
-```
+```/
 
 #### create index inline
 ```sh
+# get index
+curl -s --user "$SEARCH_USER:$SEARCH_PASSWORD" -X GET $ELASTIC_HOST/$ELASTIC_INDEX > file_with_index.json
+
+# create index
 json_mappings=`cat file_with_index.json`
-curl -X PUT $ELASTIC_HOST/$INDEX_NAME' -H 'Content-Type: application/json' \
+curl -X PUT $ELASTIC_HOST/$INDEX_NAME -H 'Content-Type: application/json' \
 -d @- << EOF
 {
 	"mappings": $json_mappings,
@@ -61,6 +67,9 @@ curl -X PUT $ELASTIC_HOST/$INDEX_NAME' -H 'Content-Type: application/json' \
     }
 }
 EOF
+
+# delete index
+curl -s --user "$SEARCH_USER:$SEARCH_PASSWORD" -X GET $ELASTIC_HOST/$ELASTIC_INDEX > file_with_index.json
 ```
 
 

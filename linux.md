@@ -895,9 +895,10 @@ ls -lR . | grep ^l
 cat secrets | grep ".*Name.*Avvo.*"
 ```
 
-### grep exclude, grep without folder
+### grep exclude grep skip folder
 ```
 grep -ir --exclude-dir=node_modules "getServerSideProps"
+grep -r --files-with-matches --exclude-dir={ad-frontend,data-portal}  "\"index\""
 ```
 
 ### full path to file, file behind symlink, absolute path to file
@@ -1729,6 +1730,22 @@ curl -X POST http://localhost:8983/test -H "Content-Type: application/json" --da
 
 # or with multipart body
 curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "userid=1234" http://mysuperserver/media/upload/
+
+# curl with inline data
+json_mappings=`cat some_file.json`
+curl -X POST $SOME_HOST' -H 'Content-Type: application/json' \
+-d @- << EOF
+{
+	"mappings": $json_mappings,
+	"settings" : {
+        "index" : {
+            "number_of_shards" : 1,
+            "number_of_replicas" : 0
+        }
+    }
+}
+EOF
+
 
 # POST request GET style
 curl -X POST "http://localhost:8888/api/v1/notification/subscribe?email=one%40mail.ru&country=2&state=517&city=qWkbs&articles=true&questions=true&listings=true" -H "accept: application/json"
