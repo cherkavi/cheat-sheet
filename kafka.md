@@ -24,6 +24,15 @@ topics subscriber
 group of consumers, have one Load Balancer for one group, 
 consumer instance from different group will receive own copy of message ( one message per group )
 
+[concepts](https://i.postimg.cc/3Nnfbfkk/2git-kafka-01.png)  
+[workflow](https://i.postimg.cc/TY34Wxsg/2git-kafka-02.png)  
+[consumer](https://i.postimg.cc/vH2SrjRj/2git-kafka-03.png)  
+[consumer](https://i.postimg.cc/x1kptRnd/2git-kafka-04.png)  
+[consumer group](https://i.postimg.cc/rwvnbrwN/2git-kafka-05.png)  
+[producer](https://i.postimg.cc/mkXVScnM/2git-kafka-06.png)  
+[partitions](https://i.postimg.cc/W1JSM1wF/2git-kafka-07.png)  
+![recommendations](https://user-images.githubusercontent.com/8113355/143954946-31b59408-a147-4ac2-9682-07065d0b75b9.png) 
+
 [Error Handling](https://eng.uber.com/reliable-reprocessing/)
 
 # ZoopKeeper ( one instance per cluster )
