@@ -1678,7 +1678,7 @@ find -cmin -2
 
 ## cURL command
 ### curl username, curl with user and password, curl credentials
-```
+```sh
 curl -u username:password http://example.com
 # basic authentication
 echo -n "${username}:${password}" | base64
@@ -1686,6 +1686,9 @@ curl -v --insecure -X GET "https://codebeamer.ubsgroup.net:8443/cb/api/v3/wikipa
 
 # bearer authentication
 curl --insecure --location --oauth2-bearer $KEYCLOAK_TOKEN "https://portal.apps.devops.vantage.org/session-lister/v1/sessions/cc17d9f8-0f96-43e0-a0dc-xxxxxxx"
+
+# or with certificate 
+curl  --cacert /opt/CA.cer --location --oauth2-bearer $KEYCLOAK_TOKEN "https://portal.apps.devops.vantage.org/session-lister/v1/sessions/cc17d9f8-0f96-43e0-a0dc-xxxxxxx"
 ```
 
 
