@@ -378,6 +378,7 @@ curl --silent  --insecure  -X GET -u $MAPR_USER:$MAPR_PASSWORD  https://mapr-web
 ```
 ## MapRFS maprfs
 ```sh
+hadoop fs -mkdir -p /mapr/dp.stg/vantage/data/store/collected/car-data/MDF4/a889-017d6b9bc95b/
 hadoop fs -ls /mapr/dp.stg/vantage/data/store/collected/car-data/MDF4/a889-017d6b9bc95b/
 hadoop fs -rm -r /mapr/dp.stg/vantage/data/store/collected/car-data/MDF4/a889-017d6b9bc95b/
 ```
