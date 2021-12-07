@@ -291,7 +291,10 @@ yarn logs -applicationId application_1540813402987_9262
 https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html  
 [Create table](https://docs.datafabric.hpe.com/62/ClusterAdministration/data/tables/CreateTable.html)  
 ```bash
+# binary table
 maprcli table create -path <path_in_maprfs> 
+# json table
+maprcli table create -path <path_in_maprfs>  -tabletype json
 ```
 Show info
 ```bash
@@ -306,7 +309,10 @@ Information about table
 ```sh
 maprcli table info -path /vantage/data/store/processed/markers
 maprcli table cf list -path /vantage/data/store/processed/markers
-
+```
+Remove table Delete table
+```sh
+maprcli table delete -path <path_in_maprfs>
 ```
 
 Create an index for the thumbnail MapR JSON DB in order to speed up: (query to find all sessionIds with existing thumbnails)
