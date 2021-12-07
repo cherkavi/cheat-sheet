@@ -291,7 +291,7 @@ yarn logs -applicationId application_1540813402987_9262
 https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html  
 [Create table](https://docs.datafabric.hpe.com/62/ClusterAdministration/data/tables/CreateTable.html)  
 ```bash
-maprclitable create -path <path_in_maprfs> 
+maprcli table create -path <path_in_maprfs> 
 ```
 Show info
 ```bash
@@ -313,9 +313,9 @@ Create an index for the thumbnail MapR JSON DB in order to speed up: (query to f
 ```bash
 --query {"$select":"sessionId","$where":{"$eq":{"frameThumbnail":0}}}  
 maprcli table index add -path /vantage/deploy/data-access-video/images -index frameNumber_id -indexedfields frameThumbnail
-# maprclitable index add -path <path> -index <name> -indexedfields<fields>
-maprclitable index list -path <path>
-maprclitable cfcreate / delete / list
+# maprcli table index add -path <path> -index <name> -indexedfields<fields>
+maprcli table index list -path <path>
+maprcli table cfcreate / delete / list
 ```
 Describe data, describe table 
 ```
