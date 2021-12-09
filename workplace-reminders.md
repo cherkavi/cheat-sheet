@@ -22,6 +22,14 @@ text ~ "is_abstract" and project = "Brand Configuration Management"
 curl -X POST -H "Content-Type: multipart/form-data" -u ${JIRA_USER}:${JIRA_PASSWORD} -F "file=@cypress/results/testresult.xml" "https://atc.ubsgroup.net/jira/rest/raven/1.0/import/execution/junit?projectKey=EXTRACT&testPlanKey=EXTRACT-219&testEnvironments=${CYPRESS_BASEURL}"
 ```
 
+## CodeBeamer
+### CodeBeamer REST API
+[swagger example](https://codebeamer.ubsgroup.net:8443/cb/v3/swagger/editor.spr)
+```sh
+# reading one page 
+curl -v --insecure -X GET "https://codebeamer.ubsgroup.net:8443/cb/api/v3/wikipages/1343" -H "accept: application/json" -H "Authorization: Basic "`echo -n $TSS_USER:$TSS_PASSWORD | base64`
+```
+
 ## Crucible
 ### activity
 ```
