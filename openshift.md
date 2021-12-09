@@ -559,6 +559,21 @@ spec:
     run: my-flask
 ```
 
+## mounting types volum mounting
+```json
+  volumeMounts:
+    - { mountPath: /tmp/maprticket,                                name: mapr-ticket, readonly: true }
+    - { mountPath: /usr/src/classes/config/server,                 name: server-config-volume, readonly: false }
+    - { mountPath: /mapr/prod.zurich/vantage/data/store/processed, name: processed, readonly: false }
+    - { mountPath: /tmp/data-api,                                  name: cache-volume, readonly: false }
+  volumes:
+    - { type: secret,    name: mapr-ticket,           secretName: mapr-ticket }
+    - { type: configMap, name: server-config-volume, config_map_name: server-config }
+    - { type: other,     name: mapr-deploy-data-api}
+    - { type: pvc,       name: processed,            pvc_name: pvc-mapr-processed-prod }
+    - { type: emptyDir,  name: cache-volume }
+```
+
 # admin commands
 ## add security context constraint
 ```
