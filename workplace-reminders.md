@@ -15,7 +15,12 @@ reporter = currentUser() and status in ('open', 'new') ORDER BY createdDate DESC
 reporter = currentUser() and status = 'in progress' ORDER BY createdDate DESC
 text ~ "is_abstract" and project = "Brand Configuration Management"
 ```
-
+### JIRA rest api
+[REST API](https://docs.getxray.app/display/XRAY/Import+Execution+Results+-+REST#ImportExecutionResultsREST-JUnitXMLresults)
+[how to create token](https://www.resolution.de/post/how-to-create-api-tokens-for-jira-server-s-rest-api/)
+```sh
+curl -X POST -H "Content-Type: multipart/form-data" -u ${JIRA_USER}:${JIRA_PASSWORD} -F "file=@cypress/results/testresult.xml" "https://atc.ubsgroup.net/jira/rest/raven/1.0/import/execution/junit?projectKey=EXTRACT&testPlanKey=EXTRACT-219&testEnvironments=${CYPRESS_BASEURL}"
+```
 
 ## Crucible
 ### activity
