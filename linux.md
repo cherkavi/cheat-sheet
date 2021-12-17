@@ -504,6 +504,22 @@ ssh $REMOTE_USER"@"$each_node "nohup $REMOTE_SCRIPT </dev/null > $REMOTE_OUTPUT_
 ```
 
 ### ssh xserver, ssh graphical
+#### option1
+deamon settings
+```sh
+vim /etc/ssh/sshd_config
+sudo systemctl restart sshd
+```
+```
+X11Forwarding yes
+```
+
+connect with X11 forwarding
+```sh
+ssh -X username@server.com
+```
+
+#### option 2
 ```sh
 export DISPLAY=:0.0
 xterm
