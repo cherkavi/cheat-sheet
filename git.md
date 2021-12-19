@@ -476,6 +476,10 @@ example of using github.com
 # https://github.com/settings/apps
 git remote set-url origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitites.git
 ```
+remove old password-access approach
+```sh
+git remote set-url --delete origin https://github.com/cherkavi/python-utilitites.git
+```
 
 ### change remote url
 ```
