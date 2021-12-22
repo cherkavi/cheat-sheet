@@ -155,6 +155,12 @@ console
 AWS_BUCKET_NAME="my-bucket-name" 
 aws s3 mb s3://$AWS_BUCKET_NAME
 aws s3 mb s3://$AWS_BUCKET_NAME --region us-east-1 
+
+# enable mfa delete
+aws s3api put-bucket-versioning --bucket $AWS_BUCKET_NAME --versioning-configuration Status=Enabled,MFADelete=Enabled --mfa "arn-of-mfa-device mfa-code" --profile root-mfa-delete-demo
+# disable mfa delete
+aws s3api put-bucket-versioning --bucket $AWS_BUCKET_NAME --versioning-configuration Status=Enabled,MFADelete=Disabled --mfa "arn-of-mfa-device mfa-code" --profile root-mfa-delete-demo
+
 # list of all s3
 aws s3 ls
 aws s3api list-buckets
@@ -367,11 +373,12 @@ ssh -i $AWS_KEY_PAIR ubuntu@$INSTANCE_PUBLIC_DNS
 
 reading information about current instance, local ip address, my ip address, connection to current instance, instance reflection, instance metadata, instance description
 ```sh
-curl -X GET http://169.254.169.254/latest/meta-data/
-curl -X GET http://169.254.169.254/latest/meta-data/iam/security-credentials/
-curl -X GET http://169.254.169.254/latest/api/token
+curl http://169.254.169.254/latest/meta-data/
+curl http://169.254.169.254/latest/meta-data/instance-id
+curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
+curl http://169.254.169.254/latest/api/token
 # public ip 
-curl -X GET http://169.254.169.254/latest/meta-data/public-ipv4
+curl http://169.254.169.254/latest/meta-data/public-ipv4
 ```
 
 connect to launched instance without ssh
@@ -391,7 +398,25 @@ nameserver 10.0.0.2
 options edns0 trust-ad
 search ec2.internal
 ```
-    
+
+---
+## SSM
+```sh
+current_doc_topic="ssm"
+cli-doc
+faq
+```
+```sh
+# GET PARAMETERS
+aws ssm get-parameters --names /my-app/dev/db-url /my-app/dev/db-password
+aws ssm get-parameters --names /my-app/dev/db-url /my-app/dev/db-password --with-decryption
+
+# GET PARAMETERS BY PATH
+aws ssm get-parameters-by-path --path /my-app/dev/
+aws ssm get-parameters-by-path --path /my-app/ --recursive
+aws ssm get-parameters-by-path --path /my-app/ --recursive --with-decryption
+```
+
 ---
 ## EBS
 ```sh
@@ -434,6 +459,52 @@ faq
 current_doc_topic="elb"; cli-doc
 ```
 
+---
+## EFS
+```sh
+current_doc_topic="efs"
+cli-doc
+faq
+```
+```sh
+# how to write files into /efs and they'll be available on both your ec2 instances!
+
+# on both instances:
+sudo yum install -y amazon-efs-utils
+sudo mkdir /efs
+sudo mount -t efs fs-yourid:/ /efs
+```
+
+---
+## SQS
+```sh
+current_doc_topic="sqs"
+cli-doc
+faq
+```
+```sh
+# get CLI help
+aws sqs help
+
+# list queues and specify the region
+aws sqs list-queues --region $AWS_REGION
+
+AWS_QUEUE_URL=https://queue.amazonaws.com/3877777777/MyQueue 
+
+# send a message
+aws sqs send-message help
+aws sqs send-message --queue-url $AWS_QUEUE_URL --region $AWS_REGION --message-body "my test message"
+
+# receive a message
+aws sqs receive-message help
+aws sqs receive-message --region $AWS_REGION  --queue-url $AWS_QUEUE_URL --max-number-of-messages 10 --visibility-timeout 30 --wait-time-seconds 20
+
+# delete a message
+aws sqs delete-message help
+aws sqs receive-message --region us-east-1  --queue-url $AWS_QUEUE_URL --max-number-of-messages 10 --visibility-timeout 30 --wait-time-seconds 20
+
+aws sqs delete-message --receipt-handle $MESSAGE_ID1 $MESSAGE_ID2 $MESSAGE_ID3 --queue-url $AWS_QUEUE_URL --region $AWS_REGION
+```
 
 ---
 ## Lambda
@@ -739,6 +810,45 @@ aws kinesis get-shard-iterator --stream-name my_kinesis_stream --shard-id "shard
 aws kinesis get-records --shard-iterator 
 ```
 ### [Kinesis Data Generetor](https://awslabs.github.io/amazon-kinesis-data-generator/)
+
+```sh
+# PRODUCER
+# CLI v2
+aws kinesis put-record --stream-name test --partition-key user1 --data "user signup" --cli-binary-format raw-in-base64-out
+# CLI v1
+aws kinesis put-record --stream-name test --partition-key user1 --data "user signup"
+
+
+# CONSUMER 
+# describe the stream
+aws kinesis describe-stream --stream-name test
+# Consume some data
+aws kinesis get-shard-iterator --stream-name test --shard-id shardId-000000000000 --shard-iterator-type TRIM_HORIZON
+aws kinesis get-records --shard-iterator <>
+```
+
+---
+## KMS
+```sh
+current_doc_topic="kms"
+cli-doc
+faq
+console
+```
+
+```sh
+# 1) encryption
+aws kms encrypt --key-id alias/tutorial --plaintext fileb://ExampleSecretFile.txt --output text --query CiphertextBlob  --region eu-west-2 > ExampleSecretFileEncrypted.base64
+# base64 decode
+cat ExampleSecretFileEncrypted.base64 | base64 --decode > ExampleSecretFileEncrypted
+
+# 2) decryption
+aws kms decrypt --ciphertext-blob fileb://ExampleSecretFileEncrypted   --output text --query Plaintext > ExampleFileDecrypted.base64  --region eu-west-2
+# base64 decode
+cat ExampleFileDecrypted.base64 | base64 --decode > ExampleFileDecrypted.txt
+
+certutil -decode .\ExampleFileDecrypted.base64 .\ExampleFileDecrypted.txt
+```
 
 ---
 ## CloudFormation
