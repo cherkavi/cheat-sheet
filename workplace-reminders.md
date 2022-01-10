@@ -30,9 +30,9 @@ curl -X POST -H "Content-Type: multipart/form-data" -u ${JIRA_USER}:${JIR
 curl -v --insecure -X GET "https://codebeamer.ubsgroup.net:8443/cb/api/v3/wikipages/1343" -H "accept: application/json" -H "Authorization: Basic "`echo -n $TSS_USER:$TSS_PASSWORD | base64`
 ```
 ### CodeBeamer notice
-if you are sending json encoded data to CB over the swagger API, check the definitions of the expected payloads – they might have changed without notice, breaking you calls
-CB rejects all requests with unknown information in the payload
-With some “methods” available over swagger the expected payload has changed
+if you are sending json encoded data to CB over the swagger API, check the definitions of the expected payloads – they might have changed without notice, breaking you calls  
+CB rejects all requests with unknown information in the payload  
+With some “methods” available over swagger the expected payload has changed  
  
 Example: POST /v3/projects/{projectId}/content
 ```json
