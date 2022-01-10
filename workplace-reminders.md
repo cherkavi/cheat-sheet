@@ -29,6 +29,39 @@ curl -X POST -H "Content-Type: multipart/form-data" -u ${JIRA_USER}:${JIR
 # reading one page 
 curl -v --insecure -X GET "https://codebeamer.ubsgroup.net:8443/cb/api/v3/wikipages/1343" -H "accept: application/json" -H "Authorization: Basic "`echo -n $TSS_USER:$TSS_PASSWORD | base64`
 ```
+### CodeBeamer notice
+if you are sending json encoded data to CB over the swagger API, check the definitions of the expected payloads – they might have changed without notice, breaking you calls
+CB rejects all requests with unknown information in the payload
+With some “methods” available over swagger the expected payload has changed
+ 
+Example: POST /v3/projects/{projectId}/content
+```json
+{
+  "password": "xxx",
+  "skipTrackerItems": false,
+  "skipWikiPages": false,
+  "skipAssociations": false,
+  "skipDocuments": false,
+  "skipReports": false,
+  "skipBranches": false,
+  "selectedTrackerIds": [
+    0
+  ]
+}
+```
+or
+```json
+{
+  "password": "xxx",
+  "skipTrackerItems": false,
+  "skipWikiPages": true,
+  "skipAssociations": false,
+  "skipReports": false,
+  "selectedTrackerIds": [
+    0
+  ]
+}
+```
 
 ## Crucible
 ### activity
