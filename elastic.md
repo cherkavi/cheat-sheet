@@ -53,6 +53,13 @@ curl -X POST $ELASTIC_HOST/$INDEX_NAME/_mapping/label \
 # get index
 curl -s --user "$SEARCH_USER:$SEARCH_PASSWORD" -X GET $ELASTIC_HOST/$ELASTIC_INDEX > file_with_index.json
 
+# for using just have read index, pls remove next lines:
+# {"index_name": {"aliases": {}, "mappings": {  # and last } 
+# settings.index.provided_name
+# settings.index.creation_date
+# settings.index.uuid
+# settings.index.version
+
 # create index
 json_mappings=`cat file_with_index.json`
 curl -X PUT $ELASTIC_HOST/$INDEX_NAME -H 'Content-Type: application/json' \
