@@ -2153,7 +2153,10 @@ keytool -genkeypair -keystore -keystore ./src/main/resources/com/ubs/crm/data/ap
 ## Importing ( updating, adding ) trusted SSL certificates
 keytool -import -file ~/Downloads/certificate.crt -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server -alias my-magic-number
 ```
-
+#### in other words, rsa certificate rsa from url x509 url: 
+1. Download the certificate by opening the url in the browser and downloading it there manually.  
+2. Run the following command: ```keytool -import -file <name-of-downloaded-certificate>.crt -alias <alias for exported file> -keystore myTrustStore```  
+```
 
 ### DNS
 ```
