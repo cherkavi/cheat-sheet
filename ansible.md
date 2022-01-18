@@ -66,6 +66,11 @@ ansible-config view
 ```
 
 ## inventory
+### without inventory inline host ip 
+```
+ansible all -i desp000111.vantage.zur, --user=my_user -m "ping" -vvv
+```
+
 ### ini file
 ```properties
 # example cfg file
