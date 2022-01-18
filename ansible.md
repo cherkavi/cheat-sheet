@@ -71,6 +71,15 @@ ansible-config view
 ansible all -i desp000111.vantage.zur, --user=my_user -m "ping" -vvv
 ```
 
+### without inventory with pem ssh private ssh key
+generate PEM file
+```sh
+ssh-keygen -t rsa -b 4096 -m PEM -f my_ssh_key.pem
+ll my_ssh_key.pem
+
+ansible all -i desp000111.vantage.zur, --user=vitalii.cherkashyn -e ansible_ssh_private_key_file=my_ssh_key.pem -m "ping" -vvv
+```
+
 ### ini file
 ```properties
 # example cfg file
