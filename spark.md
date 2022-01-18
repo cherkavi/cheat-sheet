@@ -304,11 +304,9 @@ val someDF = spark.createDF(
 
 ### read data, load data
 * with format
-```
-spark.read.load("/path/to/file").format("name of format")
-- json
-- parquet
-- csv
+```scala
+val df=spark.read.format("parquet").load(pathToFile)
+// json, parquet, csv
 ```
 * read text file
 ```
