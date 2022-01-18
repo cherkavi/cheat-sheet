@@ -1697,6 +1697,11 @@ find -cmin -2
 ```
 
 ## cURL command
+### echo server mock server 
+```sh
+curl --location --request GET 'https://postman-echo.com/get?foo1=bar1&foo2=bar2'
+```
+
 ### curl username, curl with user and password, curl credentials
 ```sh
 curl -u username:password http://example.com
@@ -1710,7 +1715,6 @@ curl --insecure --location --oauth2-bearer $KEYCLOAK_TOKEN "https://portal.apps.
 # or with certificate 
 curl  --cacert /opt/CA.cer --location --oauth2-bearer $KEYCLOAK_TOKEN "https://portal.apps.devops.vantage.org/session-lister/v1/sessions/cc17d9f8-0f96-43e0-a0dc-xxxxxxx"
 ```
-
 
 ### curl head
 ```
