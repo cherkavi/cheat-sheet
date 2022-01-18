@@ -228,7 +228,10 @@ $host:$port/topics/$stream_path%3A$topic_name
 maprlogin password -user {your cluster username}
 # long term ticket
 maprlogin password -user {your cluster username} -duration 30:0:0 -renewal 90:0:0
+
 maprlogin print
+maprlogin authtest
+
 maprlogin logout
 ```
 ## login via ssh
