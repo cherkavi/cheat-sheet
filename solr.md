@@ -28,7 +28,6 @@ solrctl --zk 134.191.209.235:2181/solr collection --create label_collection -s 5
 * core.properties # name=collection2
 * change schema.xml [doc](https://wiki.apache.org/solr/SchemaXml) [src-code](https://github.com/apache/lucene-solr/blob/master/solr/solr-ref-guide/src/field-type-definitions-and-properties.adoc)
 
-
 # REST API collaboration
 [Official documentation for different versions](http://archive.apache.org/dist/lucene/solr/ref-guide/)
 [Solr REST API admin](https://lucene.apache.org/solr/guide/6_6/coreadmin-api.html)
@@ -57,6 +56,16 @@ curl -i -k --negotiate -u: https://localhost:8983/solr/admin/cores?wt=json
 ```
 ```
 curl localhost:8983/solr/admin/collections?action=LIST&wt=json
+```
+
+## reload collection
+```bash
+curl localhost:8983/solr/admin/cores?action=RELOAD&core=collection1
+```
+
+## optimize collection
+```bash
+curl localhost:8983/solr/collection1/update?optimize=true
 ```
 
 ## force commit for core/collection
