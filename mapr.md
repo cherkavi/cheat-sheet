@@ -299,6 +299,10 @@ maprcli table create -path <path_in_maprfs>
 # json table
 maprcli table create -path <path_in_maprfs>  -tabletype json
 ```
+```
+# in case of such message - check your table type binary/json
+OJAI APIs are currently not supported with binary tables
+```
 Show info
 ```bash
 maprcli table info -path /vantage/deploy/data-access-video/images -json
