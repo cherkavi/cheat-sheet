@@ -2670,6 +2670,24 @@ and restart the service
 ```
 sudo service cups restart
 ```
+default printer
+```sh
+# set default printer
+sudo lpadmin -d HP_LaserJet_P2015_Series
+# check default printer
+lpstat -v
+lpinfo -m
+```
+
+printer queue
+```sh
+lpq -P 
+```
+
+print to printer
+```sh
+lpr -P HP_LaserJet_P2015_Series myfile.txt
+```
 
 ## kernel related messages
 ```
