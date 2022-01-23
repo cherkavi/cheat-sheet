@@ -477,6 +477,11 @@ convert marketing.png -resize 100x100 marketing-100-100.png
 convert marketing.png -rotate 90 -charcoal 4 -quality 50 marketing.png
 ```
 
+### get image info image metadata
+```
+exiftool my_image.jpg
+```
+
 ### image remove gps remove metadata cleanup
 ```sh
 exiftool -gps:all= *.jpg
