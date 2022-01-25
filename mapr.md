@@ -291,7 +291,8 @@ yarn logs -applicationId application_1540813402987_9262
 
 
 ## MapRDB ( DBShell )
-https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html  
+[commands](https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html)  
+[dbshell commands](https://docs.datafabric.hpe.com/62/ReferenceGuide/mapr_dbshell.html)
 [Create table](https://docs.datafabric.hpe.com/62/ClusterAdministration/data/tables/CreateTable.html)  
 ```bash
 # binary table
