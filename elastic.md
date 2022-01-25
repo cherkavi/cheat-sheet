@@ -114,4 +114,13 @@ curl -X POST --insecure -s --user $USER:$PASSWORD $ELASTIC_HOST/$INDEX_NAME/_del
     "query": { "match_all": {} }
 }'
 
+curl -X POST --insecure -s --user $USER:$PASSWORD $ELASTIC_HOST/$INDEX_NAME/_delete_by_query -H 'Content-Type: application/json' -d @- << EOF
+{
+    "query": {
+        "match": {
+            "_id": "_all"
+        }
+    }
+}
+EOF
 ```
