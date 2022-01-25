@@ -108,3 +108,10 @@ curl -X PUT $ELASTIC_HOST/$INDEX_NAME/_delete_by_query' -H 'Content-Type: applic
 }
 EOF
 ```
+all records from index
+```sh
+curl -X POST --insecure -s --user $USER:$PASSWORD $ELASTIC_HOST/$INDEX_NAME/_delete_by_query  -H 'Content-Type: application/json' -d '{
+    "query": { "match_all": {} }
+}'
+
+```
