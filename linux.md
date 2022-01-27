@@ -1886,6 +1886,12 @@ echo '{"smart_collections":[{"id":270378401973},{"id":270378369205}]}' | jq '. "
 jq 'if .attributes[].attribute == "category" and (.attributes[].normalizedValues != null) and (.attributes[].normalizedValues | length )>1 then . else empty end'
 ```
 
+### json compare json diff
+```sh
+cmp <(jq -cS . A.json) <(jq -cS . B.json)
+diff <(jq --sort-keys . A.json) <(jq --sort-keys . B.json)
+```
+
 ### [parsing yaml, yaml processing](https://mikefarah.gitbook.io/yq/)
 #### [yq examples](https://metacpan.org/pod/distribution/ETL-Yertl/bin/yq)
 ```sh
