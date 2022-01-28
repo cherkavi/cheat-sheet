@@ -943,7 +943,7 @@ dirname {file}
 nautilus "$(dirname -- "$PATH_TO_SVG_CONFLUENCE")"
 ```
 
-### print full path to files inside folder
+### print full path to files inside folder, check folder for existence path check for existence
 ```
 ls -d <path to folder>/*
 ```
