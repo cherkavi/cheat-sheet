@@ -973,7 +973,7 @@ sudo docker run --volume  /mnt/nfs:/nfs -it busybox /bin/sh
 chmod -R +r /nfs/ml-training-mongodb-pvc/journal
 ```
 
-### find file by name
+### find file by name find by name
 ```
 locate {file name}
 ```
@@ -990,9 +990,12 @@ you need to update filedatabase: /var/lib/mlocate/mlocate.db
 ```
 sudo updatedb
 ```
-### find file, search file, skip permission denied
-```
+
+### find file, search file, skip permission denied suppress permission denied find by name
+```sh
 find . -name "prd-ticket-1508.txt"  2>&1 | grep -v "Permission denied"
+# suppress permission denied, error pipe with stderror
+find /tmp -name 'labeler.jar' |& grep -v "Permission denied"
 ```
 
 ### find multiply patterns
