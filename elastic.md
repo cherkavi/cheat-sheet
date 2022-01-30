@@ -43,7 +43,7 @@ curl -X GET $ELASTIC_HOST/_cat/count/$INDEX_NAME
 
 #### create index from file
 ```sh
-curl -X POST $ELASTIC_HOST/$INDEX_NAME/_mapping/label \
+curl -X POST $ELASTIC_HOST/$INDEX_NAME/_mapping \
 -H 'Content-Type: application/json' \
 -d @labels_mappings.json
 ```/
