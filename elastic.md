@@ -78,6 +78,18 @@ EOF
 # delete index
 curl -s --user "$SEARCH_USER:$SEARCH_PASSWORD" -X GET $ELASTIC_HOST/$ELASTIC_INDEX > file_with_index.json
 ```
+or it is better without types specification:
+```json
+{
+        "settings": {
+            "index": {
+                "number_of_shards": "5",
+                "auto_expand_replicas": "false",
+                "number_of_replicas": "2"
+            }
+        }
+}
+```
 
 
 ### [search request query request](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html)
