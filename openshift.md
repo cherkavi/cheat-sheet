@@ -424,7 +424,7 @@ spec:
       restartPolicy: Never
 ```
 
-### pod example
+### pod example simple pod
 ```yaml
 apiVersion: v1
 kind: Pod
