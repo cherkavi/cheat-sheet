@@ -290,10 +290,16 @@ yarn logs -applicationId application_1540813402987_9262
 ```
 
 
-## MapRDB ( DBShell )
+## MapRDB 
+DBShell commands
 [commands](https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html)  
 [dbshell commands](https://docs.datafabric.hpe.com/62/ReferenceGuide/mapr_dbshell.html)
-[Create table](https://docs.datafabric.hpe.com/62/ClusterAdministration/data/tables/CreateTable.html)  
+
+### [Create MaprDB database/table](https://docs.datafabric.hpe.com/62/ClusterAdministration/data/tables/CreateTable.html)  
+Two possible types of MaprDB:  
+* (json/document database)[https://docs.datafabric.hpe.com/62/MapROverview/MaprDB-overview-json.html]  
+* (binary/column-oriented)[https://docs.datafabric.hpe.com/62/MapROverview/maprDB-overview-binary.html]  
+
 ```bash
 # binary table
 maprcli table create -path <path_in_maprfs> 
