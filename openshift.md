@@ -190,7 +190,7 @@ oc get rolebindings
 ```
 
 ## add role to current project, assign role to project, remove role from user
-```
+```sh
 oc project
 oc policy add-role-to-user admin cherkavi
 # oc policy remove-role-from-user admin cherkavi
@@ -198,24 +198,29 @@ oc get rolebindings
 ```
 
 ### create project
-```
+```sh
 oc get projects
 oc new-project {project name}
 oc describe project {project name}
 ```
 
-### print current project
+### images internal registry get images
+```sh
+oc get images.image.openshift.io
 ```
+
+### print current project
+```sh
 oc project
 ```
 
 ### project select, select project
-```
+```sh
 oc project {project name}
 ```
 
 ### create resource ( pod, job, volume ... )
-```
+```sh
 oc create -f {description file}
 # oc replace -f {description file}
 ```
