@@ -469,7 +469,7 @@ done
 git remote -v
 ```
 
-### using authentication token personal access token
+### using authentication token personal access token, git remote set, git set remote
 example of using github.com
 ```sh
 # Settings -> Developer settings -> Personal access tokens
