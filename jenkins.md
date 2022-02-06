@@ -91,6 +91,17 @@ node {
 }
 ```
 
+### jenkins read http write file
+```
+		final String url="https://api.ipify.org"
+		final String urlResponse = sh(script: "curl -s $url", returnStdout: true).trim()
+		final String outputFile = "/var/jenkins_home/my-ip-address.txt"
+		writeFile file: outputFile, text: urlResponse
+
+        	// def response = httpRequest(url: logUrl, authentication: '<credentialsId of jenkins user>',  ignoreSslErrors: true)
+		// def log = response.content
+```
+
 ### jenkins git timeout
 ```groovy
 checkout([$class: 'GitSCM', branches: [[name: "*/$branch"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'GitLFSPull', timeout: 30], [$class: 'CloneOption', depth: 0, timeout: 30], [$class: 'CheckoutOption', timeout: 30]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'a0e5424f-2ffb-', url: '$CC_GIT_CREDENTIAL']]])
