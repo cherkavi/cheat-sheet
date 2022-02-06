@@ -80,8 +80,13 @@ https://{jenkins-url}/pluginManager/api/xml?depth=1
 ### jenkins simple pipeline
 ```jenkins
 node {
- 	stage "first step"	
-	echo "simple output from job"
+ 	stage("Step #1") {
+		echo "first bite"
+	}
+
+	stage("Step #2") {
+		echo "second bite"
+	}
 }
 ```
 
