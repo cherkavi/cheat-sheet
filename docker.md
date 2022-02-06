@@ -367,7 +367,7 @@ services:
       DB_UPSTREAM: http://${DOCKER_GATEWAY_HOST:-host.docker.internal}:3000
 ```
 
-### connecting containers via host, localhost connection, shares the host network stack and has access to the /etc/hosts for network communication
+### connecting containers via host, localhost connection, shares the host network stack and has access to the /etc/hosts for network communication, host as network share host network share localhost network
 ```sh
 docker run --rm   --name postgres-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 postgres
 # --net=host 
