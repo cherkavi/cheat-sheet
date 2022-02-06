@@ -80,7 +80,6 @@ https://{jenkins-url}/pluginManager/api/xml?depth=1
 ### jenkins simple pipeline
 ```jenkins
 node {
-node {
  	stage("Step #1") {
 		echo "first bite"
 	}
@@ -93,14 +92,23 @@ node {
 
 ### jenkins read http write file
 ```
+stage("Step #3") {
 		final String url="https://api.ipify.org"
 		final String urlResponse = sh(script: "curl -s $url", returnStdout: true).trim()
 		final String outputFile = "/var/jenkins_home/my-ip-address.txt"
 		writeFile file: outputFile, text: urlResponse
 
-        	// def response = httpRequest(url: logUrl, authentication: '<credentialsId of jenkins user>',  ignoreSslErrors: true)
-		// def log = response.content
-```
+	withCredentials([usernamePassword(credentialsId: '222-333-444', passwordVariable: 'MY_SSH_PASS', usernameVariable: 'MY_SSH_USER')]) {
+		final String host="localhost"
+		final String outputFileName="my-host-ip"
+		
+		// final String command="sshpass -p " +MY_SSH_PASS+ " scp " +outputFile+ " " +MY_SSH_USER+ "@" +host+ ":~/" +outputFileName
+		// final String command="sshpass -p $MY_SSH_PASS scp $outputFile $MY_SSH_USER@$host:~/$outputFileName"
+		final String command="sshpass -p ${MY_SSH_PASS} scp ${outputFile} ${MY_SSH_USER}@${host}:~/${outputFileName}"
+		sh(command)
+		sh("rm $outputFile")
+		}
+      }```
 
 ### jenkins git timeout
 ```groovy
