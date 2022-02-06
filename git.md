@@ -495,6 +495,13 @@ git clone        https://oauth2:$GIT_TOKEN@cc-github.group.net/swh/management.gi
 git clone https://$GIT_TOKEN:x-oauth-basic@cc-github.group.net/swh/management.git
 ```
 
+### git push via ssh
+```shell
+git commmit -am 'hello my commit message'
+GIT_SSH_COMMAND = "ssh -i $key"
+git push
+```
+
 ### issue with removing files, issue with restoring files, can't restore file, can't remove file
 ```
 git rm --cached -r .
