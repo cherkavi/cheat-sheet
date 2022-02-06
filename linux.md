@@ -51,6 +51,12 @@ ssh -Ao ProxyCommand="ssh -W %h:%p -p 22 root@35.35.13.49" -i local-file-with-id
 scp -o "ProxyCommand ssh -W %h:%p -p 22 $PROD_BASTION_USER@$PROD_BASTION_HOST" -i $EC2_KEY 1.md $EC2_USER@$EC2_HOST:~/
 ```
 
+### scp error 
+```
+bash: scp: command not found
+```
+solution: scp should be installed on both!!! hosts
+
 ### tunnel, port forwarding from local machine to outside
 ```
 ssh -L <local_port>:<remote_host from ssh_host>:<remote_port> <username>@<ssh_host>
