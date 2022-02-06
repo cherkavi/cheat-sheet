@@ -77,6 +77,14 @@ copy jpi/hpi file into {JENKINS_HOME/plugins}
 https://{jenkins-url}/pluginManager/api/xml?depth=1
 ```
 
+### jenkins simple pipeline
+```jenkins
+node {
+ 	stage "first step"	
+	echo "simple output from job"
+}
+```
+
 ### jenkins git timeout
 ```groovy
 checkout([$class: 'GitSCM', branches: [[name: "*/$branch"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'GitLFSPull', timeout: 30], [$class: 'CloneOption', depth: 0, timeout: 30], [$class: 'CheckoutOption', timeout: 30]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'a0e5424f-2ffb-', url: '$CC_GIT_CREDENTIAL']]])
