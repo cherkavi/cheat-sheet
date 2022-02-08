@@ -62,21 +62,6 @@ Jenkins.instance.getItemByFullName("Brand Server/develop").getBuildByNumber(614)
 Jenkins.instance.getItemByFullName("Brand Server/develop").getBuildByNumber(614).doKill();
 ```
 
-### plugin manual installation
-```
-copy jpi/hpi file into {JENKINS_HOME/plugins}
-```
-
-### plugin manual removing
-```
-copy jpi/hpi file into {JENKINS_HOME/plugins}
-```
-
-### list all accessible plugins
-```
-https://{jenkins-url}/pluginManager/api/xml?depth=1
-```
-
 ### jenkins simple pipeline
 ```jenkins
 node {
@@ -267,7 +252,22 @@ passw: admin
 echo sh(returnStdout: true, script: 'env')
 ```
 
-### plugins
+## plugins
+### plugin manual installation
+```
+copy jpi/hpi file into {JENKINS_HOME/plugins}
+```
+
+### plugin manual removing
+```
+copy jpi/hpi file into {JENKINS_HOME/plugins}
+```
+
+### list all accessible plugins
+```
+https://{jenkins-url}/pluginManager/api/xml?depth=1
+```
+
 
 ## Issues
 > ERROR: script not yet approved for use
@@ -293,4 +293,39 @@ http://localhost:9090/configfiles/
 ```
 change 
 gitHostUrl = "https://user@webgit.xxxx.de/scm"
+```
+
+### Workspace sharing between runs 
+execute shell 
+```sh
+echo "---------------"
+ls -la current-date.txt || echo "."
+cat current-date.txt || echo "."
+readlink -f current-date.txt
+pwd
+date > current-date.txt
+ls -la current-date.txt
+echo "---------------"
+```
+output
+```
+[EnvInject] - Loading node environment variables.
+Building on master in workspace /var/lib/jenkins/jobs/application/jobs/data-api/jobs/test/jobs/test-project/workspace
+[workspace] $ /bin/sh -xe /tmp/jenkins908209539931105022.sh
++ echo ---------------
+---------------
++ ls -la current-date.txt
+-rw-r--r--. 1 1001 root 29 Feb  8 10:08 current-date.txt
++ cat current-date.txt
+Tue Feb  8 10:08:39 UTC 2022
++ readlink -f current-date.txt
+/var/lib/jenkins/jobs/application/jobs/data-api/jobs/test/jobs/test-project/workspace/current-date.txt
++ pwd
+/var/lib/jenkins/jobs/application/jobs/data-api/jobs/test/jobs/test-project/workspace
++ date
++ ls -la current-date.txt
+-rw-r--r--. 1 1001 root 29 Feb  8 10:13 current-date.txt
++ echo ---------------
+---------------
+Finished: SUCCESS
 ```
