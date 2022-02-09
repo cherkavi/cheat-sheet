@@ -877,6 +877,7 @@ def get_request_body():
 ```
 
 * collaboration between tasks, custom functions
+[http operator](https://airflow.apache.org/docs/apache-airflow-providers-http/stable/operators.html)  
 ```python
 COLLABORATION_TASK_ID="mydag_first_call"
 
