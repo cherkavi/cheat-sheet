@@ -75,7 +75,7 @@ node {
 }
 ```
 
-### jenkins read http write file
+### jenkins read http write file from http to scp
 ```
 stage("Step #3") {
 		final String url="https://api.ipify.org"
