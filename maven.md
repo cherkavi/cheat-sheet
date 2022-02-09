@@ -244,33 +244,104 @@ mkdir src/main/java
 ```
 
 ### uber jar plugin, fat jar, jar with all dependencies, shade plugin
+example of project structure ( otherwise your custom classes woun't be added )
 ```
-<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.5.4</version>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-					<archive>
-						<!-- manifestFile>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</manifestFile -->
-            					<manifest>
-              						<mainClass>com.cherkashyn.vitalii.tools.App</mainClass>
-            					</manifest>
-					</archive>
-					<!-- Remove the "-jar-with-dependencies" at the end of the file -->
-					<appendAssemblyId>false</appendAssemblyId>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>attached</goal>
-						</goals>
-						<phase>package</phase>
-					</execution>
-				</executions>
-			</plugin>
+├── pom.xml
+└── src
+    ├── main
+    │   └── java
+    │       └── com
+    │           └── cherkashyn
+    │               └── vitalii
+    │                   └── tools
+    │                       ├── App.java
+    │                       └── JarExtractor.java
+    └── test
+        └── java
+            └── com
+                └── cherkashyn
+                    └── vitalii
+                        └── tools
+                            ├── AppTest.java
+                            └── JarExtractorTest.java
+
+```
+
+```
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+    <version>1.0</version>
+    <name>db-checker</name>
+
+    <groupId>com.cherkashyn.vitalii.db</groupId>
+    <artifactId>checker</artifactId>
+
+    <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.12</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <!-- version>2.5.4</version -->
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <!-- manifestFile>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</manifestFile -->
+                        <manifest>
+                            <mainClass>com.cherkashyn.vitalii.db.PostgreCheck</mainClass>
+                        </manifest>
+                    </archive>
+                    <!-- Remove the "-jar-with-dependencies" at the end of the file -->
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>attached</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
 ```
 ```
             <plugin>
