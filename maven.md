@@ -1,3 +1,6 @@
+## Repositories
+* https://mvnrepository.com/  
+
 ## maven scope explanations
 ![maven scopes](https://user-images.githubusercontent.com/8113355/143955154-eab903a5-a069-4773-a217-e0472c0c621f.png)
 
