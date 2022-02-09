@@ -7,18 +7,14 @@
 
 ## create project, init project, new project
 
-### example of creating project
+### example of creating project create project empty 
 ```
 mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.startup.searchcorrector -DartifactId=searchcorrector -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ```
 
-### example of creating project
+### example of creating project create web project maven create Java web project empty web project
 ``` 
 mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.startup.searchcorrector -DartifactId=workplace -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
-```
-
-### maven create Java web project
-``` 
 mvn archetype:generate -DgroupId=com.cherkashyn.vitalii.smava.onsite -DartifactId=soap-calculator -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
 ```
 
