@@ -213,6 +213,33 @@ println escaped
 sh "mycommand --input ${escaped}"
 ```
 
+### groovy random groovy variables
+```groovy
+// vairable inside jenkins pipeline
+
+pipeline {
+    agent any
+
+    environment {
+        TMP_FILE_NAME = "kom.yaml"+"${Math.abs(new Random().nextInt(99999))}"
+    }
+
+    stages {
+        stage('read from git write to cluster') {
+            steps {
+                echo "----- ${env.TMP_FILE_NAME}"                    
+
+                script {
+                    env.TMP_FILE_NAME2 = "second variable"
+                }
+                echo "----- ${env.TMP_FILE_NAME2}"                    
+
+            }
+        }
+    }
+
+}
+```
 
 ## REST API
 deploy with parameters
