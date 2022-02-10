@@ -46,7 +46,7 @@ mv openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit /home/soft/openshif
 export PATH=/home/soft/openshift-tool:$PATH
 ```
 
-### login into local minishift
+### login into openshift
 ```
 oc login --username=admin --password=admin
 echo "my_password" | oc login -u my_user
@@ -58,6 +58,12 @@ check login
 oc whoami
 oc whoami -t
 ```
+### login into openshift using token
+https://oauth-openshift.stg.zxxp.zur/oauth/token/display 
+```sh
+ oc login --token=sha256~xxxxxxxxxxxxx --server=https://api.stg.zxxp.zur:6443
+```
+
 ### print collaboration, output rest api call, print api calls
 ```
 oc whoami -v=8
