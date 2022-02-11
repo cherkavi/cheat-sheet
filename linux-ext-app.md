@@ -86,6 +86,18 @@ openssl req -new -newkey rsa:2048 \
 -subj "/C=DE/ST=Bavaria/L=München/O=cherkavi/CN=cherkavi developer" \
 ```
 
+## console browsers
+* w3m  
+* lynx  
+* elinks  
+
+
+## local http server http test server
+```sh
+nc -kdl localhost 8000
+# Sample request maker on another shell:
+wget http://localhost:8000
+```
 
 ## Utilities 
 * [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
