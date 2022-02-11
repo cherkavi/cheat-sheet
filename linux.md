@@ -1363,16 +1363,21 @@ cat file.txt | grep -v -e "not-include-string" -e "not-include-another"
 ```
 
 ### grep with file mask
-```
+```sh
 grep -ir "memory" --include="*.scala"
 ```
 
-### grep with regexp, grep regexp
-```
+### grep with regexp, grep regexp 
+```sh
 grep -ir --include=README.md ".*base" 2>/dev/null
 ```
-```ch
+```sh
 echo "BN_FASDLT/1/20200624T083332_20200624T083350_715488_BM60404_BN_FASDLT.MF4" | awk -F "/" '{print $NF}' | grep "[0-9]\{8\}"
+```
+```sh
+echo "185.43.224.157" | grep '^[0-9]\{1,3\}\.'
+echo "185.43.224.157" | egrep '^[0-9]{1,3}\.'
+echo "185.43.224.157" | egrep '^[0-9][0-9]+[0-9]+\.'
 ```
 
 ### grep with filename
