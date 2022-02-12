@@ -40,7 +40,7 @@ Combination of Dags, Operators, Tasks, TaskInstances
 * executor/airflow.cfg
   * remove examples from UI (restart) 
    	load_examples = False
-  * how much time a new DAGs should be picked up from the filesystem
+  * how much time a new DAGs should be picked up from the filesystem, ( dag update python file update )
 	min_file_process_interval = 0
 	dag_dir_list_interval = 60
 * [variables](https://marclamberti.com/blog/variables-with-apache-airflow/)
