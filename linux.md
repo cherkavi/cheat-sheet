@@ -2115,9 +2115,11 @@ ip -4 a
 ip -6 a
 ```
 
-### print all network interfaces
-```
+### print all network interfaces all wifi devices
+```sh
 interfaces
+ifconfig
+nmcli d
 ```
 
 ### switch on and off network interface
@@ -2129,7 +2131,6 @@ sudo ifdown lo && sudo ifup lo
 ```
 sudo service network-manager restart
 ```
-
 ### vpn connection, connect to network
 ```sh
 # status of all connections
