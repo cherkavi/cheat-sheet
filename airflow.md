@@ -153,7 +153,7 @@ show_templated_fields=none
 instance_name = "title name of web ui"
 ```
 
-### [Airflow start on python, nacked start, start components, start separate components, start locally]
+### Airflow start on python nacked start start components start separate components start locally manual start 
 ```sh
 # installed package
 /home/ubuntu/.local/lib/python3.8/site-packages
