@@ -956,7 +956,7 @@ sudo service docker restart
 docker system prune --all --volumes
 ```
 
-## Docker hack docker change files docker volumes
+## Docker hack docker change files docker volumes location manual volume edit 
 ```sh
 docker volume inspect
 # ls /var/lib/docker/volumes/4a6b2fa5a102985d377e545d6cb8648ed4f80da2ae835a1412eb02b9e0c03a52/_data
