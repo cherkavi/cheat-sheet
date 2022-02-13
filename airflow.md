@@ -37,6 +37,7 @@ Represents a specific run of a task = DAG + Task + Point of time
 Combination of Dags, Operators, Tasks, TaskInstances
 
 ## configuration, settings
+AIRFLOW_CONFIG - path to apache.cfg
 [environment variables](https://airflow.apache.org/docs/apache-airflow/stable/cli-and-env-variables-ref.html?highlight=airflow__#environment-variables)
 * executor/airflow.cfg
   * remove examples from UI (restart) 
