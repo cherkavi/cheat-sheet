@@ -956,7 +956,17 @@ sudo service docker restart
 docker system prune --all --volumes
 ```
 
-
+## Docker hack docker change files docker volumes
+```sh
+docker volume inspect
+# ls /var/lib/docker/volumes/4a6b2fa5a102985d377e545d6cb8648ed4f80da2ae835a1412eb02b9e0c03a52/_data
+```
+```sh
+docker image inspect puckel/docker-airflow:1.10.9
+# find "UpperDir"
+# ls /var/lib/docker/overlay2/97d76c31dd4907544b7357c3904853f9ceb3c755a5dedd933fee44491d9ec900/diff
+vim /var/lib/docker/overlay2/97d76c31dd4907544b7357c3904853f9ceb3c755a5dedd933fee44491d9ec900/diff/usr/local/airflow/airflow.cfg
+```
 
 
 # Docker swarm
