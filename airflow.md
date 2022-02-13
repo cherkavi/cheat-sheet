@@ -308,6 +308,7 @@ AIRFLOW_ENDPOINT="https://airflow.local/api/experimental"
 AIRFLOW_USER=my_user
 AIRFLOW_PASSWORD=my_passw
 ```
+Airflow REST API request
 ```sh
 function airflow-event-delete(){
 	if [ -z "$1" ]
@@ -323,7 +324,24 @@ function airflow-event-delete(){
 	echo $BODY
 	curl -H "Content-Type: application/json" --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT	
 }
+```
+airflow dag code
+```python
+class ListComparatorRequest:
+    def __init__(self, dag_run_config: Dict):
+        self.account_id: str = dag_run_config["account_id"]
+        self.filename: str = dag_run_config["filename"]
 
+    def request_object(self) -> Dict:
+        return {
+            "account_id": self.account_id,
+            "filename": self.filename,
+        }
+
+    def __str__(self) -> str:
+        return f"account_id:{self.account_id} filename:{self.filename}"
+	
+request: ListComparatorRequest = ListComparatorRequest(context["dag_run"].conf)
 ```
 
 ### airflow test connection
