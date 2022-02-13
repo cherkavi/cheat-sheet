@@ -43,6 +43,11 @@ Combination of Dags, Operators, Tasks, TaskInstances
   * how much time a new DAGs should be picked up from the filesystem, ( dag update python file update )
 	min_file_process_interval = 0
 	dag_dir_list_interval = 60
+  * authentication
+  	* auth_backend = airflow.api.auth.backend.basic_auth
+	  AIRFLOW__API__AUTH_BACKEND=airflow.api.auth.backend.basic_auth
+	* auth_backend = airflow.api.auth.backend.default
+
 * [variables](https://marclamberti.com/blog/variables-with-apache-airflow/)
 	```python
 	from airflow.models import Variable
