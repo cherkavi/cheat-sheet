@@ -900,7 +900,17 @@ services:
       retries: 5
     restart: always	
 ```
-
+remove entry point
+```
+entrypoint:
+    - php
+    - -d
+    - zend_extension=/usr/local/lib/php/xdebug.so
+    - -d
+    - memory_limit=-1
+    - vendor/bin/phpunit
+```
+	
 ## start in detached mode, up and detach
 ```
 docker-compose up -d
