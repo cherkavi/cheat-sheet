@@ -1341,3 +1341,14 @@ delete from task_reschedule where execution_date < (CURRENT_DATE - INTERVAL '5 D
 delete from task_fail where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
 delete from rendered_task_instance_fields where execution_date < (CURRENT_DATE - INTERVAL '5 DAY')::DATE;y
 ```
+
+									      
+## Issues
+### 404 during REST API request
+```
+<title>Airflow 404 = lots of circles</title>
+```
+solution is: change airflow.cfg
+~~auth_backend = airflow.api.auth.backend.default~~
+auth_backend = airflow.api.auth.backend.basic_auth
+
