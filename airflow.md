@@ -46,8 +46,8 @@ AIRFLOW_CONFIG - path to apache.cfg
 	min_file_process_interval = 0
 	dag_dir_list_interval = 60
   * authentication
-  	* auth_backend = airflow.api.auth.backend.basic_auth
-	  AIRFLOW__API__AUTH_BACKEND=airflow.api.auth.backend.basic_auth
+  	* auth_backend = airflow.api.auth.backend.basic_auth  
+	  AIRFLOW__API__AUTH_BACKEND=airflow.api.auth.backend.basic_auth  # for version 2.0.+
 	* auth_backend = airflow.api.auth.backend.default
 
 * [variables](https://marclamberti.com/blog/variables-with-apache-airflow/)
