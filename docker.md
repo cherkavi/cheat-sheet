@@ -973,7 +973,7 @@ docker volume inspect
 ```
 ```sh
 docker image inspect puckel/docker-airflow:1.10.9
-# find "UpperDir"
+# find "UpperDir", "LowerDir"
 # ls /var/lib/docker/overlay2/97d76c31dd4907544b7357c3904853f9ceb3c755a5dedd933fee44491d9ec900/diff
 vim /var/lib/docker/overlay2/97d76c31dd4907544b7357c3904853f9ceb3c755a5dedd933fee44491d9ec900/diff/usr/local/airflow/airflow.cfg
 ```
