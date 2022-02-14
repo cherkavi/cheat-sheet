@@ -398,10 +398,12 @@ docker inspect {CONTAINER ID} | grep -i NETWORK
   'container:<name|id>': reuse another container's network stack
   '<network-name>|<network-id>': connect to a user-defined network
 ```
-## mount folder, map folder, mount directory, map directory
+## mount folder, map folder, mount directory, map directory multiple directories
 ```sh
 working_dir="/path/to/working/folder"
 docker run --volume $working_dir:/work -p 6900-6910:5900-5910 --name my_own_container -it ubuntu:18.04 /bin/sh
+# !!! path to the host folder should be absolute !!! 
+docker run --entrypoint="" --name airflow_custom_local --interactive --tty --publish 8080:8080 --volume `pwd`/logs:/opt/airflow/logs --volume `pwd`/dags:/opt/airflow/dags airflow_custom /bin/sh 
 ```
 
 ## Volumes
