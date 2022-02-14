@@ -1471,7 +1471,9 @@ python3 /imap-message-reader.py > message_reader`date +%H:%M:%S`.txt
 ```
 
 ### generate random string 
-```
+```sh
+openssl rand -hex 30
+# or 
 urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | tr '[:upper:]' '[:lower:]' | head -n 1
 ```
 
