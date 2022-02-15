@@ -671,3 +671,41 @@ git --git-dir $DIR_PROJECT/integration-prototype/.git config commit.template $DI
 ![fix wrong branch commit](https://i.postimg.cc/TYVLR89Y/git-wrong-branch-commit.png)
 
 
+
+## git rest api 
+export PAT=07f1798524d6f79...
+export GIT_USER=tech_user
+export GIT_USER2=another_user
+export GIT_REPO=system_description
+export GIT_URL=https://github.sbbgroup.zur
+
+
+[git rest api](https://docs.github.com/en/enterprise-server@3.1/rest)
+[git endpoints](https://docs.github.com/en/enterprise-server@3.1/rest/overview/endpoints-available-for-github-apps)
+```sh
+# read user's data 
+curl -H "Authorization: token ${PAT}" ${GIT_URL}/api/v3/users/${GIT_USER}
+curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/users/${GIT_USER2}
+
+# list of repositories 
+curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/users/${GIT_USER2}/repos | grep html_url
+
+# read repository
+curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}
+curl -H "Authorization: token ${PAT}" ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}
+
+
+# read path
+export FILE_PATH=doc/README
+curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}/contents/${FILE_PATH}
+curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}/contents/${FILE_PATH} | jq .download_url
+
+# read content
+DOWNLOAD_URL=`curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}/contents/${FILE_PATH} | jq .download_url | tr '"' ' '`
+echo $DOWNLOAD_URL 
+curl -u ${GIT_USER}:${PAT} -X GET $DOWNLOAD_URL
+
+# read content
+curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}/contents/${FILE_PATH} | jq -r ".content" | base64 --decode
+
+```
