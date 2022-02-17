@@ -891,7 +891,7 @@ value_from_rest_api_call='{{ dag_run.conf["session_id"] }}'
 kwargs['dag_run'].conf.get('session_id', 'default_value_for_session_id')
 ```
 ```python
-	### connection 
+### connection 
 #   Conn id: data_api_connection
 # Conn Type: HTTP
 #      Host: https://data-portal.devops.org
@@ -919,6 +919,8 @@ def print_conf(**context):
     filename=context["dag_run"].conf['filename']
     print(f"filename {filename}")
 
+# alternative way of reading input parameters
+request_account="{{ dag_run.conf['account_id']  }}"
 
 with DAG(DAG_NAME,
          description='collaboration with data api',
@@ -934,7 +936,7 @@ with DAG(DAG_NAME,
             task_id=TASK_DATA_API_CALL
             , http_conn_id=CONNECTION_ID
             , method="GET"
-            , endpoint="/session-lister/v1/version"
+            , endpoint=f"/session-lister/v1/version?{request_account}"
             # data="{\"id\":111333222}"
             # response will be pushed to xcom with COLLABORATION_TASK_ID
             # , xcom_push=True
@@ -943,7 +945,6 @@ with DAG(DAG_NAME,
         )
 
     print_input_parameters() >> data_api_call()
-
 ```
 	
 * reading settings files ( dirty way )
