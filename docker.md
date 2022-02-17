@@ -53,7 +53,8 @@ systemctl daemon-reload
 sudo reboot
 ```
 
-Issue:
+Docker Issue:
+---
 ```
 Couldn't connect to Docker daemon at http+docker://localhost - is it running?
 ```
@@ -64,12 +65,20 @@ sudo systemctl start docker # Start right now
 # reboot
 ```
 
-
+---
 ```
 Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock
 ```
 logout and login again
 
+---
+```
+standard_init_linux.go:228: exec user process caused: exec format error
+```
+```dockerfile
+WORKDIR /opt/airflow
+ENTRYPOINT ["./entrypoint.sh"]
+```
 
 ## proxy set up:
 ### proxy for daemon
