@@ -680,8 +680,8 @@ export GIT_REPO=system_description
 export GIT_URL=https://github.sbbgroup.zur
 
 
-[git rest api](https://docs.github.com/en/enterprise-server@3.1/rest)
-[git endpoints](https://docs.github.com/en/enterprise-server@3.1/rest/overview/endpoints-available-for-github-apps)
+[git rest api](https://docs.github.com/en/enterprise-server@3.1/rest)  
+[git endpoints](https://docs.github.com/en/enterprise-server@3.1/rest/overview/endpoints-available-for-github-apps)  
 ```sh
 # read user's data 
 curl -H "Authorization: token ${PAT}" ${GIT_URL}/api/v3/users/${GIT_USER}
