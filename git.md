@@ -700,6 +700,7 @@ export FILE_PATH=doc/README
 curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}/contents/${FILE_PATH}
 curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}/contents/${FILE_PATH} | jq .download_url
 
+# https://docs.github.com/en/enterprise-server@3.1/rest/reference/repos#contents
 # read content
 DOWNLOAD_URL=`curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}/contents/${FILE_PATH} | jq .download_url | tr '"' ' '`
 echo $DOWNLOAD_URL 
