@@ -1,6 +1,16 @@
 # cheat sheet collection
 * [git useful commands and advices ](http://najomi.org/git)
 
+### git autocomplete
+```sh
+# curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+# .bashrc
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
+```
+
 ### debug flag, verbose output of commands, output debug
 ```
 export GIT_TRACE=1
