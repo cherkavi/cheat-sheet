@@ -156,11 +156,11 @@ git log -10 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)
 ```sh
 git shortlog -sne --all
 ```
-### list of files by author
+### list of files by author, list changed files
 ```bash
 git whatchanged --author="Cherkashyn" --name-only 
 ```
-### often changes by author
+### often changes by author, log files log with files
 ```bash
 git log --author="Cherkashyn" --name-status --diff-filter=M | grep "^M" | sort | uniq -c | sort -rh
 ```
