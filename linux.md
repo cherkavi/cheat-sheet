@@ -2858,8 +2858,21 @@ echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnm
 ```
 
 ### default type, detect default browser, mime types
-```
+```sh
 xdg-mime query default x-scheme-handler/http
+
+## where accessible types
+# echo $XDG_DATA_DIRS # avaialible in applications
+# locate google-chrome.desktop
+# /usr/share/applications/google-chrome.desktop
+
+## set default browser 
+xdg-mime default firefox.desktop x-scheme-handler/http
+xdg-mime default firefox.desktop x-scheme-handler/https
+xdg-settings set default-web-browser firefox.desktop
+
+## check default association
+cat ~/.config/mimeapps.list
 ```
 open in default browser
 ```sh
