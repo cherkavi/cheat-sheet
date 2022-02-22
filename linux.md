@@ -2359,13 +2359,21 @@ sudo gedit /etc/systemd/system/{service name}.service.d/https-proxy.conf
 Environment="https_proxy=http://user:passw@webproxy.host:8080"
 ```
 
-restart service, service restart
+service list of services
+```sh
+systemctl list-unit-files --type=service
+```
+
+restart service restart service stop service start
 ```
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart {service name}
+# or
+sudo service {service name} stop
+sudo service {service name} start
 ```
 
-enable automatic start, disable autostart
+enable automatic start disable autostart disable service
 ```
 sudo systemctl enable {service name}
 sudo systemctl disable {service name}
