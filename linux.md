@@ -2373,6 +2373,11 @@ sudo service {service name} stop
 sudo service {service name} start
 ```
 
+check service status
+```sh
+sudo systemctl is-active {service name}
+```
+
 enable automatic start disable autostart disable service
 ```
 sudo systemctl enable {service name}
