@@ -1,12 +1,13 @@
 # Linux applications
 
 ## useful links:
+* [how to install ubuntu on USB stick](https://ubuntuhandbook.org/index.php/2014/11/install-real-ubuntu-os-usb-drive/)
 * [vnc alternative - connect to existing session](http://www.karlrunge.com/x11vnc/)
 * [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
 * [jira editing shortcuts](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)
 * [i3 window manager shortcuts](https://i3wm.org/docs/refcard.html)
 * [xmind settings](https://www.xmind.net/m/PuDC/)
-> XMind.ini: ```-vm  /home/user/.sdkman/candidates/java/8.0.222-zulu/bin/java ```
+ > XMind.ini: ```-vm  /home/user/.sdkman/candidates/java/8.0.222-zulu/bin/java ```
 * [awesome windows manager, battery widget](https://github.com/deficient/battery-widget)
 ```bash
 echo $XDG_CONFIG_DIRS
@@ -17,6 +18,7 @@ locate rc.lua
 # place for mouse pointer, cursor, theme
 /usr/share/icons
 ```
+
 
 ### gnome settings, gnome list of settings
 ```sh
