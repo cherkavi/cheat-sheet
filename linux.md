@@ -1214,11 +1214,18 @@ pidof <app name>
 pidof chrome
 ```
 
-process list, process tree
+### process list, process tree
 ```sh
 ps axjf
 ps -ef --forest
 ps -fauxw
+```
+### process list without ps
+[links to processes](https://www.kernel.org/doc/html/latest/filesystems/proc.html#process-specific-subdirectories)
+```sh
+ls -l /proc/*/exe
+ls -l /proc/*/cwd
+cat /proc/*/cmdline
 ```
 process full command, ps full, ps truncate
 ```sh
