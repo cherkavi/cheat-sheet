@@ -1129,6 +1129,11 @@ rpm -qaic
 rpm -qi wd-tomcat8-app-brandserver
 ```
 
+#### install without sudo rpm without sudo
+```sh
+rpm -ivh --prefix=$HOME browsh_1.6.4_linux_amd64.rpm
+```
+
 ### jobs
 ```
 fg, bg, jobs
