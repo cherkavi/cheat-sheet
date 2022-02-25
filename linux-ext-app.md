@@ -89,9 +89,12 @@ openssl req -new -newkey rsa:2048 \
 ```
 
 ## console browsers
-* w3m  
-* lynx  
+* `sudo apt install w3m`
+* `sudo apt install linx`
+* https://brow.sh/downloads
 * elinks  
+* `sudo apt install links`
+* `sudo apt install links2`
 
 ## online http test
 * https://webhook.site/  
