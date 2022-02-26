@@ -465,6 +465,41 @@ spec:
 For MapR cluster, be aware about
 MapR ticket-file ----<>Secret-----<>PV------<>PVC
 
+### pv mapr
+```yaml
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-workloads-staging-01
+spec:
+  capacity:
+    storage: 50Gi
+  csi:
+    driver: com.mapr.csi-kdf
+    volumeHandle: pv-workloads-staging-01
+    volumeAttributes:
+      cldbHosts: >-
+        dpmtjp0001.swiss.com dpmtjp0002.swiss.com
+        dpmtjp0003.swiss.com dpmtjp0004.swiss.com
+      cluster: dp.stg.swiss
+      platinum: 'false'
+      securityType: secure
+      volumePath: /data/reprocessed/sensor
+    nodePublishSecretRef:
+      name: hil-supplier-01
+      namespace: workloads-staging
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    kind: PersistentVolumeClaim
+    namespace: workloads-staging
+    name: pvc-supplier-01
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+status:
+  phase: Bound
+```
+
 ### create secret token if it not exist
 creating secret 
 * login into mapr
