@@ -440,6 +440,20 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
+  name: test01
+spec:
+  containers:
+  - name: test01
+    image: busybox
+    command: ["sleep", "36000"]
+  restartPolicy: Never
+  backoffLimit: 4
+```
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
   name: connect-to-me
 spec:
   containers:
