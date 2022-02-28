@@ -46,6 +46,7 @@ mv openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit /home/soft/openshif
 export PATH=/home/soft/openshift-tool:$PATH
 ```
 
+## [CLI commands oc commands](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html)
 ### login into openshift
 ```
 oc login --username=admin --password=admin
@@ -272,8 +273,12 @@ oc debug pods/{name of the pod}
 ```
 oc get pods --field-selector=status.phase=Running
 oc rsh {name of pod}
+
 # example of executing program on pod: kafka-test-app
 oc exec kafka-test-app "/usr/bin/java"
+
+# copy files from POD to locally 
+oc rsync /my/local/folder/ test01-mz2rf:/opt/app-root/src/
 ```
 
 ### copy file from pod
