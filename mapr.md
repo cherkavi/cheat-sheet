@@ -247,6 +247,11 @@ maprlogin print -ticketfile <your ticketfile>
 # on 07.05.2019 13:56:47 created = 'Tue Apr 23 13:56:47 UTC 2019', expires = 'Tue May 07 13:56:47 UTC 2019'
 ```
 
+## generate ticket
+```
+maprlogin generateticket -type service -cluster my61.cluster.com -duration 30:0:0 -out /tmp/mapr_ticket -user mapr
+```
+
 ## check status of the cluster, cluster health check
 ```
 maprcli dashboard info -json
