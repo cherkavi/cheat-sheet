@@ -17,7 +17,7 @@ mv $OUTPUT_FILE $OUTPUT_FILE-original
 URL="https://artifactory.sbbgroup.net/artifactory/management-snapshots/com/ad/cicd/jenkins/jenkins-labeling-6b999cadc054-SNAPSHOT-jenkins.zip"
 OUTPUT_FILE=`echo $URL | awk -F '/' '{print $(NF)}'`
 UPLOAD_FILE="jenkins-labeling-6b999cadc054-SNAPSHOT-jenkins.zip"
-curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -X PUT  $URL --data-binary $UPLOAD_FILE
+curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -X PUT  $URL --data-binary @${UPLOAD_FILE}
 
 # curl -v --user username:password -X PUT urlGoesHere --data-binary fileToBeDeployed
 ```
