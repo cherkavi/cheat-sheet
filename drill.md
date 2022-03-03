@@ -289,6 +289,17 @@ show databases
 DrillCollaboration
 ```
 
+### drill errors
+```text
+Caused by: java.lang.IllegalStateException: ​No active Drillbit endpoint found from ZooKeeper. Check connection parameters?
+```
+```sh
+# check your Zookeeper host & cluster ID
+ZOOKEEPER_HOST=zurpmtjp03.ddp.com:5181,zurpmtjp04.ddp.com:5181
+DRILL_CLUSTER_ID=dp_staging_zur-drillbits
+/opt/mapr/drill/drill-1.16.0/bin/sqlline -u "jdbc:drill:zk=${ZOOKEEPER_HOST}/drill/${CLUSTER_ID};auth=MAPRSASL"
+```
+
 ## drill special commands
 increasing amount of parallel processing threads
 ```sql
