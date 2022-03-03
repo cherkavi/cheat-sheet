@@ -291,7 +291,10 @@ DrillCollaboration
 
 ### drill errors
 ```text
-Caused by: java.lang.IllegalStateException: ​No active Drillbit endpoint found from ZooKeeper. Check connection parameters?
+Caused by: java.lang.IllegalStateException: No active Drillbit endpoint found from ZooKeeper. Check connection parameters?
+```
+```text
+[MapR][DrillJDBCDriver](500150) Error setting/closing connection:
 ```
 ```sh
 # check your Zookeeper host & cluster ID
