@@ -2202,10 +2202,13 @@ sudo tcpdump -nvX -v src port 6443 and src host 10.140.26.10 and dst port not 22
 # and, or, not
 ```
 
-### keystore
+### keystore TrustStore 
+> TrustStore holds the certificates of external systems that you trust.  
+> So a TrustStore is a KeyStore file, that contains the public keys/certificate of external hosts that you trust.
 ```sh
-## list of certificates
+## list of certificates inside truststore 
 keytool -list -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server
+# maybe will ask for a password
 
 ## generating ssl key stores
 keytool -genkeypair -keystore -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server -alias serverKey -dname "CN=localhost, OU=AD, O=UBS AG, L=Zurich, ST=Bavaria, C=DE" -keyalg RSA
