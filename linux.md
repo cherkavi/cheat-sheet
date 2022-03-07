@@ -467,7 +467,28 @@ cp -r --preserve=all /path/to/src /path/to/dest
 sudo chown -R $USER .
 ```
 
-### syncronize folders, copy everything between folders, diff folder
+### rsync singe file copy from remote
+```sh
+#!/bin/bash
+
+if [[ $FILE_PATH == "" ]]; then
+    echo "file to copy: $FILE_PATH"
+else
+    if [[ $1 == "" ]]; then
+    	echo "provide path to file or env.FILE_PATH"
+    else
+        FILE_PATH=$1
+    fi
+fi
+
+USER_CHINA=cherkavi
+HOST=10.10.10.1
+
+scp -r $USER_CHINA@$HOST:$FILE_PATH .
+# rsync -avz --progress  $USER_CHINA@$HOST:$FILE_PATH $FILE_PATH
+```
+
+### synchronize folders, copy everything between folders, diff folder
 ```bash
 # print diff 
 diff -qr /tmp/first-folder/ /tmp/second-folder
