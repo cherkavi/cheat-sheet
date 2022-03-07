@@ -447,3 +447,58 @@ solution:
 * login into destination Edge node
 * execute 'kinit'
 
+
+## Docker container with MapR docker image 
+### Security Context Constraints
+```dockerfile
+FROM maprtech/pacc:6.1.0_6.0.0_ubuntu16
+```
+permission for image scc 
+```
+allowHostDirVolumePlugin: true
+allowHostIPC: false
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: true
+allowedCapabilities:
+- NET_RAW
+- SYS_ADMIN
+- NET_ADMIN
+- SETGID
+- SETUID
+- SYS_CHROOT
+- CAP_AUDIT_WRITE
+apiVersion: security.openshift.io/v1
+defaultAddCapabilities: null
+fsGroup:
+  type: RunAsAny
+groups:
+- r-d-zur-func_engineer
+- r-d-zur-engineer
+kind: SecurityContextConstraints
+metadata:
+  generation: 26
+  name: mapr-apps-netraw-scc
+priority: 5
+readOnlyRootFilesystem: false
+requiredDropCapabilities: null
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: MustRunAs
+supplementalGroups:
+  type: RunAsAny
+users:
+- system:serviceaccount:custom-user:default
+volumes:
+- configMap
+- downwardAPI
+- emptyDir
+- flexVolume
+- hostPath
+- persistentVolumeClaim
+- projected
+- secret
+```
