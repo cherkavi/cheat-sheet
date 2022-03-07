@@ -648,9 +648,10 @@ sort -r <filename>
 cat -n <filename>
 ```
 
-### split and merge big files, make parts from big file copy parts
+### split and join big files split and merge, make parts from big file copy parts
 ```
 split --bytes=1M /path/to/image/image.jpg /path/to/image/prefixForNewImagePieces
+# --bytes=1G
 
 cat prefixFiles* > newimage.jpg
 ```
