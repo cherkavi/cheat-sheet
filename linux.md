@@ -2217,10 +2217,9 @@ keytool -import -file ~/Downloads/certificate.crt -keystore ./src/main/resources
 #### in other words, rsa certificate rsa from url x509 url: 
 1. Download the certificate by opening the url in the browser and downloading it there manually.  
 2. Run the following command: ```keytool -import -file <name-of-downloaded-certificate>.crt -alias <alias for exported file> -keystore myTrustStore```  
-```
 
 ### DNS
-```
+```sh
 # check 
 sudo resolvectl status | grep "DNS Servers"
 systemd-resolve --status
