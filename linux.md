@@ -2207,7 +2207,7 @@ sudo tcpdump -nvX -v src port 6443 and src host 10.140.26.10 and dst port not 22
 > So a TrustStore is a KeyStore file, that contains the public keys/certificate of external hosts that you trust.
 ```sh
 ## list of certificates inside truststore 
-keytool -list -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server
+keytool -list -v -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server
 # maybe will ask for a password
 
 ## generating ssl key stores
