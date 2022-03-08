@@ -467,7 +467,28 @@ cp -r --preserve=all /path/to/src /path/to/dest
 sudo chown -R $USER .
 ```
 
-### syncronize folders, copy everything between folders, diff folder
+### rsync singe file copy from remote
+```sh
+#!/bin/bash
+
+if [[ $FILE_PATH == "" ]]; then
+    echo "file to copy: $FILE_PATH"
+else
+    if [[ $1 == "" ]]; then
+    	echo "provide path to file or env.FILE_PATH"
+    else
+        FILE_PATH=$1
+    fi
+fi
+
+USER_CHINA=cherkavi
+HOST=10.10.10.1
+
+scp -r $USER_CHINA@$HOST:$FILE_PATH .
+# rsync -avz --progress  $USER_CHINA@$HOST:$FILE_PATH $FILE_PATH
+```
+
+### synchronize folders, copy everything between folders, diff folder
 ```bash
 # print diff 
 diff -qr /tmp/first-folder/ /tmp/second-folder
@@ -627,9 +648,10 @@ sort -r <filename>
 cat -n <filename>
 ```
 
-### split and merge big files, make parts from big file copy parts
+### split and join big files split and merge, make parts from big file copy parts
 ```
 split --bytes=1M /path/to/image/image.jpg /path/to/image/prefixForNewImagePieces
+# --bytes=1G
 
 cat prefixFiles* > newimage.jpg
 ```
@@ -2180,10 +2202,13 @@ sudo tcpdump -nvX -v src port 6443 and src host 10.140.26.10 and dst port not 22
 # and, or, not
 ```
 
-### keystore
+### keystore TrustStore 
+> TrustStore holds the certificates of external systems that you trust.  
+> So a TrustStore is a KeyStore file, that contains the public keys/certificate of external hosts that you trust.
 ```sh
-## list of certificates
+## list of certificates inside truststore 
 keytool -list -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server
+# maybe will ask for a password
 
 ## generating ssl key stores
 keytool -genkeypair -keystore -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server -alias serverKey -dname "CN=localhost, OU=AD, O=UBS AG, L=Zurich, ST=Bavaria, C=DE" -keyalg RSA
@@ -2195,10 +2220,9 @@ keytool -import -file ~/Downloads/certificate.crt -keystore ./src/main/resources
 #### in other words, rsa certificate rsa from url x509 url: 
 1. Download the certificate by opening the url in the browser and downloading it there manually.  
 2. Run the following command: ```keytool -import -file <name-of-downloaded-certificate>.crt -alias <alias for exported file> -keystore myTrustStore```  
-```
 
 ### DNS
-```
+```sh
 # check 
 sudo resolvectl status | grep "DNS Servers"
 systemd-resolve --status

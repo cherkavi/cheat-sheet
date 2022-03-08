@@ -1,6 +1,7 @@
 # Artifactory
 
-## get artifact from artifactory
+## endpoints
+### get artifact from artifactory
 ```sh
 URL="https://artifactory.sbbgroup.net/artifactory/management-snapshots/com/ad/cicd/jenkins/jenkins-labeling-6b999cadc054-SNAPSHOT-jenkins.zip"
 OUTPUT_FILE=`echo $URL | awk -F '/' '{print $(NF)}'`
@@ -11,12 +12,24 @@ ls -la $OUTPUT_FILE
 mv $OUTPUT_FILE $OUTPUT_FILE-original
 ```
 
-## upload to artifactory
+### upload to artifactory
 ```sh
 URL="https://artifactory.sbbgroup.net/artifactory/management-snapshots/com/ad/cicd/jenkins/jenkins-labeling-6b999cadc054-SNAPSHOT-jenkins.zip"
 OUTPUT_FILE=`echo $URL | awk -F '/' '{print $(NF)}'`
 UPLOAD_FILE="jenkins-labeling-6b999cadc054-SNAPSHOT-jenkins.zip"
-curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -X PUT  $URL --data-binary $UPLOAD_FILE
+curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -X PUT  $URL --data-binary @${UPLOAD_FILE}
 
 # curl -v --user username:password -X PUT urlGoesHere --data-binary fileToBeDeployed
 ```
+
+## F.A.Q 
+### error from endpoint
+```
+{
+  "errors" : [ {
+    "status" : 403,
+    "message" : "The user: 'tu-datacenter' is not permitted to deploy ... 
+  } ]
+}
+```
+check user's permission 
