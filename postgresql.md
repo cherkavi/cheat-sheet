@@ -60,12 +60,22 @@ host    all             all              ::/0                            md5
 ```
 
 ### connect to db
+#### cli installation
 ```sh
 pip install -U pgcli
 sudo apt install pgcli
-pgcli --host 10.14.22.20 --port 30063 --username admin --password adminpass --dbname my_db
 ```
-save results to file
+#### postgresql cli connection
+```sh
+PG_HOST=localhost
+PG_PORT=5432
+PG_USER=postgres-prod
+PG_PASS=my_secure_pass
+PG_DB=data-production
+
+psql -h $PG_HOST -p $PG_PORT -U $PG_USER $PG_DB
+```
+#### save results to file
 ```
 # pgcli save query result
 # \o [filename]                        | Send all query results to file.
