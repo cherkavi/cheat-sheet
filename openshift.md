@@ -630,6 +630,9 @@ spec:
 
 ### Deployment config max parameters for starting pods with long startup time
 ```yaml
+# rule:
+# readiness_probe.initial_delay_seconds <=  stategy.rollingParams.timeoutSeconds
+
 stategy
   rollingParams
     timeoutSeconds: 1500
@@ -637,6 +640,7 @@ stategy
 readiness_probe:
   initial_delay_seconds: 600
 ```
+
 
 ## mounting types volum mounting
 ```json
