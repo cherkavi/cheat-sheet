@@ -628,6 +628,16 @@ spec:
     run: my-flask
 ```
 
+### Deployment config max parameters for starting pods with long startup time
+```yaml
+stategy
+  rollingParams
+    timeoutSeconds: 1500
+...
+readiness_probe:
+  initial_delay_seconds: 600
+```
+
 ## mounting types volum mounting
 ```json
   volumeMounts:
