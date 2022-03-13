@@ -1,9 +1,21 @@
 # Linux Debian cheat sheet
 
-* [cheat sheet cmd](http://cheat.sh/)
-  ```sh
-  curl cheat.sh/ls
-  ```
+* cheat sheets
+    * [cheat sheet cmd](http://cheat.sh/)
+    ```sh
+    curl cheat.sh/ls
+    ```
+    * TooLongDontRead     
+    ```sh
+    # npm install -g tldr
+    tldr ls
+    ```
+    * how to 
+    ```sh
+    # npm install -g how-2
+    how2 ls
+    ``` 
+    
 * [Security cheat sheet](https://www.jaiminton.com/cheatsheet/DFIR)
 
 ### place for scripts, permanent script
@@ -2963,10 +2975,11 @@ xdotool mousemove 1800 500
 xdotool click 1
 ```
 
-## calendar, week number
+### calendar, week number
 ```
 gcal --with-week-number
 ```
+
 ## vnc server
 ```sh
 # vnc server 
@@ -2989,4 +3002,14 @@ sudo apt-get install tigervnc-scraping-server
 vncpasswd
 # https://github.com/sebestyenistvan/runvncserver
 x0vncserver -passwordfile ~/.vnc/passwd -display :0
+```
+
+## apt 
+### apt cache
+```sh
+cd /var/cache/apt/archives
+```
+### apt force install 
+```sh
+sudo apt install --fix-broken -o Dpkg::Options::="--force-overwrite" {package name}
 ```

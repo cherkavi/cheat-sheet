@@ -280,23 +280,74 @@ copy to ```~/.config/vifm/colors``` [color scheme](https://vifm.info/colorscheme
 ```:colorscheme <tab>```
 
 ## visual code plugins
-```
-vscjava.vscode-java-debug
-peterjausovec.vscode-docker
-ryu1kn.edit-with-shell
-inu1255.easy-shell
-tyriar.terminal-tabs
-vscjava.vscode-java-dependency
-vscjava.vscode-java-pack
-vscjava.vscode-java-test
-redhat.java
-yzhang.markdown-all-in-one
-vscjava.vscode-maven
-ms-python.python
-liximomo.remotefs
-scala-lang.scala
-visualstudioexptteam.vscodeintellicode
-miguel-savignano.terminal-runner
+```sh
+# ctrl+p
+# common
+ext install nick-rudenko.back-n-forth
+ext install alefragnani.Bookmarks
+ext install rockingskier.copy-copy-paste
+ext install mksafi.find-jump
+ext install jacobdufault.fuzzy-search
+ext install GitHub.copilot # don't install for pytest
+ext install atlassian.atlascode
+ext install qcz.text-power-tools
+ext install redhat.vscode-commons
+ext install ms-vscode-remote.remote-containers
+ext install ms-vscode-remote.remote-ssh
+ext install ms-vscode-remote.remote-ssh-edit
+ext install liximomo.remotefs
+ext install visualstudioexptteam.vscodeintellicode
+ext install foam.foam-vscode
+
+# json
+ext install mohsen1.prettify-json
+ext install vthiery.prettify-selected-json
+ext install richie5um2.vscode-statusbar-json-path
+
+# markdown
+ext install tchayen.markdown-links
+ext install kortina.vscode-markdown-notes
+ext install yzhang.markdown-all-in-one
+
+# git
+ext install donjayamanne.githistory
+ext install qezhu.gitlink
+
+# containers
+ext install peterjausovec.vscode-docker
+ext install ms-azuretools.vscode-docker
+
+# shell 
+ext install inu1255.easy-shell
+ext install ryu1kn.edit-with-shell
+ext install ms-toolsai.jupyter-renderers
+ext install devwright.vscode-terminal-capture
+ext install miguel-savignano.terminal-runner
+ext install tyriar.terminal-tabs
+
+# jupyter
+ext install ms-toolsai.jupyter
+ext install ms-toolsai.jupyter-keymap
+
+# java
+ext install vscjava.vscode-java-dependency
+ext install vscjava.vscode-java-pack
+ext install vscjava.vscode-java-test
+ext install redhat.java
+ext install vscjava.vscode-maven
+ext install vscjava.vscode-java-debug
+
+# python
+ext install ms-python.python
+ext install ms-python.vscode-pylance
+ext install ms-pyright.pyright
+
+# scala 
+ext install scala-lang.scala
+
+# sql
+ext install mtxr.sqltools
+ext install mtxr.sqltools-driver-mysql
 ```
 
 ## taskwarrior
