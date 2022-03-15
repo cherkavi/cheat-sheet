@@ -159,8 +159,11 @@ oc describe {[object type:](https://docs.openshift.com/enterprise/3.0/cli_refere
 * ...
 
 ### take a look into all events, notification about changes
-```
+```sh
+# follow events
 oc get --watch events
+# print events and sort them out by time
+oc get events | sort -r -h | grep " Warning "
 ```
 
 ### show namespace, all applications, url to service, status of all services
