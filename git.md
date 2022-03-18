@@ -675,6 +675,20 @@ git --git-dir $DIR_PROJECT/integration-prototype/.git config core.hooksPath $DIR
 git --git-dir $DIR_PROJECT/integration-prototype/.git config commit.template $DIR_PROJECT/integration-prototype/.commit.template
 ```
 
+## [git lint](https://jorisroovers.com/gitlint/)
+```sh
+pip install gitlint
+gitlint install-hook
+```
+.gitlint
+```properties
+# See http://jorisroovers.github.io/gitlint/rules/ for a full description.
+[general]
+ignore=T3,T5,B1,B5,B7
+[title-match-regex]
+regex=^[A-Z].{0,71}[^?!.,:; ]
+```
+
 
 ## advices
 ### fix commit to wrong branch
