@@ -500,7 +500,7 @@ scp -r $USER_CHINA@$HOST:$FILE_PATH .
 # rsync -avz --progress  $USER_CHINA@$HOST:$FILE_PATH $FILE_PATH
 ```
 
-### synchronize folders, copy everything between folders, diff folder
+### sync folders synchronize folders, copy everything between folders, diff folder
 ```bash
 # print diff 
 diff -qr /tmp/first-folder/ /tmp/second-folder
