@@ -1380,6 +1380,14 @@ grep -A 4
 grep --after 4
 ```
 
+### [grep regexp](https://linuxize.com/post/regular-expressions-in-grep/)
+```sh
+printf "# todo\n## one\n### description for one\n## two\n## three" | grep "[#]\{3\}"
+# grep boundary between two numbers
+printf "# todo\n## one\n### description for one\n## two\n## three" | grep "[#]\{2,3\}"
+printf "# todo\n## one\n### description for one\n## two\n## three" | grep --extended-regexp "[#]{3}"
+```
+
 ### grep between, print between lines
 ```
 oc describe pod/gateway-486-bawfps | awk '/Environment:/,/Mounts:/'
