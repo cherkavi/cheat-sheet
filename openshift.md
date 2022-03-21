@@ -163,7 +163,7 @@ oc describe {[object type:](https://docs.openshift.com/enterprise/3.0/cli_refere
 # follow events
 oc get --watch events
 # print events and sort them out by time
-oc get events | sort -r -h | grep " Warning "
+oc get events --sort-by='.lastTimestamp' | grep " Warning "
 ```
 
 ### show namespace, all applications, url to service, status of all services
