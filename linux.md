@@ -2211,6 +2211,7 @@ sudo openconnect --no-cert-check --no-proxy {ip-address} --user={user name} ---s
 ```
 ### openvpn vpn connection
 ```sh
+# apt install network-manager-openvpn
 sudo openvpn file_config.ovpn
 ```
 
