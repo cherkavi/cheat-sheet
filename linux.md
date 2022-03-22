@@ -2205,9 +2205,13 @@ nmcli device wifi connect  "$point" password $wifi_code
 ```
 
 ### raw vpn connection
-```
+```sh
 sudo openconnect --no-proxy {ip-address} --user={user name}
 sudo openconnect --no-cert-check --no-proxy {ip-address} --user={user name} ---servercert
+```
+### openvpn vpn connection
+```sh
+sudo openvpn file_config.ovpn
 ```
 
 ### debug network collaboration, ip packages
