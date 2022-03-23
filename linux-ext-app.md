@@ -312,6 +312,7 @@ ext install yzhang.markdown-all-in-one
 # git
 ext install donjayamanne.githistory
 ext install qezhu.gitlink
+ext install TeamHub.teamhub
 
 # containers
 ext install peterjausovec.vscode-docker
