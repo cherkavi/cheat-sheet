@@ -187,7 +187,17 @@ oc get route/name-of-route --output json
 ```sh
 oc rollout latest "deploy-config-example"
 ```
-
+## get services
+```sh
+oc get services
+```
+### service migration
+```
+FILE_NAME=service-data-portal.yaml
+oc get service/my_service --output yaml > $FILE_NAME
+echo "vim $FILE_NAME" | clipboard
+yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.spec.clusterIP,.spec.clusterIPs),(.metadata.namespace="my_new_namespace")' $FILE_NAME | clipboard
+```
 
 ## print all accounts
 ```
