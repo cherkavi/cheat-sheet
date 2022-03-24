@@ -172,8 +172,14 @@ oc status
 ```
 
 ### show route to service, show url to application
-```
+```sh
 oc get routes {app name / service name}
+```
+#### route migration
+```sh
+FILE_NAME=route-data-api-mdf4download-service.yaml
+echo "vim $FILE_NAME" | clipboard
+yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.metadata.labels."template.openshift.io/template-instance-owner"),(.metadata.namespace="my_namespace")' $FILE_NAME 
 ```
 
 ## get all information about current project, show all resources
