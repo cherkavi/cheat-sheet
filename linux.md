@@ -1963,6 +1963,7 @@ diff <(jq --sort-keys . A.json) <(jq --sort-keys . B.json)
 ```
 
 ### [parsing yaml, yaml processing](https://mikefarah.gitbook.io/yq/)
+### [yq doc](https://mikefarah.gitbook.io/yq/operators)
 #### [yq examples](https://metacpan.org/pod/distribution/ETL-Yertl/bin/yq)
 ```sh
 # read value
@@ -1970,6 +1971,12 @@ cat k8s-pod.yaml | yq r - --printMode pv  "metadata.name"
 
 # convert to JSON
 cat k8s-pod.yaml | yq - r -j --prettyPrint
+
+# yaml remove elements clear ocp fields
+yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.spec.clusterIP,.spec.clusterIP)' service-data-api-mdf4download-service.yaml
+
+# yaml editor 
+yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.spec.clusterIP,.spec.clusterIP),(.metadata.namespace="ttt")' service-data-api-mdf4download-service.yaml
 ```
 
 ### chmod recursively
