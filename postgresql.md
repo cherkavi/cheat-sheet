@@ -172,6 +172,12 @@ SELECT table_name FROM information_schema.tables WHERE table_schema='public';
 \!
 ```
 
+### get version
+```sql
+SHOW server_version;
+SELECT version();
+```
+
 ### internal tables
 ```
 select * from pg_tables;
