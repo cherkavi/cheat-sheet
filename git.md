@@ -32,8 +32,13 @@ git reset --hard
 ```
 
 ### restore local branch like remote one
-```
+```sh
 git reset --hard origin/master
+```
+
+### restore local branch with saving all the work
+```sh
+git reset --soft origin/master
 ```
 
 ### restore removed file, restore deleted file, find removed file, show removed file
@@ -596,6 +601,25 @@ Encountered 1 file(s) that should have been pointers, but weren't:
 git lfs migrate import --no-rewrite path-to-file
 ```
 
+### create local repo in filesystem
+```sh
+# create bare repo file:////home/projects/bmw/temp/repo
+# for avoiding: error: failed to push some refs to 
+mkdir /home/projects/bmw/temp/repo
+cd /home/projects/bmw/temp/repo
+git init --bare
+# or git config --bool core.bare true
+
+# clone to copy #1
+mkdir /home/projects/bmw/temp/repo2
+cd /home/projects/bmw/temp/repo2
+git clone file:////home/projects/bmw/temp/repo
+
+# clone to copy #1
+mkdir /home/projects/bmw/temp/repo3
+cd /home/projects/bmw/temp/repo3
+git clone file:////home/projects/bmw/temp/repo
+```
 
 ### configuration for proxy server, proxy configuration
 #### set proxy, using proxy
