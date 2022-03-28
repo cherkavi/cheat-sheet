@@ -444,6 +444,7 @@ kubectl api-versions
     Run 'oc status' to view your app.
 
 ### job example
+!!! openshift job starts only command - job will skip entrypoint 
 ```yaml
 apiVersion: batch/v1
 kind: Job
