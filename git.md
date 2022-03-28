@@ -119,6 +119,16 @@ git reset --hard origin/$current_branch
 git branch -d $current_branch_ghost
 ```
 
+### squash commit replace batch of commits
+```sh
+git checkout my_branch
+# take a look into your local changes, for instance we are going to squeeze 4 commits
+git reset --soft HEAD~4
+# in case of having external changes and compress commits: git rebase -i HEAD~4
+git commit
+git push --force 
+git push --force-with-lease origin my_branch
+```
 
 ### check hash-code of the branch, show commit hash code 
 ```
