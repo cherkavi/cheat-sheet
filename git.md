@@ -162,7 +162,10 @@ git branch --all --merged 0ff27c79738a6ed718baae3e18c74ba87f16a314
 git merge-base --is-ancestor <commit_or_branch> <is_commit_in_branch>; if [[ 1 -eq "$?" ]]; then echo "NOT included"; else echo "included"; fi
 ```
 
-
+### check log by hash, message by hash
+```sh
+git log 0ff27c79738a6ed718baae3e18c74ba87f16a314
+```
 
 ### check last commits for specific branch, last commits in branch
 ```sh
