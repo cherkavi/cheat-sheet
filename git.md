@@ -131,12 +131,12 @@ git push --force-with-lease origin my_branch
 ```
 
 ### check hash-code of the branch, show commit hash code 
-```
+```sh
 git rev-parse "remotes/origin/release-6.0.0"
 ```
 
 ### print current hashcode commit hash last commit hash
-```
+```sh
 git rev-parse HEAD
 git log -n 1 --pretty=format:'%h' > /tmp/gitHash.txt
 ```
@@ -152,11 +152,12 @@ git rev-parse remotes/origin/release-data-api-13.3
 ```
 
 ### check all branches for certain commit ( is commit in branch, is branch contains commit ), commit include in 
-```
+```sh
 git branch --all --contains 0ff27c79738a6ed718baae3e18c74ba87f16a314
 git branch --all --contains {name-of-the-branch}
 git branch --all --merged 0ff27c79738a6ed718baae3e18c74ba87f16a314
 ```
+
 ### is commit included in another, commit before, commit after, if commit in branch
 ```sh
 git merge-base --is-ancestor <commit_or_branch> <is_commit_in_branch>; if [[ 1 -eq "$?" ]]; then echo "NOT included"; else echo "included"; fi
@@ -164,7 +165,7 @@ git merge-base --is-ancestor <commit_or_branch> <is_commit_in_branch>; if [[ 1 -
 
 ### check log by hash, message by hash
 ```sh
-git log 0ff27c79738a6ed718baae3e18c74ba87f16a314
+git log -1 0ff27c79738a6ed718baae3e18c74ba87f16a314
 ```
 
 ### check last commits for specific branch, last commits in branch
@@ -173,7 +174,7 @@ git log -5 develop
 ```
 
 ### check last commits for subfolder, check last commits for author, last commit in folder
-```
+```sh
 git log -10 --author "Frank Newman" -- my-sub-folder-in-repo
 ```
 
