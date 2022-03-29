@@ -142,8 +142,13 @@ git log -n 1 --pretty=format:'%h' > /tmp/gitHash.txt
 ```
 
 ### print branch name by hashcode
-```
+```sh
 git ls-remote | grep <hashcode>
+```
+
+### print branch hash code by name branch hash branch head hash
+```sh
+git rev-parse remotes/origin/release-data-api-13.3
 ```
 
 ### check all branches for certain commit ( is commit in branch, is branch contains commit ), commit include in 
