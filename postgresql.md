@@ -114,6 +114,11 @@ sudo apt-get install postgresql-client-12
 psql --username postgres --list
 ```
 
+### print current user
+```sql
+select current_user;
+```
+
 ### execute query, ad-hoc check connection 
 ```sh
 psql -w -U user_name -d database_name -c "SELECT 1"
