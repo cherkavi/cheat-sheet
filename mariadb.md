@@ -227,7 +227,9 @@ ds.setDriverClassName("org.mariadb.jdbc.Driver");
 DROP DATABASE IF EXISTS {databasename};
 CREATE DATABASE {databasename}
   CHARACTER SET = 'utf8'
-  COLLATE = 'utf8_general_ci';
+  COLLATE = 'utf8_general_ci'; 
+-- 'utf8_general_ci' - case insensitive
+-- 'utf8_general_cs' - case sensitive
 ```
 
 ### create table, autoincrement
