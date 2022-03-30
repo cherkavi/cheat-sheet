@@ -164,6 +164,9 @@ psql -U workflowmonitoring -d workflowmonitoringdb
 SELECT table_name FROM information_schema.tables WHERE table_schema='public';
 -- list of all tables
 \dt
+-- list of all tables by schema ( dot at the end is must !!! )
+\dt my_schema.
+\dt my_schema.table1
 -- list of all views
 \dv
 -- describe object
