@@ -157,7 +157,6 @@ psql -U workflowmonitoring -d workflowmonitoringdb
 \h
 \?
 
--- 
 -- list of all databases
 \l
 -- list of all tables
@@ -169,6 +168,7 @@ SELECT table_name FROM information_schema.tables WHERE table_schema='public';
 \dv
 -- describe object
 \d my_table_name
+
 -- save output of query to file
 \o
 -- execute external file
@@ -214,7 +214,10 @@ from pg_catalog.pg_namespace s
 join pg_catalog.pg_user u on u.usesysid = s.nspowner
 order by table_schema;
 
+-- list of all tables in schema ( add dot to the end !!!)
+show my_schema.
 ```
+
 ```sql
 # row number
 select ROW_NUMBER () OVER (ORDER BY sku), sku from w60be740099999931852ba405_variant group by sku;
