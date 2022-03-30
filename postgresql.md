@@ -220,7 +220,24 @@ join pg_catalog.pg_user u on u.usesysid = s.nspowner
 order by table_schema;
 
 -- list of all tables in schema ( add dot to the end !!!)
-show my_schema.
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'my_schema' and table_name='table1';
+
+-- list of all columns in table
+select table_schema,
+       table_name,
+       ordinal_position as position,
+       column_name,
+       data_type,
+       case when character_maximum_length is not null
+            then character_maximum_length
+            else numeric_precision end as max_length,
+       is_nullable,
+       column_default as default_value
+from information_schema.columns
+where table_schema = 'my_schema' and table_name='table1'
+order by table_schema, 
+         table_name,
+         ordinal_position;
 ```
 
 ```sql
