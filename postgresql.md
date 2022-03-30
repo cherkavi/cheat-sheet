@@ -211,6 +211,7 @@ GRANT select on all tables in schema public to qa_read_only_xxxxx;
 -- create schema
 CREATE SCHEMA IF NOT EXISTS airflow_02;
 DROP SCHEMA IF EXISTS airflow_02;
+
 -- print all schemas
 select s.nspname as table_schema,
        s.oid as schema_id,  
@@ -241,6 +242,11 @@ order by table_schema,
 ```
 
 ```sql
-# row number
+-- row number
 select ROW_NUMBER () OVER (ORDER BY sku), sku from w60be740099999931852ba405_variant group by sku;
+```
+
+```sql
+-- add column to table
+ALTER TABLE schema_name.table_name ADD column_name bigint;
 ```
