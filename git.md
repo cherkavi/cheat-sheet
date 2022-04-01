@@ -178,6 +178,11 @@ git log -5 develop
 git log -10 --author "Frank Newman" -- my-sub-folder-in-repo
 ```
 
+### log pretty print log oneline
+```sh
+git relog -5
+```
+
 ### check files only for last commits
 ```sh
 git log -5 develop --name-only
