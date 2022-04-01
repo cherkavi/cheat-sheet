@@ -293,16 +293,24 @@ oc debug pods/{name of the pod}
 oc get pods --field-selector=status.phase=Running
 oc rsh {name of pod}
 
+# connect to container inside the pod with multi container
+POD_NAME=data-portal-67-dx
+CONTAINER_NAME=data-portal-apache
+oc exec -it -p $POD_NAME -c $CONTAINER_NAME /bin/bash
+```
+
+### execute command in pod command
+```
 # example of executing program on pod: kafka-test-app
 oc exec kafka-test-app "/usr/bin/java"
-
-# copy files from POD to locally 
-oc rsync /my/local/folder/ test01-mz2rf:/opt/app-root/src/
 ```
 
 ### copy file from pod
 ```sh
 oc cp api-server-256-txa8n:/usr/src/cert/keystore_server /my/local/path
+
+# copy files from POD to locally 
+oc rsync /my/local/folder/ test01-mz2rf:/opt/app-root/src/
 ```
 
 ### forward port forwarding
