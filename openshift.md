@@ -189,14 +189,21 @@ oc get deployment,pod,service,route,dc,pvc,secret -l deployment_name=name-of-my-
 oc get route/name-of-route --output json
 ```
 
-## restart pod
+### restart pod
 ```sh
 oc rollout latest "deploy-config-example"
 ```
-## get services
+## service 
+### get services
 ```sh
 oc get services
 ```
+
+### service curl
+```sh
+curl http://${SERVICE_NAME}:${SERVICE_PORT}/data-api/v1/health/
+```
+
 ### service migration
 ```
 FILE_NAME=service-data-portal.yaml
