@@ -199,7 +199,7 @@ oc rollout latest "deploy-config-example"
 oc get services
 ```
 
-### service curl
+### service curl inside OCP
 ```sh
 curl http://${SERVICE_NAME}:${SERVICE_PORT}/data-api/v1/health/
 ```
