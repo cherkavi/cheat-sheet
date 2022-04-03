@@ -363,6 +363,7 @@ oc describe pod {pod name}
 oc get configmap
 
 # describe one of the config map 
+oc get configmaps "httpd-config" -o yaml
 oc describe configmap data-api-config
 oc describe configmap gatekeeper-config
 
