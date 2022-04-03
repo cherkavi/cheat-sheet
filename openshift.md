@@ -304,6 +304,8 @@ oc rsh {name of pod}
 POD_NAME=data-portal-67-dx
 CONTAINER_NAME=data-portal-apache
 oc exec -it -p $POD_NAME -c $CONTAINER_NAME /bin/bash
+# or 
+oc exec -it $POD_NAME -c $CONTAINER_NAME /bin/bash
 ```
 
 ### execute command in pod command
