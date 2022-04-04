@@ -493,6 +493,26 @@ spec:
   backoffLimit: 4
 ```
 
+### pod sidecar
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test01
+spec:
+  containers:
+  - name: test01
+    image: busybox
+    command: ["sleep", "36000"]
+  - name: test02
+    image: busybox
+    command: ["sleep", "36000"]
+  restartPolicy: Never
+  backoffLimit: 4
+```
+
+
+### pod with mapping
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -508,6 +528,8 @@ spec:
       name: maprvolume-source
     - mountPath: /destination
       name: maprvolume-destination
+    - name: httpd-config-volume
+      mountPath: /usr/local/apache2/conf/httpd.conf      
   volumes:
   - name: maprvolume-source
     persistentVolumeClaim:
@@ -515,6 +537,10 @@ spec:
   - name: maprvolume-destination
     persistentVolumeClaim:
       claimName: pvc-scenario-output-prod
+  - name: httpd-config-volume
+    configMap:
+      name: httpd-config
+      defaultMode: 420      
   restartPolicy: Never
   backoffLimit: 4
 ```
