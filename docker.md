@@ -245,8 +245,10 @@ skopeo copy docker://quay.io/buildah/stable docker://registry.internal.company.c
 ```
 
 ### show all local images
-```
+```sh
 docker images --all
+docker image list --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.Size}}"
+docker image list --format "{{.ID}}\t{{.Repository}}"
 ```
 
 
