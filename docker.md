@@ -544,8 +544,13 @@ or for file /etc/docker/daemon.json
 ------
 ### docker save changed container, commit changes
 ```sh
-# select container that should be saved with command: docker ps
-docker commit {CONTAINER_ID} <new image name>
+docker run -it {IMAGE_ID} /bin/sh
+# execute some commands like `apt install curl`....
+```
+```sh
+docker ps
+# select proper container_id 
+docker commit {CONTAINER_ID} {NEW_IMAGE_NAME}
 ```
 
 ### container new name, rename container, container new tag
