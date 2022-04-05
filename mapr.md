@@ -75,16 +75,20 @@ maprcli stream delete -path <filepath & name>
 ```
 
 ### topic create
-```
+```sh
 maprcli stream topic create -path <path and name of the stream> -topic <name of the topic>
 ```
 ### topic remove, topic delete
-```
+```sh
 maprcli stream topic delete -path <path and name of the stream> -topic <name of the topic>
 ```
 ### topic check, topic print
-```
+```sh
 maprcli stream topic list -path <path and name of the stream>
+```
+### read data
+```sh
+maprcli stream cursor list -path $KAFKA_STREAM -topic $KAFKA_TOPIC -consumergroup $KAFKA_CONSUMER_GROUP -json
 ```
 
 ## API, java programming
