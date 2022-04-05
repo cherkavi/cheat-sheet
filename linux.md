@@ -1524,6 +1524,14 @@ date +%Y-%m-%d-%H:%M:%S:%s
 python3 /imap-message-reader.py > message_reader`date +%H:%M:%S`.txt
 ```
 
+### timestamp to T-date
+```sh
+function timestamp2date(){
+    date -d @$(( $1/1000000000 )) +"%Y%m%dT%H%M%S"
+}
+timestamp2date 1649162083168929800
+```
+
 ### generate random string 
 ```sh
 openssl rand -hex 30
