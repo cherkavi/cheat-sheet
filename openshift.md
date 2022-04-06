@@ -686,8 +686,13 @@ metadata:
     run: my-flask
 spec:
   ports:
-  - port: 5000
+  - name: flask
+    port: 5000
     protocol: TCP
+  - name: apache
+    port: 9090
+    protocol: TCP
+    targetPort: 80
   selector:
     run: my-flask
 ```
