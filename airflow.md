@@ -45,7 +45,7 @@ AIRFLOW_CONFIG - path to apache.cfg
   * how much time a new DAGs should be picked up from the filesystem, ( dag update python file update )
 	min_file_process_interval = 0
 	dag_dir_list_interval = 60
-  * authentication
+  * authentication ( important for REST api 1.x.x )
   	* auth_backend = airflow.api.auth.backend.basic_auth  
 	  AIRFLOW__API__AUTH_BACKEND=airflow.api.auth.backend.basic_auth  # for version 2.0.+
 	* auth_backend = airflow.api.auth.backend.default
@@ -287,6 +287,11 @@ via PostgreConnection
 ```
 
 # [REST API](https://airflow.apache.org/docs/apache-airflow/2.0.2/stable-rest-api-ref.html#section/Trying-the-API)
+configuration must have "api.auth_backend", for example: 
+```properties
+[api]
+auth_backend = airflow.api.auth.backend.default  
+```
 ## trigger DAG - python
 ```python
 import urllib2
