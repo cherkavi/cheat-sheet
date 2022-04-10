@@ -2725,24 +2725,34 @@ http://api.qrserver.com/v1/create-qr-code/?data=HelloWorld!&size=100x100
 ```
 
 ### bar code finder
-```
+```sh
 apt install zbar-tool
 zbarimg <file>
 ```
 
 ### pdf file merge, pdf join
-```
+```sh
 gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf test-pdf2.pdf test-pdf3.pdf test-pdf4.pdf
 ```
 
-### doc to pdf, convert to pdf
+### pdf file decrease size pdf compression
+```sh
+# -dPDFSETTINGS=/screen — Low quality and small size at 72dpi.
+# -dPDFSETTINGS=/ebook — Slightly better quality but also a larger file size at 150dpi.
+# -dPDFSETTINGS=/prepress — High quality and large size at 300 dpi.
+# -dPDFSETTINGS=/default — System chooses the best output, which can create larger PDF files.
+
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf
 ```
+
+### doc to pdf, convert to pdf
+```sh
 libreoffice --headless --convert-to pdf "/home/path/Dativ.doc" --outdir /tmp/output
 ```
 
 ## zip
 ### unzip bz2
-```
+```sh
 bzip2 -dc ricochet-1.1.4-src.tar.bz2 | tar xvf -
 ```
 
