@@ -520,7 +520,13 @@ sudo mount -av
 ```
 
 ### youtube
-[installation](https://ytdl-org.github.io/youtube-dl/download.html)  
+* [installation](https://ytdl-org.github.io/youtube-dl/download.html)  
+* [alternative installation](https://github.com/ytdl-org/youtube-dl/releases)
+  ```sh
+  chmod +x youtube-dl
+  # check your /usr/bin/pyton and fix header in the file otherwise
+  sudo mv youtube-dl /usr/bin/
+  ```
 ```
 youtube-dl --list-formats https://www.youtube.com/watch?v=nhq8e9eE_L8
 youtube-dl --format 22 https://www.youtube.com/watch?v=nhq8e9eE_L8
