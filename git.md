@@ -508,6 +508,8 @@ done
 git remote -v
 ```
 
+### [git chain of repositories](https://github.com/cherkavi/solutions/tree/master/git-repo-chain)
+
 ### using authentication token personal access token, git remote set, git set remote
 example of using github.com
 ```sh
