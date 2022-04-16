@@ -510,6 +510,31 @@ git remote -v
 
 ### [git chain of repositories](https://github.com/cherkavi/solutions/tree/master/git-repo-chain)
 
+### connect to existing repo
+```sh
+PATH_TO_FOLDER=/home/projects/bash-example
+
+# remote set
+git remote add local-hdd file://${PATH_TO_FOLDER}/.git
+# commit all files 
+git add *; git commit --message 'add all files to git'
+
+# set tracking branch
+git branch --set-upstream-to=local-hdd/master master
+
+# avoid to have "refusing to merge unrelated histories"
+git fetch --all
+git merge master --allow-unrelated-histories
+# merge all conflicts
+# in original folder move to another branch for avoiding: branch is currently checked out
+git push local-hdd HEAD:master
+
+# go to origin folder
+cd $PATH_TO_FOLDER
+git reset --soft origin/master 
+git diff 
+```
+
 ### using authentication token personal access token, git remote set, git set remote
 example of using github.com
 ```sh
