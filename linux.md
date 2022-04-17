@@ -840,8 +840,8 @@ python3 -m pip install --upgrade pip
 | 6.  | Reboot                                  | Reboots the system.                                                          |
 
 one of folder: /etc/rc1.d ( rc2.d ... )  
-contains links to /etc/init.d/<name of bash script>  
-can understand next options: start, stop, restart  
+contains links to /etc/init.d/S10nameofscript ( for start and K10nameofscript for shutdown ) 
+**can** understand next options: start, stop, restart  
 
 /etc/init.d/<name of bash script>
 ```sh
