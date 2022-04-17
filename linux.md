@@ -838,6 +838,7 @@ python3 -m pip install --upgrade pip
 | 4.  | Not used/User-definable                 | For special purposes.                                                        |
 | 5.  | Start the system normally with with GUI | As runlevel 3 + display manager.                                             |
 | 6.  | Reboot                                  | Reboots the system.                                                          |
+
 one of folder: /etc/rc1.d ( rc2.d ... )  
 contains links to /etc/init.d/<name of bash script>  
 can understand next options: start, stop, restart  
@@ -865,11 +866,10 @@ esac
 
 exit 0
 ```
-or custom service, service destination
+#### custom service, service destination
 ```bash
 sudo vim /etc/systemd/system/YOUR_SERVICE_NAME.service
 ```
-
 ```text
 Description=GIVE_YOUR_SERVICE_A_DESCRIPTION
 
@@ -887,7 +887,7 @@ KillMode=process
 WantedBy=multi-user.target
 ```
 
-service with docker container, service dockerized app
+#### service with docker container, service dockerized app
 ```text
 [Unit]
 Description=Python app 
