@@ -823,17 +823,29 @@ python3 --version
 python3 -m pip install --upgrade pip
 ```
 
-### auto execute during startup, autoexec
+### auto execute during startup, run during restart, autoexec.bat, startup script run
+#### cron startup run
 ```
-folder: /etc/rc1.d ( rc2.d ... )
-contains links to ../init.d/<name of bash script>
-should understand next options: start, stop, restart
+@reboot
 ```
-```
-#! /bin/sh
-# /etc/init.d/blah
-#
+####  rc0...rc1 - runlevels of linux
+| ID  | Name                                    | Description                                                                  |
+| --- | --------------------------------------- | ---------------------------------------------------------------------------- |
+| 0.  | Halt                                    | Shuts down the system.                                                       |
+| 1.  | Single-user Mode                        | Mode for administrative tasks.                                               |
+| 2.  | Multi-user Mode                         | Does not configure network interfaces and does not export networks services. |
+| 3.  | Multi-user Mode with Networking         | Starts the system normally.                                                  |
+| 4.  | Not used/User-definable                 | For special purposes.                                                        |
+| 5.  | Start the system normally with with GUI | As runlevel 3 + display manager.                                             |
+| 6.  | Reboot                                  | Reboots the system.                                                          |
+one of folder: /etc/rc1.d ( rc2.d ... )  
+contains links to /etc/init.d/<name of bash script>  
+can understand next options: start, stop, restart  
 
+/etc/init.d/<name of bash script>
+```sh
+#!/bin/sh
+#
 # Some things that run always
 touch /var/lock/blah
 
