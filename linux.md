@@ -2934,8 +2934,14 @@ ibus-setup
 
 ## video
 ### join mp4 fusion mp4
-```
+```sh
 ffmpeg -i video.mp4 -i audio.mp4 output.mp4
+```
+### 
+```sh
+FILE_INPUT=video.webm
+FILE_OUTPUT=audio.mp3
+ffmpeg -i $FILE_INPUT -vn -ab 64k -ar 44100 -y $FILE_OUTPUT
 ```
 
 ## sound
