@@ -843,12 +843,19 @@ one of folder: /etc/rc1.d ( rc2.d ... )
 contains links to /etc/init.d/S10nameofscript ( for start and K10nameofscript for shutdown ) 
 **can** understand next options: start, stop, restart  
 
-/etc/init.d/<name of bash script>
+/etc/init.d/apple-keyboard
 ```sh
 #!/bin/sh
+# Apple keyboard init
 #
-# Some things that run always
-touch /var/lock/blah
+### BEGIN INIT INFO
+# Provides:        cherkashyn
+# Required-Start:  $local_fs $remote_fs
+# Required-Stop:   $local_fs $remote_fs
+# Default-Start:   4 5
+# Default-Stop:
+# Short-Description: apple keyboard Fn activating
+### END INIT INFO
 
 # Carry out specific functions when asked to by the system
 case "$1" in
@@ -863,9 +870,14 @@ case "$1" in
     exit 1
     ;;
 esac
-
 exit 0
 ```
+```sh
+sudo update-rc.d apple-keyboard defaults
+# sudo update-rc.d apple-keyboard remove
+find /etc/rc?.d/ | grep apple | xargs ls -l
+```
+
 #### custom service, service destination
 ```bash
 sudo vim /etc/systemd/system/YOUR_SERVICE_NAME.service
