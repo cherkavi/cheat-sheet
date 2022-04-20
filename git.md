@@ -249,6 +249,12 @@ git checkout origin/develop datastorage/mysql/scripts/_write_ddl.sh
 git show origin/develop:datastorage/mysql/scripts/_write_ddl.sh > _write_ddl.sh
 ```
 
+### git add 
+```sh
+git add --patch
+git add --interactive
+```
+
 ### set username, global settings
 ```sh
 git config --global user.name "vitalii cherkashyn"
