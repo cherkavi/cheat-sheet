@@ -296,6 +296,7 @@ quit
     debug: msg="{{ lookup('vars', 'ansible_host') }}"      
   - name: all variables from host
     debug: msg="{{ vars }}"      
+  when: run_mode == "debug"
 ```
 
 ## debug command
@@ -388,9 +389,6 @@ debug msg="my custom message"
 shell pwd
 ```
 
-## conditions "when"
-TBD
-
 # error handling, try catch
 ## stop execution of steps (of playbook) when at least one server will throw error
 ```yaml
@@ -454,7 +452,6 @@ file name from path (return 'script.sh')
     dest: '{{ destination_folder }}'
     flat: yes
   tags: deploy
-
 ```
 
 ## directives for Jinja
@@ -479,10 +476,10 @@ condition example
 {% endif %}
 ```
 
-## directives for loop, for last, loop last
+### directives for loop, for last, loop last
 ```
 [
-{% for stream in streams %}
+{% for stream in deployment.streams %}
     {
         "stream": "{{ stream.stream_name }}",
         "classN": "{{ stream.class_name }}",
