@@ -255,6 +255,11 @@ git add --patch
 git add --interactive
 ```
 
+### git mark file unchanged skip file
+```sh
+git update-index --assume-unchanged path/to/file
+```
+
 ### set username, global settings
 ```sh
 git config --global user.name "vitalii cherkashyn"
