@@ -283,6 +283,11 @@ yarn application -kill application_1540813402987_3657
 ```
 yarn logs -applicationId application_1540813402987_3657 | less
 ```
+### application log on YARN by user
+```
+yarn logs -applicationId application_1540813402987_3657 -appOwner my_tech_user | less
+```
+
 ---
 # Hortonworks sandbox
 [tutorials](https://hortonworks.com/tutorials/)
