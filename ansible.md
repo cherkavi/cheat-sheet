@@ -465,10 +465,18 @@ for improving indentation globally in file, add one of next line in the beginnin
 #jinja2: lstrip_blocks: True, trim_blocks: True
 ```
 for improving indentation only for the block
-```
+```j2
 <div>
         {%+ if something %}<span>hello</span>{% endif %}
 </div>
+```
+condition example
+```j2
+{% if lookup('env','DEBUG') == "true" %}
+    CMD ["java", "start-debug"]
+{% else %}
+    CMD ["java", "start"]
+{% endif %}
 ```
 
 ## directives for loop, for last, loop last
