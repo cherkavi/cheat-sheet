@@ -69,6 +69,11 @@ git reset --hard HEAD~1
 git checkout -t origin/develop
 ```
 
+### new branch from stash
+```sh
+git stash branch $BRANCH_NAME stash@{3}
+```
+
 ### show removed remotely
 ```
 git remote prone origin
