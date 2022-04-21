@@ -1969,7 +1969,8 @@ echo output.json | jq .
 ```
 
 ### [json parsing, parse json, parsing json, json processing](https://stedolan.github.io/jq/manual/)
-[jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})
+[jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})  
+jq is not working properly with "-" character in property name !!!  
 ```bash
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
 jq ".[] | .name"
