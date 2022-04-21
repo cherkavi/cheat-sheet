@@ -121,6 +121,32 @@ oc create secret generic {name of secret/token} --from-file=/tmp/maprticket_1000
 # create secret from file with specifying the name - CONTAINER_TICKET ( oc describe {name of secret} )
 oc create secret generic {name of secret/token} --from-file=CONTAINER_TICKET=/tmp/maprticket_1000 -n {project name}
 ```
+automation for creating tickets in diff namespaces
+```sh
+function openshift-replace-maprticket(){
+    MAPR_TICKET_PATH="${1}"
+    if [[ $MAPR_TICKET_PATH == "" ]]; then
+        echo " first parameter should be filepath to MapR ticket PROD ! "
+        return 1
+    fi
+    if [ ! -f $MAPR_TICKET_PATH ]; then
+        echo "can't access file: ${MAPR_TICKET_PATH}"
+        return 2
+    fi
+    oc login -u $TECH_USER -p $TECH_PASSWORD $OPEN_SHIFT_URL
+    PROJECTS=("portal-pre-prod" "portal-production")
+    SECRET_NAME="mapr-ticket"
+    
+    for OC_PROJECT in "${PROJECTS[@]}"
+    do 
+        echo $OC_PROJECT
+        oc project $OC_PROJECT
+        oc delete secret $SECRET_NAME
+        oc create secret generic $SECRET_NAME --from-file=CONTAINER_TICKET=$MAPR_TICKET_PATH -n $OC_PROJECT
+        oc get secret $SECRET_NAME -n $OC_PROJECT
+    done
+}
+```
 or from content of file from previous command  
 ```bash
 oc create secret generic {name of secret/token} --from-literal=CONTAINER_TICKET='dp.prod.ubs qEnHLE7UaW81NJaDehSH4HX+m9kcSg1UC5AzLO8HJTjhfJKrQWdHd82Aj0swwb3AsxLg==' -n {project name}
