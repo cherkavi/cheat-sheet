@@ -89,8 +89,7 @@ spark.serializer=org.apache.spark.serializer.KryoSerializer
 
 ### Spark submit with output additional information
 ```sh
-/opt/mapr/spark/spark-2.3.2/bin/spark-submit --verbose --master yarn --deploy-mode cluster \
-...
+/opt/mapr/spark/spark-2.3.2/bin/spark-submit --verbose --master yarn --deploy-mode cluster ...
 ```
 
 ### Spark submit with log info, logger output, spark-submit logger
@@ -98,6 +97,8 @@ spark.serializer=org.apache.spark.serializer.KryoSerializer
 export SPARK_SUBMIT_OPTS="-Dlog4j.configuration=log4j.properties"
 # or
 # export SPARK_SUBMIT_OPTS="-Dlog4j.debug=true -Dlog4j.configuration=log4j-local-usage-only.xml"
+# or java -D option jvm options
+# --driver-java-options "-Xms2G -Doracle.jdbc.Trace=true -Djava.util.logging.config.file=/opt/apache-spark/spark-2.3.0-bin-hadoop2.7/conf/oraclejdbclog.properties -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=1098 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.net.preferIPv4Stack=true -Djava.rmi.server.hostname=192.168.2.120 -Dcom.sun.management.jmxremote.rmi.port=1095"
 
 /opt/mapr/spark/spark-2.3.2/bin/spark-submit \
   --conf "spark.driver.extraJavaOptions=-Dlog4jspark.root.logger=ERROR,console" 
