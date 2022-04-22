@@ -89,6 +89,28 @@ System.getProperties().put("http.proxyPort", "someProxyPort");
 export _JAVA_OPTIONS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|*.ubsgroup.net|*.zur -Dhttps.nonProxyHosts=localhost|*.ubsgroup.net|*.muc"
 ```
 
+### certificates
+#### create certificate 
+```
+Browser.address url.lock(broken lock) -> Certificate -> Details -> Copy to File -> Base-64 encoded X.509 -> metrics.cer
+# keytool -printcert -sslserver path.to.server.com:443
+```
+#### read certificate 
+```sh
+openssl x509 -text -noout -in elastic-staging.cer 
+```
+#### create truststore 
+```sh
+ls myTrustStore && rm myTrustStore;
+CERT_FILE=metrics.cer
+CERT_ALIAS=metrics
+OUTPUT_CERT=myTrustStore
+keytool -import -file $CERT_FILE -alias $CERT_ALIAS -keystore $OUTPUT_CERT 
+
+# list of certificates in truststore 
+keytool -list -keystore $OUTPUT_CERT
+```
+
 ### execute application from java, execute sub-process, start program
 #### start and waiting for finish
 ```
