@@ -433,6 +433,10 @@ oc delete {type} {type name}
 * routes
 * ...
 
+#### Isio external service exposing
+```sh
+oc get svc istio-ingressgateway -n istio-system
+```
 ### expose services
 if your service looks like svc/web - 172.30.20.243:8080
 instead of external link like: http://gateway-myproject.192.168.42.43.nip.io to pod port 8080 (svc/gateway), then you can "expose" it for external world:
