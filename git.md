@@ -708,7 +708,13 @@ git config --global --unset http.proxy
 
 ### using additional command before 'fetch' 'push', custom fetch/push
 ```
+# remote: 'receive.denyCurrentBranch' configuration variable to 'refuse'.
 git config core.sshCommand 'ssh -i private_key_file'
+```
+
+### set configuration
+```sh
+git config --local receive.denyCurrentBranch updateInstead
 ```
 
 ### remove auto replacing CRLF for LF on Windows OS
