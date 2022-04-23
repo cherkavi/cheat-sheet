@@ -3074,6 +3074,10 @@ x0vncserver -passwordfile ~/.vnc/passwd -display :0
 ```
 
 ## apt 
+### apt package description 
+```sh
+apt-cache show terminator
+```
 ### apt cache
 ```sh
 cd /var/cache/apt/archives
