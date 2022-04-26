@@ -103,12 +103,19 @@ openssl x509 -text -noout -in elastic-staging.cer
 ```sh
 ls myTrustStore && rm myTrustStore;
 CERT_FILE=metrics.cer
+keytool -printcert -rfc -file $CERT_FILE
+keytool -printcert -file $CERT_FILE
+
 CERT_ALIAS=metrics
-OUTPUT_CERT=myTrustStore
-keytool -import -file $CERT_FILE -alias $CERT_ALIAS -keystore $OUTPUT_CERT 
+TRUST_STORE=myTrustStore
+keytool -import -file $CERT_FILE -alias $CERT_ALIAS -keystore $TRUST_STORE
 
 # list of certificates in truststore 
-keytool -list -keystore $OUTPUT_CERT
+keytool -list -keystore $TRUST_STORE
+
+# export and print certificate
+keytool -exportcert -keystore $TRUST_STORE -alias $CERT_ALIAS -file out.crt
+keytool -printcert -file out.crt
 ```
 
 ### execute application from java, execute sub-process, start program
