@@ -99,7 +99,7 @@ Browser.address url.lock(broken lock) -> Certificate -> Details -> Copy to File 
 ```sh
 openssl x509 -text -noout -in elastic-staging.cer 
 ```
-#### create truststore 
+#### import certificate to truststore 
 ```sh
 ls myTrustStore && rm myTrustStore;
 CERT_FILE=metrics.cer
@@ -116,6 +116,23 @@ keytool -list -keystore $TRUST_STORE
 # export and print certificate
 keytool -exportcert -keystore $TRUST_STORE -alias $CERT_ALIAS -file out.crt
 keytool -printcert -file out.crt
+```
+
+#### create empty truststore
+```sh
+TRUST_STORE=emptyStore
+ls $TRUST_STORE && rm $TRUST_STORE;
+CERT_ALIAS=garbage
+STORE_PASS="my_pass"
+
+# create truststore with one record
+keytool -genkeypair -alias $CERT_ALIAS -storepass $STORE_PASS -keypass secretPassword -keystore $TRUST_STORE -dname "CN=Developer, OU=Department, O=Company, L=City, ST=State, C=CA"
+# list of records
+keytool -list -keystore $TRUST_STORE -storepass $STORE_PASS
+## delete records
+keytool -delete -alias $CERT_ALIAS -storepass $STORE_PASS -keystore $TRUST_STORE
+# list of records 
+keytool -list -keystore $TRUST_STORE -storepass $STORE_PASS
 ```
 
 ### execute application from java, execute sub-process, start program
