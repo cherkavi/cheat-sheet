@@ -1,4 +1,4 @@
-#Elasticsearch  
+# Elasticsearch  
 [rest api documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html)  
 [examples](https://dzone.com/articles/23-useful-elasticsearch-example-queries)  
 [examples](https://www.tutorialspoint.com/elasticsearch)  
@@ -103,6 +103,7 @@ or it is better without types specification:
 curl -X GET "$ELASTIC_HOST/$INDEX_NAME/_search?q=front_vehicle.distance:>100&size=11&pretty=true"
 curl -X GET "$ELASTIC_HOST/$INDEX_NAME/_search?q=road_type:highway"
 ```
+
 ```bash
 echo '{"query": {"match" : {"sessionId" : "a8b8-0174df8a3b3d"}}}' > request.json
 echo '{"query": { "range" : {"front_vehicle.distance": {"gte": 100}}}}' > request.json
