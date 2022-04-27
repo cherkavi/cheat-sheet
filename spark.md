@@ -418,9 +418,31 @@ dataframe.write.option("path", "/some/path").saveAsTable("some_table_name")
 val options = Map("zkhost" -> "134.191.209.235:2181/solr", "collection" -> "label_collection", "gen_uniq_key" -> "true") 
 dataframe.write.format("solr").options(options).mode(org.apache.spark.sql.SaveMode.Overwrite).save
 ```
+* Elastic
+```scala
+:paste
+import spark.implicits._
+import org.apache.spark.sql.{ DataFrame, SparkSession }
+val words:DataFrame = Seq( ("John", 44), ("Mary",38), ("Chak",18)).toDF("id", "age")
 
-### append data, union data
+val esHost = new com.bmw.ad.autolabeling.labelstorage.elastic.ElasticSearchHost("https://elasticsearch-stage.stg.addp.com/test2/label");
+
+words.write
+  .format("org.elasticsearch.spark.sql")
+  .option("es.nodes.wan.only", "true")
+  .option("es.net.ssl", "true")
+  .option("es.net.ssl.truststore.location", "file:///mapr/dp/vantage/deploy/search/trust-store-2022-04-26")
+  .option("es.net.http.auth.user", "label-s")
+  .option("es.net.http.auth.pass", "mypassword")
+  .option("es.port", esHost.getPort)
+  .option("es.mapping.id", "id")
+  .option("es.nodes", s"${esHost.getProtocol}://${esHost.getHost}")
+  .mode("Append")
+  .save(esHost.getIndexAndType)
 ```
+	
+### append data, union data
+```scala
 val dfUnion = df1.union(df2)
 val dfUnion = df1.unionAll(df2)
 ```
