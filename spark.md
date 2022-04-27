@@ -257,16 +257,14 @@ dataSet.map( record=>{ osi3.OsiGroundtruth.GroundTruth.parseFrom(x.osi).getProjS
 ```
 
 ### create data inline
-```
+#### dummy dataframe
+```scala
 import spark.implicits._
-```
-
-```
-val words = Seq( ("John", 44), ("Mary",38), ("Chak",18)
+val words:DataFrame = Seq( ("John", 44), ("Mary",38), ("Chak",18)
 ).toDF("name", "age")
 ```
 
-create data with predefined schema
+#### create data with predefined schema
 ```
 import spark.implicits._
 import org.apache.spark.sql.types._
