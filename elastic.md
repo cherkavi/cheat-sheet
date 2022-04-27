@@ -29,7 +29,12 @@ curl -X GET $ELASTIC_HOST/_cluster/health?pretty=true
 curl -X GET $ELASTIC_HOST/_cluster/health?pretty=true&level=shards
 curl -X GET $ELASTIC_HOST/$INDEX_NAME
 ```
-
+### check user
+```sh
+curl -s --user "$USER_ELASTIC:$USER_ELASTIC_PASSWORD" -X GET $ELASTIC_HOST/_security/user/_privileges
+curl -s --user "$USER_ELASTIC:$USER_ELASTIC_PASSWORD" -X GET $ELASTIC_HOST/_security/user
+curl -s --user "$USER_ELASTIC:$USER_ELASTIC_PASSWORD" -X GET $ELASTIC_HOST/_security/user/$USER_ELASTIC
+```
 
 ### index
 [create index](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/indices-create-index.html)
