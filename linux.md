@@ -1963,9 +1963,11 @@ xmllint --format /path/to/file.xml > /path/to/file-formatted.xml
 xmllint --noout file.xml; echo $?
 ```
 
-### json output pretty print, json pretty print
-```
+### json output pretty print, json pretty print, json sort
+```sh
 echo output.json | jq .
+# sort by keys
+echo output.json | jq -S .
 ```
 
 ### [json parsing, parse json, parsing json, json processing](https://stedolan.github.io/jq/manual/)
