@@ -655,13 +655,13 @@ words.map(w=>(w,1)) .reduceByKey(_ + _) .print()
 ```
 * MLib
 * GraphX
-```
+```sh
 GraphLoader.edgeListFile(sc, path_to_file)
 ```
 
 
 # Scala examples
-```
+```scala
 val input = sc.textFile("data/stations/*")
 
 val header = input.first // to skip the header row
@@ -683,21 +683,29 @@ spark.driver.extraClassPath  pathOfJarsWithCommaSeprated
 ./spark-shell --jars pathOfjarsWithCommaSeprated
 
 * after start
+```
 scala> :require /path/to/file.jar
-
+```
+* multiple lines copy
+```sh
+scala>:paste
+	...
+	...
+<Ctrl + D>
+```
 
 # spark shell, spark-shell, spark2-shell
 ## local execution
-```
+```sh
 spark-shell --deploy-mode client --master yarn
 ```
 ## inline execution, execute file from command line
-```
+```sh
 spark-shell -i /path/to/file.scala
 ```
 ## spark-shell to spark-submit
 code
-```
+```scala
 object SparkEnterPoint{
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder().appName("traffic-sign-scan").getOrCreate()
@@ -708,19 +716,20 @@ object SparkEnterPoint{
 }
 ```
 ## execute spark-shell with parameters
-```
+```sh
 spark-shell -i <(echo 'val theDate = "my data" ' ; cat <file-name>)
 ```
 
 ## inline execution and exit after execution
-```
+```sh
  spark-shell -i script.scala << END_FILE_MARKER
 :quit
 END_FILE_MARKER
 ```
 
+
 ## execute shell with additional jar, in debug mode spark-shell
-```
+```sh
 spark-shell \
 --jars "/home/some_path/solr-rest_2.11-0.1.jar,/home/someuser/.ivy2/cache/org.json/json/bundles/json-20180813.jar" \
 --conf "spark.driver.extraJavaOptions=-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
