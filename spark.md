@@ -635,7 +635,7 @@ examples
 * Checkpointing
 > save data to fault-tolerant system
 * Data replication
-> save data on multiply nodes
+> save data on multiple nodes
 
 # libraries
 * Spark SQL
