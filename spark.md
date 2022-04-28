@@ -787,7 +787,8 @@ spark-shell --jars "lightning-1.5.0-SNAPSHOT-3a517e-jar-with-dependencies.jar" \
 ```
 
 ## read text file with json 
-!!! each line in the file should be separate JSON file, minimize each document to one line
+!!! each line in the file should be separate JSON file, minimize each document to one line  
+`spark.read.schema(schema).json(file).select("_corrupt_record").show().`
 ```
 spark.read.json("/home/technik/temp/rdd-processedLabels.json")
 
