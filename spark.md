@@ -786,7 +786,8 @@ spark-shell --jars "lightning-1.5.0-SNAPSHOT-3a517e-jar-with-dependencies.jar" \
 --conf "spark.serializer=org.apache.spark.serializer.KryoSerializer"
 ```
 
-## read text file with json ( each line - separate json)
+## read text file with json 
+!!! each line in the file should be separate JSON file, minimize each document to one line
 ```
 spark.read.json("/home/technik/temp/rdd-processedLabels.json")
 
