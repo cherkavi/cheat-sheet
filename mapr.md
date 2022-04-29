@@ -341,6 +341,11 @@ Remove table Delete table
 maprcli table delete -path <path_in_maprfs>
 ```
 
+Insert record in maprdb
+```
+insert --table /vantage/processed/tables/markers --value '{"_id": "1", "name": "Martha", "age": 35}'
+```
+
 Create an index for the thumbnail MapR JSON DB in order to speed up: (query to find all sessionIds with existing thumbnails)
 ```bash
 --query {"$select":"sessionId","$where":{"$eq":{"frameThumbnail":0}}}  
