@@ -333,11 +333,6 @@ Check access to table maprdb table info
 maprcli table cf list -path /vantage/deploy/data-access-video/images -cfname default -json
 ```
 
-Information about table
-```sh
-maprcli table info -path /vantage/data/store/processed/markers
-maprcli table cf list -path /vantage/data/store/processed/markers
-```
 Remove table Delete table
 ```sh
 maprcli table delete -path <path_in_maprfs>
