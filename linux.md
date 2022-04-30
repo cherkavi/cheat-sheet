@@ -750,9 +750,10 @@ sudo rm /etc/apt/sources.list.d/inkscape.dev*
 ### avoid to put command into history, hide password into history, avoid history
 add space before command
 
-### history with datetime
+### history settings history ignore duplicates history datetime
 ```sh
 HISTTIMEFORMAT="%Y-%m-%d %T "
+HISTCONTROL=ignoreboth
 history
 ```
 
