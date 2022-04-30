@@ -694,6 +694,11 @@ uniq -D
 uniq --unique
 ```
 
+### output to columns format output to column
+```sh
+ls | column -t -c
+```
+
 ### print column from file, split string with separator
 ```
 cut --delimiter "," --fields 2,3,4 test1.csv
