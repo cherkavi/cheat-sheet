@@ -750,6 +750,12 @@ sudo rm /etc/apt/sources.list.d/inkscape.dev*
 ### avoid to put command into history, hide password into history, avoid history
 add space before command
 
+### history with datetime
+```sh
+HISTTIMEFORMAT="%Y-%m-%d %T "
+history
+```
+
 ### bash settings, history lookup with arrows, tab autocomplete
 ~/.inputrc
 ```
