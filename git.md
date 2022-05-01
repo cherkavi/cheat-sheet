@@ -290,6 +290,12 @@ git config --system --unset credential.helper
 git config --global --unset credential.helper
 ```
 
+### git config mergetool
+```sh
+git config --global merge.tool meld
+git config --global mergetool.meld.path /usr/bin/meld
+```
+
 ### show all branches merged into specified
 ```sh
 git branch --all --merged "release" --verbose
