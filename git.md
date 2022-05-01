@@ -670,7 +670,7 @@ git lfs migrate import --no-rewrite path-to-file
 
 ### create local repo in filesystem
 ```sh
-# create bare repo file:////home/projects/bmw/temp/repo
+# create bare repo file:///home/projects/bmw/temp/repo
 # for avoiding: error: failed to push some refs to 
 mkdir /home/projects/bmw/temp/repo
 cd /home/projects/bmw/temp/repo
@@ -680,12 +680,12 @@ git init --bare
 # clone to copy #1
 mkdir /home/projects/bmw/temp/repo2
 cd /home/projects/bmw/temp/repo2
-git clone file:////home/projects/bmw/temp/repo
+git clone file:///home/projects/bmw/temp/repo
 
 # clone to copy #1
 mkdir /home/projects/bmw/temp/repo3
 cd /home/projects/bmw/temp/repo3
-git clone file:////home/projects/bmw/temp/repo
+git clone file:///home/projects/bmw/temp/repo
 ```
 
 ### configuration for proxy server, proxy configuration
