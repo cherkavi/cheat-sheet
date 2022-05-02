@@ -349,10 +349,13 @@ ssh-keygen -t rsa
 chmod 700 ~/.ssh
 chmod 700 ~/.ssh/*
 ```
-passphrase skip typing ssh-keygen without passphrase
+
+### passphrase skip typing ssh-keygen without passphrase, avoid Enter passphrase for key
 ```sh
-eval `ssh-agent` ssh-add /home/users/vitalii.cherkashyn/.ssh/id_rsa
+eval `ssh-agent -s` 
+ssh-add $HOME/.ssh/id_rsa
 ```
+
 #### login without typing password
 ```sh
 # ssh
