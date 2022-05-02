@@ -159,8 +159,10 @@ psql -U workflowmonitoring -d workflowmonitoringdb
 
 -- list of all databases
 \l
+-- list of all schemas 
+\dn
 -- list of all tables
--- CREATE TABLE testaccount01_variant( id INTEGER PRIMARY KEY, variant_key VARCHAR(64));
+---- CREATE TABLE testaccount01_variant( id INTEGER PRIMARY KEY, variant_key VARCHAR(64));
 SELECT table_name FROM information_schema.tables WHERE table_schema='public';
 -- list of all tables
 \dt
