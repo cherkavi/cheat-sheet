@@ -348,7 +348,6 @@ insert --table /vantage/processed/tables/markers --value '{"_id": "1", "name": "
 
 Create an index for the thumbnail MapR JSON DB in order to speed up: (query to find all sessionIds with existing thumbnails)
 ```bash
---query {"$select":"sessionId","$where":{"$eq":{"frameThumbnail":0}}}  
 maprcli table index add -path /vantage/deploy/data-access-video/images -index frameNumber_id -indexedfields frameThumbnail
 # maprcli table index add -path <path> -index <name> -indexedfields<fields>
 maprcli table index list -path <path>
