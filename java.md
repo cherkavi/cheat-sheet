@@ -24,6 +24,10 @@ jmap -dump:format=b,live,file=$PATH_TO_OUTPUT_HEAP_DUMP $JAVA_PROCESS_ID
 ```sh
 $JAVA_HOME/bin/jshell -v
 ```
+```java
+import java.util.UUID;
+UUID.randomUUID();
+```
 
 ### JMX
 ```bash
