@@ -20,6 +20,11 @@ jmap -heap $JAVA_PROCESS_ID
 jmap -dump:format=b,live,file=$PATH_TO_OUTPUT_HEAP_DUMP $JAVA_PROCESS_ID
 ```
 
+### java repl java code evaluation
+```sh
+$JAVA_HOME/bin/jshell -v
+```
+
 ### JMX
 ```bash
 # command line argument
