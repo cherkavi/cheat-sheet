@@ -223,6 +223,7 @@ docker search <text of search>
 ### inspect image in repository inspect layers
 ```sh
 # sudo apt-get -y install skopeo
+# or: https://ftp.de.debian.org/debian/pool/main/s/skopeo/
 skopeo inspect docker://registry.fedoraproject.org/fedora:latest
 # https://github.com/wagoodman/dive
 dive ${DOCKER_REGISTRY}/portal-production/jenkins-builder
