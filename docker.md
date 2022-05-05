@@ -222,6 +222,7 @@ docker search <text of search>
 
 ### inspect image in repository
 ```sh
+# sudo apt-get -y install skopeo
 skopeo inspect docker://registry.fedoraproject.org/fedora:latest
 ```
 
