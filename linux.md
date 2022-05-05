@@ -742,6 +742,13 @@ you can find additional file into
 ```
 /etc/apt/sources.list.d
 ```
+or manually add repository
+```sh
+# https://packages.debian.org/bullseye/amd64/skopeo/download
+# The following signatures couldn't be verified because the public key is not available
+# deb [trusted=yes] http://ftp.at.debian.org/debian/ bullseye main contrib non-free
+```
+
 search after adding
 ```
 apt-cache search inkscape
