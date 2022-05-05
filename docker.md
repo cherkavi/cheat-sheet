@@ -228,6 +228,11 @@ skopeo inspect docker://registry.fedoraproject.org/fedora:latest
 # https://github.com/wagoodman/dive
 dive ${DOCKER_REGISTRY}/portal-production/jenkins-builder
 ```
+### export layers tag layers
+```sh
+docker save imagename build-layer1 build-layer2 build-layer3 > image-caching.tar
+docker load -i image-caching.tar
+```
 
 ### pull image from repository
 ```
