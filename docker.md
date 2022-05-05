@@ -220,10 +220,12 @@ Images
 docker search <text of search>
 ```
 
-### inspect image in repository
+### inspect image in repository inspect layers
 ```sh
 # sudo apt-get -y install skopeo
 skopeo inspect docker://registry.fedoraproject.org/fedora:latest
+# https://github.com/wagoodman/dive
+dive ${DOCKER_REGISTRY}/portal-production/jenkins-builder
 ```
 
 ### pull image from repository
