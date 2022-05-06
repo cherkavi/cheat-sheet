@@ -17,6 +17,12 @@ termsql -i mycsvfile.CSV -d ',' -c 'field_name,field_index' -t 'index_de' -o myn
 sqlite3 mynewdatabase.db
 .tables
 ```
+## redirect output to file redirect output to stdout
+```
+.output result-output.txt
+select * from index_de;
+.output
+```
 
 ## create table and import
 ```sql
