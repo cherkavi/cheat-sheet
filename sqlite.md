@@ -12,6 +12,12 @@ sqlite3 -init db.sqlite
 termsql -i mycsvfile.CSV -d ',' -c 'field_name,field_index' -t 'index_de' -o mynewdatabase.db
 ```
 
+## open db
+```sh
+sqlite3 mynewdatabase.db
+.tables
+```
+
 ## create table and import
 ```sql
 CREATE TABLE index_de(field_name TEXT NOT NULL, field_type TEXT NOT NULL );
