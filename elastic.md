@@ -81,6 +81,38 @@ curl -X PUT $ELASTIC_HOST/$INDEX_NAME -H 'Content-Type: application/json' \
 }
 EOF
 ```
+#### Index creation Dynamic type creation
+```sh
+curl --insecure -s --user "$ELK_USER:$ELK_PASSWORD" -X PUT $ELASTIC_HOST/$INDEX_NAME -H 'Content-Type: application/json' --data @- << EOF
+{
+    "settings": {
+        "index": {
+            "number_of_shards": "3",
+                "auto_expand_replicas": "false",
+                "number_of_replicas": "2"
+            }
+        }
+}
+
+curl --insecure -s --user ${ELK_USER}:${ELK_PASSWORD} -X PUT ${ELASTIC_HOST}/${ELASTIC_INDEX}/_mapping/${DYNAMIC_TYPE_NAME}?include_type_name=true -H 'Content-Type: application/json' -d @- << EOF
+{
+    "label": {
+        "properties": {
+            "controlDate": {
+                "type": "date"
+            },
+            "roadType": {
+                "type": "keyword"
+            },
+            "nameOfProject": {
+                "type": "keyword"
+            },
+        }
+    }
+}
+EOF
+```
+
 #### update index
 ```sh
 curl -X PUT -s --user "$SEARCH_USER:$SEARCH_PASSWORD" $ELASTIC_HOST/$ELASTIC_INDEX/_mapping
