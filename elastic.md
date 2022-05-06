@@ -80,8 +80,26 @@ curl -X PUT $ELASTIC_HOST/$INDEX_NAME -H 'Content-Type: application/json' \
     }
 }
 EOF
+```
+#### update index
+```sh
+curl -X PUT -s --user "$SEARCH_USER:$SEARCH_PASSWORD" $ELASTIC_HOST/$ELASTIC_INDEX/_mapping
+{
+	"_source": {
+                              "excludes": [
+                                            "id"
+                              ]
+               },
+               "properties": {
+                              "mytags": {
+                                            "type": "flattened"
+                              }
+               }
+}
+```
 
-# delete index
+#### delete index
+```
 curl -s --user "$SEARCH_USER:$SEARCH_PASSWORD" -X GET $ELASTIC_HOST/$ELASTIC_INDEX > file_with_index.json
 ```
 or it is better without types specification:
