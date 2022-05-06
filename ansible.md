@@ -807,6 +807,18 @@ create/update file:
         dog
         tiger
 ```
+### minimal playbook
+```yaml
+- hosts: localhost
+  tasks:
+  - name: Ansible create file with content example
+    copy:
+      dest: "/tmp/remote_server.txt"
+      content: |
+        {{ lookup('env','TEST_1') }}
+        {{ lookup('env','TEST_2') }}
+```
+
 ```sh
 ansible-playbook ansible-example.yml
 ```
