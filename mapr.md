@@ -400,9 +400,10 @@ find //tables/session --query {"$select":["_id"],"$where":{"$and":[{"$eq":{"vin"
 
 example of inline execution
 ```sh
-echo 'find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2' | tee script.out
-mapr dbshell --cmdfile script.out
-rm script.out
+REQUEST="find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2"
+echo $REQUEST | tee script.sql
+mapr dbshell --cmdfile script.sql > script.result
+rm script.sql
 ```
 
 example of execution via mapr web, web mapr
