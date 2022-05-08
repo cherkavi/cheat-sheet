@@ -269,6 +269,9 @@ sudo apt-get install cifs-utils
 ### mount usb drive temporary mount disk
 ```sh
 sudo mount /dev/sdd    /media/tina-team
+```
+### unmount usb detach usb
+```sh
 umount /dev/sdd
 ```
 
