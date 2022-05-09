@@ -1,6 +1,7 @@
 [MapR Academy](http://learn.mapr.com)
-[Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)
-![commands](https://i.postimg.cc/q7469wbf/mapr-commands.png)
+[Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)  
+[mapr code examples, mapr demos](https://github.com/mapr-demos)
+![commands](https://i.postimg.cc/q7469wbf/mapr-commands.png)  
 
 
 # Architecture examples
@@ -301,8 +302,9 @@ yarn logs -applicationId application_1540813402987_9262
 
 ## MapRDB 
 DBShell commands
-[commands](https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html)  
-[dbshell commands](https://docs.datafabric.hpe.com/62/ReferenceGuide/mapr_dbshell.html)
+* [commands](https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html)  
+* [dbshell examples](https://github.com/mapr-demos/mapr-db-cdc-sample)  
+* [dbshell commands](https://docs.datafabric.hpe.com/62/ReferenceGuide/mapr_dbshell.html)  
 
 ### [Create MaprDB database/table](https://docs.datafabric.hpe.com/62/ClusterAdministration/data/tables/CreateTable.html)  
 Two possible types of MaprDB:  
