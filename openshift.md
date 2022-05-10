@@ -265,7 +265,22 @@ oc describe project {project name}
 
 ### images internal registry get images
 ```sh
+oc get images
 oc get images.image.openshift.io
+```
+
+### image import docker import to internal registry 
+```sh
+oc import-image approved-apache:2.4 --from=bitnami/apache:2.4 --confirm
+oc import-image my-python --from=my-external.com/tdonohue/python-hello-world:latest --confirm
+
+# if you have credential restrictions
+# oc create secret docker-registry my-mars-secret --docker-server=registry.marsrover.space --docker-username="login@example.com" --docker-password=thepasswordishere
+```
+
+### tag image
+```sh
+oc tag my-external.com/tdonohue/python-hello-world:latest my-python:latest
 ```
 
 ### print current project
