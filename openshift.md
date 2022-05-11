@@ -271,6 +271,11 @@ oc get images.image.openshift.io
 
 ### image import docker import to internal registry 
 ```sh
+IMAGE_OCP=image-registry.openshift-registry.svc:5000/portal-test-env/openjdk-8-slim-enhanced:202110
+IMAGE_EXTERNAL=nexus-shared.com/repository/uploadimages/openjdk-8-slim-enhanced:202110
+oc import-image $IMAGE_OCP --from=$IMAGE_EXTERNAL --confirm
+```
+```sh
 oc import-image approved-apache:2.4 --from=bitnami/apache:2.4 --confirm
 oc import-image my-python --from=my-external.com/tdonohue/python-hello-world:latest --confirm
 
