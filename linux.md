@@ -3031,6 +3031,12 @@ xdg-settings set default-web-browser firefox.desktop
 ## check default association
 cat ~/.config/mimeapps.list
 ```
+or change your alternatives
+```sh
+locate x-www-browser
+# /etc/alternatives/x-www-browser
+```
+
 open in default browser
 ```sh
 x-www-browser http://localhost:9090
