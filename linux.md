@@ -3014,7 +3014,7 @@ myvar=$(expr 1 + 1)
 echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode" 2>/dev/null
 ```
 
-### default type, detect default browser, mime types
+### default type, detect default browser, mime types, default application set default app
 ```sh
 xdg-mime query default x-scheme-handler/http
 
