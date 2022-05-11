@@ -3003,7 +3003,7 @@ find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
 du -hs * | sort -h
 ```
 
-### calculator
+### calculator arifmethic operations add sub div multiply
 ```bash
 expr 30 / 5
 myvar=$(expr 1 + 1)
