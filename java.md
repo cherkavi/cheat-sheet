@@ -635,5 +635,7 @@ OpenXava create new project from DataSource
 		<     tomcat   path ><Project >       < entity name >
 ```
 
-# Version differences
+## Version differences
 ![java 8 to 9](https://i.postimg.cc/MHynycjm/java-8-9.png)
+
+## [jwt web token decoder JSON web token](https://jwt.io/)
