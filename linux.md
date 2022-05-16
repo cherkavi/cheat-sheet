@@ -1557,6 +1557,9 @@ echo "hello World 1234 woww" | tr -dc 'a-zA-Z'
 sed --in-place 's/LinkedIn/Yahoo/g' *
 # replace tab symbol with comma symbol
 sed --in-place 's/\t/,/g' one_file.txt
+
+# in case of error like: couldn't edit ... not a regular file
+grep -l -r "LinkedIn" | xargs sed --in-place s/LinkedIn/Yahoo/g
 ```
 
 ### no editor replacement, no vi no vim no nano, add line without editor, edit property without editor
