@@ -563,6 +563,9 @@ example of using github.com
 # Settings -> Developer settings -> Personal access tokens
 # https://github.com/settings/apps
 git remote set-url origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitites.git
+
+# in case of Error: no such remote 
+git remote add origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitites.git
 ```
 remove old password-access approach
 ```sh
