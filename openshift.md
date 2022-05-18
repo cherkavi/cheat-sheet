@@ -418,6 +418,13 @@ oc describe job {job name}
 oc describe pod {pod name}
 ```
 
+### debug pod
+```sh
+oc debug deploymentconfig/$OC_DEPL_CONFIG -c $OC_CONTAINER_NAME --namespace $OC_NAMESPACE
+```
+
+
+
 ### config map
 ```sh
 # list of config maps
