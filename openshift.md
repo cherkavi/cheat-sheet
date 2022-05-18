@@ -408,6 +408,7 @@ oc import-image jenkins:v3.7 --from='registry.access.redhat.com/openshift3/jenki
 ### log from 
 ```
 oc logs pod/{name of pod}
+oc logs -c <container> pods/<pod-name>
 oc logs --follow bc/{name of app}
 ```
 
