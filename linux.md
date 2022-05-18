@@ -2136,9 +2136,10 @@ dpkg --print-architecture
 dpkg --print-foreign-architectures
 sudo apt-get install libglib2.0-0:i386 libgtk2.0-0:i386
 ```
-### installed package check, check package
+### installed package check package information 
 ```
 apt list <name of package>
+apt show <name of package>
 ```
 
 ### package update package mark 
