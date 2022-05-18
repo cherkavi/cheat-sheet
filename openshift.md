@@ -422,7 +422,7 @@ oc describe pod {pod name}
 ```sh
 oc debug deploymentconfig/$OC_DEPL_CONFIG -c $OC_CONTAINER_NAME --namespace $OC_NAMESPACE
 ```
-
+[container error pod error](https://docs.openshift.com/container-platform/4.5/support/troubleshooting/investigating-pod-issues.html)
 
 
 ### config map
