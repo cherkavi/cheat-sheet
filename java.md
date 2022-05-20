@@ -1,4 +1,5 @@
 ## links
+* [java 8 download](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html)
 * [useful links](http://www.programcreek.com/2012/11/top-100-java-developers-blogs/)
 * [source code examples](http://www.javased.com/)
 * [source code examples](https://searchcode.com)
