@@ -361,6 +361,11 @@ oc exec -it $POD_NAME -c $CONTAINER_NAME /bin/bash
 oc exec kafka-test-app "/usr/bin/java"
 ```
 
+### get environment variables
+```sh
+oc set env pod/$POD_DATA_API --list
+```
+
 ### copy file 
 ```sh
 # copy file from pod
