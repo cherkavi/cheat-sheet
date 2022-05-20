@@ -3053,12 +3053,17 @@ x-www-browser http://localhost:9090
 ```
 
 ### alternatives
+set default browser
 ```sh
 sudo update-alternatives --display x-www-browser
 sudo update-alternatives --query x-www-browser
 sudo update-alternatives --remove x-www-browser /snap/bin/chromium
 sudo update-alternatives --remove x-www-browser /usr/bin/chromium
 sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/chromium-browser 90
+```
+java set default
+```sh
+update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 10
 ```
 
 ### open file with default editor, default viewer, with more appropriate viewr
