@@ -492,6 +492,13 @@ git cherry-pick --skip
 # !!! don't use "git commit" 
 ```
 
+### git new branch from detached head
+```sh
+git checkout <hash code>
+git cherry-pick <hash code2>
+git switch -c <new branch name>
+```
+
 ### git revert commit
 ```
 git revert <commit>
