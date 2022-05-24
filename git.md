@@ -688,6 +688,10 @@ git lfs migrate import --no-rewrite path-to-file
 ```sh
 git lfs track "*.psd"
 ```
+check tracking changes in file:
+```sh
+git add .gitattributes
+```
 
 ### create local repo in filesystem
 ```sh
