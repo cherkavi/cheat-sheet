@@ -684,6 +684,11 @@ Encountered 1 file(s) that should have been pointers, but weren't:
 git lfs migrate import --no-rewrite path-to-file
 ```
 
+#### git lfs add file
+```sh
+git lfs track "*.psd"
+```
+
 ### create local repo in filesystem
 ```sh
 # create bare repo file:///home/projects/bmw/temp/repo
