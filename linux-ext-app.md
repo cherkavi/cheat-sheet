@@ -476,6 +476,26 @@ for enabling/disabling password using
 ```text
 PasswordAuthentication yes
 ```
+ssh server without password ssh with rsa
+1. copy public key 
+```sh
+# ssh-keygen -b 4096
+cat $USER/.ssh/id_rsa.pub secret_user_rsa.pub
+```
+2. to ssh server
+```sh
+# touch ~/.ssh/authorized_keys; chmod 600 ~/.ssh/authorized_keys
+cat secret_user_rsa.pub >> $USER/.ssh/authorized_keys
+```
+3. change config
+```properties
+# sudo vim /etc/ssh/sshd_config
+PubkeyAuthentication yes
+PasswordAuthentication no
+AuthorizedKeysFile .ssh/authorized_keys
+```
+4. restart service
+5. connect with existing user on remote server ( you can also can specify -i ~/.ssh/id_rsa )
 
 ### nfs server
 #### nfs install

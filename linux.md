@@ -914,8 +914,28 @@ Wants=network.target
 After=syslog.target network-online.target
 
 [Service]
-Type=simplesystemctl
+Type=simple
 ExecStart=YOUR_COMMAND_HERE
+Restart=on-failure
+RestartSec=10
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+```
+
+#### ngrok
+```
+Description=GIVE_YOUR_SERVICE_A_DESCRIPTION
+
+Wants=network.target
+After=syslog.target network-online.target
+
+[Service]
+User=my_own_user
+Group=my_own_user
+Type=simple
+ExecStart=/snap/ngrok/53/ngrok --authtoken aaabbbcccddd  tcp 22
 Restart=on-failure
 RestartSec=10
 KillMode=process
@@ -954,7 +974,9 @@ managing services
 
 # list all services
 systemctl --all
+# in case of any changes in service file 
 systemctl enable YOUR_SERVICE_NAME
+
 systemctl start YOUR_SERVICE_NAME
 systemctl status YOUR_SERVICE_NAME
 systemctl daemon-reload YOUR_SERVICE_NAME
