@@ -1579,12 +1579,21 @@ echo "hello World 1234 woww" | tr -dc 'a-zA-Z'
 sed --in-place 's/LinkedIn/Yahoo/g' *
 # replace tab symbol with comma symbol
 sed --in-place 's/\t/,/g' one_file.txt
+
+# in case of error like: couldn't edit ... not a regular file
+grep -l -r "LinkedIn" | xargs sed --in-place s/LinkedIn/Yahoo/g
 ```
 
 ### no editor replacement, no vi no vim no nano, add line without editor, edit property without editor
 ```
 # going to add new line in property file without editor
 sed --in-place 's/\[General\]/\[General\]\nenable_trusted_host_check=0/g' matomo-php.ini
+```
+
+### timezone
+```sh
+timedatectl | grep "Time zone"
+cat /etc/timezone
 ```
 
 ### date formatting, datetime formatting, timestamp file, file with timestamp
@@ -2149,9 +2158,10 @@ dpkg --print-architecture
 dpkg --print-foreign-architectures
 sudo apt-get install libglib2.0-0:i386 libgtk2.0-0:i386
 ```
-### installed package check, check package
+### installed package check package information 
 ```
 apt list <name of package>
+apt show <name of package>
 ```
 
 ### package update package mark 
@@ -3025,7 +3035,7 @@ find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
 du -hs * | sort -h
 ```
 
-### calculator
+### calculator arifmethic operations add sub div multiply
 ```bash
 expr 30 / 5
 myvar=$(expr 1 + 1)
@@ -3036,7 +3046,7 @@ myvar=$(expr 1 + 1)
 echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode" 2>/dev/null
 ```
 
-### default type, detect default browser, mime types
+### default type, detect default browser, mime types, default application set default app
 ```sh
 xdg-mime query default x-scheme-handler/http
 
@@ -3053,13 +3063,34 @@ xdg-settings set default-web-browser firefox.desktop
 ## check default association
 cat ~/.config/mimeapps.list
 ```
+or change your alternatives
+```sh
+locate x-www-browser
+# /etc/alternatives/x-www-browser
+```
+
 open in default browser
 ```sh
 x-www-browser http://localhost:9090
 ```
 
+### alternatives
+set default browser
+```sh
+sudo update-alternatives --display x-www-browser
+sudo update-alternatives --query x-www-browser
+sudo update-alternatives --remove x-www-browser /snap/bin/chromium
+sudo update-alternatives --remove x-www-browser /usr/bin/chromium
+sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/chromium-browser 90
+```
+java set default
+```sh
+update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 10
+```
+
 ### open file with default editor, default viewer, with more appropriate viewr
 ```sh
+# ranger should be installed 
 rifle <path to file>
 ```
 

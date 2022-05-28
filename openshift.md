@@ -265,7 +265,27 @@ oc describe project {project name}
 
 ### images internal registry get images
 ```sh
+oc get images
 oc get images.image.openshift.io
+```
+
+### image import docker import to internal registry 
+```sh
+IMAGE_OCP=image-registry.openshift-registry.svc:5000/portal-test-env/openjdk-8-slim-enhanced:202110
+IMAGE_EXTERNAL=nexus-shared.com/repository/uploadimages/openjdk-8-slim-enhanced:202110
+oc import-image $IMAGE_OCP --from=$IMAGE_EXTERNAL --confirm
+```
+```sh
+oc import-image approved-apache:2.4 --from=bitnami/apache:2.4 --confirm
+oc import-image my-python --from=my-external.com/tdonohue/python-hello-world:latest --confirm
+
+# if you have credential restrictions
+# oc create secret docker-registry my-mars-secret --docker-server=registry.marsrover.space --docker-username="login@example.com" --docker-password=thepasswordishere
+```
+
+### tag image
+```sh
+oc tag my-external.com/tdonohue/python-hello-world:latest my-python:latest
 ```
 
 ### print current project
@@ -324,7 +344,8 @@ oc debug pods/{name of the pod}
 ### connect to existing pod, execute command on remote pod, oc exec
 ```
 oc get pods --field-selector=status.phase=Running
-oc rsh {name of pod}
+oc rsh <name of pod>
+oc rsh -c <container name> pod/<pod name>
 
 # connect to container inside the pod with multi container
 POD_NAME=data-portal-67-dx
@@ -340,12 +361,21 @@ oc exec -it $POD_NAME -c $CONTAINER_NAME /bin/bash
 oc exec kafka-test-app "/usr/bin/java"
 ```
 
-### copy file from pod
+### get environment variables
 ```sh
-oc cp api-server-256-txa8n:/usr/src/cert/keystore_server /my/local/path
+oc set env pod/$POD_DATA_API --list
+```
 
+### copy file 
+```sh
+# copy file from pod
+oc cp <local_path> <pod_name>:/<path> -c <container_name>  
+oc cp api-server-256-txa8n:/usr/src/cert/keystore_server /my/local/path
 # copy files from POD to locally 
 oc rsync /my/local/folder/ test01-mz2rf:/opt/app-root/src/
+
+# copy file to pod
+oc cp <pod_name>:/<path>  -c <container_name><local_path>  
 ```
 
 ### forward port forwarding
@@ -383,6 +413,7 @@ oc import-image jenkins:v3.7 --from='registry.access.redhat.com/openshift3/jenki
 ### log from 
 ```
 oc logs pod/{name of pod}
+oc logs -c <container> pods/<pod-name>
 oc logs --follow bc/{name of app}
 ```
 
@@ -391,6 +422,13 @@ oc logs --follow bc/{name of app}
 oc describe job {job name}
 oc describe pod {pod name}
 ```
+
+### debug pod
+```sh
+oc debug deploymentconfig/$OC_DEPL_CONFIG -c $OC_CONTAINER_NAME --namespace $OC_NAMESPACE
+```
+[container error pod error](https://docs.openshift.com/container-platform/4.5/support/troubleshooting/investigating-pod-issues.html)
+
 
 ### config map
 ```sh

@@ -1,4 +1,5 @@
 ## links
+* [java 8 download](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html)
 * [useful links](http://www.programcreek.com/2012/11/top-100-java-developers-blogs/)
 * [source code examples](http://www.javased.com/)
 * [source code examples](https://searchcode.com)
@@ -635,5 +636,7 @@ OpenXava create new project from DataSource
 		<     tomcat   path ><Project >       < entity name >
 ```
 
-# Version differences
+## Version differences
 ![java 8 to 9](https://i.postimg.cc/MHynycjm/java-8-9.png)
+
+## [jwt web token decoder JSON web token](https://jwt.io/)

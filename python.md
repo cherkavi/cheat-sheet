@@ -460,11 +460,26 @@ alembic --config alembic-local.ini upgrade cfaf8359a319 --sql
 ```
 
 # GUI
-## PySimpleGUI
-```
-sudo apt-get install python3-tk
-pip3 install PySimpleGUI
-```
+* PySimpleGUI
+	```sh
+	sudo apt-get install python3-tk
+	pip3 install PySimpleGUI
+	```
+* PyQT5
+	```sh
+	pip install pyqt5
+	```
+* Python Tkinter
+* PySide 2
+* Kivy
+	```sh
+	pip install docutils pygments pypiwin32 kivy.deps.sd12 kivy.deps.glew
+	pip install kivy
+	```
+* wxPython
+	```sh
+	pip install wxPython
+	```
 
 # Web frameworks lightweight
 * [bottle](http://bottlepy.org/)  

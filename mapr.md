@@ -1,6 +1,7 @@
 [MapR Academy](http://learn.mapr.com)
-[Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)
-![commands](https://i.postimg.cc/q7469wbf/mapr-commands.png)
+[Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)  
+[mapr code examples, mapr demos](https://github.com/mapr-demos)
+![commands](https://i.postimg.cc/q7469wbf/mapr-commands.png)  
 
 
 # Architecture examples
@@ -301,8 +302,9 @@ yarn logs -applicationId application_1540813402987_9262
 
 ## MapRDB 
 DBShell commands
-[commands](https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html)  
-[dbshell commands](https://docs.datafabric.hpe.com/62/ReferenceGuide/mapr_dbshell.html)
+* [commands](https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html)  
+* [dbshell examples](https://github.com/mapr-demos/mapr-db-cdc-sample)  
+* [dbshell commands](https://docs.datafabric.hpe.com/62/ReferenceGuide/mapr_dbshell.html)  
 
 ### [Create MaprDB database/table](https://docs.datafabric.hpe.com/62/ClusterAdministration/data/tables/CreateTable.html)  
 Two possible types of MaprDB:  
@@ -342,8 +344,11 @@ maprcli table delete -path <path_in_maprfs>
 ```
 
 Insert record in maprdb
+```dbshell
+insert --table /vantage/processed/tables/markers --value '{"_id": "custom_id_1", "name": "Martha", "age": 35}'
 ```
-insert --table /vantage/processed/tables/markers --value '{"_id": "1", "name": "Martha", "age": 35}'
+```dbshell
+delete --table /vantage/processed/tables/markers --id "custom_id_1"
 ```
 
 Create an index for the thumbnail MapR JSON DB in order to speed up: (query to find all sessionIds with existing thumbnails)
@@ -461,6 +466,12 @@ solution:
 
 
 ## Docker container with MapR docker image 
+### start locally 
+```sh
+# ERROR: Invalid MAPR_TZ timezone ()
+IMAGE_ID='maprtech/pacc:6.1.0_6.0.0_ubuntu16'
+docker run --env MAPR_TZ="UTC" --env MAPR_CONTAINER_USER="temp_user" --env MAPR_CLDB_HOSTS="build_new_container" -it $IMAGE_ID /bin/sh
+```
 ### Security Context Constraints
 ```dockerfile
 FROM maprtech/pacc:6.1.0_6.0.0_ubuntu16

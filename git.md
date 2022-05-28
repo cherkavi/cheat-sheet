@@ -492,6 +492,13 @@ git cherry-pick --skip
 # !!! don't use "git commit" 
 ```
 
+### git new branch from detached head
+```sh
+git checkout <hash code>
+git cherry-pick <hash code2>
+git switch -c <new branch name>
+```
+
 ### git revert commit
 ```
 git revert <commit>
@@ -563,6 +570,9 @@ example of using github.com
 # Settings -> Developer settings -> Personal access tokens
 # https://github.com/settings/apps
 git remote set-url origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitites.git
+
+# in case of Error: no such remote 
+git remote add origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitites.git
 ```
 remove old password-access approach
 ```sh
@@ -672,6 +682,15 @@ Encountered 1 file(s) that should have been pointers, but weren't:
 ```
 ```
 git lfs migrate import --no-rewrite path-to-file
+```
+
+#### git lfs add file
+```sh
+git lfs track "*.psd"
+```
+check tracking changes in file:
+```sh
+git add .gitattributes
 ```
 
 ### create local repo in filesystem
