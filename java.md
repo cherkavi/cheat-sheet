@@ -87,6 +87,10 @@ VirtualMachine vm = VirtualMachine.attach(pid)
 vm.loadAgent(jarPath, agentArgS)
 vm.detach()
 ```
+### get current java version java runtime version
+```java
+System.getProperty("java.runtime.version");
+```
 
 ### set proxy system properties
 ```
