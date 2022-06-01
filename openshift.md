@@ -269,11 +269,6 @@ oc get images
 oc get images.image.openshift.io
 ```
 
-### build configs for images
-```sh
-oc get bc
-```
-
 ### image import docker import to internal registry 
 ```sh
 # don't specify the tag name for the image, use `oc tag `
@@ -289,9 +284,20 @@ oc import-image my-python --from=my-external.com/tdonohue/python-hello-world:lat
 # oc create secret docker-registry my-mars-secret --docker-server=registry.marsrover.space --docker-username="login@example.com" --docker-password=thepasswordishere
 ```
 
+### build configs for images
+```sh
+oc get bc
+oc describe bc/user-portal-dockerbuild 
+```
+
 ### tag image
 ```sh
 oc tag my-external.com/tdonohue/python-hello-world:latest my-python:latest
+# Tag a specific image
+oc tag openshift/ruby@sha256:6b646fa6bf5e5e4c7fa41056c27910e679c03ebe7f93e361e6515a9da7e258cc yourproject/ruby:tip
+
+# Tag an external container image
+oc tag --source=docker openshift/origin-control-plane:latest yourproject/ruby:tip
 ```
 
 ### print current project
