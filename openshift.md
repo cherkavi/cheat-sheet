@@ -271,10 +271,9 @@ oc get images.image.openshift.io
 
 ### image import docker import to internal registry 
 ```sh
-# don't specify the tag name for the image, use `oc tag `
-IMAGE_OCP=image-registry.openshift-registry.svc:5000/portal-test-env/openjdk-8-slim-enhanced
+IMAGE_OCP=image-registry.openshift-registry.svc:5000/portal-test-env/openjdk-8-slim-enhanced:ver1
 IMAGE_EXTERNAL=nexus-shared.com/repository/uploadimages/openjdk-8-slim-enhanced:202110
-oc import-image $IMAGE_OCP --from=$IMAGE_EXTERNAL --confirm
+oc import-image $IMAGE_OCP --reference-policy='local' --from=$IMAGE_EXTERNAL --confirm
 ```
 ```sh
 oc import-image approved-apache --from=bitnami/apache:2.4 --confirm
@@ -298,6 +297,9 @@ oc tag openshift/ruby@sha256:6b646fa6bf5e5e4c7fa41056c27910e679c03ebe7f93e361e65
 
 # Tag an external container image
 oc tag --source=docker openshift/origin-control-plane:latest yourproject/ruby:tip
+
+# check tag
+oc get is
 ```
 
 ### print current project
