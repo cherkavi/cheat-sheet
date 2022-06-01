@@ -72,6 +72,10 @@ pip install --index-url http://cc-artifactory.mynetwork.net my_own_package
 ```
 pip install --user .
 ```
+### pip install from package install from zip
+```sh
+pip3 install --user ~/Downloads/PyGUI-2.5.4.tar.gz
+```
 
 ### setup.py
 #### install
