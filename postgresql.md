@@ -252,3 +252,19 @@ select ROW_NUMBER () OVER (ORDER BY sku), sku from w60be740099999931852ba405_var
 -- add column to table
 ALTER TABLE schema_name.table_name ADD column_name bigint;
 ```
+
+### obtain DDL of table description 
+```sh
+pg_dump --host $PG_HOST --port $PG_PORT --username $PG_USER --dbname $PG_DB --schema-only --schema=public --table=schema_name.table_name
+
+# pg_dump: error: aborting because of server version mismatch
+# --ignore-version
+# `select version();` PostgreSQL 13.2 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.3.1 20191121 (Red Hat 8.3.1-5), 64-bit
+# `pg_lsclusters`
+# --cluster 13.2
+```
+
+```sql
+\dt+ schema_name.table_name
+\d+ schema_name.table_name
+```
