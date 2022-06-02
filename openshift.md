@@ -282,6 +282,7 @@ oc import-image my-python --from=my-external.com/tdonohue/python-hello-world:lat
 # if you have credential restrictions
 # oc create secret docker-registry my-mars-secret --docker-server=registry.marsrover.space --docker-username="login@example.com" --docker-password=thepasswordishere
 ```
+!!! in case of any errors in process creation, pay attention to output of pods/....-build
 
 ### build configs for images
 ```sh
