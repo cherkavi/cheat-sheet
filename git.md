@@ -231,9 +231,15 @@ git log --name-only  --grep='XVIZ instance'
 git log -g --grep='jwt'
 ```
 
-### show no-merged branches
+### show no merged branches
 ```
 git branch --no-merged
+```
+
+### show branches with commits
+```sh
+git show-branch
+git show-branch -r
 ```
 
 ### checkout branch locally and track it
@@ -535,6 +541,8 @@ done
 ### show remote url
 ```
 git remote -v
+git ls-remote 
+git ls-remote --heads
 ```
 
 ### [git chain of repositories](https://github.com/cherkavi/solutions/tree/master/git-repo-chain)
