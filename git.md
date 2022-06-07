@@ -6,7 +6,10 @@
 # curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 # .bashrc
 if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
+  export GIT_COMPLETION_CHECKOUT_NO_GUESS=0
+  export GIT_COMPLETION_SHOW_ALL_COMMANDS=1
+  export GIT_COMPLETION_SHOW_ALL=1
+  source ~/.git-completion.bash
 fi
 
 ```
