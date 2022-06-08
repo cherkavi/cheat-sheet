@@ -126,14 +126,36 @@ ssh -D 9999 127.0.0.1 -t ssh -R 7777:127.0.0.1:9999 username@192.118.112.13
 wget -e use_proxy=yes -e http_proxy=127.0.0.1:7777 https://google.com
 ```
 
-ssh suppress banner, ssh no invitation
+### ssh suppress banner, ssh no invitation
 ```sh
 ssh -q my_server.org
 ```
 
-ssh verbosive, ssh log, debug ssh
+### ssh verbosive, ssh log, debug ssh
 ```sh
 ssh -vv my_server.org
+```
+
+### ssh variable ssh envvar ssh send variable
+####
+```sh
+ssh -t user@host VAR1="Petya" bash -l
+```
+#### sshd config
+locally: ~/.ssh/config 
+```sh
+SendEnv MY_LOCAL_VAR
+```
+remotely: /etc/ssh/sshd_config
+```sh
+AcceptEnv MY_LOCAL_VAR
+```
+#### ssh environment
+```sh
+echo "VAR1=Hello" > sshenv
+echo "VAR2=43" >> sshenv
+scp sshenv user@server:~/.ssh/environment
+ssh user@server myscript
 ```
 
 ### local proxy cntlm, cntlm proxy
