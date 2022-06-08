@@ -3040,6 +3040,18 @@ du -hs * | sort -h
 expr 30 / 5
 myvar=$(expr 1 + 1)
 ```
+```bash
+python3 -c "print(4*3)"
+perl -e "print 4*3"
+```
+desc calculator
+```bash
+echo "2 3 + p" | dc
+```
+basic calculator
+```bash
+echo "4+5" | bc
+```
 
 ### sudo without password, apple keyboard, sudo script without password
 ```
