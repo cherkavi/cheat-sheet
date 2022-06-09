@@ -588,6 +588,8 @@ replace value from file with special format
 ```python
 {{ lookup('csvfile', 'web_server file=credentials.csv delimiter=,') }}
 {{ lookup('ini', 'password section=web_server file=credentials.ini') }}
+{{ lookup('env','DESTINATION') }}
+{{ lookup('file','/tmp/version.txt') }}
 ```
 lookups variables
 ```
