@@ -750,8 +750,8 @@ END_FILE_MARKER
 ```
 
 
-## execute shell with additional jar, in debug mode spark-shell
-![spark remote debug](https://user-images.githubusercontent.com/8113355/172914408-aef8b193-7043-41da-9594-861e5393cdc8.png)
+## execute shell with additional jar, in debug mode spark-shell, spark debug
+![spark remote debug](https://user-images.githubusercontent.com/8113355/172915008-5691ab79-e7e6-43ad-8428-279b05be45be.png)
 ```sh
 spark-shell \
 --jars "/home/some_path/solr-rest_2.11-0.1.jar,/home/someuser/.ivy2/cache/org.json/json/bundles/json-20180813.jar" \
