@@ -751,6 +751,7 @@ END_FILE_MARKER
 
 
 ## execute shell with additional jar, in debug mode spark-shell
+![spark remote debug](https://user-images.githubusercontent.com/8113355/172914408-aef8b193-7043-41da-9594-861e5393cdc8.png)
 ```sh
 spark-shell \
 --jars "/home/some_path/solr-rest_2.11-0.1.jar,/home/someuser/.ivy2/cache/org.json/json/bundles/json-20180813.jar" \
@@ -762,7 +763,7 @@ useful changes for local debugging
 spark-shell --master local --deploy-mode client \
 ...
 ```
-
+	
 ## avoid jar hell, library shadowing, different versions of libraries usage
 https://cloud.google.com/blog/products/data-analytics/managing-java-dependencies-apache-spark-applications-cloud-dataproc
 * shaded jar
