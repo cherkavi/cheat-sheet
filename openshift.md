@@ -3,7 +3,7 @@
   ```bash
   source <(oc completion bash)
   ```
-  * trace logging
+  * trace logging communication, verbose output
   ```bash
   rm -rf ~/.kube/cache
   oc get pods -v=6
