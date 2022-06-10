@@ -31,13 +31,8 @@ debian
 ```sh
 sudo apt install oc
 ```
-download appropriate release 
-```
-https://api.github.com/repos/openshift/origin/releases/latest
-```
-or
-[openshift downloads](https://access.redhat.com/downloads)
-
+or [download appropriate release](https://api.github.com/repos/openshift/origin/releases/latest)  
+or [openshift downloads](https://access.redhat.com/downloads)
 retrieve "browser_download_url", example of link for downloading ( from previous link )
 ```
 https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz
@@ -45,6 +40,8 @@ tar -xvf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz
 mv openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit /home/soft/openshift-tool
 export PATH=/home/soft/openshift-tool:$PATH
 ```
+[odo cli](https://docs.openshift.com/container-platform/latest/cli_reference/opm/cli-opm-install.html)  
+[tkn cli](https://docs.openshift.com/container-platform/latest/cli_reference/tkn_cli/installing-tkn.html)  
 
 ## [CLI commands oc commands](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html)
 ### login into openshift
