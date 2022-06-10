@@ -40,6 +40,10 @@ tar -xvf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz
 mv openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit /home/soft/openshift-tool
 export PATH=/home/soft/openshift-tool:$PATH
 ```
+check oc client version oc
+```sh
+oc version -v8 2>&1 | grep "User-Agent" | awk '{print $6}
+```
 [odo cli](https://docs.openshift.com/container-platform/latest/cli_reference/opm/cli-opm-install.html)  
 [tkn cli](https://docs.openshift.com/container-platform/latest/cli_reference/tkn_cli/installing-tkn.html)  
 
