@@ -627,7 +627,7 @@ mkdir -p /mnt/my-ram
 mount -t tmpfs tmpfs /mnt/my-ram -o size=1024M
 ```
 
-### repeat command with predefined interval, execute command repeatedly
+### repeat command with predefined interval, execute command repeatedly, watch multiple command watch pipe
 ```
 watch -n 60 'ls -la | grep archive'
 ```
