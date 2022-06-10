@@ -341,6 +341,16 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace            
+            - name: MAPR_TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: environmental-vars
+                  key: MAPR_TZ
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgresqlservice
+                  key: database-user                
       restartPolicy: Never
   backoffLimit: 4
 ```
