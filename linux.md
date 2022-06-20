@@ -1077,8 +1077,18 @@ nautilus "$(dirname -- "$PATH_TO_SVG_CONFLUENCE")"
 ```
 
 ### print full path to files inside folder, check folder for existence path check for existence
-```
+```sh
 ls -d <path to folder>/*
+```
+```sh
+for each_path in `find /mapr/dp.ch/vantage/data/collected/MDF4/complete -maxdepth 5`; do    
+    if [ -d "$each_path" ]; 
+    then
+        echo "exists: $each_path"
+    else
+        echo "not a path: $each_path"        
+    fi
+done
 ```
 
 ### ls directory, ls current folder, ls path, ls by path
