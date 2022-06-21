@@ -1630,9 +1630,12 @@ cat /etc/timezone
 
 ### date formatting, datetime formatting, timestamp file, file with timestamp
 ```sh
+# print current date
 date +%H:%M:%S:%s
+# print date with timestamp
+date -d @1552208500 +"%Y%m%dT%H%M%S"
 date +%Y-%m-%d-%H:%M:%S:%s
-# output file with currenttime
+# output file with currenttime file with currenttimestamp
 python3 /imap-message-reader.py > message_reader`date +%H:%M:%S`.txt
 ```
 
