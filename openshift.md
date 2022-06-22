@@ -444,9 +444,19 @@ oc logs --follow bc/{name of app}
 ```
 
 ### describe resource, information about resource
-```
+```sh
 oc describe job {job name}
 oc describe pod {pod name}
+```
+
+### edit resource
+```sh
+export EDITOR=vim
+oc edit pv pv-my-own-volume-1
+```
+or 
+```sh
+oc patch pv/pv-my-own-volume-1 --type json -p '[{ "op": "remove", "path": "/spec/claimRef" }]'
 ```
 
 ### debug pod
