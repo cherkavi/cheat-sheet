@@ -686,6 +686,10 @@ spec:
 status:
   phase: Bound
 ```
+if you are going to edit/change PV you should:
+1. remove PV
+2. remove PVC
+3. remove all Workloads, that are using it ( decrease amount of PODs in running config )
 
 ### create secret token if it not exist
 creating secret 
