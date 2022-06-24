@@ -72,6 +72,43 @@ $ oc login $OPENSHIFT_HOST:8443
 $ oc port-forward $POD_NAME 5005
 ```
 
+### java application console debug headless debug
+connect to process
+```sh
+jdb -attach localhost:5005
+```
+commands inside debugger
+```
+# set breakpoint 
+stop at com.ubs.ad.data.interval.v2.IntervalServiceImpl:189
+
+# print list of breakpoints
+clear  
+
+# remove breakpoint 
+clear com.ubs.ad.data.interval.v2.IntervalServiceImpl:189
+
+# print local variables 
+locals
+
+# for all methods need to use full name of the class
+print com.ubs.interval.IntervalValidator.isContributorIdValid(subscriber)
+eval com.ubs.interval.IntervalValidator.isContributorIdValid(subscriber)
+
+print intervalsIdList
+dump intervalsIdList
+```
+movements inside debugger
+```
+next                      -- step one line (step OVER calls)
+cont                      -- continue execution from breakpoint
+
+step                      -- execute current line ( step in )
+step up                   -- execute until the current method returns to its caller
+stepi                     -- execute current instruction
+```
+
+
 ### java agent
 ```bash
 -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9010
