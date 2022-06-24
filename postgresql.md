@@ -75,6 +75,16 @@ PG_DB=data-production
 
 psql -h $PG_HOST -p $PG_PORT -U $PG_USER $PG_DB
 ```
+parsing of jdbc url
+```sh
+PG_HOST=`echo $POSTGRES_URL | awk -F '//' '{print $2}' | awk -F ':' '{print $1}'`
+PG_PORT=`echo $POSTGRES_URL | awk -F '//' '{print $2}' | awk -F ':' '{print $2}' | awk -F '/' '{print $1}'`
+PG_DB=`echo $POSTGRES_URL | awk -F '//' '{print $2}' | awk -F ':' '{print $2}' | awk -F '/' '{print $2}'`
+echo $PG_DB"   "$PG_HOST":"$PG_PORT
+export PGPASSWORD=$POSTGRES_PASSWORD
+psql -h $PG_HOST  -p $PG_PORT -U $POSTGRES_USER $PG_DB
+```
+
 #### save results to file
 ```
 # pgcli save query result
