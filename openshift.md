@@ -408,6 +408,24 @@ oc cp <pod_name>:/<path>  -c <container_name><local_path>
 ```bash
 oc port-forward <pod-name> <ext-port>:<int-port>
 ```
+```sh
+function oc-port-forwarding(){
+    if [[ $# != 3 ]]
+    then
+        echo "port forwarding for remote pods with arguments:"
+        echo "1. project-name, like 'portal-stg-8' "
+        echo "2. pod part of the name, like 'collector'"
+        echo "3. port number like 5005"
+        return 1
+    fi
+
+	oc login -u $USER_DATA_API_USER -p $USER_DATA_API_PASSWORD $OPEN_SHIFT_URL
+	oc project $1
+    POD_NAME=$(oc get pods | grep Running | grep $2 | awk '{print $1}')
+    echo $POD_NAME
+    oc port-forward $POD_NAME $3:$3
+}
+```
 
 ### [create app](https://access.redhat.com/documentation/en-us/openshift_enterprise/3.0/html/developer_guide/dev-guide-new-app)
 
