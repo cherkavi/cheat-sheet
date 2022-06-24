@@ -1677,9 +1677,16 @@ unzip -o file.zip -d output_folder
 wget -qO- https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz | tar xvz - -C /target/directory
 ```
 
-### untar
+### tar
 ```sh
-tar zxvf backup.tgz
+# tar create
+tar -cf jdk.tar 8.0.265.j9-adpt
+
+# tar list of files inside
+tar -tf jdk.tar
+
+# tar extract 
+tar -xvf jdk.tar -C /tmp/jdk
 ```
 
 ### pipeline chain 'to file'
