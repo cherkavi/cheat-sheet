@@ -23,6 +23,6 @@ function cheat-grep(){
         fi
     done
 
-    rg $search_line -i -A 2 /home/projects/cheat-sheet/*.md /home/projects/bash-example/*
+    grep -r $search_line -i -A 2 $HOME_PROJECTS/cheat-sheet/*.md $HOME_PROJECTS/bash-example/*
 }
 ```
