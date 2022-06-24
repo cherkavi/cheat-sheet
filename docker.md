@@ -1,5 +1,5 @@
 # Docker
-======
+
 ### [online playground](https://labs.play-with-docker.com)
 ### [commands description](https://tutorialshub.org/docker-commands/)
 ### Ecosystem
@@ -17,6 +17,15 @@ sudo apt install docker.io
 sudo systemctl start docker
 sudo systemctl enable docker
 ```
+### bash completion
+```
+curl -o ~/.docker-machine.bash  https://raw.githubusercontent.com/docker/machine/master/contrib/completion/bash/docker-machine.bash 
+```
+update your bashrc
+```
+. ~/.docker-machine.bash
+```
+
 ### Architecture
 ![architecture](https://i.postimg.cc/jqXQSC12/docker-architecture.png)
 
