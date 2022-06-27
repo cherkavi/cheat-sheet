@@ -403,6 +403,19 @@ query with counting amount of elements in array
 find //tables/session --query {"$select":["_id"],"$where":{"$and":[{"$eq":{"vin":"BX77777"}},{"$sizeof":{"labelEvents":{"$ge":1}}}]}}
 ```
 
+for data:
+```
+ "dag_data" : {
+    "name" : "drive_markers",
+    "number" : {
+      "$numberInt" : -1
+    }
+  },
+//  --limit 10 --pretty --c {"$notexists":"dag_data"}
+//  --limit 10 --pretty --c {"$eq":{"dag_data.number":-1}}
+  
+```
+
 example of inline execution
 ```sh
 REQUEST="find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2"
