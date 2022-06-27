@@ -329,6 +329,7 @@ pdb.set_trace()
 execute in debug
 ```sh
 python3 -m pdb myscript.py
+pdb myscript.py
 ```
 commands
 ```
