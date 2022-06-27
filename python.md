@@ -326,6 +326,12 @@ import pdb
 pdb.set_trace()
 # breakpoint()
 ```
+for ipdb:
+```python
+# python3 -m pip install --user ipdb
+__import__('ipdb').set_trace(context=21)
+```
+
 execute in debug
 ```sh
 python3 -m pdb myscript.py
