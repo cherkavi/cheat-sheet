@@ -324,6 +324,7 @@ $PANTS_PATH/pants --pants-distdir=$PANTS_OUTPUT binary src/path/to/package:packa
 import pdb
 # ...
 pdb.set_trace()
+# breakpoint()
 ```
 execute in debug
 ```sh
@@ -332,7 +333,10 @@ python3 -m pdb myscript.py
 commands
 ```
 until 99999
+step
 next
+continues
+p x+y
 return
 ```
 
