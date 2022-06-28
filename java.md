@@ -73,6 +73,8 @@ $ oc port-forward $POD_NAME 5005
 ```
 
 ### java application console debug headless debug
+![image](https://user-images.githubusercontent.com/8113355/176193336-cd4c4e30-9752-4fb2-8721-3e43218b3b64.png)
+
 connect to process
 ```sh
 jdb -attach localhost:5005
