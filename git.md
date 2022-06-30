@@ -127,12 +127,13 @@ git reset --hard origin/$current_branch
 git branch -d $current_branch_ghost
 ```
 
-### squash commit replace batch of commits
+### squash commit replace batch of commits 
+[interactive rebase](https://garrytrinder.github.io/2020/03/squashing-commits-using-interactive-rebase)  
 ```sh
 git checkout my_branch
 # take a look into your local changes, for instance we are going to squeeze 4 commits
 git reset --soft HEAD~4
-# in case of having external changes and compress commits: git rebase -i HEAD~4
+# in case of having external changes and compress commits: git rebase --interactive HEAD~4
 
 git commit # your files should be staged before
 git push --force-with-lease origin my_branch
