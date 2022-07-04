@@ -219,6 +219,11 @@ pip install pipdeptree
 pipdeptree
 ```
 
+for transitive dependency:
+* constraints.txt file should be considered  `pip install -c constraints.txt`
+* poetry ( under the hood uses pip )
+
+
 ### import package by string name
 ```
 target = __import__("data-migration")
