@@ -1358,9 +1358,13 @@ pidof chrome
 
 ### process list, process tree
 ```sh
+# process list with hierarchy 
 ps axjf
 ps -ef --forest
 ps -fauxw
+
+# process list full command line, ps full cmd
+ps -ef ww 
 ```
 ### process list without ps
 [links to processes](https://www.kernel.org/doc/html/latest/filesystems/proc.html#process-specific-subdirectories)
