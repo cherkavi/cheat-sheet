@@ -9,6 +9,7 @@
 
 ### tools
 #### [regular expressions regexp](https://regex101.com)
+#### [sed escape, sed online escape](https://dwaves.de/tools/escape/)
 
 ### online coding
 * [repl online](https://replit.com/)
