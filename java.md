@@ -52,6 +52,14 @@ $ oc port-forward $POD_NAME 5005
 visualvm --openjmx localhost:5006
 ```
 
+### visualvm 
+#### [visual vm download](https://visualvm.github.io/download.html)
+#### set specific jdk
+vim etc/visualvm.conf
+```sh
+visualvm_jdkhome="/home/my-user/.sdkman/candidates/java/18.0.1-oracle"
+```
+
 ### java application debug, remote debug
 ```bash
 -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
