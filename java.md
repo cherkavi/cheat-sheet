@@ -35,6 +35,7 @@ UUID.randomUUID();
 # command line argument
 -Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.port=5006
+-Dcom.sun.management.jmxremote.rmi.port=5007
 -Dcom.sun.management.jmxremote.local.only=false
 -Dcom.sun.management.jmxremote.authenticate=false
 -Dcom.sun.management.jmxremote.ssl=false
@@ -46,7 +47,8 @@ $ oc login $OC_HOST:8443
  
 # forward ports from localhost to pod
 # oc port-forward $POD_NAME <local port>:<remote port>
-$ oc port-forward $POD_NAME 5005
+$ oc port-forward $POD_NAME 5006
+$ oc port-forward $POD_NAME 5007
  
 # e.g. connect to the jmx port with visual vm
 visualvm --openjmx localhost:5006
@@ -59,6 +61,7 @@ vim etc/visualvm.conf
 ```sh
 visualvm_jdkhome="/home/my-user/.sdkman/candidates/java/18.0.1-oracle"
 ```
+#### for connecting to jvm - select "new jmx connection"
 
 ### java application debug, remote debug
 ```bash
