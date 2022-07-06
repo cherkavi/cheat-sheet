@@ -84,7 +84,12 @@ gnome-keyring-daemon --unlock
 # type your password, <enter> <Ctrl-D>
 keyring set cc.user cherkavi
 keyring get cc.user cherkavi
-
+```
+### keyring reset password
+```sh
+PATH_TO_KEYRING_STORAGE=~/.local/share/keyrings/login.keyring 
+mv $PATH_TO_KEYRING_STORAGE "${PATH_TO_KEYRING_STORAGE}-original"
+# go to applications->passwords and keys-> "menu:back" -> "menu:passwords"
 ```
 
 ## certification 
