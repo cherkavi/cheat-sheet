@@ -614,3 +614,12 @@ exiftool -GPS:GPSLongitude *.jpg
 exiftool -filename  -gpslatitude -gpslongitude  *.jpg
 exiftool -filename  -exif:gpslongitude  *.jpg
 ```
+
+### top
+top hot keys:
+* t - change graphical representation
+* e - change scale
+* z - color
+* c - full command
+* d - delay 
+* o - filter ( COMMAND=java )
