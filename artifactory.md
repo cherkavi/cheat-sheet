@@ -1,6 +1,16 @@
 # Artifactory
+## REST endpoints
+### token generation
+```sh
+ARTIFACTORY_URL=https://artifactory.sbbgroup.net/artifactory 
+USERNAME="cherkavi"
+curl -u "$USERNAME" -XPOST "$ARTIFACTORY_URL/api/security/token" -d "username=$USERNAME" -d "scope=member-of-groups:*" -d "expires_in=315360000"
 
-## endpoints
+### plain password should be replaced in files 
+# ~/.git-credentials
+# ~/.m2/settings.xml
+```
+
 ### get artifact from artifactory
 ```sh
 URL="https://artifactory.sbbgroup.net/artifactory/management-snapshots/com/ad/cicd/jenkins/jenkins-labeling-6b999cadc054-SNAPSHOT-jenkins.zip"
