@@ -355,6 +355,54 @@ spec:
       restartPolicy: Never
   backoffLimit: 4
 ```
+![image](https://user-images.githubusercontent.com/8113355/178698083-47b2e115-f802-4aaa-a960-a6d3f0e10707.png)
+1. secret to env
+```yaml
+          env:
+            - name: POSTGRESUSER
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql-service
+                  key: database-user
+
+```
+2. configmap to env
+```yaml
+          env:
+            - name: MAPRCLUSTER
+              valueFrom:
+                configMapKeyRef:
+                  name: env-vars
+                  key: MAPR_CLUSTER
+```
+3. secret to file
+```yaml
+    spec:
+      volumes:
+        - name: mapr-ticket
+          secret:
+            secretName: mapr-ticket
+            defaultMode: 420
+...
+          volumeMounts:
+            - name: mapr-ticket
+              readOnly: true
+              mountPath: /users-folder/maprticket
+
+```
+4. configmap to file
+```yaml
+    spec:
+      volumes:
+        - name: logging-config-volume
+          configMap:
+            name: log4j2-config
+            defaultMode: 420
+...
+          volumeMounts:
+            - name: logging-config-volume
+              mountPath: /usr/src/config
+```
 
 ### set resource limits
 ```
