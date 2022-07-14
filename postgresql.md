@@ -112,6 +112,10 @@ url:
 </dependency>
 ```
 
+## DB structure
+![image](https://user-images.githubusercontent.com/8113355/178947493-39da3c5e-5e0b-48b2-8fbc-d704ddc5ca75.png)
+
+
 ## DB requests
 ### install client
 ```
