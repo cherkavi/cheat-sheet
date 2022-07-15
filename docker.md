@@ -690,6 +690,11 @@ sudo rm -rf /var/lib/docker
 
 Additional management
 ------
+### docker events real time
+```
+docker system events
+```
+
 ### disk usage infomration
 ```
 docker system df
