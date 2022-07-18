@@ -567,13 +567,15 @@ or for file /etc/docker/daemon.json
 }
 ```
 
-## Save
+## save
 ------
-### docker save changed container, commit changes
+### docker save changed container commit changes fix container changes
 ```sh
-docker run -it {IMAGE_ID} /bin/sh
+docker run --entrypoint="" -it {IMAGE_ID} /bin/sh
 # execute some commands like `apt install curl`....
 ```
+> make a changes and keep it running
+> select another terminal window
 ```sh
 docker ps
 # select proper container_id 
