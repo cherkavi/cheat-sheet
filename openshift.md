@@ -444,7 +444,9 @@ oc set env pod/$POD_DATA_API --list
 ```sh
 # copy file from pod
 oc cp <local_path> <pod_name>:/<path> -c <container_name>  
-oc cp api-server-256-txa8n:/usr/src/cert/keystore_server /my/local/path
+oc cp api-server-256-txa8n:usr/src/cert/keystore_server /my/local/path
+# for OCP4 we should NOT to use leading slash like /usr/src.... 
+
 # copy files from POD to locally 
 oc rsync /my/local/folder/ test01-mz2rf:/opt/app-root/src/
 
