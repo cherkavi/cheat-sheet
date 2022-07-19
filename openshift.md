@@ -304,6 +304,30 @@ oc tag --source=docker openshift/origin-control-plane:latest yourproject/ruby:ti
 oc get is
 ```
 
+## pod image sources pod docker image sources
+just an example from real cluster
+```
+             │       ┌─────────┐
+ LOCAL       │       │ Nexus   │
+     ┌───────┼──1────► docker  ├────┐───────┐
+     │       │       │ storage │    │       │
+     │       │       └─────────┘    3       4
+     │       │                      │       │
+┌────┴─────┐ ├──────────────────────┼───────┼─
+│  docker  │ │    OpenShift         │       │
+└────┬─────┘ │                  ┌───▼──┐    │
+     │       │ ┌─────────┐      │Image │    │
+     │       │ │OpenShift│      │Stream│    │
+     └──2────┼─►registry │      └─┬────┘    │
+             │ └────┬────┘        5         │
+             │      │        ┌────▼─┐       │
+             │      └────6───► POD  ◄───────┘
+                             └──────┘
+```
+1. docker push <nexus>
+2. docker push <openshift>
+3. import-image
+
 ### print current project
 ```sh
 oc project
