@@ -150,7 +150,7 @@ git rev-parse HEAD
 git log -n 1 --pretty=format:'%h' > /tmp/gitHash.txt
 ```
 
-### print branch name by hashcode to branch name
+### print branch name by hashcode to branch name show named branches branchname
 ```sh
 git ls-remote | grep <hashcode>
 # answer will be like:          <hashcode>        <branch name>
