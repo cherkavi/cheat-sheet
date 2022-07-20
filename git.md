@@ -325,6 +325,8 @@ git cherry develop release-6.0.0
 ```sh
 git diff develop..master -- myfile.cs
 ```
+github difference between two branches
+https://github.com/cherkavi/management/compare/release-4.0.6...release-4.0.7
 
 ### difference between branch and current file ( compare file with file in branch )
 ```sh
