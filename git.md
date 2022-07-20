@@ -41,7 +41,10 @@ git reset --hard origin/master
 
 ### restore local branch with saving all the work
 ```sh
+# save work to staging
 git reset --soft origin/master
+# save work to working dir
+git reset --mixed HEAD~2
 ```
 
 ### restore removed file, restore deleted file, find removed file, show removed file
