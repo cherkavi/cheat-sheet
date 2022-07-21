@@ -566,8 +566,13 @@ ffmpeg -y -video_size 1280x1024 -framerate 20 -f x11grab -i :0.0 /output/out.mp4
 # stop recording
 ps aux | grep ffmpeg | head -n 1 | awk '{print $2}' | xargs kill --signal INT 
 ```
+### video metadata
+```sh
+sudo apt install mediainfo
+mediainfo video.mp4
+```
 
-### image format, image size, image information
+### image format, image size, image information, image metadata
 ```
 # sudo apt-get install imagemagick
 identify -verbose image.png
