@@ -1610,7 +1610,7 @@ echo "hello World" | tr '[:lower:]' '[:upper:]
 echo "hello World 1234 woww" | tr -dc 'a-zA-Z'
 ```
 
-### replace text in all files of current directory, replace inline, replace inplace, inline replace
+### replace text in all files of current directory, replace inline, replace inplace, inline replace, sed inplace
 ```bash
 sed --in-place 's/LinkedIn/Yahoo/g' *
 # replace tab symbol with comma symbol
