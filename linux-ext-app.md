@@ -570,6 +570,7 @@ ps aux | grep ffmpeg | head -n 1 | awk '{print $2}' | xargs kill --signal INT
 ```sh
 sudo apt install mediainfo
 mediainfo video.mp4
+mediainfo -f video.mp4
 ```
 
 ### image format, image size, image information, image metadata
