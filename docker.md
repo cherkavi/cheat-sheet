@@ -88,6 +88,7 @@ standard_init_linux.go:228: exec user process caused: exec format error
 WORKDIR /opt/airflow
 ENTRYPOINT ["./entrypoint.sh"]
 ```
+> also can be helpful to check entrypoint for UNIX (LF) as new line ( instead of windows CR LF )
 
 ## proxy set up:
 ### proxy for daemon
