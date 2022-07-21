@@ -104,6 +104,7 @@ clusters:
 kubectl config use-context kubernetes-admin@docker-for-desktop-cluster
 ```
 
+## secrets 
 ### create token for MapR
 ```bash
 maprlogin password -user {mapruser}
@@ -152,6 +153,22 @@ or from content of file from previous command
 ```bash
 oc create secret generic {name of secret/token} --from-literal=CONTAINER_TICKET='dp.prod.ubs qEnHLE7UaW81NJaDehSH4HX+m9kcSg1UC5AzLO8HJTjhfJKrQWdHd82Aj0swwb3AsxLg==' -n {project name}
 ```
+
+### create secret values 
+login password secret
+```
+SECRET_NAME=my-secret
+KEY1=user
+VALUE1=cherkavi
+KEY2=password
+VALUE2=my-secret-password
+oc create secret generic $SECRET_NAME --from-literal=$KEY1=$VALUE1 --from-literal=$KEY2=$VALUE2
+```
+or even mix of them
+```
+oc create secret generic $SECRET_NAME --from-file=ssh-privatekey= /.ssh/id_rsa --from-literal=$KEY1=$VALUE1
+```
+
 check creation  
 ```bash
 oc get secrets
