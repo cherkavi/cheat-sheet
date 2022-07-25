@@ -582,6 +582,7 @@ docker ps
 # select proper container_id 
 docker commit {CONTAINER_ID} {NEW_IMAGE_NAME}
 ```
+> !!! be aware, in case of skipping entrypoint, in committed image with be no entrypoint too
 
 ### container new name, rename container, container new tag
 ```
