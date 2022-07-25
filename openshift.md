@@ -308,7 +308,7 @@ oc get bc
 oc describe bc/user-portal-dockerbuild 
 ```
 
-### tag image
+### tag image stream tag image
 ```sh
 oc tag my-external.com/tdonohue/python-hello-world:latest my-python:latest
 # Tag a specific image
@@ -345,6 +345,10 @@ just an example from real cluster
 2. docker push <openshift>
 3. import-image
 
+### image stream build
+in case of "no log output" during the input stream creation - check "-build" image not in "terminating" state
+	
+	
 ### print current project
 ```sh
 oc project
