@@ -36,6 +36,7 @@ rm -rf .jenkins/workspace/*
 [jenkins war](https://www.jenkins.io/doc/book/installing/war-file/)  
 [jenkins war download](https://www.jenkins.io/download/)  
 [jenkins docker image](https://hub.docker.com/r/jenkins/jenkins/)  
+[jenkins docker documentation](https://github.com/jenkinsci/docker/blob/master/README.md)
 ```
 java -jar jenkins.war --httpPort=8080 --useJmx 
 ~/.jenkins/secrets/
