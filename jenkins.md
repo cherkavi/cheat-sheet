@@ -31,8 +31,11 @@
 rm -rf .jenkins/caches/*
 rm -rf .jenkins/workspace/*
 
-### manual start
-[manual](https://wiki.jenkins.io/display/JENKINS/Starting+and+Accessing+Jenkins)
+### manual start manual installation
+[jenkins manual how to](https://wiki.jenkins.io/display/JENKINS/Starting+and+Accessing+Jenkins)  
+[jenkins war](https://www.jenkins.io/doc/book/installing/war-file/)  
+[jenkins war download](https://www.jenkins.io/download/)  
+[jenkins docker image](https://hub.docker.com/r/jenkins/jenkins/)  
 ```
 java -jar jenkins.war --httpPort=8080 --useJmx 
 ~/.jenkins/secrets/
