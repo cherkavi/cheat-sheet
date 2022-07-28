@@ -420,6 +420,13 @@ spec:
                   name: env-vars
                   key: MAPR_CLUSTER
 ```
+```yaml
+    envFrom:
+    - configMapRef:
+        name: session-config-map
+    - secretRef:
+        name: session-secret
+```
 3. secret to file
 ```yaml
     spec:
