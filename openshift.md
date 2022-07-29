@@ -172,6 +172,7 @@ oc create secret generic $SECRET_NAME --from-file=ssh-privatekey= /.ssh/id_rsa 
 check creation  
 ```bash
 oc get secrets
+oc get secret metadata-api-token -o yaml | yq .data.METADATA_API_TOKEN | base64 --decode
 ```
 secret mapping example, map secret  
 ```json
