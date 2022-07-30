@@ -262,10 +262,17 @@ sudo sshfs -o allow_other,IdentityFile=~/.ssh/id_rsa vcherkashyn@190.17.19.11:/r
 ```
 
 ### mount remote filesystem via ftp
-```
+```sh
 sudo apt install curlftpfs
 sudo mkdir /mnt/samsung-note
 curlftpfs testuser:testpassword@192.168.178.20:2221 /mnt/samsung-note/
+```
+
+### samsung phone android phone folder
+```sh
+cd /run/user/1000/gvfs
+# phone samsung
+cd /run/user/1000/gvfs/mtp:host=SAMSUNG_SAMSUNG_Android_RFxxxxxxxxx
 ```
 
 ### mount windows folder, mount windows shared folder
