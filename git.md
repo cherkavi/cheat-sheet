@@ -1,5 +1,10 @@
-# cheat sheet collection
+# git 
+
+## cheat sheet collection
 * [git useful commands and advices ](http://najomi.org/git)
+
+## useful links collection
+* [complex search in github ui](https://docs.github.com/en/enterprise-server@3.3/search-github/searching-on-github/searching-issues-and-pull-requests)
 
 ### git autocomplete
 ```sh
