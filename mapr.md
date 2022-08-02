@@ -333,6 +333,12 @@ Granting Access Permissions for User
 maprcli table cf edit -path /vantage/deploy/data-access-video/images -cfname default -readperm u:tech_user_name
 maprcli table cf edit -path /vantage/deploy/data-access-video/images -cfname default -readperm "u:tech_user_name | u:tech_user_name2"
 ```
+```sh
+maprcli table cf edit -path $TABLE_NAME -cfname default -readperm u:tech_user_name
+maprcli table cf edit -path $TABLE_NAME -cfname default -writeperm u:tech_user_name
+maprcli table edit -path $TABLE_NAME -adminaccessperm u:tech_user_name_admin -indexperm u:tech_user_name
+```
+
 Check access to table maprdb table info
 ```sh
 maprcli table cf list -path /vantage/deploy/data-access-video/images -cfname default -json
