@@ -884,6 +884,7 @@ spec:
     requests:
       storage: 1G
 ```
+
 ### service example
 ```yaml
 apiVersion: apps/v1
@@ -934,7 +935,7 @@ spec:
 stategy
   rollingParams
     timeoutSeconds: 1500
-...
+
 readiness_probe:
   initial_delay_seconds: 600
 ```
@@ -955,8 +956,18 @@ readiness_probe:
     - { type: emptyDir,  name: cache-volume }
 ```
 
-# admin commands
-## add security context constraint
+## access commands permissions granting
+### check permission
+```sh
+oc get scc
+```
+for mapr container you should see:
+* adasng: false(["NET_ADMIN", "SETGID", "SETUID"])
+* anyuid: true("SYS_CHROOT")
+* mapr-ars-scc: false()
+* privileged: true(["*"])
+							   
+### add security context constraint
 ```
 oc adm policy add-scc-to-user {name of policy} { name of project }
 oc adm policy remove-scc-to-user {name of policy} { name of project }
