@@ -966,7 +966,12 @@ for mapr container you should see:
 * anyuid: true("SYS_CHROOT")
 * mapr-ars-scc: false()
 * privileged: true(["*"])
-							   
+
+### add permissions
+```sh
+oc adm policy add-scc-to-user privileged -z default -n my-ocp-project
+```
+
 ### add security context constraint
 ```
 oc adm policy add-scc-to-user {name of policy} { name of project }
