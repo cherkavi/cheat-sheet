@@ -322,13 +322,13 @@ maprcli config save -values {"mfs.db.max.rowsize.kb":<value in KB>}
 # in case of such message - check your table type binary/json
 OJAI APIs are currently not supported with binary tables
 ```
-Show info
+### Show info
 ```bash
 maprcli table info -path /vantage/deploy/data-access-video/images -json
 # list of regions for table 
 maprcli table region list -path /vantage/deploy/data-access-video/images -json
 ```
-Granting Access Permissions for User
+### Granting Access Permissions for User
 ```bash
 maprcli table cf edit -path /vantage/deploy/data-access-video/images -cfname default -readperm u:tech_user_name
 maprcli table cf edit -path /vantage/deploy/data-access-video/images -cfname default -readperm "u:tech_user_name | u:tech_user_name2"
@@ -339,47 +339,18 @@ maprcli table cf edit -path $TABLE_NAME -cfname default -writeperm u:tech_user_n
 maprcli table edit -path $TABLE_NAME -adminaccessperm u:tech_user_name_admin -indexperm u:tech_user_name
 ```
 
-Check access to table maprdb table info
+### Check access to table maprdb table info
 ```sh
 maprcli table cf list -path /vantage/deploy/data-access-video/images -cfname default -json
 ```
 
-Remove table Delete table
+### Remove table Delete table
 ```sh
 maprcli table delete -path <path_in_maprfs>
 ```
 
-Insert record in maprdb
-```dbshell
-insert --table /vantage/processed/tables/markers --value '{"_id": "custom_id_1", "name": "Martha", "age": 35}'
-```
-```dbshell
-delete --table /vantage/processed/tables/markers --id "custom_id_1"
-```
-
-Create an index for the thumbnail MapR JSON DB in order to speed up: (query to find all sessionIds with existing thumbnails)
-```bash
-maprcli table index add -path /vantage/deploy/data-access-video/images -index frameNumber_id -indexedfields frameThumbnail
-# maprcli table index add -path <path> -index <name> -indexedfields<fields>
-maprcli table index list -path <path>
-maprcli table cfcreate / delete / list
-```
-Describe data, describe table 
-```
-mapr dbshell
-desc /full/path/to/maprdb/table
-```
-[manipulate with MapRDB via DbShell](https://docs.datafabric.hpe.com/61/ReferenceGuide/HBaseShellforMapR-DB.html)
-* DDL
-  * [create table](https://docs.datafabric.hpe.com/61/ReferenceGuide/table-create.html)
-  * [create index](https://docs.datafabric.hpe.com/61/ReferenceGuide/table-index-add.html?hl=maprdb%2Cindex)
-* DML
-  * [find by id](https://mapr.com/docs/61/ReferenceGuide/dbshell-find-findbyid.html)
-  * [query data](https://docs.datafabric.hpe.com/61/ReferenceGuide/dbshell-find-query.html)
-    * [order data, sort data](https://docs.datafabric.hpe.com/61/MapR-DB/JSON_DB/query-orderby2.html?hl=maprdb%2Csort)
-  * [query with dbshell](https://docs.datafabric.hpe.com/60/MapR-DB/JSON_DB/QueryWithDBShell.html)
-  * [OJAI Query Condition Syntax](https://docs.datafabric.hpe.com/62/MapR-DB/JSON_DB/QueryingJSONDocumentFields.html)
-  * [query conditions and operators](https://docs.datafabric.hpe.com/62/MapR-DB/JSON_DB/OJAIQueryConditionOperators.html)
+### maprdb records 
+#### maprdb query maprdb search maprdb find
 ```sh
 mapr dbshell
 find /mapr/prod/vantage/orchestration/tables/metadata --query '{"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}'
@@ -404,13 +375,14 @@ find /tbl --q {"$select":"a.c.e",
                       }
                }
 ```
+
 query with counting amount of elements in array
-```
+```sh
 find //tables/session --query {"$select":["_id"],"$where":{"$and":[{"$eq":{"vin":"BX77777"}},{"$sizeof":{"labelEvents":{"$ge":1}}}]}}
 ```
 
 for data:
-```
+```json
  "dag_data" : {
     "name" : "drive_markers",
     "number" : {
@@ -419,7 +391,6 @@ for data:
   },
 //  --limit 10 --pretty --c {"$notexists":"dag_data"}
 //  --limit 10 --pretty --c {"$eq":{"dag_data.number":-1}}
-  
 ```
 
 example of inline execution
@@ -431,12 +402,49 @@ rm script.sql
 ```
 
 example of execution via mapr web, web mapr
-```
+```sh
  MAPR_USER='user'
  MAPR_PASSWORD='password'
 SESSION='d99-4a-ac-0cbd'
 curl --silent  --insecure  -X GET -u $MAPR_USER:$MAPR_PASSWORD  https://mapr-web.vantage.zur:2002/api/v2/table//vantage/orchestration/tables/sessions/document/$SESSION | jq "." | grep labelEvent
 ```
+
+#### insert record in maprdb
+```dbshell
+insert --table /vantage/processed/tables/markers --value '{"_id": "custom_id_1", "name": "Martha", "age": 35}'
+```
+
+#### delete record in maprdb
+```dbshell
+delete --table /vantage/processed/tables/markers --id "custom_id_1"
+```
+
+### Create an index for the thumbnail MapR JSON DB in order to speed up: (query to find all sessionIds with existing thumbnails)
+```bash
+maprcli table index add -path /vantage/deploy/data-access-video/images -index frameNumber_id -indexedfields frameThumbnail
+# maprcli table index add -path <path> -index <name> -indexedfields<fields>
+maprcli table index list -path <path>
+maprcli table cfcreate / delete / list
+```
+
+### Describe data, describe table 
+```
+mapr dbshell
+desc /full/path/to/maprdb/table
+```
+
+[manipulate with MapRDB via DbShell](https://docs.datafabric.hpe.com/61/ReferenceGuide/HBaseShellforMapR-DB.html)
+* DDL
+  * [create table](https://docs.datafabric.hpe.com/61/ReferenceGuide/table-create.html)
+  * [create index](https://docs.datafabric.hpe.com/61/ReferenceGuide/table-index-add.html?hl=maprdb%2Cindex)
+* DML
+  * [find by id](https://mapr.com/docs/61/ReferenceGuide/dbshell-find-findbyid.html)
+  * [query data](https://docs.datafabric.hpe.com/61/ReferenceGuide/dbshell-find-query.html)
+    * [order data, sort data](https://docs.datafabric.hpe.com/61/MapR-DB/JSON_DB/query-orderby2.html?hl=maprdb%2Csort)
+  * [query with dbshell](https://docs.datafabric.hpe.com/60/MapR-DB/JSON_DB/QueryWithDBShell.html)
+  * [OJAI Query Condition Syntax](https://docs.datafabric.hpe.com/62/MapR-DB/JSON_DB/QueryingJSONDocumentFields.html)
+  * [query conditions and operators](https://docs.datafabric.hpe.com/62/MapR-DB/JSON_DB/OJAIQueryConditionOperators.html)
+
 ## MapRFS maprfs
 ```sh
 hadoop fs -mkdir -p /mapr/dp.stg/vantage/data/store/collected/car-data/MDF4/a889-017d6b9bc95b/
