@@ -422,7 +422,7 @@ git tags/1.0.13
 git show-ref -s 1.1.2
 ```
 
-#### remove tag
+#### remove tag delete tag delete
 ```sh
 # remove remote
 git push --delete origin 1.1.0
