@@ -211,3 +211,22 @@ after execution you can check the topic
 ```
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic topic_for_me --from-beginning
 ```
+
+## KSQL ( MapR )
+### create stream 
+```sh
+# create stream
+maprcli stream create -path sample-stream -produceperm p -consumeperm p -topicperm p
+
+# generate dummy data 
+/opt/mapr/ksql/ksql-4.1.1/bin/ksql-datagen quickstart=pageviews format=delimited topic=sample-stream:pageviews  maxInterval=5000
+```
+### create table for stream
+```sh
+/opt/mapr/ksql/ksql-4.1.1/bin/ksql http://ubs000130.vantage.org:8084
+```
+```sql
+create table pageviews_original_table (viewtime bigint, userid varchar, pageid varchar) with (kafka_topic='sample-stream:pageviews', value_format='DELIMITED', key='viewtime')
+select * from pageviews_original_table;
+```
+
