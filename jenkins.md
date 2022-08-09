@@ -26,6 +26,9 @@
 ### master-slave
 ![master-slave](https://i.postimg.cc/TwWL9QKK/jenkins-master-slave.png)  
 ![master-slave](https://i.postimg.cc/J72b0b13/jenkins-master-slave.png)
+master-slave creation process for OCP  
+![master-slave-ocp-creation](https://user-images.githubusercontent.com/8113355/183613775-8859cf57-c2f4-4957-8c3e-a07ee015acbc.png)
+
 
 ### manual clean up
 rm -rf .jenkins/caches/*
