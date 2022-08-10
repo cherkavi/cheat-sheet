@@ -66,6 +66,7 @@ visualvm_jdkhome="/home/my-user/.sdkman/candidates/java/18.0.1-oracle"
 ### java application debug, remote debug
 ```bash
 -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=localhost:5005
 ```
 you can create SSH tunnel between your local machine and remote:
 ( execute next line from local machine )
