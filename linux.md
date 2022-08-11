@@ -1945,7 +1945,7 @@ curl -L http://example.com
 curl -X PUT --header "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charset=ISO-8859-1" -H "x-username: cherkavi" -d@put-request.data http://q-brands-app01.wirecard.sys:9000/draft/brands/229099017/model/country-configurations
 ```
 
-### curl POST example
+### curl POST example POST request
 ```sh
 curl -X POST http://localhost:8983/solr/collection1/update?commit=true \
 -H "Content-Type: application/json" --data '{"add":"data"}'
@@ -1960,8 +1960,6 @@ curl -X POST http://localhost:8983/solr/collection1/update?commit=true \
 curl -X POST http://localhost:8983/solr/collection1/update?commit=true \
 -H "Content-Type: application/json" --data-urlencode '{"add":"Tom&Jerry"}'
 
-```
-```sh
 # or with bash variable
 SOME_DATA="my_personal_value"
 curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: application/json" --data-binary '{"add":"'$SOME_DATA'"}'
@@ -1972,7 +1970,7 @@ curl -X POST http://localhost:8983/test -H "Content-Type: application/json" --da
 # or with multipart body
 curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "userid=1234" http://mysuperserver/media/upload/
 
-# curl with inline data
+# curl with inline data curl document here 
 json_mappings=`cat some_file.json`
 curl -X POST $SOME_HOST' -H 'Content-Type: application/json' \
 -d @- << EOF
