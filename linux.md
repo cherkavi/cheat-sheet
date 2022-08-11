@@ -1970,9 +1970,9 @@ curl -X POST http://localhost:8983/test -H "Content-Type: application/json" --da
 # or with multipart body
 curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "userid=1234" http://mysuperserver/media/upload/
 
-# curl with inline data curl document here 
+# curl with inline data curl here document curl port document here pipe
 json_mappings=`cat some_file.json`
-curl -X POST $SOME_HOST' -H 'Content-Type: application/json' \
+response=`curl -X POST $SOME_HOST -H 'Content-Type: application/json' \
 -d @- << EOF
 {
 	"mappings": $json_mappings,
@@ -1984,7 +1984,8 @@ curl -X POST $SOME_HOST' -H 'Content-Type: application/json' \
     }
 }
 EOF
-
+`
+echo $response
 
 # POST request GET style
 curl -X POST "http://localhost:8888/api/v1/notification/subscribe?email=one%40mail.ru&country=2&state=517&city=qWkbs&articles=true&questions=true&listings=true" -H "accept: application/json"
