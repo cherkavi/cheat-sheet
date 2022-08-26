@@ -238,13 +238,22 @@ ping -s 123 -c 1 146.255.193.66
 ```sh
 # list of open files
 sudo lsof -i -P -n | grep LISTEN
+
 # list of open connections
 sudo netstat -tulpan | grep LISTEN
+sudo ss -tulwn | grep LISTEN
+
+# list of open ports
+sudo nmap -sT -O 127.0.0.1
+
 # print pid of process that occupying 9999 port
 sudo ss -tulpan 'sport = :9999'
 
 # open input output
 iotop
+
+# list of services mapping service to port mapping port to service
+less /etc/services
 ```
 
 ### mount drive to path mount
