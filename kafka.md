@@ -1,8 +1,11 @@
-# [source code](https://kafka.apache.org/code)
+## [source code](https://kafka.apache.org/code)
 ```sh
 git clone https://github.com/apache/kafka.git kafka
 ```
-# main concepts
+## additional tools
+* [cli tool](https://github.com/electric-saw/kafta)
+
+## main concepts
 * Topics
 category of messages, consists from Partitions
 * Partition ( Leader and Followers )
@@ -35,7 +38,7 @@ consumer instance from different group will receive own copy of message ( one me
 
 [Error Handling](https://eng.uber.com/reliable-reprocessing/)
 
-# ZoopKeeper ( one instance per cluster )
+## ZoopKeeper ( one instance per cluster )
 * must be started before using Kafka ( zookeeper-server-start.sh, kafka-server-start.sh )
 * cluster membership
 * electing a controller
@@ -44,22 +47,22 @@ leader, which topic exists
 * Quotas
 * ACLs
 
-# Kafka guarantees
+## Kafka guarantees
 * messages that sent into particular topic will be appended in the same order
 * consumer see messages in order that were written
 * "At-least-once" message delivery guaranteed - for consumer who crushed before it commited offset
 * "At-most-once" delivery - ( custom realization ) consumer will never read the same message again, even when crushed before process it
 
 
-# scripts
-## start Kafka's Broker
+## scripts
+### start Kafka's Broker
 ```
 zookeeper-server-start.sh
 kafka-server-start.sh config/server.properties
 ```
 
-## topic create
-```
+### topic create
+```sh
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mytopic
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --describe --topic mytopic
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --config retention.ms=360000 --topic mytopic
@@ -69,37 +72,36 @@ or just enable "autocreation"
 auto.create.topics.enable=true
 ```
 
-## topic delete
+### topic delete
 can be marked "for deletion"
-```
+```sh
 bin/kafka-topics.sh --delete --zookeeper localhost:2181 --topic mytopic
 ```
 
-## topics list
-
-```
+### topics list
+```sh
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --list
 ```
 
-# topics describe
-```
+### topics describe
+```sh
 kafka-topics --describe --zookeeper localhost:2181 --topic mytopicname
 ```
 
-## topic update
+### topic update
 ```
 bin/kafka-topics.sh --alter --zookeeper localhost:2181 --partitions 5 --topic mytopic
 bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic mytopic --config retention.ms=72000
 bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic mytopic --deleteConfig retention.ms=72000
 ```
 
-# [Producer](https://docs.confluent.io/current/clients/producer.html)
-## producer console
-```
+## [Producer](https://docs.confluent.io/current/clients/producer.html)
+### producer console
+```sh
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mytopic
 ```
-## java producer example
-```
+### java producer example
+```java
  Properties props = new Properties();
  props.put("bootstrap.servers", "localhost:4242");
  props.put("acks", "all");  // 0 - no wait; 1 - leader write into local log; all - leader write into local log and wait ACK from full set of InSyncReplications 
@@ -121,9 +123,9 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mytopic
 ```
 partition will be selected 
 
-# Consumer
-## [consumer console](https://github.com/apache/kafka/blob/trunk/core/src/main/scala/kafka/tools/ConsoleConsumer.scala) ( console consumer )
-```
+## Consumer
+### [consumer console](https://github.com/apache/kafka/blob/trunk/core/src/main/scala/kafka/tools/ConsoleConsumer.scala) ( console consumer )
+```sh
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning --consumer.config my_own_config.properties
 bin/kafka-console-consumer.sh --bootstrap-server mus07.mueq.adac.com:9092 --new-consumer --topic session-ingest-stage-1 --offset 20 --partition 0  --consumer.config kafka-log4j.properties
@@ -133,8 +135,8 @@ java kafka.tools.GetOffsetShell --broker-list musnn071001:9092 --topic session-i
 # get number of messages in partitions, partitions messages count
 bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list localhost:9092 --topic session-ingest-stage-1
 ```
-## consumer group console
-```
+### consumer group console
+```sh
 bin/kafka-consumer-groups.sh --zoopkeeper localhost:2181 --describe --group mytopic-consumer-group
 ```
 
@@ -143,7 +145,7 @@ bin/kafka-consumer-groups.sh --zoopkeeper localhost:2181 --describe --group myto
 * manual offset commit (enable.auto.commit=false) 
 
 ## [consumer configuration](https://kafka.apache.org/documentation/#consumerconfigs)
-```
+```java
  Properties props = new Properties();
  props.put("bootstrap.servers", "localhost:4242"); // list of host/port pairs to connect to cluster
  props.put("client.id", "unique_client_id");       // nice to have
@@ -161,15 +163,14 @@ bin/kafka-consumer-groups.sh --zoopkeeper localhost:2181 --describe --group myto
  props.put("heartbeat.interval.ms", "");
 ```
 
-## consumer java
+### consumer java
 NOT THREAD Safe !!!
-```
+```java
 KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
 ConsumerRecords<String, String> records = consumer.pool(100); // time in ms
-
 ```
 
-## consumer consume messages
+### consumer consume messages
 * by topic
 ```
 consumer.subscribe(Arrays.asList("mytopic_1", "mytopic_2"));
@@ -187,14 +188,14 @@ seekToBeginning(parition0, partition1);
 seekToEnd(parition0, partition1);
 ```
 
-# Kafka connect
+## Kafka connect
 * manage copying data between Kafka and another system
 * connector either a source or sink
 * connector can split "job" to "tasks" ( to copy subset of data )
 * *partitioned streams* for source/sink, each record into it: [key,value,offset]
 * standalone/distributed mode
 
-## Kafka connect standalone
+### Kafka connect standalone
 start connect
 ```
 bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties
@@ -208,12 +209,12 @@ file=my_test_file.txt
 topic=topic_for_me
 ```
 after execution you can check the topic
-```
+```sh
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic topic_for_me --from-beginning
 ```
 
-## KSQL ( MapR )
-### create stream 
+### KSQL ( MapR )
+#### create stream 
 ```sh
 # create stream
 maprcli stream create -path sample-stream -produceperm p -consumeperm p -topicperm p
@@ -221,7 +222,7 @@ maprcli stream create -path sample-stream -produceperm p -consumeperm p -topicpe
 # generate dummy data 
 /opt/mapr/ksql/ksql-4.1.1/bin/ksql-datagen quickstart=pageviews format=delimited topic=sample-stream:pageviews  maxInterval=5000
 ```
-### create table for stream
+#### create table for stream
 ```sh
 /opt/mapr/ksql/ksql-4.1.1/bin/ksql http://ubs000130.vantage.org:8084
 ```
