@@ -18,6 +18,15 @@
     
 * [Security cheat sheet](https://www.jaiminton.com/cheatsheet/DFIR)
 
+### commands gnu commands
+```sh
+time 
+# run GNU version of the command:
+/etc/bin/time
+# or 
+\time 
+```
+
 ### place for scripts, permanent script
 ```
 ### system wide for all users
@@ -3027,6 +3036,11 @@ quit
 ```
 ```sh
 sudo fdisk -l
+```
+
+## time command resource consumption command exec information
+```sh
+\time -v date
 ```
 
 ## Elapsed time between two commands
