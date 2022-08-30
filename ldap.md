@@ -1,4 +1,8 @@
+## implementation
+* [openldap](https://www.openldap.org/)
+
 ## [browsers](https://ldapwiki.com/wiki/LDAP%20Browsers)
+## [browsers] https://ldap.com/ldap-tools/
 
 ## commands
 find owner of account
