@@ -379,13 +379,20 @@ sudo mke2fs /dev/xvdb
 ```
 
 ### gpg signature check, asc signature check, crt signature check
-```
+```sh
 kgpg --keyserver keyserver.ubuntu.com --recv-keys 9032CAE4CBFA933A5A2145D5FF97C53F183C045D
 gpg --import john-brooks.asc
-
+```
+```sh
 gpg --verify ricochet-1.1.4-src.tar.bz2.asc
-
-gpg --keyserver keyserver.ubuntu.com --recv-keys D09FB15F1A24768DDF1FA29CCFEEF31651B5FDE8
+```
+in case of error like:
+```
+gpg: Can't check signature: No public key
+```
+```sh
+gpg --import gpg-pubkey.txt
+gpg --verify openldap-2.5.13.tgz.asc
 ```
 
 ### connect to remote machine via ssh without credentials
