@@ -2106,7 +2106,19 @@ echo output.json | jq .
 echo output.json | jq -S .
 ```
 
-### [json parsing, parse json, parsing json, json processing](https://stedolan.github.io/jq/manual/)
+### [json parser output to json pipe json](https://pypi.org/project/jc/)
+```sh
+# installation 
+pip3 install jc
+apt-get install jc
+
+# parse general output to json
+jc --pretty ls -la
+# using predefined parser
+dig www.google.com | jc --dig --pretty
+```
+
+### [json parser json parsing parse json parsing json json processing](https://stedolan.github.io/jq/manual/)
 [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})  
 jq is not working properly with "-" character in property name !!!  
 ```bash
