@@ -344,6 +344,11 @@ maprcli table edit -path $TABLE_NAME -adminaccessperm u:tech_user_name_admin -in
 maprcli table cf list -path /vantage/deploy/data-access-video/images -cfname default -json
 ```
 
+## maprdb copy table
+```sh
+mapr copytable -src {path to source} -dst {path to destination}
+```
+
 ### Remove table Delete table
 ```sh
 maprcli table delete -path <path_in_maprfs>
