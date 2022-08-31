@@ -12,10 +12,19 @@ ldapwhoami -x -v -D "CN=Vitalii Cherkashyn,OU=Users,OU=UBS,OU=Accounts,DC=vantag
 # OU - Organizational Unit
 # DC - Domain Component
 ```
+
 find owner of account
 ```sh
-ldapsearch -LLL -o ldif-wrap=no -h ubsinfesv0015.vantage.org -b "DC=vantage,DC=org" samaccountname=pen_import-s
+LDAP_HOST=ubsinfesv0015.vantage.org
+ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "DC=vantage,DC=org" samaccountname=pen_import-s
+ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "OU=Accounts,DC=vantage,DC=org" -s sub "displayName=Vitalii Cherkashyn"
+ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "OU=Accounts,DC=vantage,DC=org" samaccountname=cherkavi
 ```
+```
+# in case of error message: No Kerberos credentials available
+kinit pen_import-s
+```
+
 ## Architecture
 ![image](https://user-images.githubusercontent.com/8113355/187679898-4631dc98-f763-4184-872b-989f91c46208.png)
 ![image](https://user-images.githubusercontent.com/8113355/187679985-f920ee28-c0f0-4160-bf0c-6f51238e728f.png)
