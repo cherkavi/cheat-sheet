@@ -5,6 +5,10 @@
 ## [browsers](https://ldap.com/ldap-tools/)
 
 ## commands
+whoami
+```sh
+ldapwhoami -x -v -D "CN=Vitalii Cherkashyn,OU=Users,OU=BMW,OU=Accounts,DC=vantage,DC=org" -H ldaps:///ubsinfesv0015.vantage.org:636 -W
+```
 find owner of account
 ```sh
 ldapsearch -LLL -o ldif-wrap=no -h ubsinfesv0015.vantage.org -b "DC=vantage,DC=org" samaccountname=pen_import-s
