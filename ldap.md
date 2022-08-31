@@ -7,7 +7,10 @@
 ## commands
 whoami
 ```sh
-ldapwhoami -x -v -D "CN=Vitalii Cherkashyn,OU=Users,OU=BMW,OU=Accounts,DC=vantage,DC=org" -H ldaps:///ubsinfesv0015.vantage.org:636 -W
+ldapwhoami -x -v -D "CN=Vitalii Cherkashyn,OU=Users,OU=UBS,OU=Accounts,DC=vantage,DC=org" -H ldaps://ubsinfesv0015.vantage.org:636 -W
+# CN - Common Name
+# OU - Organizational Unit
+# DC - Domain Component
 ```
 find owner of account
 ```sh
