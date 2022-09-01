@@ -2851,10 +2851,13 @@ set-title "my title for terminal"
 ## code/decode
 ### base64
 ```sh
+# !!! important !!! will produce line with suffix "\n" 
 base64 cAdvisor-start.sh | base64 --decode
 echo "just a text string" | base64 | base64 --decode
+
 # !!! important !!! will produce line WITHOUT suffix "\n" 
 echo -n "just a text string " | base64 
+printf "just a text string " | base64 
 ```
 
 ### md5
