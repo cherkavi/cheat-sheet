@@ -111,6 +111,7 @@ eval com.ubs.interval.IntervalValidator.isContributorIdValid(subscriber)
 
 print intervalsIdList
 dump intervalsIdList
+set intervalsIdList=new ArrayList<>();
 ```
 movements inside debugger
 ```
