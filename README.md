@@ -3,6 +3,11 @@
 * [cheat sheets](https://www.cheatography.com)
 
 ## useful tools:
+### drawing
+* [white board for collaboration](https://sketchtogether.com/)
+* [white board for collaboration](https://miro.com/)
+* [drawing tool](https://excalidraw.com/)
+
 ### graphicals
 * [ascii graphics for drawing Architecture Diagrams in text](http://asciiflow.com/)  
 * [list of markdown code supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)  
