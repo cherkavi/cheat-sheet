@@ -17,10 +17,12 @@ find owner of account
 ```sh
 LDAP_HOST=ubsinfesv0015.vantage.org
 ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "DC=vantage,DC=org" samaccountname=pen_import-s
-ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "OU=Accounts,DC=vantage,DC=org" -s sub "displayName=Vitalii Cherkashyn"
 ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "OU=Accounts,DC=vantage,DC=org" samaccountname=cherkavi
+ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "OU=Accounts,DC=vantage,DC=org" -s sub "displayName=Vitalii Cherkashyn"
+ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "OU=Accounts,DC=vantage,DC=org" -s sub "Mail=vitalii.cherkashyn@ubs.de"
+ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "OU=Accounts,DC=vantage,DC=org" -s sub "Mail=vitalii.cherkashyn@ubs.de" -D "CN=Vitalii Cherkashyn,OU=Users,OU=UBS,OU=Accounts,DC=vantage,DC=org" -Q -W
 ```
-```
+```sh
 # in case of error message: No Kerberos credentials available
 kinit pen_import-s
 ```
