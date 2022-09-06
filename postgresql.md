@@ -282,3 +282,11 @@ pg_dump --host $PG_HOST --port $PG_PORT --username $PG_USER --dbname $PG_DB --sc
 \dt+ schema_name.table_name
 \d+ schema_name.table_name
 ```
+
+## Specific types
+```sql
+-- varying is alias for varchar
+ADD COLUMN IF NOT EXISTS modifiedBy character varying(10485760) COLLATE pg_catalog."default"
+-- the same as 
+ADD COLUMN IF NOT EXISTS modifiedBy character varying COLLATE pg_catalog."default"
+```
