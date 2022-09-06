@@ -355,6 +355,11 @@ maprcli table delete -path <path_in_maprfs>
 ```
 
 ### maprdb records 
+#### show options
+```sh
+mapr dbshell
+jsonoptions
+```
 #### maprdb query maprdb search maprdb find
 ```sh
 mapr dbshell
