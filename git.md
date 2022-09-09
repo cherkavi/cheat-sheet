@@ -597,7 +597,10 @@ git remote set-url origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitit
 
 # in case of Error: no such remote 
 git remote add origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitites.git
+
+# in case of asking username & password - check URL, https prefix, name of the repo.... 
 ```
+
 remove old password-access approach
 ```sh
 git remote set-url --delete origin https://github.com/cherkavi/python-utilitites.git
@@ -609,7 +612,7 @@ git remote set-url origin git@cc-github.my-network.net:adp/data-management.git
 ```
 
 ### git clone via https
-```
+```sh
 # username - token
 # password - empty string
 git clone               https://$GIT_TOKEN@cc-github.group.net/swh/management.git
@@ -617,10 +620,10 @@ git clone        https://oauth2:$GIT_TOKEN@cc-github.group.net/swh/management.gi
 git clone https://$GIT_TOKEN:x-oauth-basic@cc-github.group.net/swh/management.git
 ```
 
-### git push via ssh
-```shell
+### git push via ssh git ssh
+```sh
 git commmit -am 'hello my commit message'
-GIT_SSH_COMMAND = "ssh -i $key"
+GIT_SSH_COMMAND="ssh -i $key"
 git push
 ```
 
