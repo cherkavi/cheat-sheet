@@ -146,7 +146,7 @@ ssh -vv my_server.org
 ```
 
 ### ssh variable ssh envvar ssh send variable
-####
+#### ssh variable in command line
 ```sh
 ssh -t user@host VAR1="Petya" bash -l
 ```
@@ -165,6 +165,18 @@ echo "VAR1=Hello" > sshenv
 echo "VAR2=43" >> sshenv
 scp sshenv user@server:~/.ssh/environment
 ssh user@server myscript
+```
+
+### ssh run command
+```sh
+ssh -t user@host 'bash -s' < my-script.sh
+# with arguments
+ssh -t user@host 'bash -s' -- < my-script.sh arg1 arg2 arg3
+# ssh document here 
+ssh -T user@host << _dochere_marker
+cd /tmp
+echo $(date) >> visit-marker.txt
+_dochere_marker
 ```
 
 ### local proxy cntlm, cntlm proxy
