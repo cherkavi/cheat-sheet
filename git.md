@@ -236,7 +236,7 @@ git diff ec3772~ ec3772
 git log --all --graph --decorate --oneline --simplify-by-decoration
 ```
 
-### commit message search commit search message
+### git log message search commit message search commit search message
 ```sh
 git log | grep -i jwt
 
