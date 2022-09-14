@@ -8,6 +8,7 @@ Useful links:
 * [tracking API](https://developer.matomo.org/api-reference/tracking-api)
 * [customize Matomo Tag](http://127.0.0.1:8080/index.php?module=CoreAdminHome&action=trackingCodeGenerator&idSite=1&period=day&date=yesterday)
 
+* [installation requirements](https://matomo.org/faq/on-premise/matomo-requirements/)
 * [matomo DB schema](https://developer.matomo.org/guides/database-schema)
 * [matomo DB schema trace](https://developer.matomo.org/guides/log-data)
 * [matomo customization](https://matomo.org/docs/include-piwik-in-your-project/)
