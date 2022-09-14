@@ -1,4 +1,4 @@
-Useful links:
+## Useful links:
 * [video tutorial](https://matomo.org/docs/videos/)
 * [track training](https://matomo.org/tag-manager-training/)
 * [data layer, custom triggers](https://developer.matomo.org/guides/tagmanager/datalayer)
@@ -14,7 +14,13 @@ Useful links:
 * [matomo customization](https://matomo.org/docs/include-piwik-in-your-project/)
 * [matomo debug container](https://developer.matomo.org/guides/tagmanager/debugging#:~:text=layer%2C%20and%20more.-,Activating%20the%20debug%20mode,the%20bottom%20of%20the%20website)
 
-Domain:
+## Alternatives 
+* etracker Analytics
+* Econda (E-Commerce fokussiert )
+* Open Web Analytics
+* Piwik Pro
+ 
+## Domain:
 ```
 TAG <>---T----Variable
          L----Trigger(s)
