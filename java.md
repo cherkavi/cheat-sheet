@@ -64,8 +64,11 @@ visualvm_jdkhome="/home/my-user/.sdkman/candidates/java/18.0.1-oracle"
 #### for connecting to jvm - select "new jmx connection"
 
 ### java application debug, remote debug
+java <line below> -jar <jar file path> ... 
 ```bash
 -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005
+```
+```bash
 -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=localhost:5005
 ```
 you can create SSH tunnel between your local machine and remote:
