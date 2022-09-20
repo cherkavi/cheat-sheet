@@ -24,16 +24,20 @@ mvn eclipse:eclipse -Dwtpversion=2.0
 ```
 
 ### build with many threads
-```
+```sh
 mvn -T 1C clean install # 1 per thread 
 mvn -T 4 clean install # 4 threads
 ```
 
 ### build sub-modules with parent-dependencies
-```
+```sh
 mvn -am ...
 mvn --also-make ...
+```
 
+### build in another folder specify project folder specify project directory
+```sh
+mvn -f $DIR_PROJECT/data-manager/pom.xml
 ```
 
 ### list of all modules
