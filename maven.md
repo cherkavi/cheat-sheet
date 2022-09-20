@@ -157,6 +157,25 @@ mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -Darchetyp
 mvn -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.4.0 dependency:get
 ```
 
+### security settings
+~/.m2/settings.xml
+[artifactory token generation](https://github.com/cherkavi/cheat-sheet/blob/master/artifactory.md)
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd">
+
+    <servers>
+        <server>
+            <id>data-manager-releases</id>
+            <username>cherkavi</username>
+	    <password>eyJ2ZXIiO....</password>
+        </server>
+    </servers>
+</settings>
+```
+
+
 ### exclude sub-library from dependency lib
             <dependency>
                 <groupId>org.quartz-scheduler</groupId>
