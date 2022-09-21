@@ -112,6 +112,9 @@ locals
 print com.ubs.interval.IntervalValidator.isContributorIdValid(subscriber)
 eval com.ubs.interval.IntervalValidator.isContributorIdValid(subscriber)
 
+# print current stack trace, print position
+where 
+
 print intervalsIdList
 dump intervalsIdList
 set intervalsIdList=new ArrayList<>();
