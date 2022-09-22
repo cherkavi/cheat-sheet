@@ -337,12 +337,14 @@ for ipdb:
 __import__('ipdb').set_trace(context=21)
 ```
 
-execute in debug
+execute python app in debug 
 ```sh
 python3 -m pdb myscript.py
+python3 -m pdb myscript.pex arg1 arg2 
 pdb myscript.py
 ```
-commands
+
+debug commands
 ```
 until 99999
 step
