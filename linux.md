@@ -1092,10 +1092,15 @@ ls -lR . | grep ^l
 cat secrets | grep ".*Name.*Avvo.*"
 ```
 
-### grep exclude grep skip folder
+### grep exclude grep skip folder grep folder
 ```
 grep -ir --exclude-dir=node_modules "getServerSideProps"
 grep -r --files-with-matches --exclude-dir={ad-frontend,data-portal}  "\"index\""
+```
+
+### grep multi folders
+```sh
+grep -ir "getServerSideProps" /home/folder1 /home/folder2
 ```
 
 ### full path to file, file behind symlink, absolute path to file
