@@ -1907,7 +1907,7 @@ alias sublime_editor
 type subl
 ```
 
-### [sed cheat sheet](https://gist.github.com/ssstonebraker/6140154), replace
+### [sed cheat sheet](https://gist.github.com/ssstonebraker/6140154), sed replace
 ```sh
 replace "name" with "nomen" string
 sed 's/name/nomen/g'
@@ -1922,9 +1922,10 @@ for each_file in `find -name "*.java"`; do
 done
 ```
 
-### print line by number from output, line from pipeline
+### print line by number from output, line from pipeline, print one line from file 
 ```
 locate -ir "/zip$" | sed -n '2p'
+cat out.txt | sed -n '96p'
 ```
 
 ### issue with windows/unix carriage return
