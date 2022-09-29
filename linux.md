@@ -1870,6 +1870,11 @@ wget http://host:9090/wd-only/1005000.zip --directory-prefix="/home/temp/out"
 wget --no-check-certificate https://musan999999.mueq.adas.intel.com:8888/data-api/session/
 ```
 
+### wget with user wget with credentials
+```sh
+wget --user $ARTIFACTORY_USER --password $ARTIFACTORY_PASS $ARTIFACTORY_URL
+```
+
 ### wget with specific timeout
 ```
 wget --tries=1 --timeout=5 --no-check-certificate https://musan999999.mueq.adas.intel.com:8888/data-api/session/
