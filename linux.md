@@ -1368,6 +1368,11 @@ exec ls -la
 echo "ls" | xargs -i sh -c "{}"
 ```
 
+### xargs with multiple arguments 
+```sh
+find . | xargs -I % sh -c 'md5sum %; ls -la %;'
+```
+
 ### disconnect from terminal and let command be runned
 ```
 ctrl-Z
