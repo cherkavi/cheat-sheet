@@ -692,6 +692,24 @@ kubectl api-versions
 apiVersion: batch/v1
 kind: Job
 metadata:
+  name: test-job-traceroute
+spec:
+  nodeSelector:         
+    composer: true
+  template:         
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ["traceroute", "cc-art.group.net"]
+          
+      restartPolicy: Never
+  backoffLimit: 4		
+```
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
   name: scenario-description
 spec:
   template:         
