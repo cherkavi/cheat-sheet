@@ -101,6 +101,7 @@ $ oc port-forward $POD_NAME 5005
 connect to process
 ```sh
 jdb -attach localhost:5005
+jdb -attach localhost:5005 -sourcepath :src/main/java/
 ```
 commands inside debugger
 ```
