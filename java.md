@@ -71,6 +71,14 @@ java <line below> -jar <jar file path> ...
 ```bash
 -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=localhost:5005
 ```
+The Java image on OpenShift has built-in support for remote debugging
+```sh
+# environment variables
+JAVA_DEBUG=true  
+# or
+oc set env dc/inventory JAVA_DEBUG=true
+```
+	
 you can create SSH tunnel between your local machine and remote:
 ( execute next line from local machine )
 ```bash
@@ -96,8 +104,10 @@ jdb -attach localhost:5005
 ```
 commands inside debugger
 ```
-# set breakpoint 
+# set breakpoint on line
 stop at com.ubs.ad.data.interval.v2.IntervalServiceImpl:189
+# set breakpoint on method
+stop at com.ubs.ad.data.interval.v2.IntervalServiceImpl.getAvailability
 
 # print list of breakpoints
 clear  
