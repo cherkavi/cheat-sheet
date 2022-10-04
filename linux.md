@@ -2023,6 +2023,16 @@ curl -X POST http://localhost:8983/test -H "Content-Type: application/json" --da
 # or with multipart body
 curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "userid=1234" http://mysuperserver/media/upload/
 
+# multiline body
+curl -X 'POST' $SOME_HOST \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "bdcTimestamp": 6797571559111,
+  "comment": "Some comment",
+  "loggerTimestamp": 1623247031477189001,
+  }'
+
 # curl with inline data curl here document curl port document here pipe
 json_mappings=`cat some_file.json`
 response=`curl -X POST $SOME_HOST -H 'Content-Type: application/json' \
