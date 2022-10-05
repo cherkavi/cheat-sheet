@@ -3,18 +3,23 @@
 * [cheat sheets](https://www.cheatography.com)
 
 ## useful tools:
-### drawing
+### collaboration whiteboard drawing
 * [white board for collaboration](https://sketchtogether.com/)
 * [white board for collaboration](https://miro.com/)
 * [drawing tool](https://excalidraw.com/)
 
-### graphicals
+### diagram drawing 
 * [ascii graphics for drawing Architecture Diagrams in text](http://asciiflow.com/)  
+* [uml, sysml, archimate tool](https://online.visual-paradigm.com/)
+
+### markdown
 * [list of markdown code supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)  
 
-### tools
-#### [regular expressions regexp](https://regex101.com)
-#### [sed escape, sed online escape](https://dwaves.de/tools/escape/)
+### regular expressions
+* [regular expressions regexp](https://regex101.com)
+
+### stream editor
+* [sed escape, sed online escape](https://dwaves.de/tools/escape/)
 
 ### online coding
 * [code compiler/editor online](https://www.jdoodle.com/)
@@ -23,7 +28,15 @@
 * [repl online](https://replit.com/)
 * [code sandbox](https://codesandbox.io/)
 
-## search function
+### visual database ide
+* [Azure Data Studio](https://azure.microsoft.com/products/data-studio)
+* [DbGate](https://dbgate.org/)
+* [Sqlectron](https://sqlectron.github.io/)
+* [Antares SQL](https://antares-sql.app/)
+* [Beekeeper Studio](https://www.beekeeperstudio.io/)
+
+---
+## useful search function for using whole cheat sheet
 ```sh
 function cheat-grep(){
     if [[ $1 == "" ]]; then
