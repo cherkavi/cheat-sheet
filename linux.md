@@ -2163,8 +2163,12 @@ jq is not working properly with "-" character in property name !!!
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
 jq ".[] | .name"
 
+# convert to csv
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
 jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
+
+# jq get first element
+echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq '.[0] | [.name, .age] | @csv'
 
 # convert from yaml to json, retrieve values from json, convert to csv
 cat temp-pod.yaml | jq -r -j --prettyPrint | jq '[.metadata.namespace, .metadata.name, .spec.template.spec.nodeSelector."kubernetes.io/hostname"] | @csv'
