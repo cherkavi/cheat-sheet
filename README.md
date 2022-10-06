@@ -35,6 +35,8 @@
 * [Antares SQL](https://antares-sql.app/)
 * [Beekeeper Studio](https://www.beekeeperstudio.io/)
 
+### password storage
+* [one time password storage](https://onetimesecret.com/)
 ---
 ## useful search function for using whole cheat sheet
 ```sh
