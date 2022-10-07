@@ -447,9 +447,10 @@ val dfUnion = df1.union(df2)
 val dfUnion = df1.unionAll(df2)
 ```
 
-### describe data
-```
+### describe data show data print data list data
+```java
 words.show()
+// words.list()
 words.describe()
 words.printSchema()
 ```
