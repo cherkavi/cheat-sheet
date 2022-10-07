@@ -1,6 +1,7 @@
 # Linux applications
 
 ## useful links:
+* [gnu applications](https://www.gnu.org/software/)
 * [how to install ubuntu on USB stick](https://ubuntuhandbook.org/index.php/2014/11/install-real-ubuntu-os-usb-drive/)
 * [vnc alternative - connect to existing session](http://www.karlrunge.com/x11vnc/)
 * [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
