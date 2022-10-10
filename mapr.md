@@ -456,6 +456,7 @@ desc /full/path/to/maprdb/table
   * [query conditions and operators](https://docs.datafabric.hpe.com/62/MapR-DB/JSON_DB/OJAIQueryConditionOperators.html)
 
 ## MapRFS maprfs
+you can check your current ticket using `fs -ls`
 ```sh
 hadoop fs -mkdir -p /mapr/dp.stg/vantage/data/store/collected/car-data/MDF4/a889-017d6b9bc95b/
 hadoop fs -ls /mapr/dp.stg/vantage/data/store/collected/car-data/MDF4/a889-017d6b9bc95b/
