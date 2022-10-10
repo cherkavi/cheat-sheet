@@ -239,6 +239,11 @@ maprlogin authtest
 
 maprlogin logout
 ```
+## login with ticket file using to login
+```sh
+maprlogin renew -ticketfile $FILE_WITH_TICKET
+```
+
 ## login via ssh
 ```
 execution_string="echo '"$CLUSTER_PASS"' | maprlogin password -user cherkavi "
