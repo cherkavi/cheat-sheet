@@ -37,6 +37,12 @@
 
 ### password storage
 * [one time password storage](https://onetimesecret.com/)
+
+### REST api test framework
+* [karate](https://github.com/karatelabs/karate)
+    * [tutorial](https://www.softwaretestinghelp.com/api-testing-with-karate-framework/)
+    * [how to start with](https://software-that-matters.com/2020/11/25/the-definitive-karate-api-testing-framework-getting-started-guide/)
+
 ---
 ## useful search function for using whole cheat sheet
 ```sh
