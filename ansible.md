@@ -421,6 +421,7 @@ escape special characters
 
 operation with list
 ```
+{{ [1,2,3] | default(5) }}
 {{ [1,2,3] | min }}
 {{ [1,2,3] | max }}
 {{ [1,2,3] | first }}
@@ -790,6 +791,15 @@ all folders of the imported project will be applied to your project ( tasks, var
     include_role:
       name: mapr-kafka
       tasks_from: cluster-login
+```
+or 
+```yaml
+- name: Deploy session
+  import_tasks: roles/dag-common/tasks/deployment-tasks.yaml
+  vars:
+    dag_deploy_dir: /mapr/swiss.zur/airlfow/deploy
+  tags:
+    - release
 ```
 
 ## export 
