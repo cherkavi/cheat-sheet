@@ -1742,6 +1742,8 @@ wget -qO- https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz | tar 
 ```sh
 # tar create
 tar -cf jdk.tar 8.0.265.j9-adpt
+# tar compression
+tar -czvf jdk.tar.gz 8.0.265.j9-adpt
 
 # tar list of files inside
 tar -tf jdk.tar
