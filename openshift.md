@@ -110,12 +110,12 @@ kubectl config use-context kubernetes-admin@docker-for-desktop-cluster
 maprlogin password -user {mapruser}
 # ticket-file will be created
 ```
-check expiration date
+### check expiration date
 ```
 maprlogin print -ticketfile /tmp/maprticket_1000 # or another filename
 ```
 
-using file from previous command  
+### create secret from file
 ```bash
 cat /tmp/maprticket_1000 
 # create secret from file ( default name )
@@ -123,13 +123,12 @@ oc create secret generic {name of secret/token} --from-file=/tmp/maprticket_1000
 # create secret from file with specifying the name - CONTAINER_TICKET ( oc describe {name of secret} )
 oc create secret generic {name of secret/token} --from-file=CONTAINER_TICKET=/tmp/maprticket_1000 -n {project name}
 ```
-
-read created ticket
+### read secret get secret value
 ```sh
 oc get secret $TICKET_NAME -o yaml | yq .data | awk '{print $2}' | base64 --decode
 ```
 
-automation for creating tickets in diff namespaces
+### automation for creating tickets in diff namespaces
 ```sh
 function openshift-replace-maprticket(){
     MAPR_TICKET_PATH="${1}"
