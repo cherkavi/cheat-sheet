@@ -830,6 +830,39 @@ spec:
 status:
   phase: Bound
 ```
+```yaml
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-mapr-tmp
+spec:
+  capacity:
+    storage: 10Gi
+  csi:
+    driver: com.mapr.csi-kdf
+    volumeHandle: pv-mapr-tmp
+    volumeAttributes:
+      cldbHosts: >-
+        esp000004.swiss.org esp000007.swiss.org
+        esp000009.swiss.org esp000010.swiss.org
+      cluster: prod.zurich
+      securityType: secure
+      volumePath: /tmp/
+    nodePublishSecretRef:
+      name: mapr-secret
+      namespace: pre-prod
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    kind: PersistentVolumeClaim
+    namespace: pre-prod
+    name: pvc-mapr-tmp
+    apiVersion: v1
+  persistentVolumeReclaimPolicy: Delete
+  volumeMode: Filesystem
+status:
+  phase: Bound
+```
 if you are going to edit/change PV you should:
 1. remove PV
 2. remove PVC
