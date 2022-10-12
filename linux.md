@@ -798,6 +798,13 @@ logger --server 192.168.1.10 --tcp "This is just a simple log line"
 
 /var/log/messages
 ```
+
+### commands execution logging session logging
+```sh
+# write output of command to out.txt and execution time to out-timing.txt
+script out.txt --timing=out-timing.txt
+```
+
 ### repository list of all repositories
 ```
 sudo cat /etc/apt/sources.list*
