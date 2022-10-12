@@ -849,6 +849,13 @@ RUN useradd -ms /bin/bash -m -u 2056 -g 2053 customer2description
 # activate user
 USER customer2description
 ```
+for downloading external artifacts need to use ADD command 
+```
+# download file
+ADD http://artifactory.com/sourcefile.txt  /destination/path/sourcefile.txt
+# download and extract archive
+ADD https://artifactory.com/source.file.tar.gz /temp
+```
 
 ### read labels from container, read container labels, LABEL commands from container
 ```sh
