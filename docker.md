@@ -849,7 +849,7 @@ RUN useradd -ms /bin/bash -m -u 2056 -g 2053 customer2description
 # activate user
 USER customer2description
 ```
-for downloading external artifacts need to use ADD command 
+* for downloading external artifacts need to use ADD command, COPY vs ADD
 ```
 # download file
 ADD http://artifactory.com/sourcefile.txt  /destination/path/sourcefile.txt
