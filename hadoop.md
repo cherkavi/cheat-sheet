@@ -35,6 +35,11 @@ docker run -it --name bdu_spark2 -P -p 4040:4040 -p 4041:4041 -p 8080:8080 -p808
 ![sensor use case](https://i.postimg.cc/8PwtTX8B/Kafka-usecase-06.png)
 
 ## HDFS common commands
+### MapR implementation
+```sh
+# hdfs dfs -ls
+hadoop fs -ls
+```
 
 ### admin command, cluster settings
 ```
