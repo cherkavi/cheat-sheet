@@ -303,6 +303,11 @@ echo "$PASSWORD" | maprlogin password -user $USERNAME -out /tmp/mapruserticket
 yarn application -list -appStates ALL
 yarn logs -applicationId application_1540813402987_9262 
 ```
+### list of accessible queues yarn queue 
+```sh
+# map reduce job
+mapred queue -showacls | grep SUBMIT_APPLICATIONS
+```
 
 
 ## MapRDB 
