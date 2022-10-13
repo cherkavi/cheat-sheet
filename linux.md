@@ -1977,6 +1977,16 @@ find -cmin -2
 ```
 
 ## cURL command
+### [curl without password](https://everything.curl.dev/usingcurl/netrc)
+~/.netrc
+```sh
+machine my-secret-host.com login my-secret-login password my-secret-password
+machine my-secret-host2.com login my-secret-login2 password my-secret-password2
+```
+```sh
+curl --netrc --request GET my-secret-host.com/storage/credentials 
+```
+
 ### echo server mock server 
 ```sh
 curl --location --request GET 'https://postman-echo.com/get?foo1=bar1&foo2=bar2'
