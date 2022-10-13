@@ -1742,10 +1742,10 @@ unzip -o file.zip -d output_folder
 
 ### unzip tar file from url, wget unzip, wget untar
 ```
-wget -qO- https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz | tar xvz - -C /target/directory
+
 ```
 
-### tar
+### tar archiving tar compression 
 ```sh
 # tar create
 tar -cf jdk.tar 8.0.265.j9-adpt
@@ -1757,6 +1757,10 @@ tar -tf jdk.tar
 
 # tar extract 
 tar -xvf jdk.tar -C /tmp/jdk
+# extract into destination with removing first two folders
+tar -xvf jdk.tar -C /tmp/jdk --strip-components=2
+# extract from URL
+wget -qO- https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz | tar xvz - -C /target/directory
 ```
 
 ### pipeline chain 'to file'
