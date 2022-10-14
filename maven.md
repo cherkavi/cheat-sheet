@@ -768,7 +768,40 @@ mvn  org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy -Dmaven.test.skip
 			</properties>
 		</profile>
 ```
+```sh
 mvn sonar:sonar
+```
+
+### docker plugin 
+```xml
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <!-- override build docker image with additional arguments -->
+                    <execution>
+                        <id>docker-build</id>
+                        <configuration>
+                            <environmentVariables>
+                                <DOCKER_BUILDKIT>${enable-docker-build-kit}</DOCKER_BUILDKIT>
+                            </environmentVariables>
+                            <arguments combine.children="append">
+                                <argument>--secret</argument>
+                                <argument>id=netrc,src=${netrc-path}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+```
+```sh
+# Dockerfile should exists alongside with pom.xml
+mvn verify -Denable-docker-build
+```
 
 
 ### smallest pom.xml, init pom.xml, start pom.xml
