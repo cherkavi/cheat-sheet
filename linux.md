@@ -1944,6 +1944,11 @@ for each_file in `find -iname "*.java"`; do
 	sed --in-place 's/vodkafone/cherkavi/g' $each_file
 done
 ```
+### [sed remove sed delete](https://linuxhint.com/sed-command-to-delete-a-line/)
+```
+# remove line with occurence
+sed --in-place '/.*jackson\-annotations/d' $each_file
+```
 
 ### print line by number from output, line from pipeline, print one line from file 
 ```
