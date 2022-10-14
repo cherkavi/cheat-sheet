@@ -1940,7 +1940,7 @@ sed 's/name/nomen/g'
 ```
 example of replacing all occurences in multiply files
 ```sh
-for each_file in `find -name "*.java"`; do
+for each_file in `find -iname "*.java"`; do
 	sed --in-place 's/vodkafone/cherkavi/g' $each_file
 done
 ```
@@ -2239,7 +2239,7 @@ chmod -R g-rwx /opt/sm-metrics/grafana-db/data
 chmod u+rw screenshot_overlayed.png
 ```
 ```
-find . -name "*.sql" -print0 | xargs -0 chmod 666
+find . -iname "*.sql" -print0 | xargs -0 chmod 666
 ```
 
 ### create dozen of folders using one-line command
