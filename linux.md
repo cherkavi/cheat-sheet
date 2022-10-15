@@ -544,6 +544,10 @@ cp -var /path/to/folder /another/path/to/folder
 cp -r --preserve=mode,ownership,timestamps /path/to/src /path/to/dest
 cp -r --preserve=all /path/to/src /path/to/dest
 ```
+### copy only when changed
+```bash
+cp --checksum /path/to/src /path/to/dest
+```
 
 ### change owner
 ```sh
