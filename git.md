@@ -26,10 +26,13 @@ export GIT_TRACE=1
 export GIT_CURL_VERBOSE=1
 ```
 
-### clean 
-```
+### clean working tree remove untracked files
+```sh
 git clean --dry-run
-git clean -f -q
+git clean -f -d
+```
+
+```sh
 # remove all remote non-used branches
 git remote prune origin
 ```
