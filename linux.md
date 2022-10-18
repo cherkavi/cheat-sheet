@@ -3210,7 +3210,7 @@ find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
 du -hs * | sort -h
 ```
 
-### calculator arifmethic operations add sub div multiply
+### calculator arithmethic operations add sub div multiply evaluation 
 ```bash
 expr 30 / 5
 myvar=$(expr 1 + 1)
@@ -3226,6 +3226,11 @@ echo "2 3 + p" | dc
 basic calculator
 ```bash
 echo "4+5" | bc
+bc <<< 4+5
+```
+interactive calculator
+```sh
+bc -l -i
 ```
 
 ### sudo without password, apple keyboard, sudo script without password
