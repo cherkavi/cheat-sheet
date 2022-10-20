@@ -101,6 +101,13 @@ npm info coa versions
 npm bin -g
 ```
 
+## package control
+```sh
+# best practice
+# package-lock.json must have be present in root ( under git control )
+npm ci
+```
+
 ## permission denied for folder /usr/lib
 ```sh
 # create new folder where node will place all packages
@@ -122,7 +129,7 @@ npm list -g --depth=0
 
 ## reinstall package globally
 ```sh
-# npm search @angular
+npm search @angular
 npm uninstall -g @angular/cli
 npm cache clear --force
 npm install -g @angular/cli 
