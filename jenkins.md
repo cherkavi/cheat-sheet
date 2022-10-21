@@ -253,9 +253,12 @@ pipeline {
 ## REST API
 deploy with parameters
 ```sh
-curl https://jenkins-stg.dpl.org/job/application/deployment/job/deploy-from-branch/buildWithParameters \
+curl https://jenkins.vantage.zur/job/application/job/data-api/job/deployment/job/deploy-services/buildWithParameters \
   --user $DXC_USER:$DXC_PASS \
-  --data BRANCH_NAME=mdf4-download --data DESTINATION=data-portal-stg-1
+  --data BRANCH_NAME=master \
+  --data DESTINATION=stg-6 \
+  --data DEBUG=true  \
+  --data DEPLOY_DATA_APIDEBUG=true  
 ```
 job information
 ```sh
