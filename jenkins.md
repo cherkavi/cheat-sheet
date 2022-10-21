@@ -9,6 +9,7 @@
 * [continuous delivery patterns](https://continuousdelivery.com/implementing/patterns/)
 * [continuous delivery architecture](https://continuousdelivery.com/implementing/architecture/)
 * [REST API](https://www.jenkins.io/doc/book/using/remote-access-api/)
+  > for all url just try to add: `/api` or `/api/json?pretty=true`
 * [jenkins scheduler build periodically](https://www.lenar.io/jenkins-schedule-build-periodically/)
 
 #### DSL
