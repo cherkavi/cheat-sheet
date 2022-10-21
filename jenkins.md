@@ -253,6 +253,7 @@ pipeline {
 ## REST API
 deploy with parameters
 ```sh
+# obtain list of parameters: https://jenkins.vantage.zur/job/application/job/data-api/job/deployment/job/deploy-services/api/json?pretty=true
 curl https://jenkins.vantage.zur/job/application/job/data-api/job/deployment/job/deploy-services/buildWithParameters \
   --user $DXC_USER:$DXC_PASS \
   --data BRANCH_NAME=master \
