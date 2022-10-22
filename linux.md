@@ -2423,10 +2423,11 @@ sudo vmware-installer -u vmware-player
 pdftk original.pdf stamp watermark.pdf output output.pdf
 ```
 
-### version of OS, linux version
+### version of OS, linux version os information 
 * lsb_release -a
 * cat /etc/system-release
 * uname -a
+* `. /etc/os-release` 
 
 ### [cidr calculator](https://cidr.xyz/)
 
