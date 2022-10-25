@@ -1,30 +1,7 @@
-## some tricks
-  * completion
-  ```bash
-  source <(oc completion bash)
-  ```
-  * trace logging communication, verbose output
-  ```bash
-  rm -rf ~/.kube/cache
-  oc get pods -v=6
-  oc get pods -v=7
-  oc get pods -v=8
-  ```
-  * explain yaml schema
-  ```
-  oc explain pods
-  oc explain pods --recursive
-  oc explain pods --recursive --api-version=autoscaling/v2beta1
-  ```
-  * get in yaml, get source of resource, describe yaml
-  ```
-  oc get -o yaml  pod {name of the pod}
-  oc get -o json  pod {name of the pod}
-  ```
-
-### minishift documentation, help url
-> https://docs.openshift.org/latest/minishift/using/index.html
-
+# OpenShift collection
+* [minishift documentation, help url](https://docs.openshift.org/latest/minishift/using/index.html)  
+* [CLI commands oc commands](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html)  
+## Init
 ### install client 
 [oc cli installation](https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html)
 debian
@@ -47,27 +24,21 @@ oc version -v8 2>&1 | grep "User-Agent" | awk '{print $6}
 [odo cli](https://docs.openshift.com/container-platform/latest/cli_reference/opm/cli-opm-install.html)  
 [tkn cli](https://docs.openshift.com/container-platform/latest/cli_reference/tkn_cli/installing-tkn.html)  
 
-## [CLI commands oc commands](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html)
-### login into openshift
+### completion
+```bash
+source <(oc completion bash)
 ```
-oc login --username=admin --password=admin
-echo "my_password" | oc login -u my_user
-oc login -u developer -p developer
-oc login {url}
-```
-check login
-```
-oc whoami
-oc whoami -t
-```
-### login into openshift using token
-https://oauth-openshift.stg.zxxp.zur/oauth/token/display 
-```sh
- oc login --token=sha256~xxxxxxxxxxxxx --server=https://api.stg.zxxp.zur:6443
+### trace logging communication, verbose output
+```bash
+rm -rf ~/.kube/cache
+oc get pods -v=6
+oc get pods -v=7
+oc get pods -v=8
 ```
 
+## REST api
 ### print collaboration, output rest api call, print api calls
-```
+```sh
 oc whoami -v=8
 ```
 ### example of rest api collaboration, rest call
@@ -86,6 +57,25 @@ curl -k -H "Authorization: Bearer $TOKEN" -H 'Accept: application/json' $ENDPOIN
 curl -k -H "Authorization: Bearer $TOKEN" -H 'Accept: application/json' $ENDPOINT/api/v1/watch/namespaces/$NAMESPACE/pods
 ```
 
+## Login
+### login into openshift
+```sh
+oc login --username=admin --password=admin
+echo "my_password" | oc login -u my_user
+oc login -u developer -p developer
+oc login {url}
+```
+check login
+```sh
+oc whoami
+oc whoami -t
+```
+### login into openshift using token
+https://oauth-openshift.stg.zxxp.zur/oauth/token/display 
+```sh
+ oc login --token=sha256~xxxxxxxxxxxxx --server=https://api.stg.zxxp.zur:6443
+```
+
 ### switch contex, use another cluster
 ~/.kube/config
 ```
@@ -102,6 +92,20 @@ clusters:
 ```
 ```
 kubectl config use-context kubernetes-admin@docker-for-desktop-cluster
+```
+
+## explain yaml schema
+```
+oc explain pods
+oc explain pods --recursive
+oc explain pods --recursive --api-version=autoscaling/v2beta1
+```
+## get in yaml, get source of resource, describe yaml
+```
+oc get -o yaml  pod {name of the pod}
+oc get -o json  pod {name of the pod}
+
+oc get -o json  pod {name of the pod} --namespace one --namespace two --namespace three
 ```
 
 ## secrets 
