@@ -35,10 +35,14 @@ UUID.randomUUID();
 # command line argument
 -Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.port=5006
--Dcom.sun.management.jmxremote.rmi.port=5007
+-Dcom.sun.management.jmxremote.rmi.port=5006
+-Djava.rmi.server.hostname=127.0.0.1 
 -Dcom.sun.management.jmxremote.local.only=false
 -Dcom.sun.management.jmxremote.authenticate=false
 -Dcom.sun.management.jmxremote.ssl=false
+# additional parameters
+-Djmx.rmi.registry.port=5006 
+-Djmx.rmi.port=5006
 ```
 ```bash
 # OpenShift settings
@@ -47,11 +51,11 @@ $ oc login $OC_HOST:8443
  
 # forward ports from localhost to pod
 # oc port-forward $POD_NAME <local port>:<remote port>
-$ oc port-forward $POD_NAME 5005
+$ oc port-forward $POD_NAME 5006
  
 # e.g. connect to the jmx port with visual vm
-visualvm --openjmx localhost:5005
-jconsole localhost:5005
+visualvm --openjmx localhost:5006
+jconsole localhost:5006
 ```
 
 ### visualvm 
