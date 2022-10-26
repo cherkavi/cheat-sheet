@@ -483,6 +483,8 @@ oc debug dc/my-dc-config --as-root --namespace my-project
 
 # start container after fail
 oc rollout latest {dc name}
+# stop container after fail
+oc rollback latest {dc name}
 ```
 
 ### connect to existing pod, execute command on remote pod, oc exec
