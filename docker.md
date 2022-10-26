@@ -31,7 +31,7 @@ update your bashrc
 ![architecture](https://i.postimg.cc/jqXQSC12/docker-architecture.png)
 
 ### Tools
-* [layer explorer](https://github.com/wagoodman/dive)
+* [layers explorer](https://github.com/wagoodman/dive)
 
 
 ### information about docker itself
@@ -231,7 +231,7 @@ Images
 docker search <text of search>
 ```
 
-### inspect image in repository inspect layers
+### inspect image in repository inspect layers analyse image show layers
 ```sh
 # sudo apt-get -y install skopeo
 # or: https://ftp.de.debian.org/debian/pool/main/s/skopeo/
