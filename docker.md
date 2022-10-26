@@ -239,6 +239,9 @@ docker search <text of search>
 skopeo inspect docker://registry.fedoraproject.org/fedora:latest
 # https://github.com/wagoodman/dive
 dive ${DOCKER_REGISTRY}/portal-production/jenkins-builder
+
+# show all executed command lines list of commands in docker container 
+skopeo inspect --config docker://registry.fedoraproject.org/fedora:latest | grep -e "CMD" -e "ENTRYPOINT"
 ```
 
 ### export layers tag layers
