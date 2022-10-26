@@ -480,6 +480,9 @@ oc autoscale dc/{app-name} --min 1 --max 5 --cpu-percent=40
 
 oc debug pods/{name of the pod}
 oc debug dc/my-dc-config --as-root --namespace my-project
+
+# start container after fail
+oc rollout latest {dc name}
 ```
 
 ### connect to existing pod, execute command on remote pod, oc exec
