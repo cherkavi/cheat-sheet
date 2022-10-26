@@ -30,7 +30,7 @@ import java.util.UUID;
 UUID.randomUUID();
 ```
 
-### JMX
+### JMX java inspect java state java stuck
 ```bash
 # command line argument
 -Dcom.sun.management.jmxremote
@@ -47,11 +47,11 @@ $ oc login $OC_HOST:8443
  
 # forward ports from localhost to pod
 # oc port-forward $POD_NAME <local port>:<remote port>
-$ oc port-forward $POD_NAME 5006
-$ oc port-forward $POD_NAME 5007
+$ oc port-forward $POD_NAME 5005
  
 # e.g. connect to the jmx port with visual vm
-visualvm --openjmx localhost:5006
+visualvm --openjmx localhost:5005
+jconsole localhost:5005
 ```
 
 ### visualvm 
