@@ -472,9 +472,13 @@ oc set resources dc/{app-name} --limits=cpu=400m,memory=512Mi --requests=cpu=200
 oc autoscale dc/{app-name} --min 1 --max 5 --cpu-percent=40
 ```
 
-### connect to existing pod in debug mode
+### connect to existing pod in debug mode, debug pod
 ```bash
+# check policy
+# oc adm policy add-scc-to-user mapr-apps-scc system:serviceaccount:my-project-name:default
+
 oc debug pods/{name of the pod}
+oc debug dc/my-dc-config --as-root --namespace my-project
 ```
 
 ### connect to existing pod, execute command on remote pod, oc exec
