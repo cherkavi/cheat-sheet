@@ -32,6 +32,7 @@ update your bashrc
 
 ### Tools
 * [layers explorer](https://github.com/wagoodman/dive)
+* [layers, config, copy ... ](https://github.com/containers/skopeo/blob/main/install.md)
 
 
 ### information about docker itself
