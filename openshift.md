@@ -475,7 +475,8 @@ oc autoscale dc/{app-name} --min 1 --max 5 --cpu-percent=40
 ### connect to existing pod in debug mode, debug pod
 ```bash
 # check policy
-# oc adm policy add-scc-to-user mapr-apps-scc system:serviceaccount:my-project-name:default
+# oc adm policy add-scc-to-user mapr-apps-scc system:serviceaccount:${PROJECT_NAME}:default
+# oc adm policy add-role-to-user admin ${USER_NAME} -n ${PROJECT_NAME}
 
 oc debug pods/{name of the pod}
 oc debug dc/my-dc-config --as-root --namespace my-project
