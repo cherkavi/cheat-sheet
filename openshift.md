@@ -233,6 +233,7 @@ oc status
 ### show route to service, show url to application
 ```sh
 oc get routes {app name / service name}
+oc get route -demo hello-world-http -o jsonpath='{.spec.host}'
 ```
 #### route migration
 ```sh
