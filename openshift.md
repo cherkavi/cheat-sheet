@@ -1,6 +1,11 @@
-# OpenShift collection
+# OpenShift 
+
+## links collections
 * [minishift documentation, help url](https://docs.openshift.org/latest/minishift/using/index.html)  
 * [CLI commands oc commands](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html)  
+* [tekton pipeline examples](https://github.com/dalelane/app-connect-tekton-pipeline)
+
+
 ## Init
 ### install client 
 [oc cli installation](https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html)
