@@ -650,3 +650,19 @@ top hot keys:
 * c - full command
 * d - delay 
 * o - filter ( COMMAND=java )
+
+## ngrok
+```sh
+# ngrok install
+sudo snap install ngrok
+# ngrok setup 
+x-www-browser https://dashboard.ngrok.com/get-started/setup
+ngrok config add-authtoken aabbccddeeffgg
+
+ngrok config check
+
+x-www-browser https://dashboard.ngrok.com/tunnels/agents
+
+# how to start as a service
+# https://github.com/cherkavi/cheat-sheet/blob/master/linux.md#ngrok
+```
