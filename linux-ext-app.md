@@ -57,7 +57,8 @@ dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/cust
 ```
 
 ### gnome extension manual installation, gnome ext folder
-```
+#### install gnome extension 
+```sh
 gnome-shell --version
 path_to_extension=~/Downloads/switcherlandau.fi.v28.shell-extension.zip
 
@@ -66,6 +67,20 @@ plugin_dir="$HOME/.local/share/gnome-shell/extensions/$plugin_uuid"
 mkdir -p $plugin_dir
 unzip -q $path_to_extension -d $plugin_dir/
 sudo systemctl restart gdm
+```
+
+#### delete gnome extension
+```sh
+path_to_extension=~/Downloads/gsconnectandyholmes.github.io.v53.shell-extension.zip
+
+plugin_uuid=`unzip -c $path_to_extension metadata.json | grep uuid | cut -d \" -f4`
+if [[ -n $plugin_uuid ]]; then
+    plugin_dir="$HOME/.local/share/gnome-shell/extensions/$plugin_uuid"
+    rm -rf $plugin_dir
+    sudo systemctl restart gdm
+else
+    echo "plugin folder was not found"
+fi
 ```
 
 
