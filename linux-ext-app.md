@@ -83,7 +83,6 @@ else
 fi
 ```
 
-
 ## gnome keyring
 ```text
 raise InitError("Failed to unlock the collection!")
@@ -106,6 +105,12 @@ keyring get cc.user cherkavi
 PATH_TO_KEYRING_STORAGE=~/.local/share/keyrings/login.keyring 
 mv $PATH_TO_KEYRING_STORAGE "${PATH_TO_KEYRING_STORAGE}-original"
 # go to applications->passwords and keys-> "menu:back" -> "menu:passwords"
+```
+
+### gnome launch via ssh 
+```sh
+ssh -Y remoteuser@remotehost dbus-launch -f gedit
+ssh -X remoteuser@remotehost dbus-launch gnome-terminal
 ```
 
 ## certification 
