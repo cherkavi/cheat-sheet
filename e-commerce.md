@@ -69,6 +69,23 @@ export BOARD_ID=5f8cba47...
 curl https://canny.io/api/v1/boards/retrieve -d apiKey=$API_KEY -d id=BOARD_ID | jq .
 ```
 
+### yelp
+* [API documentation](https://www.yelp.com/developers/documentation/v3/business)  
+* [API documentation](https://www.yelp.com/developers/documentation/v3/business_reviews)
+* [get started, postman](https://www.yelp.com/developers/documentation/v3/get_started)  
+* [postman collection](https://app.getpostman.com/api/collections/6b506a43109229cb2798)  
+* [python api, python code](https://github.com/gfairchild/yelpapi)  
+* [authentication](https://www.yelp.com/developers/documentation/v3/authentication)  
+```sh
+yelp_id='law-office-of-spojmie-nasiri-pleasanton-5'
+
+curl --location --request GET 'https://api.yelp.com/v3/businesses/law-office-of-camelia-mahmoudi-san-jose-3' \
+--header "Authorization: Bearer $API_KEY"
+
+curl --location --request GET 'https://api.yelp.com/v3/businesses/law-office-of-camelia-mahmoudi-san-jose-3/reviews' \
+--header "Authorization: Bearer $API_KEY" | jq .
+```
+
 ## user activities
 * Matomo
   * [documentation](https://matomo.org/docs)
