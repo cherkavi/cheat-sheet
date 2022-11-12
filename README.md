@@ -28,6 +28,9 @@
 * [repl online](https://replit.com/)
 * [code sandbox](https://codesandbox.io/)
 
+### code analyser
+* [code lines counter](https://github.com/XAMPPRocky/tokei)
+
 ### visual database ide
 * [Azure Data Studio](https://azure.microsoft.com/products/data-studio)
 * [DbGate](https://dbgate.org/)
