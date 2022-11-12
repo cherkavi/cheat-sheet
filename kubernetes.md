@@ -7,6 +7,7 @@
 * [troubleshooting](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/)
 * [java application template generator](http://dekorate.io/)
 * [kubernetes patterns](https://k8spatterns.io/)
+* [kubernetes dashboard cli dashboard](https://github.com/kdash-rs/kdash/)
 
 ## tutorials
 * [main tutorial](https://kubernetes.io/docs/tutorials/)
