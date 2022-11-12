@@ -30,6 +30,7 @@
 
 ### code analyser
 * [code lines counter](https://github.com/XAMPPRocky/tokei)
+* [code secrets finder code passwords checker](https://github.com/sirwart/ripsecrets)
 
 ### visual database ide
 * [Azure Data Studio](https://azure.microsoft.com/products/data-studio)
