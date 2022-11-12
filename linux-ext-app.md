@@ -3,6 +3,7 @@
 ## useful links:
 * [gnu applications](https://www.gnu.org/software/)
 * [how to install ubuntu on USB stick](https://ubuntuhandbook.org/index.php/2014/11/install-real-ubuntu-os-usb-drive/)
+* [rust command line tools](https://gist.github.com/sts10/daadbc2f403bdffad1b6d33aff016c0a)
 * [vnc alternative - connect to existing session](http://www.karlrunge.com/x11vnc/)
 * [web page like a screensaver](https://github.com/lmartinking/webscreensaver)
 * [jira editing shortcuts](https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all)
