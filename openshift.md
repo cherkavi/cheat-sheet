@@ -74,6 +74,8 @@ check login
 ```sh
 oc whoami
 oc whoami -t
+# or 
+oc status | grep "on server"
 ```
 ### login into openshift using token
 https://oauth-openshift.stg.zxxp.zur/oauth/token/display 
