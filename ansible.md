@@ -444,6 +444,12 @@ file name from path (return 'script.sh')
   with_fileglob:
     - ../airflow_dags/airflow_dags_gt/config/*.py.j2
 ```
+## jinja conditions
+```yaml
+{% if deployment.jenkins_test_env is defined -%}
+some yaml code
+{% endif %}
+```
 
 ## copy reverse copy from destination machine
 ```
