@@ -189,13 +189,14 @@ export http_proxy="http://host:3128/"
 ```
 docker login -u cherkavi -p `oc whoami -t` docker-registry.local.org
 docker logout docker-registry.local.org
+# for artifactory you can use token as password
 ```
 check login
-```
+```sh
 cat ~/.docker/config.json | grep "auth\":" | awk -F '"' '{print $4}' | base64 -d -
 ```
 check login without access to config
-```
+```sh
 echo "" | docker login docker-registry.local.org
 echo $?
 ```
