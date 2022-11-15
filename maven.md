@@ -828,6 +828,31 @@ mvn verify -Denable-docker-build
 </project>
 ```
 
+### [surefire plugin](https://maven.apache.org/surefire/maven-surefire-plugin/)
+```xml
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <classpathDependencyExcludes>
+                        <classpathDependencyExclude>org.apache.logging.log4j:log4j-slf4j-impl</classpathDependencyExclude>
+                    </classpathDependencyExcludes>
+                </configuration>
+            </plugin>
+```
+
+### [failsafe plugin](https://maven.apache.org/surefire/maven-failsafe-plugin/)
+```xml
+     <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <classpathDependencyExcludes>
+                        <classpathDependencyExclude>org.apache.logging.log4j:log4j-slf4j-impl</classpathDependencyExclude>
+                    </classpathDependencyExcludes>
+                </configuration>
+            </plugin>
+```
 
 # Archetypes
 ## The desired archetype does not exist
