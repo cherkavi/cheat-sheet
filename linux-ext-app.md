@@ -114,12 +114,6 @@ ssh -Y remoteuser@remotehost dbus-launch -f gedit
 ssh -X remoteuser@remotehost dbus-launch gnome-terminal
 ```
 
-## authenticator 2fa
-```sh
-sudo apt install oathtool
-oathtool -b --totp $CODE_2FA
-```
-
 ## certification 
 Generating a RSA private key
 ```bash
