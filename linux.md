@@ -407,6 +407,12 @@ gpg --import gpg-pubkey.txt
 gpg --verify openldap-2.5.13.tgz.asc
 ```
 
+### authenticator 2fa
+```sh
+sudo apt install oathtool
+oathtool -b --totp $CODE_2FA
+```
+
 ### connect to remote machine via ssh without credentials
 ```
 # generate new RSA keys, create RSA
@@ -3359,3 +3365,4 @@ cd /var/cache/apt/archives
 ```sh
 sudo apt install --fix-broken -o Dpkg::Options::="--force-overwrite" {package name}
 ```
+
