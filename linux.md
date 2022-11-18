@@ -407,7 +407,7 @@ gpg --import gpg-pubkey.txt
 gpg --verify openldap-2.5.13.tgz.asc
 ```
 
-### authenticator 2fa
+### [authenticator 2fa](https://www.nongnu.org/oath-toolkit/man-oathtool.html)
 ```sh
 sudo apt install oathtool
 oathtool -b --totp $CODE_2FA
