@@ -412,6 +412,12 @@ gpg --verify openldap-2.5.13.tgz.asc
 sudo apt install oathtool
 oathtool -b --totp $CODE_2FA
 ```
+> oathtool: base32 decoding failed: Base32 string is invalid
+```sh
+# bar code scanner QR code scanner
+sudo apt install zbar-tools
+zbarimg ~/path-to-screenshot-of-barcode.png
+```
 
 ### connect to remote machine via ssh without credentials
 ```
