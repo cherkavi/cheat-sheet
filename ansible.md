@@ -389,6 +389,14 @@ debug msg="my custom message"
 shell pwd
 ```
 
+## ansible print stdout
+```sh
+# default ansible output
+ANSIBLE_STDOUT_CALLBACK=yaml
+# humand readable output
+ANSIBLE_STDOUT_CALLBACK=debug
+```
+
 # error handling, try catch
 ## stop execution of steps (of playbook) when at least one server will throw error
 ```yaml
