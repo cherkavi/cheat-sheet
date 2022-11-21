@@ -42,10 +42,18 @@
 ### password storage
 * [one time password storage](https://onetimesecret.com/)
 
-### REST api test framework
+### REST api test frameworks
 * [karate](https://github.com/karatelabs/karate)
     * [tutorial](https://www.softwaretestinghelp.com/api-testing-with-karate-framework/)
     * [how to start with](https://software-that-matters.com/2020/11/25/the-definitive-karate-api-testing-framework-getting-started-guide/)
+* [k6](https://k6.io/docs/test-types/load-testing/)
+* [cypress](https://step.exense.ch/resources/load-testing-with-cypress)
+* [gatling](https://gatling.io/)
+* junit
+    * [how to junit](https://dzone.com/articles/how-we-do-performance-testing-easily-efficiently-a)
+    * [junit how to](https://medium.com/@igorvlahek1/load-testing-with-junit-393a83261745)
+* [locust](https://docs.locust.io/en/stable/writing-a-locustfile.html)
+    * [how to locust](https://www.blazemeter.com/blog/locust-load-testing)
 
 ---
 ## useful search function for using whole cheat sheet
