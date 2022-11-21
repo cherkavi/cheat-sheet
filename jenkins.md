@@ -250,6 +250,40 @@ pipeline {
 }
 ```
 
+### groovy pipeline show credentials
+```groovy
+// create pipeline with groovy script
+
+/**
+Jenkins Pipeline (create project Pipeline) script for printing out credentials 
+# jenkins show credentials 
+*/
+def show(){
+    withCredentials([sshUserPrivateKey(credentialsId: 'xxx-yyy-883a-38881320d606', keyFileVariable: 'data_api_key', passphraseVariable: '', usernameVariable: 'data_api_username')]) {
+        return "\n>>>  data_api_key ${data_api_key} \n data_api_username: ${data_api_username}"
+    }
+    withCredentials([usernamePassword(credentialsId: 'xxx-yyy-a659-b54d73eec29a', passwordVariable: 'database_password', usernameVariable: 'database_user')]) {
+        return " \nlogin ${database_user} \npassword ${database_password}"
+    }
+}
+
+pipeline {
+    agent any
+
+    stages {
+        stage('show me') {
+            steps {
+                echo "-----"
+                echo show().reverse()
+                echo "-----"
+            }
+        }
+    }
+}
+
+// # echo "gts-pd-sergtsop" | rev
+```
+
 ## REST API
 deploy with parameters
 ```sh
