@@ -46,7 +46,7 @@ mvn org.qunix:structure-maven-plugin:modules
 ```
 
 
-### buld only one module, single module build
+### build only one module, build one module, single module build
 ```sh
 # mvn --projects common/common-utils clean install
 mvn -pl common/common-utils clean install
@@ -55,8 +55,10 @@ or build with all dependencies
 ```sh
 mvn --threads 2C --projects common/common-utils -am clean install
 ```
-or build 
+
+### build without module skip module
 ```sh
+mvn -f $DIR_PROJECT/pom.xml clean install -pl -:processing-common -Dmaven.test.skip=true -DskipTests 
 mvn clean package -pl '!:processing-common,!:processing-mapr-ojai-common'
 ```
 
