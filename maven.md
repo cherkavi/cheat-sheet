@@ -62,6 +62,11 @@ mvn -f $DIR_PROJECT/pom.xml clean install -pl -:processing-common -Dmaven.test.s
 mvn clean package -pl '!:processing-common,!:processing-mapr-ojai-common'
 ```
 
+### continue to build after interruption 
+```sh
+mvn --resume-from :processing-common install -Dmaven.test.skip=true -DskipTests 
+```
+
 ### dry run 
 ```
 mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec
