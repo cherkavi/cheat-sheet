@@ -14,6 +14,9 @@
 # find process id for target java process
 ps auxf
 
+# find amount of threads inside JVM
+ps -eww H -p $JAVA_PROCESS_ID
+
 # make heap dump
 jmap -histo $JAVA_PROCESS_ID
 jmap -clstats $JAVA_PROCESS_ID
