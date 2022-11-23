@@ -59,6 +59,7 @@ mvn --threads 2C --projects common/common-utils -am clean install
 ### build without module skip module
 ```sh
 mvn -f $DIR_PROJECT/pom.xml clean install -pl -:processing-common -Dmaven.test.skip=true -DskipTests 
+mvn -f $DIR_PROJECT/pom.xml clean install -pl '-:processing-common,-:processing-e2e' -Dmaven.test.skip=true -DskipTests 
 mvn clean package -pl '!:processing-common,!:processing-mapr-ojai-common'
 ```
 
