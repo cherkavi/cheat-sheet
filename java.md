@@ -33,6 +33,18 @@ import java.util.UUID;
 UUID.randomUUID();
 ```
 
+### JVM parameters
+```sh
+-Xmx56000m 
+-XX:+HeapDumpOnOutOfMemoryError 
+-XX:HeapDumpPath==/usr/src/bin/log/ 
+-XX:OnOutOfMemoryError=/usr/src/bin/start-app.sh
+-XX:ErrorFile=/usr/src/bin/log/fatal-errors.log 
+-XX:+PrintGCDetails 
+-XX:+UseG1GC 
+-Xloggc:/usr/src/bin/log/jvm-gc.log 
+```
+
 ### JMX java inspect java state java stuck
 ```bash
 # command line argument
