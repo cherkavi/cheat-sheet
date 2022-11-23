@@ -1451,9 +1451,13 @@ ls -l /proc/*/exe
 ls -l /proc/*/cwd
 cat /proc/*/cmdline
 ```
-process full command, ps full, ps truncate
+### process full command, ps full, ps truncate
 ```sh
 ps -ewwo pid,cmd
+```
+### threads in process
+```sh
+ps -eww H -p $PROCESS_ID
 ```
 
 
