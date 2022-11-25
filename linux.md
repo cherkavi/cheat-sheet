@@ -1927,8 +1927,13 @@ ftp_proxy =  http://username:password@proxy.server.address:port/
 ```
 
 ### zip files, zip all files
-```
+```sh
 zip -r bcm-1003.zip *
+```
+
+### zip file with password zip protect with password
+```sh
+zip --encrypt 1.zip 1.html
 ```
 
 ### zip file without saving path, zip path cleanup
