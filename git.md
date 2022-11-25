@@ -161,11 +161,15 @@ git rev-parse HEAD
 git log -n 1 --pretty=format:'%h' > /tmp/gitHash.txt
 ```
 
-### print branch name by hashcode to branch name show named branches branchname
+### print branch name by hashcode to branch name show named branches branchname find branch by hash
 ```sh
 git ls-remote | grep <hashcode>
 # answer will be like:          <hashcode>        <branch name>
 # ada7648394793cfd781038f88993a5d533d4cdfdf        refs/heads/release-dataapi-13.0.2
+```
+or
+```sh
+git branch --all --contains ada764839
 ```
 
 ### print branch hash code by name branch hash branch head hash
