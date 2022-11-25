@@ -332,9 +332,16 @@ maprcli config save -values {"mfs.db.max.rowsize.kb":<value in KB>}
 # in case of such message - check your table type binary/json
 OJAI APIs are currently not supported with binary tables
 ```
-OJAI java logging output
-```properties
-log4j.logger.com.mapr.ojai.store.impl=TRACE, stdout
+OJAI log4j logging
+```xml
+            <Logger name="log4j.logger.com.mapr.ojai.store.impl" level="trace" additivity="false">
+                <AppenderRef ref="stdout" />
+                <AppenderRef ref="asyncFile" />
+            </Logger>
+            <Root level="trace">
+                <AppenderRef ref="stdout" />
+                <AppenderRef ref="asyncFile" />
+            </Root>
 ```
 
 ### Show info
