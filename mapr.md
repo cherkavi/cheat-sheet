@@ -457,6 +457,7 @@ delete --table /vantage/processed/tables/markers --id "custom_id_1"
 ```bash
 maprcli table index add -path /vantage/deploy/data-access-video/images -index frameNumber_id -indexedfields frameThumbnail
 # maprcli table index add -path <path> -index <name> -indexedfields<fields>
+# mapr index information ( check isUpdate )
 maprcli table index list -path <path>
 maprcli table cfcreate / delete / list
 ```
