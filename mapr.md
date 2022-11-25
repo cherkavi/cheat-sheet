@@ -332,6 +332,11 @@ maprcli config save -values {"mfs.db.max.rowsize.kb":<value in KB>}
 # in case of such message - check your table type binary/json
 OJAI APIs are currently not supported with binary tables
 ```
+OJAI java logging output
+```properties
+log4j.logger.com.mapr.ojai.store.impl=TRACE, stdout
+```
+
 ### Show info
 ```bash
 maprcli table info -path /vantage/deploy/data-access-video/images -json
