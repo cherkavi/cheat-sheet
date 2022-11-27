@@ -556,6 +556,7 @@ cp -var /path/to/folder /another/path/to/folder
 cp -r --preserve=mode,ownership,timestamps /path/to/src /path/to/dest
 cp -r --preserve=all /path/to/src /path/to/dest
 ```
+
 ### copy only when changed
 ```bash
 cp --checksum /path/to/src /path/to/dest
@@ -2007,6 +2008,11 @@ false
 find -cmin -2
 ```
 
+### temp file temporary file create temp file
+```sh
+mktemp
+```
+	
 ## cURL command
 ### [curl without password](https://everything.curl.dev/usingcurl/netrc)
 ~/.netrc
@@ -3380,4 +3386,5 @@ cd /var/cache/apt/archives
 ```sh
 sudo apt install --fix-broken -o Dpkg::Options::="--force-overwrite" {package name}
 ```
+
 
