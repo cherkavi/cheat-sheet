@@ -2187,16 +2187,6 @@ curl --max-time 10 -so /dev/null -w '%{time_total}\n' google.com
 curl "https://{foo,bar}.com/file_[1-4].webp" --output "#1_#2.webp"
 ```
 
-### xml pretty print, xml format
-```
-xmllint --format /path/to/file.xml > /path/to/file-formatted.xml
-```
-
-### xml validation
-```sh
-xmllint --noout file.xml; echo $?
-```
-
 ### json output pretty print, json pretty print, json sort
 ```sh
 echo output.json | jq .
@@ -2294,6 +2284,16 @@ xmllint --xpath '//note/to/text()' $TEMP_FILE
 # debug xml xpath debug 
 xmllint --shell  $TEMP_FILE
 rm $TEMP_FILE
+```
+	
+### xml pretty print, xml format
+```
+xmllint --format /path/to/file.xml > /path/to/file-formatted.xml
+```
+
+### xml validation
+```sh
+xmllint --noout file.xml; echo $?
 ```
 
 ### html parsing html processing 
