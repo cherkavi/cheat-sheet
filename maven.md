@@ -903,3 +903,17 @@ vim $HOME/.m2/repository/archetype-catalog.xml
   </archetypes>
 </archetype-catalog>
 ```
+
+## find all plugins in project
+```sh
+for each_file in `find . -name pom.xml | grep -v target`; do
+    # cat $each_file | grep plugins
+    AMOUNT_OF_PLUGINS=`cat $each_file | xpath -e "/project/build/plugins/plugin/artifactId | /project/profiles/profile/build/plugins/plugin/artifactId" 2>1 | wc -l`
+    if [[ $AMOUNT_OF_PLUGINS > 0 ]]; then
+        echo "---"
+        echo $each_file"  "$AMOUNT_OF_PLUGINS 
+        cat $each_file | xpath -e "/project/build/plugins/plugin/artifactId | /project/profiles/profile/build/plugins/plugin/artifactId" 2>1 | grep -v "^-- NODE"
+    fi
+done
+# cat out.txt | grep -v "\-\-\-" | grep -v "pom.xml" | sort | uniq
+```
