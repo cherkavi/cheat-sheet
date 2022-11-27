@@ -2210,7 +2210,7 @@ jc --pretty ls -la
 dig www.google.com | jc --dig --pretty
 ```
 
-### [json parser json parsing parse json parsing json json processing](https://stedolan.github.io/jq/manual/)
+### [json parser json parsing parse json parsing json json processing json query](https://stedolan.github.io/jq/manual/)
 [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})  
 jq is not working properly with "-" character in property name !!!  
 ```bash
@@ -2241,7 +2241,7 @@ cmp <(jq -cS . A.json) <(jq -cS . B.json)
 diff <(jq --sort-keys . A.json) <(jq --sort-keys . B.json)
 ```
 
-### [parsing yaml, yaml processing](https://mikefarah.gitbook.io/yq/)
+### [parsing yaml, yaml processing yaml query](https://mikefarah.gitbook.io/yq/)
 ### [yq doc](https://mikefarah.gitbook.io/yq/operators)
 #### [yq examples](https://metacpan.org/pod/distribution/ETL-Yertl/bin/yq)
 ```sh
