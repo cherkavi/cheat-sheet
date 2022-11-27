@@ -2264,6 +2264,38 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
 yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.spec.clusterIP,.spec.clusterIP),(.metadata.namespace="ttt")' service-data-api-mdf4download-service.yaml
 ```
 
+### parsing xml processing xml
+#### parse xml with xpath 
+```sh
+# installation
+sudo apt install libxml-xpath-perl
+# parse xml from stdin
+curl -s https://www.w3schools.com/xml/note.xml | xpath -e '/note/to | /note/from'
+curl -s https://www.w3schools.com/xml/note.xml | xpath -e '/note/to/text()'
+```
+
+#### parse xml with xmllint
+```sh
+# installation
+sudo apt  install libxml2-utils
+
+## usage
+TEMP_FILE=$(mktemp)
+curl -s https://www.w3schools.com/xml/note.xml > $TEMP_FILE
+xmllint --xpath '//note/from' $TEMP_FILE
+xmllint --xpath 'string(//note/to)' $TEMP_FILE
+xmllint --xpath '//note/to/text()' $TEMP_FILE
+# debug xml xpath debug 
+xmllint --shell  $TEMP_FILE
+rm $TEMP_FILE
+```
+
+### parsing html processing 
+```sh
+pip install hq
+curl https://www.w3schools.com/xml | hq '`title: ${/head/title}`'
+```
+
 ### chmod recursively
 ```
 chmod -R +x <folder name>
