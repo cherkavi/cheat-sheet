@@ -2264,7 +2264,13 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
 yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.spec.clusterIP,.spec.clusterIP),(.metadata.namespace="ttt")' service-data-api-mdf4download-service.yaml
 ```
 
-### parsing xml processing xml
+### parsing xml parsing xml processing
+### xq 
+```sh
+# installation
+pip3 install xq
+# xq usage ??? is it not working as expected ????
+```
 #### parse xml with xpath 
 ```sh
 # installation
@@ -2290,7 +2296,7 @@ xmllint --shell  $TEMP_FILE
 rm $TEMP_FILE
 ```
 
-### parsing html processing 
+### html parsing html processing 
 ```sh
 pip install hq
 curl https://www.w3schools.com/xml | hq '`title: ${/head/title}`'
