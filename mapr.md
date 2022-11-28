@@ -315,6 +315,7 @@ DBShell commands
 * [commands](https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html)  
 * [dbshell examples](https://github.com/mapr-demos/mapr-db-cdc-sample)  
 * [dbshell commands](https://docs.datafabric.hpe.com/62/ReferenceGuide/mapr_dbshell.html)  
+* [small cheat sheet](https://github.com/mapr-demos/mapr-music/tree/master/doc/tutorials)
 
 ### [Create MaprDB database/table](https://docs.datafabric.hpe.com/62/ClusterAdministration/data/tables/CreateTable.html)  
 Two possible types of MaprDB:  
@@ -390,6 +391,9 @@ jsonoptions
 ```
 #### maprdb query maprdb search maprdb find
 ```sh
+# output to file stdout 
+mapr dbshell 'find /mapr/prod/vantage/orchestration/tables/metadata --fields _id --limit 5 --pretty' > out.txt
+
 mapr dbshell
 # last records, default sort: ASC
 find /mapr/prod/vantage/orchestration/tables/metadata --fields _id --orderby loggerStartTime.utcNanos:DESC --limit 5
