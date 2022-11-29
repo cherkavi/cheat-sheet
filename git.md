@@ -513,6 +513,11 @@ git diff {hash}~ {hash}
 git cherry-pick -n {commit-hash}
 ```
 
+### git cherry pick with original commit message cherry pick tracking cherry pick original hash
+```
+git cherry-pick -x <commit hash>
+```
+
 ### git cherry pick, git cherry-pick conflict
 ```sh
 # in case of merge conflict during cherry-pick
