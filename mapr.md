@@ -355,6 +355,8 @@ maprcli table region list -path /vantage/deploy/data-access-video/images -json
 ### maprdb copy table
 ```sh
 mapr copytable -src {path to source} -dst {path to destination}
+# move table can be fulfilled with:
+hadoop fs -mv
 ```
 
 ### [import export mapr table to another place](https://docs.datafabric.hpe.com/61/ReferenceGuide/mapr_export_and_mapr_import.html)
