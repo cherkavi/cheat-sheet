@@ -322,13 +322,21 @@ Two possible types of MaprDB:
 * (json/document database)[https://docs.datafabric.hpe.com/62/MapROverview/MaprDB-overview-json.html]  
 * (binary/column-oriented)[https://docs.datafabric.hpe.com/62/MapROverview/maprDB-overview-binary.html]  
 ```bash
-# binary table
+# maprdb create table binary table
 maprcli table create -path <path_in_maprfs> 
-# json table
+# maprdb create json table
 maprcli table create -path <path_in_maprfs>  -tabletype json
+
 # configuration for maprdb table
 maprcli config save -values {"mfs.db.max.rowsize.kb":<value in KB>}
+
+# maprdb table show regions
+maprcli table region list -path <path_in_maprfs>
+
+# maprdb table split
+maprcli table region split -path <path_in_maprfs> -fid <region id like: 5358777.43.26313>
 ```
+
 ```
 # in case of such message - check your table type binary/json
 OJAI APIs are currently not supported with binary tables
