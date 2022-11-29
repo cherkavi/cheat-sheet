@@ -332,6 +332,7 @@ maprcli config save -values {"mfs.db.max.rowsize.kb":<value in KB>}
 
 # maprdb table show regions
 maprcli table region list -path <path_in_maprfs>
+maprcli table region list -path <path_in_maprfs> -json
 
 # maprdb table split
 maprcli table region split -path <path_in_maprfs> -fid <region id like: 5358777.43.26313>
