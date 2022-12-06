@@ -415,8 +415,10 @@ git push --tags $remoteUrl
 #### show tags
 ```
 # show current tags show tags for current commit
+git show
 git describe --tags
 git describe
+
 
 # fetch tags
 git fetch --all --tags -prune
