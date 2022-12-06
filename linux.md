@@ -1573,9 +1573,29 @@ grep --after 4
 ### [grep regexp](https://linuxize.com/post/regular-expressions-in-grep/)
 ```sh
 printf "# todo\n## one\n### description for one\n## two\n## three" | grep "[#]\{3\}"
-# grep boundary between two numbers
+### grep boundary between two numbers
 printf "# todo\n## one\n### description for one\n## two\n## three" | grep "[#]\{2,3\}"
 printf "# todo\n## one\n### description for one\n## two\n## three" | grep --extended-regexp "[#]{3}"
+### grep regexp 
+## characters
+# [[:alnum:]]	All letters and numbers.	"[0-9a-zA-Z]"
+# [[:alpha:]]	All letters.	                "[a-zA-Z]"
+# [[:blank:]]	Spaces and tabs.         	[CTRL+V<TAB> ]
+# [[:digit:]]	Digits 0 to 9.	                [0-9]
+# [[:lower:]]	Lowercase letters.	        [a-z]
+# [[:punct:]]	Punctuation and other characters.	"[^a-zA-Z0-9]"
+# [[:upper:]]	Uppercase letters.	        [A-Z]
+# [[:xdigit:]]	Hexadecimal digits.	        "[0-9a-fA-F]"
+	
+## quantifiers
+# *	Zero or more matches.
+# ?	Zero or one match.
+# +	One or more matches.
+# {n}	n matches.
+# {n,}	n or more matches.
+# {,m}	Up to m matches.
+# {n,m}	From n up to m matches.
+du -ah .  | sort -r | grep -E "^[0-9]{2,}M"
 ```
 
 ### grep between, print between lines
