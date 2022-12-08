@@ -1,8 +1,8 @@
-[MapR Academy](http://learn.mapr.com)
+[MapR Academy](http://learn.mapr.com)  
 [Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)  
-[mapr code examples, mapr demos](https://github.com/mapr-demos)
+[mapr code examples, mapr demos](https://github.com/mapr-demos)  
+[mapr ojai](https://github.com/mapr-demos/ojai-examples/tree/master/python)  
 ![commands](https://i.postimg.cc/q7469wbf/mapr-commands.png)  
-
 
 # Architecture examples
 ![connected drive](https://i.postimg.cc/LXCBm8b5/Connected-Car-Pipeline.png)
