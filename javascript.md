@@ -108,3 +108,7 @@ npm start
     'use strict';
 ```
 
+### import alias
+```js
+import { Location as LocationModel } from 'src/app/core/models/location.model';
+```
