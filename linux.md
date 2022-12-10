@@ -413,6 +413,17 @@ sudo apt install oathtool
 oathtool -b --totp $CODE_2FA
 ```
 > oathtool: base32 decoding failed: Base32 string is invalid
+
+### qr code generator
+```sh
+# install 
+sudo apt install qrencode
+# generate qr code
+qrencode --size 6 --level H --output="test-text.png" "test text"
+echo "output from pipe" | qrencode --size 6 --level H --output="test-text.png" 
+```
+
+### bar code scanner qr code scanner
 ```sh
 # bar code scanner QR code scanner
 sudo apt install zbar-tools
