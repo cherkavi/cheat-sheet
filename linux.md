@@ -2516,7 +2516,12 @@ pdftk original.pdf stamp watermark.pdf output output.pdf
 
 ### [cidr calculator](https://cidr.xyz/)
 
-
+### ip address of the site show ip address of remote host ip address
+```sh
+host google.com
+dig mail.ru
+```
+	
 ### print all networks
 ```
 ip -4 a
