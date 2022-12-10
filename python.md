@@ -94,16 +94,22 @@ pip list
 ```
 
 ### list of all installed libraries, installed modules
-```
+```sh
 pip freeze
 ```
-```
+```python
 import sys
 sys.modules
 ```
+### path to library path to import package
+```python
+mapr.ojai.storage.__path__
+dir(mapr.ojai.storage)
+```
 
 ### list of all folders with source code, installed packages
-```
+```python
+# path to folder with all packages
 import sys
 print(sys.prefix)
 ```

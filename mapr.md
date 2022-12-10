@@ -1,8 +1,8 @@
-[MapR Academy](http://learn.mapr.com)
+[MapR Academy](http://learn.mapr.com)  
 [Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)  
-[mapr code examples, mapr demos](https://github.com/mapr-demos)
+[mapr code examples, mapr demos](https://github.com/mapr-demos)  
+[mapr ojai](https://github.com/mapr-demos/ojai-examples/tree/master/python)  
 ![commands](https://i.postimg.cc/q7469wbf/mapr-commands.png)  
-
 
 # Architecture examples
 ![connected drive](https://i.postimg.cc/LXCBm8b5/Connected-Car-Pipeline.png)
@@ -315,19 +315,29 @@ DBShell commands
 * [commands](https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html)  
 * [dbshell examples](https://github.com/mapr-demos/mapr-db-cdc-sample)  
 * [dbshell commands](https://docs.datafabric.hpe.com/62/ReferenceGuide/mapr_dbshell.html)  
+* [small cheat sheet](https://github.com/mapr-demos/mapr-music/tree/master/doc/tutorials)
 
 ### [Create MaprDB database/table](https://docs.datafabric.hpe.com/62/ClusterAdministration/data/tables/CreateTable.html)  
 Two possible types of MaprDB:  
 * (json/document database)[https://docs.datafabric.hpe.com/62/MapROverview/MaprDB-overview-json.html]  
 * (binary/column-oriented)[https://docs.datafabric.hpe.com/62/MapROverview/maprDB-overview-binary.html]  
 ```bash
-# binary table
+# maprdb create table binary table
 maprcli table create -path <path_in_maprfs> 
-# json table
+# maprdb create json table
 maprcli table create -path <path_in_maprfs>  -tabletype json
+
 # configuration for maprdb table
 maprcli config save -values {"mfs.db.max.rowsize.kb":<value in KB>}
+
+# maprdb table show regions
+maprcli table region list -path <path_in_maprfs>
+maprcli table region list -path <path_in_maprfs> -json
+
+# maprdb table split
+maprcli table region split -path <path_in_maprfs> -fid <region id like: 5358777.43.26313>
 ```
+
 ```
 # in case of such message - check your table type binary/json
 OJAI APIs are currently not supported with binary tables
@@ -350,6 +360,28 @@ maprcli table info -path /vantage/deploy/data-access-video/images -json
 # list of regions for table 
 maprcli table region list -path /vantage/deploy/data-access-video/images -json
 ```
+
+### maprdb copy table
+```sh
+mapr copytable -src {path to source} -dst {path to destination}
+# move table can be fulfilled with:
+hadoop fs -mv
+```
+
+### [import export mapr table to another place](https://docs.datafabric.hpe.com/61/ReferenceGuide/mapr_export_and_mapr_import.html)
+
+### [mapr diff table](https://docs.datafabric.hpe.com/61/ReferenceGuide/mapr_difftables.html)
+
+### Remove table Delete table
+```sh
+maprcli table delete -path <path_in_maprfs>
+```
+
+### Check access to table maprdb table info
+```sh
+maprcli table cf list -path /vantage/deploy/data-access-video/images -cfname default -json
+```
+
 ### Granting Access Permissions for User
 ```bash
 maprcli table cf edit -path /vantage/deploy/data-access-video/images -cfname default -readperm u:tech_user_name
@@ -361,20 +393,6 @@ maprcli table cf edit -path $TABLE_NAME -cfname default -writeperm u:tech_user_n
 maprcli table edit -path $TABLE_NAME -adminaccessperm u:tech_user_name_admin -indexperm u:tech_user_name
 ```
 
-### Check access to table maprdb table info
-```sh
-maprcli table cf list -path /vantage/deploy/data-access-video/images -cfname default -json
-```
-
-## maprdb copy table
-```sh
-mapr copytable -src {path to source} -dst {path to destination}
-```
-
-### Remove table Delete table
-```sh
-maprcli table delete -path <path_in_maprfs>
-```
 
 ### maprdb records 
 #### show options
@@ -384,12 +402,17 @@ jsonoptions
 ```
 #### maprdb query maprdb search maprdb find
 ```sh
-mapr dbshell
-find /mapr/prod/vantage/orchestration/tables/metadata --query '{"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}'
-find /mapr/prod/vantage/orchestration/tables/metadata --query {"$select":["fullPath"],"$where":{"$lt":{"startTime":0}}} --pretty
+# output to file stdout 
+mapr dbshell 'find /mapr/prod/vantage/orchestration/tables/metadata --fields _id --limit 5 --pretty' > out.txt
 
+mapr dbshell
+# last records, default sort: ASC
+find /mapr/prod/vantage/orchestration/tables/metadata --fields _id --orderby loggerStartTime.utcNanos:DESC --limit 5
 find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2 --offset 2 --where {"$eq":{"session_id":"9aaa13577-ad80"}} --orderby created_time
 find /mapr/prod/vantage/orchestration/tables/metadata --c {"$eq":{"session_id":"9aaa13577-ad80"}} --pretty
+
+find /mapr/prod/vantage/orchestration/tables/metadata --query '{"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}'
+find /mapr/prod/vantage/orchestration/tables/metadata --query {"$select":["fullPath"],"$where":{"$lt":{"startTime":0}}} --pretty
 ```
 !!! important !!!, id only, no data in output but "_id":  if you don't see all fields in the output, try to change user ( you don't have enough rights )
 

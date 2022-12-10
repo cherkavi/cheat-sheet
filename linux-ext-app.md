@@ -596,7 +596,7 @@ mediainfo -f video.mp4
 ```
 
 ### image format, image size, image information, image metadata
-```
+```sh
 # sudo apt-get install imagemagick
 identify -verbose image.png
 
@@ -614,6 +614,14 @@ convert marketing.png -resize 100x100 marketing-100-100.png
 convert marketing.png -resize 100x100 marketing-100-100.png
 # rotate and change quality
 convert marketing.png -rotate 90 -charcoal 4 -quality 50 marketing.png
+```
+
+```sh
+# merge pdf files
+convert 1.pdf 2.pdf 3.pdf result.pdf
+# Error: no image defined
+# /etc/ImageMagick-6/policy.xml
+# <policy domain="coder" rights="read|write| pattern="PDF" />
 ```
 
 ### get image info image metadata

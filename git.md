@@ -414,6 +414,12 @@ git push --tags $remoteUrl
 ```
 #### show tags
 ```
+# show current tags show tags for current commit
+git show
+git describe --tags
+git describe
+
+
 # fetch tags
 git fetch --all --tags -prune
 
@@ -511,6 +517,11 @@ git diff {hash}~ {hash}
 ### git cherry pick without commit, just copy changes from another branch
 ```
 git cherry-pick -n {commit-hash}
+```
+
+### git cherry pick with original commit message cherry pick tracking cherry pick original hash
+```
+git cherry-pick -x <commit hash>
 ```
 
 ### git cherry pick, git cherry-pick conflict
