@@ -57,3 +57,6 @@
 * Retries
 * Exponential Backoff
 * Circuit Breakers
+
+## Archimate with Sequence diagram
+![image](https://user-images.githubusercontent.com/8113355/206921007-21643c2b-da3f-4930-a79c-4462562017e1.png)
