@@ -2861,92 +2861,6 @@ export proxy_https="http://user:password@proxy.muc:8080"
 sudo snap search visual 
 ```
 
-### apache server
-[manage httpd](https://httpd.apache.org/docs/current/stopping.html)
-```sh
-# apache server installation, apache server run, web server run, webserver start
-sudo su
-yum update -y
-yum install -y httpd
-service httpd start
-chkconfig httpd
-chkconfig httpd on
-vim /var/www/html/index.html
-```
-debian
-```
-# installation
-sudo su
-apt update -y
-apt install -y apache2
-
-# service 
-sudo systemctl status apache2.service
-sudo systemctl start apache2.service
-
-# change index html
-vim /var/www/html/index.html
-
-# Uncomplicated FireWall
-ufw app list
-ufw allow 'Apache'
-ufw status
-
-# enable module
-a2enmod rewrite
-
-# disable module
-# http://manpages.ubuntu.com/manpages/trusty/man8/a2enmod.8.html
-a2dismod rewrite
-
-# enable or disable site/virtual host
-# http://manpages.ubuntu.com/manpages/trusty/man8/a2ensite.8.html
-a2dissite *.conf
-a2ensite my_public_special.conf
-```
-
-
-#### activate ssl module
-```bash
-sudo a2enmod ssl
-# sudo a2dismod ssl
-
-# tutorial
-vim /usr/share/doc/apache2/README.Debian.gz
-
-# creating self-signed certificates
-sudo make-ssl-cert generate-default-snakeoil --force-overwrite
-
-# check certificates
-sudo ls -la /etc/ssl/certs/ssl-cert-snakeoil.pem
-sudo ls -la /etc/ssl/private/ssl-cert-snakeoil.key
-```
-
-#### cert configuration
-vim /etc/apache2/sites-available/default-ssl.conf
-```conf
-                SSLCertificateFile      /etc/ssl/certs/ssl-cert-snakeoil.pem
-                SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
-```
-#### restart apache
-sudo service apache2 restart
-
-
------
-Another tutorial 
-https://www.digicert.com/easy-csr/openssl.htm
-https://www.digicert.com/kb/csr-ssl-installation/ubuntu-server-with-apache2-openssl.htm
-
-Generating a RSA private key
-```bash
-openssl req -new -newkey rsa:2048 \
--nodes -out cherkavideveloper.csr \
--keyout cherkavideveloper.key \
--subj "/C=DE/ST=Bavaria/L=München/O=cherkavi/CN=cherkavi developer" \
-```
-SSLCertificateFile "/path/to/www.example.com.cert"
-SSLCertificateKeyFile "/path/to/www.example.com.key"
-
 ### tools:
 - [ETL](www.talend.com)
 - [ETL](https://hekad.readthedocs.io)
@@ -3386,6 +3300,15 @@ update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 10
 ```sh
 # ranger should be installed 
 rifle <path to file>
+```
+
+### cat replacement bat
+```sh
+# apt install bat - not working sometimes
+cargo install bat
+batcat textfile
+# alias bat=batcat
+bat textfile
 ```
 
 ## install haskell
