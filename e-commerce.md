@@ -97,3 +97,26 @@ curl --location --request GET 'https://api.yelp.com/v3/businesses/law-office-of-
   * [develop](https://developer.matomo.org/guides/tagmanager/custom-tag)
   * [php integration](https://github.com/matomo-org/matomo-php-tracker)
   * [php integration](https://github.com/heiglandreas/piwik#readme)
+
+## external data
+### [global reestr of data](https://www.data.gov/)
+### [Census API](https://www.census.gov/data/developers/updates/new-discovery-tool.html)
+* [list of all datasets](https://api.census.gov/data.html)
+* `wget api.census.gov/data.xml`
+* [dataset by year](https://api.census.gov/data/2010.html)
+* [dataset with UI](https://data.census.gov/cedsci/table?q=United%20States&t=535%20-%20German%20%28032-045%29%3APopulations%20and%20People&g=0100000US&tid=ACSDT5YSPT2015.B01001&hidePreview=false)
+    ```sh
+    wget https://api.census.gov/data/2014/pep/natstprc?get=STNAME,POP&DATE_=7&for=state:*
+    wget https://api.census.gov/data/2014/pep/natstprc?get=STNAME,POP&DATE_=*&for=state:*
+    wget https://api.census.gov/data/2013/pep/cty?get=STNAME,POP,NIM&for=county:*&in=state:01&DATE_=6
+    ```
+* user-guide
+  * https://github.com/uscensusbureau/citysdk
+  * https://www.census.gov/data/developers/guidance/api-user-guide.html
+  * https://www.census.gov/content/dam/Census/data/developers/api-user-guide/api-guide.pdf
+* [video tutorials](https://www.census.gov/data/academy/data-gems.html)
+* For developers
+  * https://www.census.gov/developers/
+  * https://www.census.gov/data/developers/data-sets.html
+  * https://project-open-data.cio.gov/schema/
+  * https://project-open-data.cio.gov/metadata-resources/
