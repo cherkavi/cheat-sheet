@@ -1,8 +1,17 @@
 # Security
 ## exercises
-[web security](https://application.security/free/owasp-top-10)
-[api security](https://application.security/free/owasp-top-10-API)
-[aws security](https://application.security/free/kontra-aws-clould-top-10?utm_source=newsletter&utm_medium=email)
+* [online training](https://portswigger.net/web-security)
+* [excersices](https://www.defendify.com/)
+* [codesec](https://www.contrastsecurity.com/developer/codesec/)
+* [web security](https://application.security/free/owasp-top-10)
+* [api security](https://application.security/free/owasp-top-10-API)
+* [aws security](https://application.security/free/kontra-aws-clould-top-10?utm_source=newsletter&utm_medium=email)
+
+## information resources
+* [check data breaches](https://haveibeenpwned.com/)
+* [phishing](https://www.phishtank.org/)
+* [searching for IoT](https://www.shodan.io/)
+* [file, url analyser](https://www.virustotal.com/gui/home/upload)
 
 ## certifications
 * GIAC - Global Information Assurance Certification
