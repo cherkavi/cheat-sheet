@@ -37,3 +37,8 @@ CHANNEL_ID="19:lApNBJeeI0aFWXNa7dqlbODC2ZkpwMYl8@thread.tacv2"
 curl https://graph.microsoft.com/beta/teams/$GROUP_ID/channels/$CHANNEL_ID/messages -H "Authorization: Bearer $TOKEN" | jq .value[].body.content
 ```
 
+## send message
+copy url to channel ( right click on the channel: copy link to channel )
+```sh
+curl -x POST https://teams.microsoft.com/l/channel/19:b4YSMfxxxxxxxxxx@thread.tacv2/Allgemein?groupId=ab123bab-xxxx-xxxx-xxxx-xxxx242b&tenantId=ab123bab-xxxx-xxxx-xxxx-xxxxxx198
+```
