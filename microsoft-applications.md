@@ -39,10 +39,10 @@ curl https://graph.microsoft.com/beta/teams/$GROUP_ID/channels/$CHANNEL_ID/messa
 
 ## teams send message
 copy url to channel ( right click on the channel: copy link to channel )
-> Example: 
+> **Example:**
 > https://teams.microsoft.com/l/channel/19:b4YSMfxxxxxxxxxx@thread.tacv2/Allgemein?groupId=ab123bab-xxxx-xxxx-xxxx-xxxx242b&tenantId=ab123bab-xxxx-xxxx-xxxx-xxxxxx198
 > channel_id="19:b4YSMfxxxxxxxxxx@thread.tacv2"
-> # team-id == groupId
+> `team-id == groupId`
 > team_id="ab123bab-xxxx-xxxx-xxxx-xxxx242b"
 
 ```sh
