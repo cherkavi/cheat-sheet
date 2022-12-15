@@ -5,10 +5,16 @@
 ARTIFACTORY_URL=https://artifactory.sbbgroup.net/artifactory 
 USERNAME="cherkavi"
 curl -u "$USERNAME" -XPOST "$ARTIFACTORY_URL/api/security/token" -d "username=$USERNAME" -d "scope=member-of-groups:*" -d "expires_in=315360000"
-
-### plain password should be replaced in files 
+```
+plain password should be replaced in files 
+```
 # ~/.git-credentials
 # ~/.m2/settings.xml
+```
+
+### check token
+```sh
+curl -H "Authorization: Bearer $TOKEN" -X GET "${ARTIFACTORY_URL}/artifactory/api/system/ping"
 ```
 
 ### get artifact from artifactory
