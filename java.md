@@ -33,6 +33,26 @@ import java.util.UUID;
 UUID.randomUUID();
 ```
 
+### execute javascript code
+```sh
+#! /usr/bin/env jjs
+print('start of the script');
+var variableInScript = 5 * 3;
+print(" output from script ${threeyr}");
+```
+
+### execute script code
+```sh
+# inline
+jrunscript -e "cat('https://google.com')"
+# js repl
+jrunscript
+```
+```
+js> t = new java.lang.Thread(function() { print('java Thread in script\n'); })
+js> t.start()
+```
+
 ### JVM parameters
 ```sh
 -Xmx56000m 
