@@ -204,6 +204,20 @@ SHOW server_version;
 SELECT version();
 ```
 
+### records in table statistics of table
+```sql
+SELECT * FROM pg_stat_all_tables WHERE relname = 'user_table_name';
+```
+
+### list of tables and size in bytes
+```sql
+select schemaname as table_schema,
+       relname as table_name,
+       pg_size_pretty(pg_relation_size(relid)) as table_size
+from pg_catalog.pg_statio_user_tables
+order by pg_relation_size(relid) desc;
+```
+
 ### internal tables
 ```
 select * from pg_tables;

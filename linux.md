@@ -26,6 +26,10 @@ time
 # or 
 \time 
 ```
+### retrieve human readable information from binary files
+```sh
+strings /usr/share/teams/libEGL.so | grep git
+```
 
 ### place for scripts, permanent script
 ```

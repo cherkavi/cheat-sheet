@@ -676,8 +676,10 @@ oc set probe dc/{app-name} --remove --liveness --readiness --get-url=http://:808
  
 # Set a readiness probe to try to open a TCP socket on 3306
 oc set probe rc/mysql --readiness --open-tcp=3306
-
 ```
+*Readiness probe* will stop after first positive check  
+*Liveness probe* will be executed again and again (period) during container lifetime  
+![image](https://user-images.githubusercontent.com/8113355/207673876-08e257a4-cc10-4549-a36d-98dc25b55f46.png)
 
 ### current ip address
 ```

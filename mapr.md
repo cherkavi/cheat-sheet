@@ -1,28 +1,30 @@
+# MapR
+## Links
 [MapR Academy](http://learn.mapr.com)  
 [Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)  
 [mapr code examples, mapr demos](https://github.com/mapr-demos)  
 [mapr ojai](https://github.com/mapr-demos/ojai-examples/tree/master/python)  
 ![commands](https://i.postimg.cc/q7469wbf/mapr-commands.png)  
 
-# Architecture examples
+## Architecture examples
 ![connected drive](https://i.postimg.cc/LXCBm8b5/Connected-Car-Pipeline.png)
 
-# MapR Streams
-## parallelism
+## MapR Streams
+### parallelism
 * Partition Id
 * Hash of messageId
 * Round-Robin 
 
-## stream analyzer
+### stream analyzer
 ```
 mapr streamanalyzer -path /mapr/dp.prod.zur/vantage/orchestr/streams/my-own-test -topics cherkavi-test -printMessages true -countMessages
 ```
 
-## sending messages via client library
+### sending messages via client library
 ![sending by client](https://i.postimg.cc/0NKdXfhm/mapr-streams-sending-01.png)
 ![consuming by broker](https://i.postimg.cc/wvK5CNdr/mapr-streams-sending-02.png)
 
-## spreading message between partitions, assigning message to paritiion
+### spreading message between partitions, assigning message to paritiion
 * by partition number
 * by message key
 * round-robin ( without previous two )
@@ -34,60 +36,60 @@ public class MyClassName implements Partitioner{
 ```
 
 
-## replication
+### replication
 ![replication](https://i.postimg.cc/QtbBfKN1/Mapr-streams-replication-01.png)
 ![back loop](https://i.postimg.cc/tJ4swR7f/Mapr-streams-replication-02.png)
 
-## reading messages via client library
+### reading messages via client library
 ![lib request](https://i.postimg.cc/23pfv2pw/Mapr-strems-reading-01.png)
 ![client rading](https://i.postimg.cc/SQn26RF2/Mapr-strems-reading-02.png)
 
-## reading messages cursor types
+### reading messages cursor types
 * Read cursor ( client request it and broker sent )
 * Committed cursor ( client confirmed/commited reading )
 ![cursor types](https://i.postimg.cc/s28cc8X5/Mapr-streams-cursor-types.png)
 
-## Replicating streams
+### Replicating streams
 * Master->Slave 
 * Many->One
 * MultiMaster: Master<-->Master
 * Stream replications: Node-->Node2-->Node3-->Node4 ... ( with loop preventing )
 
-## command line
-### find CLDB hosts ( ContainerLocationDataBase )
+### command line
+#### find CLDB hosts ( ContainerLocationDataBase )
 ```
 maprcli node listcldbs
 ```
 
-### stream create
+#### stream create
 ```
 maprcli stream create -path <filepath & name>
 maprcli stream create -path <filepath & name> -consumeperm u:<userId> -produceperm u:<userId> -topicperm u:<userId>
 maprcli stream create -path <filepath & name> -consumeperm "u:<userId>" -produceperm "u:<userId>" -topicperm "u:<userId>" -adminperm "u:<userId1> | u:<userId2>"
 ```
-### stream check creation
+#### stream check creation
 ```
 maprcli stream info -path {filepath}
 ```
 
-### stream remove, stream delete
+#### stream remove, stream delete
 ```
 maprcli stream delete -path <filepath & name>
 ```
 
-### topic create
+#### topic create
 ```sh
 maprcli stream topic create -path <path and name of the stream> -topic <name of the topic>
 ```
-### topic remove, topic delete
+#### topic remove, topic delete
 ```sh
 maprcli stream topic delete -path <path and name of the stream> -topic <name of the topic>
 ```
-### topic check, topic print
+#### topic check, topic print
 ```sh
 maprcli stream topic list -path <path and name of the stream>
 ```
-### read data
+#### read data
 ```sh
 maprcli stream cursor list -path $KAFKA_STREAM -topic $KAFKA_TOPIC -consumergroup $KAFKA_CONSUMER_GROUP -json
 ```
@@ -227,8 +229,8 @@ curl -u $curl_user:$curl_pass \
 $host:$port/topics/$stream_path%3A$topic_name
 ```
 
-# maprcli
-## login, print info, logout
+## maprcli
+### login, print info, logout
 ```
 maprlogin password -user {your cluster username}
 # long term ticket
@@ -239,61 +241,61 @@ maprlogin authtest
 
 maprlogin logout
 ```
-## login with ticket file using to login
+### login with ticket file using to login
 ```sh
 maprlogin renew -ticketfile $FILE_WITH_TICKET
 ```
 
-## login via ssh
+### login via ssh
 ```
 execution_string="echo '"$CLUSTER_PASS"' | maprlogin password -user cherkavi "
 ssh $CLUSTER_USER@$CLUSTER_NODE $execution_string
 ```
 
-## check your credential, expiration date/time
+### check your credential, expiration date/time
 ```
 maprlogin print -ticketfile <your ticketfile> 
 # you will see expiration date like 
 # on 07.05.2019 13:56:47 created = 'Tue Apr 23 13:56:47 UTC 2019', expires = 'Tue May 07 13:56:47 UTC 2019'
 ```
 
-## generate ticket
+### generate ticket
 ```
 maprlogin generateticket -type service -cluster my61.cluster.com -duration 30:0:0 -out /tmp/mapr_ticket -user mapr
 ```
 
-## check status of the cluster, cluster health check
+### check status of the cluster, cluster health check
 ```
 maprcli dashboard info -json
 ```
 
-# posix client
-## keys
+## posix client
+### keys
 ```sh
 $ wget -O - https://package.mapr.com/releases/pub/maprgpg.key | sudo apt-key add -
 ```
 
-## add these lines to /etc/apt/sources.list:
+### add these lines to /etc/apt/sources.list:
 ```
 deb https://package.mapr.com/releases/v6.1.0/ubuntu binary trusty
 deb https://package.mapr.com/releases/MEP/MEP-6.0.0/ubuntu binary trusty
 ```
 
-## installation
+### installation
 ```sh
 apt-get update
 # apt-get install mapr-posix-client-basic
 apt-get install mapr-posix-client-platinum
 ```
 
-## configuration
+### configuration
 ```sh
 sudo mkdir /mapr
 sudo scp $USERNAME@$EDGE_NODE:/opt/mapr/conf/mapr-clusters.conf /opt/mapr/conf/mapr-clusters.conf
 sudo scp $USERNAME@$EDGE_NODE:/opt/mapr/conf/ssl_truststore /opt/mapr/conf/ssl_truststore
 ```
 
-## login
+### login
 ```sh
 echo "$PASSWORD" | maprlogin password -user $USERNAME -out /tmp/mapruserticket
 ```
@@ -552,6 +554,9 @@ solution:
 
 
 ## Docker container with MapR docker image 
+### docker local build
+[how to build mapr container locally](https://docs.datafabric.hpe.com/61/AdvancedInstallation/CreatingPACCImage.html)
+
 ### start locally 
 ```sh
 # ERROR: Invalid MAPR_TZ timezone ()
