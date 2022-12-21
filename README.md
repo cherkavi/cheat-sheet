@@ -1,4 +1,5 @@
 ## Other cheat sheets:
+* [root/entrypoint to different resources](https://github.com/sindresorhus/awesome)
 * [cheat sheets collection](https://lzone.de/cheat-sheet/)
 * [cheat sheets](https://www.cheatography.com)
 
