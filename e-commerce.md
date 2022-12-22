@@ -4,11 +4,72 @@
 * 
 
 ## authentication
-* Amazon Cognito
-* okta.com
-* auth0.com
+### Amazon Cognito
+### okta.com
+### auth0.com
+### authy (twilio)
+* https://authy.com/
+* https://authy.com/blog/understanding-2fa-the-authy-app-and-sms/
+* https://www.twilio.com/authy
+* [python-flask application](https://www.twilio.com/docs/authy/quickstart/two-factor-authentication-python-flask)
+* [python client 2FA api](https://github.com/twilio/authy-python/tree/master/authy)
+* https://www.twilio.com/docs/authy/api/users
+* [Account](https://www.twilio.com/console/authy/getting-started)
+* [console](https://www.twilio.com/console)
+* [console-application](https://www.twilio.com/console/authy/applications)
+* [dashboard](https://dashboard.authy.com/applications/<app_id>)
+* [dashboard-twilio](https://www.twilio.com/console/authy/applications/292858)
+
+## captcha
+### google captcha
+[reCaptcha client code](https://developers.google.com/recaptcha/docs/v3)
+[reCaptcha server code](https://developers.google.com/recaptcha/docs/verify)
+[my own project with re-captcha](https://console.cloud.google.com/security/recaptcha/sign-up?project=test-web-project-280419)
+
+#### index file 
+```html
+<html>
+        <head>
+                <script src="https://www.google.com/recaptcha/api.js?render=6LcJIwYaAAAAAIpJLnWRF44kG22udQV"></script>
+          
+<script>
+      function onClick(e) {
+        //e.preventDefault();     
+              console.log("start captcha");
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6LcJIwYaAAAAAIpJLnWRF44kG22udQV', {action: 'submit'}).then(function(token) {
+              console.log(token);                                     
+          });
+        });
+      }
+  </script>
+
+        </head>
+        <body>
+                <button title="captcha" onclick="onClick()" >captcha </button>
+        </body>
+</html>
+```
+#### start apache locally in that file 
+```sh
+docker run --rm --name apache -v $(pwd):/app -p 9090:8080 bitnami/apache:latest
+x-www-browser http://localhost:9090/index.html
+```
+
+#### example of checking response
+```sh
+# google key
+GOOGLE_SITE_KEY="6Ldo3dsZAAAAAIV6i6..."
+GOOGLE_SECRET="6Ldo3dsZAAAAACHkEM..."
+
+CAPTCHA="03AGdBq26Fl_hBnLn7lNf5s53xTRN23yt1OeS4Y7vV6ARSEehMuE_0uKL..."
+echo $CAPTCHA
+curl -X POST -F "secret=$GOOGLE_SECRET" -F "response=$CAPTCHA" https://www.google.com/recaptcha/api/siteverify
+```
+
 
 ## address
+### [country codes](https://countrycode.org/)  
 ### US Zip codes
 ```sh
 # Plano TX
@@ -24,7 +85,50 @@ curl -X GET https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-z
   [my examples](python-utilities/twilio/twilio.md)  
 
 ##  e-mail broadcasting
-* https://mailchimp.com/
+### https://mailchimp.com/
+### [sendgrid](https://sendgrid.com/docs/api-reference/)
+* [python example](https://github.com/sendgrid/sendgrid-python/blob/main/examples/helpers/mail_example.py)  
+* [additional fields for sending email](https://sendgrid.com/docs/for-developers/sending-email/single-sends-2020-update/#single-sends-api-fields)  
+* [template variables](https://sendgrid.com/docs/ui/sending-email/how-to-send-an-email-with-dynamic-transactional-templates/)  
+#### sendgrid api 
+```sh
+# get all templates
+curl -X "GET" "https://api.sendgrid.com/v3/templates" \
+-H "Authorization: Bearer $API_KEY" \
+-H "Content-Type: application/json"
+
+# get template
+curl --request GET \
+--url https://api.sendgrid.com/v3/templates/d-5015e600bedd47b49e09d7e5091bf513 \
+--header "authorization: Bearer $API_KEY" \
+--header 'content-type: application/json'
+```
+
+```sh
+# send 
+curl --request POST \
+--url https://api.sendgrid.com/v3/mail/send \
+--header "authorization: Bearer $API_KEY" \
+--header 'content-type: application/json' \
+--data @email-data.json
+```
+email-data.json
+```json
+{
+        "personalizations":[
+                {
+                        "to":[
+                                {"email":"vitalii.cherkashyn@gmail.com","name":"Vitalii"}
+                        ],
+                        "subject":"test sendgrid"
+                }
+        ],
+        "content": [{"type": "text/plain", "value": "Heya!"}],
+        "from":{"email":"vitalii.cherkashyn@gmail.com","name":"Vitalii"},
+        "reply_to":{"email":"vitalii.cherkashyn@gmail.com","name":"Vitalii"}
+}
+```
+
 
 ## redirect
 * Easyredir - https://www.easyredir.com/
@@ -120,3 +224,34 @@ curl --location --request GET 'https://api.yelp.com/v3/businesses/law-office-of-
   * https://www.census.gov/data/developers/data-sets.html
   * https://project-open-data.cio.gov/schema/
   * https://project-open-data.cio.gov/metadata-resources/
+
+## social networks
+### linkedin 
+* [all my applications](https://www.linkedin.com/developers/apps)
+* [create new application](https://www.linkedin.com/developer/apps/new)
+* [your user permissions](https://www.linkedin.com/psettings/permitted-services)
+* [appl by id](https://www.linkedin.com/developers/apps/${APP_ID}/auth)
+#### linkedin api
+##### login with linkedin
+```html
+<html><body>
+<a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78j2mw9cg7da1x&redirect_uri=http%3A%2F%2Fec2-52-29-176-43.eu-central-1.compute.amazonaws.com&state=my_unique_value_generated_for_current_user&scope=r_liteprofile%20r_emailaddress"> login with LinkedIn </a>
+</body></html>
+```
+example of response from LinkedIn API:
+```sh
+http://ec2-52.eu-central-1.compute.amazonaws.com/?code=<linkedin code>&state=<my_unique_value_generated_for_current_user>
+```
+##### linkedin profile api
+```sh
+curl -X GET -H "Authorization: Bearer $TOKEN" https://api.linkedin.com/v2/me
+```
+answer example:  
+```json
+{"localizedLastName":"Cherkashyn","profilePicture":{"displayImage":"urn:li:digitalmediaAsset:C5103AQ..."},"firstName":{"localized":{"en_US":"Vitalii"},"preferredLocale":{"country":"US","language":"en"}},"lastName":{"localized":{"en_US":"Cherkashyn"},"preferredLocale":{"country":"US","language":"en"}},"id":"9yP....","localizedFirstName":"Vitalii"}
+```
+##### collaboration with Contact API
+application permissions: r_emailaddress  
+[documentation](https://developer.linkedin.com/docs/v1/people/email-lookup-api)  
+[documentation](https://docs.microsoft.com/en-us/linkedin/shared/integrations/people/primary-contact-api)  
+
