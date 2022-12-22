@@ -273,6 +273,8 @@ sys.modules
 ### execute command inline, base64 example
 ```
 python -c "import base64;print(base64.encodestring('hello'.encode()));"
+# execute cmd inline with arguments -c with args, string url encode
+python -c 'import urllib.parse;import sys;print(urllib.parse.quote(sys.argv[1]))' "Hallo Björn@Python"
 ```
 
 ### execute string as commands
