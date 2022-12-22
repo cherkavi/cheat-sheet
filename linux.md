@@ -2058,7 +2058,11 @@ machine my-secret-host2.com login my-secret-login2 password my-secret-password2
 ```sh
 curl --netrc --request GET my-secret-host.com/storage/credentials 
 ```
-
+### return code 0 if 200, curl return code 
+```sh
+curl --fail --request GET 'https://postman-echo.com/get?foo1=bar1&foo2=bar2'
+```
+	
 ### echo server mock server 
 ```sh
 curl --location --request GET 'https://postman-echo.com/get?foo1=bar1&foo2=bar2'
