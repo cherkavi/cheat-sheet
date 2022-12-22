@@ -117,11 +117,23 @@ ssh -X remoteuser@remotehost dbus-launch gnome-terminal
 ## certification 
 Generating a RSA private key
 ```bash
-openssl req -new -newkey rsa:2048 \
+openssl req -new \
+-newkey rsa:2048 \
 -nodes -out cherkavideveloper.csr \
 -keyout cherkavideveloper.key \
 -subj "/C=DE/ST=Bavaria/L=München/O=cherkavi/CN=cherkavi developer" \
+# scp -i $AWS_KEY_PAIR cherkavideveloper.csr ubuntu@ec2-52-29-176-00.eu-central-1.compute.amazonaws.com:~/
+# scp -i $AWS_KEY_PAIR cherkavideveloper.key ubuntu@ec2-52-29-176-00.eu-central-1.compute.amazonaws.com:~/
 ```
+```bash
+openssl req -x509 \
+-days 365 \
+-newkey rsa:2048 \
+-nodes -out cherkavideveloper.pem \
+-keyout cherkavideveloper.pem \
+-subj "/C=DE/ST=Bavaria/L=München/O=cherkavi/CN=cherkavi developer"
+```
+
 
 ## console browsers
 * `sudo apt install w3m`

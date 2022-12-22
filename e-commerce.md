@@ -19,6 +19,48 @@
 * [console-application](https://www.twilio.com/console/authy/applications)
 * [dashboard](https://dashboard.authy.com/applications/<app_id>)
 * [dashboard-twilio](https://www.twilio.com/console/authy/applications/292858)
+### Yahoo authentication
+* [manual steps](https://developer.yahoo.com/oauth2/guide/openid_connect/getting_started.html)
+* https://developer.yahoo.com/oauth2/guide/
+* https://developer.yahoo.com/oauth2/guide/flows_authcode/
+* https://developer.yahoo.com/oauth2/guide/openid_connect/getting_started.html
+* https://developer.yahoo.com/oauth2/guide/openid_connect/troubleshooting.html
+* [errors](https://developer.yahoo.com/oauth2/guide/errors/)
+* https://auth0.com/docs/connections/social/yahoo
+#### [yahoo project](https://developer.yahoo.com/apps/JueQG777/)
+!!! important: OpenID Connect Permissions: !!! 
+```properties
+App ID
+${APP_ID}
+Client ID (Consumer Key)
+${CLIENT_ID}
+Client Secret (Consumer Secret)
+${CLIENT_SECRET}
+```
+#### request authentication
+```sh
+# step 1
+https://api.login.yahoo.com/oauth2/request_auth?client_id=${CLIENT_ID}&response_type=code&redirect_uri=https://ec2-52-29-176-00.eu-central-1.compute.amazonaws.com&scope=profile,email&nonce=6b526ab2-c0eb
+
+# step 2 
+# RESPONSE "Yahoo code"
+# code=${CLIENT_CODE}
+```
+#### request Token 
+```bash
+curl -X POST https://api.login.yahoo.com/oauth2/get_token --data "code=${CLIENT_CODE}&grant_type=authorization_code&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&redirect_uri=https://ec2-52-29-176-00.eu-central-1.compute.amazonaws.com&response_type=code"
+```
+#### [refresh_token usage](https://developer.yahoo.com/oauth2/guide/openid_connect/decode_id_token.html#decode-id-token)
+#### [Get User Info API](https://developer.yahoo.com/oauth2/guide/get-user-inf/Get-User-Info-API.html)
+```bash
+curl --verbose -X POST --data "access_token=${ACCESS_TOKEN}" https://api.login.yahoo.com/openid/v1/userinfo
+```
+#### encode string for header request
+```python
+import base64
+encodedBytes = base64.b64encode(f"{client_id}:{client_secret}".encode("utf-8"))
+encodedStr = str(encodedBytes, "utf-8")
+```
 
 ## captcha
 ### google captcha
