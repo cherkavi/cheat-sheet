@@ -120,6 +120,49 @@ curl https://public.opendatasoft.com/explore/dataset/us-zip-code-latitude-and-lo
 # coordinates
 curl -X GET https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=Plano&facet=state&facet=timezone&facet=dst
 ```
+### Google Maps
+#### google maps api links
+[Google maps platform, document root](https://developers.google.com/places/web-service/search)
+[Request API Key](https://developers.google.com/my-business/content/prereqs###request-access)
+[How to use api keys](https://cloud.google.com/docs/authentication/api-keys)
+[Example of showing credentials](https://console.developers.google.com/apis/credentials)
+[cloud billing console](https://console.cloud.google.com/billing)
+
+#### project links
+[my google project dashboard](https://console.cloud.google.com/google/maps-apis/overview)
+[create new web project](https://cloud.google.com/console/project)
+[create new web project](https://console.cloud.google.com/cloud-resource-manager)
+[project settings](https://console.cloud.google.com/iam-admin/settings)
+[dashboard of project, API and services](https://console.cloud.google.com/home/dashboard)
+[OAuth consent screen:-> Any User in google Account](https://console.developers.google.com/apis/credentials/consent)
+[OAuth credentials:-> select OAuth Client IDs->ClientId](https://console.developers.google.com/apis/credentials)
+
+#### Google maps REST API
+[place search](https://developers.google.com/places/web-service/search)
+[place details](https://developers.google.com/places/web-service/details)
+[Review, for specific location with additional authentication by Google](https://developers.google.com/my-business/content/review-data###list_all_reviews)
+```sh
+# activate api key
+ YOUR_API_KEY="AIzaSyDTE..."
+echo $YOUR_API_KEY
+
+# attempt to find place by name 
+# x-www-browser https://developers.google.com/places/web-service/search
+SEARCH_STRING="Fallahi%20Zaher%20Attorney"
+curl -X GET "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${SEARCH_STRING}&inputtype=textquery&fields=place_id,photos,formatted_address,name,rating,geometry&key=${YOUR_API_KEY}"
+# place_id="ChIJl73rFVTf3IARQFQg3ZSOaKo"
+
+# detail about place (using place_id) including user's reviews
+# x-www-browser https://developers.google.com/places/web-service/details
+curl -X GET "https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&fields=name,rating,review,formatted_phone_number&key=$YOUR_API_KEY"
+# unique field here - time
+```
+
+#### more that 5 review API:
+* [google issue request](https://issuetracker.google.com/issues/35825957)
+* [Outscraper 3rd API](https://outscraper.com/)
+* [Outscraper 3rd API git](https://github.com/outscraper/google-services-api-pyhton/blob/master/outscraper/api_client.py)
+
 
 ## sms broadcasting
 * www.twilio.com  
