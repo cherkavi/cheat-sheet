@@ -348,6 +348,76 @@ curl --location --request GET 'https://api.yelp.com/v3/businesses/law-office-of-
 --header "Authorization: Bearer $API_KEY" | jq .
 ```
 
+### facebook
+#### links
+* [Main manual](https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow/)
+* [facebook SDK](https://facebook-sdk.readthedocs.io/en/latest/install.html)
+* [business-sdk python](https://github.com/facebook/facebook-python-business-sdk) 
+* Developer guide
+  * [business-sdk](https://developers.facebook.com/docs/business-sdk)
+  * [graph API Explorer](https://developers.facebook.com/tools/explorer/)
+  * [facebook login web](https://developers.facebook.com/docs/facebook-login/web)
+  * [scope, permissions](https://developers.facebook.com/docs/facebook-login/permissions/)
+  * [create development account](https://developers.facebook.com/apps/)
+  * [all possible products](https://developers.facebook.com/apps/${APP_ID}/add/)
+  * [activate FB login](https://developers.facebook.com/apps/${APP_ID}/fb-login/quickstart/)
+  * [settings of FB login](https://developers.facebook.com/apps/${APP_ID}/fb-login/settings/)
+  * [app registration](https://developers.facebook.com/docs/apps#register)
+  * [Security](https://developers.facebook.com/docs/facebook-login/security/)
+  * [recommendations](https://developers.facebook.com/docs/graph-api/reference/recommendation/)
+  * [ratings](https://developers.facebook.com/docs/graph-api/reference/page/ratings)
+  * [guide](https://developers.facebook.com/docs/pages/guides)
+  * [realtime](https://developers.facebook.com/docs/pages/realtime)
+  * [development rules](https://developers.facebook.com/docs/graph-api/overview)
+  * [permission and features](https://developers.facebook.com/apps/${APP_ID}/app-review/permissions/)
+  * [test app add product](https://developers.facebook.com/apps/$APP_ID/dashboard/#addProduct)
+* [pulling review](https://stackoverflow.com/questions/23380533/facebook-api-for-pulling-reviews)
+* [create test app  ( upper left corner )](https://www.facebook.com/pg/$PROFILE_NAME-$PROFILE_ID/reviews/?ref=page_internal)
+
+#### get profile_id from facebook page
+```sh
+curl -X GET https://www.facebook.com/$PROFILE_NAME | grep profile_owner
+```
+#### get access token
+```sh
+# https://www.facebook.com/v7.0/dialog/oauth?client_id=${APP_ID}&redirect_uri=${REDIRECT_URL}&state=state123abc
+# REDIRECT_URI !!! DON'T REMOVE trailing slash !!! 
+curl -X GET https://graph.facebook.com/v7.0/oauth/access_token?client_id=${APP_ID}&redirect_uri=${REDIRECT_URI}&client_secret=${APP_SECRET}&code=${CODE_PARAMETER}
+# b'{"access_token":"$ACCESS_TOKEN","token_type":"bearer","expires_in":5181746}'
+```
+#### get profile info
+```sh
+curl -X GET https://graph.facebook.com/v7.0/me?fields=id,last_name,name&access_token=${ACCESS_TOKEN}"
+```
+#### get ratings
+```sh
+# $PROFILE_ID/ratings?fields=reviewer,review_text,rating,has_review
+curl -i -X GET \
+ "https://graph.facebook.com/v8.0/$PROFILE_ID/ratings?fields=reviewer%2Creview_text%2Crating%2Chas_review&access_token=$ACCESS_TOKEN"
+
+# https://developers.facebook.com/tools/explorer/?method=GET&path=$PROFILE_ID%2Fratings%3Ffields%3Drating%2Creview_text%2Creviewer&version=v8.0
+# https://developers.facebook.com/tools/explorer/${APP_ID}/?method=GET&path=${PROFILE_NAME}%3Ffields%3Dreview_text&version=v8.0
+```
+possible fields:
+* name
+* created_time
+* rating
+* review_text
+* recommendation_type
+* reviewer
+* has_review
+```json
+ {
+  "data": [
+    {
+      "created_time": "2020-08-17T20:40:26+0000",
+      "recommendation_type": "positive",
+      "review_text": "let's have a fun! it is a great company for that"
+    }
+  ]
+}
+```
+
 ## user activities
 * Matomo
   * [documentation](https://matomo.org/docs)
