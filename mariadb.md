@@ -62,40 +62,48 @@ source some-sql.txt;
   * [replication notes and tips](https://dev.mysql.com/doc/refman/8.0/en/replication-notes.html)
   * [replication FAQ](https://dev.mysql.com/doc/refman/8.0/en/faqs-replication.html)
   * [replicating to slaves](https://dev.mysql.com/doc/refman/8.0/en/replication-solutions-partitioning.html)
+#### prerequisites
 ```sh
-# prerequisites
 ## try just to connect to db
-mysql --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --database=masterdb --password=my_passw
+mysql --host=mysql-dev-eu.a.db.ondigitalocean.com --port=3060 --user=admin --password=my_passw --database=masterdb 
 ## docker mysql client 
-docker run -it mariadb mysql --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --database=masterdb --password=my_passw
+docker run -it mariadb mysql --host=mysql-dev-eu.a.db.ondigitalocean.com --port=3060 --user=admin --database=masterdb --password=my_passw
 ## enable server logging !!!
 ### server-id = 1
 ### log_bin = /var/log/mysql/mysql-bin.log
 sudo sed -i '/server-id/s/^#//g' /etc/mysql/mysql.conf.d/mysqld.cnf && sudo sed -i '/log_bin/s/^#//g' /etc/mysql/mysql.conf.d/mysqld.cnf
-
+```
+#### mysql dump mariadb dump
+```sh
 # mysqldump installation
 # sudo apt install mysql-client-core-8.0
-
+```
+```sh
+MY_HOST="mysql-dev-eu.a.db.ondigitalocean.com"
+MY_USER="admin"
+MY_PASS="my_pass"
+MY_PORT="3060"
+MY_DB="masterdb"
+MY_BACKUP="backup.sql"
 ### backup ( pay attention to 'database' key )
-mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb > backup.sql
+mysqldump --host=$MY_HOST --port=$MY_PORT --user=$MY_USER --password=$MY_PASS $MY_DB > $MY_BACKUP
 # 'Access denied; you need (at least one of) the PROCESS privilege(s) for this operation' when trying to dump tablespaces
-mysqldump --no-tablespaces --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb > backup.sql
-mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw --databases masterdb > backup.sql
-mysqldump --extended-insert --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw --databases masterdb | sed 's$),($),\n($g' > backup.sql
-mysqldump --extended-insert=FALSE --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw --databases masterdb > backup.sql
-mysqldump --databases ghost_prod --master-data=2 --single-transaction --order-by-primary -r backup.sql -u ghost -p
+mysqldump --host=$MY_HOST --port=$MY_PORT --user=$MY_USER --password=$MY_PASS --no-tablespaces  $MY_DB > $MY_BACKUP
+mysqldump --host=$MY_HOST --port=$MY_PORT --user=$MY_USER --password=$MY_PASS --databases $MY_DB > $MY_BACKUP
+mysqldump --host=$MY_HOST --port=$MY_PORT --user=$MY_USER --password=$MY_PASS --databases $MY_DB --extended-insert | sed 's$),($),\n($g' > $MY_BACKUP
+mysqldump --host=$MY_HOST --port=$MY_PORT --user=$MY_USER --password=$MY_PASS --databases $MY_DB --extended-insert=FALSE  > $MY_BACKUP
+mysqldump --databases ghost_prod --master-data=2 -u $MY_USER -p --single-transaction --order-by-primary -r $MY_BACKUP
 
 # backup only selected tables 
-mysqldump --extended-insert=FALSE  --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb table_1 table_2 > backup.sql
-
+mysqldump --host=$MY_HOST --port=$MY_PORT --user=$MY_USER --password=$MY_PASS --extended-insert=FALSE $MY_DB table_1 table_2 > $MY_BACKUP
 # backup only selected table with condition 
-mysqldump --extended-insert=FALSE  --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 --password=my_passw masterdb table_1 --where="column_1=0" --no-create-info  > backup.sql
+mysqldump --host=$MY_HOST --user=$MY_USER --port=$MY_PORT --password=$MY_PASS --extended-insert=FALSE --where="column_1=0" --no-create-info $MY_DB table_1 > $MY_BACKUP
 ```
 ```sh
 ### restore #1
-mysql -u mysql_user -p DATABASE < backup.sql
+mysql -u $MY_USER -p $MY_DB < $MY_BACKUP
 # restore #2 
-mysql -u mysql_user -p 
+mysql -u $MY_USER -p 
 use DATABASE
 source /home/user/backup.sql
 ```
@@ -133,8 +141,7 @@ source /home/user/backup.sql
   mysqldump --lock-tables
   ```
 
-#### cold backup (raw files)
-Cold Backups
+#### cold backup (copy raw files)
 If you can shut down the MySQL server, 
 you can make a physical backup that consists of all files used by InnoDB to manage its tables. 
 Use the following procedure:
@@ -142,7 +149,6 @@ Use the following procedure:
 * Copy all InnoDB data files (ibdata files and .ibd files)
 * Copy all InnoDB log files (ib_logfile files)
 * Copy your my.cnf configuration file
-
 
 #### backup issue: during backup strange message appears: "Enter password:" even with password in command line
 ```sh
@@ -158,26 +164,24 @@ password=secret
 mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 masterdb table_1 table_2 > backup.sql
 ```
 
-
-
 ### execute sql file with mysqltool
 * inside mysql 
-```
-source /path/to/file.sql
-```
+  ```sh
+  source /path/to/file.sql
+  ```
 * shell command
-```
-mysql -h hostname -u user database < path/to/test.sql
-```
+  ```sh
+  mysql -h hostname -u user database < path/to/test.sql
+  ```
 * via docker
-```
-docker run -it --volume $(pwd):/work mariadb mysql --host=eu-do-user.ondigitalocean.com --user=admin --port=25060 --database=master_db --password=pass
-# docker exec --volume $(pwd):/work -it mariadb
-source /work/zip-code-us.sql
-```
+  ```sh
+  docker run -it --volume $(pwd):/work mariadb mysql --host=eu-do-user.ondigitalocean.com --user=admin --port=25060 --database=master_db --password=pass
+  # docker exec --volume $(pwd):/work -it mariadb
+  source /work/zip-code-us.sql
+  ```
 
 ### show databases and switch to one of them:
-```
+```sql
 show databases;
 use {databasename};
 ```
@@ -230,54 +234,55 @@ ALTER TABLE `some_table` MODIFY `json_source` varchar(32) NULL;
 alter table messages rename column sent_time to sent_email_time;
 ```
 
-
-### version
+### mysql version
 SELECT VERSION();
 
 ### example of spring config
 * MariaDB
-```
-ds.setMaximumPoolSize(20);
-ds.setDriverClassName("org.mariadb.jdbc.Driver");
-ds.setJdbcUrl("jdbc:mariadb://localhost:3306/db");
-ds.addDataSourceProperty("user", "root");
-ds.addDataSourceProperty("password", "myPassword");
-ds.setAutoCommit(false);
-jdbc.dialect:
-  org.hibernate.dialect.MariaDBDialect
-  org.hibernate.dialect.MariaDB53Dialect
-```
-
+  ```java
+  ds.setMaximumPoolSize(20);
+  ds.setDriverClassName("org.mariadb.jdbc.Driver");
+  ds.setJdbcUrl("jdbc:mariadb://localhost:3306/db");
+  ds.addDataSourceProperty("user", "root");
+  ds.addDataSourceProperty("password", "myPassword");
+  ds.setAutoCommit(false);
+  // jdbc.dialect:
+  //   org.hibernate.dialect.MariaDBDialect
+  //   org.hibernate.dialect.MariaDB53Dialect
+  ```
 * MySQL
-```
-jdbc.driver: com.mysql.jdbc.Driver
-jdbc.dialect: org.hibernate.dialect.MySQL57InnoDBDialect
-jdbc:mysql://localhost:3306/bpmnui?serverTimezone=Europe/Brussels
-```
+  ```
+  jdbc.driver: com.mysql.jdbc.Driver
+  jdbc.dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+  jdbc:mysql://localhost:3306/bpmnui?serverTimezone=Europe/Brussels
+  ```
 
 ### maven dependency
 * MySQL
-```
-ds.setDriverClassName("com.mysql.jdbc.Driver");
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>6.0.6</version>
-</dependency>
-```
-
+  ```java
+  ds.setDriverClassName("com.mysql.jdbc.Driver");
+  ```
+  ```xml
+  <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>6.0.6</version>
+  </dependency>
+  ```
 * MariaDB
-```
-ds.setDriverClassName("org.mariadb.jdbc.Driver");
-<dependency>
-    <groupId>org.mariadb.jdbc</groupId>
-    <artifactId>mariadb-java-client</artifactId>
-    <version>2.2.4</version>
-</dependency>
-```
+  ```java
+  ds.setDriverClassName("org.mariadb.jdbc.Driver");
+  ```
+  ```xml
+  <dependency>
+      <groupId>org.mariadb.jdbc</groupId>
+      <artifactId>mariadb-java-client</artifactId>
+      <version>2.2.4</version>
+  </dependency>
+  ```
 
 ### create database:
-```
+```sql
 DROP DATABASE IF EXISTS {databasename};
 CREATE DATABASE {databasename}
   CHARACTER SET = 'utf8'
@@ -287,7 +292,7 @@ CREATE DATABASE {databasename}
 ```
 
 ### create table, autoincrement
-```
+```sql
 create table IF NOT EXISTS `hlm_auth_ext`(
   `auth_ext_id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `uuid` varchar(64) NOT NULL,
@@ -314,9 +319,8 @@ SHOW INDEX FROM my_table_name;
 select COLUMN_NAME, CONSTRAINT_NAME, REFERENCED_COLUMN_NAME, REFERENCED_TABLE_NAME from information_schema.KEY_COLUMN_USAGE where TABLE_NAME = 'my_table_name';
 ```
 
-
 ### subquery returns more than one row, collect comma delimiter, join columns in one group columns
-```
+```sql
 select 
     u.name_f, 
     u.name_l, 
@@ -326,7 +330,6 @@ select
 from hlm_user u 
 where u.user_id = 100;
 ```
-
 
 ### date diff, compare date, datetime substraction
 ```sql
@@ -372,7 +375,7 @@ select count(*) from listing where soundex(description) like concat('%', soundex
 
 ## full text fuzzy search
 ### search match 
-```
+```sql
 SELECT pages.*,
        MATCH (head, body) AGAINST ('some words') AS relevance,
        MATCH (head) AGAINST ('some words') AS title_relevance
@@ -380,7 +383,6 @@ FROM pages
 WHERE MATCH (head, body) AGAINST ('some words')
 ORDER BY title_relevance DESC, relevance DESC
 ```
-
 
 # custom function, UDF
 ```sql
@@ -425,14 +427,14 @@ DELIMITER ;
 
 ```
 
-# issues
-## insert datetime issue
-```
+## issues
+### insert datetime issue
+```sql
 -- `date_start_orig` datetime NOT NULL,
 (1292, "Incorrect datetime value: '0000-00-00 00:00:00' for column 'date_start_orig' at row 1")
 ```
 to cure it:
-```
+```sql
 '1970-01-02 00:00:00'
 -- or 
 SET SQL_MODE='ALLOW_INVALID_DATES';
