@@ -61,6 +61,79 @@ import base64
 encodedBytes = base64.b64encode(f"{client_id}:{client_secret}".encode("utf-8"))
 encodedStr = str(encodedBytes, "utf-8")
 ```
+### Google authentication
+#### links
+* [playground](https://developers.google.com/oauthplayground/)
+* [identity signin](https://developers.google.com/identity/sign-in/web)
+* [backend server](https://developers.google.com/identity/sign-in/web/backend-auth)
+* [verify ID token](https://developers.google.com/identity/sign-in/web/backend-auth#verify-the-integrity-of-the-id-token)
+* https://developers.google.com/identity/protocols/oauth2/openid-connect#python
+* https://developers.google.com/identity/choose-auth
+* https://developers.google.com/identity/sign-in/web
+* https://developers.google.com/identity/sign-in/web/backend-auth
+* https://developers.google.com/identity/protocols/oauth2
+* https://developers.google.com/identity/protocols/oauth2/openid-connect
+* [Tutorial: Set redirect URI](https://developers.google.com/identity/protocols/oauth2/openid-connect#setredirecturi)
+* https://support.google.com/a/answer/6149686?hl=en&ref_topic=4487770
+
+#### google project
+* [create new web project](https://cloud.google.com/console/project)
+* [project console](https://console.cloud.google.com/cloud-resource-manager)
+  1. Go to the Credentials page.
+  2. Click Create credentials > OAuth client ID.
+  3. Select the Web application application type.
+  4. Name your OAuth 2.0 client and click Create
+* [credentials](https://console.developers.google.com/apis/credentials) 
+* [project settings](https://console.cloud.google.com/iam-admin/settings?project=test-web-project-280419)
+* [dashboard of project](https://console.cloud.google.com/home/dashboard?project=test-web-project-280419)
+* [dashboard of project:: API and services](https://console.cloud.google.com/apis/dashboard?project=test-web-project-280419&show=all)
+* [OAuth consent screen ](https://console.developers.google.com/apis/credentials/consent?project=test-web-project-280419)
+  > Any User in google Account
+* [OAuth credentials (set up project for accessing to user's accounts)](https://console.developers.google.com/apis/credentials?project=test-web-project-280419)
+  > select OAuth Client IDs
+
+#### [Tutorial "how to add button"](https://developers.google.com/identity/sign-in/web/sign-in)
+> it is Working only from remote ( AWS EC2 ) host
+```html
+<html lang="en">
+  <head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="273067202806-6cc49luinddclo4t6.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">google button</div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token for backend: " + id_token);
+      }
+    </script>
+
+
+    <a href="#" onclick="signOut();">Sign out</a>
+    <script>
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+        });
+      }
+    </script>
+    
+  </body>
+</html>
+```
 
 ## captcha
 ### google captcha
