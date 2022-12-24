@@ -51,14 +51,34 @@ cd apache-drill-1.6.0
 cd /home/projects/drill
 # apache-drill-1.19.0/bin/sqlline -u jdbc:drill:zk=local
 ./apache-drill-1.19.0/bin/drill-embedded
+
+# x-www-browser http://localhost:8047 &
 ```
 
 ## start docker
 ```sh
 docker run -it --name drill-1.19.0 -p 8047:8047 -v /home/projects/temp/drill/conf:/opt/drill/conf --detach apache/drill:1.19.0 /bin/bash 
+# docker stop drill-1.19.0
 # docker ps -a | awk '{print $1}' | xargs docker rm {}
 x-www-browser http://localhost:8047
 
+# logs
+docker logs drill-1.19.0
+
+# connect to container 
+docker exec -it drill-1.19.0 bash
+
+# copy data from 
+# mkdir /tmp/docker-conf
+# docker run -it --name drill-1.19.0 -p 8047:8047 -v /tmp/docker-conf:/host-folder --detach apache/drill:1.19.0 /bin/bash 
+
+cd /opt/drill/conf
+cd /opt/drill/bin
+
+mkdir /tmp/docker-conf
+ls /tmp/docker-conf
+
+docker run -p 8047:8047  apache/drill:1.19.0 /bin/bash 
 ```
 
 ## configuration before start
@@ -97,27 +117,8 @@ drill.exec: {
 ```
 ### configuration in file: storage-plugins-override.conf
 ```json
-#
-# Licensed to the Apache Software Foundation (ASF) under one
-# or more contributor license agreements.  See the NOTICE file
-# distributed with this work for additional information
-# regarding copyright ownership.  The ASF licenses this file
-# to you under the Apache License, Version 2.0 (the
-# "License"); you may not use this file except in compliance
-# with the License.  You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
 # This file involves storage plugins configs, which can be updated on the Drill start-up.
 # This file is in HOCON format, see https://github.com/typesafehub/config/blob/master/HOCON.md for more information.
-
 "storage": {
   dfs: {
     type: "file",
@@ -142,7 +143,25 @@ drill.exec: {
     enabled: true
   }
 }
-
+```
+s3 storage
+create storage: Storage->S3->Update
+```json
+{
+  "type": "file",
+  "connection": "s3a://wond.../",
+  "config": {
+    "fs.s3a.secret.key": "nqGApjHh...",
+    "fs.s3a.access.key": "AKIA6LW...",
+    "fs.s3a.endpoint": "s3.us-east-1.amazonaws.com",
+    "fs.s3a.impl.disable.cache":"true"
+  },
+```
+```xml
+<property>
+    <name>fs.s3a.endpoint</name>
+    <value>s3.REGION.amazonaws.com</value>
+</property>
 ```
 
 ```sql
