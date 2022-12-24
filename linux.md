@@ -69,7 +69,7 @@ ssh -o "ProxyCommand nc -x 127.0.0.1:7772 %h %p" cherkavi@151.190.211.47
 
 # localhost ---->  35.35.13.49 ---->   10.0.12.10
 # all identity files must be placed on localhost !!!
-ssh -Ao ProxyCommand="ssh -W %h:%p -p 22 root@35.35.13.49" -i local-file-with-identity -p 22 ubuntu@10.0.12.10
+ssh -Ao ProxyCommand="ssh -W %h:%p -p 22 $PROD_BASTION_USER@$PROD_BASTION_HOST" -i $EC2_INVENTORY -p EC2_AIRFLOW_PORT $EC2_AIRFLOW_USER@$EC2_AIRFLOW_HOST $*
 ```
 ### scp bastion scp proxy scp copy via bastion
 ```sh
@@ -83,12 +83,11 @@ bash: scp: command not found
 solution: scp should be installed on both!!! hosts
 
 ### tunnel, port forwarding from local machine to outside
-```
+```sh
 ssh -L <local_port>:<remote_host from ssh_host>:<remote_port> <username>@<ssh_host>
+# ssh -L 28010:remote_host:8010 user_name@remote_host
 ssh -L <local_port>:<remote_host from ssh_host>:<remote_port> <ssh_host>
-
-ssh -L 28010:vldn337:8010 localhost
-ssh -L 28010:remote_host:8010 user_name@remote_host
+# ssh -L 28010:vldn337:8010 localhost
 
 # destination service on the same machine as ssh_host
 # localport!=remote_port (28010!=8010)
@@ -2732,6 +2731,11 @@ w
 ```
 ```bash
 who --all
+```
+
+### send message to user
+```sh
+write <username> <message>
 ```
 
 ### print all users registered into system

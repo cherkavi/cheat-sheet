@@ -483,3 +483,61 @@ application permissions: r_emailaddress
 [documentation](https://developer.linkedin.com/docs/v1/people/email-lookup-api)  
 [documentation](https://docs.microsoft.com/en-us/linkedin/shared/integrations/people/primary-contact-api)  
 
+## e-commerce
+### shopify
+```sh
+x-www-browser https://$SHOPIFY_SHOP_NAME.myshopify.com &
+x-www-browser https://$SHOPIFY_SHOP_NAME.myshopify.com/admin &	
+# shopify product count
+curl --location --header "X-Shopify-Access-Token: ${SHOPIFY_AUTH_TOKEN}" -X GET "https://${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/products/count.json" 
+# shopify product by id
+curl --location -X GET --header "X-Shopify-Access-Token: ${SHOPIFY_AUTH_TOKEN}" "https://${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/products/${1}.json" | jq .
+# shopify get all products
+curl --location --header "X-Shopify-Access-Token: ${SHOPIFY_AUTH_TOKEN}"  -X GET "https://${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/products.json?fields=id" | jq .	
+# get variants count
+curl --location -X GET "https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/products/${PRODUCT_ID}/variants/count.json" | jq .
+# shopify product variant by id
+curl --location -X GET --header "X-Shopify-Access-Token: ${SHOPIFY_AUTH_TOKEN}" "https://${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-07/variants/${1}.json" | jq . 
+# get metadata for product by id
+curl --location -X GET "https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/products/${PRODUCT_ID}/metafields.json" | jq .
+
+# shopify create product
+curl -v -X POST -H "X-Shopify-Access-Token:${SHOPIFY_AUTH_TOKEN}" --data "{'product': {'title': 'test-product-remove-me', 'product_type': 'Framed Prints', 'published': True, 'vendor': 'Classy Art', 'tags': 'Furniture,Accessories,Wall Art,Category:Accessories,Category_Accessories,Category:Wall Art,Category_Wall Art,Color:Brown,Color_Brown,Product Type:Framed Prints,Product Type_Framed Prints,Brand:Classy Art,Brand_Classy Art', 'taxable': True, 'options': None, 'variants': [{'option1': None, 'option2': None, 'option3': None, 'price': 139.99, 'compare_at_price': None, 'sku': '1055', 'weight_unit': 'lb', 'weight': 0, 'inventory_management': 'shopify', 'inventory_policy': 'continue'}], 'status': 'draft'}}"  https://${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/products.json
+# shopify update product
+curl --header "X-Shopify-Access-Token: ${SHOPIFY_AUTH_TOKEN}" --request PUT "https://${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/products/${PRODUCT_ID}.json" \
+--header 'Content-Type: application/json' \
+--data-binary '@product.json'
+# delete product by id
+curl --location --header "X-Shopify-Access-Token: ${SHOPIFY_AUTH_TOKEN}"  -X DELETE "https://${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/products/$1.json"
+# remove variant, delete variant in "standard product" (has only one variant )  leads to remove product
+curl --location -w "response-code: %{http_code}\n" -X DELETE "https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/products/${PRODUCT_ID}/variants/${VARIANT_ID}.json"
+
+# add metadata to image 
+curl --location -X PUT "https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/products/${PRODUCT_ID}/images/${IMAGE_ID}.json"  \
+--header 'Content-Type: application/json' \
+--data-raw '{"image": {"id": 28125015310400,"metafields": [{"key": "test2","value": "test3","value_type": "string","namespace": "tags", "imageid":28125015310400}]}}'
+# get image count by product
+curl --location -X GET "https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/products/${PRODUCT_ID}/images/count.json" | jq .
+# get images by product
+curl --location -X GET "https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/products/${PRODUCT_ID}/images.json" | jq .
+# get image metadata from !!! global account storage !!!
+curl --location -X GET https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/metafields.json?metafield[imageid]=${IMAGE_ID}
+
+# get all collections
+curl --location -X GET "https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/smart_collections.json" | jq .
+# get collection by id 
+COLLECTION_ID=270289993909
+curl --location -X GET "https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/smart_collections/{$COLLECTION_ID}.json" | jq .
+# delete collection by id 
+curl --location -X DELETE "https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/smart_collections/{$COLLECTION_ID}.json" | jq .
+
+# get policies
+curl --location --request GET "https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/policies.json"
+# get policies with token
+curl --location --header "X-Shopify-Access-Token: ${SHOPIFY_AUTH_TOKEN}" --request GET "https://${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/policies.json"
+# get access scopes
+curl --location --request GET "https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/oauth/access_scopes.json" | jq .
+# get shop description 
+curl --location --request GET "https://${SHOPIFY_API_KEY}:${SHOPIFY_API_PASSWORD}@${SHOPIFY_SHOP_NAME}.myshopify.com/admin/api/2021-04/shop.json" --silent | jq .
+
+```
