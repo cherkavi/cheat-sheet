@@ -206,6 +206,26 @@ rm $AIRFLOW_HOME/airflow-scheduler.pid || echo "not exists"
 ps aux | grep airflow | grep flower | awk '{print $2}' | xargs -I{} kill -15 {} || echo "flower removed"
 ```
 
+### airflow reset
+```sh
+# remove dags
+rm -rf /home/ubuntu/airflow/dags/*
+
+# remove logs
+rm -rf /home/ubuntu/airflow/logs/dag_processor_manager/*
+rm -rf /home/ubuntu/airflow/logs/scheduler/*
+rm -rf /home/ubuntu/airflow/logs/shopify_collections_create/*
+rm -rf /home/ubuntu/airflow/logs/shopify_image_add_product/*
+rm -rf /home/ubuntu/airflow/logs/shopify_image_set_variant/*
+rm -rf /home/ubuntu/airflow/logs/shopify_product_create/*
+rm -rf /home/ubuntu/airflow/logs/shopify_product_delete/*
+rm -rf /home/ubuntu/airflow/logs/shopify_product_update/*
+
+# clean up DB !!!
+airflow db reset
+# !!! all variables after reset should be created again manually 
+```
+
 ### [Airflow docker](https://github.com/cherkavi/docker-images/tree/master/airflow)
 [astro cli](https://www.astronomer.io/docs/cloud/stable/develop/cli-quickstart)
 ```bash
