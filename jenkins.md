@@ -13,8 +13,8 @@
 * [jenkins scheduler build periodically](https://www.lenar.io/jenkins-schedule-build-periodically/)
 
 ### alternatives
-[GoCD](https://www.gocd.org/)
-[buildbot](buildbot.net)
+* [GoCD](https://www.gocd.org/)  
+* [buildbot](buildbot.net)  
 
 #### DSL
 * [jenkins dsl source code](https://github.com/jenkinsci/job-dsl-plugin)
