@@ -1976,6 +1976,21 @@ zip --encrypt 1.zip 1.html
 zip --junk_paths bcm-1003.zip *
 ```
 
+### encrypt decrypt
+```sh
+sudo apt install ccrypt
+# encrypt file
+ccencrypt file1.txt
+# ccencrypt file1.txt --key mysecretkey
+# print decrypted content
+ccat file1.txt.cpt
+# decrypt file
+ccdecrypt file1.txt.cpt
+# ccdecrypt file1.txt.cpt --key mysecretkey
+# try to guess password
+# ccguess file1.txt.xpt
+```
+
 ### using parameters for aliases
 ```sh
 alias sublime_editor=/Applications/SublimeEditor/Sublime
