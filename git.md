@@ -122,7 +122,7 @@ git branch --merged | egrep -v "(^\*|master|in-progress)" | xargs git branch -d
 ```
 
 ### remove commit, remove wrong commit
-```
+```sh
 commit1=10141d299ac14cdadaca4dd586195309020
 commit2=b6f2f57a82810948eeb4b7e7676e031a634 # should be removed and not important
 commit3=be82bf6ad93c8154b68fe2199bc3e52dd69
@@ -668,9 +668,6 @@ git clone http://localhost:3000/vitalii/sensor-yaml.git
 wget http://localhost:3000/vitalii/sensor-yaml.git/info/refs?service=git-upload-pack
 ```
 
-
-
-
 ### clone only files without history, download code
 ```
 git clone --depth 1 https://github.com/kubernetes/minikube
@@ -684,6 +681,24 @@ git archive --remote=ssh://https://github.com/cherkavi/cheat-sheet HEAD jenkins.
 ### update remote branches, when you see not existing remote branches
 ```
 git remote update origin --prune
+```
+
+### worktree
+> worktree it is a hard copy of existing repository but in another folder
+> all worktrees are connected
+```sh
+# list of all existing wortrees
+git worktree list
+
+# add new worktree list
+git worktree add $PATH_TO_WORKTREE $EXISTING_BRANCH
+
+# add new worktree with checkout to new branch
+git worktree add -b $BRANCH_NEW $PATH_TO_WORKTREE
+
+# remove existing worktree, remove link from repo
+git worktree remove $PATH_TO_WORKTREE
+git worktree prune
 ```
 
 
