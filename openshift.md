@@ -4,7 +4,7 @@
 * [minishift documentation, help url](https://docs.openshift.org/latest/minishift/using/index.html)  
 * [CLI commands oc commands](https://docs.openshift.com/container-platform/4.1/cli_reference/developer-cli-commands.html)  
 * [tekton pipeline examples](https://github.com/dalelane/app-connect-tekton-pipeline)
-
+* [openshift cicd](https://docs.openshift.com/container-platform/4.11/cicd/pipelines/understanding-openshift-pipelines.html)
 
 ## Init
 ### install client 

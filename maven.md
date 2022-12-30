@@ -249,6 +249,138 @@ mvn compile -Dhttp.proxyHost=10.10.0.100 -Dhttp.proxyPort=8080 -Dhttp.nonProxyHo
 ```
 
 ## Plugins:
+* http://www.mojohaus.org/build-helper-maven-plugin/
+  > http://www.mojohaus.org/build-helper-maven-plugin/usage.html
+  build-helper:add-source Add more source directories to the POM.
+  * build-helper:add-test-source Add test source directories to the POM.
+  * build-helper:add-resource Add more resource directories to the POM.
+  * build-helper:add-test-resource Add test resource directories to the POM.
+  * build-helper:attach-artifact Attach additional artifacts to be installed and deployed.
+  * build-helper:maven-version Set a property containing the current version of maven.
+  * build-helper:regex-property Sets a property by applying a regex replacement rule to a supplied value.
+  * build-helper:regex-properties Sets a property by applying a regex replacement rule to a supplied value.
+  * build-helper:released-version Resolve the latest released version of this project.
+  * build-helper:parse-version Parse the version into different properties.
+  * build-helper:remove-project-artifact Remove project's artifacts from local repository.
+  * build-helper:reserve-network-port Reserve a list of random and unused network ports.
+  * build-helper:local-ip Retrieve current host IP address.
+  * build-helper:hostname Retrieve current hostname.
+  * build-helper:cpu-count Retrieve number of available CPU.
+  * build-helper:timestamp-property Sets a property based on the current date and time.
+  * build-helper:uptodate-property Sets a property according to whether a file set's outputs are up to date with respect to its inputs.
+  * build-helper:uptodate-properties Sets multiple properties according to whether multiple file sets' outputs are up to date with respect to their inputs.
+  * build-helper:rootlocation Sets a property which defines the root folder of a multi module build.
+* https://www.mojohaus.org/buildnumber-maven-plugin/
+  > https://www.mojohaus.org/buildnumber-maven-plugin/usage.html
+  * buildnumber:create: Create a build number.
+  * buildnumber:create-timestamp: Create a timestamp.
+  * buildnumber:create-metadata: Write build properties into file
+  * buildnumber:hgchangeset: Create properties for changeSet and changeSetDate from a Mercurial repository.
+* https://mavenlibs.com/maven/plugin/net.ju-n.maven.plugins/checksum-maven-plugin
+  > checksum digests and output them to individual or summary files
+  ```xml
+    <plugin>
+        <groupId>net.ju-n.maven.plugins</groupId>
+        <artifactId>checksum-maven-plugin</artifactId>
+        <version>${maven-checksum-plugin.version}</version>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>artifacts</goal>
+                </goals>
+            </execution>
+        </executions>
+        <configuration>
+            <failOnError>false</failOnError>
+        </configuration>
+    </plugin>
+  ```
+* http://coderplus.github.io/copy-rename-maven-plugin/
+  > http://coderplus.github.io/copy-rename-maven-plugin/usage.html
+  * copy-rename:copy Copy files during maven build.
+  * copy-rename:rename Rename files or directories during maven build.
+* [dependency-check-core to detect publicly disclosed vulnerabilities, owasp](https://jeremylong.github.io/DependencyCheck/dependency-check-maven/index.html)
+* [download files](https://github.com/maven-download-plugin/maven-download-plugin)
+* [execute system and Java programs](https://www.mojohaus.org/exec-maven-plugin/)
+  > https://www.mojohaus.org/exec-maven-plugin/usage.html
+* [find security bugs](https://spotbugs.readthedocs.io/en/latest/maven.html)
+  > old plugin: https://gleclaire.github.io/findbugs-maven-plugin/
+* [downloads/installs Node and NPM locally for your project, runs npm install, and then any combination of Bower, Grunt, Gulp, Jspm, Karma, or Webpack.](https://github.com/eirslett/frontend-maven-plugin)
+* [run gatling tests](https://gatling.io/docs/gatling/reference/current/extensions/maven_plugin/)
+* [git commit id](https://github.com/git-commit-id/git-commit-id-maven-plugin)
+* [Provides support for execution, compilation and other facets of Groovy development](https://groovy.github.io/gmaven/groovy-maven-plugin/)
+* [java COde COverage plugin test coverage reports ](https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin)
+* [building Docker and OCI images for your Java applications](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin)
+* [convert json schema to pojo](https://mvnrepository.com/artifact/org.jsonschema2pojo/jsonschema2pojo-maven-plugin)
+* [view and transfer resources between repositories](http://www.mojohaus.org/wagon-maven-plugin/)
+  > http://www.mojohaus.org/wagon-maven-plugin/usage.html
+* [replace text in file with another value](https://mvnrepository.com/artifact/com.google.code.maven-replacer-plugin/replacer)
+* [scoverage code coverage library](https://github.com/scoverage/scoverage-maven-plugin)
+* [uses Protocol Buffer Compiler (protoc) tool to generate Java source files from .proto (protocol buffer definition) files for the specified projec](https://www.xolstice.org/protobuf-maven-plugin/)
+  > https://www.xolstice.org/protobuf-maven-plugin/usage.html
+  * protobuf:compile compiles main .proto definitions into Java files and attaches the generated Java sources to the project.
+  * protobuf:test-compile compiles test .proto definitions into Java files and attaches the generated Java test sources to the project.
+  * protobuf:compile-cpp compiles main .proto definitions into C++ files and attaches the generated C++ sources to the project.
+  * protobuf:test-compile-cpp compiles test .proto definitions into C++ files and attaches the generated C++ test sources to the project.
+  * protobuf:compile-python compiles main .proto definitions into Python files and attaches the generated Python sources to the project.
+  * protobuf:test-compile-python compiles test .proto definitions into Python files and attaches the generated Python test sources to the project.
+  * protobuf:compile-csharp compiles main .proto definitions into C# files and attaches the generated C# sources to the project.
+  * protobuf:test-compile-csharp compiles test .proto definitions into C# files and attaches the generated C# test sources to the project.
+  * protobuf:compile-js compiles main .proto definitions into JavaScript files and attaches the generated JavaScript sources to the project.
+  * protobuf:test-compile-js compiles test .proto definitions into JavaScript files and attaches the generated JavaScript test sources to the project.
+  * protobuf:compile-javanano uses JavaNano generator (requires protobuf compiler version 3 or above) to compile main .proto definitions into Java files and attaches the generated Java sources to the project.
+  * protobuf:test-compile-javanano uses JavaNano generator (requires protobuf compiler version 3 or above) to compile test .proto definitions into Java files and attaches the generated Java test sources to the project.
+  * protobuf:compile-custom compiles main .proto definitions using a custom protoc plugin.
+  * protobuf:test-compile-custom compiles test .proto definitions using a custom protoc plugin.
+* [code formatter](https://github.com/diffplug/spotless)
+* [generate openapi (swagger) documentation](https://github.com/openapi-tools/swagger-maven-plugin)
+* [build server stubs and client SDKs directly from a Swagger defined RESTful AP](https://swagger.io/docs/open-source-tools/swagger-codegen/)
+* [package executable jar or war archives, run Spring Boot applications, generate build information and start your Spring Boot application prior to running integration tests](https://docs.spring.io/spring-boot/docs/2.2.1.RELEASE/maven-plugin/)
+  > https://docs.spring.io/spring-boot/docs/2.2.1.RELEASE/maven-plugin/usage.html
+  * spring-boot:run runs your Spring Boot application.
+  * spring-boot:repackage repackages your jar/war to be executable.
+  * spring-boot:start and spring-boot:stop to manage the lifecycle of your Spring Boot application (i.e. for integration tests).
+  * spring-boot:build-info generates build information that can be used by the Actuator.  
+* [generate json and yaml OpenAPI description during build time](https://springdoc.org/plugins.html)
+* [run ant tasks](https://maven.apache.org/plugins/maven-antrun-plugin/usage.html)
+* [combine all project output into a single archive distributed file](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-assembly-plugin)
+* [performs Checkstyle analysis and generates an HTML report on any violations that Checkstyle finds](https://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle-mojo.html)
+* [removes files generated at build-time in a project's directory.](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin)
+* [It can copy and/or unpack artifacts from local or remote repositories to a specified location](https://maven.apache.org/plugins/maven-dependency-plugin/usage.html)
+  * dependency:analyze analyzes the dependencies of this project and determines which are: used and declared; used and undeclared; unused and declared.
+  * dependency:analyze-dep-mgt analyzes your projects dependencies and lists mismatches between resolved dependencies and those listed in your dependencyManagement section.
+  * dependency:analyze-only is the same as analyze, but is meant to be bound in a pom. It does not fork the build and execute test-compile.
+  * dependency:analyze-report analyzes the dependencies of this project and produces a report that summarises which are: used and declared; used and undeclared; unused and declared.
+  * dependency:analyze-duplicate analyzes the <dependencies/> and <dependencyManagement/> tags in the pom.xml and determines the duplicate declared dependencies.
+  * dependency:build-classpath tells Maven to output the path of the dependencies from the local repository in a classpath format to be used in java -cp. The classpath file may also be attached and installed/deployed along with the main artifact.
+  * dependency:copy takes a list of artifacts defined in the plugin configuration section and copies them to a specified location, renaming them or stripping the version if desired. This goal can resolve the artifacts from remote repositories if they don't exist in either the local repository or the reactor.
+  * dependency:copy-dependencies takes the list of project direct dependencies and optionally transitive dependencies and copies them to a specified location, stripping the version if desired. This goal can also be run from the command line.
+  * dependency:display-ancestors displays all ancestor POMs of the project. This may be useful in a continuous integration system where you want to know all parent poms of the project. This goal can also be run from the command line.
+  * dependency:get resolves a single artifact, eventually transitively, from a specified remote repository.
+  * dependency:go-offline tells Maven to resolve everything this project is dependent on (dependencies, plugins, reports) in preparation for going offline.
+  * dependency:list alias for resolve that lists the dependencies for this project.
+  * dependency:list-classes displays the fully package-qualified names of all classes found in a specified artifact.
+  * dependency:list-repositories displays all project dependencies and then lists the repositories used.
+  * dependency:properties set a property for each project dependency containing the to the artifact on the file system.
+  * dependency:purge-local-repository tells Maven to clear dependency artifact files out of the local repository, and optionally re-resolve them.
+  * dependency:resolve tells Maven to resolve all dependencies and displays the version. JAVA 9 NOTE: will display the module name when running with Java 9.
+  * dependency:resolve-plugins tells Maven to resolve plugins and their dependencies.
+  * dependency:sources tells Maven to resolve all dependencies and their source attachments, and displays the version.
+  * dependency:tree displays the dependency tree for this project.
+  * dependency:unpack like copy but unpacks.
+  * dependency:unpack-dependencies like copy-dependencies but unpacks.  
+* [add your artifact(s) to a remote repository](https://maven.apache.org/plugins/maven-deploy-plugin/usage.html)
+* [control certain environmental constraints such as Maven version, JDK version and OS family ](https://maven.apache.org/enforcer/maven-enforcer-plugin/usage.html)
+  * enforcer:enforce executes rules for each project in a multi-project build.
+  * enforcer:display-info display the current information as detected by the built-in rules.
+* [run integration tests](https://maven.apache.org/surefire/maven-failsafe-plugin/usage.html)
+* [add artifacts to local repository](https://maven.apache.org/plugins/maven-install-plugin/plugin-info.html)
+* [build jars](https://maven.apache.org/plugins/maven-jar-plugin/)
+* [sign jars](https://maven.apache.org/plugins/maven-jarsigner-plugin/)
+* [Repackages the project classes together with their dependencies into a single uber-jar](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-shade-plugin)
+* [copying of project resources to the output directory](https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin)
+* [retrieve JARs of resources from remote repositories, process those resources, and incorporate them into JARs you build with Maven](https://maven.apache.org/plugins/maven-remote-resources-plugin/usage.html)
+* [execute the unit tests ](https://maven.apache.org/surefire/maven-surefire-plugin/usage.html)
 
 ### release plugin
 ```
@@ -262,7 +394,7 @@ mvn javadoc:javadoc
 ```
 ```
  -Dmaven.javadoc.skip=true
- ```
+```
 
 ### jar without class, no class files
 ```sh
@@ -904,7 +1036,7 @@ vim $HOME/.m2/repository/archetype-catalog.xml
 </archetype-catalog>
 ```
 
-## find all plugins in project
+## find all plugins in project, search for all plugings in project
 ```sh
 for each_file in `find . -name pom.xml | grep -v target`; do
     # cat $each_file | grep plugins
