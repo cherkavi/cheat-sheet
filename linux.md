@@ -1796,26 +1796,25 @@ unzip file.zip -d output_folder
 unzip -o file.zip -d output_folder
 ```
 
-### unzip tar file from url, wget unzip, wget untar
-```
-
-```
-
+## tar
 ### tar archiving tar compression 
 ```sh
 # tar create
 tar -cf jdk.tar 8.0.265.j9-adpt
 # tar compression
 tar -czvf jdk.tar.gz 8.0.265.j9-adpt
+```
 
+### untar 
+```sh
 # tar list of files inside
 tar -tf jdk.tar
 
-# tar extract 
+# tar extract untar
 tar -xvf jdk.tar -C /tmp/jdk
 # extract into destination with removing first two folders
 tar -xvf jdk.tar -C /tmp/jdk --strip-components=2
-# extract from URL
+# extract from URL untar from url
 wget -qO- https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz | tar xvz - -C /target/directory
 ```
 
@@ -2349,10 +2348,11 @@ xmllint --format /path/to/file.xml > /path/to/file-formatted.xml
 xmllint --noout file.xml; echo $?
 ```
 
-### html parsing html processing 
+### [html parsing html processing html query](https://github.com/rbwinslow/hq/wiki/Language-Reference)
 ```sh
 pip install hq
 curl https://www.w3schools.com/xml | hq '`title: ${/head/title}`'
+cat index.html | hq '/html/body/table/tr/td[2]/a/text()'
 ```
 
 ### chmod recursively
