@@ -560,23 +560,50 @@ function oc-port-forwarding(){
 ### [create app](https://access.redhat.com/documentation/en-us/openshift_enterprise/3.0/html/developer_guide/dev-guide-new-app)
 
 #### new app with "default" container 
-```
+```sh
 oc new-app {/local/folder/to_source}
 ```
 
 #### new app with "default" container from GIT
-```
+```sh
 oc new-app https://github.com/openshift/ruby-ex.git
 ```
 
 #### new app with "specific" (centos/ruby-22-centos7) docker container from GIT
-```
+```sh
 oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-ex.git
 ```
 
 #### new app with "specific" (centos/ruby-22-centos7) docker container from GIT with specific sub-folder and name
-```
+```sh
 oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-ex.git --context-dir=sub-project --name myruby
+```
+#### openshift new application create and check
+```sh
+OC_APP_NAME=python-test
+OC_PROJECT_NAME=my-project
+OC_ROOT=app.vantage.ubs
+
+# cleanup before creation
+oc delete route $OC_APP_NAME
+oc delete service $OC_APP_NAME
+oc delete deployment $OC_APP_NAME
+oc delete buildconfigs.build.openshift.io $OC_APP_NAME
+
+# create new oc application from source code
+oc new-app https://github.com/cherkavi/python-deployment.git#main --name=$OC_APP_NAME
+
+# check deployment
+oc get service $OC_APP_NAME -o yaml
+oc get deployment $OC_APP_NAME -o yaml
+oc get buildconfigs.build.openshift.io $OC_APP_NAME -o yaml
+
+# create route
+oc create route edge $OC_APP_NAME --service=$OC_APP_NAME
+# check route: tls.termination: edge
+oc get route $OC_APP_NAME -o yaml
+
+curl -X GET https://${OC_APP_NAME}-${OC_PROJECT_NAME}.${OC_ROOT}/
 ```
 
 #### import specific image
