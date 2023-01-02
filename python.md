@@ -1,8 +1,9 @@
-# [python3 readiness](http://py3readiness.org/)
-# [list of frameworks](https://awesome-python.com/)
+# Python
+* [python3 readiness](http://py3readiness.org/)  
+* [list of frameworks](https://awesome-python.com/)  
 
 ## proxy 
-```
+```python
 import os
 
 proxy = 'http://<user>:<pass>@<proxy>:<port>'
@@ -14,11 +15,11 @@ os.environ['HTTPS_PROXY'] = proxy
 
 ## package manager easy_install
 ### using it from cmd
-```
+```sh
 %PYTHON%/Scripts/easy_install.exe <package name>
 ```
 ### using easy_install from script
-```
+```python
 from setuptools.command import easy_install
 # install package
 easy_install.main( ["termcolor"] )
@@ -29,12 +30,12 @@ easy_install.main( ["-U","termcolor"] )
 ## package manager pip
 ### [find package in browser](https://pypi.org/)
 ### find package by name
-```
+```sh
 pip search {search key}
 ```
 
 ### install pip
-```
+```sh
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
 ```
@@ -43,38 +44,44 @@ issue:
 ImportError: cannot import name 'sysconfig'
 ```
 solution
-```
+```sh
 # pip install
 # sudo apt install python3-distutils
 sudo apt install python3-pip
 ```
 
 ### upgrade pip
-```
+```sh
 pip3 install --upgrade pip
 pip install -U pip
 ```
 debian
-```
+```sh
 apt-get install -y --no-install-recommends python3-pip
 ```
 
+## [pip install git svn folder](https://pip.pypa.io/en/stable/cli/pip_install/)
 ### pip install with proxy, pip install proxy, pip proxy, pip via proxy
-```
+```sh
 pip install --proxy=http://proxy.muc:8080
 ```
 
 ### pip install with specific proxy
-```
+```sh
 pip install --index-url http://cc-artifactory.mynetwork.net my_own_package
 ```
 ### install package into home of current user ( do not use for virtual environment )
-```
+```sh
 pip install --user .
 ```
 ### pip install from package install from zip
 ```sh
 pip3 install --user ~/Downloads/PyGUI-2.5.4.tar.gz
+```
+### pip install from remote archive
+```sh
+PACKAGE_NAME=electrum
+sudo -H pip3 install https://download.electrum.org/4.1.2/Electrum-4.1.2.tar.gz#egg=${PACKAGE_NAME}[fast]
 ```
 
 ### setup.py
@@ -83,13 +90,13 @@ pip3 install --user ~/Downloads/PyGUI-2.5.4.tar.gz
 python setup.py install
 ```
 #### uninstall
-```
+```sh
 python setup.py install --record list_of_files.txt
 cat list_of_files.txt | xargs sudo rm -rf
 ```
 
 ### list of packages
-```
+```sh
 pip list
 ```
 
@@ -114,13 +121,13 @@ import sys
 print(sys.prefix)
 ```
 for easy_install, pip
-```
+```python
 import site
 print(site.getsitepackages())
 ```
 
 ### using pip from interpreter ( install wheels package)
-```
+```python
 import pip
 pip.__version__
 pip.main(["install", "wheels"])
