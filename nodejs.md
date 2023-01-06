@@ -201,3 +201,6 @@ npm run-script start
 # or ( the same for debug )
 node server.js
 ```
+## nextjs in real environment
+![nextjs-how-to](https://user-images.githubusercontent.com/8113355/210836797-7cd87530-5892-480d-8a1e-682350300239.png)
+
