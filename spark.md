@@ -159,6 +159,14 @@ log4j.xml
 </log4j:configuration>
 ```
 
+### processes on node ( MapR )
+list of processes for each executor on separate node
+```
+mapr    3810138  152521  0 11:43 ?        00:00:00 /opt/mapr/hadoop/hadoop-2.7.0/bin/container-executor user_a
+user_a  3810143 3810138  0 11:43 ?        00:00:00 /bin/bash -c /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.342.b07-1.el7_9.x
+user_a  3810284 3810143  2 11:43 ?        00:09:26 /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.342.b07-1.el7_9.x86_64/jre/bin  
+```
+where 152521 process (parent for container-executor) will be: org.apache.hadoop.yarn.server.nodemanager.NodeManager
 
 ### session
 ```
