@@ -293,6 +293,27 @@ yarn logs -applicationId application_1540813402987_3657 | less
 yarn logs -applicationId application_1540813402987_3657 -appOwner my_tech_user | less
 ```
 
+#### YARN REST API
+```sh
+# https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/ResourceManagerRest.html#Cluster_Writeable_APIs
+# https://docs.cloudera.com/runtime/7.2.1/yarn-reference/topics/yarn-use-the-yarn-rest-apis-to-manage-applications.html
+YARN_USER=$USER_AD
+YARN_PASS=$USER_AD
+YARN_URL=https://mapr-web.vantage.zur
+YARN_PORT=10101
+
+APP_ID=application_1670952222247_1113333
+# application state 
+curl --user $YARN_USER:$YARN_PASS --insecure $YARN_URL:$YARN_PORT/ws/v1/cluster/apps/$APP_ID/state
+# kill application 
+curl -v -X PUT -d '{"state": "KILLED"}' $YARN_URL:$YARN_PORT/ws/v1/cluster/apps/$APP_ID
+
+# application find 
+APP_TAG=33344447eb9c81f4fd7a
+curl -X GET --user $YARN_USER:$YARN_PASS --insecure $YARN_URL:$YARN_PORT/ws/v1/cluster/apps?applicationTags=$APP_TAG | jq .
+```
+
+
 ---
 # Hortonworks sandbox
 [tutorials](https://hortonworks.com/tutorials/)
