@@ -262,6 +262,12 @@ ping -s 123 -c 1 146.255.193.66
 ```sh
 # list of open files
 sudo lsof -i -P -n | grep LISTEN
+# list of files for specific user
+lsof -u my_own_user 
+
+# limit of files for user
+ulimit -a
+
 
 # list of open connections
 sudo netstat -tulpan | grep LISTEN
@@ -1443,10 +1449,23 @@ ps fC firefox
 pgrep firefox
 ```
 
-pid of process by name
+### pid of process by name
 ```sh
 pidof <app name>
 pidof chrome
+```
+
+### process by id
+```sh
+ll /proc/${process_id}
+# process command line
+cat /proc/${process_id}/cmdline
+```
+
+### current process id parent process id
+```
+echo $$
+echo ${PPID}
 ```
 
 ### process list, process tree
@@ -1458,6 +1477,9 @@ ps -fauxw
 
 # process list full command line, ps full cmd
 ps -ef ww 
+
+# list of processes by user
+ps -ef -u my_special_user
 ```
 ### process list without ps
 [links to processes](https://www.kernel.org/doc/html/latest/filesystems/proc.html#process-specific-subdirectories)
@@ -3051,6 +3073,12 @@ libreoffice --headless --convert-to pdf "/home/path/Dativ.doc" --outdir /tmp/out
 ### unzip bz2
 ```sh
 bzip2 -dc ricochet-1.1.4-src.tar.bz2 | tar xvf -
+```
+### gzip
+```sh
+gzip -d out.gz
+# unknown suffix -- ignored
+# add "gz" suffix to file
 ```
 
 ## console and clipboard
