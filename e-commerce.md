@@ -453,6 +453,11 @@ possible fields:
   * https://project-open-data.cio.gov/schema/
   * https://project-open-data.cio.gov/metadata-resources/
 
+## user guide user tutorials
+* https://shepherdjs.dev/
+* https://introjs.com/
+* https://www.npmjs.com/package/guidechimp
+
 ## social networks
 ### linkedin 
 * [all my applications](https://www.linkedin.com/developers/apps)
