@@ -455,7 +455,7 @@ update {schema name}."schema_version" set "success"=1 where "version"='3.9';
 ```
 ---
 update from java code, custom update from code, 
-```
+```java
 package db.migration.initialize;
 import org.flywaydb.core.api.migration.jdbc.JdbcMigration;
 public class V1_9_9__insert_initial_gui_configurations implements JdbcMigration {
@@ -465,6 +465,28 @@ public class V1_9_9__insert_initial_gui_configurations implements JdbcMigration 
 ```
 ```
 <location>classpath:db.migration.initialize</location>
+```
+---
+[flyway crc generation flyway control sum generator](https://github.com/flyway/flyway/blob/main/flyway-core/src/main/java/org/flywaydb/core/internal/resolver/ChecksumCalculator.java#L59)
+```java
+    public static int calculateSum(String filePath) {
+
+        final CRC32 crc32 = new CRC32();
+ 
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(filePath))); ) {
+            String line = null;
+            while ((line = bufferedReader.readLine()) != null) {
+		    line = BomFilter.FilterBomFromString(line);
+	            crc32.update(StringUtils.trimLineBreak(line).getBytes(StandardCharsets.UTF_8));
+            }
+        } catch (IOException e) {
+            System.err.printf("Error while trying to calculate CRC for file %s: %s\n", filePath, e.getMessage());
+            System.exit(1);
+        }
+ 
+        int checksum = (int) crc32.getValue();
+        return checksum;
+    }
 ```
 
 
