@@ -399,6 +399,15 @@ setup(
 )
 ```
 
+## JIT
+### just in time compiler pypy
+```sh
+pip install pypy
+pypy app.py
+# or
+#!/usr/bin/env pypy
+```
+
 ## IDEA
 ### standard modules not found 
 ```
