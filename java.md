@@ -563,6 +563,10 @@ for custom queries only
 - table per class ( TABLE_PER_CLASS )
 ```
 
+## BPMN
+* [Activiti](https://github.com/cherkavi/java-code-example/tree/master/activiti-example)
+* [Flowable](https://www.flowable.com/open-source/docs/)
+	
 ## Vaadin
 ### [custom components](https://vaadin.com/directory)
 ### [spring integration](https://docs.camunda.org/manual/7.4/user-guide/spring-framework-integration/configuration/)
