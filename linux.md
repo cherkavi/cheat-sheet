@@ -2097,6 +2097,22 @@ curl --netrc --request GET my-secret-host.com/storage/credentials
 ```sh
 curl --fail --request GET 'https://postman-echo.com/get?foo1=bar1&foo2=bar2'
 ```
+### curl with authentication
+```sh
+curl --request POST \
+--data "client_id=myClient" \
+--data "grant_type=client_credentials" \
+--data "scope=write" \
+--data "response_type=token" \
+--cert "myClientCertificate.pem" \
+--key "myClientCertificate.key.pem" \
+"https://openam.example.com:8443/openam/oauth2/realms/root/access_token"
+{
+  "access_token": "sbQZ....",
+  "scope": "write",
+  "token_type": "Bearer",
+  "expires_in": 3600
+}
 	
 ### echo server mock server 
 ```sh
