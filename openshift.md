@@ -829,6 +829,9 @@ spec:
       name: maprvolume-destination
     - name: httpd-config-volume
       mountPath: /usr/local/apache2/conf/httpd.conf      
+    - name: kube-api-access-q55
+      readOnly: true
+      mountPath: /var/run/secrets/kubernetes.io/serviceaccount  
   volumes:
   - name: maprvolume-source
     persistentVolumeClaim:
@@ -840,6 +843,29 @@ spec:
     configMap:
       name: httpd-config
       defaultMode: 420      
+  - name: kube-api-access-q55
+    projected:
+      sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            name: kube-root-ca.crt
+            items:
+             - key: ca.crt
+                  path: ca.crt
+        - downwardAPI:
+            items:
+              - path: namespace
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+        - configMap:
+            name: openshift-service-ca.crt
+            items:
+              - key: service-ca.crt
+                path: service-ca.crt
+        defaultMode: 420
   restartPolicy: Never
   backoffLimit: 4
 ```
