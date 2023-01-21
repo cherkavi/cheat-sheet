@@ -538,6 +538,10 @@ docker logs --since 2018-01-01T00:00:00 {CONTAINER ID}
 ### show processes from container
 ```
 docker top {CONTAINER ID}
+
+# https://github.com/bcicen/ctop
+# sudo apt-get install docker-ctop
+ctop
 ```
 
 ### run program inside container and attach to process
