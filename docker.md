@@ -18,6 +18,13 @@ sudo apt install docker.io
 sudo systemctl start docker
 sudo systemctl enable docker
 ```
+#### docker manager
+* [docker awesome tools](https://github.com/veggiemonk/awesome-docker)
+* [docker ui tool ui manager](https://github.com/jesseduffield/lazydocker)
+  ```sh
+  go install github.com/jesseduffield/lazydocker@latest
+  ```
+* https://github.com/portainer/portainer  
 ### bash completion
 ```
 curl -o ~/.docker-machine.bash  https://raw.githubusercontent.com/docker/machine/master/contrib/completion/bash/docker-machine.bash 
