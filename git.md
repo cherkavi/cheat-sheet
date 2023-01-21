@@ -809,6 +809,13 @@ git config --local receive.denyCurrentBranch updateInstead
 *.sh -crlf
 ```
 
+### http certificate ssl verification
+```sh
+git config --system http.sslcainfo C:\soft\git\usr\ssl\certs\ca-bundle.crt
+# or 
+git config --system http.sslverify false
+```
+
 ### download latest release from github, release download
 ```
 curl -s https://api.github.com/repos/bugy/script-server/releases/latest | grep browser_download_url | cut -d '"' -f 4
