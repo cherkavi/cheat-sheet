@@ -2371,6 +2371,12 @@ curl -s https://www.w3schools.com/xml/note.xml > $TEMP_FILE
 xmllint --xpath '//note/from' $TEMP_FILE
 xmllint --xpath 'string(//note/to)' $TEMP_FILE
 xmllint --xpath '//note/to/text()' $TEMP_FILE
+
+# avoid xmllint namespace check
+xmllint --xpath "//*[local-name()='project']/*[local-name()='modules']/*[local-name()='module']/text()" pom.xml
+# avoid issue with xmllint namespace
+cat pom.xml | sed '2 s/xmlns=".*"//g' | xmllint --xpath "/project/modules/module/text()" -
+
 # debug xml xpath debug 
 xmllint --shell  $TEMP_FILE
 rm $TEMP_FILE
