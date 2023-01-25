@@ -2397,6 +2397,12 @@ xmllint --noout file.xml; echo $?
 pip install hq
 curl https://www.w3schools.com/xml | hq '`title: ${/head/title}`'
 cat index.html | hq '/html/body/table/tr/td[2]/a/text()'
+# retrieve all classes
+cat p1-utf8.txt | hq '/html/body/table//p/@class'
+# retrieve all texts from 'p'
+cat p1-utf8.txt | hq '/html/body/table//p/text()'
+# retrieve all texts from 'p' with condition
+cat p1-utf8.txt | hq '/html/body/table//p[@class="MsoNormal"]/text()'
 ```
 
 ### chmod recursively
