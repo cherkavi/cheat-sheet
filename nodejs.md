@@ -153,6 +153,10 @@ npm install styled-components@5.2.1
 # if you don't know certain version
 npm install styled-components@^3.0.0
 ```
+## install with package registry
+```sh
+npm install needle@2.9.1 --registry=https://artifactory.ubs.net/artifactory/api/npm/external-npmjs-org/ --force
+```
 
 ## build project ( install dependencies )
 ```sh
