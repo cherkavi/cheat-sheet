@@ -75,9 +75,16 @@ node --report-uncaught-exception
 ```
 
 # npm
-## proxy
+## config
 ```sh
 npm config ls
+npm config list
+# how to set registry
+npm config set registry https://registry.npmjs.org/
+npm config delete registry
+```
+## proxy
+```sh
 npm config get https-proxy
 npm config set https-proxy [url:port]
 ```
