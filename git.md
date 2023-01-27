@@ -6,6 +6,7 @@
 ## useful links collection
 * [complex search in github ui](https://docs.github.com/en/enterprise-server@3.3/search-github/searching-on-github/searching-issues-and-pull-requests)
   > '-label:merge' - exclude label merge
+  > 'NOT text-not-in-body'
 
 ### git autocomplete
 ```sh
