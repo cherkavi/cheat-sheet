@@ -452,7 +452,7 @@ docker inspect {CONTAINER ID} | grep -i NETWORK
 ```sh
 working_dir="/path/to/working/folder"
 docker run --volume $working_dir:/work -p 6900-6910:5900-5910 --name my_own_container -it ubuntu:18.04 /bin/sh
-# !!! path to the host folder should be absolute !!! 
+# !!! path to the host folder should be absolute !!! attach current folder 
 docker run --entrypoint="" --name airflow_custom_local --interactive --tty --publish 8080:8080 --volume `pwd`/logs:/opt/airflow/logs --volume `pwd`/dags:/opt/airflow/dags airflow_custom /bin/sh 
 ```
 

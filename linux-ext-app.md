@@ -630,7 +630,7 @@ identify -format "%m" image.png     # format type
 identify -format "%wx%h" image.png  # width x height
 ```
 
-### image resize, image size, image rotation
+### image resize, image size, image rotation, image scale 
 ```sh
 # sudo apt-get install imagemagick
 # without distortion

@@ -1,9 +1,16 @@
-# installation
+# node
+
+## installation
 * [install NodeJS](https://github.com/nodejs/help/wiki/Installation)
 * [node multiversion manager](https://github.com/nvm-sh/nvm)
 * [install Angular](https://cli.angular.io/)
 
-# node
+### docker running
+```sh
+docker pull node
+docker run --volume `pwd`:/hostfolder -it node /bin/bash
+```
+
 ## command line arguments 
 ### RUNNING YOUR CODE
 ```sh
