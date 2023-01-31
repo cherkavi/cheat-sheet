@@ -726,14 +726,17 @@ scala>:paste
 ```
 
 # spark shell, spark-shell, spark2-shell
-## local execution
+## local execution, spark repl, local start
 ```sh
+# sdk install spark 
 spark-shell --deploy-mode client --master yarn
 ```
+	
 ## inline execution, execute file from command line
 ```sh
 spark-shell -i /path/to/file.scala
 ```
+	
 ## spark-shell to spark-submit
 code
 ```scala
