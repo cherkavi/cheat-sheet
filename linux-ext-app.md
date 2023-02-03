@@ -649,6 +649,20 @@ convert 1.pdf 2.pdf 3.pdf result.pdf
 # <policy domain="coder" rights="read|write| pattern="PDF" />
 ```
 
+### image change color image black and white image monochrome
+```sh
+convert $IMAGE_ORIGINAL -monochrome $IMAGE_CONVERTED
+convert $IMAGE_ORIGINAL -remap pattern:gray50 $IMAGE_CONVERTED
+convert $IMAGE_ORIGINAL -colorspace Gray $IMAGE_CONVERTED
+```
+
+### image text recognition ocr, text from image, text recognition
+```sh
+gocr $IMAGE_POST_CONVERTED
+# for color image play with parameter 0%-100% beforehand
+convert $IMAGE_ORIGINAL -threshold 75% $IMAGE_CONVERTED
+```
+
 ### get image info image metadata
 ```
 exiftool my_image.jpg
