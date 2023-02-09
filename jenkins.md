@@ -1,4 +1,5 @@
 ### links 
+* [jenkins build-in plugins documentation](https://www.jenkins.io/doc/pipeline/steps/)
 * [official book](https://jenkins.io/doc/book/pipeline/syntax/)
 * [official github](https://github.com/jenkinsci)
 * [pipeline description](https://jenkins.io/doc/book/pipeline/syntax/)
