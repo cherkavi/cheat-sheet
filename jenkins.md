@@ -346,6 +346,11 @@ copy jpi/hpi file into {JENKINS_HOME/plugins}
 https://{jenkins-url}/pluginManager/api/xml?depth=1
 ```
 
+### [email plugin](https://www.jenkins.io/doc/pipeline/steps/email-ext/)
+```groovy
+emailext body: mailNotification.toString(), subject: "notification", to: env.mail_recipients, mimeType: "text/plain"
+```
+
 
 ## Issues
 > ERROR: script not yet approved for use
