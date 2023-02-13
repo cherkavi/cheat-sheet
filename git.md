@@ -883,6 +883,14 @@ regex=^[A-Z].{0,71}[^?!.,:; ]
 
 
 ## advices
+### big monorepo increase git responsivnes
+```sh
+git config core.fsmonitor true
+git config core.untrackedcache true
+
+time git status
+```
+
 ### fix commit to wrong branch
 ![fix wrong branch commit](https://i.postimg.cc/TYVLR89Y/git-wrong-branch-commit.png)
 
