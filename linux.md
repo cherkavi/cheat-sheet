@@ -3238,15 +3238,19 @@ sudo fdisk -l
 ```sh
 \time -v date
 ```
-
-## Elapsed time between two commands
+### command time consumption
+```sh
+time curl google.com
 ```
+	
+### elapsed time between two commands
+```sh
 STARTTIME=$SECONDS
 sleep 2
 echo $SECONDS-$STARTTIME
 ```
 
-```
+```sh
 STARTTIME=`date +%s.%N`
 sleep 2.5
 ENDTIME=`date +%s.%N`
