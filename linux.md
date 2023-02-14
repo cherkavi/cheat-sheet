@@ -1418,6 +1418,11 @@ echo "ls" | xargs -i sh -c "{}"
 find . | xargs -I % sh -c 'md5sum %; ls -la %;'
 ```
 
+### run nacked terminal without bashrc 
+```sh
+bash --norc
+```
+	
 ### disconnect from terminal and let command be runned
 ```
 ctrl-Z
