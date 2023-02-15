@@ -1822,6 +1822,11 @@ unzip file.zip -d output_folder
 ```
 unzip -o file.zip -d output_folder
 ```
+### unzip one file
+```sh
+unzip -l $ARCHIVE_NAME
+unzip $ARCHIVE_NAME path/to/file/inside
+```
 
 ## tar
 ### tar archiving tar compression 
