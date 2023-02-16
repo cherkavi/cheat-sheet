@@ -148,7 +148,9 @@ mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -Darchetyp
 ```
 
 ### debug from IDE, IDE debug
-```-DforkCount=0 -DreuseForks=false -DforkMode=never ```
+```
+-DforkCount=0 -DreuseForks=false -DforkMode=never 
+```
 
 ### remote debug, remote projecess debug
 ``` 
@@ -163,6 +165,11 @@ mvn archetype:generate -DarchetypeGroupId=org.apache.karaf.archetypes -Darchetyp
 ### download single artifact, download jar
 ```
 mvn -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.4.0 dependency:get
+```
+
+### using another local repo
+```sh
+mvn clean package --batch-mode --no-transfer-progress -Dmaven.repo.local=/my/own/path/.m2/repository
 ```
 
 ### security settings
