@@ -216,29 +216,42 @@ git relog -5
 ```sh
 git log -5 develop --name-only
 ```
+
 ### check last commits by author, commits from all branches
 ```
 git log -10 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --all --author "Cherkashyn"
 ```
+
 ### list of authors, list of users, list of all users
 ```sh
 git shortlog -sne --all
 ```
+
 ### list of files by author, list changed files
 ```bash
 git whatchanged --author="Cherkashyn" --name-only 
 ```
+
 ### often changes by author, log files log with files
 ```bash
 git log --author="Cherkashyn" --name-status --diff-filter=M | grep "^M" | sort | uniq -c | sort -rh
 ```
+
 ### commit show files, files by commit
 ```sh
 git diff-tree --no-commit-id --name-only -r ec3772
 ```
+
 ### commit diff, show changes by commit, commit changes 
 ```sh
 git diff ec3772~ ec3772
+git diff ec3772~..ec3772
+```
+
+### apply diff apply patch
+```sh
+git diff ec3772~..ec3772 > patch.diff
+git apply patch.diff
 ```
 
 ### pretty log with tree
