@@ -65,7 +65,29 @@ config.xml
 ### stop jenkins
 {jenkins-url}/exit
 
-### Script how to find all accessible methods
+### connect to jenkins
+```sh
+JENKINS_HOST=jenkins-stg.vantage.com
+JENKINS_USER=cherkavi
+
+JENKINS_URL=https://$JENKINS_HOST
+```
+
+#### [jenkins connect via cli](https://www.jenkins.io/doc/book/managing/cli/)
+```sh
+# wget $JENKINS_URL/jnlpJars/jenkins-cli.jar
+java -jar jenkins-cli.jar -noCertificateCheck -s $JENKINS_URL help
+```
+
+#### connect via ssh
+```sh
+curl -Lv $JENKINS_URL/login 2>&1  | grep -i 'x-ssh-endpoint'
+# security settings: add public ssh 
+# $JENKINS_URL/user/$JENKINS_USER/configure -> SSH Public Keys
+
+# x-jenkins-cli-port: 50000
+ssh -l $JENKINS_USER -p 50000 $JENKINS_HOST help
+```
 
 ### Script Console ( Manage Jenkins )
 ```
