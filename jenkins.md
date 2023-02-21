@@ -89,6 +89,10 @@ curl -Lv $JENKINS_URL/login 2>&1  | grep -i 'x-ssh-endpoint'
 ssh -l $JENKINS_USER -p 50000 $JENKINS_HOST help
 ```
 
+### collaboration between steps, passing data between steps
+1. Set your variable export myenv=value1 and read in afterwards
+2. print to file `echo $START > env_start.txt` and read it afterwards `START=$(cat env_start.txt)`
+
 ### Script Console ( Manage Jenkins )
 ```
 Thread.getAllStackTraces().keySet().each() {
