@@ -26,6 +26,14 @@ ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "OU=Accounts,DC=vantage,DC=org"
 # in case of error message: No Kerberos credentials available
 kinit pen_import-s
 ```
+find all accounts in LDAP
+```sh
+# list of the accounts
+ldapsearch -LLL -o ldif-wrap=no -E pr=1000/noprompt -h $LDAP_HOST -b "DC=vantage,DC=org" samaccountname=r-d-ubs-developer member 
+# account name and e-mail 
+ldapsearch -LLL -o ldif-wrap=no -E pr=1000/noprompt -h $LDAP_HOST -b "DC=vantage,DC=org" cn="Vitalii Cherkashyn" samaccountname
+ldapsearch -LLL -o ldif-wrap=no -E pr=1000/noprompt -h $LDAP_HOST -b "DC=vantage,DC=org" cn="Vitalii Cherkashyn" samaccountname mail
+```
 
 ## Architecture
 ![image](https://user-images.githubusercontent.com/8113355/187679898-4631dc98-f763-4184-872b-989f91c46208.png)
