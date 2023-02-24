@@ -470,7 +470,7 @@ echo $my_password | ssh my_user@192.178.192.10
 ```
 
 #### copy ssh key to remote machine, 
-```
+```sh
 ssh-copy-id {username}@{machine ip}:{port}
 ssh-copy-id -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no vcherkashyn@bmw000013.adv.org
 # manual execution
@@ -478,6 +478,11 @@ cat ~/.ssh/id_rsa.pub | ssh vcherkashyn@bmw000013.adv.org 'cat >> ~/.ssh/authori
 
 # output nothing when ssh key exists, ssh check
 ssh-copy-id user@ubssp000013.vantagedp.com 2>/dev/null
+```
+after copying you can use ssh connection with inventory file
+```sh
+# id_rsa - your private key 
+ssh -i ~/.ssh/id_rsa vcherkashyn@bmw000013.adv.org
 ```
 
 #### automate copying password
