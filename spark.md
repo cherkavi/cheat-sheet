@@ -52,10 +52,10 @@ bin/spark-submit
 --deploy-mode <client | cluster>
 --conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"
 --driver-java-options "-Dlog4j.configuration=file:log4j-local-usage-only.xml" \
+--conf "spark.yarn.appMasterEnv.ENV_VARIABLE_NAME=value_for_master" \
 --jars <jar1>,<jar2>
 <jar with main>
 < application arguments>
-
 ```
 
 * conf/spark-env.sh
