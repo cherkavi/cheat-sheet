@@ -7,6 +7,17 @@
 * [value proposition template](https://www.strategyzer.com/canvas/value-proposition-canvas)
 * [12 factors app](https://12factor.net/)
 
+## books
+* Clean Architecture ( Robet C. Martin )
+* Domain-Driven Design: Tackling Complexity in the Heart of Software
+* Software Architecture in Practice ( Len Bass )
+* Patterns of Enterprise Application Architecture ( Martin Fowler )
+* Enterprise Integration Patterns ( Gregor Hohpe )
+* The Software Architect Elevator ( Grehor Hohpe )
+* 97 Things Every Software Architect Should Know ( Richard Monson )
+* 37 Things One Architect Knows ( Gregor Hohpe )
+* Software Architecture Patterns ( Mark Richards )
+
 ## What is architecture
 * Architecture != Tools & Frameworks
 * Postponing decisions about Tooling and frameworks
