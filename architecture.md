@@ -7,7 +7,7 @@
 * [value proposition template](https://www.strategyzer.com/canvas/value-proposition-canvas)
 * [12 factors app](https://12factor.net/)
 
-## books
+## [books](https://www.goodreads.com/shelf/show/software-architecture)
 * Clean Architecture ( Robet C. Martin )
 * Domain-Driven Design: Tackling Complexity in the Heart of Software
 * Software Architecture in Practice ( Len Bass )
