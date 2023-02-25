@@ -436,6 +436,13 @@ DAG_ID="test_dag2"
 airflow dags trigger -c $REQUEST_BODY  $DAG_ID
 ```
 
+### airflow re-run tasks, airflow clear task status
+```sh
+START_TIME=2023-02-07T09:03:16.827376+00:00
+END_TIME=2023-02-07T09:06:38.279548+00:00
+airflow clear $DAG_NAME -t $TASK_NAME -s $START_TIME -e $END_TIME
+```
+
 ### airlfow check dag execution
 ```
 curl -X GET -u $AIRFLOW_USER:$AIRFLOW_PASSWORD "$AIRFLOW_ENDPOINT/dags/$DAG_ID/dagRuns" | jq '.[] | if .state=="running" then . else empty end'
