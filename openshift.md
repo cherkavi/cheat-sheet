@@ -40,6 +40,25 @@ oc get pods -v=6
 oc get pods -v=7
 oc get pods -v=8
 ```
+```sh
+# 1..10
+oc --loglevel 9 get pod
+```
+### ocp output 
+```sh
+oc get pods -o json
+oc get pods -o yaml
+oc get pods -o wide
+oc get pods -o name
+
+oc get pods -o custom-columns=NAME:.metadata.name,RSRC:.metadata.resourceVersion
+# or data in file: template.txt
+# NAME          RSRC
+# metadata.name metadata.resourceVersion
+oc get pods -o custom-columns-file=template.txt
+
+oc get dc -o jsonpath-as-json={.items[*].spec.template.spec.volumes[*].persistentVolumeClaim.claimName}
+```
 
 ## REST api
 ### print collaboration, output rest api call, print api calls
@@ -73,10 +92,19 @@ oc login {url}
 check login
 ```sh
 oc whoami
-oc whoami -t
 # or 
 oc status | grep "on server"
 ```
+
+### using token after login multiterminal communication
+```sh
+# obtain user's token
+OCP_TOKEN=`oc whoami -t`
+
+# apply token in another terminal/machine
+oc whoami $OCP_TOKEN
+```
+
 ### login into openshift using token
 https://oauth-openshift.stg.zxxp.zur/oauth/token/display 
 ```sh

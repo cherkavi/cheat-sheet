@@ -23,6 +23,10 @@ sqlite3 mynewdatabase.db
 select * from index_de;
 .output
 ```
+## execute inline query
+```sh
+sqlite3 $DB_FILE "select count(*) from r_d_dxc_developer;"
+```
 
 ## create table and import
 ```sql

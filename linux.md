@@ -441,7 +441,7 @@ zbarimg ~/path-to-screenshot-of-barcode.png
 
 ### connect to remote machine via ssh without credentials
 ```
-# generate new RSA keys, create RSA
+# generate new RSA keys, create RSA, generate keys
 ssh-keygen -t rsa
 ```
 ( check created file /home/{user}/.ssh/id_rsa )
@@ -449,6 +449,10 @@ ssh-keygen -t rsa
 # if you have copied it, check permissions
 chmod 700 ~/.ssh
 chmod 700 ~/.ssh/*
+```
+#### print public ssh keys, ssh public keys
+```sh
+cat ~/.ssh/id_rsa.pub
 ```
 
 ### passphrase skip typing ssh-keygen without passphrase, avoid Enter passphrase for key
@@ -2413,6 +2417,8 @@ cat p1-utf8.txt | hq '/html/body/table//p/@class'
 cat p1-utf8.txt | hq '/html/body/table//p/text()'
 # retrieve all texts from 'p' with condition
 cat p1-utf8.txt | hq '/html/body/table//p[@class="MsoNormal"]/text()'
+# retrieve html tag table
+cat p1-utf8.txt | hq '//table'
 ```
 
 ### chmod recursively
