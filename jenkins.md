@@ -65,7 +65,33 @@ config.xml
 ### stop jenkins
 {jenkins-url}/exit
 
-### Script how to find all accessible methods
+### connect to jenkins
+```sh
+JENKINS_HOST=jenkins-stg.vantage.com
+JENKINS_USER=cherkavi
+
+JENKINS_URL=https://$JENKINS_HOST
+```
+
+#### [jenkins connect via cli](https://www.jenkins.io/doc/book/managing/cli/)
+```sh
+# curl -Lv $JENKINS_URL/login 2>&1  | grep -i 'cli-port'
+# wget $JENKINS_URL/jnlpJars/jenkins-cli.jar
+java -jar jenkins-cli.jar -noCertificateCheck -s $JENKINS_URL help
+```
+
+#### connect via ssh
+```sh
+# security settings: add public ssh 
+# $JENKINS_URL/user/$JENKINS_USER/configure -> SSH Public Keys
+
+curl -Lv $JENKINS_URL/login 2>&1  | grep -i 'x-ssh-endpoint'
+ssh -l $JENKINS_USER -p 50000 $JENKINS_HOST help
+```
+
+### collaboration between steps, passing data between steps
+1. Set your variable export myenv=value1 and read in afterwards
+2. print to file `echo $START > env_start.txt` and read it afterwards `START=$(cat env_start.txt)`
 
 ### Script Console ( Manage Jenkins )
 ```

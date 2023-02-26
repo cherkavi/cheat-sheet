@@ -381,6 +381,24 @@ request: ListComparatorRequest = ListComparatorRequest(context["dag_run"].conf)
 curl -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X GET "$ENDPOINT/test"
 ```
 
+### airflow scrab html, airflow download logs, airflow log parsing, airflow log downloader
+```sh
+AIRFLOW_URL="https://airflow.vantage.com"
+# target task list url 
+AIRFLOW_TASK_LIST="$AIRFLOW_URL/taskinstance/list/?_flt_0_task_id=my_task&_flt_0_state=failed&_oc_TaskInstanceModelView=execution_date&_od_TaskInstanceModelView=desc"
+AIRFLOW_HEADER='Cookie: iamlbcookie=01; AMProd=*AAJTSQACM...'
+```
+
+```sh
+curl "$AIRFLOW_TASK_LIST" -H "$AIRFLOW_HEADER" > out.html
+# change /log?-> /get_logs_with_metadata?
+# add to the end: &try_number=1&metadata=null
+for each_log_url in `cat out.html | hq '//table/tr/td[17]/a/@href' | awk -F 'href=' '{print $2}' | sed 's/\/log\?/\/get_logs_with_metadata/g' | sed -r 's/[\"\,]+//g' | awk '{print $1"&try_number=1&metadata=null"}'`; do
+    file_name=`echo $each_log_url | awk -F '[=&]' '{print $2}'`
+    curl $each_log_url -H "$AIRFLOW_HEADER" > $file_name
+done
+```
+
 ## airflow cli commandline console command
 https://airflow.apache.org/docs/apache-airflow/stable/usage-cli.html
 ```sh
@@ -416,6 +434,13 @@ REQUEST_BODY='{"conf":{"sku":"bff2-08275862a9b0","pool_for_execution":"test_pool
 DAG_ID="test_dag2"
 
 airflow dags trigger -c $REQUEST_BODY  $DAG_ID
+```
+
+### airflow re-run tasks, airflow clear task status
+```sh
+START_TIME=2023-02-07T09:03:16.827376+00:00
+END_TIME=2023-02-07T09:06:38.279548+00:00
+airflow clear $DAG_NAME -t $TASK_NAME -s $START_TIME -e $END_TIME
 ```
 
 ### airlfow check dag execution
