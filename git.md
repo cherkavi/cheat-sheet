@@ -105,6 +105,9 @@ git branch -D origin/release/2018.05.00.12-test
 # the same as
 git branch -d -f release-6.9.0
 git branch --delete --force origin/release/2018.05.00.12-test
+
+# branch my-branch-name not found
+git push origin --delete my-branch-name
 ```
 
 ### delete remote branch, remove remote, remove remote branch
