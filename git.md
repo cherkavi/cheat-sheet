@@ -157,10 +157,16 @@ git push --force-with-lease origin my_branch
 git rev-parse "remotes/origin/release-6.0.0"
 ```
 
-### print current hashcode commit hash last commit hash
+### print current hashcode commit hash last commit hash, custom log output
 ```sh
 git rev-parse HEAD
 git log -n 1 --pretty=format:'%h' > /tmp/gitHash.txt
+```
+
+### [custom log output, specific fields](https://devhints.io/git-log-format)
+```sh
+# print author of the last commit
+git log -1 remotes/origin/patch-1 --pretty=format:'%an'
 ```
 
 ### print branch name by hashcode to branch name show named branches branchname find branch by hash
