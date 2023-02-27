@@ -78,7 +78,23 @@ JENKINS_URL=https://$JENKINS_HOST
 # curl -Lv $JENKINS_URL/login 2>&1  | grep -i 'cli-port'
 # wget $JENKINS_URL/jnlpJars/jenkins-cli.jar
 java -jar jenkins-cli.jar -noCertificateCheck -s $JENKINS_URL help
+
+java -jar jenkins-cli.jar -s $JENKINS_URL -webSocket -auth $JENKINS_USER:$JENKINS_API_TOKEN help
+java -jar jenkins-cli.jar -s $JENKINS_URL -noCertificateCheck -auth $JENKINS_USER:$JENKINS_API_TOKEN help
 ```
+
+### connect via ssh
+```sh
+curl -Lv $JENKINS_URL/login 2>&1  | grep -i 'x-ssh-endpoint'
+# security settings: add public ssh 
+# $JENKINS_URL/user/$JENKINS_USER/configure -> SSH Public Keys
+
+# x-jenkins-cli-port: 50000
+ssh -l $JENKINS_USER -p 50000 $JENKINS_HOST help
+
+java -jar jenkins-cli.jar -s $JENKINS_URL -ssh -user $JENKINS_USER -i ~/.ssh/id_rsa -logger FINE
+```
+
 
 #### connect via ssh
 ```sh
