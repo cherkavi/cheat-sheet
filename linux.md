@@ -2669,6 +2669,13 @@ nmcli device wifi connect  "$point" password $wifi_code
 ```sh
 sudo openconnect --no-proxy {ip-address} --user={user name}
 sudo openconnect --no-cert-check --no-proxy {ip-address} --user={user name} ---servercert
+
+FILE_CERT_CA=WLAN_CA.crt
+FILE_USER_KEY=xxx.ubs.corp.key
+FILE_USER_CERT=xxx.ubs.corp.crt
+URL_VPN=https://vpn.ubs.com
+USER_VPN=xxxyyyzzz
+sudo openconnect --no-proxy --user=$USER_VPN --authgroup='YubiKey+PIN' --cafile=$FILE_CERT_CA --sslkey=$FILE_USER_KEY --certificate=$FILE_USER_CERT $URL_VPN	
 ```
 ### openvpn vpn connection
 ```sh
