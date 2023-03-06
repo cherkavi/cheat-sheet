@@ -853,6 +853,7 @@ sudo docker push $DOCKER_REGISTRY/$OC_PROJECT/$DOCKER_LOCAL_REPO:$DOCKER_LOCAL_T
 * for a starting points ( FROM ) using -alpine or -scratch images, for example: "FROM python:3.6.1-alpine"
 * Each line in a Dockerfile creates a new layer, and because of the layer cache, the lines that change more frequently, for example, adding source code to an image, should be listed near the bottom of the file.
 * CMD will be executed after COPY
+* microdnf - minimal package manager
 ```
 FROM python:3.6.1-alpine
 RUN pip install flask
