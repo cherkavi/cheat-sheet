@@ -12,6 +12,7 @@
 * [podcasts](https://awsstash.com/)
 * [labs](https://github.com/awslabs)
 * [samples](https://github.com/aws-samples)
+* [pricing for aws]( pricing.aws )
 
 ### console command completion, console completion
 ```sh
