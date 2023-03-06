@@ -11,6 +11,7 @@
 * Docker Swarm
 * Docker HUB
 * Docker Cloud
+### [docker code checker](https://www.checkov.io/2.Basics/Installing%20Checkov.html)
 
 ### installation ( Debian )
 ```
