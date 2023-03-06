@@ -1,4 +1,5 @@
 # Links
+* [download/install](https://developer.hashicorp.com/terraform/downloads)  
 * [registry](https://registry.terraform.io/)
 * [documentation](https://www.terraform.io/docs/index.html)
 * [configuration language](https://www.terraform.io/docs/configuration/index.html)
