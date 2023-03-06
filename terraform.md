@@ -9,6 +9,8 @@
 * [terraform core](https://github.com/hashicorp/terraform)
 * [terraform providers](https://github.com/hashicorp/terraform-providers)
 * [terraform examples](https://www.terraform.io/intro/examples/index.html)
+* [terraform code checker](https://www.checkov.io/2.Basics/Installing%20Checkov.html)
+  > `pip3 install checkov`
 
 
 Workflow
