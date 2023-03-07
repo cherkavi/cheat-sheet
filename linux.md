@@ -3056,9 +3056,14 @@ echo -n "just a text string " | base64
 printf "just a text string " | base64 
 ```
 
-### md5
+### md5 digest
 ```
-md5sum
+echo -n foobar | sha256sum
+
+md5sum filename
+sha224sum filename
+sha384sum filename
+sha512sum filename
 ```
 
 ## driver install hardware
