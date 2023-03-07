@@ -51,11 +51,17 @@ Credentials specified in the shared credentials file have precedence over creden
 ```sh
 vim ~/.aws/credentials
 ```
-```
+```properties
 [cherkavi-user]
 aws_access_key_id = AKI...
 aws_secret_access_key = ur1DxNvEn...
 aws_session_token = FwoG....
+```
+or 
+```sh
+aws configure set aws_session_token "Your-value" --profile cherkavi-user
+# or
+aws configure set cherkavi-user.aws_session_token "Your-value" 
 ```
 using profiling
 >  --region, --output, --profile 
