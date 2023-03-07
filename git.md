@@ -692,7 +692,7 @@ git clone http://localhost:3000/vitalii/sensor-yaml.git
 wget http://localhost:3000/vitalii/sensor-yaml.git/info/refs?service=git-upload-pack
 ```
 
-### clone only files without history, download code
+### clone only files without history, download code copy repo shallow copy
 ```
 git clone --depth 1 https://github.com/kubernetes/minikube
 ```
