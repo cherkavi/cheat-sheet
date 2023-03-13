@@ -1001,6 +1001,61 @@ mvn verify -Denable-docker-build
             </plugin>
 ```
 
+### [multiple java versions](https://maven.apache.org/guides/mini/guide-using-toolchains.html)
+```xml
+<?xml version="1.0" encoding="UTF8"?>
+<toolchains>
+    <toolchain>
+        <type>jdk</type>
+        <provides>
+            <id>jdk8</id>
+            <version>8</version>
+            <vendor>openjdk</vendor>
+        </provides>
+        <configuration>
+            <jdkHome>/path/to/jdk8</jdkHome>
+        </configuration>
+    </toolchain>
+    <toolchain>
+        <type>jdk</type>
+        <provides>
+            <id>jdk13</id>
+            <version>13</version>
+            <vendor>openjdk</vendor>
+        </provides>
+        <configuration>
+            <jdkHome>/path/to/jdk13</jdkHome>
+        </configuration>
+    </toolchain>
+</toolchains>
+```
+```xml
+<properties>
+  <jdk.version>8</jdk.version>
+</properties>
+```
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-toolchains-plugin</artifactId>
+    <version>${maven-toolchains-plugin.version}</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>toolchain</goal>
+            </goals>
+        </execution>
+    </executions>
+    <configuration>
+        <toolchains>
+            <jdk>
+                <version>${jdk.version}</version>
+            </jdk>
+        </toolchains>
+    </configuration>
+</plugin>
+```
+
 # Archetypes
 ## The desired archetype does not exist
 ```sh
