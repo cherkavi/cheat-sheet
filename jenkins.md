@@ -331,6 +331,26 @@ pipeline {
 // # echo "gts-pd-sergtsop" | rev
 ```
 
+### pipeline with bash script and specific agent
+```groovy
+pipeline {
+    agent { label 'agent-maven-python-git-ansible' }
+
+    stages {
+        stage('print message ') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('print ansible version'){
+            steps {
+                sh 'ansible-playbook --version'
+            }
+        }
+    }
+}
+```
+
 ## REST API
 deploy with parameters
 ```sh
