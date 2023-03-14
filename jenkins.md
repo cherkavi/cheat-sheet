@@ -350,6 +350,8 @@ pipeline {
     }
 }
 ```
+### show accessible environment jenkins variables
+$JENKINS_URL/env-vars.html/
 
 ## REST API
 deploy with parameters
