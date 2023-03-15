@@ -6,6 +6,7 @@
 * [configuration and monitoring](https://courses.cognitiveclass.ai/asset-v1:BigDataUniversity+BD0211EN+2016+type@asset+block/Exercise_5.pdf)
 * [Mastering apache spark](https://jaceklaskowski.gitbooks.io/mastering-apache-spark/)
 * [spark performance troubleshooting, spark listeners](https://github.com/LucaCanali/sparkMeasure)
+* [spark dynamic resource allocation](https://spark.apache.org/docs/latest/configuration.html#dynamic-allocation)
 
 ![Spark-ecosystem.png](https://i.postimg.cc/g2JXhcK9/Spark-ecosystem.png)
 ![lifecycle](https://i.postimg.cc/WpZrZ4dQ/spark-app-lifecycle.png)
