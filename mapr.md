@@ -313,7 +313,10 @@ mapred queue -showacls | grep SUBMIT_APPLICATIONS
 
 
 ## MapRDB 
-DBShell commands
+### application connector
+> preferred way for making connection to MapRDB - OJAI 
+
+### DBShell commands
 * [commands](https://docs.datafabric.hpe.com/61/ReferenceGuide/tablecommands.html)  
 * [dbshell examples](https://github.com/mapr-demos/mapr-db-cdc-sample)  
 * [dbshell commands](https://docs.datafabric.hpe.com/62/ReferenceGuide/mapr_dbshell.html)  
