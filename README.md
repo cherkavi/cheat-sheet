@@ -34,6 +34,9 @@
 * [code lines counter](https://github.com/XAMPPRocky/tokei)
 * [code secrets finder code passwords checker](https://github.com/sirwart/ripsecrets)
 
+### code changer
+* [auto code refactoring](https://docs.openrewrite.org/running-recipes/getting-started)
+
 ### visual database ide
 * [Azure Data Studio](https://azure.microsoft.com/products/data-studio)
 * [DbGate](https://dbgate.org/)
