@@ -1,25 +1,24 @@
-* [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
-* [sdk](https://aws.amazon.com/tools/)  
-* shell script ``` apt install aws-shell ```
+# AWS 
+## links
+### trainings
 * [online trainings](https://www.aws.training/)
 * [online trainings, current education](https://www.aws.training/Account/Transcript/Current)
+* [online trainings skill builder](https://explore.skillbuilder.aws/learn)
 * [youtube videos](https://hackmd.io/@gekart)
-* [Architecture](https://wa.aws.amazon.com/index.en.html)
 * [certification preparation](https://aws.amazon.com/certification/certification-prep/)
-* [hand on](https://aws.amazon.com/getting-started/hands-on/)
-* [serverless](https://serverlessland.com/)
-* [workshops](https://www.workshops.aws/)
-* [podcasts](https://awsstash.com/)
 * [labs](https://github.com/awslabs)
+* [workshops](https://www.workshops.aws/)
+
+### examples
 * [samples](https://github.com/aws-samples)
+* [hand on](https://aws.amazon.com/getting-started/hands-on/)
+
+### others
+* [serverless](https://serverlessland.com/)
+* [Architecture](https://wa.aws.amazon.com/index.en.html)
+* [podcasts](https://awsstash.com/)
 * [pricing for aws]( pricing.aws )
 
-### console command completion, console completion
-```sh
-pip3 install awscli
-#complete -C `locate aws_completer` aws
-complete -C /usr/local/bin/aws_completer aws
-```
 
 ## init variables
 ### inline initialization
@@ -34,19 +33,29 @@ AWS_REGION=eu-central-1
 . /home/projects/current-project/aws.sh
 ```
 
+## [sdk](https://aws.amazon.com/tools/)  
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
-### [installation of AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
+  > [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
+### [installation of AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 ```sh
 # installation
-apt install aws
+sudo apt install awscli
+pip install awscli
 # set up user
 aws configuration
 ```
+
+### console command completion, console completion
+```sh
+pip3 install awscli
+#complete -C `locate aws_completer` aws
+complete -C /usr/bin/aws_completer aws
+```
+
 ### [aws cli config](https://docs.aws.amazon.com/cli/latest/topic/config-vars.html)
 be aware about precedence:
 Credentials from environment variables have precedence over credentials from the shared credentials and AWS CLI config file.   
 Credentials specified in the shared credentials file have precedence over credentials in the AWS CLI config file. 
-
 
 ```sh
 vim ~/.aws/credentials
@@ -70,8 +79,15 @@ aws s3 ls --profile $AWS_PROFILE
 ```
 ### set AWS credentials via command line
 ```sh
+# aws cli version 2
 aws configure set aws_access_key_id <yourAccessKey>
 aws configure set aws_secret_access_key <yourSecretKey>
+# aws configure set aws_session_token <yourToken>
+
+# aws cli version 1
+aws configure set ${AWS_PROFILE}.aws_access_key_id ...
+aws configure set ${AWS_PROFILE}.aws_secret_access_key ...
+# aws configure set ${AWS_PROFILE}.aws_session_token ...
 ```
 ### debugging
 ```sh
@@ -89,6 +105,12 @@ aws configure get aws_access_key_id
 aws configure get default.aws_access_key_id
 aws configure get $AWS_PROFILE.aws_access_key_id
 aws configure get $AWS_PROFILE.aws_secret_access_key
+```
+
+## set configuration 
+```sh
+aws configure set region $AWS_PROFILE
+aws configure set ${AWS_PROFILE}.aws_access_key_id ...
 ```
 
 ## url to cli documentation, faq, collection of questions, UI 
@@ -111,7 +133,11 @@ echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-ex
 
 ## [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
 
-
+---
+## [resource sql query](https://docs.aws.amazon.com/config/latest/developerguide/query-using-sql-editor-cli.html)
+```sh
+aws configservice select-resource-config --expression "SELECT resourceId WHERE resourceType='AWS::EC2::Instance'"
+```
 ---
 ## IAM - Identity Access Manager
 [IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)  
@@ -164,6 +190,10 @@ AWS_BUCKET_NAME="my-bucket-name"
 aws s3 mb s3://$AWS_BUCKET_NAME
 aws s3 mb s3://$AWS_BUCKET_NAME --region us-east-1 
 
+# https://docs.aws.amazon.com/cli/latest/reference/s3api/create-bucket.html
+# public access - Block all public access - Off
+aws s3api create-bucket --bucket $AWS_BUCKET_NAME --acl public-read-write
+
 # enable mfa delete
 aws s3api put-bucket-versioning --bucket $AWS_BUCKET_NAME --versioning-configuration Status=Enabled,MFADelete=Enabled --mfa "arn-of-mfa-device mfa-code" --profile root-mfa-delete-demo
 # disable mfa delete
@@ -173,7 +203,7 @@ aws s3api put-bucket-versioning --bucket $AWS_BUCKET_NAME --versioning-configura
 aws s3 ls
 aws s3api list-buckets
 aws s3api list-buckets --query "Buckets[].Name"
-# get bucket location
+# Bucket Policy, public read ( Block all public access - Off )
 aws s3api get-bucket-location --bucket $AWS_BUCKET_NAME
 # copy to s3, upload file less than 5 Tb
 aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME
@@ -221,6 +251,9 @@ aws s3api get-object --bucket $AWS_S3_BUCKET_NAME --version-id $VERSION_ID --key
 
 # history object history list
 aws s3api list-object-versions --bucket $AWS_S3_BUCKET_NAME --prefix $AWS_FILE_KEY | jq '.Versions[]' | jq '[.LastModified,.Key,.VersionId] | join(" ")' | grep -v "_response" | sort | sed "s/\"//g"
+
+# remove bucket
+asw s3 rb $AWS_BUCKET_NAME
 ```
 
 policy
@@ -352,8 +385,13 @@ readonly policy
 }
 ```
 ```sh
-# write secret
+# create secret
 aws secretsmanager put-secret-value --secret-id MyTestDatabaseSecret --secret-string file://mycreds.json
+
+# create secret for DB
+aws secretsmanager create-secret \
+    --name $DB_SECRET_NAME \
+    --secret-string "{\"engine\":\"mysql\",\"username\":\"$DB_LOGIN\",\"password\":\"$DB_PASSWORD\",\"dbname\":\"$DB_NAME\",\"port\": \"3306\",\"host\": $DB_ADDRESS}"
 ```
 
 ---
@@ -695,41 +733,69 @@ $current_browser https://$AWS_REGION.console.aws.amazon.com/dynamodb/home?region
 ```
 
 ```sh
+# list of tables
+aws dynamodb list-tables
+
+TABLE_NAME=my_table
+# create table from CLI
+aws dynamodb wizard new-table
+
 # create table from CLI
 aws dynamodb create-table \
---table-name my_table \
+--table-name $TABLE_NAME \
 --attribute-definitions \
   AttributeName=column_id,AttributeType=N \
   AttributeName=column_name,AttributeType=S \
 --key-schema \
   AttributeName=column_id,KeyType=HASH \
-  AttributeName=column_anme,KeyType=RANGE \
+  AttributeName=column_name,KeyType=RANGE \
 --billing-mode=PAY_PER_REQUEST \
 --region=$AWS_REGION
 
+# describe table 
+aws dynamodb describe-table --table-name $TABLE_NAME
+
 # write item, write into DynamoDB
 aws dynamodb put-item \
---table-name my_table \
+--table-name $TABLE_NAME \
 --item '{"column_1":{"N":1}, "column_2":{"S":"first record"} }'
 --region=$AWS_REGION
 --return-consumed-capacity TOTAL
 
 # update item 
 aws dynamodb put-item \
---table-name my_table \
---key '{"column_1":{"N":1}, "column_2":{"S":"first record"} }'
---update-expression "SET country_name=:new_name"
---expression-attribute-values '{":new_name":{"S":"first"} }'
---region=$AWS_REGION
+--table-name $TABLE_NAME \
+--key '{"column_1":{"N":1}, "column_2":{"S":"first record"} }' \
+--update-expression "SET country_name=:new_name" \
+--expression-attribute-values '{":new_name":{"S":"first"} }' \
+--region=$AWS_REGION \
 --return-value ALL_NEW
+
+aws dynamodb update-item --table-name $TABLE_NAME \
+--key '{"column_1":{"N":"1"}}' \
+--attribute-updates '{"column_1": {"Value": {"N": "1"},"Action": "ADD"}}' \
+--return-values ALL_NEW
 
 # select records
 aws dynamodb query \
-  --table-name my_table \
+  --table-name $TABLE_NAME \
   --key-condition-expression "column_1 = :id" \
   --expression-attribute-values '{":id":{"N":"1"}}' \
   --region=$AWS_REGION
   --output=table
+
+aws dynamodb scan --table-name $TABLE_NAME \
+--filter-expression "column_1 = :id" \
+--expression-attribute-values '{":id":{"N":"1"}}'
+
+# read all items
+aws dynamodb scan --table-name $TABLE_NAME
+
+# delete item
+aws dynamodb delete-item --table-name $TABLE_NAME --key '{"column_1":{"N":"2"}}'
+
+# delete table
+aws dynamodb delete-table --table-name $TABLE_NAME
 ```
 
 
