@@ -80,7 +80,7 @@ ll my_ssh_key.pem
 ansible all -i desp000111.vantage.zur, --user=vitalii.cherkashyn -e ansible_ssh_private_key_file=my_ssh_key.pem -m "ping" -vvv
 ```
 
-### ini file
+### inventory ini file
 ```properties
 # example cfg file
 [web]
@@ -95,6 +95,19 @@ myvar=23 # defined in a :vars section, interpreted as a string
 ## execute with specific remote python version, remote python, rewrite default variables, rewrite variables, override variable  
 ```
 --extra-vars "remote_folder=$REMOTE_FOLDER ansible_python_interpreter=/usr/bin/python"
+```
+
+## execute minimal playbook locally minimal example start
+check-variable.yaml file
+```yaml
+- hosts: localhost
+  tasks:
+  - name: echo variable to console
+    ansible.builtin.debug:
+      msg: System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}
+```
+```sh
+ansible-playbook check-variable.yaml  -v
 ```
 
 ## execute ansible for one host only, one host, one remove server, verbosity
