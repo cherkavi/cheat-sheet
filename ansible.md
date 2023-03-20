@@ -540,12 +540,12 @@ bigger piece of code
         src:  templates/configfile.j2
         dest: "{{ temp_config.path }}"
 ```
-# [modules](https://github.com/ansible/ansible/tree/devel/lib/ansible/modules)
-* [create custom module](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html)
+# [modules](https://github.com/ansible/ansible/tree/devel/lib/ansible/modules)  
+* [create custom module](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html)  
 ## settings for modules
 also need to 'notify' ansible about module giving one of the next option:
-* add your folder with module to environment variable ANSIBLE_LIBRARY
-* update $HOME/.ansible.cfg
+* add your folder with module to environment variable ANSIBLE_LIBRARY  
+* update $HOME/.ansible.cfg  
   ```properties
   library=/path/to/module/library
   ```
@@ -892,9 +892,8 @@ ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_
 ```
 
 # modules
-[list of all modules](https://docs.ansible.com/ansible/devel/modules/list_of_all_modules.html)
-[custom module playground](https://ansible-playable.com)
-[custom module creation doc](docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html)
+* [list of built in modules](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html)  
+* [custom module creation doc](docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html)  
 
 ### [apt](https://docs.ansible.com/ansible/latest/modules/apt_module.html), python installation 
 ```
