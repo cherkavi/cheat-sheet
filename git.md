@@ -583,6 +583,7 @@ git log --pretty=format:"%h - %an, %ar : %s" <commit SHA> -1
 ```
 git blame path/to/file
 git blame path/to/file | grep search_line
+git blame -CM -L 1,5 path/to/file/parameters.py
 ```
 
 ### git into different repository, different folder, another folder, not current directory
