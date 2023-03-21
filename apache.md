@@ -19,7 +19,18 @@ chkconfig httpd on
 vim /var/www/html/index.html
 ```
 
-debian
+debian apache simple installation
+```
+#!/bin/sh
+sudo apt update
+sudo apt install apache2 -y
+sudo ufw allow 'Apache'
+sudo systemctl start apache2
+# Create a new index.html file at  /var/www/html/ path
+echo "<html> <head><title>server 01</title> </head> <body><h1>This is server 01 </h1></body> </html>" > /var/www/html/index.html
+```
+
+debian apache installation
 ```sh
 # installation
 sudo su
