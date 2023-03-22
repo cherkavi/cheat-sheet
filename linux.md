@@ -1923,8 +1923,14 @@ echo $?
 ```
 
 ### memory dump
-```
+```sh
 cat /proc/meminfo
+```
+
+### memory limit memory usage
+```sh
+cat /sys/fs/cgroup/memory/memory.limit_in_bytes
+cat /sys/fs/cgroup/memory/memory.usage_in_bytes
 ```
 
 ### max open files
