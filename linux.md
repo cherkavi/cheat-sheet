@@ -2322,7 +2322,10 @@ dig www.google.com | jc --dig --pretty
 ```
 
 ### [json parser json parsing parse json parsing json json processing json query](https://stedolan.github.io/jq/manual/)
-[jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})  
+* [json tool json walk json analyzer](https://github.com/antonmedv/fx)
+  > snap install fx
+* [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})  
+
 jq is not working properly with "-" character in property name !!!  
 ```bash
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
