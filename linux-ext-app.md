@@ -714,3 +714,12 @@ x-www-browser https://dashboard.ngrok.com/tunnels/agents
 # how to start as a service
 # https://github.com/cherkavi/cheat-sheet/blob/master/linux.md#ngrok
 ```
+
+## stress test memory test
+```sh
+apt update; apt install -y stress
+```
+start process with occupying certainly 100 Mb
+```sh
+stress --vm 1 --vm-bytes 100M
+```
