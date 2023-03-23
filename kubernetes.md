@@ -701,6 +701,10 @@ user ----> Route -----> Service ----> Deployment
 ```
 kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
 ```
+### start ubuntu and open shell
+```sh
+kubectl run --restart=Never --rm -it --image=ubuntu --limits='memory=123Mi' -- sh
+```
 
 ### create deployment ( with replica set )
 ```
