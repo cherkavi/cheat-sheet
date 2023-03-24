@@ -407,7 +407,10 @@ usersDF.select("name", "favorite_color").write.save("namesAndFavColors.parquet")
 or
 ```
 val df=spark.read.format("parquet").load(pathToFile)
-df.filter(df("streamName") === "FAT").show
+df.filter("streamName like 'BN'").show
+df.filter("streamName == 'FASETH'").show
+df.filter(df("value") === "DAY").show
+
 ```
 or
 ```
