@@ -406,6 +406,11 @@ usersDF.select("name", "favorite_color").write.save("namesAndFavColors.parquet")
 ```
 or
 ```
+val df=spark.read.format("parquet").load(pathToFile)
+df.filter(df("streamName") === "FAT").show
+```
+or
+```
 val peopleDF = spark.read.format("json").load("resources/people.json")
 peopleDF.select("name", "age").write.format("parquet").save("namesAndAges.parquet")
 ```
