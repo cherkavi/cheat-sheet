@@ -649,11 +649,12 @@ convert 1.pdf 2.pdf 3.pdf result.pdf
 # <policy domain="coder" rights="read|write| pattern="PDF" />
 ```
 
-### image change color image black and white image monochrome
+### image change color image black and white image monochrome imagemagic 
 ```sh
 convert $IMAGE_ORIGINAL -monochrome $IMAGE_CONVERTED
 convert $IMAGE_ORIGINAL -remap pattern:gray50 $IMAGE_CONVERTED
 convert $IMAGE_ORIGINAL -colorspace Gray $IMAGE_CONVERTED
+convert $IMAGE_ORIGINAL -channel RGB -negate $IMAGE_CONVERTED
 ```
 
 ### image text recognition ocr, text from image, text recognition
