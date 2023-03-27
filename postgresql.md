@@ -297,6 +297,14 @@ pg_dump --host $PG_HOST --port $PG_PORT --username $PG_USER --dbname $PG_DB --sc
 \d+ schema_name.table_name
 ```
 
+### copy schema copy data
+```sh
+SCHEMA_NAME=my_postgre_schema
+pg_dump -n $SCHEMA_NAME > $SCHEMA_NAME.dump.sql
+# vim $SCHEMA_NAME.dump.sql # rename schema name to new one
+psql -f $SCHEMA_NAME.dump.sql
+```
+
 ## Specific types
 ```sql
 -- varying is alias for varchar
@@ -304,3 +312,4 @@ ADD COLUMN IF NOT EXISTS modifiedBy character varying(10485760) COLLATE pg_catal
 -- the same as 
 ADD COLUMN IF NOT EXISTS modifiedBy character varying COLLATE pg_catalog."default"
 ```
+
