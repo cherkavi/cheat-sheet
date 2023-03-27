@@ -2275,13 +2275,13 @@ curl "http://some.resource/read_book.php?id=66258&p=1" | iconv --from-code WINDO
 
 ### [curl with parsing, curl part of the page ](https://github.com/cherkavi/python-utilities/blob/master/html-scraping/lxml/curl-output-html-parser.py#L10)
 
-### curl status code, curl response code
+### curl status code, curl response code, curl duration
 ```sh
 airflow_trigger(){
   SESSION_ID=$1
   ENDPOINT=$2
   BODY='{"conf":{"session_id":"'$SESSION_ID'","branch":"merge_labels"}}'
-  curl --silent -w "response-code: %{http_code}\n" --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT
+  curl --silent -w "response-code: %{http_code}\n   time: %{time_starttransfer}" --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT
   return $?
 }
 DAG_NAME='labeling'
