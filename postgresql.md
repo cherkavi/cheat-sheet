@@ -305,6 +305,15 @@ pg_dump -n $SCHEMA_NAME > $SCHEMA_NAME.dump.sql
 psql -f $SCHEMA_NAME.dump.sql
 ```
 
+### users connections
+```sql
+-- list of connections
+SELECT pg_stat_activity.pid FROM pg_stat_activity WHERE pg_stat_activity.datname = 'postgres' AND pid != pg_backend_pid();
+ 
+-- kill other connections
+SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'postgres' AND pid != pg_backend_pid();
+```
+
 ## Specific types
 ```sql
 -- varying is alias for varchar
