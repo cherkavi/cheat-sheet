@@ -52,7 +52,6 @@
 * Assumptions
 * Risks
 
-
 ## Togaf
 ![togaf phases](https://pubs.opengroup.org/architecture/archimate3-doc/ts_archimate_3.1-final_files/image299.png){:height="250px"}
 ![base-target](https://i.postimg.cc/SxzC9f9z/togaf-base-target.png)
@@ -60,7 +59,7 @@
 ![togaf aspects](https://i.postimg.cc/BbmmWbML/archimate-01.png)  
 ![togaf metamodel](https://i.postimg.cc/fLZCJmPS/archimate-04.png)  
 
-### Archimate
+## Archimate
 ### useful links
 * [specification](https://pubs.opengroup.org/architecture/archimate3-doc/)
 * [guide](https://www.visual-paradigm.com/guide/archimate/full-archimate-viewpoints-guide/)
@@ -77,3 +76,9 @@
 
 ### Archimate with Sequence diagram
 ![image](https://user-images.githubusercontent.com/8113355/206921007-21643c2b-da3f-4930-a79c-4462562017e1.png)
+
+## UML diagrams
+### Structure 
+### Behavior
+#### Behavior of itself
+#### Behavior with other / Interaction 
