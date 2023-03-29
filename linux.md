@@ -2321,7 +2321,7 @@ jc --pretty ls -la
 dig www.google.com | jc --dig --pretty
 ```
 
-### [json parser json parsing parse json parsing json json processing json query](https://stedolan.github.io/jq/manual/)
+### jq [json parser json parsing parse json parsing json json processing json query](https://stedolan.github.io/jq/manual/)
 * [json tool json walk json analyzer](https://github.com/antonmedv/fx)
   > snap install fx
 * [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})  
@@ -2347,6 +2347,9 @@ aws s3api list-object-versions --bucket $AWS_S3_BUCKET_NAME --prefix $AWS_FILE_K
 echo '{"smart_collections":[{"id":270378401973},{"id":270378369205}]}' | jq '. "smart_collections" | .[] | .id'
 
 jq 'if .attributes[].attribute == "category" and (.attributes[].normalizedValues != null) and (.attributes[].normalizedValues | length )>1 then . else empty end'
+	
+# jq remove quotas raw text
+jq -r ".DistributionList.Items[].Id"
 ```
 
 ### json compare json diff
