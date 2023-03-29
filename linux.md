@@ -2350,6 +2350,11 @@ jq 'if .attributes[].attribute == "category" and (.attributes[].normalizedValues
 	
 # jq remove quotas raw text
 jq -r ".DistributionList.Items[].Id"
+
+# edit variables inside JSON file
+ENV_DATA=abcde
+jq --arg var_a "$ENV_DATA" '.ETag = $var_a' cloud_front.json
+jq '.Distribution.DistributionConfig.Enabled = false' cloud_front.json
 ```
 
 ### json compare json diff
