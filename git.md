@@ -727,7 +727,7 @@ git worktree prune
 ```
 
 
-### git lfs
+### [git lfs](https://git-lfs.com/)
 [package update](https://packagecloud.io/github/git-lfs/install)
 ```sh
 echo 'deb http://http.debian.net/debian wheezy-backports main' > /etc/apt/sources.list.d/wheezy-backports-main.list
