@@ -89,7 +89,7 @@ aws configure set ${AWS_PROFILE}.aws_access_key_id ...
 aws configure set ${AWS_PROFILE}.aws_secret_access_key ...
 # aws configure set ${AWS_PROFILE}.aws_session_token ...
 ```
-### debugging
+### debugging collaboration verbosity full request
 ```sh
 aws --debug s3 ls --profile $AWS_PROFILE
 ```
@@ -205,6 +205,9 @@ aws s3api list-buckets
 aws s3api list-buckets --query "Buckets[].Name"
 # Bucket Policy, public read ( Block all public access - Off )
 aws s3api get-bucket-location --bucket $AWS_BUCKET_NAME
+
+# put object
+aws s3api put-object --bucket $AWS_BUCKET_NAME --key file-name.with_extension --body /path/to/file-name.with_extension
 # copy to s3, upload file less than 5 Tb
 aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME
 aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME/path/on/s3/filename.ext
@@ -235,9 +238,10 @@ aws s3 ls --recursive s3://my-bucket-name/my-sub-path/
 aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
 # move file 
 aws s3 mv s3://$AWS_BUCKET_NAME/index.html s3://$AWS_BUCKET_NAME/index2.html
-# remove file 
-aws s3 rm  s3://my-bucket-name/file-name.with_extension --profile marketing-staging  --region us-east-1
-# remove all 
+# remove file remove object
+aws s3 rm  s3://$AWS_BUCKET_NAME/file-name.with_extension 
+aws s3api delete-object --bucket $AWS_BUCKET_NAME --key file-name.with_extension 
+# remove all objects
 aws s3 rm s3://$AWS_S3_BUCKET_NAME --recursive --exclude "account.json" --include "*"
 # upload file and make it public
 aws s3api put-object-acl --bucket <bucket name> --key <path to file> --acl public-read
@@ -251,9 +255,12 @@ aws s3api get-object --bucket $AWS_S3_BUCKET_NAME --version-id $VERSION_ID --key
 
 # history object history list
 aws s3api list-object-versions --bucket $AWS_S3_BUCKET_NAME --prefix $AWS_FILE_KEY | jq '.Versions[]' | jq '[.LastModified,.Key,.VersionId] | join(" ")' | grep -v "_response" | sort | sed "s/\"//g"
-
-# remove bucket
-asw s3 rb $AWS_BUCKET_NAME
+```
+```sh
+# remove s3
+aws s3 ls
+aws s3 rm s3://$AWS_BUCKET_NAME --recursive --include "*"
+aws s3api delete-bucket --bucket $AWS_BUCKET_NAME
 ```
 
 policy
@@ -353,6 +360,153 @@ console
 
 ```sh
 Region <>---------- AvailabilityZone <>--------- EdgeLocation
+```
+```sh
+REGION=us-east-1
+BUCKET_NAME=bucket-for-static-web
+BUCKET_HOST=$BUCKET_NAME.s3-website-$REGION.amazonaws.com
+DISTRIBUTION_ID=$BUCKET_HOST'-cli-3'
+DOMAIN_NAME=$BUCKET_HOST
+echo '{
+    "CallerReference": "cli-example",
+    "Aliases": {
+        "Quantity": 0
+    },
+    "DefaultRootObject": "index.html",
+    "Origins": {
+        "Quantity": 1,
+        "Items": [
+            {
+                "Id": "'$DISTRIBUTION_ID'",
+                "DomainName": "'$DOMAIN_NAME'",
+                "OriginPath": "",
+                "CustomHeaders": {
+                    "Quantity": 0
+                },
+                "CustomOriginConfig": {
+                    "HTTPPort": 80,
+                    "HTTPSPort": 443,
+                    "OriginProtocolPolicy": "http-only",
+                    "OriginSslProtocols": {
+                        "Quantity": 1,
+                        "Items": [
+                            "TLSv1.2"
+                        ]
+                    },
+                    "OriginReadTimeout": 30,
+                    "OriginKeepaliveTimeout": 5
+                },
+                "ConnectionAttempts": 3,
+                "ConnectionTimeout": 10,
+                "OriginShield": {
+                    "Enabled": false
+                },
+                "OriginAccessControlId": ""
+            }
+        ]
+    },
+    "OriginGroups": {
+        "Quantity": 0
+    },
+    "DefaultCacheBehavior": {
+        "TargetOriginId": "'$DISTRIBUTION_ID'",
+        "ForwardedValues": {
+            "QueryString": false,
+            "Cookies": {
+                "Forward": "none"
+            },
+            "Headers": {
+                "Quantity": 0
+            },
+            "QueryStringCacheKeys": {
+                "Quantity": 0
+            }
+        },        
+        "TrustedSigners": {
+            "Enabled": false,
+            "Quantity": 0
+        },
+        "TrustedKeyGroups": {
+            "Enabled": false,
+            "Quantity": 0
+        },
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "MinTTL": 0,
+        "AllowedMethods": {
+            "Quantity": 2,
+            "Items": [
+                "HEAD",
+                "GET"
+            ],
+            "CachedMethods": {
+                "Quantity": 2,
+                "Items": [
+                    "HEAD",
+                    "GET"
+                ]
+            }
+        },
+        "SmoothStreaming": false,
+        "Compress": true,
+        "LambdaFunctionAssociations": {
+            "Quantity": 0
+        },
+        "FunctionAssociations": {
+            "Quantity": 0
+        },
+        "FieldLevelEncryptionId": ""
+    },
+    "CacheBehaviors": {
+        "Quantity": 0
+    },
+    "CustomErrorResponses": {
+        "Quantity": 0
+    },
+    "Comment": "",
+    "PriceClass": "PriceClass_All",
+    "Enabled": true,
+    "ViewerCertificate": {
+        "CloudFrontDefaultCertificate": true,
+        "SSLSupportMethod": "vip",
+        "MinimumProtocolVersion": "TLSv1",
+        "CertificateSource": "cloudfront"
+    },
+    "Restrictions": {
+        "GeoRestriction": {
+            "RestrictionType": "none",
+            "Quantity": 0
+        }
+    },
+    "WebACLId": "",
+    "HttpVersion": "http2",
+    "IsIPV6Enabled": true,
+    "Staging": false
+}' > distribution-config.json
+# vim distribution-config.json
+aws cloudfront create-distribution --distribution-config file://distribution-config.json
+# "ETag": "E2ADZ1SMWE",   
+
+aws cloudfront list-distributions | grep DomainName
+
+# aws cloudfront list-distributions | grep '"Id":'
+# aws cloudfront delete-distribution --id E6Q0X5NZY --if-match E2ADZ1SMWE
+```
+
+```sh
+### cloudfront delete
+DISTRIBUTION_ID=`aws cloudfront list-distributions | jq -r ".DistributionList.Items[].Id"`
+echo $DISTRIBUTION_ID | clipboard
+aws cloudfront get-distribution --id $DISTRIBUTION_ID > $DISTRIBUTION_ID.cloud_front
+DISTRIBUTION_ETAG=`jq -r .ETag $DISTRIBUTION_ID.cloud_front`
+## disable distribution
+# fx $DISTRIBUTION_ID.cloud_front
+jq '.Distribution.DistributionConfig.Enabled = false' $DISTRIBUTION_ID.cloud_front |  jq '.Distribution.DistributionConfig' > $DISTRIBUTION_ID.cloud_front_updated 
+aws cloudfront update-distribution --id $DISTRIBUTION_ID --if-match $DISTRIBUTION_ETAG --distribution-config file://$DISTRIBUTION_ID.cloud_front_updated 
+## remove distribution
+aws cloudfront get-distribution --id $DISTRIBUTION_ID > $DISTRIBUTION_ID.cloud_front
+DISTRIBUTION_ETAG=`jq -r .ETag $DISTRIBUTION_ID.cloud_front`
+aws cloudfront delete-distribution --id $DISTRIBUTION_ID --if-match $DISTRIBUTION_ETAG
+
 ```
 
 ---
