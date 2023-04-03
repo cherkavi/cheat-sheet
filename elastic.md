@@ -194,6 +194,10 @@ curl -X POST --insecure -s --user $USER:$PASSWORD $ELASTIC_HOST/$INDEX_NAME/_del
 EOF
 ```
 
+### backup snapshot save load index
+* [create snapshot](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html)
+* [restore snapshot](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-restore-snapshot.html)
+
 ## Exceptions
 ```
 org.elasticsearch.hadoop.rest.EsHadoopRemoteException: illegal_argument_exception: Can't merge because of conflicts: [Cannot update excludes setting for [_source]]
