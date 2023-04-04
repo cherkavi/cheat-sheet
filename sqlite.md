@@ -1,6 +1,18 @@
 # SQLite 
 * (tutorial)[https://alphacodingskills.com/sqlite/sqlite-tutorial.php]
 
+## install 
+```sh
+sudo apt-get install sqlite3 sqlite3-doc sqlite3-tool
+```
+
+## tools
+* [sqldiff](https://www.sqlite.org/sqldiff.html)
+* [sqlite3_analyzer](https://www.sqlite.org/sqlanalyze.html)
+* [mysql db to sqlite](https://pypi.org/project/mysql-to-sqlite3/)
+
+## [mysql to sqlite](https://github.com/cherkavi/docker-images/blob/master/mariadb-mysql/README.md#convert-mysql-to-sqlite)
+
 ## init db
 ```sh
 sqlite3 -init db.sqlite
@@ -56,4 +68,9 @@ where index_cn.field_type != index_de.field_type
 ;
 .output stdout
 .exit
+```
+
+## sqlite import sql write to db
+```sh
+cat src/scripts.sql | sqlite3 src/db.sqlite
 ```

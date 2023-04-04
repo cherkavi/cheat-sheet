@@ -2133,10 +2133,10 @@ curl --request POST \
 --key "myClientCertificate.key.pem" \
 "https://openam.example.com:8443/openam/oauth2/realms/root/access_token"
 {
-  "access_token": "sbQZ....",
-  "scope": "write",
-  "token_type": "Bearer",
-  "expires_in": 3600
+  "access_token": "sbQZ....",
+  "scope": "write",
+  "token_type": "Bearer",
+  "expires_in": 3600
 }
 	
 ### echo server mock server 
@@ -2321,15 +2321,23 @@ jc --pretty ls -la
 dig www.google.com | jc --dig --pretty
 ```
 
-### jq [json parser json parsing parse json parsing json json processing json query](https://stedolan.github.io/jq/manual/)
+### jq [json navigator json parser json parsing parse json parsing json json processing json query](https://stedolan.github.io/jq/manual/)
+* [json query doc](https://stedolan.github.io/jq/)  
 * [json tool json walk json analyzer](https://github.com/antonmedv/fx)
   > snap install fx
 * [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})  
 
-jq is not working properly with "-" character in property name !!!  
+> jq is not working properly with "-" character in property name !!!  
+jq is not working sometimes with "jq any properties", need to split them to two commands
+```sh
+docker network inspect mysql_web_default | jq '.[0].Containers' | jq .[].Name
+```
 ```bash
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
 jq ".[] | .name"
+
+# jq filter by condition
+docker network inspect mysql_web_default | jq '.[0].Containers' | jq '.[] | select(.Name=="web_mysql_ui")' | jq .IPv4Address
 
 # convert to csv
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
@@ -3345,13 +3353,6 @@ sudo awk -F: '($3>=LIMIT) && ($3!=65534)' /etc/passwd > passwd-export
 sudo awk -F: '($3>=LIMIT) && ($3!=65534)' /etc/group > /opt/group-export
 sudo awk -F: '($3>=LIMIT) && ($3!=65534) {print $1}' /etc/passwd | tee - | egrep -f - /etc/shadow > /opt/shadow-export
 sudo cp /etc/gshadow /opt/gshadow-export
-```
-
-# Sqlite
-## copy scripts to database
-```sh
-# sudo apt-get install sqlite3
-cat src/scripts.sql | sqlite3 src/db.sqlite
 ```
 
 ### calculcate size of files by type
