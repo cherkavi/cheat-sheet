@@ -1623,6 +1623,7 @@ grep --after 4
 ### [grep regexp](https://linuxize.com/post/regular-expressions-in-grep/)
 ```sh
 printf "# todo\n## one\n### description for one\n## two\n## three" | grep "[#]\{3\}"
+# printf is sensitive to --- strings
 ### grep boundary between two numbers
 printf "# todo\n## one\n### description for one\n## two\n## three" | grep "[#]\{2,3\}"
 printf "# todo\n## one\n### description for one\n## two\n## three" | grep --extended-regexp "[#]{3}"
