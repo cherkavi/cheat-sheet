@@ -990,6 +990,9 @@ entrypoint:
 ```
 check memory limits inside container
 ```sh
+# outside
+docker stats <container_name>
+# inside
 cat /sys/fs/cgroup/memory/memory.limit_in_bytes
 cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
 ```
