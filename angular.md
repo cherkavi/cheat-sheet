@@ -31,6 +31,22 @@
   npm install -g @angular/cli@12
   # ng --version
   ```
+* docker container with Angular
+```sh
+docker run --entrypoint="" --name "npm_angular" --interactive --tty node:latest  /bin/sh 
+npm install -g @angular/cli@12
+```
+```sh
+# in another terminal 
+container_id=`docker ps | grep 'npm_angular' | awk '{print $1}'`
+echo $container_id
+docker commit $container_id "node-with-angular-12"
+docker images
+```
+```sh
+# run command in application folder
+docker run --entrypoint="" --interactive --tty -p 4200:4200  -v `pwd`:/app node-with-angular-12  /bin/sh 
+```
   
 * [install yarn](https://yarnpkg.com/en/docs/install)
 
