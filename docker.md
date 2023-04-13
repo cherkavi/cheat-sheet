@@ -988,6 +988,11 @@ entrypoint:
     - memory_limit=-1
     - vendor/bin/phpunit
 ```
+check memory limits inside container
+```sh
+cat /sys/fs/cgroup/memory/memory.limit_in_bytes
+cat /sys/fs/cgroup/memory/memory.max_usage_in_bytes
+```
 	
 ## start in detached mode, up and detach
 ```
