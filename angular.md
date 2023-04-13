@@ -28,6 +28,7 @@
 * [install Angular](https://cli.angular.io/)
   ```sh 
   npm install -g @angular/cli
+  npm install -g @angular/cli@12
   # ng --version
   ```
   
