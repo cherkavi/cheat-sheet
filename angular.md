@@ -33,8 +33,16 @@
   ```
 * docker container with Angular
 ```sh
-docker run --entrypoint="" --name "npm_angular" --interactive --tty node:latest  /bin/sh 
+NODE_VERSION=16.15.0
+# NODE_VERSION=latest
+docker pull node:$NODE_VERSION 
+project
+cd data-portal/ui
+docker run --entrypoint="" --rm --name "npm_angular" --interactive --tty --volume $(pwd):/app node:$NODE_VERSION  /bin/sh 
+cd /app
+npm install -g typescript
 npm install -g @angular/cli@12
+npm install 
 ```
 ```sh
 # in another terminal 
