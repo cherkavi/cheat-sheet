@@ -3187,10 +3187,11 @@ screenshot(){
 ```
 
 ## printer managing ( add/remote/edit )
-http://cups.org - printer installation
-http://localhost:631/admin
-in case of authorization issue:
+* [printer installation](http://cups.org)
+* [admin page](http://localhost:631/admin)
+* [help page](http://localhost:631/help/options.html)
 
+### in case of authorization issue:
 /etc/cups/cupsd.conf and changed the AuthType to None and commented the Require user @SYSTEM:
 ```
 <Limit CUPS-Add-Modify-Printer CUPS-Delete-Printer CUPS-Add-Modify-Class CUPS-Delete-Class CUPS-Set-Default CUPS-Get-Devices>
@@ -3201,30 +3202,37 @@ Order deny,allow
 </Limit>
 ```
 and restart the service
-```
+```sh
 sudo service cups restart
 ```
-default printer
+
+### default printer
 ```sh
-# set default printer
-sudo lpadmin -d HP_LaserJet_P2015_Series
-# check default printer
-lpstat -v
+# show all printer drivers in system
 lpinfo -m
+
+# print all printer names
+lpstat -l -v
+# device for Brother_HL_L8260CDW_series: implicitclass://Brother_HL_L8260CDW_series/
+
+# set default printer
+PRINTER_NAME=Brother_HL_L8260CDW_series
+sudo lpadmin -d $PRINTER_NAME
 ```
 
-printer queue
+### printer queue
 ```sh
 lpq -P 
 ```
 
-print to printer
+### print to printer
 ```sh
-lpr -P HP_LaserJet_P2015_Series myfile.txt
+lpr -P $PRINTER_NAME myfile.txt
+lpr -P $PRINTER_NAME -o fit-to-page=false -o position=top $out_file
 ```
 
 ## kernel related messages
-```
+```sh
 dmesg --level=err,warn
 dmesg --follow
 # save all messages /var/log/dmesg
@@ -3232,7 +3240,7 @@ dmesg -S
 ```
 
 ## disk usage
-```
+```sh
 df -ha
 # with visualization
 ncdu
