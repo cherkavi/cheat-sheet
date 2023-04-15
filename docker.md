@@ -14,11 +14,25 @@
 ### [docker code checker](https://www.checkov.io/2.Basics/Installing%20Checkov.html)
 
 ### installation ( Debian )
-```
+```sh
 sudo apt install docker.io
 sudo systemctl start docker
 sudo systemctl enable docker
 ```
+```sh
+#!/bin/bash
+apt-get update
+apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt-get update
+apt-get install -y docker-ce
+
+usermod -aG docker ubuntu
+docker run -p 8080:8080 tomcat:8.0
+```
+
 #### docker manager
 * [docker awesome tools](https://github.com/veggiemonk/awesome-docker)
 * [docker ui tool ui manager](https://github.com/jesseduffield/lazydocker)
