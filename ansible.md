@@ -105,7 +105,10 @@ check-variable.yaml file
   - name: echo variable to console
     ansible.builtin.debug:
       msg: System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}
+    no_log: false
 ```
+> log output can be suppressed ( no log output )
+
 ```sh
 ansible-playbook check-variable.yaml  -v
 ```
