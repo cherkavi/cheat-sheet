@@ -130,6 +130,39 @@ node {
 	}
 }
 ```
+name of the build and using parameters
+```
+pipeline {
+    agent any
+
+    stages {
+        stage('check input boolean parameter') {
+            when {
+                expression { params.FAIL }
+            }
+            steps {
+                sh 'cat /etc/shadow'
+            }
+        }
+    }
+    post{
+        success {
+            script {
+            currentBuild.displayName = "$BUILD_NUMBER - Successfull Build"
+            currentBuild.description = "OK"
+            }
+        }
+        failure {
+            script {
+            currentBuild.displayName = "$BUILD_NUMBER - Failed Build"
+            currentBuild.description = "NOT OK"
+            }
+        }
+    }
+}
+
+```
+
 
 ### jenkins read http write file from http to scp
 ```
