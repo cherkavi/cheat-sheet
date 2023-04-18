@@ -36,13 +36,13 @@
 NODE_VERSION=16.15.0
 # NODE_VERSION=latest
 docker pull node:$NODE_VERSION 
-project
-cd data-portal/ui
+cd ui # or to proper folder with UI
 docker run --entrypoint="" --rm --name "npm_angular" --interactive --tty --volume $(pwd):/app node:$NODE_VERSION  /bin/sh 
 cd /app
-npm install -g typescript
-npm install -g @angular/cli@12
-npm install 
+npm install
+# /usr/local/lib/node_modules/npm/bin/npm 
+# npm build # for version<6.x.x
+npm pack
 ```
 ```sh
 # in another terminal 
