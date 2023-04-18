@@ -37,6 +37,7 @@ NODE_VERSION=16.15.0
 # NODE_VERSION=latest
 docker pull node:$NODE_VERSION 
 cd ui # or to proper folder with UI
+sudo rm -rf node_modules
 docker run --entrypoint="" --rm --name "npm_angular" --interactive --tty --volume $(pwd):/app node:$NODE_VERSION  /bin/sh 
 cd /app
 npm install
