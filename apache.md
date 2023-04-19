@@ -110,3 +110,15 @@ SSLCertificateFile "/path/to/www.example.com.cert"
 SSLCertificateKeyFile "/path/to/www.example.com.key"
 ```
 
+### parallel open connection
+```
+<IfModule mpm_prefork_module>
+	  #LoadModule cgi_module modules/mod_cgi.so
+    StartServers       5
+    MinSpareServers    7
+    MaxSpareServers   15
+    ServerLimit 600
+    MaxRequestWorkers 600
+    MaxConnectionsPerChild 0
+</IfModule>
+```
