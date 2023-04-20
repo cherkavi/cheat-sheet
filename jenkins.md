@@ -160,7 +160,16 @@ pipeline {
         }
     }
 }
-
+```
+use "system groovy script" for updating description with multisteps 
+```sh
+echo "my description" > job_description.txt
+```
+```sh
+def currentBuild = Thread.currentThread().executable
+def workspace = build.workspace
+def description = new File("${workspace}/job_describtion.txt").text
+currentBuild.setDescription(description)
 ```
 
 
