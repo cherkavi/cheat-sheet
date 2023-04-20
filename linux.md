@@ -3161,7 +3161,7 @@ libreoffice --headless --convert-to pdf "/home/path/Dativ.doc" --outdir /tmp/out
 ```sh
 bzip2 -dc ricochet-1.1.4-src.tar.bz2 | tar xvf -
 ```
-### gzip
+### gzip unzip gzip decompress
 ```sh
 gzip -d out.gz
 # unknown suffix -- ignored
