@@ -411,16 +411,18 @@ jsonoptions
 mapr dbshell 'find /mapr/prod/vantage/orchestration/tables/metadata --fields _id --limit 5 --pretty' > out.txt
 
 mapr dbshell
+## more prefered way of searching: 
+find /mapr/prod/vantage/orchestration/tables/metadata --query '{"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}'
+find /mapr/prod/vantage/orchestration/tables/metadata --query {"$select":["fullPath"],"$where":{"$lt":{"startTime":0}}} --pretty
+
+find /mapr/prod/vantage/orchestration/tables/metadata --c {"$eq":{"session_id":"9aaa13577-ad80"}} --pretty
+
+## less prefered way of searching: 
 # last records, default sort: ASC
 find /mapr/prod/vantage/orchestration/tables/metadata --fields _id --orderby loggerStartTime.utcNanos:DESC --limit 5
 find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2 --offset 2 --where {"$eq":{"session_id":"9aaa13577-ad80"}} --orderby created_time
 # array in output and in condition
 find /mapr/prod/vantage/orchestration/tables/metadata --fields documentId,object_types[].id --where {"$eq":{"object_types[].id":"44447f6d853dd"}}'
-
-find /mapr/prod/vantage/orchestration/tables/metadata --c {"$eq":{"session_id":"9aaa13577-ad80"}} --pretty
-
-find /mapr/prod/vantage/orchestration/tables/metadata --query '{"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}'
-find /mapr/prod/vantage/orchestration/tables/metadata --query {"$select":["fullPath"],"$where":{"$lt":{"startTime":0}}} --pretty
 ```
 !!! important !!!, id only, no data in output but "_id":  if you don't see all fields in the output, try to change user ( you don't have enough rights )
 
