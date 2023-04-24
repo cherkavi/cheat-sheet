@@ -27,6 +27,8 @@ AWS_SNS_TOPIC_ARN=arn:aws:sns:eu-central-1:85153298123:gmail-your-name
 AWS_KEY_PAIR=/path/to/file/key-pair.pem
 AWS_PROFILE=aws-user
 AWS_REGION=eu-central-1
+# aws default value for region 
+AWS_DEFAULT_REGION=eu-central-1
 ```
 ### initialization from external script
 ``` sh
