@@ -58,7 +58,7 @@ complete -C /usr/bin/aws_completer aws
 be aware about precedence:
 Credentials from environment variables have precedence over credentials from the shared credentials and AWS CLI config file.   
 Credentials specified in the shared credentials file have precedence over credentials in the AWS CLI config file. 
-
+> botocore.exceptions.ProfileNotFound: The config profile (cherkavi-user) could not be found
 ```sh
 vim ~/.aws/credentials
 ```
