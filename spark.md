@@ -809,6 +809,20 @@ spark-shell --jars "lightning-1.5.0-SNAPSHOT-3a517e-jar-with-dependencies.jar" \
 --conf "spark.driver.extraJavaOptions=-XX:+UseG1GC" \
 --conf "spark.serializer=org.apache.spark.serializer.KryoSerializer"
 ```
+dynamic allocation
+```properties
+-conf "spark.dynamicAllocation.enabled=true" \
+-conf "spark.shuffle.service.enabled=true" \
+-conf "spark.executor.cores=1" \
+-conf "spark.executor.memory=8G" \
+-conf "spark.dynamicAllocation.maxExecutors=20" \
+-conf "spark.dynamicAllocation.minExecutors=5" \
+-conf "spark.dynamicAllocation.initialExecutors=5" \
+-conf "spark.dynamicAllocation.executorAllocationRatio=0.5" \
+-conf "spark.dynamicAllocation.executorIdleTimeout=60s" \
+-conf "spark.dynamicAllocation.schedulerBacklogTimeout=1s" \
+-conf "spark.dynamicAllocation.sustainedSchedulerBacklogTimeout=1s" 
+```
 
 ## read text file with json 
 !!! each line in the file should be separate JSON file, minimize each document to one line  
