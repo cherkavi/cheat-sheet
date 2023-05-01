@@ -2269,6 +2269,12 @@ curl 'http://localhost:8000/members/json-api/auth/user' -H 'Cookie: PHPSESSID=5c
 curl -c cookie-from-url-com.txt -X GET url.com
 ```
 
+### string encoding for http
+```sh
+sudo apt install gridsite-clients
+urlencode "- - -"
+```
+	
 ### curl with encoding to another codepage, from win1251 to utf8
 ```sh
 curl "http://some.resource/read_book.php?id=66258&p=1" | iconv --from-code WINDOWS-1251 --to-code UTF-8

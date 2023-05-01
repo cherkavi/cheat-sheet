@@ -27,6 +27,8 @@ AWS_SNS_TOPIC_ARN=arn:aws:sns:eu-central-1:85153298123:gmail-your-name
 AWS_KEY_PAIR=/path/to/file/key-pair.pem
 AWS_PROFILE=aws-user
 AWS_REGION=eu-central-1
+# aws default value for region 
+AWS_DEFAULT_REGION=eu-central-1
 ```
 ### initialization from external script
 ``` sh
@@ -56,7 +58,7 @@ complete -C /usr/bin/aws_completer aws
 be aware about precedence:
 Credentials from environment variables have precedence over credentials from the shared credentials and AWS CLI config file.   
 Credentials specified in the shared credentials file have precedence over credentials in the AWS CLI config file. 
-
+> botocore.exceptions.ProfileNotFound: The config profile (cherkavi-user) could not be found
 ```sh
 vim ~/.aws/credentials
 ```
