@@ -306,11 +306,11 @@ git clone https://github.com/vim-airline/vim-airline ~/.vim/plugged/vim-airline
 ```
 .vim
 ├── autoload
-│   └── plug.vim
+│   └── plug.vim
 ├── colors
-│   └── wombat.vim
+│   └── wombat.vim
 ├── pack
-│   └── plugins
+│   └── plugins
 └── plugged
     ├── goyo.vim
     ├── lightline.vim
@@ -647,6 +647,15 @@ convert 1.pdf 2.pdf 3.pdf result.pdf
 # Error: no image defined
 # /etc/ImageMagick-6/policy.xml
 # <policy domain="coder" rights="read|write| pattern="PDF" />
+```
+
+### image cut image crop
+```sh
+WIDTH=200
+HEIGHT=200
+X=10
+Y=20
+convert input.jpg -crop $WIDTHx$HEIGHT+$X+$Y output.jpg
 ```
 
 ### image change color image black and white image monochrome imagemagic 
