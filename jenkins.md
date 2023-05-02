@@ -130,6 +130,48 @@ node {
 	}
 }
 ```
+```jenkins
+def saveToFileUrl(gitRepoUser, gitRepoName, gitFilePath, localFileName){
+    final String gitUrl="https://github.net"
+    String gitFileDescription = ""
+    withCredentials([usernamePassword(credentialsId: 'xxxxx', passwordVariable: 'gitToken', usernameVariable: 'gitUser')]) {
+        gitFileDescription = sh(script: "curl -u ${gitUser}:${gitToken} ${gitUrl}/api/v3/repos/${gitRepoUser}/${gitRepoName}/contents/${gitFilePath} | grep download_url", returnStdout: true).trim()
+    }   
+    
+    final String urlResponse = sh(script: "curl -s ${gitFileDescription.split(" ")[1].replaceAll('"','').replaceAll(',','')}", returnStdout: true).trim()
+    writeFile file: localFileName, text: urlResponse
+    return urlResponse    
+}
+
+pipeline {
+    agent any
+
+    stages {
+        stage('download execution script') {
+            steps{
+                script{
+                    env.TMP_FILE_NAME = createTempFile();
+                    saveToFileUrl(getGitRepoUser(), getGitRepoName(), getGitPath(), "${env.TMP_FILE_NAME}")                
+                }
+            }
+        }        
+        stage('execute script REST API test') {
+            steps{
+                script{
+                    withCredentials([usernamePassword(credentialsId: 'yyyyy', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                        env.D_USER=user
+                        env.D_PASS=pass
+                        def exitStatus=sh(script: "sh ${env.TMP_FILE_NAME}", returnStatus: true)
+                        evaluateResult(exitStatus)
+                    }   
+                }
+            }
+        }
+    }
+}
+
+```
+
 name of the build and using parameters
 ```
 pipeline {
