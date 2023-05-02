@@ -479,7 +479,13 @@ curl --silent  --insecure  -X GET -u $MAPR_USER:$MAPR_PASSWORD  https://mapr-web
 #### insert record in maprdb
 ```dbshell
 insert --table /vantage/processed/tables/markers --value '{"_id": "custom_id_1", "name": "Martha", "age": 35}'
+insert --table /vantage/processed/tables/markers --id custom_id_1 --value '{"name": "Martha", "age": 35}'
+
+FILE_CONTENT=$(cat my-record-in-file.json)
+mapr dbshell "insert --table /vantage/processed/tables/markers --value '$FILE_CONTENT'"
 ```
+possible error: You already provided '..<fieldname>..' earlier 
+> check your single quotas around json object for --value
 
 #### delete record in maprdb
 ```dbshell
