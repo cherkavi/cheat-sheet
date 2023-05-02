@@ -480,8 +480,9 @@ curl --silent  --insecure  -X GET -u $MAPR_USER:$MAPR_PASSWORD  https://mapr-web
 
 #### [insert record in maprdb](https://docs.ezmeral.hpe.com/datafabric-customer-managed/72/ReferenceGuide/dbshell-insert.html)
 ```dbshell
-insert --table /vantage/processed/tables/markers --value '{"_id": "custom_id_1", "name": "Martha", "age": 35}'
 insert --table /vantage/processed/tables/markers --id custom_id_1 --value '{"name": "Martha", "age": 35}'
+# should be checked logic for inserting with "_id" inside document
+# insert --table /vantage/processed/tables/markers --value '{"_id": "custom_id_1", "name": "Martha", "age": 35}'
 
 FILE_CONTENT=$(cat my-record-in-file.json)
 mapr dbshell "insert --table /vantage/processed/tables/markers --value '$FILE_CONTENT'"
