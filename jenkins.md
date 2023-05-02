@@ -150,12 +150,14 @@ pipeline {
             script {
             currentBuild.displayName = "$BUILD_NUMBER - Successfull Build"
             currentBuild.description = "OK"
+	    currentBuild.result='SUCCESS'
             }
         }
         failure {
             script {
             currentBuild.displayName = "$BUILD_NUMBER - Failed Build"
             currentBuild.description = "NOT OK"
+	    currentBuild.result='FAILURE'
             }
         }
     }
