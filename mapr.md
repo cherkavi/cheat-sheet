@@ -485,7 +485,8 @@ insert --table /vantage/processed/tables/markers --id custom_id_1 --value '{"nam
 # insert --table /vantage/processed/tables/markers --value '{"_id": "custom_id_1", "name": "Martha", "age": 35}'
 
 FILE_CONTENT=$(cat my-record-in-file.json)
-mapr dbshell "insert --table /vantage/processed/tables/markers --value '$FILE_CONTENT'"
+RECORD_ID=$(jq -r ._id my-record-in-file.json)
+mapr dbshell "insert --table /vantage/processed/tables/markers --id $RECORD_ID --value '$FILE_CONTENT'"
 ```
 possible error: You already provided '..<fieldname>..' earlier 
 > check your single quotas around json object for --value
