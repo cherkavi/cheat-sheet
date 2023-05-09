@@ -20,6 +20,12 @@
 * [GoCD](https://www.gocd.org/)  
 * [buildbot](buildbot.net)  
 
+### alternatives in cloud ( SaaS )
+* [Bamboo]()
+* [Circle CI]()
+* [Travis CI]()
+* [Gitlab]()
+
 #### DSL
 * [jenkins dsl source code](https://github.com/jenkinsci/job-dsl-plugin)
 * [jenkins plugin documentation](https://jenkinsci.github.io/job-dsl-plugin/)
