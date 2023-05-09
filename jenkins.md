@@ -14,6 +14,9 @@
 * [jenkins scheduler build periodically](https://www.lenar.io/jenkins-schedule-build-periodically/)
 
 ### alternatives
+* [Gitlab community :: Gitlab]()
+* [TeamCity :: JetBrains]()
+* [Team Fundation Server :: Microsoft]()
 * [GoCD](https://www.gocd.org/)  
 * [buildbot](buildbot.net)  
 
