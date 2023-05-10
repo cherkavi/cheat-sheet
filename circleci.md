@@ -57,6 +57,7 @@ workflows:
             - print_hello
 ```
 3. [connect circleci to project](https://app.circleci.com/projects/connect-vcs/)
+> webhook will be created in the project
 
 
 ## [pipeline variables](https://circleci.com/docs/pipeline-variables/#pipeline-values)
@@ -112,6 +113,54 @@ workflows:
 ## [environment variables](https://circleci.com/docs/env-vars/)
 > can be installed from: Project Settings -> Environment Variables
 > all env variables will be hidden as secrets ( no output in console will be visible)
+
+## triggering pipeline
+* webhook
+  * new commit in branch
+  * pull/merge request
+* api
+  * command-line tool
+  * chat message
+* schedule
+* other pipeline
+
+## jobs communication
+### cache ( folders & files )
+> ttl - only during run of pipeline 
+> immutable after creation
+```yaml
+# https://circleci.com/docs/configuration-reference/#savecache
+- save_cache:
+    key: unique_key_1 
+    path: ~/.m2
+```
+```yaml
+# https://circleci.com/docs/configuration-reference/#restorecache
+- restore_cache:
+    keys:
+      - unique_key_1
+      - unique_key_2
+```
+### workspace
+> mutable
+```yaml
+# https://circleci.com/docs/configuration-reference/#persisttoworkspace
+- persist_to_workspace:
+    root: /tmp/my_folder_1
+    path:
+      - target/appliaction.jar
+      - src/config/settings.properties
+```
+```yaml
+# https://circleci.com/docs/configuration-reference/#attachworkspace
+- attach_workspace:
+    at: /tmp/my_folder_1
+```
+### secret keeper
+* Vault (HashiCorp's)
+* https://kvdb.io
+* deprecated: metstash.io
+
 
 ## Local usage
 ### how to execute job
