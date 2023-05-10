@@ -842,13 +842,22 @@ git config --system http.sslverify false
 ```
 
 ### download latest release from github, release download
-```
-curl -s https://api.github.com/repos/bugy/script-server/releases/latest | grep browser_download_url | cut -d '"' -f 4
+```sh
+GIT_ACCOUNT=ajaxray
+GIT_PROJECT=geek-life
+GIT_RELEASE_ARTIFACT=geek-life_linux-amd64
+wget https://github.com/${GIT_ACCOUNT}/${GIT_PROJECT}/releases/latest/download/$GIT_RELEASE_ARTIFACT
+
+# curl -s https://api.github.com/repos/bugy/script-server/releases/latest | grep browser_download_url | cut -d '"' -f 4
 ```
 
-### download last version of file from github, url to source, source download
-```
-wget https://raw.githubusercontent.com/cherkavi/cheat-sheet/master/git.md
+### download latest version of file from github, url to source, source download
+```sh
+GIT_ACCOUNT=cherkavi
+GIT_PROJECT=cheat-sheet
+GIT_BRANCH=master
+GIT_PATH=git.md
+wget https://raw.githubusercontent.com/$GIT_ACCOUNT/$GIT_PROJECT/$GIT_BRANCH/$GIT_PATH
 ```
 
 ### linux command line changes
@@ -857,7 +866,7 @@ wget https://raw.githubusercontent.com/cherkavi/cheat-sheet/master/git.md
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-export PS1="\[\033[32m\]\W\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "​
+export PS1="\[\033[32m\]\W\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ " 
 ```
 
 ### ignore tracked file, ignore changes
