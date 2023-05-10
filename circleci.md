@@ -1,0 +1,121 @@
+# [CircleCI](https://circleci.com/docs/getting-started/)
+
+## setup
+* [token](https://app.circleci.com/settings/user/tokens)
+* visual code extension: circleci.circleci
+* [install cli](https://circleci.com/docs/local-cli/)
+    ```sh
+    sudo snap install circleci
+    circleci setup
+    # update your ~/.bashrc
+    eval "$(circleci completion bash)"
+    export CIRCLECI_CLI_HOST=https://circleci.com
+    ```
+
+## working loop
+* [docker images for job run](https://hub.docker.com/u/cimg)
+* [docker images for job run](https://hub.docker.com/u/circleci/)
+* [orbs - shared configuration ](https://circleci.com/developer/orbs)
+  * [orbs intro](https://circleci.com/docs/orb-intro/)
+
+## setup new project
+1. create repository in github/gitlab
+2. create file `.circleci/config.yml` in repository
+```yaml
+# CircleCI configuration file
+version: 2.1
+
+jobs:
+  # first job
+  print_hello:
+    docker:
+      - image: cimg/base:2022.05
+    steps:
+      - run: echo "--- 1.step"
+      - run: echo "hello"
+      - run: echo "----------"
+
+  # second job
+  print_world:
+    docker:
+     - image: cimg/base:2022.05
+    steps:
+      - run: 
+          name: print world
+          command: | 
+            echo "--- 2.step"
+            echo "world"
+            echo "----------"
+ 
+workflows:
+  # Name of workflow
+  my_workflow_1:
+    jobs:
+      - print_hello
+      - print_world:
+          requires: 
+            - print_hello
+```
+3. [connect circleci to project](https://app.circleci.com/projects/connect-vcs/)
+
+
+## [pipeline variables](https://circleci.com/docs/pipeline-variables/#pipeline-values)
+```yaml
+jobs:
+    job_name:
+        docker: 
+        - image: cimg/base:2022.05
+        environment:
+            CUSTOM_MESSAGE: "<< pipeline.project.git_url >> :: << pipeline.trigger_parameters.gitlab.commit_message>>"
+        steps:
+        - run: echo "$CUSTOM_MESSAGE"
+```
+### [pipeline parameters](https://circleci.com/docs/pipeline-variables/#pipeline-parameters-in-configuration)
+```yaml
+version: 2.1
+
+parameters:
+  my_custom_parameter_1:
+    type: string
+    default: "~/"
+
+jobs:
+    job_name:
+        docker: 
+        - image: cimg/base:2022.05
+        environment:
+            CUSTOM_MESSAGE: "<< pipeline.parameters.my_custom_parameter_1 >>"
+```
+
+### job with parameters
+```yaml
+jobs:
+  my_job_1:
+    parameters:
+      my_custom_parameter_1:
+        type: string
+        default: my_org
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+      - run: echo "  << parameters.my_custom_parameter_1 >>  "
+
+workflows:
+  my_workflow_1:
+    jobs:
+      - my_job_1:
+          my_custom_parameter_1: my_organization          
+      - my_job_1:
+          my_custom_parameter_1: another organization
+```
+
+## [environment variables](https://circleci.com/docs/env-vars/)
+> can be installed from: Project Settings -> Environment Variables
+> all env variables will be hidden as secrets ( no output in console will be visible)
+
+## Local usage
+### how to execute job
+```sh
+JOB_NAME=job_echo
+circleci local execute --job $JOB_NAME
+```
