@@ -1,5 +1,5 @@
 ### links 
-* [jenkins build-in plugins documentation](https://www.jenkins.io/doc/pipeline/steps/)
+* [jenkins build-in plugins documentation ('commands' like sh)](https://www.jenkins.io/doc/pipeline/steps/)
 * [official book](https://jenkins.io/doc/book/pipeline/syntax/)
 * [official github](https://github.com/jenkinsci)
 * [pipeline description](https://jenkins.io/doc/book/pipeline/syntax/)
@@ -14,8 +14,17 @@
 * [jenkins scheduler build periodically](https://www.lenar.io/jenkins-schedule-build-periodically/)
 
 ### alternatives
+* [Gitlab community :: Gitlab]()
+* [TeamCity :: JetBrains]()
+* [Team Fundation Server :: Microsoft]()
 * [GoCD](https://www.gocd.org/)  
 * [buildbot](buildbot.net)  
+
+### alternatives in cloud ( SaaS )
+* [Bamboo]()
+* [Circle CI]()
+* [Travis CI]()
+* [Gitlab]()
 
 #### DSL
 * [jenkins dsl source code](https://github.com/jenkinsci/job-dsl-plugin)
@@ -130,6 +139,48 @@ node {
 	}
 }
 ```
+```jenkins
+def saveToFileUrl(gitRepoUser, gitRepoName, gitFilePath, localFileName){
+    final String gitUrl="https://github.net"
+    String gitFileDescription = ""
+    withCredentials([usernamePassword(credentialsId: 'xxxxx', passwordVariable: 'gitToken', usernameVariable: 'gitUser')]) {
+        gitFileDescription = sh(script: "curl -u ${gitUser}:${gitToken} ${gitUrl}/api/v3/repos/${gitRepoUser}/${gitRepoName}/contents/${gitFilePath} | grep download_url", returnStdout: true).trim()
+    }   
+    
+    final String urlResponse = sh(script: "curl -s ${gitFileDescription.split(" ")[1].replaceAll('"','').replaceAll(',','')}", returnStdout: true).trim()
+    writeFile file: localFileName, text: urlResponse
+    return urlResponse    
+}
+
+pipeline {
+    agent any
+
+    stages {
+        stage('download execution script') {
+            steps{
+                script{
+                    env.TMP_FILE_NAME = createTempFile();
+                    saveToFileUrl(getGitRepoUser(), getGitRepoName(), getGitPath(), "${env.TMP_FILE_NAME}")                
+                }
+            }
+        }        
+        stage('execute script REST API test') {
+            steps{
+                script{
+                    withCredentials([usernamePassword(credentialsId: 'yyyyy', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                        env.D_USER=user
+                        env.D_PASS=pass
+                        def exitStatus=sh(script: "sh ${env.TMP_FILE_NAME}", returnStatus: true)
+                        evaluateResult(exitStatus)
+                    }   
+                }
+            }
+        }
+    }
+}
+
+```
+
 name of the build and using parameters
 ```
 pipeline {
@@ -150,12 +201,14 @@ pipeline {
             script {
             currentBuild.displayName = "$BUILD_NUMBER - Successfull Build"
             currentBuild.description = "OK"
+	    currentBuild.result='SUCCESS'
             }
         }
         failure {
             script {
             currentBuild.displayName = "$BUILD_NUMBER - Failed Build"
             currentBuild.description = "NOT OK"
+	    currentBuild.result='FAILURE'
             }
         }
     }

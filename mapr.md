@@ -409,7 +409,9 @@ jsonoptions
 ```sh
 # output to file stdout 
 mapr dbshell 'find /mapr/prod/vantage/orchestration/tables/metadata --fields _id --limit 5 --pretty' > out.txt
+mapr dbshell 'find /mapr/prod/vantage/orchestration/tables/metadata --fields _id,sessionId --where {"$eq":{"sessionId":"test-001"}} --limit 1'
 
+# request inside shell
 mapr dbshell
 ## more prefered way of searching: 
 find /mapr/prod/vantage/orchestration/tables/metadata --query '{"$select":["mdf4Path.name","mdf4Path.fullPath"],"$limit":2}'
@@ -476,10 +478,18 @@ SESSION='d99-4a-ac-0cbd'
 curl --silent  --insecure  -X GET -u $MAPR_USER:$MAPR_PASSWORD  https://mapr-web.vantage.zur:2002/api/v2/table//vantage/orchestration/tables/sessions/document/$SESSION | jq "." | grep labelEvent
 ```
 
-#### insert record in maprdb
+#### [insert record in maprdb](https://docs.ezmeral.hpe.com/datafabric-customer-managed/72/ReferenceGuide/dbshell-insert.html)
 ```dbshell
-insert --table /vantage/processed/tables/markers --value '{"_id": "custom_id_1", "name": "Martha", "age": 35}'
+insert --table /vantage/processed/tables/markers --id custom_id_1 --value '{"name": "Martha", "age": 35}'
+# should be checked logic for inserting with "_id" inside document
+# insert --table /vantage/processed/tables/markers --value '{"_id": "custom_id_1", "name": "Martha", "age": 35}'
+
+FILE_CONTENT=$(cat my-record-in-file.json)
+RECORD_ID=$(jq -r ._id my-record-in-file.json)
+mapr dbshell "insert --table /vantage/processed/tables/markers --id $RECORD_ID --value '$FILE_CONTENT'"
 ```
+possible error: You already provided '..<fieldname>..' earlier 
+> check your single quotas around json object for --value
 
 #### delete record in maprdb
 ```dbshell

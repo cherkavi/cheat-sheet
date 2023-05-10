@@ -931,7 +931,7 @@ time git status
 ## git rest api 
 export PAT=07f1798524d6f79...
 export GIT_USER=tech_user
-export GIT_USER2=another_user
+export GIT_REPO_OWNER=another_user
 export GIT_REPO=system_description
 export GIT_URL=https://github.sbbgroup.zur
 
@@ -941,28 +941,27 @@ export GIT_URL=https://github.sbbgroup.zur
 ```sh
 # read user's data 
 curl -H "Authorization: token ${PAT}" ${GIT_URL}/api/v3/users/${GIT_USER}
-curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/users/${GIT_USER2}
+curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/users/${GIT_REPO_OWNER}
 
 # list of repositories 
-curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/users/${GIT_USER2}/repos | grep html_url
+curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/users/${GIT_REPO_OWNER}/repos | grep html_url
 
 # read repository
-curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}
-curl -H "Authorization: token ${PAT}" ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}
+curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_REPO_OWNER}/${GIT_REPO}
+curl -H "Authorization: token ${PAT}" ${GIT_URL}/api/v3/repos/${GIT_REPO_OWNER}/${GIT_REPO}
 
 
 # read path
 export FILE_PATH=doc/README
-curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}/contents/${FILE_PATH}
-curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}/contents/${FILE_PATH} | jq .download_url
+curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_REPO_OWNER}/${GIT_REPO}/contents/${FILE_PATH}
+curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_REPO_OWNER}/${GIT_REPO}/contents/${FILE_PATH} | jq .download_url
 
 # https://docs.github.com/en/enterprise-server@3.1/rest/reference/repos#contents
-# read content
-DOWNLOAD_URL=`curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}/contents/${FILE_PATH} | jq .download_url | tr '"' ' '`
+# read path to file 
+DOWNLOAD_URL=`curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_REPO_OWNER}/${GIT_REPO}/contents/${FILE_PATH} | jq .download_url | tr '"' ' '`
 echo $DOWNLOAD_URL 
 curl -u ${GIT_USER}:${PAT} -X GET $DOWNLOAD_URL
 
 # read content
-curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_USER2}/${GIT_REPO}/contents/${FILE_PATH} | jq -r ".content" | base64 --decode
-
+curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_REPO_OWNER}/${GIT_REPO}/contents/${FILE_PATH} | jq -r ".content" | base64 --decode
 ```
