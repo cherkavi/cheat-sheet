@@ -312,6 +312,16 @@ configuration must have "api.auth_backend", for example:
 [api]
 auth_backend = airflow.api.auth.backend.default  
 ```
+
+## read DAG runs
+```sh
+AIRFLOW_URL=https://airflow.local
+DAG_NAME=xsd_generation
+AIRFLOW_ENDPOINT=$AIRFLOW_URL/api/experimental/dags/$DAG_NAME/dag_runs
+
+curl -X GET -u $USER_AIRFLOW:$PASSWORD_AIRFLOW $AIRFLOW_ENDPOINT
+```
+
 ## trigger DAG - python
 ```python
 import urllib2
