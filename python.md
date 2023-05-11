@@ -507,12 +507,16 @@ alembic --config alembic-local.ini current
 alembic --config alembic-local.ini upgrade cfaf8359a319 --sql 
 ```
 
-# GUI
+# GUI Visual Elements User Interface
 * PySimpleGUI
 	```sh
 	sudo apt-get install python3-tk
 	pip3 install PySimpleGUI
 	```
+* PyGUI
+* Wax 
+* LibAvg 
+* PyGame
 * PyQT5
 	```sh
 	pip install pyqt5
