@@ -779,7 +779,10 @@ git lfs migrate import --no-rewrite path-to-file
 #### git lfs add file
 ```sh
 git lfs track "*.psd"
+# check tracking 
+cat .gitattributes | grep psd
 ```
+
 check tracking changes in file:
 ```sh
 git add .gitattributes
