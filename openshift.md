@@ -1006,7 +1006,7 @@ maprlogin print -ticketfile /tmp/maprticket_1000
 oc describe secret volume-token-ground-truth
 ```
 
-using secret   
+map volume with ocp-secret 
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -1044,6 +1044,33 @@ spec:
   resources:
     requests:
       storage: 1G
+```
+map volume with ocp-secret 
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: foxglove-pv
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 5Gi
+  csi:
+    driver: com.mapr.csi-kdf
+    nodePublishSecretRef:
+      name: mapr-prod-ticket-secret
+      namespace: foxglove
+    volumeAttributes:
+      cldbHosts: ubs000004.vantage.org ubs000007.vantage.org        
+      cluster: ubs.prod.zurich
+      platinum: "false"
+      securityType: secure
+      volumePath: /vantage/data/store/processed/foxglove
+    volumeHandle: foxglove-pv
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+
 ```
 
 ### service example
