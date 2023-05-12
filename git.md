@@ -767,6 +767,11 @@ NO_PROXY=localhost,127.0.0.1,.localdomain,.advantage.org
 HTTP_PROXY=muc.proxy
 HTTPS_PROXY=muc.proxy
 ```
+#### git lfs check 
+```sh
+git lfs env
+git lfs status
+```
 
 #### issue with git lfs
 ```
