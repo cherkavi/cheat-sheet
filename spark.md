@@ -110,6 +110,8 @@ export SPARK_SUBMIT_OPTS="-Dlog4j.configuration=log4j.properties"
   --name ${USER}_v1-GroundValuesGeneration-${SESSION_ID} \
   ...
 ```
+[spark read log output from yarn](https://github.com/cherkavi/cheat-sheet/blob/master/mapr.md#yarn)
+	
 log4j.properties
 ```properties
 # Set everything to be logged to the console
