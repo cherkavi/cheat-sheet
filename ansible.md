@@ -478,7 +478,7 @@ some yaml code
 ```
 
 ## copy reverse copy from destination machine
-```
+```yaml
 - name: Fetch template
   fetch:
     src: '{{ only_file_name }}'
@@ -510,7 +510,7 @@ condition example
 ```
 
 ### directives for loop, for last, loop last
-```
+```j2
 [
 {% for stream in deployment.streams %}
     {
@@ -533,7 +533,7 @@ just a symbol
 {{ '{{' }}
 ```
 bigger piece of code
-```
+```j2
 {% raw %}
     <ul>
     {% for item in seq %}
@@ -545,7 +545,7 @@ bigger piece of code
 
 
 ## template with tempfile
-```
+```yaml
 - hosts: localhost
   gather_facts: no
   tasks:
@@ -569,12 +569,12 @@ also need to 'notify' ansible about module giving one of the next option:
   ```
 
 ## module documentation
-```
+```sh
 ansible-doc -t module {name of the module}
 ```
 
 ## minimal module
-```
+```python
 from ansible.module_utils.basic import AnsibleModule
 def main():
     input_fields = {
@@ -592,12 +592,12 @@ def main():
 
 # [plugins](https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/)
 example of plugin
-```
+```j2
 {{ list_of_values | average }}
 ```
 python code for plugin
-```
-dev average(list):
+```python
+def average(list):
     return sum(list) / float(len(list))
     
 class AverageModule(object):
@@ -605,7 +605,7 @@ class AverageModule(object):
         return {'average': average}
 ```
 execution
-```
+```sh
 export ANSIBLE_FILTER_PLUGINS=/full/path/to/folder/with/plugin
 ansible-playbook playbook.yml
 ```
@@ -625,7 +625,7 @@ replace value from file with special format
 {{ lookup('file','/tmp/version.txt') }}
 ```
 lookups variables
-```
+```j2
 {{ hostvars[inventory_hostname]['somevar_' + other_var] }}
 
 For ‘non host vars’ you can use the vars lookup plugin:
@@ -650,31 +650,31 @@ For ‘non host vars’ you can use the vars lookup plugin:
 # inventory file
 ---
 ## inventory file, inventory file with variables, [rules](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
-```
+```settings
 [remote_ssh]
 172.28.128.3     ansible_connection=ssh   ansible_port=22   ansible_user=tc     ansible_password=tc
 ```
 ## dynamic inventory
 python inventory.py (with 'py' extension) instead of txt
-```
+```python
 import json
 data = {"databases": {"hosts": ["host1", "host2"], "vars": {"ansible_ssh_host":"192.168.10.12", "ansible_ssh_pass":"Passw0rd"} }}
 print(json.dumps(data))
 ```
 also next logic should be present
-```
+```sh
 inventory.py --list
 inventory.py --host databases
 ```
 [prepared scripts](https://github.com/ansible/ansible/tree/devel/contrib/inventory)
 
 ## inventory file with variables ( python Jinja templating)
-```
+```settings
 [remote_ssh]
 172.28.128.3     ansible_connection=ssh   ansible_port=22   ansible_user=tc     ansible_password=tc   http_port=8090
 ```
 playbook usage:
-```
+```j2
 '{{http_port}}'
 ```
 
@@ -732,7 +732,7 @@ additional parameter - specify amount of servers to be executed at the time ( fo
 ```
 
 default value "serial" into configuration **ansible.cfg**
-```
+```properties
 forks = 5
 ```
 
@@ -740,24 +740,24 @@ forks = 5
 **not all modules support this operation**
 execute command in asynchronous mode ( with preliminary estimation 120 sec ), 
 with default poll result of the command - 10 ( seconds )
-```
+```yaml
   async: 120
 ```
 execute command in asynchronous mode ( with preliminary estimation 120 sec ), 
 with poll result of the command - 60 ( seconds )
-```
+```yaml
   async: 120
   poll: 60
 ```
 execute command and forget, not to wait for execution
-```
+```yaml
   async: 120
   poll: 0
 ```
 execute command in asynchronous mode, 
 register result
 checking result at the end of the file
-```
+```yaml
 - command: /opt/my_personal_long_run_command.sh
   async: 120
   poll: 0
@@ -775,11 +775,11 @@ checking result at the end of the file
 ---
 ## init project ansible-galaxy, create new role, init role
 execute code into your project folder './roles'
-```
+```sh
 ansible-galaxy init {project/role name}
 ```
 result:
-```
+```text
 ./roles/{project/role name}
     /defaults
     /handlers
@@ -789,7 +789,7 @@ result:
     /vars
 ```
 insert into code
-```
+```yaml
   roles:
   - {project/role name}
 ```
@@ -797,17 +797,17 @@ all folders of the created project will be applied to your project ( tasks, vars
 *in case of manual creation - only necessary folders can be created*
 
 ## ansible search for existing role
-```
+```sh
 ansible-galaxy search {project/role name}
 ```
 
 ## import existing roles from [ansible galaxy](https://galaxy.ansible.com/list)
-```
+```sh
 cd roles
 ansible-galaxy import {name of the project/role}
 ```
 insert into code
-```
+```yaml
   roles:
   - {project/role name}
 ```
@@ -836,7 +836,7 @@ or
 
 ## export 
 create/update file:
-```
+```sh
 ./roles/{project/role name}/meta/main.yml
 ```
 
@@ -882,30 +882,30 @@ where "new_application/new_role" - subfolder to role
 where @group_vars/all/default/all.yaml - sub-path to yaml file with additional variables
 
 ## console output with applied roles should looks like
-```
+```text
 TASK [{project/role name}: {task name}] ***********************************
 ```
 for example
-```
+```text
 TASK [java : install java with jdbc libraries] ***********************************
 ```
 
 # file encryption, vault
-```
+```sh
 ansible-vault encrypt inventory.txt
 ansible-vault view inventory.txt
 ansible-vault create inventory.txt
 ```
 ask password via command line
-```
+```sh
 ansible-playbook playbook.yml -i inventory.txt -ask-vault-pass
 ```
 file should contain the password
-```
+```sh
 ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_pass.txt
 ```
 script should return password
-```
+```sh
 ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_pass.py
 ```
 
@@ -914,7 +914,7 @@ ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_
 * [custom module creation doc](docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html)  
 
 ### [apt](https://docs.ansible.com/ansible/latest/modules/apt_module.html), python installation 
-```
+```yaml
 - name: example of apt install 
   apt: name='{{ item }}' state=installed
   with_items:
@@ -926,7 +926,7 @@ ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_
 ```
 
 ### [service](https://docs.ansible.com/ansible/latest/modules/service_module.html)
-```
+```yaml
 - name: example of start unix service
   service:
     name: mysql
@@ -935,7 +935,7 @@ ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_
 ```
 
 ### [pip](https://docs.ansible.com/ansible/latest/modules/pip_module.html)
-```
+```yaml
 - name: manage python packages via pip 
   pip:
     name: flask
@@ -950,7 +950,7 @@ ansible-playbook playbook.yml -i inventory.txt -vault-password-file ./file_with_
 
 ### echo
 add flag for ```ansible``` or ```ansible-playbook```:-vvv(3) -vv (2) or -v (1)
-```
+```yaml
 - debug:
     msg: ">>> {{ data_portal_deploy_folder }}/data-portal.jar"
     var: src
@@ -958,7 +958,7 @@ add flag for ```ansible``` or ```ansible-playbook```:-vvv(3) -vv (2) or -v (1)
 ```
 
 ### [copy](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html?extIdCarryOver=true&sc_cid=701f2000001OH7nAAG#ansible-collections-ansible-builtin-copy-module)
-```
+```yaml
 - name: Ensure MOTD file is in place
   copy:
     src: files/motd
@@ -1072,11 +1072,11 @@ add flag for ```ansible``` or ```ansible-playbook```:-vvv(3) -vv (2) or -v (1)
 # issues
 
 ## fingerprint checking
-```
+```text
 fatal: [172.28.128.4]: FAILED! => {"msg": "Using a SSH password instead of a key is not possible because Host Key checking is enabled and sshpass does not support this.  Please add this host's fingerprint to your known_hosts file to manage this host."}
 ```
 resolution
-```
+```sh
 export ANSIBLE_HOST_KEY_CHECKING=False
 ansible-playbook -i inventory.ini playbook-directory.yml
 ```
