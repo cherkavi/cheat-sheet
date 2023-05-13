@@ -1,4 +1,6 @@
 # [ansible](https://www.ansible.com/)
+> agentless, connect via ssh to remote machine(s)
+
 * [doc](https://docs.ansible.com/)
 * [variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html#)
 * [cheat-sheet](https://cheat.readthedocs.io/en/latest/ansible/index.html)
