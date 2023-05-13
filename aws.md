@@ -1,5 +1,11 @@
 # AWS 
 ## links
+
+### examples
+* [udacity AWS DevOps course](https://github.com/cherkavi/udacity-cloud-devops/blob/main/README.md)
+* [samples](https://github.com/aws-samples)
+* [hand on](https://aws.amazon.com/getting-started/hands-on/)
+
 ### trainings
 * [online trainings](https://www.aws.training/)
 * [online trainings, current education](https://www.aws.training/Account/Transcript/Current)
@@ -8,10 +14,6 @@
 * [certification preparation](https://aws.amazon.com/certification/certification-prep/)
 * [labs](https://github.com/awslabs)
 * [workshops](https://www.workshops.aws/)
-
-### examples
-* [samples](https://github.com/aws-samples)
-* [hand on](https://aws.amazon.com/getting-started/hands-on/)
 
 ### others
 * [serverless](https://serverlessland.com/)
