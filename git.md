@@ -647,8 +647,8 @@ git remote set-url origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitit
 
 # in case of Error: no such remote 
 git remote add origin https://$GIT_TOKEN@github.com/cherkavi/python-utilitites.git
-
 # in case of asking username & password - check URL, https prefix, name of the repo.... 
+# in case of existing origin, when you add next remote - change name origin to something else like 'origin-gitlab'/'origin-github'
 ```
 
 remove old password-access approach
