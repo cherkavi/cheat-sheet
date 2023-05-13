@@ -772,6 +772,8 @@ checking result at the end of the file
 
 
 # roles
+* [ansible galaxy](https://galaxy.ansible.com/)
+* [ansible-galaxy cli](https://docs.ansible.com/ansible/latest/cli/ansible-galaxy.html)
 ---
 ## init project ansible-galaxy, create new role, init role
 execute code into your project folder './roles'
@@ -798,13 +800,18 @@ all folders of the created project will be applied to your project ( tasks, vars
 
 ## ansible search for existing role
 ```sh
-ansible-galaxy search {project/role name}
+ansible-galaxy search {project/role name/some text}
+ansible-galaxy info role-name
+
 ```
 
 ## import existing roles from [ansible galaxy](https://galaxy.ansible.com/list)
 ```sh
 cd roles
 ansible-galaxy import {name of the project/role}
+
+# print out existing roles
+ansible-galaxy role list 
 ```
 insert into code
 ```yaml
