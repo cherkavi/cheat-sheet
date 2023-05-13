@@ -16,8 +16,22 @@
 * [docker images for job run](https://hub.docker.com/u/cimg)
 * [docker images for job run](https://hub.docker.com/u/circleci/)
 * [orbs - shared configuration ](https://circleci.com/developer/orbs)
-  * [orbs intro](https://circleci.com/docs/orb-intro/)
-
+  - [orbs intro](https://circleci.com/docs/orb-intro/)
+* [list of possible step-commands like: run,checkout... ](https://circleci.com/docs/configuration-reference/#steps)
+  - [run](https://circleci.com/docs/configuration-reference/#run)
+  - [checkout](https://circleci.com/docs/configuration-reference/#checkout)
+  - [save_cache](https://circleci.com/docs/configuration-reference/#savecache)
+  - [persist_to_workspace](https://circleci.com/docs/configuration-reference/#persisttoworkspace)
+  - [attach_workspace](https://circleci.com/docs/configuration-reference/#attachworkspace)
+  - [deploy](https://circleci.com/docs/configuration-reference/#deploy)
+  - [docker](https://circleci.com/docs/configuration-reference/#docker)
+  - [add_ssh_keys](https://circleci.com/docs/configuration-reference/#addsshkeys)
+  - [add_ssh_known_hosts](https://circleci.com/docs/configuration-reference/#addsshknownhosts)
+  - [machine](https://circleci.com/docs/configuration-reference/#machine)
+  - [store_artifacts](https://circleci.com/docs/configuration-reference/#storeartifacts)
+  - [store_test_results](https://circleci.com/docs/configuration-reference/#storetestresults)
+  - ...
+  
 ## setup new project
 1. create repository in github/gitlab
 2. create file `.circleci/config.yml` in repository
@@ -131,16 +145,21 @@ workflows:
 ```yaml
 # https://circleci.com/docs/configuration-reference/#savecache
 - save_cache:
-    key: unique_key_1 
-    path: ~/.m2
+    key: |
+      maven_repo-{{ .Branch }}-{{ .Revision }} 
+      result_of_build-{{ .Branch }}-{{ .Revision }}
+    paths:
+      - ~/.m2
+      - target/application-with-dependencies.jar
 ```
 ```yaml
 # https://circleci.com/docs/configuration-reference/#restorecache
 - restore_cache:
     keys:
-      - unique_key_1
-      - unique_key_2
+      - maven_repo-{{ .Branch }}-{{ .Revision }} 
+      - result_of_build-{{ .Branch }}-{{ .Revision }}
 ```
+
 ### workspace
 > mutable
 ```yaml
