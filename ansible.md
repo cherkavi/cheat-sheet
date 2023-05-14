@@ -46,11 +46,16 @@ sudo rm -rf /usr/local/lib/python2.7/dist-packages/ansible
 ```
 
 ## ansible configuration places
-* path variable $Ansible_Config
-* ~/.ansible.cfg
-* /etc/ansible/ansible.cfg
+* [environment variables](https://docs.ansible.com/ansible/latest/reference_appendices/config.html)
+* ansible.cfg file:
+  * env variable with file  $ANSIBLE_CONFIG ( point out to ansible.cfg )
+  * ~/.ansible.cfg
+  * /etc/ansible/ansible.cfg
 ```sh
+# show current config file 
 ansible-config view
+# description of all ansible config variables
+ansible-config list
 # list of possible environment variables
 ansible-config dump
 ```
@@ -62,10 +67,6 @@ filename: ~/.ansible.cfg
 roles_path = ~/repos/project1/roles:~/repos/project2/roles
 ```
 
-### check configuration
-```sh
-ansible-config view
-```
 
 ## inventory
 ### without inventory inline host ip 
