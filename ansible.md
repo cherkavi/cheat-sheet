@@ -837,12 +837,22 @@ ansible-galaxy init {project/role name}
 result:
 ```text
 ./roles/{project/role name}
-    /defaults
-    /handlers
-    /meta
+	#         Main list of tasks that the role executes
     /tasks
-    /tests
+	#         Files that the role deploys
+    /files
+	#         Handlers, which may be used within or outside this role
+    /handlers
+	#         Modules, which may be used within this role
+    /library
+	#         Default variables for the role
+    /defaults
+	#         Other variables for the role
     /vars
+	#         Templates that the role deploys
+    /templates
+	#         Metadata for the role, including role dependencies
+    /meta
 ```
 insert into code
 ```yaml
