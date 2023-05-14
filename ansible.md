@@ -99,8 +99,8 @@ myvar=23 # defined in a :vars section, interpreted as a string
 --extra-vars "remote_folder=$REMOTE_FOLDER ansible_python_interpreter=/usr/bin/python"
 ```
 
-## execute minimal playbook locally minimal example start
-check-variable.yaml file
+## execute minimal playbook locally minimal example start simplest playbook
+check-variable.yaml content:
 ```yaml
 - hosts: localhost
   tasks:
@@ -110,9 +110,16 @@ check-variable.yaml file
     no_log: false
 ```
 > log output can be suppressed ( no log output )
-
 ```sh
 ansible-playbook check-variable.yaml  -v
+```
+
+another example but with roles
+```yaml
+- hosts: localhost
+  user: user_temp
+  roles:
+    - my_own_role
 ```
 
 ## execute ansible for one host only, one host, one remove server, verbosity
