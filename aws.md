@@ -138,6 +138,13 @@ echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-ex
 ## [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
 
 ---
+## resource query
+```sh
+aws ec2 describe-instances \
+--query 'Reservations[*].Instances[*].PublicIpAddress' \
+--filters "Name=tag:Project,Values=udacity"
+```
+
 ## [resource sql query](https://docs.aws.amazon.com/config/latest/developerguide/query-using-sql-editor-cli.html)
 ```sh
 aws configservice select-resource-config --expression "SELECT resourceId WHERE resourceType='AWS::EC2::Instance'"
