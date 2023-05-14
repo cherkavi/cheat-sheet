@@ -5,7 +5,7 @@
 * [variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html#)
 * [cheat-sheet](https://cheat.readthedocs.io/en/latest/ansible/index.html)
 * [best practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)
-* [ansible modules](https://docs.ansible.com/ansible/latest/collections/index_module.html)
+* [ansible modules](https://docs.ansible.com/ansible/latest/collections/index_module.html) `ansible-doc --list`
 * [ansible roles, ansible galaxy, ready roles](https://galaxy.ansible.com/)
 * [examples](https://github.com/ansible/ansible-examples)
 * [examples 2](https://github.com/mmumshad/ansible-training-answer-keys)
