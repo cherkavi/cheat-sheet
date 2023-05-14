@@ -2,7 +2,7 @@
 > agentless, connect via ssh to remote machine(s)
 
 * [doc](https://docs.ansible.com/)
-* [variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html#)
+* [variables for scripts, runtime variables, jinja variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html#)
 * [cheat-sheet](https://cheat.readthedocs.io/en/latest/ansible/index.html)
 * [best practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)
 * [ansible modules](https://docs.ansible.com/ansible/latest/collections/index_module.html) `ansible-doc --list`, `ansible-doc shell`
