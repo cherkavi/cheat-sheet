@@ -960,7 +960,16 @@ create/update file:
 ansible-playbook ansible-example.yml
 ```
 
-## execute role, role execution, start role locally, local start, role local execution
+## execute role, role execution, start role locally, local start, role local execution, check role
+```sh
+ansible-galaxy init print-message
+
+echo '- name: print message
+  debug:
+    msg: "{{ role_name }}"' > print-message/tasks/main.yml
+
+ansible localhost --module-name include_role --args 'name=print-message'
+```
 ```sh
 ansible localhost \
     --extra-vars="deploy_application=1" \
