@@ -970,12 +970,30 @@ ansible-playbook ansible-example.yml
 ```sh
 ansible-galaxy init print-message
 
-echo '- name: print message
-  debug:
-    msg: "{{ role_name }}"' > print-message/tasks/main.yml
+echo '- name: install apache
+  apt:
+    name: ["apache2"]
 
+- name: create file
+  shell:
+    cmd: echo "hello from container {{ role_name }}" > /var/www/html/index.html
+
+- name: start service
+  service:
+    name: "apache2"
+    state: "started"
+' > print-message/tasks/main.yml
+
+# execute for localhost
 ansible localhost --module-name include_role --args 'name=print-message'
+
+# execute ansible role for docker container
+docker start atlassian/ssh-ubuntu:0.2.2
+ansible all -i 172.17.0.2, --extra-vars "ansible_user=root ansible_password=root" --module-name include_role --args 'name=print-message'
+
+x-www-browser http://172.17.0.2
 ```
+
 ```sh
 ansible localhost \
     --extra-vars="deploy_application=1" \
