@@ -726,7 +726,13 @@ For ‘non host vars’ you can use the vars lookup plugin:
 # inventory file
 ---
 ## inventory file, inventory file with variables, [rules](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
-```settings
+```ini
+[all]
+10.2.2.24
+10.2.2.25
+10.2.2.26
+```
+```ini
 [remote_ssh]
 172.28.128.3     ansible_connection=ssh   ansible_port=22   ansible_user=tc     ansible_password=tc
 ```
@@ -745,7 +751,7 @@ inventory.py --host databases
 [prepared scripts](https://github.com/ansible/ansible/tree/devel/contrib/inventory)
 
 ## inventory file with variables ( python Jinja templating)
-```settings
+```ini
 [remote_ssh]
 172.28.128.3     ansible_connection=ssh   ansible_port=22   ansible_user=tc     ansible_password=tc   http_port=8090
 ```
