@@ -93,6 +93,53 @@ host2 ansible_port=222 # defined inline, interpreted as an integer
 http_port=8080 # all members of 'web' will inherit these
 myvar=23 # defined in a :vars section, interpreted as a string
 ```
+### inventory dynamic inventory from any source
+```sh
+pip install ansible ansible-inventory
+```
+python script ( for instance my-inventory.py ) 
+* should generate json output:
+```sh
+python my-inventory.py --list
+```
+```json
+{
+    "group1": {
+        "hosts": ["host1", "host2"],
+        "vars": {
+            "ansible_user": "admin",
+            "ansible_become": True
+        },
+        "children":["group2"]
+    },
+    "group2": {
+        "hosts": ["host3"],
+        "vars": {
+            "ansible_user": "user",
+            "ansible_become": False
+        },
+        "children":[]
+    }
+}
+```
+* should generate json output:
+```sh
+python my-inventory.py --host host1
+```
+```json
+{
+  "ansible_user": "admin",
+  "ansible_become": True
+}
+```
+How to check the script:
+```sh
+chmod +x my-inventory.py
+
+ansible -i my-inventory.py all -m ping
+```
+
+
 
 ## execute with specific remote python version, remote python, rewrite default variables, rewrite variables, override variable  
 ```
