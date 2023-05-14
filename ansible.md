@@ -233,6 +233,27 @@ ansible-playbook playbook.yml --extra-vars="oc_project=scenario-test mapr_stream
 ```sh
 ansible remote* -i inventory.ini -m "ping"
 ansible remote* -i inventory.ini --module-name "ping"
+
+## shell
+ansible all --module-name shell 'free -m'
+# sequence output with fork=1
+ansible all --module-name shell --args uptime -f 1
+
+## command
+ansible all --module-name command --args 'fdisk -l' --become
+
+## ansible-doc apt
+ansible localhost --module-name apt --args 'name=python3 state=present'
+
+## file
+# create
+ansible all --module-name file --args "path=/tmp/demo_1.txt state=touch mode=666"
+ansible all --module-name file --args "path=/tmp/output state=directory mode=666"
+# delete
+ansible all --module-name file --args "path=/tmp/demo_1.txt state=absent mode=666"
+# copy
+ansible all --module-name copy --args "src=~/demo.txt dest=/tmp/demo.txt remote_src=yes"
+
 ```
 ```sh
 ansible remote* -i inventory.ini -a "hostname"
