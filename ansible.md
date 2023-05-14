@@ -970,7 +970,12 @@ ansible-playbook ansible-example.yml
 ```sh
 ansible-galaxy init print-message
 
-echo '- name: install apache
+echo '- name: "update apt packages."
+  become: yes
+  apt:
+    update_cache: yes
+    
+- name: install apache
   apt:
     name: ["apache2"]
 
