@@ -19,10 +19,20 @@
   npm config set https-proxy http://<uname>:<pass>@proxyhost:<port>
   ```
   
-* [install Angular](https://cli.angular.io/)
-  ```sh 
-  ```
 * docker container with Angular attach to your current folder and build your application
+```
++---------+
+| source  +-----------+
+|  /app   |           |
++----^----+    +------v----+
+     V         | docker:   |
+     |         | * node    |
+     |         | * angular |
+ +---+---+     +-----+-----+
+ | dest  |           |
+ | build <-----------+
+ +-------+
+```
   1. build your docker with dependencies
 ```sh
 NODE_VERSION=16.15.0
