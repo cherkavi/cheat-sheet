@@ -24,6 +24,7 @@
 * [sed escape, sed online escape](https://dwaves.de/tools/escape/)
 
 ### online coding
+* [online editor with prepared UI frameworks](https://stackblitz.com/)
 * [code compiler/editor online](https://www.jdoodle.com/)
 * [code compiler/editor online](https://onecompiler.com/)
 * [typescript sandbox](https://www.typescriptlang.org/)
