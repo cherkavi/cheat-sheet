@@ -1,5 +1,5 @@
 # installation
-* install nodejs
+## install nodejs
   ```sh
   # download and unpack to $destionation folder https://nodejs.org/en/
   destination_folder=/home/soft/node2
@@ -7,7 +7,7 @@
   tar -xf node.tar.xz -C $destination_folder
   # update /etc/environment with $destination_folder
   ```
-* npm config
+## npm config
 > $HOME/.npmrc - another way to extend settings per user
   ```sh
   # list of configuration
@@ -19,7 +19,7 @@
   npm config set https-proxy http://<uname>:<pass>@proxyhost:<port>
   ```
   
-* docker container with Angular attach to your current folder and build your application
+## docker container with Angular attach to your current folder and build your application
 ```
 +---------+
 | source  +-----------+
@@ -51,6 +51,10 @@ ng --version
     ## install typescript
 npm install -g typescript  
 tsc --version
+
+    ## install yarn
+npm install --global yarn
+yarn --version
 ```
   2. (optional) save your docker container with installed artifacts
 ```sh
@@ -79,9 +83,7 @@ npm install
     # npm build # for version<6.x.x
 npm pack
 ```
-  
-* [install yarn](https://yarnpkg.com/en/docs/install)
-
+ 
 # Start of application
 * [angular-cli](https://github.com/angular/angular-cli)
 * [angular how to start with cli](https://angular.io/start)
