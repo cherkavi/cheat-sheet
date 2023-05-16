@@ -2347,7 +2347,7 @@ jq ".[] | .name"
 docker network inspect mysql_web_default | jq '.[0].Containers' | jq '.[] | select(.Name=="web_mysql_ui")' | jq .IPv4Address
 
 # jq create another document
-echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq '.[] | {number:.id, warrior:.name} '
+echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq '[.[] | {number:.id, warrior:.name} ]'
 	
 # convert to csv
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
