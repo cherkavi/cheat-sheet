@@ -2353,6 +2353,9 @@ echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "ag
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
 jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
 
+# jq as a table
+echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq -r '["ID","NAME"], ["--","------"], (.[] | [.id,.name]) | @tsv' 
+	
 # jq get first element
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq '.[0] | [.name, .age] | @csv'
 
