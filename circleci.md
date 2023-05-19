@@ -180,6 +180,11 @@ workflows:
 * https://kvdb.io
 * deprecated: metstash.io
 
+## job manual approval
+```yaml
+      - hold: 
+          type: approval # "On Hold"
+```
 
 ## Local usage
 ### how to execute job

@@ -60,6 +60,12 @@ filename: ~/.ansible.cfg
 roles_path = ~/repos/project1/roles:~/repos/project2/roles
 ```
 
+### configuration for aws for skipping check host key
+```sh
+[defaults]
+host_key_checking = false
+```
+
 ### check configuration
 ```sh
 ansible-config view
