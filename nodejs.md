@@ -5,6 +5,10 @@
 * [node multiversion manager](https://github.com/nvm-sh/nvm)
 * [install Angular](https://cli.angular.io/)
 
+## tools
+* [process manager with load balancer](https://www.npmjs.com/package/pm2)
+* [execute package manager](https://www.npmjs.com/package/npx)
+
 ### docker running
 ```sh
 docker pull node

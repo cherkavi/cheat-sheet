@@ -1,5 +1,5 @@
 # installation
-* install nodejs
+## install nodejs
   ```sh
   # download and unpack to $destionation folder https://nodejs.org/en/
   destination_folder=/home/soft/node2
@@ -7,7 +7,7 @@
   tar -xf node.tar.xz -C $destination_folder
   # update /etc/environment with $destination_folder
   ```
-* npm config
+## npm config
 > $HOME/.npmrc - another way to extend settings per user
   ```sh
   # list of configuration
@@ -18,50 +18,75 @@
   npm config set proxy http://<username>:<pass>@proxyhost:<port>
   npm config set https-proxy http://<uname>:<pass>@proxyhost:<port>
   ```
-
-* install typescript
-  ```sh
-  npm install -g typescript  
-  # tsc --version
-  ```
   
-* [install Angular](https://cli.angular.io/)
-  ```sh 
-  npm install -g @angular/cli
-  npm install -g @angular/cli@12
-  # ng --version
-  ```
-* docker container with Angular
+## docker container with Angular attach to your current folder and build your application
+```
++---------+
+| source  +-----------+
+|  /app   |           |
++----^----+    +------v----+
+     V         | docker:   |
+     |         | * node    |
+     |         | * angular |
+ +---+---+     +-----+-----+
+ | dest  |           |
+ | build <-----------+
+ +-------+
+```
+  1. build your docker with dependencies
 ```sh
 NODE_VERSION=16.15.0
-# NODE_VERSION=latest
+    # NODE_VERSION=latest # you can select last version for it
 docker pull node:$NODE_VERSION 
-cd ui # or to proper folder with UI
-sudo rm -rf node_modules
-docker run --entrypoint="" --rm --name "npm_angular" --interactive --tty --volume $(pwd):/app node:$NODE_VERSION  /bin/sh 
-cd /app
-npm install
-# /usr/local/lib/node_modules/npm/bin/npm 
-# npm build # for version<6.x.x
-npm pack
+docker run --entrypoint="" --rm --name "npm_angular" --interactive --tty node:$NODE_VERSION  /bin/sh 
+
+    # (optional)
+    # ------- inside container -------
+    ## install angular 
+npm install -g @angular/cli    
+npm install -g @angular/cli@12
+    # check your installation 
+ng --version
+
+    ## install typescript
+npm install -g typescript  
+tsc --version
+
+    ## install yarn
+npm install --global yarn
+yarn --version
 ```
+  2. (optional) save your docker container with installed artifacts
 ```sh
+DOCKER_IMAGE_ANGULAR=node-with-angular
 # in another terminal 
-container_id=`docker ps | grep 'npm_angular' | awk '{print $1}'`
-echo $container_id
-docker commit $container_id "node-with-angular-12"
+CONTAINER_ID=`docker ps | grep 'npm_angular' | awk '{print $1}'`
+echo $CONTAINER_ID
+docker commit $CONTAINER_ID $DOCKER_IMAGE_ANGULAR
 docker images
 ```
+  3. start saved container in your application folder (folder with )
 ```sh
-# run command in application folder
-docker run --entrypoint="" --interactive --tty -p 4200:4200  -v `pwd`:/app node-with-angular-12  /bin/sh 
+DOCKER_IMAGE_ANGULAR=node-with-angular
+docker run --entrypoint="" --interactive --tty -p 4200:4200  -v `pwd`:/app $DOCKER_IMAGE_ANGULAR  /bin/sh 
 ```
-  
-* [install yarn](https://yarnpkg.com/en/docs/install)
+  4. build application inside your container 
+```sh
+    # after step 3.
+PATH_TO_PROJECT_LOCAL=/app
+    # ls -la $PATH_TO_PROJECT_LOCAL/package.json
+cd $PATH_TO_PROJECT_LOCAL
+sudo rm -rf node_modules
 
-# links
-[quick start](https://github.com/angular/quickstart.git)
-[angular installation](https://cli.angular.io)
+npm install
+    # /usr/local/lib/node_modules/npm/bin/npm 
+    # npm build # for version<6.x.x
+npm pack
+```
+ 
+# Start of application
+* [angular-cli](https://github.com/angular/angular-cli)
+* [angular how to start with cli](https://angular.io/start)
 
 # core conceptions
 * modular architecture

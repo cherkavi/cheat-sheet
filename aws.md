@@ -1,5 +1,11 @@
 # AWS 
 ## links
+
+### examples
+* [udacity AWS DevOps course](https://github.com/cherkavi/udacity-cloud-devops/blob/main/README.md)
+* [samples](https://github.com/aws-samples)
+* [hand on](https://aws.amazon.com/getting-started/hands-on/)
+
 ### trainings
 * [online trainings](https://www.aws.training/)
 * [online trainings, current education](https://www.aws.training/Account/Transcript/Current)
@@ -8,10 +14,6 @@
 * [certification preparation](https://aws.amazon.com/certification/certification-prep/)
 * [labs](https://github.com/awslabs)
 * [workshops](https://www.workshops.aws/)
-
-### examples
-* [samples](https://github.com/aws-samples)
-* [hand on](https://aws.amazon.com/getting-started/hands-on/)
 
 ### others
 * [serverless](https://serverlessland.com/)
@@ -136,6 +138,13 @@ echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-ex
 ## [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
 
 ---
+## resource query
+```sh
+aws ec2 describe-instances \
+--query 'Reservations[*].Instances[*].PublicIpAddress' \
+--filters "Name=tag:Project,Values=udacity"
+```
+
 ## [resource sql query](https://docs.aws.amazon.com/config/latest/developerguide/query-using-sql-editor-cli.html)
 ```sh
 aws configservice select-resource-config --expression "SELECT resourceId WHERE resourceType='AWS::EC2::Instance'"
