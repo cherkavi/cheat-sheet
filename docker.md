@@ -705,8 +705,10 @@ docker volume ls -qf dangling=true | xargs -r docker volume rm
 ```
 
 ### cleanup docker
-```
+```sh
 docker system prune -af --volumes
+# clean only unused volumes
+docker system prune -f --volumes
 ```
 ### delete
 ```
