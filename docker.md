@@ -325,9 +325,10 @@ docker run -d --restart=unless-stopped {CONTAINER ID}
 ------
 ### map volume ( map folder )
 ```
--v {host machine folder}:{internal folder into docker container}
+-v {host machine folder}:{internal folder into docker container}:{permission}
 ```
 ```
+-v `pwd`:/home/root/host_folder:rw
 -v /tmp:/home/root/tmp
 ```
 
