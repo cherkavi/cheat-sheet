@@ -329,6 +329,7 @@ docker run -d --restart=unless-stopped {CONTAINER ID}
 ```
 ```
 -v `pwd`:/home/root/host_folder:rw
+-v $PWD:/home/root/host_folder:Z
 -v /tmp:/home/root/tmp
 ```
 
