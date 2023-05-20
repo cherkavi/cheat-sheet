@@ -342,7 +342,7 @@ docker volume ls
 ```
 -p {host machine port}:{internal docker machine port}
 ```
-```
+```sh
 docker run -d -p 8030-8033:8030-8033/tcp  e02d9b40e89d
 docker run -d -p 8040:8040/tcp  prom/prometheus 
 ```
@@ -353,13 +353,17 @@ docker run -d -p 8040:8040/tcp  prom/prometheus
 * -d
 
 ### run image with specific name
-```
+```sh
 docker run --name my_specific_name {name of image}
 ```
 
 ### run image with specific user ( when you have issue with rights for mounting external folders )
-```
+```sh
 docker run --user root {name of image}
+```
+### run image with current user ( when you use docker image as pre-installed software )
+```sh
+docker run --user $(id -u):$(id -g) {name of the image}
 ```
 
 ### run container with empty entrypoint, without entrypoint
