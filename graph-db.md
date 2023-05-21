@@ -53,9 +53,6 @@ g = graph.traversal()
 
 #### remote connection with submit
 ```groovy
-g = traversal().withRemote(DriverRemoteConnection.using("localhost", 8182));
-```
-```groovy
 // connect to database, during the start should be message in console like: "plugin activated: tinkerpop.server"
 :remote connect tinkerpop.server conf/remote.yaml
 // check connection
@@ -77,31 +74,80 @@ g = traversal().withRemote(DriverRemoteConnection.using("localhost", 8182));
 
 #### remote connection without submit
 ```groovy
+import static org.apache.tinkerpop.gremlin.process.traversal.AnonymousTraversalSource.traversal;
+g = traversal().withRemote("conf/remote-graph.properties");
+```
+
+??? doesn't work with connecting points 
+```groovy
 // with remote connection
 cluster = Cluster.build().addContactPoint('127.0.0.1').create()
 client = cluster.connect()
+// g = traversal().withRemote(DriverRemoteConnection.using("localhost", 8182));
 g = new GraphTraversalSource(DriverRemoteConnection.using(client, 'g'))
 ```
+
 
 #### gremlin simplest dataset example
 > WARN: default connection is local, need to "submit" each time
 ```groovy
 // insert data, add :submit if you did't connect to the cluster
 // :submit g.addV('person').....
-g.addV('person').property('sex', 'female').property('age', 30).property('name','Alice').as("Alice");
-g.addV('person').property('sex', 'male').property('age', 35).property('name','Bob').as("Bob");
+alice=g.addV('Alice').property('sex', 'female').property('age', 30).property('name','Alice');
+bob=g.addV('Bob').property('sex', 'male').property('age', 35).property('name','Bob').as("Bob");
+marie=g.addV('Marie').property('sex', 'female').property('age', 5).property('name','Marie');
 g.tx().commit() // only for transactional TraversalSource
 
-// select data
+// select id of element
+alice_id=g.V().hasLabel('Alice').id().next();
+bob_id=g.V().has('name','Bob').id().next()
+alice_id=g.V().has('name','Alice').id().next()
+marie_id=g.V().has('name','Marie').id().next()
+bob=g.V( bob_id )
+alice=g.V( alice_id )
+:show variables
+
+// select vertex
 g.V() \
  .has("sex", "female") \
  .has("age", lte(30)) \
- .valueMap("age", "sex")
+ .valueMap("age", "sex", "name")
 //  .values("age")       
 
-// remove data
+
+// g.V().hasLabel('Bob').addE('wife').to(g.V().has('name', 'Alice'))
+// The child traversal of [GraphStep(vertex,[]), HasStep([name.eq(Alice)])] was not spawned anonymously - use the __ class rather than a TraversalSource to construct the child traversal
+g.V(bob_id).addE('wife').to(__.V(alice_id)) \
+ .property("start_time", 2010).property("place", "Canada");
+
+g.V().hasLabel('Bob').addE('daughter').to(__.V().has('name', 'Marie')) \
+ .property("start_time", 2013).property("birth_place", "Toronto");
+
+g.addE('mother').to(__.V(alice_id)).from(__.V(marie_id))
+
+
+// select all vertices
 g.V().id()
+
+// select all edges
+g.E()
+
+// select data: edges out of
+g.V().has("name","Bob").outE()
+// select data: edges in to
+g.V().has("name","Alice").inE().outV().values("name")
+// select data: out edge(wife), point in 
+g.V().has("name","Bob").outE("wife").inV().values("name")
+// select data: out edge(wife), point to Vertext, in edge(mother), coming from 
+g.V().has("name","Bob").outE("wife").inV().inE("mother").outV().values("name")
+
+
+// remove Vertex
 g.V('4280').drop()
+
+// remove Edge
+g.V().has("name", "Bob").outE("wife").drop()
+
 
 :exit
 ```
