@@ -73,6 +73,65 @@ workflows:
 3. [connect circleci to project](https://app.circleci.com/projects/connect-vcs/)
 > webhook will be created in the project
 
+## try catch job
+### try catch on job level
+```yaml
+jobs:
+    job_name:
+        docker:
+            - image: cimg/base:2022.05
+        steps:
+            - run: echo "hello"
+            - run: 
+                name: error simulation
+                command: |  
+                    return 1
+            - run:
+                name: catch possible previous errors
+                command: |
+                    echo "time to execute rollback operation"
+                when: on_fail
+```
+other possible conditions:
+```
+when:
+    environment:
+        MY_VAR: "true"
+```
+```
+when:
+    # of previous step
+    status: success
+```
+```
+when:
+    branch:
+        only:
+            - master
+            - develop
+```
+```
+when: |
+    steps.branch.matches('feature/*') || steps.branch.matches('bugfix/*')
+```
+
+### try catch on command level
+```yaml
+jobs:
+    job_name:
+        docker:
+            - image: cimg/base:2022.05
+        steps:
+            - run: 
+                name: error simulation
+                command: |  
+                    return 1
+                on_fail:
+                    - run:
+                        name: catch exception
+                        command: |
+                            echo " time to execute rollback operation"
+```
 
 ## [pipeline variables](https://circleci.com/docs/pipeline-variables/#pipeline-values)
 ```yaml
