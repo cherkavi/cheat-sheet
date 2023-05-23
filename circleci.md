@@ -10,6 +10,8 @@
     # update your ~/.bashrc
     eval "$(circleci completion bash)"
     export CIRCLECI_CLI_HOST=https://circleci.com
+    
+    circleci setup
     ```
 
 ## working loop
@@ -69,6 +71,9 @@ workflows:
       - print_world:
           requires: 
             - print_hello
+```
+```bash
+circleci validate
 ```
 3. [connect circleci to project](https://app.circleci.com/projects/connect-vcs/)
 > webhook will be created in the project
