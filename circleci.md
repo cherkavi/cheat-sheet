@@ -133,6 +133,23 @@ jobs:
                             echo " time to execute rollback operation"
 ```
 
+### job examples
+#### job cloudformation
+```
+  run_cloudformation: 
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: run cloudformation
+          command: |
+            aws cloudformation deploy \
+              --template-file my-template-file.yml \
+              --stack-name my-template-file-${CIRCLE_WORKFLOW_ID:0:5} \
+              --region us-east-1
+```
+
 ## [pipeline variables](https://circleci.com/docs/pipeline-variables/#pipeline-values)
 ```yaml
 jobs:
