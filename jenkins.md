@@ -449,10 +449,15 @@ pipeline {
 $JENKINS_URL/env-vars.html/
 
 ## REST API
+check connection
+```sh
+JENKINS_URL=https://jenkins-stg.dpl.org
+curl -sg "$JENKINS_URL/api/json?tree=jobs[name,url]" --user $DXC_USER:$DXC_PASS
+```
 deploy with parameters
 ```sh
-# obtain list of parameters: https://jenkins.vantage.zur/job/application/job/data-api/job/deployment/job/deploy-services/api/json?pretty=true
-curl https://jenkins.vantage.zur/job/application/job/data-api/job/deployment/job/deploy-services/buildWithParameters \
+# obtain list of parameters: $JENKINS_URL/job/application/job/data-api/job/deployment/job/deploy-services/api/json?pretty=true
+curl $JENKINS_URL/job/application/job/data-api/job/deployment/job/deploy-services/buildWithParameters \
   --user $DXC_USER:$DXC_PASS \
   --data BRANCH_NAME=master \
   --data DESTINATION=stg-6 \
@@ -461,9 +466,8 @@ curl https://jenkins.vantage.zur/job/application/job/data-api/job/deployment/job
 ```
 job information
 ```sh
-curl -sg "https://jenkins-stg.dpl.org/api/json?tree=jobs[name,url]" --user $DXC_USER:$DXC_PASS
-curl -sg "https://jenkins-stg.dpl.org/job/application/job/data-portal/job/deployment/job/deploy-from-branch-3/api/json?tree=allBuilds[number,url]" --user $DXC_USER:$DXC_PASS
-curl -sg "https://jenkins-stg.dpl.org/job/application/job/data-portal/job/deployment/job/deploy-from-branch-3/244/api/json?tree" --user $DXC_USER:$DXC_PASS
+curl -sg "$JENKINS_URL/job/application/job/data-portal/job/deployment/job/deploy-from-branch-3/244/api/json?tree" --user $DXC_USER:$DXC_PASS
+curl -sg "$JENKINS_URL/job/application/job/data-portal/job/deployment/job/deploy-from-branch-3/api/json?tree=allBuilds[number,url]" --user $DXC_USER:$DXC_PASS
 ```
 
 
