@@ -29,6 +29,7 @@
 * [log collector](https://github.com/wercker/stern)
 * [prompt for K8S](https://github.com/jonmosco/kube-ps1)
 * [realtime changes in cluster](https://github.com/pulumi/kubespy)
+* [edge router, load balancer](https://doc.traefik.io/traefik/)
 
 # workplace installation
 * kubectl installation

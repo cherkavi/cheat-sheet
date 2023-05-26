@@ -658,7 +658,7 @@ git remote set-url --delete origin https://github.com/cherkavi/python-utilitites
 
 ### change remote url
 ```
-git remote set-url origin git@cc-github.my-network.net:adp/data-management.git
+git remote set-url origin git@cc-github.my-network.net:adp/management.git
 ```
 
 ### git clone via https
@@ -978,4 +978,38 @@ curl -u ${GIT_USER}:${PAT} -X GET $DOWNLOAD_URL
 
 # read content
 curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_REPO_OWNER}/${GIT_REPO}/contents/${FILE_PATH} | jq -r ".content" | base64 --decode
+```
+```sh
+GIT_URL=https://github.ubsbank.ch
+GIT_API_URL=$GIT_URL/api/v3
+# access to repo 
+function git-api-get(){
+    curl -s --request GET  --header "Authorization: Bearer $GIT_TOKEN_REST_API" --url "${GIT_API_URL}${1}"
+}
+
+
+# list of all accessing endpoints
+git-api-get 
+
+# user info
+GIT_USER_NAME=$(git-api-get /user | jq -r .name)
+echo $GIT_USER_NAME
+
+# repositories
+git-api-get /users/$GIT_USER_NAME/repos
+
+GIT_REPO_OWNER=swh
+GIT_REPO_NAME=data-warehouse
+git-api-get /repos/$GIT_REPO_OWNER/$GIT_REPO_NAME
+
+# pull requests
+git-api-get /repos/$GIT_REPO_OWNER/$GIT_REPO_NAME/pulls
+
+PULL_REQUEST_NUMBER=20203
+# pull request info
+git-api-get /repos/$GIT_REPO_OWNER/$GIT_REPO_NAME/pulls/$PULL_REQUEST_NUMBER
+# | jq -c '[.[] | {ref:.head.ref, body:.body, user:.user.login, created:.created_at, updated:.updated_at, state:.state, draft:.draft, reviewers_type:[.requested_reviewers[].type], reviewers_login:[.requested_reviewers[].login], request_team:[.requested_teams[].name], labels:[.labels[].name]}]'
+
+# pull request files
+git-api-get /repos/$GIT_REPO_OWNER/$GIT_REPO_NAME/pulls/$PULL_REQUEST_NUMBER/files | jq .[].filename
 ```

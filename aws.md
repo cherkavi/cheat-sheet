@@ -237,10 +237,12 @@ aws s3api get-object --bucket $AWS_BUCKET_NAME --key path/on/s3 /local/path
 aws s3api put-object --bucket my-bucket-name --key foldername/
 # sync folder local to remote s3
 aws s3 sync /path/to/some/folder s3://my-bucket-name/some/folder
-# sync folder remote s3 to locacl
+# sync folder remote s3 to local
 aws s3 sync s3://my-bucket-name/some/folder /path/to/some/folder 
-# sync folder with remote s3 folder with public access
+# sync folder with remote s3 bucket with public access
 aws s3 sync /path/to/some/folder s3://my-bucket-name/some/folder --acl public-read
+# sync folder with remote s3 bucket and remove all not existing files locally but existing in bucket
+aws s3 sync s3://my-bucket-name/some/folder /path/to/some/folder --delete
 # list of all objects
 aws s3 ls --recursive s3://my-bucket-name 
 # list of all object by specified path ( / at the end must be )
