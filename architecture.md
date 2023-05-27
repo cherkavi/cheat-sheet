@@ -1,6 +1,7 @@
 # Architecture 
 
 ## Useful links
+* [EIP](https://www.enterpriseintegrationpatterns.com/ramblings.html)
 * [C4](https://leanpub.com/visualising-software-architecture)
 * [C4 model](https://c4model.com/)
 * 97 things every architect should know
