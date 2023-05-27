@@ -2,6 +2,7 @@
 > agentless, connect via ssh to remote machine(s)
 
 * [doc](https://docs.ansible.com/)
+* [event driven automation](https://www.redhat.com/en/engage/event-driven-ansible-20220907?extIdCarryOver=true&intcmp=701f20000012m2KAAQ&percmp=7013a0000034e7YAAQ&sc_cid=701f2000001OH7EAAW)
 * [variables for scripts, runtime variables, jinja variables](https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html#)
 * [cheat-sheet](https://cheat.readthedocs.io/en/latest/ansible/index.html)
 * [best practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)
