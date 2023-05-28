@@ -56,7 +56,8 @@ update your bashrc
 
 ### Tools
 * [layers explorer](https://github.com/wagoodman/dive)
-* [layers, config, copy ... ](https://github.com/containers/skopeo/blob/main/install.md)
+* [layers, config, copy image between diff registries ... ](https://github.com/containers/skopeo/blob/main/install.md)
+* [copy image between registries](oras.land)
 
 
 ### information about docker itself
