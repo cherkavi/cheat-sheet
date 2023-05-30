@@ -152,7 +152,12 @@ npm list -g --depth=0
 ## reinstall package globally
 ```sh
 npm search @angular
+
+# full package name
 npm uninstall -g @angular/cli
+# uninstall by name 
+# npm uninstall -g fx
+
 npm cache clear --force
 npm install -g @angular/cli 
 ```
