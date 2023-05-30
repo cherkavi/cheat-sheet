@@ -9,10 +9,14 @@
 * [process manager with load balancer](https://www.npmjs.com/package/pm2)
 * [execute package manager](https://www.npmjs.com/package/npx)
 
-### docker running
+### run node in docker, docker running, run node with version
+[node docker tags](https://hub.docker.com/_/node/tags)  
 ```sh
-docker pull node
-docker run --volume `pwd`:/hostfolder -it node /bin/bash
+# NODE_VERSION=16.15.0
+NODE_VERSION=14.21.1-alpine
+docker run --volume $PWD:/app -it node:$NODE_VERSION /bin/bash
+cd /app
+node --version
 ```
 
 ## command line arguments 
