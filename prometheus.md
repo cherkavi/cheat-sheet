@@ -6,6 +6,7 @@ pull metrics from different sources and write them in TSDB ( internal, InfluxDB 
 * [prometheus documentation](https://prometheus.io/docs/prometheus/latest/)
 * [prometheus docker](https://hub.docker.com/r/prom/prometheus/)
 * [prometheus git](https://github.com/prometheus/prometheus)
+* [prometheus functions](https://prometheus.io/docs/prometheus/latest/querying/functions/)
 
 ## [prometheus in docker](https://github.com/cherkavi/docker-images/blob/master/prometheus/README.md)
 ```sh
