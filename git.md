@@ -964,7 +964,6 @@ curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/users/${GIT_REPO_OWNER}/repos | gre
 curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_REPO_OWNER}/${GIT_REPO}
 curl -H "Authorization: token ${PAT}" ${GIT_URL}/api/v3/repos/${GIT_REPO_OWNER}/${GIT_REPO}
 
-
 # read path
 export FILE_PATH=doc/README
 curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_REPO_OWNER}/${GIT_REPO}/contents/${FILE_PATH}
@@ -978,6 +977,13 @@ curl -u ${GIT_USER}:${PAT} -X GET $DOWNLOAD_URL
 
 # read content
 curl -u ${GIT_USER}:${PAT} ${GIT_URL}/api/v3/repos/${GIT_REPO_OWNER}/${GIT_REPO}/contents/${FILE_PATH} | jq -r ".content" | base64 --decode
+```
+```sh
+# search for pull request 
+ISSUE_ID=MAGNUM-1477
+# use + sign instead of space
+SEARCH_STR="is:pr+${ISSUE_ID}"
+curl -s --request GET  --header "Authorization: Bearer $GIT_TOKEN_REST_API" --url "${GIT_API_URL}/search/issues?q=${SEARCH_STR}&sort=created&order=asc" 
 ```
 ```sh
 GIT_URL=https://github.ubsbank.ch
