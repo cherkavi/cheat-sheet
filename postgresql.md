@@ -322,3 +322,9 @@ ADD COLUMN IF NOT EXISTS modifiedBy character varying(10485760) COLLATE pg_catal
 ADD COLUMN IF NOT EXISTS modifiedBy character varying COLLATE pg_catalog."default"
 ```
 
+### analyse query plan
+```sql
+-- EXPLAIN (ANALYSE, BUFFERS)
+EXPLAIN ANALYSE
+select * from my_table;
+```
