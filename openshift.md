@@ -271,6 +271,15 @@ FILE_NAME=route-data-api-mdf4download-service.yaml
 echo "vim $FILE_NAME" | clipboard
 yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.metadata.labels."template.openshift.io/template-instance-owner"),(.metadata.namespace="my_namespace")' $FILE_NAME 
 ```
+#### [special limits for routes](https://docs.openshift.com/container-platform/4.9/networking/routes/route-configuration.html#nw-route-specific-annotations_route-configuration)
+```json
+{
+  "haproxy.router.openshift.io/rate-limit-connections": "true",
+  "haproxy.router.openshift.io/rate-limit-connections.concurrent-tcp": "70",
+  "haproxy.router.openshift.io/rate-limit-connections.rate-http": "70",
+  "haproxy.router.openshift.io/timeout": "1800s",
+}
+```
 
 ## get all information about current project, show all resources
 ```sh
