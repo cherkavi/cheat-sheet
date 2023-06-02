@@ -389,6 +389,7 @@ maprcli table cf list -path /vantage/deploy/data-access-video/images -cfname def
 
 ### Granting Access Permissions for User
 ```bash
+!!! WARNING, pls, read list of existing users before set new !!!
 maprcli table cf edit -path /vantage/deploy/data-access-video/images -cfname default -readperm u:tech_user_name
 maprcli table cf edit -path /vantage/deploy/data-access-video/images -cfname default -readperm "u:tech_user_name | u:tech_user_name2"
 ```
