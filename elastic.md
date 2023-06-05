@@ -25,6 +25,7 @@ INDEX_NAME=ubs-single-autolabel
 curl -X GET $ELASTIC_HOST
 
 # health check
+curl -H "Authorization: Bearer $TOKEN" -X GET $ELASTIC_HOST/_cluster/health?pretty=true
 curl -X GET $ELASTIC_HOST/_cluster/health?pretty=true
 curl -X GET $ELASTIC_HOST/_cluster/health?pretty=true&level=shards
 curl -X GET $ELASTIC_HOST/$INDEX_NAME
