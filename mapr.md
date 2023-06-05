@@ -229,6 +229,17 @@ curl -u $curl_user:$curl_pass \
 $host:$port/topics/$stream_path%3A$topic_name
 ```
 
+### rest api for maprdb
+```sh
+SESSION_ID=efba27777-313d
+echo $SESSION_ID
+URL_REST_API=https://mapr-web.vantage.zur:20702
+REST_API=${URL_REST_API}/api/v2
+REST_API_TABLE=${REST_API}/table/  # ends with slash !!!
+MAPR_DB_PATH=/vantage/store/tables/signals
+curl -X GET --insecure -L -u $USER_DATA_API_USER:$USER_DATA_API_PASSWORD  ${REST_API_TABLE}${MAPR_DB_PATH}'?condition=\{"$eq":\{"session":"'$SESSION_ID'"\}\}&limit=1' | jq .
+```
+
 ## maprcli
 ### login, print info, logout
 ```
