@@ -229,7 +229,7 @@ curl -u $curl_user:$curl_pass \
 $host:$port/topics/$stream_path%3A$topic_name
 ```
 
-### rest api for maprdb
+### [rest api for maprdb, Data Fabric Database](https://www.hpe.com/psnow/resources/ebooks/a00110181en_us_v11/MapR-DB/JSON_DB/GettingStartedMapRDBJSONRESTAPI.html)
 ```sh
 SESSION_ID=efba27777-313d
 echo $SESSION_ID
