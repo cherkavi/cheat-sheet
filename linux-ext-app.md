@@ -271,7 +271,11 @@ echo "hello vim " | vim - -c "set number"
 ```
 
 ### [vim plugin](https://github.com/junegunn/vim-plug)
-file ```.vimrc``` should have next content: 
+#### vim plugin managers
+* [Vundle](https://github.com/VundleVim/Vundle.vim)
+* [pathogen](https://github.com/tpope/vim-pathogen)
+
+file ```~/.vimrc``` should have next content: 
 ```
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -285,6 +289,9 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Plug 'andreshazard/vim-logreview'
+" Plug 'dstein64/vim-win'
+
 call plug#end()
 
 set laststatus=2
@@ -297,10 +304,15 @@ set incsearch
 set hlsearch
 ```  
 
+or 
 ```sh
-git clone https://github.com/vim-airline/vim-airline ~/.vim/plugged/vim-airline
+git clone --depth=1 https://github.com/vim-airline/vim-airline ~/.vim/plugged/vim-airline
+git clone --depth=1 https://github.com/dstein64/vim-win ~/.vim/plugged/vim-win
 ```
-
+```sh
+vim anyfile.txt
+:PlugInstall
+```
 
 ### .vim folder example
 ```
