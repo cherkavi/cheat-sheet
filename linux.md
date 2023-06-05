@@ -1838,6 +1838,14 @@ unzip -l $ARCHIVE_NAME
 unzip $ARCHIVE_NAME path/to/file/inside
 ```
 
+## 7zip
+```sh
+sudo apt install p7zip-full
+
+7za l archive.7z
+7za x archive.7z	
+```
+	
 ## tar
 ### tar archiving tar compression 
 ```sh
