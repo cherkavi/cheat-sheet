@@ -445,6 +445,15 @@ pipeline {
     }
 }
 ```
+
+### condition for step
+```groovy
+...
+  stage('Action') {
+        if (env.CUSTOM_VARIABLE ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/) {
+	 ...
+```
+
 ### show accessible environment jenkins variables
 $JENKINS_URL/env-vars.html/
 
