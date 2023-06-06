@@ -1185,6 +1185,18 @@ add flag for ```ansible``` or ```ansible-playbook```:-vvv(3) -vv (2) or -v (1)
     line: PermitRootLogin no
     state: present
 ```
+```json
+- name: Set version information
+  lineinfile:
+    path: "{{ working_folder }}/version.json"
+    regexp: "{{ item.Reg }}"
+    line: "{{ item.Line }}"
+  with_items:
+    - { Reg: 'releaseName', Line: '"releaseName": "{{ release_name }}",' }
+    - { Reg: 'releaseNotesUrl', Line: '"releaseNotesUrl": "{{ release_notes_url }}",' }
+  delegate_to: localhost
+  tags: deploy
+```
 
 ### [unarchive](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/unarchive_module.html)
 ```json
