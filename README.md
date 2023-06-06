@@ -1,3 +1,31 @@
+# cheat sheet
+
+## useful search function for using whole cheat sheet
+```sh
+function cheat-grep(){
+    if [[ $1 == "" ]]; then
+        echo "nothing to search"
+        return;
+    fi
+
+    search_line=""
+    for each_input_arg in "$@"; do
+        if [[ $search_line == "" ]]; then
+            search_line=$each_input_arg
+        else
+            search_line=$search_line".*"$each_input_arg
+        fi
+    done
+
+    grep -r $search_line -i -A 2 $HOME_PROJECTS/cheat-sheet/*.md $HOME_PROJECTS/bash-example/*
+}
+```
+
+## other tools
+* [cht.sh](https://github.com/chubin/cheat.sh)
+* [tldr](https://tldr.sh/)
+* [how2](https://how2terminal.com/download)
+
 ## Other cheat sheets:
 * [root/entrypoint to different resources](https://github.com/sindresorhus/awesome)
 * [cheat sheets collection](https://lzone.de/cheat-sheet/)
@@ -61,24 +89,3 @@
 * [locust](https://docs.locust.io/en/stable/writing-a-locustfile.html)
     * [how to locust](https://www.blazemeter.com/blog/locust-load-testing)
 
----
-## useful search function for using whole cheat sheet
-```sh
-function cheat-grep(){
-    if [[ $1 == "" ]]; then
-        echo "nothing to search"
-        return;
-    fi
-
-    search_line=""
-    for each_input_arg in "$@"; do
-        if [[ $search_line == "" ]]; then
-            search_line=$each_input_arg
-        else
-            search_line=$search_line".*"$each_input_arg
-        fi
-    done
-
-    grep -r $search_line -i -A 2 $HOME_PROJECTS/cheat-sheet/*.md $HOME_PROJECTS/bash-example/*
-}
-```
