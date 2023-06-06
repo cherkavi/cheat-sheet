@@ -1,10 +1,12 @@
 # MapR
 ## Links
-[MapR Academy](http://learn.mapr.com)  
-[Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)  
-[mapr code examples, mapr demos](https://github.com/mapr-demos)  
-[mapr ojai](https://github.com/mapr-demos/ojai-examples/tree/master/python)  
-![commands](https://i.postimg.cc/q7469wbf/mapr-commands.png)  
+* [MapR Academy](http://learn.mapr.com)  
+* [Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)  
+* [mapr code examples, mapr demos](https://github.com/mapr-demos)  
+* [mapr ojai](https://github.com/mapr-demos/ojai-examples/tree/master/python)  
+* [spark ojai](https://docs.ezmeral.hpe.com/datafabric-customer-managed/61/Spark/NativeSparkConnectorJSON.html)
+* [ojai](https://github.com/ojai/ojai)
+* ![commands](https://i.postimg.cc/q7469wbf/mapr-commands.png)  
 
 ## Architecture examples
 ![connected drive](https://i.postimg.cc/LXCBm8b5/Connected-Car-Pipeline.png)
@@ -212,7 +214,7 @@ java -cp `mapr classpath`:my-own-app.jar mypackage.MainClass
 
 ```
 
-## [REST API](https://mapr.com/docs/61/Kafka/REST-proxy.html)
+## [MapR Stream REST API](https://mapr.com/docs/61/Kafka/REST-proxy.html)
 ```sh
 curl_user="cluster_user"
 curl_pass="cluster_user_password"
@@ -230,6 +232,8 @@ $host:$port/topics/$stream_path%3A$topic_name
 ```
 
 ### [rest api for maprdb, Data Fabric Database](https://www.hpe.com/psnow/resources/ebooks/a00110181en_us_v11/MapR-DB/JSON_DB/GettingStartedMapRDBJSONRESTAPI.html)
+* [examples of CURL to MapR DB ](https://github.com/mapr-demos/mapr-db-rest-go-sample/blob/master/README_CURL.md)
+* 
 ```sh
 SESSION_ID=efba27777-313d
 echo $SESSION_ID
