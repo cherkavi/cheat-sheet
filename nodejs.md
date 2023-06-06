@@ -94,9 +94,16 @@ node --report-uncaught-exception
 ```sh
 npm config ls
 npm config list
+```
+## npm registry
+```sh
 # how to set registry
 npm config set registry https://registry.npmjs.org/
 npm config delete registry
+```
+or adjust environment
+```sh
+NPM_CONFIG_REGISTRY=https://registry.npmjs.org/
 ```
 ## proxy
 ```sh
