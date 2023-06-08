@@ -3507,9 +3507,14 @@ xdotool mousemove 1800 500
 # left click
 xdotool click 1
 ```
+pls, check that you are using Xorg and not Wayland:
+```sh
+# uncomment false
+cat /etc/gdm3/custom.conf | grep WaylandEnable
+```
 
 ### calendar, week number
-```
+```sh
 gcal --with-week-number
 ```
 
