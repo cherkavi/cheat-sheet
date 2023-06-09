@@ -22,7 +22,17 @@ locate rc.lua
 ```
 
 
-### gnome settings, gnome list of settings
+### gnome settings 
+#### gnome settings editor
+```sh
+sudo apt install dconf-editor
+```
+manually can be achieved via
+```
+~/.local/share/gnome-shell/extensions/<extension-identifier>/prefs.js
+~/.local/share/gnome-shell/extensions/<extension-identifier>/settings.js
+```
+#### gnome list of settings
 ```sh
 # all gnome settings
 gsettings list-recursively 
