@@ -9,7 +9,17 @@
 * [process manager with load balancer](https://www.npmjs.com/package/pm2)
 * [execute package manager](https://www.npmjs.com/package/npx)
 
-### run node in docker, docker running, run node with version
+### run different node version
+#### run different node versions locally
+```sh
+sudo npm install -g n 
+n ls
+sudo n install 13.8
+n exec 13.8 node --version
+n exec 20.3 node --version
+```
+
+#### run node in docker, docker running, run node with version
 [node docker tags](https://hub.docker.com/_/node/tags)  
 ```sh
 # NODE_VERSION=16.15.0
