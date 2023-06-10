@@ -50,10 +50,10 @@ gnome keybinding
 ```
 save/restore
 ```sh
-dconf dump /org/gnome/desktop/wm/keybindings/ > org_gnome_desktop_wm_keybindings
+# dconf dump /org/gnome/desktop/wm/keybindings/ > org_gnome_desktop_wm_keybindings
 dconf dump /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ > org_gnome_settings-daemon_plugins_media-keys_custom-keybindings_custom0
 
-dconf load /org/gnome/desktop/wm/keybindings/ < org_gnome_desktop_wm_keybindings
+# dconf load /org/gnome/desktop/wm/keybindings/ < org_gnome_desktop_wm_keybindings
 dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ < org_gnome_settings-daemon_plugins_media-keys_custom-keybindings_custom0
 ```
 
