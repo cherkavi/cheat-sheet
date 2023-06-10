@@ -449,10 +449,13 @@ sudo apt-get remove black && python3 -m pip install black==20.8b1
 black --line-length 100
 python -m black {file of directory}
 ```
-black with IDEA, black with PyCharm
+
+### black with IDEA, black with PyCharm
 * install FileWatcher plugin
 * Tool to Run on Changes: Program: ~/.locl/bin/black
 * Tool to Run on Changes: Arguments: $FilePath$
+
+### [black playground](https://black.vercel.app/)
 
 ## Test coverage
 ```sh
