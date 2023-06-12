@@ -60,12 +60,7 @@ host    all             all              ::/0                            md5
 ```
 
 ### connect to db
-#### cli installation
-```sh
-pip install -U pgcli
-sudo apt install pgcli
-```
-#### postgresql cli connection
+#### postgresql cli client
 ```sh
 PG_HOST=localhost
 PG_PORT=5432
@@ -83,6 +78,33 @@ PG_DB=`echo $POSTGRES_URL | awk -F '//' '{print $2}' | awk -F ':' '{print $2}' |
 echo $PG_DB"   "$PG_HOST":"$PG_PORT
 export PGPASSWORD=$POSTGRES_PASSWORD
 psql -h $PG_HOST  -p $PG_PORT -U $POSTGRES_USER $PG_DB
+```
+
+#### pgcli client
+```sh
+pip install -U pgcli
+# sudo apt install pgcli
+
+POSTGRES_URL='jdbc:postgresql://esv000133.vantage.zur:40558/postgres-shared'
+PG_HOST=`echo $POSTGRES_URL | awk -F '//' '{print $2}' | awk -F ':' '{print $1}'`
+PG_PORT=`echo $POSTGRES_URL | awk -F '//' '{print $2}' | awk -F ':' '{print $2}' | awk -F '/' '{print $1}'`
+PG_DB=`echo $POSTGRES_URL | awk -F '//' '{print $2}' | awk -F ':' '{print $2}' | awk -F '/' '{print $2}'`
+PG_USER='postgres'
+POSTGRES_PASSWORD='my-password'
+export PGPASSWORD=$POSTGRES_PASSWORD
+# --pgschema marker 
+echo "host:$PG_HOST, port:$PG_PORT, dbname:$PG_DB, user:$PG_USER, password:$POSTGRES_PASSWORD"
+
+### direct connection 
+pgcli --host $PG_HOST --port $PG_PORT --dbname $PG_DB --user $PG_USER
+
+### connection via bastion:
+## terminal #1
+# port forwarding from localhost to Database via PROD_NODE
+ssh -L $PG_PORT:$PG_HOST:$PG_PORT $DXC_USER@$CLUSTER_PROD_NODE
+
+## terminal #2, execute again all variables 
+pgcli --host localhost --port $PG_PORT --dbname $PG_DB --user $PG_USER
 ```
 
 #### save results to file
