@@ -60,6 +60,13 @@ debian
 apt-get install -y --no-install-recommends python3-pip
 ```
 
+### setup pip remote index
+```sh
+NEXUS_HOST=some.host.com
+python3 -m pip config --user set global.index-url https://${NEXUS_USER}:${NEXUS_PASS}@${NEXUS_HOST}
+python3 -m pip config --user set global.trusted-host ${NEXUS_HOST}
+```
+
 ## [pip install git svn folder](https://pip.pypa.io/en/stable/cli/pip_install/)
 ### pip install with proxy, pip install proxy, pip proxy, pip via proxy
 ```sh
