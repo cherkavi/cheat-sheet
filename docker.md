@@ -831,6 +831,21 @@ ARG ROS_VERSION
 FROM cc-artifactory.ubsgroup.com/docker/ros:${ROS_VERSION}
 ```
 
+dockerfile with pre-build two FROM section
+```Dockerfile
+# Build node app
+FROM node:16 as build
+WORKDIR /src
+RUN yarn install --immutable
+RUN yarn run web:build:prod
+
+# start file service
+FROM caddy:2.5.2-alpine
+WORKDIR /src
+COPY --from=build /src/web/.webpack ./
+EXPOSE 80
+CMD ["caddy", "file-server", "--listen", ":80"]
+```
 
 ### build useful commands
 | command |   description |
