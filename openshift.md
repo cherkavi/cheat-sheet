@@ -280,6 +280,19 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
   "haproxy.router.openshift.io/timeout": "1800s",
 }
 ```
+#### add custom http headers to response from route
+```sh
+echo $ROUTE_NAME
+## not working
+# oc annotate route $ROUTE_NAME haproxy.router.openshift.io/corsHeaders='Accept, Authorization, Content-Type, If-Match, If-Modified-Since, If-None-Match, If-Unmodified-Since, Origin, X-Requested-With'
+# oc annotate route $ROUTE_NAME haproxy.router.openshift.io/corsHeaders-
+
+## add custom headers to route response
+# add cors headers to route response
+oc annotate route $ROUTE_NAME haproxy.router.openshift.io/response-headers='access-control-allow-credentials: true, access-control-allow-headers: X-Requested-By\, Authorization\, Content-Type, access-control-allow-methods: GET\, POST\, PUT\, DELETE, access-control-allow-origin: *'
+# remove cors headers
+oc annotate route $ROUTE_NAME haproxy.router.openshift.io/response-headers-
+```
 
 ## get all information about current project, show all resources
 ```sh
