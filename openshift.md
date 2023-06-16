@@ -282,16 +282,55 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
 ```
 #### [add custom http headers to response from route](https://haproxy-ingress.github.io/docs/configuration/keys/#cors)
 ```sh
-echo $ROUTE_NAME
-## not working
+## doesn't work - 02
 # oc annotate route $ROUTE_NAME haproxy.router.openshift.io/corsHeaders='Accept, Authorization, Content-Type, If-Match, If-Modified-Since, If-None-Match, If-Unmodified-Since, Origin, X-Requested-With'
 # oc annotate route $ROUTE_NAME haproxy.router.openshift.io/corsHeaders-
 
-## add custom headers to route response
-# add cors headers to route response
-oc annotate route $ROUTE_NAME haproxy.router.openshift.io/response-headers='access-control-allow-credentials: true, access-control-allow-headers: X-Requested-By\, Authorization\, Content-Type, access-control-allow-methods: GET\, POST\, PUT\, DELETE, access-control-allow-origin: *'
-# remove cors headers
-oc annotate route $ROUTE_NAME haproxy.router.openshift.io/response-headers-
+## doesn't work - 03
+# oc annotate route $ROUTE_NAME haproxy.router.openshift.io/response-headers='access-control-allow-credentials: true, access-control-allow-headers: X-Requested-By\, Authorization\, Content-Type, access-control-allow-methods: GET\, POST\, PUT\, DELETE, access-control-allow-origin: *'
+# oc annotate route $ROUTE_NAME haproxy.router.openshift.io/response-headers-
+
+## doesn't work - 04
+# oc annotate route $ROUTE_NAME haproxy.router.openshift.io/response_headers='access-control-allow-credentials: true, access-control-allow-headers: X-Requested-By\, Authorization\, Content-Type, access-control-allow-methods: GET\, POST\, PUT\, DELETE, access-control-allow-origin: *'
+# oc annotate route $ROUTE_NAME haproxy.router.openshift.io/response_headers-
+
+## doesn't work - 05
+# oc annotate route $ROUTE_NAME haproxy.router.openshift.io/hsts_header='access-control-allow-credentials: true, access-control-allow-headers: X-Requested-By\, Authorization\, Content-Type, access-control-allow-methods: GET\, POST\, PUT\, DELETE, access-control-allow-origin: *'
+# oc annotate route $ROUTE_NAME haproxy.router.openshift.io/hsts_header-
+
+## doesn't work - 06
+# oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/enable-cors='true'
+# oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/enable-cors-
+
+## doesn't work - 07
+# oc annotate route $ROUTE_NAME haproxy-ingress.github.io/cors-enable='true'
+# oc annotate route $ROUTE_NAME haproxy-ingress.github.io/cors-allow-credentials='true'
+# oc annotate route $ROUTE_NAME haproxy-ingress.github.io/cors-allow-headers='X-Requested-By, Authorization, Content-Type'
+# oc annotate route $ROUTE_NAME haproxy-ingress.github.io/cors-allow-methods='GET, POST, PUT, DELETE'
+# oc annotate route $ROUTE_NAME haproxy-ingress.github.io/cors-allow-origin='*'
+# oc annotate route $ROUTE_NAME haproxy-ingress.github.io/cors-allow-credentials-
+# oc annotate route $ROUTE_NAME haproxy-ingress.github.io/cors-allow-headers-
+# oc annotate route $ROUTE_NAME haproxy-ingress.github.io/cors-allow-methods-
+# oc annotate route $ROUTE_NAME haproxy-ingress.github.io/cors-allow-origin-
+
+## doesn't work 08
+# haproxy.router.openshift.io/hsts_header: "cors-allow-origin='*';cors-allow-credentials='true';includeSubDomains;preload"
+
+## doesn't work 09
+# nginx.ingress.kubernetes.io/enable-cors: "true"
+# nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+
+## doesn't work  - 10
+# oc annotate route $ROUTE_NAME kubernetes.io/ingress.class="nginx"
+# oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/cors-allow-credentials='true'
+# oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/cors-allow-headers='X-Requested-By, Authorization, Content-Type'
+# oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/cors-allow-methods='GET, POST, PUT, DELETE'
+# oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/cors-allow-origin='*'
+# oc annotate route $ROUTE_NAME kubernetes.io/ingress.class-
+# oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/cors-allow-credentials-
+# oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/cors-allow-headers-
+# oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/cors-allow-methods-
+# oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/cors-allow-origin-
 ```
 
 ## get all information about current project, show all resources
