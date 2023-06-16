@@ -62,6 +62,10 @@ public class MyClassName implements Partitioner{
 ```
 maprcli node listcldbs
 ```
+#### [volume create ](https://docs.ezmeral.hpe.com/datafabric-customer-managed/71/ClusterAdministration/data/volumes/CreateVols.html#cli)
+```
+maprcli volume create -name my-volume -path /vantage/processed/my-application/my-new-output
+```
 
 #### stream create
 ```
