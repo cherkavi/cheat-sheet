@@ -280,7 +280,7 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
   "haproxy.router.openshift.io/timeout": "1800s",
 }
 ```
-#### add custom http headers to response from route
+#### [add custom http headers to response from route](https://haproxy-ingress.github.io/docs/configuration/keys/#cors)
 ```sh
 echo $ROUTE_NAME
 ## not working
