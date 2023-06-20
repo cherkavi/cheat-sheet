@@ -62,9 +62,23 @@ public class MyClassName implements Partitioner{
 ```
 maprcli node listcldbs
 ```
-#### [volume create ](https://docs.ezmeral.hpe.com/datafabric-customer-managed/71/ClusterAdministration/data/volumes/CreateVols.html#cli)
-```
-maprcli volume create -name my-volume -path /vantage/processed/my-application/my-new-output
+#### [create MapR volume ](https://docs.ezmeral.hpe.com/datafabric-customer-managed/71/ClusterAdministration/data/volumes/CreateVols.html#cli)
+```sh
+## volume create
+VOLUME_NAME=test_volume
+VOLUME_PATH=/store/processed/test_creation
+mkdir $VOLUME_PATH
+maprcli volume create -name $VOLUME_NAME -path $VOLUME_PATH
+## possible issue:
+# Successfully created volume: 'test_volume'
+# ERROR (10003) -  Volume mount for /store/processed/test_creation failed, No such file or directory
+
+## volume remove
+maprcli volume remove -name $VOLUME_NAME
+
+## list of MapR volumes in json format
+# json, path , columns , local, global, system, unmounted, summary, sort, limit
+maprcli volume list -json > ~/volume-list.json
 ```
 
 #### stream create
