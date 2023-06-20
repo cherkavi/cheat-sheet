@@ -331,6 +331,11 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
 # oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/cors-allow-headers-
 # oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/cors-allow-methods-
 # oc annotate route $ROUTE_NAME nginx.ingress.kubernetes.io/cors-allow-origin-
+
+## doesn't work - 11
+# oc annotate route $ROUTE_NAME haproxy-ingress.github.io/cors-allow-headers='X-Requested-By; Authorization; Content-Type'
+# oc annotate route $ROUTE_NAME --overwrite=true "haproxy.router.openshift.io/hsts_header"="access-control-allow-origin=*;access-control-allow-credentials=true;includeSubDomains;preload"
+
 ```
 
 ## get all information about current project, show all resources
