@@ -272,6 +272,8 @@ GRANT select on all tables in schema public to qa_read_only_xxxxx;
 -- create schema
 CREATE SCHEMA IF NOT EXISTS airflow_02;
 DROP SCHEMA IF EXISTS airflow_02;
+--  remove all child objects like tables, indexes, relations... 
+DROP SCHEMA IF EXISTS airflow_02 CASCADE;
 
 -- print all schemas
 select s.nspname as table_schema,
