@@ -81,6 +81,7 @@ psql -h $PG_HOST  -p $PG_PORT -U $POSTGRES_USER $PG_DB
 ```
 
 #### [pgcli client](https://www.pgcli.com/docs)
+[list of the commands for client](https://www.pgcli.com/commands)  
 ```sh
 pip install -U pgcli
 pip3 install pgcli[sshtunnel]
@@ -100,6 +101,7 @@ echo "host:$PG_HOST, port:$PG_PORT, dbname:$PG_DB, user:$PG_USER, password:$POST
 
 ### direct connection 
 pgcli --host $PG_HOST --port $PG_PORT --dbname $PG_DB --user $PG_USER
+pgcli postgresql://$PG_USER:$PG_PASSWORD@localhost:$PG_PORT/$PG_DB
 
 ### connection via bastion:
 ## terminal #1
@@ -108,6 +110,10 @@ ssh -L $PG_PORT:$PG_HOST:$PG_PORT $DXC_USER@$CLUSTER_PROD_NODE
 
 ## terminal #2, execute again all variables 
 pgcli --host localhost --port $PG_PORT --dbname $PG_DB --user $PG_USER
+
+### ssh-tunnel connection bastion direct connection
+pgcli postgresql://$PG_USER:$PG_PASSWORD@PG_HOST:$PG_PORT/$PG_DB --ssh-tunnel $DXC_USER:$DXC_PASS@$CLUSTER_PROD_NODE  
+
 ```
 
 #### save results to file
