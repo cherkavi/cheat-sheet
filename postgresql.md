@@ -83,8 +83,11 @@ psql -h $PG_HOST  -p $PG_PORT -U $POSTGRES_USER $PG_DB
 #### pgcli client
 ```sh
 pip install -U pgcli
-# sudo apt install pgcli
-
+pip3 install pgcli[sshtunnel]
+# or 
+sudo apt install pgcli
+```
+```sh
 POSTGRES_URL='jdbc:postgresql://esv000133.vantage.zur:40558/postgres-shared'
 PG_HOST=`echo $POSTGRES_URL | awk -F '//' '{print $2}' | awk -F ':' '{print $1}'`
 PG_PORT=`echo $POSTGRES_URL | awk -F '//' '{print $2}' | awk -F ':' '{print $2}' | awk -F '/' '{print $1}'`
