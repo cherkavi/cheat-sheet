@@ -80,7 +80,7 @@ export PGPASSWORD=$POSTGRES_PASSWORD
 psql -h $PG_HOST  -p $PG_PORT -U $POSTGRES_USER $PG_DB
 ```
 
-#### pgcli client
+#### [pgcli client](https://www.pgcli.com/docs)
 ```sh
 pip install -U pgcli
 pip3 install pgcli[sshtunnel]
