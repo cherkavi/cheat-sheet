@@ -279,6 +279,8 @@ CREATE SCHEMA IF NOT EXISTS airflow_02;
 DROP SCHEMA IF EXISTS airflow_02;
 --  remove all child objects like tables, indexes, relations... 
 DROP SCHEMA IF EXISTS airflow_02 CASCADE;
+-- rename schema
+ALTER SCHEMA migration_test RENAME TO migration_test2;
 
 -- print all schemas
 select s.nspname as table_schema,
