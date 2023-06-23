@@ -267,6 +267,11 @@ GRANT connect ON database w5a823c88301e9 TO qa_read_only_xxxxx;
 GRANT select on all tables in schema public to qa_read_only_xxxxx;
 ```
 
+### grant permissions for table
+```sql
+grant delete, insert, references, select, trigger, truncate, update on <table_name> to <user_name>;
+```
+
 ### Common operations
 ```sql
 -- create schema
