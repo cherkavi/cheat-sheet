@@ -326,8 +326,18 @@ pg_dump --host $PG_HOST --port $PG_PORT --username $PG_USER --dbname $PG_DB --sc
 ```
 
 ```sql
+\d schema_name.table_name
 \dt+ schema_name.table_name
-\d+ schema_name.table_name
+\dt+ schema_name.table_name
+
+SELECT pg_catalog.pg_get_tabledef('table_name') AS ddl_statement;
+SELECT pg_get_ddl('table_name') AS ddl_statement;
+```
+
+```sql
+SELECT table_name, column_name, data_type, is_nullabel, udt_name, character_maximum_length, datetime_precision
+FROM information_schema.columns 
+WHERE table_name = 'schema_name.table_name'; 
 ```
 
 ### copy schema copy data
