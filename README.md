@@ -21,7 +21,7 @@ function cheat-grep(){
 }
 ```
 
-## other tools
+## other cheat-tools
 * [cht.sh](https://github.com/chubin/cheat.sh)
 * [tldr](https://tldr.sh/)
 * [how2](https://how2terminal.com/download)
@@ -75,6 +75,9 @@ function cheat-grep(){
 
 ### password storage
 * [one time password storage](https://onetimesecret.com/)
+
+
+### [list of opensource api tools](https://openapi.tools/)
 
 ### REST api test frameworks
 * [karate](https://github.com/karatelabs/karate)
