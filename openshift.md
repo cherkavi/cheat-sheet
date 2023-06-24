@@ -699,6 +699,21 @@ oc get route $OC_APP_NAME -o yaml
 
 curl -X GET https://${OC_APP_NAME}-${OC_PROJECT_NAME}.${OC_ROOT}/
 ```
+create ocp route
+```sh
+oc-login devops user_cherkashyn
+OC_POD_NAME=masker-service-152-lp5n2a
+OC_SERVICE_NAME=masker-service-direct
+OC_SERVICE_PORT=8080
+OC_ROUTE_NAME=$OC_SERVICE_NAME
+
+oc expose pod $OC_POD_NAME --name $OC_SERVICE_NAME
+oc get services | grep $OC_SERVICE_NAME
+## insecure options only, no TLS termination
+# oc expose service $OC_SERVICE_NAME --name=$OC_ROUTE_NAME
+## spec.tls.insecureEdgeTerminationPolicy: Redirect
+oc create route edge $OC_ROUTE_NAME --service=$OC_SERVICE_NAME --port=$OC_SERVICE_PORT  --insecure-policy Redirect
+```
 
 #### import specific image
 ```
