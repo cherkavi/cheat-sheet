@@ -80,11 +80,15 @@ export PGPASSWORD=$POSTGRES_PASSWORD
 psql -h $PG_HOST  -p $PG_PORT -U $POSTGRES_USER $PG_DB
 ```
 
-#### pgcli client
+#### [pgcli client](https://www.pgcli.com/docs)
+[list of the commands for client](https://www.pgcli.com/commands)  
 ```sh
 pip install -U pgcli
-# sudo apt install pgcli
-
+pip3 install pgcli[sshtunnel]
+# or 
+sudo apt install pgcli
+```
+```sh
 POSTGRES_URL='jdbc:postgresql://esv000133.vantage.zur:40558/postgres-shared'
 PG_HOST=`echo $POSTGRES_URL | awk -F '//' '{print $2}' | awk -F ':' '{print $1}'`
 PG_PORT=`echo $POSTGRES_URL | awk -F '//' '{print $2}' | awk -F ':' '{print $2}' | awk -F '/' '{print $1}'`
@@ -97,6 +101,7 @@ echo "host:$PG_HOST, port:$PG_PORT, dbname:$PG_DB, user:$PG_USER, password:$POST
 
 ### direct connection 
 pgcli --host $PG_HOST --port $PG_PORT --dbname $PG_DB --user $PG_USER
+pgcli postgresql://$PG_USER:$PG_PASSWORD@localhost:$PG_PORT/$PG_DB
 
 ### connection via bastion:
 ## terminal #1
@@ -105,6 +110,10 @@ ssh -L $PG_PORT:$PG_HOST:$PG_PORT $DXC_USER@$CLUSTER_PROD_NODE
 
 ## terminal #2, execute again all variables 
 pgcli --host localhost --port $PG_PORT --dbname $PG_DB --user $PG_USER
+
+### ssh-tunnel connection bastion direct connection
+pgcli postgresql://$PG_USER:$PG_PASSWORD@PG_HOST:$PG_PORT/$PG_DB --ssh-tunnel $DXC_USER:$DXC_PASS@$CLUSTER_PROD_NODE  
+
 ```
 
 #### save results to file
@@ -258,11 +267,20 @@ GRANT connect ON database w5a823c88301e9 TO qa_read_only_xxxxx;
 GRANT select on all tables in schema public to qa_read_only_xxxxx;
 ```
 
+### grant permissions for table
+```sql
+grant delete, insert, references, select, trigger, truncate, update on <table_name> to <user_name>;
+```
+
 ### Common operations
 ```sql
 -- create schema
 CREATE SCHEMA IF NOT EXISTS airflow_02;
 DROP SCHEMA IF EXISTS airflow_02;
+--  remove all child objects like tables, indexes, relations... 
+DROP SCHEMA IF EXISTS airflow_02 CASCADE;
+-- rename schema
+ALTER SCHEMA migration_test RENAME TO migration_test2;
 
 -- print all schemas
 select s.nspname as table_schema,
@@ -315,8 +333,18 @@ pg_dump --host $PG_HOST --port $PG_PORT --username $PG_USER --dbname $PG_DB --sc
 ```
 
 ```sql
+\d schema_name.table_name
 \dt+ schema_name.table_name
-\d+ schema_name.table_name
+\dt+ schema_name.table_name
+
+SELECT pg_catalog.pg_get_tabledef('table_name') AS ddl_statement;
+SELECT pg_get_ddl('table_name') AS ddl_statement;
+```
+
+```sql
+SELECT table_name, column_name, data_type, is_nullabel, udt_name, character_maximum_length, datetime_precision
+FROM information_schema.columns 
+WHERE table_name = 'schema_name.table_name'; 
 ```
 
 ### copy schema copy data
