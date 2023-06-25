@@ -19,6 +19,7 @@
 * [docker images for job run](https://hub.docker.com/u/circleci/)
 * [orbs - shared configuration ](https://circleci.com/developer/orbs)
   - [orbs intro](https://circleci.com/docs/orb-intro/)
+* [minimal example](https://circleci.com/docs/sample-config/)
 * [list of possible step-commands like: run,checkout... ](https://circleci.com/docs/configuration-reference/#steps)
   - [run](https://circleci.com/docs/configuration-reference/#run)
   - [checkout](https://circleci.com/docs/configuration-reference/#checkout)

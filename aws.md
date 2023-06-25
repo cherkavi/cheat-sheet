@@ -37,7 +37,8 @@ AWS_DEFAULT_REGION=eu-central-1
 . /home/projects/current-project/aws.sh
 ```
 
-## [sdk](https://aws.amazon.com/tools/)  
+## [sdk](https://aws.amazon.com/tools/) 
+## [aws cli cloud](https://us-east-1.console.aws.amazon.com/cloudshell/home?region=us-east-1) 
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
   > [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
 ### [installation of AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
@@ -58,8 +59,9 @@ complete -C /usr/bin/aws_completer aws
 
 ### [aws cli config](https://docs.aws.amazon.com/cli/latest/topic/config-vars.html)
 be aware about precedence:
-Credentials from environment variables have precedence over credentials from the shared credentials and AWS CLI config file.   
-Credentials specified in the shared credentials file have precedence over credentials in the AWS CLI config file. 
+1. Credentials from environment variables have precedence over credentials from the shared credentials and AWS CLI config file.   
+   env variables: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
+2. Credentials specified in the shared credentials file have precedence over credentials in the AWS CLI config file. 
 > botocore.exceptions.ProfileNotFound: The config profile (cherkavi-user) could not be found
 ```sh
 vim ~/.aws/credentials
@@ -79,9 +81,17 @@ aws configure set cherkavi-user.aws_session_token "Your-value"
 using profiling
 >  --region, --output, --profile 
 ```sh
+# default profile will be used from env variable AWS_PROFILE
 aws s3 ls --profile $AWS_PROFILE
 ```
-### set AWS credentials via command line
+### set AWS credentials via env variables
+```sh
+# source file_with_credentials.sh
+export AWS_REGION=us-east-1
+export AWS_ACCESS_KEY_ID=AKIA...
+export AWS_SECRET_ACCESS_KEY=SEP6...
+```
+### set AWS credentials via config file
 ```sh
 # aws cli version 2
 aws configure set aws_access_key_id <yourAccessKey>
@@ -104,6 +114,7 @@ aws --debug s3 ls --profile $AWS_PROFILE
 vim ~/.aws/credentials
 
 aws configure list
+# default region will be used from env variable: AWS_REGION
 aws configure get region --profile $AWS_PROFILE
 aws configure get aws_access_key_id
 aws configure get default.aws_access_key_id
@@ -314,8 +325,9 @@ policy
 ---
 ## RDS
 ### PostgreSQL
-!!! important during creation need to set up next parameter:
-Additional configuration->Database options->Initial Database -> <name of your schema>
+!!! important during creation need to set up next parameter:  
+Additional configuration->Database options->Initial Database -> <name of your schema>  
+default schema - postgres
 
 ---
 ## [Athena](https://docs.aws.amazon.com/athena/latest)
