@@ -378,3 +378,11 @@ ADD COLUMN IF NOT EXISTS modifiedBy character varying COLLATE pg_catalog."defaul
 EXPLAIN ANALYSE
 select * from my_table;
 ```
+
+## Postgre Settings
+take in consideration in case of unstable behavior in container
+```
+max_connections=400
+shared_buffers=2048 Mb
+min pod memory=2048 Mb * 4 ( 8 Gb )
+```
