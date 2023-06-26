@@ -40,7 +40,7 @@ select * from index_de;
 sqlite3 $DB_FILE "select count(*) from r_d_dxc_developer;"
 ```
 
-## create table and import
+## [create table and import](https://sqlite.org/cli.html#importing_files_as_csv_or_other_formats)
 ```sql
 CREATE TABLE index_de(field_name TEXT NOT NULL, field_type TEXT NOT NULL );
 CREATE TABLE index_cn(field_name TEXT NOT NULL, field_type TEXT NOT NULL );
@@ -55,7 +55,7 @@ CREATE TABLE index_cn(field_name TEXT NOT NULL, field_type TEXT NOT NULL );
 .import autolabel-merge.elk-index.de-prod.fields.csv index_de
 ```
 
-## sqlite export to file
+## [sqlite export to file](https://sqlite.org/cli.html#export_to_csv)
 ```sql
 .output autolabel-merge.fields
 .shell ls -la autolabel-merge.fields
