@@ -1,5 +1,5 @@
 # SQLite 
-* (tutorial)[https://alphacodingskills.com/sqlite/sqlite-tutorial.php]
+* [tutorial](https://alphacodingskills.com/sqlite/sqlite-tutorial.php)
 
 ## install 
 ```sh
@@ -28,6 +28,16 @@ termsql -i mycsvfile.CSV -d ',' -c 'field_name,field_index' -t 'index_de' -o myn
 ```sh
 sqlite3 mynewdatabase.db
 .tables
+```
+or
+```sh
+sqlite3
+.open mydatabase.db
+```
+or 
+```sh
+sqlite3
+attach "mydatabase.db" as mydb;
 ```
 ## redirect output to file redirect output to stdout
 ```
