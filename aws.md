@@ -328,6 +328,8 @@ policy
 !!! important during creation need to set up next parameter:  
 Additional configuration->Database options->Initial Database -> <name of your schema>  
 default schema - postgres
+!!! if you have created Public accessible DB, pls, check/create inbound rule in security group:
+IPv4	PostgreSQL	TCP	5432	0.0.0.0/0
 
 ---
 ## [Athena](https://docs.aws.amazon.com/athena/latest)
