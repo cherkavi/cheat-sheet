@@ -397,6 +397,7 @@ oc describe project {project name}
 ```sh
 oc get images
 oc get images.image.openshift.io
+# don't forget: `oc get is`
 ```
 
 ### image import docker import to internal registry 
