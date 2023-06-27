@@ -1247,3 +1247,125 @@ oc adm policy add-scc-to-user privileged -z default -n my-ocp-project
 oc adm policy add-scc-to-user {name of policy} { name of project }
 oc adm policy remove-scc-to-user {name of policy} { name of project }
 ```
+
+## OC templating
+### openshift template parking page for the application
+```yaml
+apiVersion: v1
+kind: Template
+metadata:
+  name: parking-page
+  annotations:
+    description: "template for creating parking page "
+    tags: "maintenance,downtime"
+parameters:
+  - name: CONFIG_NAME
+    required: true 
+    description: name for route,service,deployment,configmap
+  - name: CONFIG_LABEL
+    description: label for deployment,service
+    required: true 
+  - name: EXTERNAL_URL
+    description: full url to route
+    required: true 
+  - name: HTML_MESSAGE
+    description: html message below 'Maintenance'
+    value: 08:00 .. 17:00
+    required: false
+  - name: WEBSERVER_IMAGE
+    description: full url to httpd image in OpenShift
+    required: true
+
+objects:
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: ${CONFIG_NAME}
+    data:
+      index.html: |
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>DataPortal</title>
+        </head>
+        <body>
+          <center>
+            <h1>Maintenance</h1>
+            <h2>${HTML_MESSAGE}</h2>
+          </center>
+        </body>
+        </html>
+
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: ${CONFIG_NAME}
+    spec:
+      selector:
+        matchLabels:
+          app: ${CONFIG_LABEL}
+      template:
+        metadata:
+          labels:
+            app: ${CONFIG_LABEL}
+        spec:
+          containers:
+            - name: html-container
+              image: ${WEBSERVER_IMAGE}
+              ports:
+                - containerPort: 80
+              volumeMounts:
+                - name: html-volume
+                  mountPath: /usr/local/apache2/htdocs
+        # example with nginx
+        # spec:
+        #   containers:
+        #     - name: html-container
+        #       image: ${WEBSERVER_IMAGE}
+        #       volumeMounts:
+        #         - name: html-volume
+        #           mountPath: /usr/share/nginx/html
+          volumes:
+            - name: html-volume
+              configMap:
+                name: ${CONFIG_NAME}
+
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: ${CONFIG_NAME}
+    spec:
+      selector:
+        app: ${CONFIG_LABEL}
+      ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 80
+      type: ClusterIP
+
+  - apiVersion: route.openshift.io/v1
+    kind: Route
+    metadata:
+      name: ${CONFIG_NAME}
+    spec:
+      host: ${EXTERNAL_URL}
+      to:
+        kind: Service
+        name: ${CONFIG_NAME}
+      port:
+        targetPort: 80
+      tls:
+        insecureEdgeTerminationPolicy: None
+        termination: edge
+```
+```sh
+# list of all parameters
+oc process --parameters -f parking-page.yaml 
+# generate output
+PROCESS_COMMAND='oc process -f parking-page.yaml -o yaml -p CONFIG_NAME=parking-page -p CONFIG_LABEL=parking-html -p EXTERNAL_URL=parking-page.app.ubsbank.zur -p WEBSERVER_IMAGE=image-registry.app.ubsbank.zur/stg/httpd:2.4'
+$PROCESS_COMMAND
+# create objects from tempale
+$PROCESS_COMMAND | oc create -f -
+# delete objects from tempale
+$PROCESS_COMMAND | oc delete -f -
+```
