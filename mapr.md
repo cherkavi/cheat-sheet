@@ -361,7 +361,13 @@ Two possible types of MaprDB:
 * (binary/column-oriented)[https://docs.datafabric.hpe.com/62/MapROverview/maprDB-overview-binary.html]  
 ```bash
 # maprdb create table binary table
-maprcli table create -path <path_in_maprfs> 
+maprcli table create -path <path_in_maprfs>
+
+# drill 
+DRILL_HOST=https://mapr-web.vantage.zur:30101
+MAPR_FS=/vantage/data/label/sessions
+curl --request PUT --url ${DRILL_HOST}/api/v2/table/${MAPR_FS} --header 'Authorization: Basic '$BASE64_BASIC_AUTH_TOKEN
+
 # maprdb create json table
 maprcli table create -path <path_in_maprfs>  -tabletype json
 
