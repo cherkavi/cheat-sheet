@@ -156,16 +156,67 @@ or it is better without types specification:
 
 ### [search request query request](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs.html)
 ```bash
-curl -X GET "$ELASTIC_HOST/$INDEX_NAME/_search?q=front_vehicle.distance:>100&size=11&pretty=true"
-curl -X GET "$ELASTIC_HOST/$INDEX_NAME/_search?q=road_type:highway"
-```
+# query search in the whole instance 
+curl -X GET -u $ELASTIC_USER:$ELASTIC_PASSWORD "$ELASTIC_HOST/_search?q=sessionId:$SESSION_ID&pretty"
+# query search in index 
+curl -X GET -u $ELASTIC_USER:$ELASTIC_PASSWORD "$ELASTIC_HOST/$ELASTIC_INDEX/_search?q=sessionId:0f0062a6-e45b-4c5b-b80c-099db65edd20&pretty"
+# query select first records from index
+curl -X POST -H "Content-Type: application/json" -u $ELASTIC_USER:$ELASTIC_PASSWORD "$ELASTIC_HOST/$ELASTIC_INDEX/_search?pretty" -d @- <<EOF
+{
+  "size": 1,
+  "query": {
+    "match_all": {}
+  }
+}
+EOF
+ 
+# get by id
+curl -X GET -u $ELASTIC_USER:$ELASTIC_PASSWORD $ELASTIC_HOST/$ELASTIC_INDEX/_doc/$DOC_ID
 
-```bash
+PROPERTY_XPATH=ship.distance
+# inline query to ELK 
+curl -X GET -u $ELASTIC_USER:$ELASTIC_PASSWORD $ELASTIC_HOST/$ELASTIC_INDEX/_search?q=sessionId:${SESSION_ID}&size=10000&pretty
+curl -X GET -u $ELASTIC_USER:$ELASTIC_PASSWORD $ELASTIC_HOST/$ELASTIC_INDEX/_search?q=$PROPERTY_XPATH>100&pretty=true
+curl -X GET -u $ELASTIC_USER:$ELASTIC_PASSWORD $ELASTIC_HOST/$ELASTIC_INDEX/_search?q=$PROPERTY_XPATH:>100&pretty=true
+curl -X GET -u $ELASTIC_USER:$ELASTIC_PASSWORD $ELASTIC_HOST/$ELASTIC_INDEX/_search?q=$PROPERTY_XPATH>100&pretty=true
+
+# query from external file
 echo '{"query": {"match" : {"sessionId" : "a8b8-0174df8a3b3d"}}}' > request.json
-echo '{"query": { "range" : {"front_vehicle.distance": {"gte": 100}}}}' > request.json
+echo '{"query": { "range" : {"ship.distance": {"gte": 100}}}}' > request.json
+curl -X POST -H "Content-Type: application/json" -u $ELASTIC_USER:$ELASTIC_PASSWORD -d @request.json "$ELASTIC_HOST/$ELASTIC_INDEX/_search"
 
-curl -X POST -H "Content-Type: application/json" -u $LABEL_SEARCH_USERNAME:$LABEL_SEARCH_PASSWORD -d @request.json "$ELASTIC_HOST/$ELASTIC_INDEX/_search"
+# elastic complex query
+curl -X POST -H "Content-Type: application/json" -u $ELASTIC_USER:$ELASTIC_PASSWORD "$ELASTIC_HOST/$INDEX_NAME/_search" \
+-d @- << EOF
+{ "size":"10000",
+  "query": {"bool": { "must": [ {"match": { "property1":"5504806" } } ] } },
+  "_source":{"includes":["property1","property2","property3"],"excludes":["property4","property5"]}, 
+  "sort": [
+        { "property1": { "order": "desc", "unmapped_type":"long" }},
+        { "property2": { "order": "desc", "unmapped_type":"keyword" }},
+        { "property3": { "order": "desc", "unmapped_type":"long" }}
+    ]}
+EOF
 ```
+
+### insert record
+```sh
+curl -X POST -H 'Content-Type: application/json' --data @test-example.json  -u $ELASTIC_USER:$ELASTIC_PASSWORD $ELASTIC_HOST/$ELASTIC_INDEX/label
+```
+
+### update record
+```sh
+curl -X POST -H "Content-Type: application/json" -u $ELASTIC_USER:$ELASTIC_PASSWORD "$ELASTIC_HOST/$ELASTIC_INDEX/_update/${DOC_ID}" -d @- <<EOF
+{
+  "doc": {
+    "property_1": [
+      "true"
+    ]
+  }
+}
+EOF
+```
+
 
 ### remove records delete records
 ```sh
@@ -183,7 +234,7 @@ curl -X PUT $ELASTIC_HOST/$INDEX_NAME/_delete_by_query' -H 'Content-Type: applic
 }
 EOF
 ```
-all records from index
+remove all records from index
 ```sh
 curl -X POST --insecure -s --user $USER:$PASSWORD $ELASTIC_HOST/$INDEX_NAME/_delete_by_query  -H 'Content-Type: application/json' -d '{
     "query": { "match_all": {} }
