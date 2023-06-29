@@ -43,8 +43,10 @@ curl -s --user "$USER_ELASTIC:$USER_ELASTIC_PASSWORD" -X GET $ELASTIC_HOST/token
 ```
 
 ### index
-[create index](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/indices-create-index.html)
-[mapping](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/mapping.html)
+[create index](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/indices-create-index.html)  
+[mapping](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/mapping.html)  
+Info: if your index or id has space ( special symbol ) you should replace it with %20 ( http escape )
+
 #### index info
 ```bash
 # all indexes
