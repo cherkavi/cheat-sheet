@@ -744,6 +744,35 @@ spec:
     insecureEdgeTerminationPolicy: None
     termination: edge
 ```
+#### service example 
+```yaml
+#        +----------+
+#        | service  |-+
+#  +-----+          |-+
+# port   +-----+----+   +-------------+
+#              |        | deployment  |
+#              +--------> depl.config |
+#                       | host        |
+#                       +-------------+
+#                   targetPort
+# 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: parking-page
+  namespace: project-portal
+spec:
+  ports:
+  - name: 9191-tcp
+    port: 9191
+    protocol: TCP
+    targetPort: 9191
+  selector:
+    deploymentconfig: parking-service
+  sessionAffinity: None
+  type: ClusterIP
+```
 
 #### import specific image
 ```
