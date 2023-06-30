@@ -700,7 +700,7 @@ oc get route $OC_APP_NAME -o yaml
 
 curl -X GET https://${OC_APP_NAME}-${OC_PROJECT_NAME}.${OC_ROOT}/
 ```
-create ocp route
+[create ocp route](https://docs.openshift.com/container-platform/3.11/architecture/networking/routes.html)
 ```sh
 oc-login devops user_cherkashyn
 OC_POD_NAME=masker-service-152-lp5n2a
@@ -714,6 +714,35 @@ oc get services | grep $OC_SERVICE_NAME
 # oc expose service $OC_SERVICE_NAME --name=$OC_ROUTE_NAME
 ## spec.tls.insecureEdgeTerminationPolicy: Redirect
 oc create route edge $OC_ROUTE_NAME --service=$OC_SERVICE_NAME --port=$OC_SERVICE_PORT  --insecure-policy Redirect
+```
+
+```yaml
+# 
+#         +---------+
+#         | route  |-+
+#  +------+        |-+
+# host    +----+----+   +-----------+
+#              |        | service   |
+#              +---------> / host   |
+#                       |           |
+#                       +-----------+
+#                   targetPort
+
+
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: parking-page
+spec:
+  host: application.vantage.zur
+  to:
+    kind: Service
+    name: parking-page 
+  port:
+    targetPort: 9191
+  tls:
+    insecureEdgeTerminationPolicy: None
+    termination: edge
 ```
 
 #### import specific image
