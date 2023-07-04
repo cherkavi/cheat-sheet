@@ -258,16 +258,22 @@ Images
 docker search <text of search>
 ```
 
-### inspect image in repository inspect layers analyse image show layers
+### inspect image in repository inspect layers analyse image show layers image xray
 ```sh
+## skopeo
 # sudo apt-get -y install skopeo
 # or: https://ftp.de.debian.org/debian/pool/main/s/skopeo/
 skopeo inspect docker://registry.fedoraproject.org/fedora:latest
+# show all executed command lines list of commands in docker container 
+skopeo inspect --config docker://registry.fedoraproject.org/fedora:latest | grep -e "CMD" -e "ENTRYPOINT"
+
+## dive
 # https://github.com/wagoodman/dive
 dive ${DOCKER_REGISTRY}/portal-production/jenkins-builder
 
-# show all executed command lines list of commands in docker container 
-skopeo inspect --config docker://registry.fedoraproject.org/fedora:latest | grep -e "CMD" -e "ENTRYPOINT"
+## [docker scout](https://docs.docker.com/scout/)
+export PATH=$HOME/.docker/cli-plugins:$PATH
+source <(docker-scout completion bash)
 ```
 
 ### export layers tag layers
