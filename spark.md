@@ -320,9 +320,13 @@ val df=spark.read.format("parquet").load(pathToFile)
 // json, parquet, csv
 ```
 * read text file
-```
-spark.read.text
-spark.read.textfile
+```scala
+// spark.read.text
+// spark.read.textfile
+
+// val spark = SparkSession.builder().getOrCreate()
+val df = spark.read.text("/path/to/file/distribution.txt")
+df.show()
 ```
 * read jdbc, load jdbc
 ```
