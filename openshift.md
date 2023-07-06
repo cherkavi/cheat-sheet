@@ -745,15 +745,19 @@ spec:
     termination: edge
 ```
 #### service example 
+```sh
+# get <labels> for pointing out to pod(s)
+oc get pods <unique pod name> -o json | jq -r .metadata.labels
+```
 ```yaml
 #        +----------+
 #        | service  |-+
 #  +-----+          |-+
-# port   +-----+----+   +-------------+
-#              |        | deployment  |
-#              +--------> depl.config |
-#                       | host        |
-#                       +-------------+
+# port   +-----+----+   +---------------+
+#              |        | * deployment  |
+#              +--------> * depl.config |
+#                       | * <labels>    |
+#                       +---------------+
 #                   targetPort
 # 
 
