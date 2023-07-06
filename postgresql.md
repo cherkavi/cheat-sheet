@@ -1,6 +1,7 @@
 ## Tools
 * [cli for databases](https://github.com/dbcli)  
-* [binaries to download](https://www.enterprisedb.com/download-postgresql-binaries)  
+* [binaries to download](https://www.enterprisedb.com/download-postgresql-binaries)
+* [online tuning advices](https://pgtune.leopard.in.ua/#/)
 
 ### chmod for exec files
 ```
