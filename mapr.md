@@ -510,12 +510,16 @@ mapr dbshell --cmdfile script.sql > script.result
 rm script.sql
 ```
 
-example of execution via mapr web, web mapr
+example of execution via mapr web, web mapr, Data Access read document
 ```sh
  MAPR_USER='user'
  MAPR_PASSWORD='password'
-SESSION='d99-4a-ac-0cbd'
-curl --silent  --insecure  -X GET -u $MAPR_USER:$MAPR_PASSWORD  https://mapr-web.vantage.zur:2002/api/v2/table//vantage/orchestration/tables/sessions/document/$SESSION | jq "." | grep labelEvent
+DOCUMENT_ID='d99-4a-ac-0cbd'
+TABLE_PATH=/vantage/orchestration/tables/sessions
+curl --silent  --insecure  -X GET -u $MAPR_USER:$MAPR_PASSWORD  https://mapr-web.vantage.zur:2002/api/v2/table/$TABLE_PATH/document/$DOCUMENT_ID | jq "." | grep labelEvent
+
+# insert record - POST
+# delete record - DELETE
 ```
 
 #### [insert record in maprdb](https://docs.ezmeral.hpe.com/datafabric-customer-managed/72/ReferenceGuide/dbshell-insert.html)
