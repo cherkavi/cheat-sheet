@@ -408,6 +408,8 @@ maprcli table region list -path /vantage/deploy/data-access-video/images -json
 ### maprdb copy table
 ```sh
 mapr copytable -src {path to source} -dst {path to destination}
+# without yarn involvement
+mapr copytable -src {path to source} -dst {path to destination} -mapreduce false
 # move table can be fulfilled with:
 hadoop fs -mv
 ```
