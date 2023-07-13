@@ -355,7 +355,7 @@ mapred queue -showacls | grep SUBMIT_APPLICATIONS
 * [dbshell commands](https://docs.datafabric.hpe.com/62/ReferenceGuide/mapr_dbshell.html)  
 * [small cheat sheet](https://github.com/mapr-demos/mapr-music/tree/master/doc/tutorials)
 
-### [Create MaprDB database/table](https://docs.datafabric.hpe.com/62/ClusterAdministration/data/tables/CreateTable.html)  
+### [Create MaprDB database/table](https://docs.ezmeral.hpe.com/datafabric-customer-managed/62/ClusterAdministration/data/tables/CreateTable_longForm.html)
 Two possible types of MaprDB:  
 * (json/document database)[https://docs.datafabric.hpe.com/62/MapROverview/MaprDB-overview-json.html]  
 * (binary/column-oriented)[https://docs.datafabric.hpe.com/62/MapROverview/maprDB-overview-binary.html]  
