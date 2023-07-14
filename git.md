@@ -592,7 +592,7 @@ git blame path/to/file | grep search_line
 git blame -CM -L 1,5 path/to/file/parameters.py
 ```
 
-### git into different repository, different folder, another folder, not current directory
+### git into different repository, different folder, another folder, not current directory, another home
 ```
 git --git-dir=C:\project\horus\.git  --work-tree=C:\project\horus  branch --all
 ```
