@@ -2393,6 +2393,59 @@ diff <(jq --sort-keys . A.json) <(jq --sort-keys . B.json)
 ```
 
 ### [parsing yaml, yaml processing yaml query](https://mikefarah.gitbook.io/yq/)
+### [yaml tool edit yaml xpath](https://pypi.org/project/yamlpath/)
+```sh
+pip install yamlpath
+```
+
+#### yaml get value by xpath 
+```sh
+echo '
+first: 
+  f_second: one_one
+second: 2
+' | yaml-get -p first.f_second
+# one_one
+```
+
+#### yaml search for xpath, print files with values in xpath
+```sh
+echo '
+first: 
+  f_second: one_one
+second: 2
+' | yaml-paths --search=%one
+```
+
+#### yaml edit by xpath ( scalars only )
+```sh
+echo '
+first: one
+second: 2 
+' | yaml-set -g first --value=1
+# ---
+# first: 1
+# second: 2
+```
+
+#### yaml difference between two yaml files 
+```sh
+echo '
+second: 2
+first: 
+  f_second: one_one
+' > temp_1.yaml
+echo '
+first: 
+  f_second: one_two
+second: 2
+' > temp_2.yaml
+yaml-diff temp_1.yaml temp_2.yaml
+# < "one_one"
+# ---
+# > "one_two"
+```
+
 ### [yq doc](https://mikefarah.gitbook.io/yq/operators)
 #### [yq examples](https://metacpan.org/pod/distribution/ETL-Yertl/bin/yq)
 ```sh
