@@ -958,7 +958,7 @@ spec:
       restartPolicy: Never
 ```
 
-### pod example simple pod
+### pod example simple pod minimal pod infinite pod running
 ```yaml
 apiVersion: v1
 kind: Pod
