@@ -615,6 +615,11 @@ or for file /etc/docker/daemon.json
 }
 ```
 
+### [copy files between container or host](https://docs.docker.com/engine/reference/commandline/cp/)
+```sh
+docker cp <src> <cont:dest>
+```
+
 ## save
 ------
 ### docker save changed container commit changes fix container changes
