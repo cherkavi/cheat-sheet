@@ -3491,6 +3491,7 @@ xdg-settings set default-web-browser firefox.desktop
 
 ## check default association
 cat ~/.config/mimeapps.list
+cat /usr/share/applications/defaults.list
 ```
 or change your alternatives
 ```sh
