@@ -461,6 +461,9 @@ find /mapr/prod/vantage/orchestration/tables/metadata --query {"$select":["fullP
 
 find /mapr/prod/vantage/orchestration/tables/metadata --c {"$eq":{"session_id":"9aaa13577-ad80"}} --pretty
 
+## fix issue with multiple document in output
+# sed 's/^}$/},/g' $file_src > $file_dest
+
 ## less prefered way of searching: 
 # last records, default sort: ASC
 find /mapr/prod/vantage/orchestration/tables/metadata --fields _id --orderby loggerStartTime.utcNanos:DESC --limit 5
