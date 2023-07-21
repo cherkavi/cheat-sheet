@@ -2391,6 +2391,12 @@ jq '.Distribution.DistributionConfig.Enabled = false' cloud_front.json
 cmp <(jq -cS . A.json) <(jq -cS . B.json)
 diff <(jq --sort-keys . A.json) <(jq --sort-keys . B.json)
 ```
+### [json deep compare](https://github.com/cherkavi/python-utilities/blob/master/json/compare-json.py)
+```sh
+# export JSON_COMPARE_SUPPRESS_OUTPUT=""
+export JSON_COMPARE_SUPPRESS_OUTPUT="true"
+python3 jsoncompare.py  $FOLDER_CSV/$SESSION_ID $FOLDER/$SESSION_ID
+```
 
 ### [parsing yaml, yaml processing yaml query](https://mikefarah.gitbook.io/yq/)
 ### [yaml tool edit yaml xpath](https://pypi.org/project/yamlpath/)
