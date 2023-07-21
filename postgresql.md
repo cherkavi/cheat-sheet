@@ -173,6 +173,8 @@ psql -w -U user_name -d database_name -c "SELECT 1"
 ```
 psql -w -U user_name -d database_name -a -f /path/to/file.sql
 psql -h ${DB_VARIANT_HOST} -p ${DB_VARIANT_PORT} -U ${DB_VARIANT_USERNAME} -f query.sql
+# sql output as csv
+psql -h ${DB_VARIANT_HOST} -p ${DB_VARIANT_PORT} -U ${DB_VARIANT_USERNAME} -f query.sql --csv
 ```
 
 ### execute sql file without password 
