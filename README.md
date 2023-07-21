@@ -76,6 +76,9 @@ function cheat-grep(){
 ### password storage
 * [one time password storage](https://onetimesecret.com/)
 
+### text/password exchange
+* [online clipboard](https://copypaste.me/)
+
 
 ### [list of opensource api tools](https://openapi.tools/)
 
