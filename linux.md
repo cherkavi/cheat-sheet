@@ -2460,6 +2460,8 @@ cat k8s-pod.yaml | yq r - --printMode pv  "metadata.name"
 
 # convert to JSON
 cat k8s-pod.yaml | yq - r -j --prettyPrint
+# convert yaml to json|props|xml|tsv|csv
+cat k8s-pod.yaml | yq --output-format json
 
 # yaml remove elements clear ocp fields
 yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.spec.clusterIP,.spec.clusterIP)' service-data-api-mdf4download-service.yaml
