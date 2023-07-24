@@ -2336,7 +2336,14 @@ jc --pretty ls -la
 dig www.google.com | jc --dig --pretty
 ```
 
-### jq [json navigator json parser json parsing parse json parsing json json processing json query](https://stedolan.github.io/jq/manual/)
+### [json xml sql yaml converter](https://github.com/dcmoura/spyql)
+* [spyql doc](https://spyql.readthedocs.io/en/latest/recipes.html)
+* https://danielcmoura.com/blog/2022/spyql-cell-towers/
+```sh
+echo '{"a": 10, "b": "kitchen"}' | spyql -Otable=my_table "SELECT  json.a as indicator_value, json.b as place FROM json TO sql" 
+```
+
+### [jq json navigator json parser json parsing parse json parsing json json processing json query](https://stedolan.github.io/jq/manual/)
 * [json query doc](https://stedolan.github.io/jq/)  
 * [json tool json walk json analyzer](https://github.com/antonmedv/fx)
   > snap install fx
@@ -2357,9 +2364,10 @@ docker network inspect mysql_web_default | jq '.[0].Containers' | jq '.[] | sele
 # jq create another document
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq '[.[] | {number:.id, warrior:.name} ]'
 	
-# convert to csv
+# jq convert to csv
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
 jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
+
 
 # jq as a table
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq -r '["ID","NAME"], ["--","------"], (.[] | [.id,.name]) | @tsv' 
@@ -2468,6 +2476,11 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
 
 # yaml editor 
 yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.spec.clusterIP,.spec.clusterIP),(.metadata.namespace="ttt")' service-data-api-mdf4download-service.yaml
+```
+#### yq converter
+```sh
+# convert yaml to json|props|xml|tsv|csv
+cat file.yaml | yq --output-format json
 ```
 
 ### parsing xml parsing xml processing
