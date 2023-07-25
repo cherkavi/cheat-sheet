@@ -38,6 +38,17 @@ curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -X PUT  $URL --data-binary @${UPLOAD
 # curl -v --user username:password -X PUT urlGoesHere --data-binary fileToBeDeployed
 ```
 
+### upload docker image to artifactory
+```sh
+DOCKER_USER=tech-user
+DOCKER_TOKEN=shyqWHDzXMwtQ....
+DOCKER_URL=artifactory.ubsgroup.com
+
+docker login -u $DOCKER_USER -p $DOCKER_TOKEN $DOCKER_URL
+DOCKER_IMAGE=$DOCKER_URL/project-docker/portal-e2e:2.0.0
+docker push $DOCKER_IMAGE
+```
+
 ## F.A.Q 
 ### error from endpoint
 ```
