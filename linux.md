@@ -2358,6 +2358,10 @@ docker network inspect mysql_web_default | jq '.[0].Containers' | jq .[].Name
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
 jq ".[] | .name"
 
+# jq select with condition
+jq -e 'select(.[].name == "CP_END")' $SESSION_METADATA_FOLDER/$SESSION_ID
+echo $? # return 0 only when met the condition, otherwise - 1
+
 # jq filter by condition
 docker network inspect mysql_web_default | jq '.[0].Containers' | jq '.[] | select(.Name=="web_mysql_ui")' | jq .IPv4Address
 
@@ -2367,7 +2371,6 @@ echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "ag
 # jq convert to csv
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
 jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
-
 
 # jq as a table
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq -r '["ID","NAME"], ["--","------"], (.[] | [.id,.name]) | @tsv' 
