@@ -539,7 +539,8 @@ docker ps -a
 ```
 
 ### show container with filter, show container with format
-[output formatting](https://docs.docker.com/config/formatting/)
+* [output formatting](https://docs.docker.com/config/formatting/)
+* [default values for output](https://github.com/BrianBland/docker/blob/master/api/client/formatter/formatter.go#L19)
 ```
 # filter docker images by name 
 # output format - names with commands (https://github.com/BrianBland/docker/edit/master/api/client/formatter/formatter.go)
