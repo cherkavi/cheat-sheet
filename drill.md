@@ -57,10 +57,11 @@ cd /home/projects/drill
 
 ## start docker
 ```sh
-docker run -it --name drill-1.19.0 -p 8047:8047 -v /home/projects/temp/drill/conf:/opt/drill/conf --detach apache/drill:1.19.0 /bin/bash 
+docker run -it --name drill-1.19.0 -p 8047:8047 -v /home/projects/temp/drill/conf:/opt/drill/conf  -v /home/projects/tempdiff-ko:/host_folder --detach apache/drill:1.19.0 /bin/bash 
 # docker stop drill-1.19.0
 # docker ps -a | awk '{print $1}' | xargs docker rm {}
 x-www-browser http://localhost:8047
+x-www-browser http://localhost:8047/storage/dfs
 
 # logs
 docker logs drill-1.19.0
@@ -96,7 +97,7 @@ drill.exec: {
   "connection": "file:///",
   "workspaces": {
     "json_files": {
-      "location": "/home/projects/dataset/test01",
+      "location": "/host_folder",
       "writable": false,
       "defaultInputFormat": "json",
       "allowAccessOutsideWorkspace": false
@@ -115,6 +116,15 @@ drill.exec: {
     }
   },
 ```
+Error text: Current default schema: No default schema selected
+> check your folder for existence ( maybe you haven't mapped in your docker container )
+```sql
+SHOW SCHEMAS;
+SELECT * FROM sys.boot;
+use dfs;
+```
+
+
 ### configuration in file: storage-plugins-override.conf
 ```json
 # This file involves storage plugins configs, which can be updated on the Drill start-up.
