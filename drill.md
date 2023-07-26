@@ -57,29 +57,22 @@ cd /home/projects/drill
 
 ## start docker
 ```sh
-docker run -it --name drill-1.19.0 -p 8047:8047 -v /home/projects/temp/drill/conf:/opt/drill/conf  -v /home/projects/tempdiff-ko:/host_folder --detach apache/drill:1.19.0 /bin/bash 
+docker run -it --name drill-1.19.0 -p 8047:8047 -p 31010:31010 -v /home/projects/temp/drill/conf:/opt/drill/conf  -v /home/projects/tempdiff-ko:/host_folder  apache/drill:1.19.0 
 # docker stop drill-1.19.0
 # docker ps -a | awk '{print $1}' | xargs docker rm {}
 x-www-browser http://localhost:8047
 x-www-browser http://localhost:8047/storage/dfs
 
-# logs
+## connect to drill cli
+/opt/drill/bin/drill-embedded -u "jdbc:drill:drillbit=127.0.0.1"
+# !help
+# SELECT version FROM sys.version;
+
+## logs
 docker logs drill-1.19.0
-
-# connect to container 
-docker exec -it drill-1.19.0 bash
-
-# copy data from 
-# mkdir /tmp/docker-conf
-# docker run -it --name drill-1.19.0 -p 8047:8047 -v /tmp/docker-conf:/host-folder --detach apache/drill:1.19.0 /bin/bash 
 
 cd /opt/drill/conf
 cd /opt/drill/bin
-
-mkdir /tmp/docker-conf
-ls /tmp/docker-conf
-
-docker run -p 8047:8047  apache/drill:1.19.0 /bin/bash 
 ```
 
 ## configuration before start
@@ -123,7 +116,6 @@ SHOW SCHEMAS;
 SELECT * FROM sys.boot;
 use dfs;
 ```
-
 
 ### configuration in file: storage-plugins-override.conf
 ```json
