@@ -1,6 +1,7 @@
 # Drill
 ## official doc
 * [core modules](http://drill.apache.org/docs/core-modules/)
+* [how to use docker](https://drill.apache.org/docs/use/)
 
 ## Architecture
 ![components, phases](https://i.postimg.cc/7L6K7rBn/drill-architecture.png)
