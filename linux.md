@@ -2346,8 +2346,15 @@ echo '{"a": 10, "b": "kitchen"}' | spyql -Otable=my_table "SELECT  json.a as ind
 ### [jq json navigator json parser json parsing parse json parsing json json processing json query](https://stedolan.github.io/jq/manual/)
 * [json query doc](https://stedolan.github.io/jq/)  
 * [json tool json walk json analyzer](https://github.com/antonmedv/fx)
-  > snap install fx
+  > `snap install fx`
 * [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})  
+WARNING: jq round up big numbers:
+```sh
+echo '{"loggerTimestamp": 1657094097468421888}' | jq .
+# {
+#  "loggerTimestamp": 1657094097468422000
+# }
+```
 
 > jq is not working properly with "-" character in property name !!!  
 jq is not working sometimes with "jq any properties", need to split them to two commands
