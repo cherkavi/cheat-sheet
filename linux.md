@@ -2317,13 +2317,6 @@ curl --max-time 10 -so /dev/null -w '%{time_total}\n' google.com
 curl "https://{foo,bar}.com/file_[1-4].webp" --output "#1_#2.webp"
 ```
 
-### json output pretty print, json pretty print, json sort
-```sh
-echo output.json | jq .
-# sort by keys
-echo output.json | jq -S .
-```
-
 ### [json parser output to json pipe json](https://pypi.org/project/jc/)
 ```sh
 # installation 
@@ -2365,6 +2358,11 @@ docker network inspect mysql_web_default | jq '.[0].Containers' | jq .[].Name
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
 jq ".[] | .name"
 
+# json output pretty print, json pretty print, json sort
+echo output.json | jq .
+# sort by keys
+echo output.json | jq -S .
+
 # jq select with condition
 jq -e 'select(.[].name == "CP_END")' $SESSION_METADATA_FOLDER/$SESSION_ID
 echo $? # return 0 only when met the condition, otherwise - 1
@@ -2372,7 +2370,7 @@ echo $? # return 0 only when met the condition, otherwise - 1
 # jq filter by condition
 docker network inspect mysql_web_default | jq '.[0].Containers' | jq '.[] | select(.Name=="web_mysql_ui")' | jq .IPv4Address
 
-# jq create another document
+# jq create another document filter json transform json
 echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq '[.[] | {number:.id, warrior:.name} ]'
 	
 # jq convert to csv
