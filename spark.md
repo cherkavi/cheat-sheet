@@ -314,10 +314,11 @@ val someDF = spark.createDF(
 
 
 ### read data, load data
-* with format
+* load with format
 ```scala
 val df=spark.read.format("parquet").load(pathToFile)
 // json, parquet, csv
+// s3://int-eu-west-1/partitionVersion=v3/vin=xxxxxyyyy/ 
 ```
 * read text file
 ```scala
