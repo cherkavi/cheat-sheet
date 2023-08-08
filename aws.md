@@ -1,5 +1,19 @@
 # AWS 
+
+## Visual tools
+* CloudFormation
+* [CloudCraft](https://cloudcraft.co/)
+* [VisualOps](https://visualops.readthedocs.io/)
+* [draw.io](https://draw.io)
+
 ## links
+### DOCUMENTATION
+* [official documentation](https://docs.aws.amazon.com/)  
+* [whitepapers](https://aws.amazon.com/whitepapers)  
+* [interactive documentation example](https://interactive.linuxacademy.com/diagrams/ProjectOmega2.html)   
+* [cli ec2](https://docs.aws.amazon.com/cli/latest/reference/ec2/)
+* [cli s3](https://docs.aws.amazon.com/cli/latest/reference/s3/)
+* [cli sns](https://docs.aws.amazon.com/cli/latest/reference/sns/)
 
 ### examples
 * [udacity AWS DevOps course](https://github.com/cherkavi/udacity-cloud-devops/blob/main/README.md)
@@ -8,6 +22,7 @@
 
 ### trainings
 * [online trainings](https://www.aws.training/)
+* [online trainings free](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
 * [online trainings, current education](https://www.aws.training/Account/Transcript/Current)
 * [online trainings skill builder](https://explore.skillbuilder.aws/learn)
 * [youtube videos](https://hackmd.io/@gekart)
@@ -21,21 +36,33 @@
 * [podcasts](https://awsstash.com/)
 * [pricing for aws]( pricing.aws )
 
+## decisions
+### way of building architecture
+![way of building architecture](https://i.postimg.cc/bNzJNzLn/aws-architecture.png)  
+### cloud advisor
+![cloud-advisor](https://i.postimg.cc/28251PXK/aws-cloudadvisor.png)  
+### fault tolerance, high performance
+![serverless](https://i.postimg.cc/rwswxQBF/aws-fault-availability.jpg)  
+### shared responsibility, users
+![serverless](https://i.postimg.cc/y8GYP0Kh/aws-shared-model.png)  
+### serverless
+![serverless](https://i.postimg.cc/PxNrBPf9/aws-serverless.png)
+### news
+![news](https://i.postimg.cc/zvSj5SxJ/aws-2019-re-invent.png)  
 
-## init variables
-### inline initialization
-```sh
-AWS_SNS_TOPIC_ARN=arn:aws:sns:eu-central-1:85153298123:gmail-your-name
-AWS_KEY_PAIR=/path/to/file/key-pair.pem
-AWS_PROFILE=aws-user
-AWS_REGION=eu-central-1
-# aws default value for region 
-AWS_DEFAULT_REGION=eu-central-1
-```
-### initialization from external script
-``` sh
-. /home/projects/current-project/aws.sh
-```
+## upcoming courses:
+* https://aws.amazon.com/certification/certified-cloud-practitioner/
+  * https://aws.amazon.com/dms/
+  * https://aws.amazon.com/mp/
+  * https://aws.amazon.com/vpc/
+  * https://aws.amazon.com/compliance/shared-responsibility-model/
+  * https://aws.amazon.com/cloudfront/
+  * https://aws.amazon.com/iam/details/mfa/
+  * http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html
+  * http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html
+  * https://aws.amazon.com/aup/
+* https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html
+
 
 ## [sdk](https://aws.amazon.com/tools/) 
 ## [aws cli cloud](https://us-east-1.console.aws.amazon.com/cloudshell/home?region=us-east-1) 
@@ -108,6 +135,32 @@ aws configure set ${AWS_PROFILE}.aws_secret_access_key ...
 aws --debug s3 ls --profile $AWS_PROFILE
 ```
 
+## init variables
+### inline initialization
+or put the same in separated file: `. /home/projects/current-project/aws.sh`
+```sh
+# export HOME_PROJECTS_GITHUB - path to the folder with cloned repos from https://github.com/cherkavi
+export AWS_SNS_TOPIC_ARN=arn:aws:sns:eu-central-1:85153298123:gmail-your-name
+export AWS_KEY_PAIR=/path/to/file/key-pair.pem
+export AWS_PROFILE=aws-user
+export AWS_REGION=eu-central-1
+
+# aws default value for region 
+export AWS_DEFAULT_REGION=eu-central-1
+
+export current_browser="google-chrome" # current_browser=$BROWSER
+export current_doc_topic="sns"
+function aws-cli-doc(){
+    $current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html" &
+}
+function aws-faq(){
+    $current_browser "https://aws.amazon.com/${current_doc_topic}/faqs/" &
+}
+function aws-console(){
+    $current_browser "https://console.aws.amazon.com/${current_doc_topic}/home?region=$AWS_REGION" &
+}
+```
+
 ---
 ## check configuration
 ```bash
@@ -122,25 +175,15 @@ aws configure get $AWS_PROFILE.aws_access_key_id
 aws configure get $AWS_PROFILE.aws_secret_access_key
 ```
 
-## set configuration 
-```sh
-aws configure set region $AWS_PROFILE
-aws configure set ${AWS_PROFILE}.aws_access_key_id ...
-```
-
 ## url to cli documentation, faq, collection of questions, UI 
 ```sh
-current_browser="google-chrome"
-current_doc_topic="sns"
-alias cli-doc='$current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html" &'
-alias faq='$current_browser "https://aws.amazon.com/${current_doc_topic}/faqs/" &'
-alias console='$current_browser "https://console.aws.amazon.com/${current_doc_topic}/home?region=$AWS_REGION" &'
+export current_doc_topic="sns"
 ```
 
 ## create policy from error output of aws-cli command:
 >User is not authorized to perform
 > AccessDeniedException
-```
+```sh
 aws iam list-groups 2>&1 | /home/projects/bash-example/awk-policy-json.sh
 # or just copy it
 echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-example/awk-policy-json.sh
@@ -165,9 +208,9 @@ aws configservice select-resource-config --expression "SELECT resourceId WHERE r
 [IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)  
 ```sh
 current_doc_topic="iam"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
 
 ```sh
@@ -180,9 +223,9 @@ aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
 ## VPC
 ```sh
 current_doc_topic="vpc"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
 
 example of creating subnetwork:
@@ -201,9 +244,9 @@ Security Group
 ## S3
 ```sh
 current_doc_topic='s3'
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
 
 ```sh
@@ -335,9 +378,9 @@ IPv4	PostgreSQL	TCP	5432	0.0.0.0/0
 ## [Athena](https://docs.aws.amazon.com/athena/latest)
 ```sh
 current_doc_topic="athena"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
 
 ```
@@ -380,9 +423,9 @@ select * from num_sequence;
 ## CloudFront
 ```sh
 current_doc_topic="cloudfront"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
 
 ```sh
@@ -540,9 +583,9 @@ aws cloudfront delete-distribution --id $DISTRIBUTION_ID --if-match $DISTRIBUTIO
 ## Secrets manager
 ```sh
 current_doc_topic="secretsmanager"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
 [boto3 python lib](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/secretsmanager.html#SecretsManager.Client.describe_secret)
 
@@ -579,9 +622,9 @@ aws secretsmanager create-secret \
 ## EC2
 ```sh
 current_doc_topic="ec2"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
     
 [purchases options](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-purchasing-options.html)
@@ -630,8 +673,8 @@ search ec2.internal
 ## SSM
 ```sh
 current_doc_topic="ssm"
-cli-doc
-faq
+aws-cli-doc
+aws-faq
 ```
 ```sh
 # GET PARAMETERS
@@ -648,8 +691,8 @@ aws ssm get-parameters-by-path --path /my-app/ --recursive --with-decryption
 ## EBS
 ```sh
 current_doc_topic="ebs"
-cli-doc
-faq
+aws-cli-doc
+aws-faq
 ```
 
 > snapshot can be created from one ESB
@@ -676,8 +719,8 @@ sudo mount /dev/xvdf /external-drive
 ## ELB
 ```sh
 current_doc_topic="elb"
-cli-doc
-faq
+aws-cli-doc
+aws-faq
 ```
 
 [ELB troubleshooting](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html)
@@ -690,8 +733,8 @@ current_doc_topic="elb"; cli-doc
 ## EFS
 ```sh
 current_doc_topic="efs"
-cli-doc
-faq
+aws-cli-doc
+aws-faq
 ```
 ```sh
 # how to write files into /efs and they'll be available on both your ec2 instances!
@@ -706,8 +749,8 @@ sudo mount -t efs fs-yourid:/ /efs
 ## SQS
 ```sh
 current_doc_topic="sqs"
-cli-doc
-faq
+aws-cli-doc
+aws-faq
 ```
 ```sh
 # get CLI help
@@ -737,9 +780,9 @@ aws sqs delete-message --receipt-handle $MESSAGE_ID1 $MESSAGE_ID2 $MESSAGE_ID3 -
 ## Lambda
 ```sh
 current_doc_topic="lambda"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
 
 ### examples
@@ -902,9 +945,9 @@ zappa update dev
 ## DynamoDB
 ```sh
 current_doc_topic="dynamodb"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
 
 [documentation](https://github.com/awsdocs/amazon-dynamodb-developer-guide/tree/master/doc_source)
@@ -993,9 +1036,9 @@ key id must be Numeric
 ## Route53
 ```sh
 current_doc_topic="route53"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
 
 ### [resource record types](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html)
@@ -1005,9 +1048,9 @@ console
 ## SNS
 ```sh
 current_doc_topic="sns"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 
 
 ### list of topics
@@ -1032,9 +1075,9 @@ google-chrome "https://"$AWS_REGION".console.aws.amazon.com/sns/v3/home?region="
 ## CloudWatch
 ```sh
 current_doc_topic="cloudwatch"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
 
 ```
@@ -1049,9 +1092,9 @@ console
 ## Kinesis
 ```sh
 current_doc_topic="kinesis"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
 
 ### kinesis cli
@@ -1086,9 +1129,9 @@ aws kinesis get-records --shard-iterator <>
 ## KMS
 ```sh
 current_doc_topic="kms"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 ```
 
 ```sh
@@ -1109,9 +1152,9 @@ certutil -decode .\ExampleFileDecrypted.base64 .\ExampleFileDecrypted.txt
 ## CloudFormation
 ```sh
 current_doc_topic="cloudformation"
-cli-doc
-faq
-console
+aws-cli-doc
+aws-faq
+aws-console
 
 # cloudformation designer web
 google-chrome "https://"$AWS_REGION".console.aws.amazon.com/cloudformation/designer/home?region="$AWS_REGION
@@ -1129,49 +1172,22 @@ aws cloudformation describe-stacks --region us-east-1
 ### [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
 
 ---
-## Visual tools
-* CloudFormation
-* [CloudCraft](https://cloudcraft.co/)
-* [VisualOps](https://visualops.readthedocs.io/)
-* [draw.io](https://draw.io)
-
+## AWS CodeBuild: 
+A fully managed continuous integration service ( to build, test, and package source code )
+```sh
+current_doc_topic="codebuild"
+```
 
 ---
-## DOCUMENTATION
-* [official documentation](https://docs.aws.amazon.com/)  
-* [whitepapers](https://aws.amazon.com/whitepapers)  
-* [interactive documentation example](https://interactive.linuxacademy.com/diagrams/ProjectOmega2.html)   
-* [cli ec2](https://docs.aws.amazon.com/cli/latest/reference/ec2/)
-* [cli s3](https://docs.aws.amazon.com/cli/latest/reference/s3/)
-* [cli sns](https://docs.aws.amazon.com/cli/latest/reference/sns/index.html)
+## AWS Elastic Kubernetes Service (EKS): 
+A managed Kubernetes service ( deploy, manage, and scale containerized applications using Kubernetes )
+```sh
+current_doc_topic="eks"
+```
 
-# education 
-* [free courses](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
-* [amazon free training](https://www.aws.training/)  
-
-## decisions
-### way of building architecture
-![way of building architecture](https://i.postimg.cc/bNzJNzLn/aws-architecture.png)  
-### cloud advisor
-![cloud-advisor](https://i.postimg.cc/28251PXK/aws-cloudadvisor.png)  
-### fault tolerance, high performance
-![serverless](https://i.postimg.cc/rwswxQBF/aws-fault-availability.jpg)  
-### shared responsibility, users
-![serverless](https://i.postimg.cc/y8GYP0Kh/aws-shared-model.png)  
-### serverless
-![serverless](https://i.postimg.cc/PxNrBPf9/aws-serverless.png)
-### news
-![news](https://i.postimg.cc/zvSj5SxJ/aws-2019-re-invent.png)  
-
-upcoming courses:
-* https://aws.amazon.com/certification/certified-cloud-practitioner/
-  * https://aws.amazon.com/dms/
-  * https://aws.amazon.com/mp/
-  * https://aws.amazon.com/vpc/
-  * https://aws.amazon.com/compliance/shared-responsibility-model/
-  * https://aws.amazon.com/cloudfront/
-  * https://aws.amazon.com/iam/details/mfa/
-  * http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html
-  * http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html
-  * https://aws.amazon.com/aup/
-* https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html
+---
+## AWS Elastic Container Registry (ECR): 
+A fully managed Docker container registry ( store, manage, and deploy docker images for EKS)
+```sh
+current_doc_topic="ecr"
+```

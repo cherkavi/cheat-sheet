@@ -15,7 +15,6 @@
 * [tutorial external](https://academy.level-up.one/p/learn-kubernetes-from-a-devops-guru-kubernetes-docker)
 * [interactive course](https://www.katacoda.com/courses/kubernetes)
 * [interactive course](https://www.katacoda.com/contino/courses/kubernetes)
-* [interactive course helm](https://www.katacoda.com/aptem/scenarios/helm)
 
 ## playground and examples
 * [k8s examples](https://github.com/wardviaene/kubernetes-course)
@@ -1000,7 +999,7 @@ expected result from previous command
 kubeadm join 10.14.26.210:6443 --token 7h0dmx.2v5oe1jwed --discovery-token-ca-cert-hash sha256:1d28ebf950316b8f3fdf680af5619ea2682707f2e966fc0
 ```
 go to node, clean up and apply token
-```
+```sh
 ssh {node address}
 # hard way: rm -rf /etc/kubernetes
 kubeadm reset
@@ -1019,22 +1018,22 @@ This node has joined the cluster:
 Run 'kubectl get nodes' on the master to see this node join the cluster. 
 ```
 next block is not mandatory in most cases
-```
+```sh
 systemctl restart kubelet
 ```
 
 ## logs
-```
+```sh
 kubectl logs <name of pod>
 ```
 
 ## create dashboard 
-```
+```sh
 kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
 ## access dashboard
-```
+```sh
 kubectl -n kube-system describe secret admin-user
 http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
 kubectl proxy
@@ -1042,7 +1041,7 @@ kubectl proxy
 
 ## common
 ### execute command on specific pod
-```
+```sh
 kubectl exec -it {name of a pod}  -- bash -c "echo hi > /path/to/output/test.txt" 
 ```
 
@@ -1214,129 +1213,7 @@ ls /mnt/disks/k8s-local-storage1
 ls /mnt/disks/k8s-local-storage1
 ```
 
-# Helm
-[documentation](https://docs.helm.sh/)
-## Architecture
-![main components](https://i.postimg.cc/gkBhFQHG/helm-architecture.png)
-
-
-## installation
-```
-sudo snap install helm --classic
-curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
-```
-
-## de-installation
-```
-helm reset
-```
-
-## initialization
-```
-helm init
-# sync latest available packages
-helm repo update
-```
-
-## useful variables
-```
-* $HELM_HOME: the location of Helm's configuration
-* $TILLER_HOST: the host and port that Tiller is listening on
-* $HELM_BIN: the path to the helm command on your system
-* $HELM_PLUGIN_DIR: the full path to this plugin (not shown above, but we'll see it in a moment).
-```
-
-## analyze local package
-```
-helm inspect { folder }
-helm lint { folder }
-```
-
-## search remote package
-```
-helm search 
-helm describe {full name of the package}
-```
-
-## information about remote package
-```
-helm info {name of resource}
-helm status {name of resource}
-```
-
-## create package locally
-```
-helm create 
-```
-![folder structure](https://i.postimg.cc/d1kXZrL7/helm-sceleton.png)
-
-### create package with local templates
-```
-ls -la ~/.helm/starters/
-```
-
-## install package
-```
-helm install { full name of the package }
-helm install --name {my name for new package} { full name of the package }
-helm install --name {my name for new package} --namespace {namespace} -f values.yml --debug --dry-run { full name of the package }
-```
-
-## install aws plugin
-```
-helm plugin install https://github.com/hypnoglow/helm-s3.git
-```
-
-## list of installed packages
-```
-helm list
-helm list --all
-helm ls
-```
-
-## package upgrade
-local package
-```
-helm upgrade  {deployment/svc/rs/rc name} . --set replicas=2,maria.db.password="new password"
-```
-package by name
-```
-helm upgrade {name of package} {folder with helm scripts} --set replicas=2
-```
-
-check upgrade
-```
-helm history
-helm rollback {name of package} {revision of history}
-```
-
-## remove packageHelm
-```
-helm delete --purge {name of package}
-```
-
-
 ## trouble shooting
-### issue with 'helm list'
-```
-E1209 22:25:57.285192    5149 portforward.go:331] an error occurred forwarding 40679 -> 44134: error forwarding port 44134 to pod de4963c7380948763c96bdda35e44ad8299477b41b5c4958f0902eb821565b19, uid : unable to do port forwarding: socat not found.
-Error: transport is closing
-```
-solution
-```
-sudo apt install socat
-```
-
-### incompatible version of client and server
-```
-Error: incompatible versions client[v2.12.3] server[v2.11.0]
-```
-solution
-```
-helm init --upgrade
-kubectl get pods --namespace kube-system # waiting for start Tiller
-helm version
-```
 
 ### certificate is expired
 ```
