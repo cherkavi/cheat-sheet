@@ -683,6 +683,7 @@ docker stop {CONTAINER ID}
 ### stop restarted container, compose stop, stop autostart, stop restarting
 ```
 docker update --restart=no {CONTAINER ID}
+# send signal SIGTERM
 docker stop {CONTAINER ID}
 ```
 
@@ -694,7 +695,9 @@ docker unpause {CONTAINER ID}
 
 ### kill executing container
 ```
+# send signal SIGKILL
 docker kill {CONTAINER ID}
+# send signal to container
 docker kill --signal=9 {CONTAINER ID}
 ```
 
@@ -815,10 +818,15 @@ ENV https_proxy http://user:passw@proxy.url:8080
 ```
 
 ## Build
-
+* docker cache: `docker build --no-cache`
+* docker base image: `FROM ...`
+* docker ignore files - ignore files from build process: `.dockerignore`
+* docker build time argument `docker build --build-arg KEY=VALUE`
+* docker runtime variables `docker run --env KEY=VALUE` 
+* 
 ### build from file
 ```
-docker build -t {name of my own image}:latest {name of docker file | . }
+docker build -t {name of my own image}:latest {name of docker file | . } --no-cache
 docker build -t solr-4.10.3:latest . // Dockerfile into current folder
 docker build --tag java-app-runner:latest --build-arg http_proxy=http://user:passw@proxy.zur:8080  --file /home/projects/current-task/mapr/Dockerfile .
 ```
