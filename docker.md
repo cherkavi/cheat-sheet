@@ -932,25 +932,50 @@ ADD https://artifactory.com/source.file.tar.gz /temp
 docker inspect  --format '{{ .Config.Labels }}' cc-artifactory.ubsroup.net/docker/ros-automation:latest
 ```
 
-Examples
-------
-* docker run -it ubuntu /bin/sh
-* docker run --env http_proxy=$http_proxy --env https_proxy=$https_proxy --env no_proxy=$no_proxy -it ubuntu:18.04 /bin/bash
-* docker exec -it high_mclean /bin/bash
-* docker run --hostname=quickstart.cloudera --privileged=true -t -i -p 7180 4239cd2958c6 /usr/bin/docker-quickstart
-* docker run -v /tmp:/home/root/tmp --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -t -i  -p  50075:50075/tcp  -p 50090:50090/tcp sequenceiq/hadoop-docker /etc/bootstrap.sh -bash
-* docker run --detach --env MYSQL_ROOT_PASSWORD=root --env MYSQL_USER=root --env MYSQL_PASSWORD=root --env MYSQL_DATABASE=technik_db --name golang_mysql --publish 3306:3306 mysql;
-* MariaDB
+## [docker sdk](https://docs.docker.com/engine/api/sdk/) 
+### docker sdk rest api 
+```sh
+docker_api_version=1.41
+# get list of containers
+curl --unix-socket /var/run/docker.sock http://localhost/v${docker_api_version}/containers/json
+# start container by image id
+docker_image_id=050db1833a9c
+curl --unix-socket /var/run/docker.sock -X POST http://localhost/v${docker_api_version}/containers/${docker_image_id}/start
 ```
-docker run --name mysql-container --volume /my/local/folder/with/data:/var/lib/mysql --volume /my/local/folder/with/init/scripts:/docker-entrypoint-initdb.d --publish 3306:3306 --env MYSQL_DATABASE=activitidb --env MYSQL_ROOT_PASSWORD=root --detach mariadb --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+### [docker sdk python](https://github.com/cherkavi/python-utilities/blob/master/docker/docker_list.py)
+
+## Examples
+### simple start
+```sh
+docker run -it ubuntu /bin/sh
+docker exec -it high_mclean /bin/bash
+```
+### docker with env variables
+```sh
+docker run --env http_proxy=$http_proxy --env https_proxy=$https_proxy --env no_proxy=$no_proxy -it ubuntu:18.04 /bin/bash
+```
+### docker with local network
+```sh
+docker run -v /tmp:/home/root/tmp --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -t -i  -p  50075:50075/tcp  -p 50090:50090/tcp sequenceiq/hadoop-docker /etc/bootstrap.sh -bash
+```
+### docker with extension rights
+```sh
+docker run --hostname=quickstart.cloudera --privileged=true -t -i -p 7180 4239cd2958c6 /usr/bin/docker-quickstart
 ```
 
-* MariaDB sql dump creation:
+### MariaDB
+#### MariaDB start in container
+```sh
+docker run --detach --env MYSQL_ROOT_PASSWORD=root --env MYSQL_USER=root --env MYSQL_PASSWORD=root --env MYSQL_DATABASE=technik_db --name golang_mysql --publish 3306:3306 mysql;
+
+docker run --name mysql-container --volume /my/local/folder/with/data:/var/lib/mysql --volume /my/local/folder/with/init/scripts:/docker-entrypoint-initdb.d --publish 3306:3306 --env MYSQL_DATABASE=activitidb --env MYSQL_ROOT_PASSWORD=root --detach mariadb --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 ```
+#### MariaDB sql dump creation:
+```sh
 docker exec mysql-container sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql
 ```
-* MariaDB sql dump import
-```
+#### MariaDB sql dump import
+```sh
 docker run --net=host -v /some/path/on/your/host:/sql -it arey/mysql-client --host=10.143.242.65 --port=3310 --user=root --password=example --database=files -e "source /sql/all-databases.sql"
 ```
 
