@@ -18,6 +18,7 @@
 ### installation ( Debian )
 ```sh
 sudo apt install docker.io
+# start daemon on Debian
 sudo systemctl start docker
 sudo systemctl enable docker
 ```
@@ -289,22 +290,21 @@ docker save busybox | undocker -vi -o busybox -l
 ```
 
 ### pull image from repository
-```
+```sh
 docker pull <image name>
 docker pull cc-artifactory.myserver.net/some-path/<image name>:<image version>
 ```
 > image can be found: https://hub.docker.com/
 > example of command: docker pull mysql
 
-### push image to local repo
-```
+### push image to repository
+```sh
 docker push cc-artifactory.myserver.net/some-path/<image name>:<image version>
 ```
 
 ### copy images between registries
-```
+```sh
 skopeo copy docker://quay.io/buildah/stable docker://registry.internal.company.com/buildah
-
 ```
 
 ### show all local images
@@ -894,8 +894,9 @@ CMD ["caddy", "file-server", "--listen", ":80"]
 > Use CMD if you need to provide       default arguments that could be overwritten from command line when docker container runs.                         
 
 ### push your container
-* docker login
+* docker login <registry name>
 * docker tag <name of the container> <dockerhub username>/<name of the container>
+  also possible notation: <registry name>/<repository name>:<tag>
 * docker push <dockerhub username>/<name of the container>
 ```
 DOCKER_REGISTRY="default-image-registry.apps.vantage.org"
@@ -941,6 +942,7 @@ docker inspect  --format '{{ .Config.Labels }}' cc-artifactory.ubsroup.net/docke
 ```
 
 ## [docker sdk](https://docs.docker.com/engine/api/sdk/) 
+communication with dockerd via REST & Python & CLI 
 ### docker sdk rest api 
 ```sh
 docker_api_version=1.41

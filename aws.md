@@ -76,6 +76,12 @@ pip install awscli
 # set up user
 aws configuration
 ```
+### [use aws cli from docker image, aws cli without installation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-docker.html#cliv2-docker-share-files)
+```sh
+docker run --rm -it  -v $(pwd):/aws  public.ecr.aws/aws-cli/aws-cli --version
+# share local credentials with docker container 
+docker run --rm -it  -v $(pwd):/aws  -v ~/.aws:/root/.aws public.ecr.aws/aws-cli/aws-cli command
+```
 
 ### console command completion, console completion
 ```sh
@@ -1190,4 +1196,24 @@ current_doc_topic="eks"
 A fully managed Docker container registry ( store, manage, and deploy docker images for EKS)
 ```sh
 current_doc_topic="ecr"
+```
+### [create repository](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-container-image.html)
+```sh
+aws_repository_name=my_repository
+aws ecr create-repository --repository-name $aws_repository_name --region $AWS_REGION
+```
+
+### docker login
+```sh
+# login with account id
+AWS_ACCOUNT_ID=my_account_id
+docker login -u AWS -p $(aws ecr get-login-password --region ${AWS_REGION}) ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
+
+# login with aws username/password
+aws ecr get-login-password --region region | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
+```
+### docker push local container to ECR
+```sh
+# check you created and tagged container 
+docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${aws_repository_name}
 ```
