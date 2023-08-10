@@ -1,12 +1,14 @@
 # AWS 
 
-## Visual tools
+## Visual tools for drawing architecture
 * CloudFormation
 * [CloudCraft](https://cloudcraft.co/)
 * [VisualOps](https://visualops.readthedocs.io/)
 * [draw.io](https://draw.io)
 
 ## links
+### [ CodeCatalyst cloud based collaboration space ](https://codecatalyst.aws/explore)
+### [AI code suggestion](https://aws.amazon.com/codewhisperer/)
 ### DOCUMENTATION
 * [official documentation](https://docs.aws.amazon.com/)  
 * [whitepapers](https://aws.amazon.com/whitepapers)  
@@ -86,8 +88,8 @@ docker run --rm -it  -v $(pwd):/aws  -v ~/.aws:/root/.aws public.ecr.aws/aws-cli
 ### console command completion, console completion
 ```sh
 pip3 install awscli
-#complete -C `locate aws_completer` aws
-complete -C /usr/bin/aws_completer aws
+# complete -C `locate aws_completer` aws
+complete -C aws_completer aws
 ```
 
 ### [aws cli config](https://docs.aws.amazon.com/cli/latest/topic/config-vars.html)
@@ -1178,21 +1180,21 @@ aws cloudformation describe-stacks --region us-east-1
 ### [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
 
 ---
-## AWS CodeBuild: 
+## CodeBuild: 
 A fully managed continuous integration service ( to build, test, and package source code )
 ```sh
 current_doc_topic="codebuild"
 ```
 
 ---
-## AWS Elastic Kubernetes Service (EKS): 
+## EKS AWS Elastic Kubernetes Service: 
 A managed Kubernetes service ( deploy, manage, and scale containerized applications using Kubernetes )
 ```sh
 current_doc_topic="eks"
 ```
 
 ---
-## AWS Elastic Container Registry (ECR): 
+## ECR AWS Elastic Container Registry: 
 A fully managed Docker container registry ( store, manage, and deploy docker images for EKS)
 ```sh
 current_doc_topic="ecr"
@@ -1206,14 +1208,40 @@ aws ecr create-repository --repository-name $aws_repository_name --region $AWS_R
 ### docker login
 ```sh
 # login with account id
-AWS_ACCOUNT_ID=my_account_id
+AWS_ACCOUNT_ID=`aws sts get-caller-identity --query Account | jq -r . `
 docker login -u AWS -p $(aws ecr get-login-password --region ${AWS_REGION}) ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
 
 # login with aws username/password
-aws ecr get-login-password --region region | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
+aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
+
+# check connection
+aws ecr get-login
 ```
+
+### ecr create repository
+```sh
+aws_ecr_repository_name=udacity-cherkavi
+aws ecr create-repository  --repository-name $aws_ecr_repository_name
+aws ecr describe-repositories 
+
+aws_ecr_repository_uri=aws ecr describe-repositories --repository-names $aws_ecr_repository_name | jq -r '.repositories[0].repositoryUri'
+
+```
+
 ### docker push local container to ECR
 ```sh
 # check you created and tagged container 
 docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${aws_repository_name}
+```
+
+---
+## STS Security Token Service 
+```sh
+current_doc_topic="sts"
+
+# get account get user id
+aws sts get-caller-identity 
+aws sts get-caller-identity --query Account
+aws sts get-caller-identity --query UserId
+# aws sts get-access-key-info --access-key-id 
 ```
