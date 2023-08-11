@@ -3445,11 +3445,17 @@ ibus-setup
 ```sh
 ffmpeg -i video.mp4 -i audio.mp4 output.mp4
 ```
-### 
+### convert webm video to mp3  
 ```sh
 FILE_INPUT=video.webm
 FILE_OUTPUT=audio.mp3
 ffmpeg -i $FILE_INPUT -vn -ab 64k -ar 44100 -y $FILE_OUTPUT
+```
+### convert mp4 to mp3
+```sh
+file_input="Cybercity.mp4"
+file_output="Cybercity.mp3"
+ffmpeg -i $file_input -vn -acodec libmp3lame -q:a 4 $file_output
 ```
 
 ## sound

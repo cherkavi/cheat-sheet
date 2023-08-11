@@ -1221,17 +1221,23 @@ aws ecr get-login
 ### ecr create repository
 ```sh
 aws_ecr_repository_name=udacity-cherkavi
+
 aws ecr create-repository  --repository-name $aws_ecr_repository_name
 aws ecr describe-repositories 
-
-aws_ecr_repository_uri=aws ecr describe-repositories --repository-names $aws_ecr_repository_name | jq -r '.repositories[0].repositoryUri'
-
 ```
 
 ### docker push local container to ECR
 ```sh
+aws_ecr_repository_uri=`aws ecr describe-repositories --repository-names $aws_ecr_repository_name | jq -r '.repositories[0].repositoryUri'`
+echo $aws_ecr_repository_uri
+
+docker_image_local=050db1833a9c
+docker_image_remote_tag=20230810
+docker_image_remote_name=$aws_ecr_repository_uri:$docker_image_remote_tag
+docker tag  $docker_image_local $docker_image_remote_name
+
 # check you created and tagged container 
-docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${aws_repository_name}
+docker push $docker_image_remote_name
 ```
 
 ---
