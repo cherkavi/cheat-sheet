@@ -3451,11 +3451,11 @@ FILE_INPUT=video.webm
 FILE_OUTPUT=audio.mp3
 ffmpeg -i $FILE_INPUT -vn -ab 64k -ar 44100 -y $FILE_OUTPUT
 ```
-### convert mp4 to mp3
+### convert mp4 to mp3 with slow playing
 ```sh
 file_input="Cybercity.mp4"
 file_output="Cybercity.mp3"
-ffmpeg -i $file_input -vn -acodec libmp3lame -q:a 4 $file_output
+ffmpeg -i $file_input -vn -acodec libmp3lame -q:a 4 -filter:a "atempo=0.75 "$file_output
 ```
 
 ## sound
