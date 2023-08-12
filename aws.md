@@ -1185,6 +1185,43 @@ A fully managed continuous integration service ( to build, test, and package sou
 ```sh
 current_doc_topic="codebuild"
 ```
+### [codebuild docker images](https://github.com/aws/aws-codebuild-docker-images)
+### codebuild start locally
+#### prepare local docker image
+```sh
+git clone https://github.com/aws/aws-codebuild-docker-images.git
+cd aws-codebuild-docker-images/ubuntu/standard/7.0/
+docker build -t aws/codebuild/standard:7.0 .
+```
+#### download script for local run
+```sh
+# https://github.com/aws/aws-codebuild-docker-images/blob/master/local_builds/codebuild_build.sh
+wget https://raw.githubusercontent.com/aws/aws-codebuild-docker-images/master/local_builds/codebuild_build.sh
+```
+#### minimal script
+```sh
+echo 'version: 0.2
+phases:
+    pre_build:
+        commands:
+            - echo "step 01.01"
+            - echo "step 01.02"
+    build:
+        commands:
+            - echo "step 02.01"
+            - echo "step 02.02"
+            - echo "step 02.03"
+' > buildspec-example.yml
+```
+#### run script 
+```sh
+# https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html
+/bin/bash codebuild_build.sh \
+-i aws/codebuild/standard:7.0 \
+-a /tmp/cb \
+-b buildspec-example.yml \
+-s `pwd` -c -m 
+```
 
 ---
 ## EKS AWS Elastic Kubernetes Service: 
