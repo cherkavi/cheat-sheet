@@ -1199,6 +1199,7 @@ docker build -t aws/codebuild/standard:7.0 .
 wget https://raw.githubusercontent.com/aws/aws-codebuild-docker-images/master/local_builds/codebuild_build.sh
 ```
 #### minimal script
+[build environment variables](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html)
 ```sh
 echo 'version: 0.2
 phases:
@@ -1260,7 +1261,12 @@ aws ecr get-login
 aws_ecr_repository_name=udacity-cherkavi
 
 aws ecr create-repository  --repository-name $aws_ecr_repository_name
+
+# list of all repositories 
 aws ecr describe-repositories 
+
+# list of all images in repository
+aws ecr list-images  --repository-name $aws_ecr_repository_name 
 ```
 
 ### docker push local container to ECR
