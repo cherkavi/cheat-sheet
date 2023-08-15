@@ -159,13 +159,25 @@ export AWS_DEFAULT_REGION=eu-central-1
 export current_browser="google-chrome" # current_browser=$BROWSER
 export current_doc_topic="sns"
 function aws-cli-doc(){
-    $current_browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html" &
+    if [[ -z $current_doc_topic ]]; then
+        echo 'pls, specify the env var: current_doc_topic'
+        return 1
+    fi
+    x-www-browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html" &
 }
 function aws-faq(){
-    $current_browser "https://aws.amazon.com/${current_doc_topic}/faqs/" &
+    if [[ -z $current_doc_topic ]]; then
+        echo 'pls, specify the env var: current_doc_topic'
+        return 1
+    fi
+    x-www-browser "https://aws.amazon.com/${current_doc_topic}/faqs/" &
 }
 function aws-console(){
-    $current_browser "https://console.aws.amazon.com/${current_doc_topic}/home?region=$AWS_REGION" &
+    if [[ -z $current_doc_topic ]]; then
+        echo 'pls, specify the env var: current_doc_topic'
+        return 1
+    fi
+    x-www-browser "https://console.aws.amazon.com/${current_doc_topic}/home?region=$AWS_REGION" &
 }
 ```
 
