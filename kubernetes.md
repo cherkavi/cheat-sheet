@@ -721,8 +721,15 @@ kubectl run http --image=katacoda/docker-http-server:latest --replicas=1
 ```
 
 ### scale deployment 
-```
-kubectl scale --replicas=3 deployment {name of the deployment}
+```sh
+deployment_name=my_deployment_name
+## scale pod to amount of replicas
+kubectl scale --replicas=3 deployment $deployment_name
+
+## conditional scaling 
+kubectl autoscale deployment $deployment_name --cpu-percent=50 --min=1 --max=3
+# check Horizonal Pod Autoscaling
+kubectl get hpa 
 ```
 
 ### create from yaml file

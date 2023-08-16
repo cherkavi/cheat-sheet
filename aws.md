@@ -1093,6 +1093,7 @@ google-chrome "https://"$AWS_REGION".console.aws.amazon.com/sns/v3/home?region="
 
 ---
 ## CloudWatch
+### [alarms how to](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html)
 ```sh
 current_doc_topic="cloudwatch"
 aws-cli-doc
@@ -1102,7 +1103,7 @@ aws-console
 
 ```
  Metrics-----\
-             +--->Events------>Alarm
+              +--->Events------>Alarm
   Logs-------/
 +----------------------------------+
         dashboards
@@ -1237,10 +1238,32 @@ phases:
 ```
 
 ---
-## EKS AWS Elastic Kubernetes Service: 
+## EKS Elastic Kubernetes Service
 A managed Kubernetes service ( deploy, manage, and scale containerized applications using Kubernetes )
 ```sh
 current_doc_topic="eks"
+
+CLUSTER_NAME=my_cluster_name
+aws eks update-kubeconfig --region $AWS_REGION--name $CLUSTER_NAME
+```
+Install CloudWatch agent
+```sh
+ClusterName=$YOUR_CLUSTER_NAME_HERE
+RegionName=$YOUR_AWS_REGION_HERE
+FluentBitHttpPort='2020'
+FluentBitReadFromHead='Off'
+FluentBitReadFromTail='On'
+FluentBitHttpServer='On'
+curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/quickstart/cwagent-fluent-bit-quickstart.yaml | sed 's/{{cluster_name}}/'${ClusterName}'/;s/{{region_name}}/'${RegionName}'/;s/{{http_server_toggle}}/"'${FluentBitHttpServer}'"/;s/{{http_server_port}}/"'${FluentBitHttpPort}'"/;s/{{read_from_head}}/"'${FluentBitReadFromHead}'"/;s/{{read_from_tail}}/"'${FluentBitReadFromTail}'"/' | kubectl apply -f -
+```
+
+typical amount of pods in kube-system
+```sh
+# kubectl get pods -n kube-system
+aws-node 
+coredns
+kube-proxy
+metrics-server
 ```
 
 ---
@@ -1294,15 +1317,8 @@ docker tag  $docker_image_local $docker_image_remote_name
 # check you created and tagged container 
 docker push $docker_image_remote_name
 ```
+
 ---
-## EKS Elastic Kubernetes Service
-```sh
-current_doc_topic="eks"
-
-CLUSTER_NAME=my_cluster_name
-aws eks update-kubeconfig --region $AWS_REGION--name $CLUSTER_NAME
-```
-
 ### EKS Cluster Setup
 *Roles:* AmazonEKSClusterPolicy  
 
