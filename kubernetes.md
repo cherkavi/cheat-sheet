@@ -1,8 +1,9 @@
 # useful links
+* [cheat sheet OpenShift](https://github.com/cherkavi/cheat-sheet/tree/master/openshift.md)
+* [cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 * [links collections](https://github.com/ramitsurana/awesome-kubernetes)
 * [git source](https://github.com/kubernetes/dashboard)
 * [architecture](https://kubernetes.io/docs/reference/glossary/?architecture=true)
-* [cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 * [docs task by section](https://kubernetes.io/docs/tasks/)
 * [troubleshooting](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/)
 * [java application template generator](http://dekorate.io/)
@@ -29,6 +30,7 @@
 * [prompt for K8S](https://github.com/jonmosco/kube-ps1)
 * [realtime changes in cluster](https://github.com/pulumi/kubespy)
 * [edge router, load balancer](https://doc.traefik.io/traefik/)
+* [kubernetes dashboard](https://kubeapps.dev/)
 
 # workplace installation
 * kubectl installation
@@ -127,7 +129,7 @@ sudo snap install minikube
 ```
 
 ## installation
-```
+```sh
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube
 curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl
 
@@ -138,6 +140,7 @@ export CHANGE_MINIKUBE_NONE_USER=true
 mkdir $HOME/.kube || true
 touch $HOME/.kube/config
 
+# defalue kubernetes config file location
 export KUBECONFIG=$HOME/.kube/config
 sudo -E ./minikube start --vm-driver=none
 
@@ -151,7 +154,7 @@ for i in {1..150}; do # timeout for 5 minutes
 done
 ```
 ### set up env
-```
+```sh
 minikube completion bash
 ```
 
@@ -662,32 +665,38 @@ kubectl get configmap --namespace kube-system kube-proxy --output json
             name: my-config-file
    ```
 
-## start readiness, check cluster
-```
+## cluster information
+```sh
+kubectl cluster-info
 kubectl cluster-info dump
+```
+
+## start readiness, check cluster
+```sh
 kubectl get node
+kubectl get pods
 minikube dashboard
 ```
 
 ## addons
-```
+```sh
 minikube addons list
 minikube addons enable ingress
 ```
 
 ## labels
 ### show labels for each node
-```
+```sh
 kubectl get nodes --show-labels
 ```
 
 ### add label to Node
-```
+```sh
 kubectl label nodes {node name} my_label=my_value
 ```
 
 ### remove label from Node
-```
+```sh
 kubectl label nodes {node name} my_label-
 ```
 
@@ -698,7 +707,7 @@ user ----> Route -----> Service ----> Deployment
 ![main schema](https://i.postimg.cc/6pfGpWvN/deployment-high-level.png)
 
 ### start dummy container
-```
+```sh
 kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
 ```
 ### start ubuntu and open shell
@@ -707,7 +716,7 @@ kubectl run --restart=Never --rm -it --image=ubuntu --limits='memory=123Mi' -- s
 ```
 
 ### create deployment ( with replica set )
-```
+```sh
 kubectl run http --image=katacoda/docker-http-server:latest --replicas=1
 ```
 
@@ -717,16 +726,16 @@ kubectl scale --replicas=3 deployment {name of the deployment}
 ```
 
 ### create from yaml file
-```
+```sh
 kubectl create -f /path/to/controller.yml
 ```
-### update yaml file
-```
+### create/update yaml file
+```sh
 kubectl apply -f /path/to/controller.yml
 ```
 
 ## create service, expose service, inline service fastly
-```
+```sh
 kubectl expose deployment helloworld-deployment --type=NodePort --name=helloworld-service
 kubectl expose deployment helloworld-deployment --external-ip="172.17.0.13" --port=8000 --target-port=80
 ```
@@ -736,30 +745,32 @@ kubectl port-forward svc/my_service 8080 --namespace my_namespace
 ```
 
 ### reach out service
-```
+```sh
 minikube service helloworld-service
 minikube service helloworld-service --url
 ```
 
 ### service port range
-```
+```sh
 kube-apiserver --service-node-port-range=30000-40000
 ```
 
 ## describe resources, information about resources, inspect resources, inspect pod
-```
+```sh
 kubectl describe deployment {name of deployment}
 kubectl describe service {name of service}
+kubectl describe pod {name of the pod}
 ```
 
 ## describe users, user token
-```
+```sh
 kubectl --namespace kube-system describe secret admin-user
 ```
 
 ## get resources
-```
+```sh
 kubectl get all --all-namespaces
+# check pod statuses 
 kubectl get pods
 kubectl get pods --namespace kube-system
 kubectl get pods --show-labels
@@ -773,10 +784,13 @@ kubectl get nodes
 kubectl get cronjobs
 kubectl get daemonsets
 kubectl get pods,deployments,services,rs,cm,pv,pvc -n demo
+
+kubectl list services
+kubectl describe service my_service_name
 ```
 
 ## determinate cluster 'hostIP' to reach out application(s)
-```
+```sh
 minikube ip
 ```
 open 'kube-dns-....'/hostIP

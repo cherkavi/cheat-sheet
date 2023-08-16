@@ -3,6 +3,10 @@ REmote DIctionary Server
   * Primary data storage (key:value, fast data ingestion, geo-based search, leaderboards, ...)
   * In-memory cache (http session storage, rate-limits - decrease amount of request to expensive API with fixing/sliding window ...)
   * Services decoupling (glue between microservices - pub/sub, streams)
+* connect to instance, check if it works
+  `REDISCLI_AUTH=my_password redis-cli`
+  `SET my_test_key it_is_ok`
+  `GET my_test_key`
 * (extensions)[https://redislabs.com/community/oss-projects/]
   * (RediSearch)[https://oss.redislabs.com/redisearch/]
   * (RedisGraph)[https://oss.redislabs.com/redisgraph/]

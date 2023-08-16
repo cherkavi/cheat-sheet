@@ -47,6 +47,9 @@ oc --loglevel 9 get pod
 ### ocp output 
 ```sh
 oc get pods -o json
+oc get pods -o jsonpath={.metadata.name}
+oc get dc -o jsonpath-as-json={.items[*].spec.template.spec.volumes[*].persistentVolumeClaim.claimName}
+
 oc get pods -o yaml
 oc get pods -o wide
 oc get pods -o name
@@ -56,8 +59,6 @@ oc get pods -o custom-columns=NAME:.metadata.name,RSRC:.metadata.resourceVersion
 # NAME          RSRC
 # metadata.name metadata.resourceVersion
 oc get pods -o custom-columns-file=template.txt
-
-oc get dc -o jsonpath-as-json={.items[*].spec.template.spec.volumes[*].persistentVolumeClaim.claimName}
 ```
 
 ## REST api

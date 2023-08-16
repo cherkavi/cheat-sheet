@@ -1,8 +1,15 @@
 # [helm](https://docs.helm.sh/)
+package manager for Kubernetes  
+( similar to pip for python, similar to apt to debian )
 
 ## links
 * [helm documentation](https://helm.sh/docs/)
+* [helm quick start](https://helm.sh/docs/intro/quickstart/)
 * [interactive course helm](https://www.katacoda.com/aptem/scenarios/helm)
+
+## helm charts
+* [helm charts](https://artifacthub.io/)
+* [operator hub - solutions for installing](https://operatorhub.io/)
 
 ## Architecture
 ![main components](https://i.postimg.cc/gkBhFQHG/helm-architecture.png)
@@ -21,6 +28,11 @@ helm reset
 ## initialization
 ```sh
 helm init
+
+# add new repo
+helm repo add my_local_repo https://charts.bitnami.com/bitnami
+# helm install --set replica.replicaCount=1 my_local_repo/redis
+
 # sync latest available packages
 helm repo update
 ```
@@ -71,6 +83,11 @@ ls -la ~/.helm/starters/
 helm install { full name of the package }
 helm install --name {my name for new package} { full name of the package }
 helm install --name {my name for new package} --namespace {namespace} -f values.yml --debug --dry-run { full name of the package }
+
+# some examples 
+helm install bitname/postgresql
+helm install oci://registry-1.docker.io/bitnamicharts/postgresql
+helm install my_own_postgresql bitname/postgresql
 ```
 
 ## install aws plugin

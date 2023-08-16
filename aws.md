@@ -1294,6 +1294,21 @@ docker tag  $docker_image_local $docker_image_remote_name
 # check you created and tagged container 
 docker push $docker_image_remote_name
 ```
+---
+## EKS Elastic Kubernetes Service
+```sh
+current_doc_topic="eks"
+
+CLUSTER_NAME=my_cluster_name
+aws eks update-kubeconfig --region $AWS_REGION--name $CLUSTER_NAME
+```
+
+### EKS Cluster Setup
+*Roles:* AmazonEKSClusterPolicy  
+
+### EKS Node Group Setup
+*Roles:* AmazonEKSWorkerNodePolicy, AmazonEC2ContainerRegistryReadOnly, AmazonEKS_CNI_Policy, AmazonEMRReadOnlyAccessPolicy_v2  
+*Not Mandatory roles:* CloudWatchAgentServerPolicy
 
 ---
 ## STS Security Token Service 
