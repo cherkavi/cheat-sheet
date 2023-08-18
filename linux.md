@@ -2396,6 +2396,9 @@ jq 'if .attributes[].attribute == "category" and (.attributes[].normalizedValues
 # jq remove quotas raw text
 jq -r ".DistributionList.Items[].Id"
 
+# jq escape symbols
+kubectl get nodes -o json | jq -r '.items[].metadata.annotations."alpha.kubernetes.io/provided-node-ip"'
+
 # edit variables inside JSON file
 ENV_DATA=abcde
 jq --arg var_a "$ENV_DATA" '.ETag = $var_a' cloud_front.json
