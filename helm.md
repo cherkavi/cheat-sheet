@@ -145,3 +145,46 @@ helm init --upgrade
 kubectl get pods --namespace kube-system # waiting for start Tiller
 helm version
 ```
+
+
+### issue with postgresql, issue with mapping PV ebs.csi.aws.com
+```text
+"message": "running PreBind plugin \"VolumeBinding\": binding volumes: timed out waiting for the condition",
+```
+create local storage class instead of mapping to external ( EBS )
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: Immediate
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-storage
+spec:
+  capacity:
+    storage: 8Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage
+  local:
+    path: /tmp
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - <NODE_INSTANCE_IP>
+```
+```sh
+helm repo add $HELM_BITNAMI_REPO https://charts.bitnami.com/bitnami
+helm install $K8S_SERVICE_POSTGRESQL $HELM_BITNAMI_REPO/postgresql --set global.storageClass=local-storage
+```
+
