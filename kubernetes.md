@@ -97,7 +97,7 @@ pip install kubernetes
 * https://github.com/ubuntu/microk8s
 * https://microk8s.io/
 
-```
+```sh
 sudo snap install microk8s --classic
 sudo snap install microk8s --classic --edge 
 ```
@@ -124,7 +124,7 @@ journalctl -u snap.microk8s.daemon-docker
 ---
 # minikube
 ## installation
-```
+```sh
 sudo snap install minikube
 ```
 
@@ -159,12 +159,12 @@ minikube completion bash
 ```
 
 ## start
-```
+```sh
 minikube start
 ```
 
 ## uninstall kube, uninstall kubectl, uninstall minikube
-```
+```sh
 kubectl delete node --all
 kubectl delete pods --all
 kubectl stop
@@ -193,7 +193,7 @@ docker system prune -af --volumes
 
 
 ## start without VirtualBox/KVM
-```
+```sh
 export MINIKUBE_WANTUPDATENOTIFICATION=false
 export MINIKUBE_WANTREPORTERRORPROMPT=false
 export MINIKUBE_HOME=$HOME
@@ -205,17 +205,17 @@ sudo -E minikube start --vm-driver=none
 
 ## kubectl using minikube context
 permanently
-```
+```sh
 kubectl config use-context minikube
 ```
 
 temporary
-```
+```sh
 kubectl get pods --context=minikube
 ```
 
 ## example of started kube processes
-```
+```sh
 /usr/bin/kubelet 
     --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf 
     --kubeconfig=/etc/kubernetes/kubelet.conf 
@@ -343,7 +343,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 # !!! install flannel ( or weave.... )
 # kubectl get nodes
-```
+```sh
 
 # install via rancher
 ```bash
@@ -394,7 +394,7 @@ sudo rm -rf /var/lib/rancher-log/*
 # [upgrade k8s](https://platform9.com/blog/kubernetes-upgrade-the-definitive-guide-to-do-it-yourself/)
 
 ## logs 
-```
+```sh
 ### Master
 ## API Server, responsible for serving the API
 /var/log/kube-apiserver.log 
@@ -417,6 +417,11 @@ kubeadm version
 one of the field will be like:
 GitVersion:"v1.11.1"
 
+## kubectl template, inline code
+```sh
+sed "s|<NODE_INSTANCE_IP>|$NODE_1_IP|" eks-localstorage.yaml-template >  | kubectl apply -f -
+```
+
 ## access cluster
 * reverse proxy 
   activate proxy from current node
@@ -435,13 +440,13 @@ GitVersion:"v1.11.1"
   ```
   
 ## connect to remote machine, rsh
-```
+```sh
 # connect to remote machine
 kubectl --namespace namespace-metrics --kubeconfig=config-rancher exec -ti sm-grafana-deployment-5bdb64-6dnb8 -- /bin/sh
 ```
 
 ## check namespaces
-```
+```sh
 kubectl get namespaces
 ```
 at least three namespaces will be provided
@@ -452,7 +457,7 @@ kube-system   Active    15m
 ```
 
 ## create namespace
-```
+```sh
 kubectl create namespace my-own-namespace
 ```
 or via yaml file 
@@ -505,7 +510,7 @@ spec:
 > also can be limited: pods, pv/pvc, services, configmaps...
 
 ### print limits
-```
+```sh
 kubectl get quota --namespace my-own-namespace
 kubectl describe quota/compute-quota --namespace my-own-namespace
 kubectl describe quota/object-quota --namespace my-own-namespace
@@ -515,7 +520,7 @@ kubectl describe {pod-name} limits --namespace my-own-namespace
 ```
 
 ## delete namespace
-```
+```sh
 kubectl delete namespace {name of namespace}
 ```
 
@@ -573,7 +578,7 @@ curl -X GET -H "$TOKEN" http://localhost:4000/api/list-users
 ### etcdctl installation 
 untar etcdctl from https://github.com/etcd-io/etcd/releases  
 ### etcd querying, etcd request key-values
-```
+```sh
 docker exec -ti `docker ps | grep etcd | awk '{print $1}'` /bin/sh
 etcdctl get / --prefix --keys-only
 # etcdctl --endpoints=http://localhost:2379 get / --prefix --keys-only
@@ -636,7 +641,7 @@ security.user.external.login_attempts=5
   ```
 
 ### get configurations, read configuration in specific format
-```
+```sh
 kubectl get configmap 
 kubectl get configmap --namespace kube-system 
 kubectl get configmap --namespace kube-system kube-proxy --output json
@@ -804,7 +809,7 @@ open 'kube-dns-....'/hostIP
 open 'kube-proxy-....'/hostIP
 
 ### edit configuration of controller
-```
+```sh
 kubectl edit pod hello-minikube-{some random hash}
 kubectl edit deploy hello-minikube
 kubectl edit ReplicationControllers helloworld-controller
@@ -812,32 +817,32 @@ kubectl set image deployment/helloworld-deployment {name of image}
 ```
 
 ### rollout status
-```
+```sh
 kubectl rollout status  deployment/helloworld-deployment
 ```
 
 ### rollout history
-```
+```sh
 kubectl rollout history  deployment/helloworld-deployment
 kubectl rollout undo deployment/helloworld-deployment
 kubectl rollout undo deployment/helloworld-deployment --to-revision={number of revision from 'history'}
 ```
 
 ### delete running container
-```
+```sh
 kubectl delete pod hello-minikube-6c47c66d8-td9p2
 ```
 
 ### delete deployment
-```
+```sh
 kubectl delete deploy hello-minikube
 ```
 ### delete ReplicationController
-```
+```sh
 kubectl delete rc helloworld-controller
 ```
 ### delete PV/PVC
-```
+```sh
 oc delete pvc/pvc-scenario-output-prod
 ```
 
@@ -852,7 +857,7 @@ kubectl port-forward svc/redis-master                   8080:6379
 ```
 
 ### NodeSelector for certain host
-```
+```sh
 spec:
    template:
       spec:
@@ -861,7 +866,7 @@ spec:
 ```
 
 ### persistent volume
-```
+```sh
 kind: PersistentVolume
 apiVersion: v1
 metadata:
@@ -932,7 +937,7 @@ containers:
 
 
 ### deploy Pod on Node with label
-```
+```sh
 apiVersion: v1
 kind: Pod
 metadata:
@@ -944,7 +949,7 @@ spec:
 ```
 
 ### create Deployment for specific node
-```
+```sh
 apiVersion: some-version
 kind: Deployment
 metadata:
@@ -1011,7 +1016,7 @@ kubectl delete {node name}
 ```
 
 ## add node to cluster
-```
+```sh
 ssh {master node}
 kubeadm token create --print-join-command  --ttl 0
 ```
@@ -1085,7 +1090,7 @@ kubectl delete -f --ignore-not-found https://raw.githubusercontent.com/coreos/fl
 kubectl create  -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 install flannel 
-```
+```sh
 ### apply this with possible issue with installation: 
 ## kube-flannel.yml": daemonsets.apps "kube-flannel-ds-s390x" is forbidden: User "system:node:name-of-my-server" cannot get daemonsets.apps in the namespace "kube-system"
 # sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml
@@ -1114,7 +1119,7 @@ flannel.1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
 ```
 
 change settings and restart
-```json
+```sh
 kubectl edit cm kube-flannel-cfg -n kube-system
 # net-conf.json: | { "Network": "10.244.0.0/16", "Backend": { "Type": "vxlan" } }
 
@@ -1129,16 +1134,16 @@ kubectl delete pod --selector=k8s-app=kube-dns -n kube-system
 ```
 
 read logs
-```
+```sh
 kubectl logs --namespace kube-system kube-flannel-ds-amd64-j4frw -c kube-flannel 
 ```
 read logs from all pods
-```
+```sh
 for each_node in $(kubectl get pods --namespace kube-system | grep flannel | awk '{print $1}');do echo $each_node;kubectl logs --namespace kube-system $each_node -c kube-flannel;done
 ```
 
 read settings
-```
+```sh
 kubectl --namespace kube-system exec kube-flannel-ds-amd64-wc4zp ls /etc/kube-flannel/
 kubectl --namespace kube-system exec kube-flannel-ds-amd64-wc4zp cat /etc/kube-flannel/cni-conf.json
 kubectl --namespace kube-system exec kube-flannel-ds-amd64-wc4zp cat /etc/kube-flannel/net-conf.json
@@ -1150,13 +1155,13 @@ kubectl --namespace kube-system exec kube-flannel-ds-amd64-wc4zp ls /etc/cni/net
 kubectl --namespace kube-system exec kube-flannel-ds-amd64-wc4zp cat /etc/cni/net.d/10-flannel.conflist
 ```
 read DNS logs
-```
+```sh
 kubectl get svc --namespace=kube-system | grep kube-dns
 kubectl logs --namespace=kube-system coredns-78fcd94-7tlpw | tail
 ```
 
 simple POD, dummy pod, waiting pod
-```
+```yaml
 kind: Pod
 apiVersion: v1
 metadata:
@@ -1234,10 +1239,29 @@ ls /mnt/disks/k8s-local-storage1
 ls /mnt/disks/k8s-local-storage1
 ```
 
-## trouble shooting
+## trouble shooting, problem resolving
+```sh
+POD_NAME=service-coworking-postgresql-0
 
-### certificate is expired
+kubectl get pod $POD_NAME -o json
+kubectl describe pod $POD_NAME
+
+kubectl get --watch events
+kubectl get events --sort-by=.metadata.creationTimestamp
+kubectl get events --field-selector type=Warning
+kubectl get events --field-selector type=Error
+kubectl get events --field-selector type=Critical
+
+kubectl get pvc data-service-coworking-postgresql-0 -o json
 ```
+
+### postgresql   waiting for a volume to be created
+# https://github.com/parjun8840/ekscsidriver/blob/main/README.md#2-get-oidc-provider-url-and-create-an-identity-provider
+```sh
+kubectl get all -l app.kubernetes.io/name=aws-ebs-csi-driver -n kube-system
+```
+### certificate is expired
+```sh
 bootstrap.go:195] Part of the existing bootstrap client certificate is expired: 2019-08-22 11:29:48 +0000 UTC
 ```
 solution
@@ -1302,3 +1326,11 @@ openssl x509 -in /etc/kubernetes/pki/apiserver.crt  -noout -text  | grep "Not Af
 ## template frameworks
 * [go template](https://godoc.org/text/template)
 * [sprig template](https://godoc.org/github.com/Masterminds/sprig)
+
+
+## Troubleshooting
+### issue with PV / PVC
+```
+pod has unbound immediate PersistentVolumeClaims. preemption: 0/2 nodes are available: 2 No preemption victims found for incoming pod..
+```
+create - check PV & PVC capacities (requested space) - PVC should have not more than PV
