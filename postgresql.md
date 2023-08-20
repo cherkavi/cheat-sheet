@@ -168,6 +168,8 @@ select current_user;
 ### execute query, ad-hoc check connection 
 ```sh
 psql -w -U user_name -d database_name -c "SELECT 1"
+# select from dual, check connection
+# select 'hello' as 'message';
 ```
 ### execute prepared sql file
 ```
