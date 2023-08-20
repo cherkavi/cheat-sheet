@@ -944,14 +944,25 @@ time git status
 ![fix wrong branch commit](https://i.postimg.cc/TYVLR89Y/git-wrong-branch-commit.png)
 
 
+### rest api collaboration
+```sh
+GITHUB_USER=cherkavi
+GITHUB_PROJECT=python-utilities
+GITHUB_TOKEN=$GIT_TOKEN
 
-## git rest api 
+curl https://api.github.com/users/$GITHUB_USER
+curl https://api.github.com/users/$GITHUB_USER/repos
+curl https://api.github.com/repos/$GITHUB_USER/$GITHUB_PROJECT
+```
+
+## git ENTERPRISE rest api ( maybe you are looking for: [take a look into](#github-rest-api) )
+```sh
 export PAT=07f1798524d6f79...
 export GIT_USER=tech_user
 export GIT_REPO_OWNER=another_user
 export GIT_REPO=system_description
 export GIT_URL=https://github.sbbgroup.zur
-
+```
 
 [git rest api](https://docs.github.com/en/enterprise-server@3.1/rest)  
 [git endpoints](https://docs.github.com/en/enterprise-server@3.1/rest/overview/endpoints-available-for-github-apps)  
@@ -1033,4 +1044,188 @@ for PULL_REQUEST_NUMBER in "${PULL_REQUESTS[@]}"; do
     curl -s --request GET  --header "Authorization: Bearer $GIT_TOKEN_REST_API" --url ${GIT_API_URL}/repos/$GIT_REPO_OWNER/$GIT_REPO_NAME/pulls/$PULL_REQUEST_NUMBER/files | jq .[].filename
     echo "--------------------"
 done
+```
+
+## github rest api 
+[github rest api ](https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api)
+### create REST API token
+```sh
+## create token with UI 
+x-www-browser https://github.com/settings/personal-access-tokens/new
+
+## list of all tokens
+x-www-browser https://github.com/settings/tokens
+export GITHUB_TOKEN=$GIT_TOKEN
+```
+
+### github user 
+```sh
+GITHUB_USER=cherkavi
+curl https://api.github.com/users/$GITHUB_USER
+```
+
+### git workflow secrets via REST API 
+* list of the secrets
+```sh
+curl -H "Authorization: Bearer $GIT_TOKEN" https://api.github.com/repos/$GITHUB_USER/$GITHUB_PROJECT/actions/secrets
+curl -H "Authorization: token $GIT_TOKEN" https://api.github.com/repos/$GITHUB_USER/$GITHUB_PROJECT/actions/secrets
+```
+* create secret via REST API 
+```sh
+export GITHUB_TOKEN=$GIT_TOKEN
+export OWNER=cherkavi
+export REPO=python-utilities
+export BASE64_ENCODED_SECRET=`echo -n "my secret value" | base64`
+export SECRET_NAME=my_secret_name
+
+# get project id
+GITHUB_PROJECT_ID=`curl https://api.github.com/repos/$GITHUB_USER/$GITHUB_PROJECT | jq .id`
+# Fetch the latest public key
+GITHUB_PUBLIC_KEY_ID=`curl -X GET -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/$OWNER/$REPO/actions/secrets/public-key" | jq -r .key_id`
+echo $GITHUB_PUBLIC_KEY_ID
+
+curl -X PUT -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
+  -d '{"encrypted_value":"'$BASE64_ENCODED_SECRET'","key_id":"'$GITHUB_PUBLIC_KEY_ID'"}' \
+  https://api.github.com/repos/$OWNER/$REPO/actions/secrets/$SECRET_NAME
+```
+
+
+## github workflow
+[github marketplace - collections of actions to `uses`](https://github.com/marketplace?type=)  
+### [git workflows environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment)  
+place for workflows  
+```sh
+touch .github/workflows/workflow-1.yml
+```
+* simple example of the workflow
+```sh
+name: name of the workflow
+on:
+  pull_request:
+    branches: [features]
+    types: [closed]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches: 
+      - master
+
+jobs:
+  name-of-the-job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3 
+```
+* workflow with env variable
+```yaml
+env:
+  # Set Node.js Version
+  NODE_VERSION: '18.x'
+jobs:
+  install-build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out
+      uses: actions/checkout@v3
+
+    - name: npm with node js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{env.NODE_VERSION}}
+        cache: 'npm'
+```
+* workflow with input-output
+```yaml
+name: 'input output example'
+description: 'Greet someone'
+inputs:
+  person-name:  
+    description: 'input parameter example'
+    required: true
+    default: 'noone'
+outputs:
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-id }}
+runs:
+  using: "composite"
+  steps:
+    - id: simple-print
+      run: echo Hello ${{ inputs.person-name }}.
+    - id: change-dir-and-run
+      run: cd backend && npm ci
+    - id: output-value
+      run: echo "::set-output name=random-id::$(echo $RANDOM)"
+      if: ${{ github.event_name == 'pull_request' }} # if: github.ref == 'refs/heads/main'
+    - id: conidtion-from-previous-step
+      run: echo "random was generated ${{steps.blue_status.outputs.status}}"
+      if: steps.output-value.outputs.random-id != ''
+```
+[variables like github.xxxxx](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context)  
+[variables like jobs.xxxxx](https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability)  
+
+* workflow with waiting for run 
+```yaml
+  step-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo "step 1"
+  step-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo "step 2"
+        
+  post-build-actions:
+    needs: [step-1, step-2]
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo "after both"
+```
+* run cloud formation, aws login
+```sh
+# Workflow name
+name: create-cloudformation-stack
+
+jobs:
+  create-stack:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+   
+    - name: AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
+        aws-region: us-east-1
+
+    - name: Create CloudFormation Stack
+      uses: aws-actions/aws-cloudformation-github-deploy@v1
+      with:
+        name: run cloudformation script
+        template: cloudformation.yml
+```
+> einaregilsson/beanstalk-deploy@v21
+* actions use secrets, aws login
+[rest api](https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28)  
+### git workflow secrets aws login, aws login
+```yaml
+    steps:
+    - name: Access ot aws
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+      run: |
+        aws configure set default.region us-east-1      
+        aws elasticbeanstalk delete-environment --environment-name my-node-app-pr-${{ github.event.pull_request.number }}
 ```
