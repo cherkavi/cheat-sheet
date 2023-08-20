@@ -36,7 +36,6 @@
 * [serverless](https://serverlessland.com/)
 * [Architecture](https://wa.aws.amazon.com/index.en.html)
 * [podcasts](https://awsstash.com/)
-* [pricing for aws]( pricing.aws )
 
 ## decisions
 ### way of building architecture
@@ -44,13 +43,11 @@
 ### cloud advisor
 ![cloud-advisor](https://i.postimg.cc/28251PXK/aws-cloudadvisor.png)  
 ### fault tolerance, high performance
-![serverless](https://i.postimg.cc/rwswxQBF/aws-fault-availability.jpg)  
-### shared responsibility, users
-![serverless](https://i.postimg.cc/y8GYP0Kh/aws-shared-model.png)  
+![fault tolerance, high performance](https://i.postimg.cc/rwswxQBF/aws-fault-availability.jpg)  
+### shared responsibility model
+![shared model](https://i.postimg.cc/y8GYP0Kh/aws-shared-model.png)  
 ### serverless
 ![serverless](https://i.postimg.cc/PxNrBPf9/aws-serverless.png)
-### news
-![news](https://i.postimg.cc/zvSj5SxJ/aws-2019-re-invent.png)  
 
 ## upcoming courses:
 * https://aws.amazon.com/certification/certified-cloud-practitioner/
@@ -157,27 +154,27 @@ export AWS_REGION=eu-central-1
 export AWS_DEFAULT_REGION=eu-central-1
 
 export current_browser="google-chrome" # current_browser=$BROWSER
-export current_doc_topic="sns"
+export aws_service_abbr="sns"
 function aws-cli-doc(){
-    if [[ -z $current_doc_topic ]]; then
-        echo 'pls, specify the env var: current_doc_topic'
+    if [[ -z $aws_service_abbr ]]; then
+        echo 'pls, specify the env var: aws_service_abbr'
         return 1
     fi
-    x-www-browser "https://docs.aws.amazon.com/cli/latest/reference/${current_doc_topic}/index.html" &
+    x-www-browser "https://docs.aws.amazon.com/cli/latest/reference/${aws_service_abbr}/index.html" &
 }
 function aws-faq(){
-    if [[ -z $current_doc_topic ]]; then
-        echo 'pls, specify the env var: current_doc_topic'
+    if [[ -z $aws_service_abbr ]]; then
+        echo 'pls, specify the env var: aws_service_abbr'
         return 1
     fi
-    x-www-browser "https://aws.amazon.com/${current_doc_topic}/faqs/" &
+    x-www-browser "https://aws.amazon.com/${aws_service_abbr}/faqs/" &
 }
 function aws-console(){
-    if [[ -z $current_doc_topic ]]; then
-        echo 'pls, specify the env var: current_doc_topic'
+    if [[ -z $aws_service_abbr ]]; then
+        echo 'pls, specify the env var: aws_service_abbr'
         return 1
     fi
-    x-www-browser "https://console.aws.amazon.com/${current_doc_topic}/home?region=$AWS_REGION" &
+    x-www-browser "https://console.aws.amazon.com/${aws_service_abbr}/home?region=$AWS_REGION" &
 }
 ```
 
@@ -197,7 +194,7 @@ aws configure get $AWS_PROFILE.aws_secret_access_key
 
 ## url to cli documentation, faq, collection of questions, UI 
 ```sh
-export current_doc_topic="sns"
+export aws_service_abbr="sns"
 ```
 
 ## create policy from error output of aws-cli command:
@@ -212,7 +209,7 @@ echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-ex
 ## [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
 
 ---
-## resource query
+## resource query, jsonpath query
 ```sh
 aws ec2 describe-instances \
 --query 'Reservations[*].Instances[*].PublicIpAddress' \
@@ -223,11 +220,17 @@ aws ec2 describe-instances \
 ```sh
 aws configservice select-resource-config --expression "SELECT resourceId WHERE resourceType='AWS::EC2::Instance'"
 ```
+## cost management, budget cost explorer
+```sh
+aws_service_abbr="cost-management"
+x-www-browser https://${AWS_REGION}.console.aws.amazon.com/cost-management/home?region=${AWS_REGION}#/dashboard
+```
 ---
 ## IAM - Identity Access Manager
 [IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)  
+[relations between entities](#shared-responsibility-model)
 ```sh
-current_doc_topic="iam"
+aws_service_abbr="iam"
 aws-cli-doc
 aws-faq
 aws-console
@@ -237,12 +240,21 @@ aws-console
 aws iam list-users 
 # example of adding user to group 
 aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
+# get role 
+aws iam list-roles
+aws iam get-role --role-name ROLE_NAME
+
+# find policy by name
+POLICY_NAME=AmazonEKSWorkerNodePolicy
+aws iam list-policies --query "Policies[?PolicyName=='$POLICY_NAME']"
+
 ```
+[example of role with policy creation with awscli](https://github.com/cherkavi/udacity-aws-devops-eks/blob/main/README-for-users.md#create-codebuild-role)
 
 ---
 ## VPC
 ```sh
-current_doc_topic="vpc"
+aws_service_abbr="vpc"
 aws-cli-doc
 aws-faq
 aws-console
@@ -263,7 +275,7 @@ Security Group
 ---
 ## S3
 ```sh
-current_doc_topic='s3'
+aws_service_abbr='s3'
 aws-cli-doc
 aws-faq
 aws-console
@@ -350,7 +362,6 @@ aws s3 rm s3://$AWS_BUCKET_NAME --recursive --include "*"
 aws s3api delete-bucket --bucket $AWS_BUCKET_NAME
 ```
 
-policy
 * Bucket Policy, public read ( Block all public access - Off )
 ```json
 {
@@ -397,7 +408,7 @@ IPv4	PostgreSQL	TCP	5432	0.0.0.0/0
 ---
 ## [Athena](https://docs.aws.amazon.com/athena/latest)
 ```sh
-current_doc_topic="athena"
+aws_service_abbr="athena"
 aws-cli-doc
 aws-faq
 aws-console
@@ -442,7 +453,7 @@ select * from num_sequence;
 ---
 ## CloudFront
 ```sh
-current_doc_topic="cloudfront"
+aws_service_abbr="cloudfront"
 aws-cli-doc
 aws-faq
 aws-console
@@ -602,7 +613,7 @@ aws cloudfront delete-distribution --id $DISTRIBUTION_ID --if-match $DISTRIBUTIO
 ---
 ## Secrets manager
 ```sh
-current_doc_topic="secretsmanager"
+aws_service_abbr="secretsmanager"
 aws-cli-doc
 aws-faq
 aws-console
@@ -641,7 +652,7 @@ aws secretsmanager create-secret \
 ---
 ## EC2
 ```sh
-current_doc_topic="ec2"
+aws_service_abbr="ec2"
 aws-cli-doc
 aws-faq
 aws-console
@@ -692,7 +703,7 @@ search ec2.internal
 ---
 ## SSM
 ```sh
-current_doc_topic="ssm"
+aws_service_abbr="ssm"
 aws-cli-doc
 aws-faq
 ```
@@ -710,7 +721,7 @@ aws ssm get-parameters-by-path --path /my-app/ --recursive --with-decryption
 ---
 ## EBS
 ```sh
-current_doc_topic="ebs"
+aws_service_abbr="ebs"
 aws-cli-doc
 aws-faq
 ```
@@ -738,7 +749,7 @@ sudo mount /dev/xvdf /external-drive
 ---
 ## ELB
 ```sh
-current_doc_topic="elb"
+aws_service_abbr="elb"
 aws-cli-doc
 aws-faq
 ```
@@ -746,13 +757,13 @@ aws-faq
 [ELB troubleshooting](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html)
 ```sh
 # documentation 
-current_doc_topic="elb"; cli-doc
+aws_service_abbr="elb"; cli-doc
 ```
 
 ---
 ## EFS
 ```sh
-current_doc_topic="efs"
+aws_service_abbr="efs"
 aws-cli-doc
 aws-faq
 ```
@@ -768,7 +779,7 @@ sudo mount -t efs fs-yourid:/ /efs
 ---
 ## SQS
 ```sh
-current_doc_topic="sqs"
+aws_service_abbr="sqs"
 aws-cli-doc
 aws-faq
 ```
@@ -799,7 +810,7 @@ aws sqs delete-message --receipt-handle $MESSAGE_ID1 $MESSAGE_ID2 $MESSAGE_ID3 -
 ---
 ## Lambda
 ```sh
-current_doc_topic="lambda"
+aws_service_abbr="lambda"
 aws-cli-doc
 aws-faq
 aws-console
@@ -964,7 +975,7 @@ zappa update dev
 ---
 ## DynamoDB
 ```sh
-current_doc_topic="dynamodb"
+aws_service_abbr="dynamodb"
 aws-cli-doc
 aws-faq
 aws-console
@@ -1055,7 +1066,7 @@ key id must be Numeric
 ---
 ## Route53
 ```sh
-current_doc_topic="route53"
+aws_service_abbr="route53"
 aws-cli-doc
 aws-faq
 aws-console
@@ -1067,7 +1078,7 @@ aws-console
 ---
 ## SNS
 ```sh
-current_doc_topic="sns"
+aws_service_abbr="sns"
 aws-cli-doc
 aws-faq
 aws-console
@@ -1095,7 +1106,7 @@ google-chrome "https://"$AWS_REGION".console.aws.amazon.com/sns/v3/home?region="
 ## CloudWatch
 ### [alarms how to](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html)
 ```sh
-current_doc_topic="cloudwatch"
+aws_service_abbr="cloudwatch"
 aws-cli-doc
 aws-faq
 aws-console
@@ -1112,7 +1123,7 @@ aws-console
 ---
 ## Kinesis
 ```sh
-current_doc_topic="kinesis"
+aws_service_abbr="kinesis"
 aws-cli-doc
 aws-faq
 aws-console
@@ -1149,7 +1160,7 @@ aws kinesis get-records --shard-iterator <>
 ---
 ## KMS
 ```sh
-current_doc_topic="kms"
+aws_service_abbr="kms"
 aws-cli-doc
 aws-faq
 aws-console
@@ -1172,7 +1183,7 @@ certutil -decode .\ExampleFileDecrypted.base64 .\ExampleFileDecrypted.txt
 ---
 ## CloudFormation
 ```sh
-current_doc_topic="cloudformation"
+aws_service_abbr="cloudformation"
 aws-cli-doc
 aws-faq
 aws-console
@@ -1196,7 +1207,7 @@ aws cloudformation describe-stacks --region us-east-1
 ## CodeBuild: 
 A fully managed continuous integration service ( to build, test, and package source code )
 ```sh
-current_doc_topic="codebuild"
+aws_service_abbr="codebuild"
 ```
 ### [codebuild docker images](https://github.com/aws/aws-codebuild-docker-images)
 ### codebuild start locally
@@ -1237,16 +1248,40 @@ phases:
 -s `pwd` -c -m 
 ```
 
+### create project
+```sh
+aws codebuild list-projects 
+
+# aws codebuild batch-get-projects --names aws-dockerbuild-push2ecr
+aws codebuild create-project --cli-input-json file://codebuild-project.json
+```
 ---
 ## EKS Elastic Kubernetes Service
 A managed Kubernetes service ( deploy, manage, and scale containerized applications using Kubernetes )
+> Leader Nodes == Control Plane
 ```sh
-current_doc_topic="eks"
+aws_service_abbr="eks"
 
+# kubectl setup 
 CLUSTER_NAME=my_cluster_name
-aws eks update-kubeconfig --region $AWS_REGION--name $CLUSTER_NAME
+aws eks update-kubeconfig --region $AWS_REGION --name $CLUSTER_NAME
+
+# list of clusters and nodegroups
+for each_cluster in `aws eks list-clusters | jq -r .clusters[]`; do
+    echo "cluster: $each_cluster"
+    aws eks list-nodegroups --cluster-name $each_cluster
+    echo "-------"
+done
 ```
-Install CloudWatch agent
+
+### EKS Cluster
+*Policies:* AmazonEKSClusterPolicy  
+
+### EKS Node (Group)
+*Policies mandatory:* AmazonEKSWorkerNodePolicy, AmazonEC2ContainerRegistryReadOnly, AmazonEKS_CNI_Policy, AmazonEMRReadOnlyAccessPolicy_v2  
+*Policies not mandatory:* CloudWatchAgentServerPolicy
+
+### Install CloudWatch agent
 ```sh
 ClusterName=$YOUR_CLUSTER_NAME_HERE
 RegionName=$YOUR_AWS_REGION_HERE
@@ -1257,7 +1292,7 @@ FluentBitHttpServer='On'
 curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/quickstart/cwagent-fluent-bit-quickstart.yaml | sed 's/{{cluster_name}}/'${ClusterName}'/;s/{{region_name}}/'${RegionName}'/;s/{{http_server_toggle}}/"'${FluentBitHttpServer}'"/;s/{{http_server_port}}/"'${FluentBitHttpPort}'"/;s/{{read_from_head}}/"'${FluentBitReadFromHead}'"/;s/{{read_from_tail}}/"'${FluentBitReadFromTail}'"/' | kubectl apply -f -
 ```
 
-typical amount of pods in kube-system
+### typical amount of pods in kube-system
 ```sh
 # kubectl get pods -n kube-system
 aws-node 
@@ -1270,7 +1305,7 @@ metrics-server
 ## ECR AWS Elastic Container Registry: 
 A fully managed Docker container registry ( store, manage, and deploy docker images for EKS)
 ```sh
-current_doc_topic="ecr"
+aws_service_abbr="ecr"
 ```
 ### [create repository](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-container-image.html)
 ```sh
@@ -1288,7 +1323,7 @@ docker login -u AWS -p $(aws ecr get-login-password --region ${AWS_REGION}) ${AW
 aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
 
 # check connection
-aws ecr get-login
+aws ecr get-authorization-token
 ```
 
 ### ecr create repository
@@ -1296,6 +1331,7 @@ aws ecr get-login
 aws_ecr_repository_name=udacity-cherkavi
 
 aws ecr create-repository  --repository-name $aws_ecr_repository_name
+# aws ecr delete-repository --repository-name udacity-cherkavi
 
 # list of all repositories 
 aws ecr describe-repositories 
@@ -1314,22 +1350,17 @@ docker_image_remote_tag=20230810
 docker_image_remote_name=$aws_ecr_repository_uri:$docker_image_remote_tag
 docker tag  $docker_image_local $docker_image_remote_name
 
-# check you created and tagged container 
+# push to registry
 docker push $docker_image_remote_name
+
+# pull from 
+docker pull $docker_image_remote_name
 ```
-
----
-### EKS Cluster Setup
-*Roles:* AmazonEKSClusterPolicy  
-
-### EKS Node Group Setup
-*Roles:* AmazonEKSWorkerNodePolicy, AmazonEC2ContainerRegistryReadOnly, AmazonEKS_CNI_Policy, AmazonEMRReadOnlyAccessPolicy_v2  
-*Not Mandatory roles:* CloudWatchAgentServerPolicy
 
 ---
 ## STS Security Token Service 
 ```sh
-current_doc_topic="sts"
+aws_service_abbr="sts"
 
 # get account get user id
 aws sts get-caller-identity 
