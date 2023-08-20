@@ -131,13 +131,13 @@ kubectl config use-context kubernetes-admin@docker-for-desktop-cluster
 ```
 
 ## explain yaml schema
-```
+```sh
 oc explain pods
 oc explain pods --recursive
 oc explain pods --recursive --api-version=autoscaling/v2beta1
 ```
 ## get in yaml, get source of resource, describe yaml
-```
+```sh
 oc get -o yaml  pod {name of the pod}
 oc get -o json  pod {name of the pod}
 
@@ -151,7 +151,7 @@ maprlogin password -user {mapruser}
 # ticket-file will be created
 ```
 ### check expiration date
-```
+```sh
 maprlogin print -ticketfile /tmp/maprticket_1000 # or another filename
 ```
 
@@ -211,7 +211,7 @@ oc create secret generic $SECRET_NAME --from-literal=$KEY1=$VALUE1 --from-litera
 ```
 or even mix of them
 ```
-oc create secret generic $SECRET_NAME --from-file=ssh-privatekey= /.ssh/id_rsa --from-literal=$KEY1=$VALUE1
+oc create secret generic $SECRET_NAME --from-file=ssh-privatekey= /.ssh/id_rsa --from-literal=$KEY1=$VALUE1
 ```
 
 check creation  
@@ -235,12 +235,12 @@ secret mapping example, map secret
 ```
 
 ### information about cluster
-```
+```sh
 kubectl cluster-info
 ```
 
 ### describe information about cluster
-```
+```sh
 oc describe {[object type:](https://docs.openshift.com/enterprise/3.0/cli_reference/basic_cli_operations.html#object-types)}
 ```
 * buildconfigs
@@ -248,7 +248,7 @@ oc describe {[object type:](https://docs.openshift.com/enterprise/3.0/cli_refere
 * routes
 * ...
 
-### take a look into all events, notification about changes
+### take a look into all events, notification about changes, cluster messages, problem resolving
 ```sh
 # follow events
 oc get --watch events
@@ -257,7 +257,7 @@ oc get events --sort-by='.lastTimestamp' | grep " Warning "
 ```
 
 ### show namespace, all applications, url to service, status of all services
-```
+```sh
 oc status
 ```
 
@@ -371,7 +371,7 @@ curl http://${SERVICE_NAME}:${SERVICE_PORT}/data-api/v1/health/
 ```
 
 ### service migration
-```
+```sh
 FILE_NAME=service-data-portal.yaml
 oc get service/my_service --output yaml > $FILE_NAME
 echo "vim $FILE_NAME" | clipboard
@@ -379,12 +379,12 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
 ```
 
 ## print all accounts
-```
+```sh
 oc get serviceaccounts
 ```
 
 ## print all roles, check assigned roles, get users, list of users
-```
+```sh
 oc get rolebindings
 ```
 
@@ -580,7 +580,7 @@ spec:
 ```
 
 ### set resource limits
-```
+```sh
 oc set resources dc/{app-name} --limits=cpu=400m,memory=512Mi --requests=cpu=200m,memory=256Mi
 oc autoscale dc/{app-name} --min 1 --max 5 --cpu-percent=40
 ```
@@ -601,7 +601,7 @@ oc rollback latest {dc name}
 ```
 
 ### connect to existing pod, execute command on remote pod, oc exec
-```
+```sh
 oc get pods --field-selector=status.phase=Running
 oc rsh <name of pod>
 oc rsh -c <container name> pod/<pod name>
@@ -615,7 +615,7 @@ oc exec -it $POD_NAME -c $CONTAINER_NAME /bin/bash
 ```
 
 ### execute command in pod command
-```
+```sh
 # example of executing program on pod: kafka-test-app
 oc exec kafka-test-app "/usr/bin/java"
 ```
@@ -789,12 +789,12 @@ spec:
 ```
 
 #### import specific image
-```
+```sh
 oc import-image jenkins:v3.7 --from='registry.access.redhat.com/openshift3/jenkins-2-rhel7:v3.7' --confirm -n openshift
 ```
 
 ### log from 
-```
+```sh
 oc logs pod/{name of pod}
 oc logs -c <container> pods/<pod-name>
 oc logs --follow bc/{name of app}
@@ -836,12 +836,12 @@ oc describe configmap gatekeeper-config
 ```
 
 ### Grant permission to be able to access OpenShift REST API and discover services.
-```
+```sh
 oc policy add-role-to-user view -n {name of application/namespace} -z default
 ```
 
 ### information about current configuration
-```
+```sh
 oc config view
 ```
 the same as
@@ -850,13 +850,13 @@ cat ~/.kube/config/config
 ```
 
 ### check accessible applications, ulr to application, application path
-```
+```sh
 oc describe routes
 ```
 Requested Host:
 
 ### delete/remove information about some entities into project
-```
+```sh
 oc delete {type} {type name}
 ```
 * buildconfigs
@@ -876,7 +876,7 @@ instead of external link like: http://gateway-myproject.192.168.42.43.nip.io to 
 * svn expose svc/{app name}
 
 ### Liveness and readiness probes
-```
+```sh
 # set readiness/liveness
 oc set probe dc/{app-name} --liveness --readiness --get-url=http://:8080/health
 # remove readiness/liveness
@@ -891,30 +891,30 @@ oc set probe rc/mysql --readiness --open-tcp=3306
 ![image](https://user-images.githubusercontent.com/8113355/207673876-08e257a4-cc10-4549-a36d-98dc25b55f46.png)
 
 ### current ip address
-```
+```sh
 minishift ip
 ```
 
 ### open web console
-```
+```sh
 minishift console
 ```
 
 ## Kubernetes
 
 ### print all context
-```
+```sh
 kubectl config get-contexts
 ```
 
 ### pring current context
-```
+```sh
 kubectl config current-context
 ```
 
 
 ### api version
-```
+```sh
 kubectl api-versions
 ```
 
@@ -1315,7 +1315,7 @@ oc adm policy add-scc-to-user privileged -z default -n my-ocp-project
 ```
 
 ### add security context constraint
-```
+```sh
 oc adm policy add-scc-to-user {name of policy} { name of project }
 oc adm policy remove-scc-to-user {name of policy} { name of project }
 ```
