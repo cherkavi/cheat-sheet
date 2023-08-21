@@ -167,8 +167,13 @@ index-url = https://cc-artifactory.myserver.net/artifactory/api/pypi/adp-pypi-vi
 pip install tornado==2.1.1
 ```
 
-### create virtual environment, dedicated env
+### [virtual environment manager](https://github.com/pypa/pipenv)
+```sh
+pip install pipenv
 ```
+
+### create virtual environment, dedicated env
+```sh
 pip install virtualenv
 ```
 ```sh
