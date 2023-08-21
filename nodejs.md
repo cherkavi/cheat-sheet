@@ -213,7 +213,8 @@ npm start --prefix /path/to/api "special_app_marker_for_ps_aux"
 ```
 * npm solution
 ```
-PORT=$PORT npm start --prefix $PROJECT_HOME/api
+PORT=$PORT npm --prefix $PROJECT_HOME/api start 
+PORT=$PORT npm --prefix $PROJECT_HOME/api run start 
 ```
 
 ## eject configuration to static files

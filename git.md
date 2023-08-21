@@ -28,7 +28,7 @@ fi
 ```
 
 ### debug flag, verbose output of commands, output debug
-```
+```sh
 export GIT_TRACE=1
 export GIT_TRACE=1
 export GIT_CURL_VERBOSE=1
@@ -46,7 +46,7 @@ git remote prune origin
 ```
 
 ### restore
-```
+```sh
 git reset --hard
 ```
 
@@ -1098,7 +1098,7 @@ place for workflows
 touch .github/workflows/workflow-1.yml
 ```
 * simple example of the workflow
-```sh
+```yaml
 name: name of the workflow
 on:
   pull_request:

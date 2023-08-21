@@ -135,6 +135,12 @@ aws configure set ${AWS_PROFILE}.aws_access_key_id ...
 aws configure set ${AWS_PROFILE}.aws_secret_access_key ...
 # aws configure set ${AWS_PROFILE}.aws_session_token ...
 ```
+
+### get AWS credentials via config file
+```sh
+aws configure get aws_access_key_id
+```
+
 ### debugging collaboration verbosity full request
 ```sh
 aws --debug s3 ls --profile $AWS_PROFILE
