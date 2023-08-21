@@ -11,7 +11,7 @@
 * [terraform examples](https://www.terraform.io/intro/examples/index.html)
 * [terraform code checker](https://www.checkov.io/2.Basics/Installing%20Checkov.html)
   > `pip3 install checkov`
-
+* [terraform local version manager](https://tfswitch.warrensbox.com/Install/)
 
 Workflow
 ![workflow](https://i.postimg.cc/qvXLs2D1/terraform-workflow.png)
