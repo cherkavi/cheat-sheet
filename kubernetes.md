@@ -18,8 +18,9 @@
 * [interactive course](https://www.katacoda.com/contino/courses/kubernetes)
 
 ## playground and examples
-* [k8s examples](https://github.com/wardviaene/kubernetes-course)
 * [playground](https://labs.play-with-k8s.com/)
+* [kubeadm cluster](https://killercoda.com/playgrounds/scenario/kubernetes)
+* [k8s examples](https://github.com/wardviaene/kubernetes-course)
 * [playground](https://www.katacoda.com/courses/kubernetes/playground)
 * [ibmcloud](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
 
