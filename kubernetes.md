@@ -418,6 +418,8 @@ kubeadm version
 one of the field will be like:
 GitVersion:"v1.11.1"
 
+## [kubectl customization, parameters in separate files, kubectl templates ](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/)
+
 ## kubectl template, inline code
 ```sh
 sed "s|<NODE_INSTANCE_IP>|$NODE_1_IP|" eks-localstorage.yaml-template >  | kubectl apply -f -
