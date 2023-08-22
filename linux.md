@@ -3649,4 +3649,16 @@ cd /var/cache/apt/archives
 sudo apt install --fix-broken -o Dpkg::Options::="--force-overwrite" {package name}
 ```
 
-
+## Issues
+### issue with go package installation
+```sh
+>pkg-config --cflags  -- devmapper
+Package devmapper was not found in the pkg-config search path.
+Perhaps you should add the directory containing `devmapper.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'devmapper' found
+```
+```sh
+sudo apt install libdevmapper-dev
+export PKG_CONFIG_PATH=`echo $(pkg-config --variable pc_path pkg-config)${PKG_CONFIG_PATH:+:}${PKG_CONFIG_PATH}`
+```
