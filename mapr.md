@@ -276,6 +276,9 @@ maprlogin logout
 ```
 ### login with ticket file using to login
 ```sh
+OCP_TICKET_NAME=maprticket
+FILE_WITH_TICKET=prod.maprticket
+oc get secret $OCP_TICKET_NAME -o json | jq .data.CONTAINER_TICKET -r  |  base64 --decode > $FILE_WITH_TICKET
 maprlogin renew -ticketfile $FILE_WITH_TICKET
 ```
 
