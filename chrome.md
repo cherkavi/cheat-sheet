@@ -13,3 +13,8 @@ sudo dpkg -i ~/Downloads/google-chrome-stable_current_amd64.deb
 * [system settings ](chrome://system/)  
 * [applications](chrome://apps/)
 * [extensions](chrome://extensions-internals/)
+
+## chromium folder
+```sh
+cd $HOME/snap/chromium/common/chromium/Default/Extensions/
+```
