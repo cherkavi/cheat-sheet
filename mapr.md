@@ -80,6 +80,7 @@ maprcli volume remove -name $VOLUME_NAME
 # json, path , columns , local, global, system, unmounted, summary, sort, limit
 maprcli volume list -json > ~/volume-list.json
 ```
+or via [REST API of MapR Control System](https://docs.ezmeral.hpe.com/datafabric-customer-managed/71/ClusterAdministration/data/volumes/CreateVols.html#ariaid-title3)
 
 #### stream create
 ```
@@ -518,7 +519,7 @@ mapr dbshell --cmdfile script.sql > script.result
 rm script.sql
 ```
 
-example of execution via mapr web, web mapr, Data Access read document
+example of execution via mapr web, web mapr, MaprDB read document
 ```sh
  MAPR_USER='user'
  MAPR_PASSWORD='password'
@@ -583,12 +584,23 @@ hadoop fs -ls /mapr/dp.stg/vantage/data/store/collected/car-data/MDF4/a889-017d6
 hadoop fs -rm -r /mapr/dp.stg/vantage/data/store/collected/car-data/MDF4/a889-017d6b9bc95b/
 ```
 
-## [HttpFS httpfs](https://hadoop.apache.org/docs/current/hadoop-hdfs-httpfs/index.html)
+## [MapR HttpFS service HttpFS httpfs](https://hadoop.apache.org/docs/current/hadoop-hdfs-httpfs/index.html)
 ```sh
-curl -X PUT "https://ubssp000007:14000/webhdfs/v1/tmp/example?op=mkdirs" -k -u "user":"passw"
-vim /mapr/dc.stg.zurich/tmp/1.txt
-curl  -X GET "https://ubssp000007:14000/webhdfs/v1/tmp/1.txt?op=open" -k -u "user":"passw"
+WEB_HDFS=https://ubssp000007:14000
+PATH_TO_FILE="tmp/1.txt"
+# BASE_DIR=/mapr/dc.stg.zurich
+vim ${BASE_DIR}/$PATH_TO_FILE
+
+MAPR_USER=$USER_API_USER
+MAPR_PASS=$USER_API_PASSWORD
+# read file
+curl  -X GET "${WEB_HDFS}/webhdfs/v1/${PATH_TO_FILE}?op=open" -k -u ${MAPR_USER}:${MAPR_PASS}
+
+# create folder
+PATH_TO_NEW_FOLDER=tmp/example
+curl -X PUT "${WEB_HDFS}/webhdfs/v1/${PATH_TO_NEW_FOLDER}?op=mkdirs" -k -u ${MAPR_USER}:${MAPR_PASS}
 ```
+
 
 ## issues
 ### with test execution ( scala, java )
