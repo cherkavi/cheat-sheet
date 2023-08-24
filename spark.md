@@ -382,13 +382,16 @@ spark.read.orc("/ingestor/46b1-a7d7-c1728088fb48")
 * read MapRDB format
 ```scala
 import com.mapr.db.spark.sql._
-val table1_path=/mapr/zur/vantage/data/store/signal
+val table1Path="/mapr/zur/vantage/data/store/signal"
 
-val t1 = SparkSessionFunctions(spark).loadFromMapRDB(table1_path)
+val t1 = SparkSessionFunctions(spark).loadFromMapRDB(table1Path)
 t1.createOrReplaceTempView("tb1")
 
 // left/inner join
-val sqlDF = spark.sql(""" select a.user_id as user_identifier from tb1 a """)
+val sqlDF = spark.sql("""
+   select a.user_id as user_identifier
+   from tb1 a """)
+
 sqlDF.show()
 ```
 
