@@ -1,5 +1,14 @@
 # Go lang 
 
+## [go installation](https://go.dev/doc/install)
+```sh
+# default path according: https://go.dev/doc/install
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
+# go libraries/packages path
+export GOPATH=/home/soft/go_lib
+```
+
 ## Issues
 ### bazel buildfier
 #### intention

@@ -18,8 +18,9 @@
 * [interactive course](https://www.katacoda.com/contino/courses/kubernetes)
 
 ## playground and examples
-* [k8s examples](https://github.com/wardviaene/kubernetes-course)
 * [playground](https://labs.play-with-k8s.com/)
+* [kubeadm cluster](https://killercoda.com/playgrounds/scenario/kubernetes)
+* [k8s examples](https://github.com/wardviaene/kubernetes-course)
 * [playground](https://www.katacoda.com/courses/kubernetes/playground)
 * [ibmcloud](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
 
@@ -416,6 +417,8 @@ kubeadm version
 ```
 one of the field will be like:
 GitVersion:"v1.11.1"
+
+## [kubectl customization, parameters in separate files, kubectl templates ](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/)
 
 ## kubectl template, inline code
 ```sh

@@ -1,7 +1,7 @@
 # Tools
-## tasks automatisation & business flows & connections between applications
-* https://integromat.com, https://make.com
-* 
+## tasks automation & business flows & connections between applications
+* https://integromat.com
+* https://make.com
 
 ## authentication
 ### Amazon Cognito
@@ -316,6 +316,19 @@ url1="https://staging.s3.us-east-1.amazonaws.com/img/dir/chinese/bu-2739.jpeg"
 body='{"key": "'$SHORTPIXEL_KEY'", "plugin_version": "dbrbr", "lossy": 2, "resize": 0, "resize_width": 0, "resize_height": 0, "cmyk2rgb": 1, "keep_exif": 0, "convertto": "", "refresh": 0, "urllist": ["'$url1'"], "wait": 35}'
 
 curl -H "Content-Type: application/json" --data-binary $body -X POST https://api.shortpixel.com/v2/reducer.php
+```
+
+## image upload
+### imgbb
+```sh
+# https://api.imgbb.com/
+API_KEY_IMGBB=9f......
+IMAGE_FILE=handdrawing-01.jpg
+IMAGE_NAME="${IMAGE_FILE%.*}"
+echo $IMAGE_FILE"  "$IMAGE_NAME
+
+curl --location --request POST "https://api.imgbb.com/1/upload?&key=$API_KEY_IMGBB&name=${IMAGE_NAME}" \
+ -F "image=@${IMAGE_FILE}" -H "accept: application/json" | jq . 
 ```
 
 ## feedback collector

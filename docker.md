@@ -44,11 +44,11 @@ docker run -p 8080:8080 tomcat:8.0
   ```
 * https://github.com/portainer/portainer  
 ### bash completion
-```
+```sh
 curl -o ~/.docker-machine.bash  https://raw.githubusercontent.com/docker/machine/master/contrib/completion/bash/docker-machine.bash 
 ```
 update your bashrc
-```
+```sh
 . ~/.docker-machine.bash
 ```
 
@@ -58,11 +58,12 @@ update your bashrc
 ### Tools
 * [layers explorer](https://github.com/wagoodman/dive)
 * [layers, config, copy image between diff registries ... ](https://github.com/containers/skopeo/blob/main/install.md)
+  possible issue on ubuntu: https://github.com/cherkavi/cheat-sheet/blob/master/linux.md#issue-with-go-package-installation
 * [copy image between registries](oras.land)
 
 
 ### information about docker itself
-```
+```sh
 docker info
 docker system info
 ```
