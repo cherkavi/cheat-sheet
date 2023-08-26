@@ -1,5 +1,7 @@
 # Links
 * [download/install](https://developer.hashicorp.com/terraform/downloads)  
+  * [terraform local version manager](https://tfswitch.warrensbox.com/Install/)
+    after installation instead of terrafor pls use tfswitch like `tfswitch; $HOME/bin/terraform init`
 * [registry](https://registry.terraform.io/)
 * [documentation](https://www.terraform.io/docs/index.html)
 * [configuration language](https://www.terraform.io/docs/configuration/index.html)
@@ -11,7 +13,6 @@
 * [terraform examples](https://www.terraform.io/intro/examples/index.html)
 * [terraform code checker](https://www.checkov.io/2.Basics/Installing%20Checkov.html)
   > `pip3 install checkov`
-* [terraform local version manager](https://tfswitch.warrensbox.com/Install/)
 
 Workflow
 ![workflow](https://i.postimg.cc/qvXLs2D1/terraform-workflow.png)

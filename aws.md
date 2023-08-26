@@ -1315,8 +1315,15 @@ aws_service_abbr="ecr"
 ```
 ### [create repository](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-container-image.html)
 ```sh
-aws_repository_name=my_repository
-aws ecr create-repository --repository-name $aws_repository_name --region $AWS_REGION
+aws_ecr_repository_name=udacity-cherkavi
+aws ecr create-repository  --repository-name $aws_ecr_repository_name  --region $AWS_REGION
+# aws ecr delete-repository --repository-name udacity-cherkavi
+
+# list of all repositories 
+aws ecr describe-repositories 
+
+# list of all images in repository
+aws ecr list-images  --repository-name $aws_ecr_repository_name 
 ```
 
 ### docker login
@@ -1330,20 +1337,6 @@ aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS 
 
 # check connection
 aws ecr get-authorization-token
-```
-
-### ecr create repository
-```sh
-aws_ecr_repository_name=udacity-cherkavi
-
-aws ecr create-repository  --repository-name $aws_ecr_repository_name
-# aws ecr delete-repository --repository-name udacity-cherkavi
-
-# list of all repositories 
-aws ecr describe-repositories 
-
-# list of all images in repository
-aws ecr list-images  --repository-name $aws_ecr_repository_name 
 ```
 
 ### docker push local container to ECR

@@ -1070,23 +1070,28 @@ curl https://api.github.com/users/$GITHUB_USER
 curl -H "Authorization: Bearer $GIT_TOKEN" https://api.github.com/repos/$GITHUB_USER/$GITHUB_PROJECT/actions/secrets
 curl -H "Authorization: token $GIT_TOKEN" https://api.github.com/repos/$GITHUB_USER/$GITHUB_PROJECT/actions/secrets
 ```
-* create secret via REST API 
+* [create secret via REST API ](https://docs.github.com/en/rest/actions/secrets?apiVersion=2022-11-28#create-or-update-a-repository-secret)
 ```sh
-export GITHUB_TOKEN=$GIT_TOKEN
+export GITHUB_TOKEN=$GIT_TOKEN_UDACITY
+export GITHUB_PROJECT_ID=`curl https://api.github.com/repos/$GITHUB_USER/$GITHUB_PROJECT | jq .id`
+export GITHUB_PUBLIC_KEY_ID=`curl -X GET -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/$OWNER/$REPO/actions/secrets/public-key" | jq -r .key_id`
 export OWNER=cherkavi
-export REPO=python-utilities
-export BASE64_ENCODED_SECRET=`echo -n "my secret value" | base64`
-export SECRET_NAME=my_secret_name
+export REPO=udacity-github-cicd
 
-# get project id
-GITHUB_PROJECT_ID=`curl https://api.github.com/repos/$GITHUB_USER/$GITHUB_PROJECT | jq .id`
-# Fetch the latest public key
-GITHUB_PUBLIC_KEY_ID=`curl -X GET -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/$OWNER/$REPO/actions/secrets/public-key" | jq -r .key_id`
-echo $GITHUB_PUBLIC_KEY_ID
+export SECRET_NAME=my_secret_name
+export BASE64_ENCODED_SECRET=`echo -n "my secret value" | base64`
+curl -X PUT -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
+  -d '{"encrypted_value":"'$BASE64_ENCODED_SECRET'","key_id":"'$GITHUB_PUBLIC_KEY_ID'"}' \
+  https://api.github.com/repos/$OWNER/$REPO/actions/secrets/$SECRET_NAME
 
 curl -X PUT -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" \
   -d '{"encrypted_value":"'$BASE64_ENCODED_SECRET'","key_id":"'$GITHUB_PUBLIC_KEY_ID'"}' \
   https://api.github.com/repos/$OWNER/$REPO/actions/secrets/$SECRET_NAME
+
+https://api.github.com/repositories/REPOSITORY_ID/environments/ENVIRONMENT_NAME/secrets/SECRET_NAME
+https://api.github.com/repos/OWNER/REPO/actions/secrets/SECRET_NAME
+
+curl -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/repos/$OWNER/$REPO/actions/secrets/$SECRET_NAME
 ```
 
 
@@ -1132,10 +1137,13 @@ jobs:
     - name: Check out
       uses: actions/checkout@v3
 
+    - name: Set environment variable
+      run: echo "DEST_VERSION=${{ env.NODE_VERSION }}" >> $GITHUB_ENV
+
     - name: npm with node js
       uses: actions/setup-node@v3
-      with:
-        node-version: ${{env.NODE_VERSION}}
+      with:        
+        node-version: ${{env.DEST_VERSION}} # node-version: ${{env.NODE_VERSION}}
         cache: 'npm'
 ```
 * workflow with input-output

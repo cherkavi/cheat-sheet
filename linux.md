@@ -2367,6 +2367,9 @@ echo output.json | jq -S .
 jq -e 'select(.[].name == "CP_END")' $SESSION_METADATA_FOLDER/$SESSION_ID
 echo $? # return 0 only when met the condition, otherwise - 1
 
+# .repositories[].repositoryName
+aws ecr describe-repositories | jq '.repositories[] | select(.repositoryName == "cherkavi-udacity-github-action-fe")'
+
 # jq filter by condition
 docker network inspect mysql_web_default | jq '.[0].Containers' | jq '.[] | select(.Name=="web_mysql_ui")' | jq .IPv4Address
 
