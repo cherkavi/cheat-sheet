@@ -755,3 +755,50 @@ start process with occupying certainly 100 Mb
 ```sh
 stress --vm 1 --vm-bytes 100M
 ```
+
+## boot loader efi 
+```sh
+sudo apt install efibootmgr
+efibootmgr -v
+
+# boot order, boot descriptions
+efibootmgr
+
+# original 
+# efibootmgr --bootorder 0003,0000,0004,0007,0002,0006
+sudo efibootmgr --bootorder 0002,0000,0004,0007,0003,0006
+
+
+sudo apt install grub-efi
+```
+
+```sh
+lsblk
+# sda           8:0    0   477G  0 disk 
+# ├─sda1        8:1    0   512M  0 part 
+# └─sda2        8:2    0 476,4G  0 part /media/qxxxxxx/26d89655-ea1a-4922-9724-9a7a25
+
+
+DISK_ID=26d89655-ea1a-4922-9724-9a7a25
+ls /media/${USER}/${DISK_ID}/boot/efi
+sudo mount /dev/sda1 /media/${USER}/${DISK_ID}/boot/efi
+
+sudo grub-install /dev/sda --target=x86_64-efi --efi-directory=/media/${USER}/${DISK_ID}/boot/efi
+
+ls -la /media/${USER}/${DISK_ID}/boot/efi/EFI
+# ls -la /media/${USER}/${DISK_ID}/boot/efi/EFI/BOOT
+# ls -la /media/${USER}/${DISK_ID}/boot/efi/EFI/ubuntu
+
+mkdir /tmp/bootloader-efi
+cp -r /media/${USER}/${DISK_ID}/boot/efi/EFI /tmp/bootloader-efi
+ls /tmp/bootloader-efi
+```
+
+```sh
+DISK_ID=26d89655-ea1a-4922-9724-9a7a25
+ls /media/${USER}/${DISK_ID}/boot/efi
+# re-attach drive 
+sudo cp -r /tmp/bootloader-efi/* /media/${USER}/${DISK_ID}/boot/efi
+sudo ls -la /media/${USER}/${DISK_ID}/boot/efi/
+# sudo rm -rf /media/${USER}/${DISK_ID}/boot/efi/bootloader-efi
+```
