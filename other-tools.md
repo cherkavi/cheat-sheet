@@ -135,6 +135,36 @@ encodedStr = str(encodedBytes, "utf-8")
 </html>
 ```
 
+## google rest api services, collaboration with google rest api service 
+[example of using via rest client postman](https://blog.postman.com/how-to-access-google-apis-using-oauth-in-postman/)
+### Links 
+* [project main dashboard](https://console.cloud.google.com/home/dashboard)
+* [credentials ](https://console.cloud.google.com/apis/credentials)
+* [how to activate google drive access](https://console.cloud.google.com/apis/api/drive.googleapis.com)
+  > check "disable api" active button in the second line of the screen - your Drive API is active
+* [check google api access](https://console.cloud.google.com/apis/library/drive.googleapis.com)
+* [how to use  google drive api](https://developers.google.com/drive/api/reference/rest/v3)
+  * [list files](https://developers.google.com/drive/api/reference/rest/v3/files/list)
+* [OAuth authentication for curl request](https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow)
+
+```sh
+GDRIVE_URL=https://www.googleapis.com
+
+## obtain token for REST API collaboration 
+# register REDIRECT_URL via "OAuth 2.0 Client IDs" "Authorised redirect URIs": https://console.cloud.google.com/apis/credentials
+REDIRECT_URL=https://google.com
+CLIENT_ID=5344876.....-scmq9ph1tbrvva7p353......apps.googleusercontent.com
+SCOPE=https://www.googleapis.com/auth/drive.metadata.readonly
+# open in browser
+x-www-browser https://accounts.google.com/o/oauth2/v2/auth?scope=${SCOPE}&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=${REDIRECT_URL}&client_id=${CLIENT_ID}
+# copy from redirect url "access_token" field
+# curl -X GET -v  https://accounts.google.com/o/oauth2/token
+
+TOKEN="ya29.a0AfB_byBl7oToNlM..."
+curl -H "Authorization: Bearer $TOKEN" ${GDRIVE_URL}/drive/v3/about
+curl -H "Authorization: Bearer $TOKEN" ${GDRIVE_URL}/drive/v3/files
+```
+
 ## captcha
 ### google captcha
 [reCaptcha client code](https://developers.google.com/recaptcha/docs/v3)
