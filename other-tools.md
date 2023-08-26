@@ -164,6 +164,11 @@ TOKEN="ya29.a0AfB_byBl7oToNlM..."
 curl -H "Authorization: Bearer $TOKEN" ${GDRIVE_URL}/drive/v3/about
 curl -H "Authorization: Bearer $TOKEN" ${GDRIVE_URL}/drive/v3/files
 ```
+token update
+```sh
+json_body='{"grant_type":"authorization_code","code":"****my_token","client_id":"******.googleusercontent.com","client_secret":"*******client_secret","redirect_uri":"http://localhost:3000"}'
+curl -X POST https://oauth2.googleapis.com/token --data ${json_body}
+```
 
 ## captcha
 ### google captcha
