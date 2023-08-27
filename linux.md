@@ -3608,6 +3608,12 @@ pls, check that you are using Xorg and not Wayland:
 # uncomment false
 cat /etc/gdm3/custom.conf | grep WaylandEnable
 ```
+how to check your current display server:
+```sh
+# x11 - xorg
+# wayland
+echo $XDG_SESSION_TYPE
+```
 
 ### calendar, week number
 ```sh
