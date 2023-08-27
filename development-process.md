@@ -13,3 +13,6 @@
 
 ## Deployment 
 ![deployment strategies](https://i.ibb.co/WWnCmWc/2023-06-07-10-48-1.jpg)  
+
+## Monitoring
+![monitoring](https://i.ibb.co/Q9vDHbQ/2023-08-27-monitoring.jpg)  
