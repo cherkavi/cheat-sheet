@@ -10,3 +10,12 @@
 ![devops introduction](https://i.postimg.cc/htLmgZMv/devops-introduction.png)  
 !["Big O" - Die Ordnung](https://i.postimg.cc/85Rbr9Mn/Big-O-notation.png)  
 ![Testing rules](https://i.postimg.cc/Kc3rwfXk/Testing-rules.png)  
+
+## Deployment 
+![deployment strategies](https://i.ibb.co/WWnCmWc/2023-06-07-10-48-1.jpg)  
+
+## Monitoring
+![monitoring](https://i.ibb.co/Q9vDHbQ/2023-08-27-monitoring.jpg)  
+
+## Data history
+![data evolution](https://i.ibb.co/pdLN4CY/2023-08-27-2git-data-mesh.jpg)

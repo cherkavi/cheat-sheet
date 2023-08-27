@@ -233,6 +233,7 @@ x-www-browser https://${AWS_REGION}.console.aws.amazon.com/cost-management/home?
 ```
 ---
 ## IAM - Identity Access Manager
+![iam](https://i.ibb.co/LCHWKqc/aws-2023-08-27-aws-identity-access-management-png.jpg)  
 [IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)  
 [relations between entities](#shared-responsibility-model)
 ```sh
@@ -754,6 +755,7 @@ sudo mount /dev/xvdf /external-drive
 
 ---
 ## ELB
+![elb](https://i.ibb.co/1JPnBHL/aws-2023-08-27-aws-elb-autoscaling-png.jpg)  
 ```sh
 aws_service_abbr="elb"
 aws-cli-doc
@@ -1109,7 +1111,8 @@ google-chrome "https://"$AWS_REGION".console.aws.amazon.com/sns/v3/home?region="
 ```
 
 ---
-## CloudWatch
+## CloudWatch 
+![cloud-watch](https://i.ibb.co/VtkfCBk/aws-2023-08-27-cloud-watch.jpg)  
 ### [alarms how to](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html)
 ```sh
 aws_service_abbr="cloudwatch"
@@ -1125,6 +1128,9 @@ aws-console
 +----------------------------------+
         dashboards
 ```
+---
+## CloudTrail
+![cloud-trail](https://i.ibb.co/NWXWMtD/aws-2023-08-27-cloud-trail.jpg)  
 
 ---
 ## Kinesis
@@ -1367,3 +1373,23 @@ aws sts get-caller-identity --query Account
 aws sts get-caller-identity --query UserId
 # aws sts get-access-key-info --access-key-id 
 ```
+
+---
+## Elastic Container Service
+![ecs](https://i.ibb.co/gJwP5vm/aws-2023-08-27-ecs.jpg)  
+![ecs](https://i.ibb.co/MM6jvJY/2023-08-27-2git-aws-ecs.jpg)  
+```sh
+```
+
+---
+## CloudFront
+![cloud-front](https://i.ibb.co/jHLb1Vn/aws-2023-08-27-aws-cloud-front-decreased-png.jpg)  
+
+---
+## Shield
+![schield](https://i.ibb.co/n11WkM1/aws-2023-08-27-aws-schield-png.jpg)  
+
+---
+## Firewall
+![firewall](https://i.ibb.co/Qn4WC9z/aws-2023-08-27-aws-web-application-firewall-png.jpg)  
+

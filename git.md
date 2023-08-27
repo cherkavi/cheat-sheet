@@ -1147,6 +1147,7 @@ jobs:
         cache: 'npm'
 ```
 * workflow with input-output
+[github action variables in/out](https://i.ibb.co/d6419Dq/2023-08-25-08-58.jpg)  
 ```yaml
 name: 'input output example'
 description: 'Greet someone'
