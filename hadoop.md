@@ -5,6 +5,9 @@
 * [Hortonworks tutorials](https://hortonworks.com/tutorials/)
 * [Hortonworks ecosystems](https://hortonworks.com/ecosystems/)
 
+## Theory
+![what data is](https://i.ibb.co/Zg26wmq/2023-08-27-data-what-is-it.jpg)  
+
 ## Hadoop into Docker container 
 * MapR
 * Hortonworks
