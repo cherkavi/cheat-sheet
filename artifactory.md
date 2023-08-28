@@ -15,6 +15,7 @@ plain password should be replaced in files
 ### [check token](https://jfrog.com/help/r/jfrog-rest-apis/system-info)
 ```sh
 curl -H "Authorization: Bearer $TOKEN" -X GET "${ARTIFACTORY_URL}/artifactory/api/system/ping"
+# check token: https://jwt.io/#encoded-jwt
 ```
 
 ### get artifact from artifactory
