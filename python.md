@@ -13,6 +13,7 @@ os.environ['https_proxy'] = proxy
 os.environ['HTTPS_PROXY'] = proxy
 ```
 
+## [package manager poetry](https://python-poetry.org/)  
 ## package manager easy_install
 ### using it from cmd
 ```sh
