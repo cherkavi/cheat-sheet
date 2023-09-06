@@ -476,10 +476,14 @@ curl $JENKINS_URL/job/application/job/data-api/job/deployment/job/deploy-service
 ```
 job information
 ```sh
+curl -sg "$JENKINS_URL/job/application/job/data-portal/job/deployment/job/deploy-from-branch-3/244/api/json" --user $DXC_USER:$DXC_PASS
 curl -sg "$JENKINS_URL/job/application/job/data-portal/job/deployment/job/deploy-from-branch-3/244/api/json?tree" --user $DXC_USER:$DXC_PASS
 curl -sg "$JENKINS_URL/job/application/job/data-portal/job/deployment/job/deploy-from-branch-3/api/json?tree=allBuilds[number,url]" --user $DXC_USER:$DXC_PASS
 ```
-
+job full log output
+```sh
+curl -sg "$JENKINS_URL/job/application/job/data-portal/job/deployment/job/deploy-from-branch-3/244/consoleFull" --user $DXC_USER:$DXC_PASS
+```
 
 ### sonar management
 obtaining
