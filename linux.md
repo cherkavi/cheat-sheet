@@ -3624,9 +3624,18 @@ gcal --with-week-number
 ```sh
 # vnc server 
 sudo apt install tigervnc-standalone-server
+# tigervncserver
+
+## issue on Ubuntu 22.04
+# sudo apt install tightvncserver
+# tightvncserver
+
+# vncserver -passwordfile ~/.vnc/passwd -rfbport 5900 -display :0
 vncserver
 # for changing password
 vncpasswd
+# list of vnc servers 
+vncserver -list
 # stop vnc server
 vncserver -kill :1
 # configuration
@@ -3635,14 +3644,29 @@ vim ~/.vnc/xstartup
 # xrdb $HOME/.Xresources
 # startxfce4 &
 ```
-vnc server with connecting to existing X session
-```
-sudo apt-get install tigervnc-scraping-server
-# password for VNC server
-vncpasswd
+
+### vnc server with connecting to existing X session
+```sh
 # https://github.com/sebestyenistvan/runvncserver
-x0vncserver -passwordfile ~/.vnc/passwd -display :0
+sudo apt install tigervnc-scraping-server
+
+## password for VNC server
+vncpasswd
+
+## start vnc server 
+X0tigervnc -PasswordFile ~/.vnc/passwd
+# the same as: `x0vncserver -display :0`
+x0vncserver -passwordfile ~/.vnc/passwd -rfbport 5900 -display :0
+
+## list of the servers
+x0vncserver -list
+
+## log files 
+ls $HOME/.vnc/*.log
+
+x0vncserver -kill :1
 ```
+
 
 ## apt 
 ### apt package description 
