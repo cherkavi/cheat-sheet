@@ -601,6 +601,15 @@ PATH_TO_NEW_FOLDER=tmp/example
 curl -X PUT "${WEB_HDFS}/webhdfs/v1/${PATH_TO_NEW_FOLDER}?op=mkdirs" -k -u ${MAPR_USER}:${MAPR_PASS}
 ```
 
+## Mapr Hadoop run command on behalf of another user
+```
+TICKET_FILE=prod.maprticket
+maprlogin renew -ticketfile $TICKET_FILE
+
+# https://github.com/cherkavi/java-code-example/tree/master/console/java-bash-run
+hadoop jar java-bash-run-1.0.jar utility.Main ls -la .
+```
+
 
 ## issues
 ### with test execution ( scala, java )

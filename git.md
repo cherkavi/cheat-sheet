@@ -654,6 +654,16 @@ git remote add bitbucket https://vitalii_cherkashyn@bitbucket.org/cherkavi/pytho
 git pull bitbucket master --allow-unrelated-histories
 ```
 
+```sh
+function git-token-update(){
+    remote_url=`git config --get remote.origin.url`
+    github_part=$(echo "$remote_url" | sed 's/.*github.com\///')
+    # echo "https://$GIT_TOKEN@github.com/$github_part"
+    git remote set-url origin "https://$GIT_TOKEN@github.com/$github_part"
+}
+```
+
+
 remove old password-access approach
 ```sh
 git remote set-url --delete origin https://github.com/cherkavi/python-utilitites.git
