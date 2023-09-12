@@ -179,7 +179,13 @@ pipeline {
         }
     }
 }
-
+```
+with credential alternative 
+```groovy
+artifactoryCredential = string(credentialsId: '4d18-aaabb-4cdffaf348', variable: 'ARTIFACTORY_TOKEN')
+withCredentials([artifactoryCredential]){
+  sh "echo $ARTIFACTORY_TOKEN"
+}
 ```
 
 name of the build and using parameters
