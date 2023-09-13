@@ -1,7 +1,8 @@
 # MapR
 ## Links
 * [MapR Academy](http://learn.mapr.com)  
-* [Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)  
+* [Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)
+* [mapr hadoop commands](https://docs.ezmeral.hpe.com/datafabric-customer-managed/73/ReferenceGuide/HadoopCommands.html)
 * [mapr code examples, mapr demos](https://github.com/mapr-demos)  
 * [mapr ojai](https://github.com/mapr-demos/ojai-examples/tree/master/python)  
 * [spark ojai](https://docs.ezmeral.hpe.com/datafabric-customer-managed/61/Spark/NativeSparkConnectorJSON.html)
