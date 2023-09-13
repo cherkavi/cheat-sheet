@@ -72,29 +72,40 @@ maprcli volume create -name $VOLUME_NAME -path $VOLUME_PATH
 ## possible issue:
 # Successfully created volume: 'test_volume'
 # ERROR (10003) -  Volume mount for /store/processed/test_creation failed, No such file or directory
-
-## volume remove
-maprcli volume remove -name $VOLUME_NAME
-
-## list of MapR volumes in json format
-# json, path , columns , local, global, system, unmounted, summary, sort, limit
-maprcli volume list -json > ~/volume-list.json
 ```
 or via [REST API of MapR Control System](https://docs.ezmeral.hpe.com/datafabric-customer-managed/71/ClusterAdministration/data/volumes/CreateVols.html#ariaid-title3)
 
-#### stream create
+#### mapr volume remove
+```sh
+## volume remove
+maprcli volume remove -name $VOLUME_NAME
 ```
+
+#### mapr volume get info
+```sh
+## list of MapR volumes in json format
+# json, path , columns , local, global, system, unmounted, summary, sort, limit
+maprcli volume list -json > ~/volume-list.json
+
+hadoop mfs -ls $FOLDER_PATH
+# volume: vrwxrwxrwx
+# directory: drwxrwxrwx
+maprcli volume info -path $FOLDER_PATH
+```
+
+#### stream create
+```sh
 maprcli stream create -path <filepath & name>
 maprcli stream create -path <filepath & name> -consumeperm u:<userId> -produceperm u:<userId> -topicperm u:<userId>
 maprcli stream create -path <filepath & name> -consumeperm "u:<userId>" -produceperm "u:<userId>" -topicperm "u:<userId>" -adminperm "u:<userId1> | u:<userId2>"
 ```
 #### stream check creation
-```
+```sh
 maprcli stream info -path {filepath}
 ```
 
 #### stream remove, stream delete
-```
+```sh
 maprcli stream delete -path <filepath & name>
 ```
 
