@@ -1,4 +1,4 @@
-# Links
+## Links
 * [download/install](https://developer.hashicorp.com/terraform/downloads)  
   * [terraform local version manager](https://tfswitch.warrensbox.com/Install/)
     after installation instead of terrafor pls use tfswitch like `tfswitch; $HOME/bin/terraform init`
@@ -15,7 +15,7 @@
   > `pip3 install checkov`
 * [terraform code linter](https://github.com/terraform-linters/tflint/releases)
 
-Workflow
+## Workflow
 ![workflow](https://i.postimg.cc/qvXLs2D1/terraform-workflow.png)
 * workflow
   * [manage different versions of terraform at one place](https://github.com/tfutils/tfenv)
@@ -73,7 +73,7 @@ terraform console
 ```
   
 
-# cli
+## cli
 [list of the commands](https://www.terraform.io/docs/commands/index.html)
 ## [cli configuration file](https://www.terraform.io/docs/commands/cli-config.html)
 ```sh
@@ -84,9 +84,9 @@ plugin_cache_dir   = "$HOME/.terraform.d/plugin-cache"
 disable_checkpoint = true
 ```
 
-# [HCL configuration language](https://www.terraform.io/docs/configuration/index.html)
-## [variables](https://www.terraform.io/docs/configuration/variables.html)
-### input variables
+## [HCL configuration language](https://www.terraform.io/docs/configuration/index.html)
+### [variables](https://www.terraform.io/docs/configuration/variables.html)
+#### input variables
 usage inside the code
 ```json
 some_resource "resource-name" {
@@ -173,7 +173,7 @@ some inner mechanism
 ./terraform.tfstate.d/attempt_2
 ``` 
 
-# backend
+## backend
 Holding information about
 * current state  
 * configuration
