@@ -1,14 +1,15 @@
 ## Links
+* [documentation](https://www.terraform.io/docs/index.html)
+* [terraform core](https://github.com/hashicorp/terraform)
 * [download/install](https://developer.hashicorp.com/terraform/downloads)  
   * [terraform local version manager](https://tfswitch.warrensbox.com/Install/)
     after installation instead of terrafor pls use tfswitch like `tfswitch; $HOME/bin/terraform init`
+* [terraform language,configuration language](https://developer.hashicorp.com/terraform/language)
+* [terraform language,configuration language](https://www.terraform.io/docs/configuration/index.html)
 * [registry](https://registry.terraform.io/)
-* [documentation](https://www.terraform.io/docs/index.html)
-* [configuration language](https://www.terraform.io/docs/configuration/index.html)
 * [cli commands](https://www.terraform.io/docs/commands/index.html)
 * [providers](https://www.terraform.io/docs/providers/)
 * [cloud providers](https://www.terraform.io/docs/providers/type/major-index.html)  
-* [terraform core](https://github.com/hashicorp/terraform)
 * [terraform providers](https://github.com/hashicorp/terraform-providers)
 * [terraform examples](https://www.terraform.io/intro/examples/index.html)
 * [terraform code checker](https://www.checkov.io/2.Basics/Installing%20Checkov.html)
