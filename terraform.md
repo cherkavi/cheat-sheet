@@ -15,6 +15,7 @@
 * [terraform code checker](https://www.checkov.io/2.Basics/Installing%20Checkov.html)
   > `pip3 install checkov`
 * [terraform code linter](https://github.com/terraform-linters/tflint/releases)
+* [my own examples/snippets](https://github.com/cherkavi/terraform)
 
 ## Workflow
 ![workflow](https://i.postimg.cc/qvXLs2D1/terraform-workflow.png)
