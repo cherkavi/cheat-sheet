@@ -113,6 +113,7 @@ aws configure set cherkavi-user.aws_session_token "Your-value"
 using profiling
 >  --region, --output, --profile 
 ```sh
+aws configure list-profiles
 # default profile will be used from env variable AWS_PROFILE
 aws s3 ls --profile $AWS_PROFILE
 ```
@@ -215,7 +216,7 @@ echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-ex
 ## [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
 
 ---
-## resource query, jsonpath query
+## resource query, jsonpath query, aws json output path, aws json xpath
 ```sh
 aws ec2 describe-instances \
 --query 'Reservations[*].Instances[*].PublicIpAddress' \
@@ -287,6 +288,10 @@ aws-cli-doc
 aws-faq
 aws-console
 ```
+### static web site
+* [static web site solution](https://github.com/cherkavi/udacity-cloud-devops/blob/main/08-static-web-site.md#static-web-site)
+* [static web site doc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html)
+* [static web site endpoints](https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteEndpoints.html)
 
 ```sh
 # make bucket - create bucket with globally unique name
@@ -824,6 +829,17 @@ aws-faq
 aws-console
 ```
 
+### list of functions
+```sh
+aws lambda list-functions --function-version ALL --region us-east-1 --output text --query "Functions[?Runtime=='python3.7'].FunctionArn"
+```
+
+### remove function
+```sh
+FUNCTION_NAME=back2ussr-user-get
+aws lambda delete-function --function-name $FUNCTION_NAME
+```
+
 ### examples
 * https://d1.awsstatic.com/whitepapers/architecture/AWS-Serverless-Applications-Lens.pdf
 
@@ -894,12 +910,12 @@ IAM->Policies->Create policy
 
 ```
 
-lambda logs, check logs
-```
+### lambda logs, check logs
+```sh
 ### lambda all logs
-google-chrome "https://"$AWS_REGION".console.aws.amazon.com/cloudwatch/home?region="$AWS_REGION"#logs:
+x-www-browser "https://"$AWS_REGION".console.aws.amazon.com/cloudwatch/home?region="$AWS_REGION"#logs:
 ### lambda part of logs
-google-chrome "https://"$AWS_REGION".console.aws.amazon.com/cloudwatch/home?region="$AWS_REGION"#logStream:group=/aws/lambda/"$LAMBDA_NAME";streamFilter=typeLogStreamPrefix"
+x-www-browser "https://"$AWS_REGION".console.aws.amazon.com/cloudwatch/home?region="$AWS_REGION"#logStream:group=/aws/lambda/"$LAMBDA_NAME";streamFilter=typeLogStreamPrefix"
 ```
 
 ### [development tools](https://aws.amazon.com/serverless/developer-tools/)
