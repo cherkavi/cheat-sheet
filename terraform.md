@@ -17,6 +17,8 @@
 * [terraform code linter](https://github.com/terraform-linters/tflint/releases)
   * [terraform rules](https://github.com/terraform-linters/tflint-ruleset-aws/blob/master/docs/rules/README.md)
 * [my own examples/snippets](https://github.com/cherkavi/terraform)
+* [reverse terraform - from existing infrastructure create json/tf files](https://github.com/GoogleCloudPlatform/terraformer)
+* [reverse terraform](https://github.com/cycloidio/terracognita)
 
 ## Workflow
 ![workflow](https://i.postimg.cc/qvXLs2D1/terraform-workflow.png)
@@ -192,3 +194,15 @@ terraform {
     }
 }
 ```
+
+## Good practices
+### structure
+```sh
+touch main.tf
+touch variables.tf
+touch outputs.tf
+touch versions.tf
+```
+### State save
+* AWS S3 (state) + AWS DynamoDB ( .lock )
+* Azure storage
