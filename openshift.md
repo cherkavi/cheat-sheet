@@ -340,7 +340,7 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
 
 ### route sticky session
 ```yaml
-router.openshift.io/cookie_name: sticky
+router.openshift.io/cookie_name: any-name
 ```
 ```yaml
 haproxy.router.openshift.io/balance: source
