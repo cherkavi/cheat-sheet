@@ -1391,6 +1391,7 @@ objects:
           containers:
             - name: html-container
               image: ${WEBSERVER_IMAGE}
+              # command: ["sleep", "3600"]
               ports:
                 - containerPort: 80
               volumeMounts:
