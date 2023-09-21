@@ -3225,9 +3225,17 @@ inxi -CfxCa
 
 ## pdf
 ### convert pdf to image
+```sh
+FILE_SOURCE="certificate_Vitalii.pdf"
+pdftoppm -png $FILE_SOURCE  $FILE_SOURCE
+# pdftoppm -mono -jpeg $FILE_SOURCE $FILE_SOURCE
+
+# tesseract $FILE_SOURCE-1.png - -l eng
 ```
+```sh
 convert -geometry 400x600 -density 100x100 -quality 100 test-pdf.pdf test-pdf.jpg
 ```
+
 ### bar code create into pdf
 ```
 barcode -o 1112.pdf -e "code39" -b "1112" -u "mm" -g 50x50
