@@ -342,6 +342,10 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
 ```yaml
 router.openshift.io/cookie_name: any-name
 ```
+```sh
+curl -H "Cookie: any-name=fdc001aa7c2449755d6169; path=/; HttpOnly; Secure; SameSite=None" my-ocp-route.url
+```
+or to use for direct connection to the service
 ```yaml
 haproxy.router.openshift.io/balance: source
 ```
