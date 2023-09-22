@@ -2075,6 +2075,10 @@ for each_file in `find -iname "*.java"`; do
 	sed --in-place 's/vodkafone/cherkavi/g' $each_file
 done
 ```
+sed add prefix add suffix replace in line multiple commands
+```sh
+echo "aaaa find_string bbbb " | sed 's/find_string/replace_to/g' | sed 's/"//g; s/$/\/suffix/; s/^/\/prefix/'
+```
 ### [sed remove sed delete](https://linuxhint.com/sed-command-to-delete-a-line/)
 ```
 # remove line with occurence
