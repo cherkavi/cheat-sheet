@@ -3,8 +3,8 @@
 > Transform your plain text into static websites and blogs.
 
 ## Template language Liquid
-* [jekyll doc](https://jekyllrb.com/docs/liquid/)
-* [shopify liquid doc](https://shopify.github.io/liquid/)
+* [liquid + jekyll](https://jekyllrb.com/docs/liquid/)
+* [liquid shopify doc](https://shopify.github.io/liquid/)
 
 ## Templates for dynamic web page creation
 * [https://jekyllthemes.io/](https://jekyllthemes.io/theme)
