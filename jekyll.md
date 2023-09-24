@@ -2,6 +2,10 @@
 > translate yaml/markdown/liquid to html pages
 > Transform your plain text into static websites and blogs.
 
+## Template language Liquid
+* [jekyll doc](https://jekyllrb.com/docs/liquid/)
+* [shopify liquid doc](https://shopify.github.io/liquid/)
+
 ## Templates for dynamic web page creation
 * [https://jekyllthemes.io/](https://jekyllthemes.io/theme)
 * [cv theme](https://github.com/sharu725/online-cv)
