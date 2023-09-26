@@ -844,6 +844,7 @@ oc get configmaps "httpd-config" -o yaml
 oc describe configmap data-api-config
 oc describe configmap gatekeeper-config
 
+oc create configmap httpd-config-2 --from-file=httpd.conf=my-file-in-current-folder.txt
 ```
 
 ### Grant permission to be able to access OpenShift REST API and discover services.
