@@ -46,6 +46,7 @@ oc --loglevel 9 get pod
 ```
 ### ocp output 
 ```sh
+oc get pods --no-headers
 oc get pods -o json
 oc get pods -o jsonpath={.metadata.name}
 oc get dc -o jsonpath-as-json={.items[*].spec.template.spec.volumes[*].persistentVolumeClaim.claimName}
