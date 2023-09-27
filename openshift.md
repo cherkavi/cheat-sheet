@@ -369,6 +369,8 @@ oc rollout latest "deploy-config-example"
 oc rollout status dc $DC_NAME
 oc rollout history dc $DC_NAME
 oc rollout latest dc/$DC_NAME
+
+oc get deployment $DC_NAME -o yaml | grep deployment | grep revision
 ```
 
 ## service 
