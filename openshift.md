@@ -801,6 +801,16 @@ spec:
   sessionAffinity: None
   type: ClusterIP
 ```
+ 
+possible solution for providing external ip address of the client ( remote_addr )
+```yaml
+  ## ----------
+  type: ClusterIP
+
+  ## ----------
+  # externalTrafficPolicy: Local
+  # type: LoadBalancer
+```
 
 #### import specific image
 ```sh
