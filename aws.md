@@ -836,6 +836,7 @@ aws lambda list-functions --function-version ALL --region us-east-1 --output tex
 
 ### remove function
 ```sh
+# aws lambda list-functions --query 'Functions[].FunctionName'
 FUNCTION_NAME=back2ussr-user-get
 aws lambda delete-function --function-name $FUNCTION_NAME
 ```
