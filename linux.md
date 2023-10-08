@@ -2075,6 +2075,10 @@ for each_file in `find -iname "*.java"`; do
 	sed --in-place 's/vodkafone/cherkavi/g' $each_file
 done
 ```
+sed add prefix add suffix replace in line multiple commands
+```sh
+echo "aaaa find_string bbbb " | sed 's/find_string/replace_to/g' | sed 's/"//g; s/$/\/suffix/; s/^/\/prefix/'
+```
 ### [sed remove sed delete](https://linuxhint.com/sed-command-to-delete-a-line/)
 ```
 # remove line with occurence
@@ -3226,8 +3230,16 @@ inxi -CfxCa
 ## pdf
 ### convert pdf to image
 ```sh
+FILE_SOURCE="certificate_Vitalii.pdf"
+pdftoppm -png $FILE_SOURCE  $FILE_SOURCE
+# pdftoppm -mono -jpeg $FILE_SOURCE $FILE_SOURCE
+
+# tesseract $FILE_SOURCE-1.png - -l eng
+```
+```sh
 convert -geometry 400x600 -density 100x100 -quality 100 test-pdf.pdf test-pdf.jpg
 ```
+
 ### bar code create into pdf
 ```sh
 barcode -o 1112.pdf -e "code39" -b "1112" -u "mm" -g 50x50

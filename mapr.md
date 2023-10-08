@@ -12,6 +12,14 @@
 ## Architecture examples
 ![connected drive](https://i.postimg.cc/LXCBm8b5/Connected-Car-Pipeline.png)
 
+## MapR general info
+```sh
+# gateway config
+maprcli cluster gateway list
+# config of the services
+maprcli cluster queryservice getconfig
+```
+
 ## MapR Streams
 ### parallelism
 * Partition Id

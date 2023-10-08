@@ -46,6 +46,7 @@ oc --loglevel 9 get pod
 ```
 ### ocp output 
 ```sh
+oc get pods --no-headers
 oc get pods -o json
 oc get pods -o jsonpath={.metadata.name}
 oc get dc -o jsonpath-as-json={.items[*].spec.template.spec.volumes[*].persistentVolumeClaim.claimName}
@@ -336,7 +337,18 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
 ## doesn't work - 11
 # oc annotate route $ROUTE_NAME haproxy-ingress.github.io/cors-allow-headers='X-Requested-By; Authorization; Content-Type'
 # oc annotate route $ROUTE_NAME --overwrite=true "haproxy.router.openshift.io/hsts_header"="access-control-allow-origin=*;access-control-allow-credentials=true;includeSubDomains;preload"
+```
 
+### route sticky session
+```yaml
+router.openshift.io/cookie_name: any-name
+```
+```sh
+curl -H "Cookie: any-name=fdc001aa7c2449755d6169; path=/; HttpOnly; Secure; SameSite=None" my-ocp-route.url
+```
+or to use for direct connection to the service
+```yaml
+haproxy.router.openshift.io/balance: source
 ```
 
 ### get all information about current project, show all resources
@@ -357,6 +369,8 @@ oc rollout latest "deploy-config-example"
 oc rollout status dc $DC_NAME
 oc rollout history dc $DC_NAME
 oc rollout latest dc/$DC_NAME
+
+oc get deployment $DC_NAME -o yaml | grep deployment | grep revision
 ```
 
 ## service 
@@ -787,6 +801,16 @@ spec:
   sessionAffinity: None
   type: ClusterIP
 ```
+ 
+possible solution for providing external ip address of the client ( remote_addr )
+```yaml
+  ## ----------
+  type: ClusterIP
+
+  ## ----------
+  # externalTrafficPolicy: Local
+  # type: LoadBalancer
+```
 
 #### import specific image
 ```sh
@@ -833,6 +857,7 @@ oc get configmaps "httpd-config" -o yaml
 oc describe configmap data-api-config
 oc describe configmap gatekeeper-config
 
+oc create configmap httpd-config-2 --from-file=httpd.conf=my-file-in-current-folder.txt
 ```
 
 ### Grant permission to be able to access OpenShift REST API and discover services.
@@ -1384,6 +1409,7 @@ objects:
           containers:
             - name: html-container
               image: ${WEBSERVER_IMAGE}
+              # command: ["sleep", "3600"]
               ports:
                 - containerPort: 80
               volumeMounts:

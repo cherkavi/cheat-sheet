@@ -1,22 +1,36 @@
 ## Links
+### installation
+* [download/install](https://developer.hashicorp.com/terraform/downloads)  
+* [cli commands](https://www.terraform.io/docs/commands/index.html)
+
+### language 
 * [documentation](https://www.terraform.io/docs/index.html)
 * [terraform core](https://github.com/hashicorp/terraform)
-* [download/install](https://developer.hashicorp.com/terraform/downloads)  
-  * [terraform local version manager](https://tfswitch.warrensbox.com/Install/)
-    after installation instead of terrafor pls use tfswitch like `tfswitch; $HOME/bin/terraform init`
 * [terraform language,configuration language](https://developer.hashicorp.com/terraform/language)
 * [terraform language,configuration language](https://www.terraform.io/docs/configuration/index.html)
+* [built in functions](https://developer.hashicorp.com/terraform/language/functions)
+
+### code examples 
+* [terraform examples](https://www.terraform.io/intro/examples/index.html)
+* [my own examples/snippets](https://github.com/cherkavi/terraform)
+
+### providers & registries
 * [registry](https://registry.terraform.io/)
-* [cli commands](https://www.terraform.io/docs/commands/index.html)
 * [providers](https://www.terraform.io/docs/providers/)
 * [cloud providers](https://www.terraform.io/docs/providers/type/major-index.html)  
 * [terraform providers](https://github.com/hashicorp/terraform-providers)
-* [terraform examples](https://www.terraform.io/intro/examples/index.html)
+
+### tools around
+* [terraform local version manager](https://tfswitch.warrensbox.com/Install/)
+  >  after installation instead of terrafor pls use tfswitch like `tfswitch; $HOME/bin/terraform init`
+* [terraform wrapper with additional features](https://terragrunt.gruntwork.io/)
+* [terraform wrapper](https://terraspace.cloud/)
+* [reverse terraform - from existing infrastructure create json/tf files](https://github.com/GoogleCloudPlatform/terraformer)
+* [reverse terraform](https://github.com/cycloidio/terracognita)
 * [terraform code checker](https://www.checkov.io/2.Basics/Installing%20Checkov.html)
   > `pip3 install checkov`
 * [terraform code linter](https://github.com/terraform-linters/tflint/releases)
   * [terraform rules](https://github.com/terraform-linters/tflint-ruleset-aws/blob/master/docs/rules/README.md)
-* [my own examples/snippets](https://github.com/cherkavi/terraform)
 
 ## Workflow
 ![workflow](https://i.postimg.cc/qvXLs2D1/terraform-workflow.png)
@@ -192,3 +206,15 @@ terraform {
     }
 }
 ```
+
+## Good practices
+### structure
+```sh
+touch main.tf
+touch variables.tf
+touch outputs.tf
+touch versions.tf
+```
+### State save
+* AWS S3 (state) + AWS DynamoDB ( .lock )
+* Azure storage

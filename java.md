@@ -212,6 +212,12 @@ System.getProperties().put("http.proxyPort", "someProxyPort");
 export _JAVA_OPTIONS="-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|*.ubsgroup.net|*.zur -Dhttps.nonProxyHosts=localhost|*.ubsgroup.net|*.muc"
 ```
 
+### print all classes for running application
+```sh
+java -verbose:class -version
+java -verbose:class --classpath:my.jar  ClassWithMain
+```
+
 ### certificates
 #### create certificate 
 ```
