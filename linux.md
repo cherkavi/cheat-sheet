@@ -3225,16 +3225,16 @@ inxi -CfxCa
 
 ## pdf
 ### convert pdf to image
-```
+```sh
 convert -geometry 400x600 -density 100x100 -quality 100 test-pdf.pdf test-pdf.jpg
 ```
 ### bar code create into pdf
-```
+```sh
 barcode -o 1112.pdf -e "code39" -b "1112" -u "mm" -g 50x50
 ```
 
 ### qr code online generator
-```
+```sh
 http://goqr.me/api/doc/create-qr-code/
 http://api.qrserver.com/v1/create-qr-code/?data=HelloWorld!&size=100x100
 ```
@@ -3263,6 +3263,11 @@ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQ
 ### doc to pdf, convert to pdf
 ```sh
 libreoffice --headless --convert-to pdf "/home/path/Dativ.doc" --outdir /tmp/output
+```
+
+### pdf to text, extract text from pdf
+```sh
+pdftotext file.pdf -
 ```
 
 ## zip
@@ -3469,6 +3474,10 @@ ffmpeg -i $file_input -vn -acodec libmp3lame -q:a 4 -filter:a "atempo=0.75 "$fil
 ```
 sox 1.wav 2.wav 3.wav 4.wav output.wav
 ffmpeg -i 1.wav -i 2.wav -i 3.wav output.wav
+```
+### split mp3 files
+```sh
+mp3splt -s -p nt=10 album.mp3
 ```
 
 ## copy users, import/export users
