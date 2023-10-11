@@ -149,7 +149,7 @@ git reset --hard origin/$current_branch
 git branch -d $current_branch_ghost
 ```
 
-### squash commit replace batch of commits 
+### squash commit, replace batch of commits, shrink commits
 [interactive rebase](https://garrytrinder.github.io/2020/03/squashing-commits-using-interactive-rebase)  
 ```sh
 git checkout my_branch
