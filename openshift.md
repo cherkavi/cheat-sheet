@@ -1,4 +1,6 @@
 # OpenShift 
+## other cheat sheets
+* [openshift tips](https://openshift.tips/oc/)
 
 ## links collections
 * [minishift documentation, help url](https://docs.openshift.org/latest/minishift/using/index.html)  
