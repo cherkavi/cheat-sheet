@@ -340,6 +340,7 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
 ```
 
 ### route sticky session
+> [apache webserver sticky sessions](https://github.com/cherkavi/solutions/tree/master/apache-proxy-sticky-sessions)
 ```yaml
 router.openshift.io/cookie_name: any-name
 ```
