@@ -9,6 +9,9 @@ export PATH=$PATH:$GOROOT/bin
 export GOPATH=/home/soft/go_lib
 ```
 
+## Links
+* [my go lang snippets](https://github.com/cherkavi/golang-example)
+
 ## Issues
 ### bazel buildfier
 #### intention

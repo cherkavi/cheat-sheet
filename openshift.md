@@ -1,4 +1,6 @@
 # OpenShift 
+## other cheat sheets
+* [openshift tips](https://openshift.tips/oc/)
 
 ## links collections
 * [minishift documentation, help url](https://docs.openshift.org/latest/minishift/using/index.html)  
@@ -340,6 +342,7 @@ yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,
 ```
 
 ### route sticky session
+> [apache webserver sticky sessions](https://github.com/cherkavi/solutions/tree/master/apache-proxy-sticky-sessions)
 ```yaml
 router.openshift.io/cookie_name: any-name
 ```
@@ -501,6 +504,27 @@ oc project {project name}
 oc create -f {description file}
 # oc replace -f {description file}
 ```
+example of route 
+> oc create inline  oc document here
+```sh
+cat <<EOF | oc apply -f -
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: $ROUTE_NAME
+spec:
+  host: $ROUTE_NAME-stg-3.vantage.zur
+  to:
+    kind: Service
+    name: $ROUTE_NAME
+  port:
+    targetPort: 9090
+  tls:
+    insecureEdgeTerminationPolicy: None
+    termination: edge
+EOF
+```
+
 example of job
 ```
 apiVersion: batch/v1

@@ -491,6 +491,7 @@ find /mapr/prod/vantage/orchestration/tables/metadata --c {"$eq":{"session_id":"
 ## less prefered way of searching: 
 # last records, default sort: ASC
 find /mapr/prod/vantage/orchestration/tables/metadata --fields _id --orderby loggerStartTime.utcNanos:DESC --limit 5
+# amount of records: `maprcli table info -path /mapr/prod/vantage/orchestration/tables/metadata -json | grep totalrows`
 find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2 --offset 2 --where {"$eq":{"session_id":"9aaa13577-ad80"}} --orderby created_time
 # array in output and in condition
 find /mapr/prod/vantage/orchestration/tables/metadata --fields documentId,object_types[].id --where {"$eq":{"object_types[].id":"44447f6d853dd"}}'
