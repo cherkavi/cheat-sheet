@@ -320,6 +320,8 @@ aws s3api put-bucket-versioning --bucket $AWS_BUCKET_NAME --versioning-configura
 aws s3 ls
 aws s3api list-buckets
 aws s3api list-buckets --query "Buckets[].Name"
+aws s3api list-buckets --query 'Buckets[?contains(Name, `my_bucket_name`) == `true`] | [0].Name' --output text 
+
 # Bucket Policy, public read ( Block all public access - Off )
 aws s3api get-bucket-location --bucket $AWS_BUCKET_NAME
 
