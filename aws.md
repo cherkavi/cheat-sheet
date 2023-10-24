@@ -246,16 +246,24 @@ aws-console
 
 ```sh
 aws iam list-users 
+
 # example of adding user to group 
 aws iam add-user-to-group --group-name s3-full-access --user-name user-s3-bucket
+
 # get role 
 aws iam list-roles
-aws iam get-role --role-name ROLE_NAME
+aws iam get-role --role-name $ROLE_NAME
 
-# find policy by name
+# policy find by name
 POLICY_NAME=AmazonEKSWorkerNodePolicy
 aws iam list-policies --query "Policies[?PolicyName=='$POLICY_NAME']"
-
+aws iam list-policies --output text --query 'Policies[?PolicyName == `$POLICY_NAME`].Arn'
+# policy get by ARN
+aws iam get-policy-version --policy-arn $POLICY_ARN --version-id v1
+# policy list 
+aws iam list-attached-role-policies --role-name $ROLE_NAME
+# policy attach 
+aws iam attach-role-policy --policy-arn $POLICY_ARN --role-name $ROLE_NAME
 ```
 [example of role with policy creation with awscli](https://github.com/cherkavi/udacity-aws-devops-eks/blob/main/README-for-users.md#create-codebuild-role)
 
