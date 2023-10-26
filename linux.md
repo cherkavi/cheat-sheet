@@ -34,6 +34,8 @@ strings /usr/share/teams/libEGL.so | grep git
 ### place for scripts, permanent script
 ```
 ### system wide for all users
+### /etc/profile is only run at login
+### ~/.profile file runs each time a new shell is started 
 # System-wide .bashrc file for interactive bash(1) shells.
 /etc/bash.bashrc
 # system-wide .profile file for the Bourne shell sh(1)

@@ -692,6 +692,8 @@ curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
 curl http://169.254.169.254/latest/api/token
 # public ip 
 curl http://169.254.169.254/latest/meta-data/public-ipv4
+
+curl http://169.254.169.254/latest/dynamic/instance-identity/document
 ```
 
 connect to launched instance without ssh
@@ -983,8 +985,10 @@ def lambda_handler(event, context):
 * <Shift><Shift> Create Lambda Function, specify handler: my_aws_func.lambda_handler
 
 #### aws sam
+for building serverless applications 
 ```bash
 pip3 install aws-sam-cli
+sam --version
 ```
 
 #### Python Zappa

@@ -706,7 +706,7 @@ or
 fatal: unable to access 'http://localhost:3000/vitalii/sensor-yaml.git/': The requested URL returned error: 503
 ```
 use next command to 'simulate' cloning
-```
+```sh
 git clone http://localhost:3000/vitalii/sensor-yaml.git
 < equals >
 wget http://localhost:3000/vitalii/sensor-yaml.git/info/refs?service=git-upload-pack
@@ -876,6 +876,34 @@ GIT_RELEASE_ARTIFACT=geek-life_linux-amd64
 wget https://github.com/${GIT_ACCOUNT}/${GIT_PROJECT}/releases/latest/download/$GIT_RELEASE_ARTIFACT
 
 # curl -s https://api.github.com/repos/bugy/script-server/releases/latest | grep browser_download_url | cut -d '"' -f 4
+```
+
+### download latest release with tag
+```sh
+GIT_ACCOUNT=mozilla
+GIT_PROJECT=geckodriver
+RELEASE_FILE_BEFORE_TAG="geckodriver-"
+RELEASE_FILE_AFTER_TAG="-linux64.tar.gz"
+
+release_url=https://github.com/${GIT_ACCOUNT}/${GIT_PROJECT}/releases/latest
+latest_release_url=$(curl -s -I -L -o /dev/null -w '%{url_effective}' $release_url)
+release_tag=`echo $latest_release_url | awk -F '/' '{print $NF}'`
+release_file=$RELEASE_FILE_BEFORE_TAG$release_tag$RELEASE_FILE_AFTER_TAG
+
+release_download="https://github.com/${GIT_ACCOUNT}/${GIT_PROJECT}/releases/download/${release_tag}/$release_file"
+
+# Create a directory for downloads
+output_dir="/home/soft/selenium-drivers"
+file_name=gekodriver-mozilla
+# Create the output directory if it doesn't exist
+mkdir -p "$output_dir"
+# Download the latest release
+curl -L -o $output_dir/${file_name}.tar.gz "$release_download"
+
+tar -xzf $output_dir/${file_name}.tar.gz -C $output_dir
+mv $output_dir/geckodriver $output_dir/$file_name
+chmod +x $output_dir/$file_name
+$output_dir/$file_name --version
 ```
 
 ### download latest version of file from github, url to source, source download
