@@ -7,6 +7,7 @@
 * 97 things every architect should know
 * [value proposition template](https://www.strategyzer.com/canvas/value-proposition-canvas)
 * [12 factors app](https://12factor.net/)
+* [system design descriptions](https://github.com/ByteByteGoHq/system-design-101)
 
 ## [books](https://www.goodreads.com/shelf/show/software-architecture)
 * Clean Architecture ( Robet C. Martin )
