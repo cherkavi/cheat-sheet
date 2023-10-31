@@ -85,3 +85,17 @@ where index_cn.field_type != index_de.field_type
 ```sh
 cat src/scripts.sql | sqlite3 src/db.sqlite
 ```
+
+## constraint example
+```sql
+CREATE TABLE cv_generated (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  tags TEXT,
+  board INTEGER,
+  position_note TEXT,
+
+  FOREIGN KEY (board) REFERENCES board (id)
+);
+
+
+```
