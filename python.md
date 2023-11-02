@@ -1,6 +1,14 @@
 # Python
 * [python3 readiness](http://py3readiness.org/)  
 * [list of frameworks](https://awesome-python.com/)  
+* terminal gui - tui
+  * [curses](https://docs.python.org/3.10/library/curses.html)
+  * [urwid](http://urwid.org/)
+  * [npyscreen](http://www.npcole.com/npyscreen/")
+  * [python-prompt-toolkit](https://github.com/jonathanslenders/python-prompt-toolkit)
+  * [curtsies](https://github.com/thomasballinger/curtsies)
+  * [asciimatics](https://github.com/peterbrittain/asciimatics)
+  * [picotui](https://github.com/pfalcon/picotui)
 
 ## proxy 
 ```python
