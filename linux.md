@@ -2822,6 +2822,9 @@ sudo openconnect --no-proxy --user=$USER_VPN --authgroup='YubiKey+PIN' --cafile=
 ```sh
 # apt install network-manager-openvpn
 sudo openvpn file_config.ovpn
+
+# vpn-auth - text file with two lines: login and password
+sudo openvpn --config 1.ovpn --auth-user-pass $DIR_PROJECT/vpn-auth.txt
 ```
 
 ### debug network collaboration, ip packages

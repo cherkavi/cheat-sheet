@@ -2,7 +2,7 @@
 
 ### [online playground](https://labs.play-with-docker.com)
 ### [commands description](https://tutorialshub.org/docker-commands/)
-### [ Docker Tutorial](https://dev.to/aurelievache/understanding-docker-part-1-retrieve-pull-images-3ccn)
+### [Docker Tutorial](https://dev.to/aurelievache/understanding-docker-part-1-retrieve-pull-images-3ccn)
 ### [docker debug](https://github.com/ktock/buildg)
 ### [docker dashboard](https://github.com/benphelps/homepage/pkgs/container/homepage)
 ### Ecosystem
@@ -16,6 +16,7 @@
 ### [docker code checker](https://www.checkov.io/2.Basics/Installing%20Checkov.html)
 
 ### installation ( Debian )
+[docker desktop](https://docs.docker.com/desktop/install/ubuntu/)
 ```sh
 sudo apt install docker.io
 # start daemon on Debian

@@ -301,6 +301,7 @@ aws-console
 * [static web site doc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html)
 * [static web site endpoints](https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteEndpoints.html)
 
+### s3 operations
 ```sh
 # make bucket - create bucket with globally unique name
 AWS_BUCKET_NAME="my-bucket-name" 
@@ -364,6 +365,8 @@ aws s3 rm  s3://$AWS_BUCKET_NAME/file-name.with_extension
 aws s3api delete-object --bucket $AWS_BUCKET_NAME --key file-name.with_extension 
 # remove all objects
 aws s3 rm s3://$AWS_S3_BUCKET_NAME --recursive --exclude "account.json" --include "*"
+#!!! using only '--include "test-file*"' - will remove all files, not only specified in include section !!!, use instead of:
+
 # upload file and make it public
 aws s3api put-object-acl --bucket <bucket name> --key <path to file> --acl public-read
 # read file 
@@ -417,6 +420,27 @@ aws s3api delete-bucket --bucket $AWS_BUCKET_NAME
     ]
 }
 ```
+* Full access for role 
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowS3ReadAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::INSERT-ACCOUNT-NUMBER:role/INSERT_ROLE_NAME"
+      },
+      "Action": "s3:*",
+      "Resource": [
+        "arn:aws:s3:::INSERT-BUCKET-NAME",
+        "arn:aws:s3:::INSERT-BUCKET-NAME/*"
+      ]
+    }
+  ]
+}
+```
+
 
 ---
 ## RDS
@@ -1022,12 +1046,12 @@ aws-console
 
 [documentation](https://github.com/awsdocs/amazon-dynamodb-developer-guide/tree/master/doc_source)
 [documentation developer guide](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
-```sh
-$current_browser https://$AWS_REGION.console.aws.amazon.com/dynamodb/home?region=$AWS_REGION#tables:
-```
+[dynamodb local run](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
+[dynamodb query language partiql - sql-like syntax](https://partiql.org/dql/overview.html)
+[dynamodb via CLI](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tools.CLI.html)
 
 ```sh
-# list of tables
+# list of tables: https://$AWS_REGION.console.aws.amazon.com/dynamodb/home?region=$AWS_REGION#tables:
 aws dynamodb list-tables
 
 TABLE_NAME=my_table
