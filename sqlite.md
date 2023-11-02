@@ -93,6 +93,7 @@ CREATE TABLE cv_generated (
   tags TEXT,
   board INTEGER,
   position_note TEXT,
+  creation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
 
   FOREIGN KEY (board) REFERENCES board (id)
 );
