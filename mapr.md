@@ -425,6 +425,9 @@ OJAI log4j logging
 ### Show info
 ```bash
 maprcli table info -path /vantage/deploy/data-access-video/images -json
+# !!! totalrows: Estimated number of rows in a table. Values may not match the actual number of rows. This variance occurs because the counter, for performance reasons, is not updated on each row.
+# one of the fastest option - drill request: select count(*) from dfs.`/vantage/deploy/data-access-video/images`
+
 # list of regions for table 
 maprcli table region list -path /vantage/deploy/data-access-video/images -json
 ```
