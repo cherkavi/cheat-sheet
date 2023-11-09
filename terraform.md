@@ -8,6 +8,7 @@
 * [terraform core](https://github.com/hashicorp/terraform)
 * [terraform language,configuration language](https://developer.hashicorp.com/terraform/language)
 * [terraform language,configuration language](https://www.terraform.io/docs/configuration/index.html)
+* [template json files into tf, terraform parametrizing](https://developer.hashicorp.com/terraform/language/functions/templatefile)
 * [built in functions](https://developer.hashicorp.com/terraform/language/functions)
   > `terraform console`  
   > [run script ](https://developer.hashicorp.com/terraform/cli/commands/console#scripting)  
