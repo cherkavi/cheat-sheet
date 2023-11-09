@@ -9,6 +9,7 @@
 * [terraform language,configuration language](https://developer.hashicorp.com/terraform/language)
 * [terraform language,configuration language](https://www.terraform.io/docs/configuration/index.html)
 * [built in functions](https://developer.hashicorp.com/terraform/language/functions)
+  > `terraform console`
 
 ### code examples 
 * [terraform examples](https://www.terraform.io/intro/examples/index.html)
