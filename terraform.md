@@ -103,7 +103,7 @@ disable_checkpoint = true
 
 ## [HCL configuration language](https://www.terraform.io/docs/configuration/index.html)
 ### [variables](https://www.terraform.io/docs/configuration/variables.html)
-#### input variables
+#### [input variables](https://developer.hashicorp.com/terraform/language/values/variables)
 usage inside the code
 ```json
 some_resource "resource-name" {
@@ -111,12 +111,17 @@ some_resource "resource-name" {
 }
 ```
 possible way for input variables:
+> precedence (last is most powerful): TF_VAR -> -var-file=....tfvars -> -var "p1=..."
 * terraform.tfvars, terraform.tfvars.json
-  ```json
-  variable "p1" {
-     default = "my own default value"
-  }
+  ```terraform.tfvars:json
+  p1=[
+   "this",
+   "is",
+   "my",
+   "parameter"]
+  p2=this is my parameter
   ```
+  `terraform apply -var-file=terraform.tfvars`
 * cli
   * cli var
   ```sh
