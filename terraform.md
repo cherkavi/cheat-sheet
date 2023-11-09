@@ -123,7 +123,8 @@ possible way for input variables:
   terraform apply -var 'p1=this is my parameter'
   terraform apply -var='p1=this is my parameter'  
   terraform apply -var='p1=["this","is","my","parameter"]'  
-  terraform apply -var='p1={"one":"this","two":"is"}'    
+  terraform apply -var='p1={"one":"this","two":"is"}'
+  terraform apply -var 'password_use_special=true' -var 'password_length=10'
   ```
   * cli var file  
   ```sh
@@ -143,8 +144,10 @@ possible way for input variables:
 * environment variables
 ```sh
 export TF_VAR_p1="this is my parameter"
-export TF_VAR_p1=["this","is","my","parameter"]  
+export TF_VAR_p1=["this","is","my","parameter"]
+terraform apply
 ```
+
 ### output variables
 terraform code
 ```json
