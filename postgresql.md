@@ -1,3 +1,4 @@
+# PostgreSQL cheat sheet
 ## Tools
 * [cli for databases](https://github.com/dbcli)  
 * [binaries to download](https://www.enterprisedb.com/download-postgresql-binaries)

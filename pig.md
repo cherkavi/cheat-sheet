@@ -1,4 +1,4 @@
-## Pig ( PigLatin )
+## Pig ( PigLatin ) cheat sheet
 * all operators will be translated to MapReduce  
 * accessible operations:
   * join dataset

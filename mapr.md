@@ -1,4 +1,4 @@
-# MapR
+# MapR cheat sheet
 ## Links
 * [MapR Academy](http://learn.mapr.com)  
 * [Sandbox](https://mapr.com/docs/home/SandboxHadoop/c_sandbox_overview.html)
@@ -678,7 +678,7 @@ solution:
 IMAGE_ID='maprtech/pacc:6.1.0_6.0.0_ubuntu16'
 docker run --env MAPR_TZ="UTC" --env MAPR_CONTAINER_USER="temp_user" --env MAPR_CLDB_HOSTS="build_new_container" -it $IMAGE_ID /bin/sh
 ```
-### Security Context Constraints
+### Security Context Constraints
 ```dockerfile
 FROM maprtech/pacc:6.1.0_6.0.0_ubuntu16
 ```

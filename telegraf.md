@@ -1,4 +1,4 @@
-# [Telegraf](https://github.com/influxdata/telegraf)
+# [Telegraf cheat sheet](https://github.com/influxdata/telegraf)
 Telegraf is an open-source agent written in the Go.  
 It collects, manages, processes, and aggregates metrics of a DevOps system or machine  
 

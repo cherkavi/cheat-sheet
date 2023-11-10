@@ -1,4 +1,4 @@
-# selenium in Python
+# Selenium cheat sheet
 ## links
 * [pip](https://www.selenium.dev/selenium/docs/api/py/)
 * [enter point](https://www.selenium.dev/)

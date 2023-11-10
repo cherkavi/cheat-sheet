@@ -1,4 +1,4 @@
-# ![Airflow](https://airbnb.io/img/projects/airflow3.png)
+# ![Airflow cheat sheet](https://airbnb.io/img/projects/airflow3.png)
 * [Airflow apache](https://airflow.apache.org/)
 * [REST API](http://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html)
 * [source code](https://github.com/apache/airflow)
@@ -245,7 +245,7 @@ docker-compose -f docker-compose-LocalExecutor.yml up -d
 python env create -f environment.yml
 source activate airflow-tutorial
 ```
-  
+  
 ### [Airflow Virtual machine](https://marclamberti.com/form-course-material-100/)
 credentials
 ```sh
@@ -1392,14 +1392,14 @@ class MyPlugin(AirflowPlugin):
 my_plugin/
 ├── __init__.py
 ├── hooks
-│   ├── my_hook.py
-│   └── __init__.py
+│   ├── my_hook.py
+│   └── __init__.py
 ├── menu_links
-│   ├── my_link.py
-│   └── __init__.py
+│   ├── my_link.py
+│   └── __init__.py
 ├── operators
-    ├── my_operator.py
-    └── __init__.py
+    ├── my_operator.py
+    └── __init__.py
 ```
 
 ## Maintenance

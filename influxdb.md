@@ -1,4 +1,5 @@
-# [InfluxDB official documentation](https://docs.influxdata.com/influxdb/v2.7/query_language/schema_exploration/)
+# InfluxDB cheat sheet
+[InfluxDB official documentation](https://docs.influxdata.com/influxdb/v2.7/query_language/schema_exploration/)
   TICK:  
 * Telegram
 *  InfluxDB

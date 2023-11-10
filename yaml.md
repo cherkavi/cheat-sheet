@@ -1,4 +1,4 @@
-# Yet Another Markup Language
+# Yet Another Markup Language cheat sheet
 * [specification](https://yaml.org/spec/1.2/spec.html)
 
 ## indentation

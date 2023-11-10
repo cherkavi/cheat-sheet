@@ -1,4 +1,4 @@
-# [Foxglove](https://github.com/foxglove/studio)
+# [Foxglove cheat sheet](https://github.com/foxglove/studio)
 
 ## clone repo
 ```sh

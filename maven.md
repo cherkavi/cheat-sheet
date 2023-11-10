@@ -1,3 +1,4 @@
+# Maven cheat sheet
 ## Repositories
 * https://mvnrepository.com/  
 
@@ -415,13 +416,13 @@ example of project structure ( otherwise your custom classes woun't be added )
 ├── pom.xml
 └── src
     ├── main
-    │   └── java
-    │       └── com
-    │           └── cherkashyn
-    │               └── vitalii
-    │                   └── tools
-    │                       ├── App.java
-    │                       └── JarExtractor.java
+    │   └── java
+    │       └── com
+    │           └── cherkashyn
+    │               └── vitalii
+    │                   └── tools
+    │                       ├── App.java
+    │                       └── JarExtractor.java
     └── test
         └── java
             └── com

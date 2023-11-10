@@ -1,4 +1,4 @@
-# HBase
+# HBase cheat sheet
 * distributed, 
 * column-oriented persistent multidimensional sorted map
 * autoscale

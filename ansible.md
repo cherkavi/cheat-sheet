@@ -1,4 +1,4 @@
-# [ansible](https://www.ansible.com/)
+# [ansible cheat sheet](https://www.ansible.com/)
 > agentless, connect via ssh to remote machine(s)
 
 * [doc](https://docs.ansible.com/)

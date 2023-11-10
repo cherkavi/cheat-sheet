@@ -1,4 +1,4 @@
-# Artifactory
+# Artifactory cheat sheet
 ## REST endpoints
 ### token generation
 ```sh

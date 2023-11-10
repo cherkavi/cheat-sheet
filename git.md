@@ -1,4 +1,4 @@
-# git 
+# git cheat sheet
 
 ## public services
 * [github](https://github.com)

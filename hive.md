@@ -1,4 +1,4 @@
-## Hive
+## Hive cheat sheet
 fixed data structure ( Pig - free data structure )
 [documentation](https://cwiki.apache.org/confluence/display/Hive)
 [description](https://maprdocs.mapr.com/51/Hive/Hive.html)

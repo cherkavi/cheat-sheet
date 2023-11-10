@@ -1,4 +1,4 @@
-# Architecture 
+# Architecture cheat sheet
 
 ## Useful links
 * [EIP](https://www.enterpriseintegrationpatterns.com/ramblings.html)

@@ -1,4 +1,4 @@
-# node
+# NodeJS cheat sheet
 
 ## installation
 * [install NodeJS](https://github.com/nodejs/help/wiki/Installation)

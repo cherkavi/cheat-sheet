@@ -1,4 +1,4 @@
-# Python
+# Python cheat sheet
 * [python3 readiness](http://py3readiness.org/)  
 * [list of frameworks](https://awesome-python.com/)  
 * terminal gui - tui
@@ -484,7 +484,7 @@ python -m black {file of directory}
 ## Test coverage
 ```sh
 # cli tool
-pip3 install tox 
+pip3 install tox 
 # plugin for PyCharm: pytest-cov
 ```
 

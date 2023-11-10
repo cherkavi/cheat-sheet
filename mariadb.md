@@ -1,4 +1,4 @@
-# MariaDB
+# MariaDB cheat sheet
 ### links 
 * [documentation](https://mariadb.com/kb/en/)
 * [docker-compose: mariadb with GUI client](https://github.com/cherkavi/docker-images/blob/master/mariadb-mysql/README.md)

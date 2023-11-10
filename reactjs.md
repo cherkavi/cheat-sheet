@@ -1,4 +1,4 @@
-# ReactJS
+# ReactJS cheat sheet
 
 [my projects with examples](https://github.com/cherkavi/javascripting/tree/master/react)  
 [doc](https://create-react-app.dev/)  

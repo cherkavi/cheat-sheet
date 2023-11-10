@@ -1,4 +1,4 @@
-# AWS 
+# AWS cheat sheet
 
 ## Visual tools for drawing architecture
 * CloudFormation

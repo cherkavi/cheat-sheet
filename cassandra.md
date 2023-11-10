@@ -1,4 +1,4 @@
-# Apache Cassandra
+# Apache Cassandra cheat sheet
 * one of the Base Availability Soft_state Eventually_consistent storage   
 * using CassandraQueryLanguage for querying data  
 * no master, managed by background daemon process

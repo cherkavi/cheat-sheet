@@ -1,4 +1,4 @@
-# installation
+# Angular cheat sheet
 ## install nodejs
   ```sh
   # download and unpack to $destionation folder https://nodejs.org/en/

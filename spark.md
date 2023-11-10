@@ -1,4 +1,4 @@
-## Spark
+## Spark cheat sheet
 * [main documentation](https://spark.apache.org/docs/latest/)
 * [app examples](https://mvnrepository.com/artifact/org.apache.spark/spark-examples)
 * [spark by examples](https://sparkbyexamples.com/)

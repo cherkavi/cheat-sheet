@@ -1,4 +1,4 @@
-# [DuckDB](https://duckdb.org/)
+# [DuckDB cheat sheet](https://duckdb.org/)
 simplest OLAP (online analytical processing) Database
 links:
 - [how to duckdb](https://github.com/duckerlabs/ducker/blob/main/README.md)  

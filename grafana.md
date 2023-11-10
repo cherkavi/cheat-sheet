@@ -1,4 +1,4 @@
-# Grafana
+# Grafana cheat sheet
 
 ## Docker images
 * [standalone grafana](https://github.com/cherkavi/docker-images/blob/master/grafana/README.md)

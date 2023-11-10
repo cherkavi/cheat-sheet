@@ -1,4 +1,5 @@
-# Architecture
+# Flume cheat sheet
+## Architecture
 [documentation](https://flume.apache.org/FlumeUserGuide.html)
 contains from three tier:
 * Agent tier has Flume agent installed
@@ -92,12 +93,13 @@ agent_2.channels.memoryChannel.capacity = 100
 
 ---
 ## interceptor example
-```
+```java 
 agent_2.interceptors = myCustomInterceptor
 # full path to class, compiled jar should be placed into ./lib
 agent_2.interceptors.type=MyInterceptor
-
 ```
+
+```java
 import java.util.List;
 
 import org.apache.flume.Context;
@@ -156,7 +158,7 @@ public class MyInterceptor implements Interceptor {
 ## change JVM properties, remove debug example
 change JAVA_OPTS variable into file (line:225)
 bin/flume-ng
-```
+```sh
 JAVA_OPTS="-Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.port=4159
 -Dcom.sun.management.jmxremote.authenticate=false

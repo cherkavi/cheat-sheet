@@ -1,4 +1,4 @@
-# Android development
+# Android development cheat sheet
 
 ## check connected phone 
 ```sh

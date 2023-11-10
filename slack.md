@@ -1,4 +1,4 @@
-## slack
+## slack cheat sheet
 ### generate token
 https://api.slack.com/custom-integrations/legacy-tokens
 

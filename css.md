@@ -1,4 +1,4 @@
-# CSS
+# CSS cheat sheet
 ## links
 * [css how to 'debug'](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Debugging_CSS)
 

@@ -1,4 +1,4 @@
-# google chrome
+# google chrome cheat sheet
 
 ## how to install 
 ```sh

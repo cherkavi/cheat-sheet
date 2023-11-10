@@ -1,4 +1,4 @@
-# [helm](https://docs.helm.sh/)
+# [helm cheat sheet](https://docs.helm.sh/)
 package manager for Kubernetes  
 ( similar to pip for python, similar to apt to debian )
 

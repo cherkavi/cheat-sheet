@@ -1,4 +1,4 @@
-# apache server
+# apache server cheat sheet
 
 ## apache tutorial
 * [local](file:///usr/share/doc/apache2/README.Debian.gz)

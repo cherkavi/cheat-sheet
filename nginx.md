@@ -1,4 +1,4 @@
-# nginx
+# nginx cheat sheet
 
 ## managing
 ```sh

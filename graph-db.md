@@ -1,4 +1,4 @@
-# Graph Database
+# Graph Database cheat sheet
 
 ## links
 * [Gremlin reciepts](https://tinkerpop.apache.org/docs/3.5.5/recipes/)

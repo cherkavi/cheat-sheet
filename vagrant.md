@@ -1,4 +1,4 @@
-# vagrant
+# vagrant cheat sheet
 * [download](https://releases.hashicorp.com/vagrant/)
 * [reestr](https://app.vagrantup.com/boxes/search)
 

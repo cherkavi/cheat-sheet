@@ -1,3 +1,4 @@
+# LDAP cheat sheet
 ## implementation
 * [openldap](https://www.openldap.org/)
 
@@ -29,7 +30,7 @@ kinit pen_import-s
 find all accounts in LDAP
 ```sh
 # list of the accounts
-ldapsearch -LLL -o ldif-wrap=no -E pr=1000/noprompt -h $LDAP_HOST -b "DC=vantage,DC=org" samaccountname=r-d-ubs-developer member 
+ldapsearch -LLL -o ldif-wrap=no -E pr=1000/noprompt -h $LDAP_HOST -b "DC=vantage,DC=org" samaccountname=r-d-ubs-developer member 
 # account name and e-mail 
 ldapsearch -LLL -o ldif-wrap=no -E pr=1000/noprompt -h $LDAP_HOST -b "DC=vantage,DC=org" cn="Vitalii Cherkashyn" samaccountname
 ldapsearch -LLL -o ldif-wrap=no -E pr=1000/noprompt -h $LDAP_HOST -b "DC=vantage,DC=org" cn="Vitalii Cherkashyn" samaccountname mail

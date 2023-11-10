@@ -1,4 +1,4 @@
-# Drill
+# Drill cheat sheet
 ## official doc
 * [core modules](http://drill.apache.org/docs/core-modules/)
 * [how to use docker](https://drill.apache.org/docs/use/)

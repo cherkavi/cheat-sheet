@@ -1,4 +1,4 @@
-# Oracle
+# Oracle cheat sheet
 ## [my oracle snippets](https://github.com/cherkavi/database)
 ### using date
 case( column_1 as Timestamp )

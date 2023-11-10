@@ -1,4 +1,4 @@
-## Typescript
+## Typescript cheat sheet
 ### start new typescript application
 ```sh
 ### create folder

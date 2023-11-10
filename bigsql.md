@@ -1,8 +1,8 @@
-# DataSets
+# DataSets cheat sheet
 [global search for datasets](https://datasetsearch.research.google.com/)  
 [datasets on kaggle](https://www.kaggle.com/datasets)  
 ---
-# BigSQL
+# BigSQL cheat sheet
 ![overview](https://s19.postimg.cc/lmevs5koz/bigsql-overview.png)
 [how to run query](https://www.ibm.com/support/knowledgecenter/en/SSPT3X_4.0.0/com.ibm.swg.im.infosphere.biginsights.analyze.doc/doc/bigsql_run_queries.html)
 ## Warehouse

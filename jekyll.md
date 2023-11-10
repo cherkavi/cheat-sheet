@@ -1,4 +1,4 @@
-# [jekyll](https://jekyllrb.com/)
+# [jekyll cheat sheet](https://jekyllrb.com/)
 > translate yaml/markdown/liquid to html pages
 > Transform your plain text into static websites and blogs.
 

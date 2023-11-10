@@ -1,4 +1,4 @@
-# Elasticsearch  
+# Elasticsearch cheat sheet
 [rest api documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html)  
 [examples](https://dzone.com/articles/23-useful-elasticsearch-example-queries)  
 [examples](https://www.tutorialspoint.com/elasticsearch)  
@@ -126,15 +126,15 @@ EOF
 curl -X PUT -s --user "$SEARCH_USER:$SEARCH_PASSWORD" $ELASTIC_HOST/$ELASTIC_INDEX/_mapping
 {
 	"_source": {
-                              "excludes": [
-                                            "id"
-                              ]
-               },
-               "properties": {
-                              "mytags": {
-                                            "type": "flattened"
-                              }
-               }
+                              "excludes": [
+                                            "id"
+                              ]
+               },
+               "properties": {
+                              "mytags": {
+                                            "type": "flattened"
+                              }
+               }
 }
 ```
 

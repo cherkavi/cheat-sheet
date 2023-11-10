@@ -1,4 +1,4 @@
-REmote DIctionary Server
+# REmote DIctionary Server cheat sheet
 * purposes (use cases)
   * Primary data storage (key:value, fast data ingestion, geo-based search, leaderboards, ...)
   * In-memory cache (http session storage, rate-limits - decrease amount of request to expensive API with fixing/sliding window ...)

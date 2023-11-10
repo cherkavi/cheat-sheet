@@ -1,4 +1,4 @@
-# [pulumi](https://www.pulumi.com/)
+# [pulumi cheat sheet](https://www.pulumi.com/)
 
 ## links
 * [installation](https://www.pulumi.com/docs/get-started/install/)

@@ -1,4 +1,4 @@
-# [Palantir](https://www.palantir.com)
+# [Palantir cheat sheet](https://www.palantir.com)
 
 ## Palantir links
 * [palantir foundry doc](https://www.palantir.com/docs/foundry)

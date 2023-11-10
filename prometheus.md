@@ -1,4 +1,4 @@
-# Prometheus
+# Prometheus cheat sheet
 pull metrics from different sources and write them in TSDB ( internal, InfluxDB ... )
 ## ![Architecture](https://cdn.rawgit.com/prometheus/prometheus/e761f0d/documentation/images/architecture.svg)
 

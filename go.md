@@ -1,4 +1,4 @@
-# Go lang 
+# Go lang cheat sheet
 
 ## [go installation](https://go.dev/doc/install)
 ```sh

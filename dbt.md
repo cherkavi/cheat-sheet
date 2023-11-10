@@ -1,4 +1,4 @@
-# [dbt - data build tool](https://docs.getdbt.com/docs/introduction)
+# [dbt - data build tool - cheat sheet](https://docs.getdbt.com/docs/introduction)
 > create, transform and validate data within Warehouse  
 ![dbt simple architecture](https://github.com/dbt-labs/dbt-core/raw/202cb7e51e218c7b29eb3b11ad058bd56b7739de/etc/dbt-transform.png)
 

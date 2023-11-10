@@ -1,4 +1,4 @@
-# ethereum
+# ethereum cheat sheet
 [app example](https://github.com/StephenGrider/EthereumCasts)
 
 

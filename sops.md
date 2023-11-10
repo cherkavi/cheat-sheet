@@ -1,4 +1,4 @@
-# Secret OPerationS
+# Secret OPerationS cheat sheet
 
 ## install
 ```sh

@@ -1,3 +1,4 @@
+# SBT cheat sheet
 ## create new project, Giter8 template 
 ```
 sbt new sbt/scala-seed.g8

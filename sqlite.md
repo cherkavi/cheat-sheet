@@ -1,4 +1,4 @@
-# SQLite 
+# SQLite cheat sheet
 * [tutorial](https://alphacodingskills.com/sqlite/sqlite-tutorial.php)
 * [sqlite browser](https://github.com/sqlitebrowser/sqlitebrowser#ubuntu-and-derivatives)
 
