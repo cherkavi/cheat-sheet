@@ -432,7 +432,7 @@ maprcli table info -path /vantage/deploy/data-access-video/images -json
 maprcli table region list -path /vantage/deploy/data-access-video/images -json
 ```
 
-### maprdb copy table
+### maprdb copy table backup table
 ```sh
 mapr copytable -src {path to source} -dst {path to destination}
 # without yarn involvement

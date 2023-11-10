@@ -536,6 +536,14 @@ https://{jenkins-url}/pluginManager/api/xml?depth=1
 emailext body: mailNotification.toString(), subject: "notification", to: env.mail_recipients, mimeType: "text/plain"
 ```
 
+### email for bash script
+```sh
+if [[ -n $status_error ]]; then
+    echo "need to be considered"
+    exit 1
+fi
+```
+Post-build Actions -> E-Mail Notification -> Send e-mail for every unstable build
 
 ## Issues
 > ERROR: script not yet approved for use

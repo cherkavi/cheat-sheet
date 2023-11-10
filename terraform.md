@@ -9,7 +9,10 @@
 * [terraform core](https://github.com/hashicorp/terraform)
 * [terraform language,configuration language](https://developer.hashicorp.com/terraform/language)
 * [terraform language,configuration language](https://www.terraform.io/docs/configuration/index.html)
+* [template json files into tf, terraform parametrizing](https://developer.hashicorp.com/terraform/language/functions/templatefile)
 * [built in functions](https://developer.hashicorp.com/terraform/language/functions)
+  > `terraform console`  
+  > [run script ](https://developer.hashicorp.com/terraform/cli/commands/console#scripting)  
 
 ### code examples 
 * [terraform examples](https://www.terraform.io/intro/examples/index.html)
@@ -104,7 +107,7 @@ disable_checkpoint = true
 
 ## [HCL configuration language](https://www.terraform.io/docs/configuration/index.html)
 ### [variables](https://www.terraform.io/docs/configuration/variables.html)
-#### input variables
+#### [input variables](https://developer.hashicorp.com/terraform/language/values/variables)
 usage inside the code
 ```json
 some_resource "resource-name" {
@@ -112,19 +115,25 @@ some_resource "resource-name" {
 }
 ```
 possible way for input variables:
+> precedence (last is most powerful): TF_VAR -> -var-file=....tfvars -> -var "p1=..."
 * terraform.tfvars, terraform.tfvars.json
-  ```json
-  variable "p1" {
-     default = "my own default value"
-  }
+  ```terraform.tfvars:json
+  p1=[
+   "this",
+   "is",
+   "my",
+   "parameter"]
+  p2=this is my parameter
   ```
+  `terraform apply -var-file=terraform.tfvars`
 * cli
   * cli var
   ```sh
   terraform apply -var 'p1=this is my parameter'
   terraform apply -var='p1=this is my parameter'  
   terraform apply -var='p1=["this","is","my","parameter"]'  
-  terraform apply -var='p1={"one":"this","two":"is"}'    
+  terraform apply -var='p1={"one":"this","two":"is"}'
+  terraform apply -var 'password_use_special=true' -var 'password_length=10'
   ```
   * cli var file  
   ```sh
@@ -144,8 +153,10 @@ possible way for input variables:
 * environment variables
 ```sh
 export TF_VAR_p1="this is my parameter"
-export TF_VAR_p1=["this","is","my","parameter"]  
+export TF_VAR_p1=["this","is","my","parameter"]
+terraform apply
 ```
+
 ### output variables
 terraform code
 ```json
