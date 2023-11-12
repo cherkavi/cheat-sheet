@@ -66,6 +66,13 @@ dconf dump /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/cust
 # dconf load /org/gnome/desktop/wm/keybindings/ < org_gnome_desktop_wm_keybindings
 dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ < org_gnome_settings-daemon_plugins_media-keys_custom-keybindings_custom0
 ```
+alternative way to get/set settings
+```sh
+gsettings list-schemas
+gsettings list-keys org.gnome.desktop.wm.keybindings
+gsettings get org.gnome.desktop.wm.keybindings close
+gsettings set org.gnome.desktop.wm.keybindings close "['<Super>w']"
+```
 
 ### gnome extension manual installation, gnome ext folder
 #### install gnome extension 
