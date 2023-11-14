@@ -117,8 +117,11 @@ NPM_CONFIG_REGISTRY=https://registry.npmjs.org/
 ```
 ## proxy
 ```sh
-npm config get https-proxy
+npm config set proxy [url:port]
 npm config set https-proxy [url:port]
+
+npm config get proxy
+npm config get https-proxy
 ```
 ## proxy in .npmrc
 ```sh
