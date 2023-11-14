@@ -6,6 +6,7 @@
 * https://reactjs.org/
 
 ## Links
+* [create react app](https://create-react-app.dev/docs/adding-typescript/)
 * [my projects with examples](https://github.com/cherkavi/javascripting/tree/master/react)  
 * [doc](https://create-react-app.dev/)  
 * [chrome plugin](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)  
