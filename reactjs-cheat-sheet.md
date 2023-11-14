@@ -1,8 +1,62 @@
 # ReactJS cheat sheet
 
-[my projects with examples](https://github.com/cherkavi/javascripting/tree/master/react)  
-[doc](https://create-react-app.dev/)  
-[chrome plugin](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)  
+## cheat sheets
+* https://devhints.io/react
+* https://www.freecodecamp.org/news/the-react-cheatsheet-for-2020/
+* https://reactjs.org/
+
+## Links
+* [my projects with examples](https://github.com/cherkavi/javascripting/tree/master/react)  
+* [doc](https://create-react-app.dev/)  
+* [chrome plugin](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)  
+
+
+### Workplace with Visual code
+* download addon: firefox-devtools.vscode-firefox-debug
+* .vscode/launch.json
+```
+{
+    "version": "0.2.0",
+    "configurations": [
+		{
+			"name": "d3-population-born.html",
+			"type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "file": "${workspaceFolder}/d3-population-born.html",
+        }
+    ],
+	"compounds": [
+		{
+			"name": "server & extension",
+			"configurations": [
+                "d3-population-born.html"
+			]
+		}
+	]
+}
+```
+* user settings -> find "firefox" -> "Firefox: Executable", write path to "Firefox Developer Edition"
+
+* create file in the root: jsconfig.json
+```json
+{
+    "compilerOptions": {
+        "target": "ES6"
+    },    
+}
+```
+
+### check variables
+```js
+  <script>
+    'use strict';
+```
+
+### import alias
+```js
+import { Location as LocationModel } from 'src/app/core/models/location.model';
+```
 
 ## create project
 ```sh
