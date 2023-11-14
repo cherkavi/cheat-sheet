@@ -108,6 +108,7 @@ npm config list
 ## npm registry
 ```sh
 # how to set registry
+# npm config set strict-ssl false
 npm config set registry https://registry.npmjs.org/
 npm config delete registry
 ```
