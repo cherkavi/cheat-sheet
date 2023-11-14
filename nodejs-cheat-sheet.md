@@ -2,7 +2,8 @@
 
 ## installation
 * [install NodeJS](https://github.com/nodejs/help/wiki/Installation)
-* [node multiversion manager](https://github.com/nvm-sh/nvm)
+* [node multiversion manager](https://github.com/nvm-sh/nvm#installing-and-updating)
+   `nvm install 12; nvm use 12; node -v`
 * [install Angular](https://cli.angular.io/)
 
 ## tools
