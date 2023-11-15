@@ -33,6 +33,8 @@ function cheat-grep(){
 
 ## useful tools:
 ### collaboration whiteboard drawing
+* [excalidraw](https://excalidraw.com/)
+    * [using razer-keypad with excalidraw](https://github.com/cherkavi/solutions/blob/master/razer-keypad/README.md)
 * [local drawing tool](https://github.com/tldraw/tldraw)
 * [white board for collaboration](https://sketchtogether.com/)
 * [white board for collaboration](https://miro.com/)
@@ -43,6 +45,7 @@ function cheat-grep(){
 * [uml, sysml, archimate tool](https://online.visual-paradigm.com/)
 
 ### markdown
+* [diagrams within markdown](http://mermaid.js.org/syntax/mindmap.html)
 * [markdown editor realtime collaboration](https://hackmd.io/)
 * [list of markdown code supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)  
 
