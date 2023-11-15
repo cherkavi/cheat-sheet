@@ -2,7 +2,8 @@
 
 ## installation
 * [install NodeJS](https://github.com/nodejs/help/wiki/Installation)
-* [node multiversion manager](https://github.com/nvm-sh/nvm)
+* [node multiversion manager](https://github.com/nvm-sh/nvm#installing-and-updating)
+   `nvm install 12; nvm use 12; node -v`
 * [install Angular](https://cli.angular.io/)
 
 ## tools
@@ -108,6 +109,7 @@ npm config list
 ## npm registry
 ```sh
 # how to set registry
+# npm config set strict-ssl false
 npm config set registry https://registry.npmjs.org/
 npm config delete registry
 ```
@@ -117,8 +119,11 @@ NPM_CONFIG_REGISTRY=https://registry.npmjs.org/
 ```
 ## proxy
 ```sh
-npm config get https-proxy
+npm config set proxy [url:port]
 npm config set https-proxy [url:port]
+
+npm config get proxy
+npm config get https-proxy
 ```
 ## proxy in .npmrc
 ```sh
