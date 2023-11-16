@@ -467,7 +467,6 @@ maprcli table cf edit -path $TABLE_NAME -cfname default -writeperm u:tech_user_n
 maprcli table edit -path $TABLE_NAME -adminaccessperm u:tech_user_name_admin -indexperm u:tech_user_name
 ```
 
-
 ### maprdb records 
 #### show options
 ```sh
@@ -498,6 +497,7 @@ find /mapr/prod/vantage/orchestration/tables/metadata --fields _id --orderby log
 find /mapr/prod/vantage/orchestration/tables/metadata --fields mdf4Path.name,mdf4Path.fullPath --limit 2 --offset 2 --where {"$eq":{"session_id":"9aaa13577-ad80"}} --orderby created_time
 # array in output and in condition
 find /mapr/prod/vantage/orchestration/tables/metadata --fields documentId,object_types[].id --where {"$eq":{"object_types[].id":"44447f6d853dd"}}'
+find /mapr/prod/vantage/orchestration/tables/metadata --fields documentId,object_types[].id --where {"$between":{"created_time":[159421119000000000,1595200100000000000]}} --limit 5
 ```
 !!! important !!!, id only, no data in output but "_id":  if you don't see all fields in the output, try to change user ( you don't have enough rights )
 
