@@ -9,6 +9,13 @@
 ## cheat sheet collection
 * [git useful commands and advices ](http://najomi.org/git)
 
+## branching strategies:
+* Release branching
+  > release manager create branch "release" at the end merge it back...
+* Feature branching
+  > goes with "feature-toggle" ( to decrease risk after merging ) - per feature
+* Task branching ( git flow ) 
+
 ## useful links collection
 * [complex search in github ui](https://docs.github.com/en/enterprise-server@3.3/search-github/searching-on-github/searching-issues-and-pull-requests)
   > '-label:merge' - exclude label merge
@@ -1212,8 +1219,9 @@ runs:
       run: echo "random was generated ${{steps.blue_status.outputs.status}}"
       if: steps.output-value.outputs.random-id != ''
 ```
-[variables like github.xxxxx](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context)  
-[variables like jobs.xxxxx](https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability)  
+[workflow specific variables like github.xxxxx](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context)  
+[workflow specific variables like jobs.xxxxx](https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability)  
+[workflow environment variables](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables)
 
 * workflow with waiting for run 
 ```yaml
