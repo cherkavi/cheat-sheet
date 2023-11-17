@@ -1,5 +1,10 @@
 # Jenkins cheat sheet
-### links 
+
+## Deployment strategies:
+* Delivery ( need approve from the "human" )
+* Deployment ( Continuous ) = Delivery (auto approve) + Automation + Event (time,commits,tag...)
+
+## links 
 * [jenkins build-in plugins documentation ('commands' like sh)](https://www.jenkins.io/doc/pipeline/steps/)
 * [official book](https://jenkins.io/doc/book/pipeline/syntax/)
 * [official github](https://github.com/jenkinsci)
@@ -15,24 +20,24 @@
 * [jenkins scheduler build periodically](https://www.lenar.io/jenkins-schedule-build-periodically/)
   * each minute: `* * * * *`
 
-### alternatives
+## alternatives
 * [Gitlab community :: Gitlab]()
 * [TeamCity :: JetBrains]()
 * [Team Fundation Server :: Microsoft]()
 * [GoCD](https://www.gocd.org/)  
 * [buildbot](buildbot.net)  
 
-### alternatives in cloud ( SaaS )
+## alternatives in cloud ( SaaS )
 * [Bamboo]()
-* [Circle CI]()
+* [Circle CI](./circleci-cheat-sheet.md)
 * [Travis CI]()
 * [Gitlab]()
 
-#### DSL
+## DSL
 * [jenkins dsl source code](https://github.com/jenkinsci/job-dsl-plugin)
 * [jenkins plugin documentation](https://jenkinsci.github.io/job-dsl-plugin/)
 
-### installation on debian
+## installation on debian
 * wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
 * echo deb https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list
 * sudo apt-get update
@@ -40,18 +45,18 @@
 * sudo systemctl start jenkins
 * sudo systemctl status jenkins
 
-### master-slave
+## installation master-slave
 ![master-slave](https://i.postimg.cc/TwWL9QKK/jenkins-master-slave.png)  
 ![master-slave](https://i.postimg.cc/J72b0b13/jenkins-master-slave.png)
 master-slave creation process for OCP  
 ![master-slave-ocp-creation](https://user-images.githubusercontent.com/8113355/183613775-8859cf57-c2f4-4957-8c3e-a07ee015acbc.png)
 
 
-### manual clean up
+## manual clean up
 rm -rf .jenkins/caches/*
 rm -rf .jenkins/workspace/*
 
-### manual start manual installation
+## manual start manual installation
 [jenkins manual how to](https://wiki.jenkins.io/display/JENKINS/Starting+and+Accessing+Jenkins)  
 [jenkins war](https://www.jenkins.io/doc/book/installing/war-file/)  
 [jenkins war download](https://www.jenkins.io/download/)  
@@ -62,21 +67,21 @@ java -jar jenkins.war --httpPort=8080 --useJmx
 ~/.jenkins/secrets/
 ```
 
-### how to know version
+## how to know version
 (/var/lib/jenkins)
 (/opt/webconf/var/lib/jenkins)
 config.xml
 <version>1.599</version>
 
-### restart jenkins
+## restart jenkins
 * {jenkins-url}/safeRestart
 * {jenkins-url}/restart
 * java -jar /var/cache/jenkins/war/WEB-INF/jenkins-cli.jar -s {jenkins-url} safe-restart 
 
-### stop jenkins
+## stop jenkins
 {jenkins-url}/exit
 
-### connect to jenkins
+## connect to jenkins
 ```sh
 JENKINS_HOST=jenkins-stg.vantage.com
 JENKINS_USER=cherkavi
@@ -84,7 +89,7 @@ JENKINS_USER=cherkavi
 JENKINS_URL=https://$JENKINS_HOST
 ```
 
-#### [jenkins connect via cli](https://www.jenkins.io/doc/book/managing/cli/)
+### [jenkins connect via cli](https://www.jenkins.io/doc/book/managing/cli/)
 ```sh
 # curl -Lv $JENKINS_URL/login 2>&1  | grep -i 'cli-port'
 # wget $JENKINS_URL/jnlpJars/jenkins-cli.jar
@@ -94,7 +99,7 @@ java -jar jenkins-cli.jar -s $JENKINS_URL -webSocket -auth $JENKINS_USER:$JENKIN
 java -jar jenkins-cli.jar -s $JENKINS_URL -noCertificateCheck -auth $JENKINS_USER:$JENKINS_API_TOKEN help
 ```
 
-### connect via ssh
+## connect via ssh
 ```sh
 curl -Lv $JENKINS_URL/login 2>&1  | grep -i 'x-ssh-endpoint'
 # security settings: add public ssh 
@@ -107,7 +112,7 @@ java -jar jenkins-cli.jar -s $JENKINS_URL -ssh -user $JENKINS_USER -i ~/.ssh/id_
 ```
 
 
-#### connect via ssh
+### connect via ssh
 ```sh
 # security settings: add public ssh 
 # $JENKINS_URL/user/$JENKINS_USER/configure -> SSH Public Keys
@@ -116,11 +121,11 @@ curl -Lv $JENKINS_URL/login 2>&1  | grep -i 'x-ssh-endpoint'
 ssh -l $JENKINS_USER -p 50000 $JENKINS_HOST help
 ```
 
-### collaboration between steps, passing data between steps
+## collaboration between steps, passing data between steps
 1. Set your variable export myenv=value1 and read in afterwards
 2. print to file `echo $START > env_start.txt` and read it afterwards `START=$(cat env_start.txt)`
 
-### Script Console ( Manage Jenkins )
+## Script Console ( Manage Jenkins )
 ```
 Thread.getAllStackTraces().keySet().each() {
   t -> if (t.getName()=="YOUR THREAD NAME" ) {   t.interrupt();  }
@@ -129,7 +134,7 @@ Jenkins.instance.getItemByFullName("Brand Server/develop").getBuildByNumber(614)
 Jenkins.instance.getItemByFullName("Brand Server/develop").getBuildByNumber(614).doKill();
 ```
 
-### jenkins simple pipeline
+## jenkins simple pipeline
 ```jenkins
 node {
  	stage("Step #1") {
@@ -234,7 +239,7 @@ currentBuild.setDescription(description)
 ```
 
 
-### jenkins read http write file from http to scp
+## jenkins read http write file from http to scp
 ```
 stage("Step #3") {
 		final String url="https://api.ipify.org"
@@ -260,7 +265,7 @@ checkout([$class: 'GitSCM', branches: [[name: "*/$branch"]], doGenerateSubmodule
     }
 ```
 
-### jenkins job DSL user input, build with parameters
+## jenkins job DSL user input, build with parameters
 ```
 
 	if (isGitBranch('OPM-integration-test')) {
@@ -289,7 +294,7 @@ def readVersion() {
 }
 ```
 
-### jenkins job DSL frame for env.BRANCH_NAME<->build step
+## jenkins job DSL frame for env.BRANCH_NAME<->build step
 ```
 	needToExecuteStage('build', {
             mvn('-U clean package -Dmaven.javadoc.skip=true')
@@ -360,7 +365,7 @@ def needToExecuteStage(stageName, func){
     }
 }
 ```
-### groovy escape quotes
+## groovy escape quotes
 ```
 String input = "this ain't easy"
 String escaped = "'" + input.replaceAll(/'/, /'"'"'/) + "'"
@@ -372,7 +377,7 @@ println escaped
 sh "mycommand --input ${escaped}"
 ```
 
-### groovy random groovy variables
+## groovy random groovy variables
 ```groovy
 // vairable inside jenkins pipeline
 
@@ -400,7 +405,7 @@ pipeline {
 }
 ```
 
-### groovy pipeline show credentials
+## groovy pipeline show credentials
 ```groovy
 // create pipeline with groovy script
 
