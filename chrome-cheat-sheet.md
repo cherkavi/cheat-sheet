@@ -30,3 +30,13 @@ for each_file in `find $EXT_PATH -name "manifest.json"`; do
     cat $each_file | grep '"name": '
 done
 ```
+
+alternative way of finding names of all installed plugins
+```sh
+CHROME_CONFIG=$HOME/.config/google-chrome
+IFS=$'\n'
+for each_file in `find $CHROME_CONFIG | grep -i Extensions | grep manifest.json$`; do
+    echo $each_file
+    cat $each_file | grep '"name": '
+done
+```
