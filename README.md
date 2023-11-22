@@ -46,6 +46,7 @@ function cheat-grep(){
 
 ### markdown
 * [diagrams within markdown](http://mermaid.js.org/syntax/mindmap.html)
+  * [zenuml](https://docs.zenuml.com/)
 * [markdown editor realtime collaboration](https://hackmd.io/)
 * [list of markdown code supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)  
 
@@ -70,7 +71,7 @@ function cheat-grep(){
 ### code changer
 * [auto code refactoring](https://docs.openrewrite.org/running-recipes/getting-started)
 
-### visual database ide
+### database GUI client 
 * [Azure Data Studio](https://azure.microsoft.com/products/data-studio)
 * [DbGate](https://dbgate.org/)
 * [Sqlectron](https://sqlectron.github.io/)
