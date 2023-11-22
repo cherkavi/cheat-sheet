@@ -45,7 +45,7 @@ function cheat-grep(){
 * [uml, sysml, archimate tool](https://online.visual-paradigm.com/)
 
 ### markdown
-* [diagrams within markdown](http://mermaid.js.org/syntax/mindmap.html)
+* [diagrams within markdown](https://mermaid.js.org/syntax/flowchart.html)
   * [zenuml](https://docs.zenuml.com/)
 * [markdown editor realtime collaboration](https://hackmd.io/)
 * [list of markdown code supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)  
