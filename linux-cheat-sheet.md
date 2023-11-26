@@ -3473,6 +3473,11 @@ ibus-setup
 ```sh
 ffmpeg -i video.mp4 -i audio.mp4 output.mp4
 ```
+### join images to mp4
+```sh
+# in the current folder there are JPEG files in proper order
+ffmpeg -framerate 0.5 -pattern_type glob -i "*.jpeg" output.mp4
+```
 ### convert webm video to mp3  
 ```sh
 FILE_INPUT=video.webm
