@@ -425,21 +425,6 @@ oathtool -b --totp $CODE_2FA
 ```
 > oathtool: base32 decoding failed: Base32 string is invalid
 
-### qr code generator
-```sh
-# install 
-sudo apt install qrencode
-# generate qr code
-qrencode --size 6 --level H --output="test-text.png" "test text"
-echo "output from pipe" | qrencode --size 6 --level H --output="test-text.png" 
-```
-
-### bar code scanner qr code scanner
-```sh
-# bar code scanner QR code scanner
-sudo apt install zbar-tools
-zbarimg ~/path-to-screenshot-of-barcode.png
-```
 
 ### connect to remote machine via ssh without credentials
 ```
@@ -3232,6 +3217,50 @@ inxi --memory
 inxi -CfxCa
 ```
 
+## images
+### qr code online generator
+```sh
+http://goqr.me/api/doc/create-qr-code/
+http://api.qrserver.com/v1/create-qr-code/?data=HelloWorld!&size=100x100
+```
+
+### qr code generator
+```sh
+# generate qrcode
+# sudo apt install qrencode
+qrencode --size 6 --level H --output="test-text.png" "test text"
+echo "output from pipe" | qrencode --size 6 --level H --output="test-text.png" 
+```
+
+### bar code scanner qr code scanner
+```sh
+# bar code scanner QR code scanner
+sudo apt install zbar-tools
+zbarimg ~/path-to-screenshot-of-barcode.png
+```
+
+### bar code finder
+```sh
+apt install zbar-tool
+zbarimg <file>
+```
+
+### [image file with bar code ](https://github.com/cherkavi/python-utilities/blob/master/barcode/barcode-generator.py)
+> barcode - for pdf only
+
+### convert text to image
+```sh
+# list of all fonts: `fc-list`
+# transparent background: xc:none
+convert -size 800x600     xc:white -font "Garuda" -pointsize 20 -fill black -annotate +50+50 "some text\n and more \n lines" $OUTPUT_FILE
+```
+
+### insert image into another image, image composition
+```sh
+convert input_image.jpg output_image.png -composite overlay_image.png -gravity center
+convert input_image.jpg output_image.png -composite overlay_image.png -geometry 50%x50%+0+0
+```
+
 ## pdf
 ### convert pdf to image
 ```sh
@@ -3248,18 +3277,6 @@ convert -geometry 400x600 -density 100x100 -quality 100 test-pdf.pdf test-pdf.jp
 ### bar code create into pdf
 ```sh
 barcode -o 1112.pdf -e "code39" -b "1112" -u "mm" -g 50x50
-```
-
-### qr code online generator
-```sh
-http://goqr.me/api/doc/create-qr-code/
-http://api.qrserver.com/v1/create-qr-code/?data=HelloWorld!&size=100x100
-```
-
-### bar code finder
-```sh
-apt install zbar-tool
-zbarimg <file>
 ```
 
 ### pdf file merge, pdf join
