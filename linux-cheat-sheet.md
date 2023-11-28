@@ -2332,7 +2332,7 @@ echo '{"a": 10, "b": "kitchen"}' | spyql -Otable=my_table "SELECT  json.a as ind
 * [json tool json walk json analyzer](https://github.com/antonmedv/fx)
   > `snap install fx`
 * [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})  
-WARNING: jq round up big numbers ( for version <=1.6 ), use [use 1.7+](https://github.com/jqlang/jq/releases/download/jq-1.7/jq-linux-amd64) instead:
+WARNING: jq round up big numbers ( for version <=1.6 ), use [use 1.7+](https://github.com/jqlang/jq/releases/download/jq-1.7/jq-linux-amd64) instead `sudo mv /usr/bin/jq-linux-amd64 /usr/bin/jq`:
 ```sh
 echo '{"loggerTimestamp": 1657094097468421888}' | jq .
 # {
