@@ -2536,6 +2536,11 @@ xmllint --format /path/to/file.xml > /path/to/file-formatted.xml
 xmllint --noout file.xml; echo $?
 ```
 
+### html prettifier
+```sh
+cat index.html | grep tidy
+```
+
 ### [html parsing html processing html query](https://github.com/rbwinslow/hq/wiki/Language-Reference)
 ```sh
 pip install hq
