@@ -1,4 +1,4 @@
-# OpenShift cheat shee
+# OpenShift cheat sheet
 ## other cheat sheets
 * [openshift tips](https://openshift.tips/oc/)
 
