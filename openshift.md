@@ -258,6 +258,11 @@ oc get --watch events
 # print events and sort them out by time
 oc get events --sort-by='.lastTimestamp' | grep " Warning "
 ```
+```sh
+oc get pod $OCP_POD 
+oc describe pod $OCP_POD
+oc logs pod/$OCP_POD
+```
 
 ### show namespace, all applications, url to service, status of all services
 ```sh
