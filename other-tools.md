@@ -1,3 +1,7 @@
+# Frameworks
+## Scrum
+* [SAFe](http://scaleagileframework.com/)
+
 # Tools
 ## tasks automation & business flows & connections between applications
 * https://integromat.com
