@@ -133,6 +133,11 @@ clusters:
 kubectl config use-context kubernetes-admin@docker-for-desktop-cluster
 ```
 
+## check access to the namespace, to the resource
+```sh
+oc auth can-i update pods -n $NAME_OF_NAMESPACE
+```
+
 ## explain yaml schema
 ```sh
 oc explain pods
