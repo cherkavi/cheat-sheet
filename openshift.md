@@ -1,4 +1,4 @@
-# OpenShift cheat shee
+# OpenShift cheat sheet
 ## other cheat sheets
 * [openshift tips](https://openshift.tips/oc/)
 
@@ -133,6 +133,11 @@ clusters:
 kubectl config use-context kubernetes-admin@docker-for-desktop-cluster
 ```
 
+## check access to the namespace, to the resource
+```sh
+oc auth can-i update pods -n $NAME_OF_NAMESPACE
+```
+
 ## explain yaml schema
 ```sh
 oc explain pods
@@ -257,6 +262,11 @@ oc describe {[object type:](https://docs.openshift.com/enterprise/3.0/cli_refere
 oc get --watch events
 # print events and sort them out by time
 oc get events --sort-by='.lastTimestamp' | grep " Warning "
+```
+```sh
+oc get pod $OCP_POD 
+oc describe pod $OCP_POD
+oc logs pod/$OCP_POD
 ```
 
 ### show namespace, all applications, url to service, status of all services

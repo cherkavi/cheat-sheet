@@ -84,3 +84,12 @@
 ### Behavior
 #### Behavior of itself
 #### Behavior with other / Interaction 
+
+## Application general schema, application demands
+* development
+* operations
+* support
+  * L1
+  * L2
+  * L3
+* data migration ( for evolution/revolution )
