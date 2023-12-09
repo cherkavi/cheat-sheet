@@ -61,7 +61,10 @@ import { Location as LocationModel } from 'src/app/core/models/location.model';
 
 ## create project
 ```sh
+# use nvm for another version of node
 npx create-react-app my-app
+cd my-app 
+npm start
 ```
 
 ## create component
