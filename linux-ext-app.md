@@ -489,12 +489,16 @@ smbclient -U $SAMBA_CLIENT_GROUP//$SAMBA_CLIENT_USER \
 //europe.ubs.corp/win_drive/xchange/Zurich/some/folder
 ```
 
-## i3wm
+## i3wm, i3 desktop 
 ### [custom status bar](https://py3status.readthedocs.io/en/latest/intro.html#installation)
-
+### config file
+```sh
+vim ~/.config/i3/config
+```
 ### exit from i3 window manager
 ```
-bindsym $mod+Shift+e exec i3-msg exit
+i3-msg exit
+#bindsym $mod+Shift+e exec i3-msg exit
 ```
 
 ## icaclient citrix 
