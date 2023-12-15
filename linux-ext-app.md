@@ -500,6 +500,11 @@ vim ~/.config/i3/config
 i3-msg exit
 #bindsym $mod+Shift+e exec i3-msg exit
 ```
+### keyboard layout add to config file
+```sh
+exec "setxkbmap -layout us,de"
+exec "setxkbmap -option 'grp:alt_shift_toggle'"
+```
 
 ## icaclient citrix 
 ### [download receiver](https://www.citrix.de/downloads/citrix-receiver/)
