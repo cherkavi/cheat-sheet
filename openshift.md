@@ -773,6 +773,36 @@ oc get services | grep $OC_SERVICE_NAME
 ## spec.tls.insecureEdgeTerminationPolicy: Redirect
 oc create route edge $OC_ROUTE_NAME --service=$OC_SERVICE_NAME --port=$OC_SERVICE_PORT  --insecure-policy Redirect
 ```
+```sh
+ROUTE_NAME=sticky-sessions
+OCP_PROJECT=simple-application-staging-03
+
+# oc create inline  oc document here
+cat <<EOF | oc apply -f -
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: $ROUTE_NAME
+spec:
+  host: $ROUTE_NAME-stg-3.vantage.zu
+  to:
+    kind: Service
+    name: $ROUTE_NAME
+  port:
+    targetPort: 9090
+  tls:
+    insecureEdgeTerminationPolicy: None
+    termination: edge
+EOF
+
+# oc annotate route $ROUTE_NAME haproxy.router.openshift.io/balance='source'
+oc annotate --overwrite route $ROUTE_NAME haproxy.router.openshift.io/ip_header='X-Real-IP'
+# oc annotate --overwrite route $ROUTE_NAME haproxy.router.openshift.io/balance='leastconn'
+# # roundrobin
+# 
+oc get route $ROUTE_NAME -o yaml
+# oc delete route $ROUTE_NAME
+```
 
 ```yaml
 # 
@@ -807,6 +837,30 @@ spec:
 # get <labels> for pointing out to pod(s)
 oc get pods <unique pod name> -o json | jq -r .metadata.labels
 ```
+```sh
+SERVICE_NAME=sticky-sessions
+OCP_PROJECT=simple-application-staging-03
+
+cat <<EOF | oc apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: $SERVICE_NAME
+  namespace: $OCP_PROJECT
+spec:
+  ports:
+  - name: 9090-tcp
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: $SERVICE_NAME
+  sessionAffinity: None  
+  type: ClusterIP
+EOF
+
+```
+
 ```yaml
 #        +----------+
 #        | service  |-+
@@ -844,6 +898,39 @@ possible solution for providing external ip address of the client ( remote_addr 
   ## ----------
   # externalTrafficPolicy: Local
   # type: LoadBalancer
+```
+
+#### start pod, pod example
+```sh
+DEPLOYMENT_NAME=sticky-sessions
+OCP_PROJECT=simple-application-staging-03
+CONTAINER_URI=default-route-openshift-image-registry.vantage.zu/simple-application-staging-03/maprtech_pacc_python3:20230829
+
+cat <<EOF | oc apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: $DEPLOYMENT_NAME
+spec:
+    # replicas: 3
+    selector:
+        matchLabels:
+            app: $DEPLOYMENT_NAME
+    template:
+        metadata:
+            labels:
+                app: $DEPLOYMENT_NAME
+        spec:
+            containers:
+            - name: html-container
+              image: $CONTAINER_URI
+              command: ["sleep", "3600"]
+              ports:
+                - containerPort: 9090
+EOF
+
+oc get deployment $DEPLOYMENT_NAME -o yaml
+# oc delete deployment $DEPLOYMENT_NAME
 ```
 
 #### import specific image
