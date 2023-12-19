@@ -3657,12 +3657,12 @@ xdotool mousemove 1800 500
 # left click
 xdotool click 1
 ```
-pls, check that you are using Xorg and not Wayland:
+pls, check that you are using Xorg and not Wayland (Window system):
 ```sh
 # uncomment false
 cat /etc/gdm3/custom.conf | grep WaylandEnable
 ```
-how to check your current display server:
+how to check your current display server(window system):
 ```sh
 # x11 - xorg
 # wayland

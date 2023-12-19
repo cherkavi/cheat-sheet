@@ -809,3 +809,52 @@ sudo cp -r /tmp/bootloader-efi/* /media/${USER}/${DISK_ID}/boot/efi
 sudo ls -la /media/${USER}/${DISK_ID}/boot/efi/
 # sudo rm -rf /media/${USER}/${DISK_ID}/boot/efi/bootloader-efi
 ```
+
+## mail console client
+
+### mutt
+```sh
+# aerc; alpine, neomutt
+# sudo apt-get install alpine
+sudo apt-get install mutt  # For Debian/Ubuntu
+mkdir -p ~/.mutt/cache/
+mkdir -p "~/.mutt/cache/headers"
+mkdir -p "~/.mutt/cache/bodies"
+
+```
+
+#### mutt setup pop3
+```sh
+echo "
+set pop_host = $POP3_HOST
+set pop_user = $POP3_USER
+set pop_pass = $POP3_PASS
+set pop_port = $POP3_PORT
+set from = $POP3_EMAIL
+set realname = $POP3_USER_TITLE
+" > ~/.muttrc
+```
+
+### mutt setup imap
+```sh
+
+echo "
+set imap_user = $IMAP_USER
+set imap_pass = $IMAP_PASS
+# set imap_port = $IMAP_PORT
+set folder = $IMAP_FOLDER # "imaps://imap.example.com/"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+
+# Other settings
+set from = $IMAP_EMAIL
+set realname = $IMAP_TITLE
+" > ~/.muttrc
+cat ~/.muttrc
+```
+
+```sh
+mutt
+```
