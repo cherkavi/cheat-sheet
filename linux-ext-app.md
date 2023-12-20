@@ -846,7 +846,6 @@ set realname = $POP3_USER_TITLE
 
 ### mutt setup imap
 ```sh
-
 echo "
 set imap_user = $IMAP_USER
 set imap_pass = $IMAP_PASS
@@ -861,7 +860,7 @@ set message_cachedir = "~/.mutt/cache/bodies"
 set from = $IMAP_EMAIL
 set realname = $IMAP_TITLE
 " > ~/.muttrc
-cat ~/.muttrc
+# cat ~/.muttrc
 ```
 
 ```sh
