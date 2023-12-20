@@ -3668,6 +3668,12 @@ how to check your current display server(window system):
 # wayland
 echo $XDG_SESSION_TYPE
 ```
+another possible solution for moving mouse cursor
+```sh
+apt-get install xautomation
+xte 'mousemove 200 200'
+```
+[another possible solution for moving mouse cursor](https://github.com/ReimuNotMoe/ydotool)
 
 ### calendar, week number
 ```sh
