@@ -2332,13 +2332,14 @@ echo '{"a": 10, "b": "kitchen"}' | spyql -Otable=my_table "SELECT  json.a as ind
 * [json tool json walk json analyzer](https://github.com/antonmedv/fx)
   > `snap install fx`
 * [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})  
-WARNING: jq round up big numbers:
+WARNING: jq round up big numbers ( for version <=1.6 ), use [use 1.7+](https://github.com/jqlang/jq/releases/download/jq-1.7/jq-linux-amd64) instead `sudo mv /usr/bin/jq-linux-amd64 /usr/bin/jq`:
 ```sh
 echo '{"loggerTimestamp": 1657094097468421888}' | jq .
 # {
 #  "loggerTimestamp": 1657094097468422000
 # }
 ```
+
 
 > jq is not working properly with "-" character in property name !!!  
 jq is not working sometimes with "jq any properties", need to split them to two commands
@@ -2534,6 +2535,11 @@ xmllint --format /path/to/file.xml > /path/to/file-formatted.xml
 ### xml validation
 ```sh
 xmllint --noout file.xml; echo $?
+```
+
+### html prettifier
+```sh
+cat index.html | grep tidy
 ```
 
 ### [html parsing html processing html query](https://github.com/rbwinslow/hq/wiki/Language-Reference)
@@ -3658,17 +3664,23 @@ xdotool mousemove 1800 500
 # left click
 xdotool click 1
 ```
-pls, check that you are using Xorg and not Wayland:
+pls, check that you are using Xorg and not Wayland (Window system):
 ```sh
 # uncomment false
 cat /etc/gdm3/custom.conf | grep WaylandEnable
 ```
-how to check your current display server:
+how to check your current display server(window system):
 ```sh
 # x11 - xorg
 # wayland
 echo $XDG_SESSION_TYPE
 ```
+another possible solution for moving mouse cursor
+```sh
+apt-get install xautomation
+xte 'mousemove 200 200'
+```
+[another possible solution for moving mouse cursor](https://github.com/ReimuNotMoe/ydotool)
 
 ### calendar, week number
 ```sh

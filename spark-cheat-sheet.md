@@ -7,6 +7,7 @@
 * [Mastering apache spark](https://jaceklaskowski.gitbooks.io/mastering-apache-spark/)
 * [spark performance troubleshooting, spark listeners](https://github.com/LucaCanali/sparkMeasure)
 * [spark dynamic resource allocation](https://spark.apache.org/docs/latest/configuration.html#dynamic-allocation)
+* [spark trainings](https://databricks.com/p/webinar/foundational-training-series)
 
 ![Spark-ecosystem.png](https://i.postimg.cc/g2JXhcK9/Spark-ecosystem.png)
 ![lifecycle](https://i.postimg.cc/WpZrZ4dQ/spark-app-lifecycle.png)

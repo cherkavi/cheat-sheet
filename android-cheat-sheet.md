@@ -1,5 +1,7 @@
 # Android development cheat sheet
 
+## [android OS architecture - layers](https://lineageos.org/engineering/HowTo-Debugging/)
+
 ## check connected phone 
 ```sh
 sudo apt install adb 
