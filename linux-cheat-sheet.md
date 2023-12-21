@@ -3218,6 +3218,13 @@ inxi -CfxCa
 ```
 
 ## images
+
+### convert image from jpg to jpg, transform image from one format to another
+```sh
+convert input.png output.jpg
+convert input.png -crop $WIDTHx$HEIGHT+$X+$Y output.jpg
+```
+
 ### qr code online generator
 ```sh
 http://goqr.me/api/doc/create-qr-code/
@@ -3490,7 +3497,7 @@ ibus-setup
 ```sh
 ffmpeg -i video.mp4 -i audio.mp4 output.mp4
 ```
-### join images to mp4
+### join images to mp4, convert images to video
 ```sh
 # in the current folder there are JPEG files in proper order
 ffmpeg -framerate 0.5 -pattern_type glob -i "*.jpeg" output.mp4
