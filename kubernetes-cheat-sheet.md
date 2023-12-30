@@ -34,8 +34,7 @@
 * [edge router, load balancer](https://doc.traefik.io/traefik/)
 * [kubernetes dashboard](https://kubeapps.dev/)
 
-# workplace installation
-* kubectl installation
+## kubectl installation
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.4/bin/linux/amd64/kubectl
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
@@ -71,7 +70,7 @@ pip install kubernetes
 ```
 
 ---
-# [Architecture](https://kubernetes.io/docs/concepts/overview/components/)
+## [Architecture](https://kubernetes.io/docs/concepts/overview/components/)
 ![architecture](https://i.postimg.cc/RFpnbwgc/k8s-architecture.png)
 ![architecture](https://i.postimg.cc/ZnbpGZzJ/k8s-architecture-overview.png)
 ![architecture](https://i.postimg.cc/6pKPX9KY/k8s-architecture-overview.png)
@@ -79,7 +78,7 @@ pip install kubernetes
 ![kubernetes](https://i.postimg.cc/CL1Z9Lnv/kubernetes.png)
 
 ---
-# workflow
+## workflow
 ![deployment workflow](https://i.postimg.cc/bvJn06Tz/update-workflow.png)
 
 1. The user deploys a new app by using the kubectl CLI. Kubectl sends the request to the API server.
@@ -91,11 +90,17 @@ pip install kubernetes
 7. Kubeproxy manages network traffic for the pods, including service discovery and load balancing. Kubeproxy is responsible for communication between pods that want to interact.
 
 ---
-# [k3s - Lightweight Kubernetes](https://k3s.io/)
+## [k3s](https://k3s.io/)
+> Lightweight Kubernetes distribution
+> For resource-constrained environments ( IoT, Edge, Local-sandbox)
+Installation helpers:
+* K3D
+* k3sup
+* kubevip
 
 ---
-# microk8s
-## installation
+## microk8s
+### installation
 * https://github.com/ubuntu/microk8s
 * https://microk8s.io/
 
@@ -103,17 +108,17 @@ pip install kubernetes
 sudo snap install microk8s --classic
 sudo snap install microk8s --classic --edge 
 ```
-enable addons
-```
+### enable addons
+```sh
 microk8s.start
 microk8s.enable dns dashboard
 ```
-check installation
-```
+### check installation
+```sh
 microk8s.inspect
 ```
-check journals for services
-```
+### check journals for services
+```sh
 journalctl -u snap.microk8s.daemon-docker
 ```
 * snap.microk8s.daemon-apiserver
@@ -124,13 +129,12 @@ journalctl -u snap.microk8s.daemon-docker
 * snap.microk8s.daemon-docker
 * snap.microk8s.daemon-etcd
 ---
-# minikube
-## installation
+## minikube
+### installation from snap
 ```sh
 sudo snap install minikube
 ```
-
-## installation
+### installation from release
 ```sh
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube
 curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl
@@ -155,17 +159,17 @@ for i in {1..150}; do # timeout for 5 minutes
   sleep 2
 done
 ```
-### set up env
+#### set up env
 ```sh
 minikube completion bash
 ```
 
-## start
+### start
 ```sh
 minikube start
 ```
 
-## uninstall kube, uninstall kubectl, uninstall minikube
+### uninstall kube, uninstall kubectl, uninstall minikube
 ```sh
 kubectl delete node --all
 kubectl delete pods --all
@@ -194,7 +198,7 @@ docker system prune -af --volumes
 ```
 
 
-## start without VirtualBox/KVM
+### start without VirtualBox/KVM
 ```sh
 export MINIKUBE_WANTUPDATENOTIFICATION=false
 export MINIKUBE_WANTREPORTERRORPROMPT=false
@@ -205,7 +209,7 @@ export KUBECONFIG=$HOME/.kube/config
 sudo -E minikube start --vm-driver=none
 ```
 
-## kubectl using minikube context
+### kubectl using minikube context
 permanently
 ```sh
 kubectl config use-context minikube
@@ -216,7 +220,7 @@ temporary
 kubectl get pods --context=minikube
 ```
 
-## example of started kube processes
+### example of started kube processes
 ```sh
 /usr/bin/kubelet 
     --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf 
@@ -282,12 +286,12 @@ kube-scheduler
     --kube-subnet-mgr
 ```
 
-## kubectl using different config file, kubectl config, different config kubectl
+### kubectl using different config file, kubectl config, different config kubectl
 ```bash
 kubectl --kubeconfig=/home/user/.kube/config-student1 get pods
 ```
 
-## kubectl config with rancher, rancher with kubectl, rancher kubectl config
+### kubectl config with rancher, rancher with kubectl, rancher kubectl config
 * certificate-authority-data - from admin account
 * token - Bearer Token
 ```yaml
@@ -314,9 +318,9 @@ users:
     token: "token-6g4gv:lq4wbw4lmwtxkblmbbsbd7hc5j56v2ssjvfkxd"
 ```
 
-# [install on ubuntu, install ubuntu, installation ubuntu, ubuntu installation](https://vitux.com/install-and-deploy-kubernetes-on-ubuntu/)
+## [install on ubuntu, install ubuntu, installation ubuntu, ubuntu installation](https://vitux.com/install-and-deploy-kubernetes-on-ubuntu/)
 
-# update software
+## update software
 ```bash
 # check accessible list
 sudo apt list | grep kube
@@ -365,8 +369,8 @@ docker run -d --restart=unless-stopped \
 ```
 
 
-# uninstall
-## cleanup node
+## uninstall
+### cleanup node
 ```bash
 # clean up for worker
 ## !!! most important !!!
@@ -393,9 +397,9 @@ sudo rm -rf /var/lib/rancher-log/*
 ```
 
 
-# [upgrade k8s](https://platform9.com/blog/kubernetes-upgrade-the-definitive-guide-to-do-it-yourself/)
+## [upgrade k8s](https://platform9.com/blog/kubernetes-upgrade-the-definitive-guide-to-do-it-yourself/)
 
-## logs 
+### kube logs 
 ```sh
 ### Master
 ## API Server, responsible for serving the API
@@ -411,22 +415,22 @@ sudo rm -rf /var/lib/rancher-log/*
 /var/log/kube-proxy.log
 ```
 
-# CLI
-## kubernetes version, k8s version
+## kubernetes CLI
+### kubernetes version, k8s version
 ```sh
 kubeadm version
 ```
 one of the field will be like:
 GitVersion:"v1.11.1"
 
-## [kubectl customization, parameters in separate files, kubectl templates ](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/)
+### [kubectl customization, parameters in separate files, kubectl templates ](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/)
 
-## kubectl template, inline code
+### kubectl template, inline code
 ```sh
 sed "s|<NODE_INSTANCE_IP>|$NODE_1_IP|" eks-localstorage.yaml-template >  | kubectl apply -f -
 ```
 
-## access cluster
+### access cluster
 * reverse proxy 
   activate proxy from current node
   ```sh
@@ -443,13 +447,13 @@ sed "s|<NODE_INSTANCE_IP>|$NODE_1_IP|" eks-localstorage.yaml-template >  | kubec
   curl https://{ip:port}/api --header @token.crt --insecure
   ```
   
-## connect to remote machine, rsh
+### connect to remote machine, rsh
 ```sh
 # connect to remote machine
 kubectl --namespace namespace-metrics --kubeconfig=config-rancher exec -ti sm-grafana-deployment-5bdb64-6dnb8 -- /bin/sh
 ```
 
-## check namespaces
+### check namespaces
 ```sh
 kubectl get namespaces
 ```
@@ -460,15 +464,15 @@ kube-public   Active    15m
 kube-system   Active    15m
 ```
 
-## create namespace
+### create namespace
 ```sh
 kubectl create namespace my-own-namespace
 ```
 or via yaml file 
-```
+```sh
 kubectl apply -f {filename}
 ```
-```
+```yaml
 kind: Namespace
 apiVersion: v1
 metadata:
@@ -477,7 +481,7 @@ metadata:
 
 ### create limits for namespace
 example for previous namespace declaration 
-```json
+```yaml
 apiVersion: v1
 kind: LimitRange
 metadata:
@@ -491,7 +495,7 @@ spec:
     type: Container
 ```
 ### limits for certain container
-```json
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -546,9 +550,8 @@ kubectl delete namespace {name of namespace}
 ![rbac](https://i.postimg.cc/K84dywbN/k8s-rbac.png)
 - https://github.com/sighupio/permission-manager
 - https://blog.kubernauts.io/permission-manager-rbac-management-for-kubernetes-ed46c2f38cfb
-```
-be sure that your kube-apiserver is using RBAC autorization
-```bash
+  be sure that your kube-apiserver is using RBAC autorization
+```sh
 ps aux | grep kube-apiserver
 # expected output
 # --authorization-mode=Node,RBAC
@@ -593,56 +596,56 @@ etcdctl  get /registry/namespaces/permission-manager -w=json
 
 ## configuration, configmap
 ### create configmap
-example of configuration
+#### example of configuration
 ```properties
 color.ok=green
 color.error=red
 textmode=true
 security.user.external.login_attempts=5
 ```
-* create configuration on cluster
-  ```
-  kubectl create configmap my-config-file --from-env-file=/local/path/to/config.properties
-  ```
-  will be created next configuration
-  ```yaml
-  ...
-  data:
+#### create configuration on cluster
+```sh
+kubectl create configmap my-config-file --from-env-file=/local/path/to/config.properties
+```
+#### will be created next configuration
+```yaml
+...
+data:
+color.ok=green
+color.error=red
+textmode=true
+security.user.external.login_attempts=5
+```
+#### or configuration with additional key, additional abstraction over the properties ( like Map of properties )
+```sh
+kubectl create configmap my-config-file --from-file=name-or-key-of-config=/local/path/to/config.properties
+```
+created file is:
+```yaml
+data:
+name-or-key-of-config:
     color.ok=green
     color.error=red
     textmode=true
     security.user.external.login_attempts=5
-  ```
-* or configuration with additional key, additional abstraction over the properties ( like Map of properties )
-  ```
-  kubectl create configmap my-config-file --from-file=name-or-key-of-config=/local/path/to/config.properties
-  ```
-  created file is:
-  ```yaml
-  data:
-    name-or-key-of-config:
-      color.ok=green
-      color.error=red
-      textmode=true
-      security.user.external.login_attempts=5
-  ```
-* or configuration with additional key based on filename ( key will be a name of file )
-  ```
-  kubectl create configmap my-config-file --from-file=/local/path/to/
-  ```
-  created file is:
-  ```yaml
-  data:
-    config.properties:
-      color.ok=green
-      color.error=red
-      textmode=true
-      security.user.external.login_attempts=5
-  ```
-* or inline creation
-  ```
-  kubectl create configmap special-config --from-literal=color.ok=green --from-literal=color.error=red
-  ```
+```
+#### or configuration with additional key based on filename ( key will be a name of file )
+```sh
+kubectl create configmap my-config-file --from-file=/local/path/to/
+```
+created file is:
+```yaml
+data:
+config.properties:
+    color.ok=green
+    color.error=red
+    textmode=true
+    security.user.external.login_attempts=5
+```
+#### or inline creation
+```sh
+kubectl create configmap special-config --from-literal=color.ok=green --from-literal=color.error=red
+```
 
 ### get configurations, read configuration in specific format
 ```sh
@@ -861,7 +864,7 @@ kubectl port-forward svc/redis-master                   8080:6379
 ```
 
 ### NodeSelector for certain host
-```sh
+```yaml
 spec:
    template:
       spec:
@@ -870,7 +873,7 @@ spec:
 ```
 
 ### persistent volume
-```sh
+```yaml
 kind: PersistentVolume
 apiVersion: v1
 metadata:
@@ -887,12 +890,12 @@ spec:
 ```
 
 to access created volume
-```
+```sh
 ls /mnt/data3
 ```
 
 list of existing volumes
-```
+```sh
 kubectl get pv 
 kubectl get pvc
 ```
@@ -941,7 +944,7 @@ containers:
 
 
 ### deploy Pod on Node with label
-```sh
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -953,7 +956,7 @@ spec:
 ```
 
 ### create Deployment for specific node
-```sh
+```yaml
 apiVersion: some-version
 kind: Deployment
 metadata:
@@ -968,8 +971,8 @@ spec:
 ![when label was not found](https://i.postimg.cc/mDjTpWw3/type-affinity-anti-affinity.png)
 
 * nodeAffinity
-* * preferred - deploy in any case, with preferrence my_label=my_value
-```
+  * preferred - deploy in any case, with preferrence my_label=my_value
+```yaml
 spec:
   affinity:
     nodeAffinity:
@@ -982,8 +985,8 @@ spec:
             values:
             - my_value
 ```
-* * required - deploy only when label matched my_label=my_value
-```
+  * required - deploy only when label matched my_label=my_value
+```yaml
 spec:
   affinity:
     nodeAffinity:
@@ -996,25 +999,25 @@ spec:
             - my_value
 ```
 * nodeAntiAffinity
-```
+```yaml
 spec:
   affinity:
     nodeAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
 ```
 * podAffinity
-* * preferred
-spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution
-* * required
-spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution
+  * preferred
+  `spec.affinity.podAffinity.preferredDuringSchedulingIgnoredDuringExecution`
+  * required
+  `spec.affinity.podAffinity.requiredDuringSchedulingIgnoredDuringExecution`
 * podAntiAffinity
-* * preferred
-spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution
-* * required
-spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution
+  * preferred
+  `spec.affinity.podAntiAffinity.preferredDuringSchedulingIgnoredDuringExecution`
+  * required
+  `spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution`
 
 ## delete node from cluster
-```bash
+```sh
 kubectl get nodes
 kubectl delete {node name}
 ```
@@ -1025,7 +1028,7 @@ ssh {master node}
 kubeadm token create --print-join-command  --ttl 0
 ```
 expected result from previous command
-```
+```sh
 kubeadm join 10.14.26.210:6443 --token 7h0dmx.2v5oe1jwed --discovery-token-ca-cert-hash sha256:1d28ebf950316b8f3fdf680af5619ea2682707f2e966fc0
 ```
 go to node, clean up and apply token
@@ -1036,7 +1039,6 @@ kubeadm reset
 # apply token from previous step with additional flag: --ignore-preflight-errors=all
 kubeadm join 10.14.26.210:6443 --token 7h0dmx.2v5oe1jwed --discovery-token-ca-cert-hash sha256:1d28ebf950316b8f3fdf680af5619ea2682707f2e966fc0 --ignore-preflight-errors=all
 ```
-
 expected result from previous command
 ```
 ...
@@ -1078,12 +1080,12 @@ kubectl exec -it {name of a pod}  -- bash -c "echo hi > /path/to/output/test.txt
 # Extending 
 ## [custom controller](https://github.com/kubernetes/sample-controller)
 
-# Weave
+## Weave
 ```bash
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
 
-# Flannel
+## Flannel
 ![deployment diagram](https://i.postimg.cc/d3ZwjhXd/flannel.png)
 restart nodes
 ```sh
@@ -1179,8 +1181,8 @@ spec:
   restartPolicy: Never
 ```
 
-# NFS ( Network File System )
-## nfs server
+## NFS ( Network File System )
+### nfs server
 ```sh
 # nfs server 
 vim /etc/exports
@@ -1220,7 +1222,7 @@ sudo exportfs -a
 sudo exportfs -v
 ```
 
-## nfs client
+### nfs client
 ```sh
 sudo blkid
 
@@ -1243,7 +1245,7 @@ ls /mnt/disks/k8s-local-storage1
 ls /mnt/disks/k8s-local-storage1
 ```
 
-## trouble shooting, problem resolving
+### trouble shooting, problem resolving
 ```sh
 POD_NAME=service-coworking-postgresql-0
 
@@ -1260,7 +1262,7 @@ kubectl get pvc data-service-coworking-postgresql-0 -o json
 ```
 
 ### postgresql   waiting for a volume to be created
-# https://github.com/parjun8840/ekscsidriver/blob/main/README.md#2-get-oidc-provider-url-and-create-an-identity-provider
+[create provider](https://github.com/parjun8840/ekscsidriver/blob/main/README.md#2-get-oidc-provider-url-and-create-an-identity-provider)
 ```sh
 kubectl get all -l app.kubernetes.io/name=aws-ebs-csi-driver -n kube-system
 ```
