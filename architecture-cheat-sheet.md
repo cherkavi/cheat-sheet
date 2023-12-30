@@ -93,3 +93,30 @@
   * L2
   * L3
 * data migration ( for evolution/revolution )
+
+
+## Architecture style: Microservice
+### Microservices Benefits:
+* Independent Deployments
+* Fault Isolation
+* Enchanced Scalability
+### Microservices importance of design patterns:
+* Scalability
+* Reducing Complexity
+* Distributed Data Management
+* Enhancing Communication
+### Microservices Design patterns:
+* API Gateway
+  > like GoF.facade
+  > single entry point for all client requests
+* Database per Service
+  > like a GoF.memento ( partially )
+  > single databank per service, data isolation
+* Circuit Breaker
+  > prevent overwhelming of the calls to outdated external resource
+* Event-Driven
+  > like GoF.observer
+  > publish even, when own state has changed
+* Saga
+  > like a GoF.command + GoF.proxy
+  > for list of the external call will make undo in case of fail
