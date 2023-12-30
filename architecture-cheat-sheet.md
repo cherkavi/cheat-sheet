@@ -116,7 +116,7 @@
   > prevent overwhelming of the calls to outdated external resource
 * Event-Driven
   > like GoF.observer
-  > publish even, when own state has changed
+  > publish event ( notify ), when own state has changed
 * Saga
   > like a GoF.command + GoF.proxy
   > for list of the external call will make undo in case of fail
