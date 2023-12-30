@@ -858,6 +858,10 @@ or manually add repository
 # The following signatures couldn't be verified because the public key is not available
 # deb [trusted=yes] http://ftp.at.debian.org/debian/ bullseye main contrib non-free
 ```
+### remove repository
+```sh
+sudo add-apt-repository -r ppa:danielrichter2007/grub-customizer
+```
 
 search after adding
 ```
