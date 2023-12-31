@@ -49,7 +49,11 @@ rm -rf .gnome .gnome2 .gconf .gconfd .metacity .cache .dbus .dmrc .mission-contr
 ```sh
 alt-F2 r
 ```
-
+### gnome application icon
+```sh 
+ls /usr/share/applications/*.desktop
+cat /usr/share/applications/usb-creator-gtk.desktop
+```
 ### adjust Gnome desktop shortcuts, gnome shortcuts
 ```sh
 dconf-editor

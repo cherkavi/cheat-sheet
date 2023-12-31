@@ -1062,6 +1062,7 @@ zappa update dev
 
 ---
 ## DynamoDB
+> store data in items, not in rows 
 ```sh
 aws_service_abbr="dynamodb"
 aws-cli-doc
@@ -1074,6 +1075,24 @@ aws-console
 [dynamodb local run](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
 [dynamodb query language partiql - sql-like syntax](https://partiql.org/dql/overview.html)
 [dynamodb via CLI](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tools.CLI.html)
+
+### Keys
+* Partition key ( Type: HASH )
+* Sort key ( Type: Range )
+* Unique key: primary/composite
+### Secondary Index:
+* local ( < 10Gb )
+* global
+### Query data:
+* by partition key
+* create secondary index
+* data duplication with target partition key
+### Scan data:
+filter by conditions
+### Batch operation:
+* get
+* write ( not update )
+
 
 ```sh
 # list of tables: https://$AWS_REGION.console.aws.amazon.com/dynamodb/home?region=$AWS_REGION#tables:

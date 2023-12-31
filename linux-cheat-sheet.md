@@ -3419,6 +3419,10 @@ ncdu
 ```
 
 ## create startup disk, write iso image, usb stick, bootable drive
+### default ubuntu disk startup disk creator
+```sh
+usb-creator-gtk
+```
 ### https://etcher.balena.io/
 ### https://calamares.io/
 ### startup/bootable usb disk
@@ -3437,7 +3441,7 @@ sudo add-apt-repository ppa:mkusb/ppa
 sudo apt-get update
 sudo apt install --install-recommends mkusb mkusb-nox usb-pack-efi
 mkusb
-# Install, persistent live, upefi
+# Install, persistent live, uefi
 ```
 
 ## split usb drive, split disk
