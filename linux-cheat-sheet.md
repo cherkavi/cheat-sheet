@@ -3420,12 +3420,14 @@ ncdu
 
 ## create startup disk, write iso image, usb stick, bootable drive
 ### default ubuntu disk startup disk creator
+> for CD iso images
 ```sh
 usb-creator-gtk
 ```
 ### https://etcher.balena.io/
 ### https://calamares.io/
 ### startup/bootable usb disk
+> for LIVE images
 ```bash
 # list of all hard drives, disk list
 sudo lshw -class disk -short
