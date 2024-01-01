@@ -53,11 +53,12 @@ strings /usr/share/teams/libEGL.so | grep git
 ```
 
 ### socket proxy, proxy to remote machine
-```
+```sh
 ssh -D <localport> <user>@<remote host>
 ```
+
 and checking if it is working for 'ssh -D 7772 cherkavi@15pos1.190.211.1'
-```
+```sh
 ssh -o "ProxyCommand nc -x 127.0.0.1:7772 %h %p" cherkavi@151.190.211.47
 ```
 
@@ -217,7 +218,7 @@ NoProxy localhost, 127.0.0.*, 10.*, 192.168.*, *.zur
 Listen  3128
 ```
 or globally
-```
+```sh
 sudo vim /etc/cntlm.conf
 ```
 > ~/bin/proxy-start.sh
@@ -234,7 +235,7 @@ fi
 cntlm -c ~/.config/cntlm/cntlm.conf -P $pidfile -I
 ```
 > source ~/bin/proxy-settings.sh
-```
+```sh
 proxy_url="http://127.0.0.1:3128"
 export http_proxy=$proxy_url
 export https_proxy=$http_proxy
@@ -250,7 +251,7 @@ ss -lt | grep 3128
 ```
 
 ### possible solution to detect remote client to your machine
-```
+```sh
 # open access
 ping -s 120 -c 1 146.255.193.66
 ping -s 121 -c 1 146.255.193.66
@@ -289,13 +290,13 @@ less /etc/services
 ```
 
 ### mount drive to path mount
-```
+```sh
 # <drive> <path>
 sudo mount /dev/sdd /tin
 ```
 
 ### mount remote filesystem via ssh, map folder via ssh, ssh remote folder
-```
+```sh
 sudo mkdir /mnt/vendor-cluster-prod
 sudo sshfs -o allow_other,IdentityFile=~/.ssh/id_rsa vcherkashyn@190.17.19.11:/remote/path/folder /mnt/vendor-cluster-prod
 # sudo fusermount -u /remote/path/folder
@@ -2005,6 +2006,10 @@ use_proxy = on
 http_proxy =  http://username:password@proxy.server.address:port/
 https_proxy =  http://username:password@proxy.server.address:port/
 ftp_proxy =  http://username:password@proxy.server.address:port/
+```
+or via socks5
+```sh
+all_proxy=socks5://proxy_host:proxy_port wget https://mail.ubsgroup.net
 ```
 
 ### zip files, zip all files
