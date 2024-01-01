@@ -3205,6 +3205,13 @@ sha384sum filename
 sha512sum filename
 ```
 
+### check pgp signature
+```sh
+sig_file=`ls ~/Downloads/*.sig`
+original_file="${sig_file%.sig}"
+gpg --verify $sig_file $original_file
+``` 
+
 ## driver install hardware
 ```sh
 sudo ubuntu-drivers autoinstall
@@ -3412,21 +3419,31 @@ ncdu
 ```
 
 ## create startup disk, write iso image, usb stick, bootable drive
+### default ubuntu disk startup disk creator
+> for CD iso images
+```sh
+usb-creator-gtk
+```
+### https://etcher.balena.io/
+### https://calamares.io/
+### startup/bootable usb disk
+> for LIVE images
 ```bash
 # list of all hard drives, disk list
 sudo lshw -class disk -short
 # write image
+
 sudo dd bs=4M if=/home/my-user/Downloads/archlinux-2019.07.01-x86_64.iso of=/dev/sdb status=progress && sync
 ```
 
-## create usb live with persistence, usb persistence, stick persistence
+### startup/bootable usb with persistence, create usb live with persistence, usb persistence, stick persistence
 ```sh
 sudo add-apt-repository universe
 sudo add-apt-repository ppa:mkusb/ppa
 sudo apt-get update
 sudo apt install --install-recommends mkusb mkusb-nox usb-pack-efi
 mkusb
-# Install, persistent live, upefi
+# Install, persistent live, uefi
 ```
 
 ## split usb drive, split disk

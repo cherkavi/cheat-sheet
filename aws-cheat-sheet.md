@@ -63,11 +63,20 @@
 * https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html
 
 
-## [sdk](https://aws.amazon.com/tools/) 
+## [sdk - for diff prog.languages](https://aws.amazon.com/tools/) 
+### sdk commands:
+* low level commands
+* high level commands
+### sdk operations:
+* blocking - synchronous
+* unblocking - asynchronous
+  
 ## [aws cli cloud](https://us-east-1.console.aws.amazon.com/cloudshell/home?region=us-east-1) 
+
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
-  > [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
+> [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
 ### [installation of AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+> aws cli is a python application
 ```sh
 # installation
 sudo apt install awscli
@@ -110,6 +119,8 @@ aws configure set aws_session_token "Your-value" --profile cherkavi-user
 # or
 aws configure set cherkavi-user.aws_session_token "Your-value" 
 ```
+check configuration: `vim ~/.aws/config`
+
 using profiling
 >  --region, --output, --profile 
 ```sh
@@ -204,7 +215,15 @@ aws configure get $AWS_PROFILE.aws_secret_access_key
 export aws_service_abbr="sns"
 ```
 
-## create policy from error output of aws-cli command:
+## Policy
+Resource Based Policy:
+* Principal ( User, Group )
+* Action
+* Resource
+* Condition
+
+
+### create policy from error output of aws-cli command:
 >User is not authorized to perform
 > AccessDeniedException
 ```sh
@@ -212,8 +231,9 @@ aws iam list-groups 2>&1 | /home/projects/bash-example/awk-policy-json.sh
 # or just copy it
 echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-example/awk-policy-json.sh
 ```
-
-## [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
+### [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
+### [policy simulator](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html)
+> test sandbox for the policy
 
 ---
 ## resource query, jsonpath query, aws json output path, aws json xpath
@@ -234,6 +254,9 @@ x-www-browser https://${AWS_REGION}.console.aws.amazon.com/cost-management/home?
 ```
 ---
 ## IAM - Identity Access Manager
+Type of the access:
+* Temporary - role
+* Permanently - user
 ![iam](https://i.ibb.co/LCHWKqc/aws-2023-08-27-aws-identity-access-management-png.jpg)  
 [IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)  
 [relations between entities](#shared-responsibility-model)
@@ -281,6 +304,7 @@ example of creating subnetwork:
 VPC: 172.31.0.0    
 Subnetwork: 172.31.0.0/16, 172.31.0.0/26, 172.31.0.64/26
 ```
+
 ---
 ## IGW
 public access internet outside access
@@ -288,8 +312,9 @@ public access internet outside access
 2 .vpc -> route tables -> add route 
 Security Group
 1. inbound rules -> source 0.0.0.0/0
+
 ---
-## S3
+## S3 - object storage 
 ```sh
 aws_service_abbr='s3'
 aws-cli-doc
@@ -767,7 +792,7 @@ aws ssm get-parameters-by-path --path /my-app/ --recursive --with-decryption
 ```
 
 ---
-## EBS
+## EBS - block storage
 ```sh
 aws_service_abbr="ebs"
 aws-cli-doc
@@ -810,7 +835,7 @@ aws_service_abbr="elb"; cli-doc
 ```
 
 ---
-## EFS
+## EFS - Elastic File System storage
 ```sh
 aws_service_abbr="efs"
 aws-cli-doc
@@ -1037,6 +1062,7 @@ zappa update dev
 
 ---
 ## DynamoDB
+> store data in items, not in rows 
 ```sh
 aws_service_abbr="dynamodb"
 aws-cli-doc
@@ -1049,6 +1075,24 @@ aws-console
 [dynamodb local run](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html)
 [dynamodb query language partiql - sql-like syntax](https://partiql.org/dql/overview.html)
 [dynamodb via CLI](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tools.CLI.html)
+
+### Keys
+* Partition key ( Type: HASH )
+* Sort key ( Type: Range )
+* Unique key: primary/composite
+### Secondary Index:
+* local ( < 10Gb )
+* global
+### Query data:
+* by partition key
+* create secondary index
+* data duplication with target partition key
+### Scan data:
+filter by conditions
+### Batch operation:
+* get
+* write ( not update )
+
 
 ```sh
 # list of tables: https://$AWS_REGION.console.aws.amazon.com/dynamodb/home?region=$AWS_REGION#tables:
@@ -1296,13 +1340,13 @@ echo 'version: 0.2
 phases:
     pre_build:
         commands:
-            - echo "step 01.01"
-            - echo "step 01.02"
+            - echo "script 01.01"
+            - echo "script 01.02"
     build:
         commands:
-            - echo "step 02.01"
-            - echo "step 02.02"
-            - echo "step 02.03"
+            - echo "script 02.01"
+            - echo "script 02.02"
+            - echo "script 02.03"
 ' > buildspec-example.yml
 ```
 #### run script 
@@ -1430,11 +1474,23 @@ aws sts get-caller-identity --query UserId
 ```
 
 ---
-## Elastic Container Service
+## [Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
+> logic orchestrator
+* [workflow studio for building step functions](https://docs.aws.amazon.com/step-functions/latest/dg/workflow-studio.html)
+* [state between calls - execution history](https://docs.aws.amazon.com/step-functions/latest/apireference/API_GetExecutionHistory.html)
+
+---
+## Cognito
+> authentication, authorization, user pool, identity pool
+
+---
+## [Fargate](https://aws.amazon.com/fargate/)
+> run containers as Lambda functions
+
+---
+## ECS Elastic Container Service 
 ![ecs](https://i.ibb.co/gJwP5vm/aws-2023-08-27-ecs.jpg)  
 ![ecs](https://i.ibb.co/MM6jvJY/2023-08-27-2git-aws-ecs.jpg)  
-```sh
-```
 
 ---
 ## CloudFront
