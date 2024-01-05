@@ -25,11 +25,33 @@
 * Postponing decisions about Tooling and frameworks
 * Focus on customer, not environment
 --- 
+
 ## Architecture trade-offs
 * Build vs Buy
 * Coding vs Configuration
 * Product customisation
 
+## Why to make a documentation:
+```mermaid
+mindmap
+documentation)Documentation(
+    {{one common vision}}
+        common bird-eye view
+        naming conventions
+        decrease sketching time for each meeting
+    {{part of DefinitionOfDone}}
+        visibility
+        knowledge sharing
+    {{one point of truth}}
+        new team member
+        existing team memeber
+        external teams
+    {{interchange responsibility}}
+        split hard tasks
+        real Agile
+
+
+```
 --- 
 ![architecture phases](https://i.postimg.cc/brdDyd37/architecture-phases.png)
 ![architecture context](https://i.postimg.cc/3rG2VYKf/architecture-context.png)

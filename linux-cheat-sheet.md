@@ -3156,8 +3156,10 @@ sudo evtest
 sudo evtest /dev/input/event21
 ```
 
-### remap [hjkl] to [Left, Down, Up, Right], cursor hjkl
+### [remap [hjkl] to [Left, Down, Up, Right], cursor hjkl](https://github.com/cherkavi/solutions/cursor-mouse-hjkl): option 1
+### remap [hjkl] to [Left, Down, Up, Right], cursor hjkl: option 2
 [mapping list](https://wiki.linuxquestions.org/wiki/List_of_Keysyms_Recognised_by_Xmodmap)  
+for using in VisualCode like environment: `GTK_IM_MODULE="xim" code $*`
 content of $HOME/.config/xmodmap-hjkl
 ```
 keycode 66 = Mode_switch
@@ -3165,6 +3167,10 @@ keysym h = h H Left
 keysym l = l L Right
 keysym k = k K Up
 keysym j = j J Down
+keysym u = u U Home
+keysym m = m M End
+keysym y = y Y BackSpace
+keysym n = n N Delete
 ```
 execute re-mapping, permanent solution
 ```sh
