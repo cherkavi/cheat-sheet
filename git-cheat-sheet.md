@@ -1148,8 +1148,26 @@ curl -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/repos/$OWNE
 ```
 
 
-## github workflow
-[github marketplace - collections of actions to `uses`](https://github.com/marketplace?type=)  
+## github workflow ( pipeline )
+[github marketplace - collections of actions `to use`](https://github.com/marketplace?type=)  
+```mermaid
+flowchart LR
+s[step] --o j[job] --o p[pipeline]
+t[trigger] --> p
+e[event] --> p
+```
+* env variables: `${{...}}`
+* file sharing
+* job image
+* jobs:
+  * parallel
+  * sequence
+* agent/node
+* events:
+  * manual
+  * auto
+  * schedule
+
 ### [git workflows environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment)  
 place for workflows  
 ```sh

@@ -30,7 +30,11 @@ cd /app
 node --version
 ```
 
-## command line arguments 
+## command line arguments
+### javascript REPL
+```sh
+node 
+``` 
 ### RUNNING YOUR CODE
 ```sh
 # Evaluates the current argument as JavaScript
