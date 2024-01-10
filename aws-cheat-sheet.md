@@ -1480,6 +1480,32 @@ aws sts get-caller-identity --query UserId
 * [state between calls - execution history](https://docs.aws.amazon.com/step-functions/latest/apireference/API_GetExecutionHistory.html)
 
 ---
+## Code Commit
+### how to clone remote repository
+1. create new profile (aws_profile_in_aws_credentials) in ~/.aws/credentials
+2. execute next commands
+```sh
+git config --global credential.helper '!aws codecommit credential-helper $@'
+git config --global credential.UseHttpPath true
+AWS_PROFILE=aws_profile_in_aws_credentials
+git config --global credential.helper "!aws --profile $AWS_PROFILE codecommit credential-helper $@"
+```
+3. check your settings:
+```sh
+cat ~/.gitconfig
+# check the section: 
+# [credential]
+#         helper = "!aws --profile aws_profile_in_aws_credentials codecommit credential-helper $@"
+#         UseHttpPath = true
+# !!! should be not like:
+# helper = "aws s3 ls --profile aws_profile_in_aws_credentials codecommit credential-helper "
+
+# fix it otherwise
+git config --global --edit 
+```
+4. clone your repo with https
+
+---
 ## [AWS Batch]()
 
 ---
