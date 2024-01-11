@@ -1505,6 +1505,13 @@ git config --global --edit
 ```
 4. clone your repo with https
 
+## Code Build
+[orchestration tool](https://pypi.org/project/aws-codeseeder/)
+[orchestration tool documentation]( https://seed-farmer.readthedocs.io/en/latest)
+```sh
+pip install seed-farmer
+```
+
 ---
 ## [AWS Batch]()
 
