@@ -181,6 +181,13 @@ pip install tornado==2.1.1
 pip install pipenv
 ```
 
+### virtual environment create
+```sh
+apt install python3-env
+pyenv virtualenv 3.9.12 dev
+pyenv local dev
+```
+
 ### create virtual environment, dedicated env
 ```sh
 pip install virtualenv
