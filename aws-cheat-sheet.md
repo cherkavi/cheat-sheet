@@ -70,6 +70,16 @@
 ### sdk operations:
 * blocking - synchronous
 * unblocking - asynchronous
+
+## aws CDK - Cloud Development Kit
+```sh
+pip search aws-cdk-lib
+pip install aws-cdk-lib
+```
+```sh
+npm search @aws-cdk
+npm install aws-cdk@2.118.1
+```
   
 ## [aws cli cloud](https://us-east-1.console.aws.amazon.com/cloudshell/home?region=us-east-1) 
 
