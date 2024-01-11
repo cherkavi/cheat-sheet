@@ -138,14 +138,14 @@ aws configure list-profiles
 # default profile will be used from env variable AWS_PROFILE
 aws s3 ls --profile $AWS_PROFILE
 ```
-### set AWS credentials via env variables
+### login: set AWS credentials via env variables
 ```sh
 # source file_with_credentials.sh
 export AWS_REGION=us-east-1
 export AWS_ACCESS_KEY_ID=AKIA...
 export AWS_SECRET_ACCESS_KEY=SEP6...
 ```
-### set AWS credentials via config file
+### login: set AWS credentials via config file
 ```sh
 # aws cli version 2
 aws configure set aws_access_key_id <yourAccessKey>
@@ -158,9 +158,19 @@ aws configure set ${AWS_PROFILE}.aws_secret_access_key ...
 # aws configure set ${AWS_PROFILE}.aws_session_token ...
 ```
 
-### get AWS credentials via config file
+### login: get AWS credentials via config file
 ```sh
 aws configure get aws_access_key_id
+```
+
+### login: sso 
+```sh
+aws configure sso
+
+# check configuration:
+cat ~/.aws/config | grep sso-session
+
+aws sso login --sso-session $SSO-SESSION_NAME
 ```
 
 ### debugging collaboration verbosity full request
