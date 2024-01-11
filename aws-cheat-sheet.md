@@ -1521,6 +1521,13 @@ git config --global --edit
 ```sh
 pip install seed-farmer
 ```
+in case of issue: 
+```
+AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'
+```
+```sh
+pip3 install pyOpenSSL --upgrade
+```
 
 ---
 ## [AWS Batch]()
