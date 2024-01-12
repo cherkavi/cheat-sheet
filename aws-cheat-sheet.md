@@ -169,10 +169,18 @@ aws configure sso
 
 # check configuration:
 cat ~/.aws/config | grep sso-session
-
+```
+#### activate profile
+```sh
 aws sso login --sso-session $SSO-SESSION_NAME
 aws sso login --profile $AWS_PROFILE_DEV
 ```
+or
+```sh
+# aws configure export-credentials --profile RefDataFrame-cicd --format env
+eval "$(aws configure export-credentials --profile RefDataFrame-cicd --format env)"
+```
+
 
 ### debugging collaboration verbosity full request
 ```sh
