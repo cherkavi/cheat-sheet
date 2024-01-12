@@ -257,7 +257,7 @@ pip install tornado --update
 pip uninstall {package name}
 ```
 
-### print dependency tree
+### print dependency tree, dependencies tree
 ```python3
 pip install pipdeptree
 pipdeptree
