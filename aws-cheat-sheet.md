@@ -171,6 +171,7 @@ aws configure sso
 cat ~/.aws/config | grep sso-session
 
 aws sso login --sso-session $SSO-SESSION_NAME
+aws sso login --profile $AWS_PROFILE_DEV
 ```
 
 ### debugging collaboration verbosity full request
