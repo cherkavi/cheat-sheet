@@ -361,6 +361,13 @@ git config --global merge.tool meld
 git config --global mergetool.meld.path /usr/bin/meld
 ```
 
+### git config for aws code commit
+```sh
+[credential]
+	helper = "!aws --profile 'my_aws_profile' codecommit credential-helper $@"
+	UseHttpPath = true
+```
+
 ### show all branches merged into specified
 ```sh
 git branch --all --merged "release" --verbose
@@ -584,7 +591,7 @@ git revert <commit>
 
 ### git revert message for commit
 ```
-git commit --amend -m "<new message>"
+git commit --amend -m "<new mawsessage>"
 ```
 
 ### git show author of the commit, log commit, show commits only
