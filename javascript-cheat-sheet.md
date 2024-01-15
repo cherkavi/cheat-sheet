@@ -1,3 +1,5 @@
+[url to main cheat sheet with examples](https://github.com/cherkavi/javascripting)
+
 ## Typescript cheat sheet
 ### start new typescript application
 ```sh
