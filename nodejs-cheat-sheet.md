@@ -2,8 +2,7 @@
 
 ## installation
 * [install NodeJS](https://github.com/nodejs/help/wiki/Installation)
-* [node multiversion manager](https://github.com/nvm-sh/nvm#installing-and-updating)
-   `nvm install 12; nvm use 12; node -v`
+* [node multiversion manager](#run-diff-version-of-node-locally)
 * [install Angular](https://cli.angular.io/)
 
 ## tools
@@ -18,6 +17,12 @@ n ls
 sudo n install 13.8
 n exec 13.8 node --version
 n exec 20.3 node --version
+```
+#### [run diff version of node locally](https://github.com/nvm-sh/nvm#installing-and-updating)
+```sh
+nvm install 12;
+nvm use 12;
+node -v
 ```
 
 #### run node in docker, docker running, run node with version
