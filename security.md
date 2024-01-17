@@ -8,6 +8,7 @@
 * [Really good but expensive trainings on security testing/hacking (maybe bmw pays?)](https://www.offensive-security.com/)
 
 ## books
+* [book collection](https://nostarch.com/catalog/security)
 * [openbook](https://www.cl.cam.ac.uk/~rja14/book.html)
 * [crypto coding stuff](https://cryptopals.com/)
 * [books from No-Starch Press about Security](https://nostarch.com/catalog/security)
@@ -25,6 +26,10 @@
 * Pentest+ - Comptia penetration testing
 * CYSA+ - Cyber Security Analyst
 * CEH - Certified Ethical Hacker
+
+## trainings
+* [Infosec](https://www.offsec.com/)
+* [crypto challenges](https://cryptopals.com/)
 
 ## Tools
 * [check your code ](https://www.contrastsecurity.com/developer/codesec/)
