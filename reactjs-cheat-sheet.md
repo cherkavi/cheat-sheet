@@ -12,6 +12,16 @@
 * [doc](https://create-react-app.dev/)  
 * [chrome plugin](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)  
 
+## [Design patterns](https://dev.to/refine/react-design-patterns-230o)
+* Container and presentation patterns
+* Component composition with Hooks
+* State management with Reducers
+* Data management with Providers
+* Component enhancement with HOCs (higher-order components)
+* Compound Components
+* Prop combination
+* Controlled inputs
+* Manage custom components with fowardRefs
 
 ## Workplace with Visual code
 * download addon: firefox-devtools.vscode-firefox-debug
