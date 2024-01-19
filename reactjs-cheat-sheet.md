@@ -12,7 +12,7 @@
 * [doc](https://create-react-app.dev/)  
 * [chrome plugin](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)  
 
-## [Design patterns](https://dev.to/refine/react-design-patterns-230o)
+## ToDo: [Design patterns](https://dev.to/refine/react-design-patterns-230o)
 * Container and presentation patterns
 * Component composition with Hooks
 * State management with Reducers
