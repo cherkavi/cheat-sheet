@@ -31,7 +31,6 @@ if [ -f ~/.git-completion.bash ]; then
   export GIT_COMPLETION_SHOW_ALL=1
   source ~/.git-completion.bash
 fi
-
 ```
 
 ### debug flag, verbose output of commands, output debug
@@ -71,7 +70,7 @@ git reset --mixed HEAD~2
 ```
 
 ### restore removed file, restore deleted file, find removed file, show removed file
-```
+```sh
 # find full path to the file 
 file_name="integration_test.sh.j2"
 git log --diff-filter=D --name-only | grep $file_name
@@ -89,12 +88,12 @@ git show $second_log_commit:$full_path
 ```
 
 ### remove last commit and put HEAD to previous one
-```
+```sh
 git reset --hard HEAD~1
 ```
 
 ### checkout with tracking
-```
+```sh
 git checkout -t origin/develop
 ```
 
@@ -104,7 +103,7 @@ git stash branch $BRANCH_NAME stash@{3}
 ```
 
 ### show removed remotely
-```
+```sh
 git remote prone origin
 ```
 
@@ -240,7 +239,7 @@ git log -5 develop --name-only
 ```
 
 ### check last commits by author, commits from all branches
-```
+```sh
 git log -10 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --all --author "Cherkashyn"
 ```
 
@@ -291,7 +290,7 @@ git log -g --grep='jwt'
 ```
 
 ### show no merged branches
-```
+```sh
 git branch --no-merged
 ```
 
@@ -307,7 +306,7 @@ git checkout -t remotes/origin/release
 ```
 
 ### copy file from another branch
-```
+```sh
 git checkout experiment -- deployment/connection_pool.py                                 
 git checkout origin/develop datastorage/mysql/scripts/_write_ddl.sh
 # print to stdout
@@ -345,7 +344,7 @@ git config --global core.editor "vim"
 ```
 
 ### avoid to enter login/password
-```
+```sh
 git config --global credential.helper store
 ```
 
@@ -1154,6 +1153,18 @@ https://api.github.com/repos/OWNER/REPO/actions/secrets/SECRET_NAME
 curl -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/repos/$OWNER/$REPO/actions/secrets/$SECRET_NAME
 ```
 
+## git find bad commit, check bad commits in the log
+```sh
+git bisect start.
+git bisect bad [commit].
+git bisect good [commit].
+# git bisect bad  # mark commit as bad
+# git bisect good # mark commit as good
+
+git bisect run my_script my_script_arguments  # check negative/positive answer
+git bisect visualize
+git bisect reset
+```
 
 ## github workflow ( pipeline )
 [github marketplace - collections of actions `to use`](https://github.com/marketplace?type=)  

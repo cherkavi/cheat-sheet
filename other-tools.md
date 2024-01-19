@@ -1,6 +1,8 @@
 # Frameworks
 ## Scrum
 * [SAFe](http://scaleagileframework.com/)
+* [LeSS](https://less.works/)
+  * [LeSS book](https://less.works/user-content/member/Learning-Resources/less_book.html)
 
 # Tools
 ## tasks automation & business flows & connections between applications

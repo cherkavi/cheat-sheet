@@ -1,4 +1,6 @@
-[url to main cheat sheet with examples](https://github.com/cherkavi/javascripting)
+# JavaScript
+## [url to main cheat sheet with examples](https://github.com/cherkavi/javascripting)
+## [from JS to any language with single codebase](https://github.com/aws/jsii)
 
 ## Typescript cheat sheet
 ### start new typescript application
