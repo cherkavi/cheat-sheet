@@ -31,7 +31,12 @@ function cheat-grep(){
 * [cheat sheets collection](https://lzone.de/cheat-sheet/)
 * [cheat sheets](https://www.cheatography.com)
 
+## [documentation examples, how to write good documentation, documentation tools](https://github.com/matheusfelipeog/beautiful-docs)
+
 ## useful tools:
+### [free online resources for developers](https://github.com/ripienaar/free-for-dev?tab=readme-ov-file#web-hosting)
+### [list of online tools](https://github.com/goabstract/Awesome-Design-Tools)
+### [free hosted applications, locally started applications](https://github.com/awesome-selfhosted/awesome-selfhosted)
 ### collaboration whiteboard drawing
 * [excalidraw](https://excalidraw.com/)
     * [using razer-keypad with excalidraw](https://github.com/cherkavi/solutions/blob/master/razer-keypad/README.md)
