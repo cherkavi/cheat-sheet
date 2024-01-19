@@ -26,6 +26,7 @@
 * [ibmcloud](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started)
 
 ## tools
+* [deployment simplification](https://github.com/cyclops-ui/cyclops)
 * [cli manager](https://github.com/derailed/k9s)
 * [smart shell for kubectl](https://github.com/cloudnativelabs/kube-shell)
 * [log collector](https://github.com/wercker/stern)
