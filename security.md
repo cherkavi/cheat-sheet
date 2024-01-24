@@ -1,4 +1,5 @@
 # Security
+TODO: shodan.io
 ## exercises
 * [web security](https://application.security/free/owasp-top-10)
 * [api security](https://application.security/free/owasp-top-10-API)
