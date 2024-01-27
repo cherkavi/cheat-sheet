@@ -44,5 +44,4 @@ TODO: shodan.io
 
 ### how to encrypt - decrypt message
 ![public private key encryption-decryption](https://i.postimg.cc/dQx8NxbJ/public-private-key-encryption-decription.png)  
-
-
+![what is decryption](https://github.com/cherkavi/cheat-sheet/assets/8113355/17ac7c50-44ed-41ac-a3f2-df037b5cae6f)
