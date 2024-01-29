@@ -10,9 +10,10 @@ graph LR;
     * frameworks
     * algorithms
     🔄️
-    )
+    );
+
     B --> 
     C(<b>Data out</b>
     ✅️ example 🆗️
-    )    
+    );    
 ```
