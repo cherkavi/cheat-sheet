@@ -5,7 +5,7 @@ graph LR;
     * filtered
     * cleaned
     * labeled
-    ] ----> 
+    ] --> 
     B(<b>ML Algorithm</b>
     * frameworks
     * algorithms
