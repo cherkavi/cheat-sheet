@@ -17,3 +17,8 @@ graph LR;
     ✅️ example 🆗️
     );    
 ```
+## Frameworks
+* ['double' ML](https://github.com/py-why/EconML/blob/main/README.md)
+  `pip install econml`
+* [Google Jupyter Notebook](https://colab.research.google.com/)
+* 
