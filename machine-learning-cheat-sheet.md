@@ -1,6 +1,6 @@
 # Machine Learning
 ```mermaid
-graph LR
+graph LR;
     A[<b>Data In</b>
     * filtered
     * cleaned
