@@ -552,6 +552,8 @@ select * from num_sequence;
 
 ---
 ## CloudFront
+![cloud-front](https://i.ibb.co/jHLb1Vn/aws-2023-08-27-aws-cloud-front-decreased-png.jpg)  
+
 ```sh
 aws_service_abbr="cloudfront"
 aws-cli-doc
@@ -559,8 +561,10 @@ aws-faq
 aws-console
 ```
 
-```sh
-Region <>---------- AvailabilityZone <>--------- EdgeLocation
+```mermaid
+flowchart RL;
+    AvailabilityZone --o Region
+        EdgeLocation --o Region
 ```
 ```sh
 REGION=us-east-1
@@ -918,6 +922,7 @@ aws-cli-doc
 aws-faq
 aws-console
 ```
+> `/tmp` directory can be used for saving cache or collaboration between multiple invocations
 
 ### list of functions
 ```sh
@@ -1072,11 +1077,14 @@ def lambda_handler(event, context):
 ```
 * <Shift><Shift> Create Lambda Function, specify handler: my_aws_func.lambda_handler
 
-#### aws sam
+#### aws sam aws tools for devops
 for building serverless applications 
 ```bash
 pip3 install aws-sam-cli
 sam --version
+
+sam cli init
+sam deploy --guided
 ```
 
 #### Python Zappa
@@ -1563,10 +1571,6 @@ pip3 install pyOpenSSL --upgrade
 ## ECS Elastic Container Service 
 ![ecs](https://i.ibb.co/gJwP5vm/aws-2023-08-27-ecs.jpg)  
 ![ecs](https://i.ibb.co/MM6jvJY/2023-08-27-2git-aws-ecs.jpg)  
-
----
-## CloudFront
-![cloud-front](https://i.ibb.co/jHLb1Vn/aws-2023-08-27-aws-cloud-front-decreased-png.jpg)  
 
 ---
 ## Shield

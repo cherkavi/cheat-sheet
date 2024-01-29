@@ -378,6 +378,7 @@ ext install ms-vscode-remote.remote-ssh-edit
 ext install liximomo.remotefs
 ext install visualstudioexptteam.vscodeintellicode
 ext install foam.foam-vscode
+ext install devwright.vscode-terminal-capture
 
 # json
 ext install mohsen1.prettify-json
