@@ -49,20 +49,6 @@
 ### serverless
 ![serverless](https://i.postimg.cc/PxNrBPf9/aws-serverless.png)
 
-## upcoming courses:
-* https://aws.amazon.com/certification/certified-cloud-practitioner/
-  * https://aws.amazon.com/dms/
-  * https://aws.amazon.com/mp/
-  * https://aws.amazon.com/vpc/
-  * https://aws.amazon.com/compliance/shared-responsibility-model/
-  * https://aws.amazon.com/cloudfront/
-  * https://aws.amazon.com/iam/details/mfa/
-  * http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html
-  * http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html
-  * https://aws.amazon.com/aup/
-* https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html
-
-
 ## [sdk - for diff prog.languages](https://aws.amazon.com/tools/) 
 ### sdk commands:
 * low level commands
@@ -1679,4 +1665,31 @@ flowchart LR;
 
 
 ---
-## 
+## cloud9
+
+---
+## QuickSight
+
+---
+## cloudsearch
+
+---
+## ElasticSearch
+
+---
+## personal health dashboard
+
+---
+## upcoming courses todo
+* https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner
+* https://aws.amazon.com/certification/certified-cloud-practitioner/
+  * https://aws.amazon.com/dms/
+  * https://aws.amazon.com/mp/
+  * https://aws.amazon.com/vpc/
+  * https://aws.amazon.com/compliance/shared-responsibility-model/
+  * https://aws.amazon.com/cloudfront/
+  * https://aws.amazon.com/iam/details/mfa/
+  * http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html
+  * http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html
+  * https://aws.amazon.com/aup/
+* https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html

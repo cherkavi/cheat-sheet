@@ -1185,6 +1185,7 @@ add flag for ```ansible``` or ```ansible-playbook```:-vvv(3) -vv (2) or -v (1)
     line: PermitRootLogin no
     state: present
 ```
+delegate task to specific host
 ```json
 - name: Set version information
   lineinfile:

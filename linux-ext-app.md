@@ -389,6 +389,7 @@ ext install richie5um2.vscode-statusbar-json-path
 ext install tchayen.markdown-links
 ext install kortina.vscode-markdown-notes
 ext install yzhang.markdown-all-in-one
+ext install gera2ld.markmap-vscode
 
 # git
 ext install donjayamanne.githistory
