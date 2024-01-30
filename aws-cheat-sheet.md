@@ -776,6 +776,22 @@ INSTANCE_PUBLIC_DNS="ec2-52-29-176.eu-central-1.compute.amazonaws.com"
 ssh -i $AWS_KEY_PAIR ubuntu@$INSTANCE_PUBLIC_DNS
 ```
 
+connect to instance in private subnet, bastion approach
+```mermaid
+flowchart LR;
+    a[actor] -->|inventory| jb
+    subgraph public subnet    
+        jb[ec2 
+           jumpbox]
+    end
+    subgraph private subnet    
+        s[ec2 
+          server]
+    end
+    jb -->|inventory| s
+
+```
+
 reading information about current instance, local ip address, my ip address, connection to current instance, instance reflection, instance metadata, instance description
 ```sh
 curl http://169.254.169.254/latest/meta-data/
@@ -853,12 +869,41 @@ sudo mount /dev/xvdf /external-drive
 ```
 
 ---
-## ELB
+## ELB - Elastic Load Balancer
 ![elb](https://i.ibb.co/1JPnBHL/aws-2023-08-27-aws-elb-autoscaling-png.jpg)  
 ```sh
 aws_service_abbr="elb"
 aws-cli-doc
 aws-faq
+```
+
+```mermaid
+flowchart LR;
+    r[Request] --> lb
+    l[Listener] --o lb[Load Balaner]
+
+    lr[Listener
+       Rule] --o l
+    lr --> target_group1
+    lr --> target_group2
+    lr --> target_group3
+
+    subgraph target_group1
+        c11[ec2]
+        c12[ec2]
+        c13[ec2]
+    end
+    subgraph target_group2
+        c21[ec2]
+        c22[ec2]
+        c23[ec2]
+    end
+    subgraph target_group3
+        c31[ec2]
+        c32[ec2]
+        c33[ec2]
+    end
+    
 ```
 
 [ELB troubleshooting](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html)
@@ -1218,7 +1263,38 @@ aws-console
 
 ### [resource record types](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html)
 
+Web application environment, application network connection
+```mermaid
+flowchart LR;
+    d[dns] --> r
+    r[Route 53] --> 
+    lb[load 
+       balancer]
 
+    li[listener] --o lb
+
+    tg[target
+       group] ---o lb
+
+    tg --> port[port]
+
+    port --o ap[application]
+
+    ap --o i[instance]
+
+    i -.->|w| l[log]
+
+    l --o cw[cloud 
+    watch]
+
+    ap <-.->|rw| db[(DB)]
+
+    sm[secret 
+       manager] --w-->
+    cr[credentials]
+
+    cr --o i
+```
 ---
 ## SNS
 ```sh
@@ -1580,3 +1656,27 @@ pip3 install pyOpenSSL --upgrade
 ## Firewall
 ![firewall](https://i.ibb.co/Qn4WC9z/aws-2023-08-27-aws-web-application-firewall-png.jpg)  
 
+
+---
+## Launch Template
+```mermaid
+flowchart LR;
+    lt[Launch 
+       Template] --o 
+    as[Auto
+    Scaling]
+```
+
+---
+## Launch Configuration
+```mermaid
+flowchart LR;
+    lt[Launch 
+       Configuration] --o 
+    as[Auto
+    Scaling]
+```
+
+
+---
+## 
