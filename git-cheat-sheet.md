@@ -1166,6 +1166,52 @@ git bisect visualize
 git bisect reset
 ```
 
+## git remove bad commit from the log history
+```sh
+mkdir git-wrong-commit
+cd git-wrong-commit
+git init
+
+echo "1" >> test-file.txt 
+git add *
+git commit --message 'commit 1'
+git log --oneline
+
+echo "2" >> test-file.txt 
+git add *
+git commit --message 'commit 2'
+git log --oneline
+
+echo "3" >> test-file.txt 
+git add *
+git commit --message 'commit 3'
+git log --oneline
+
+
+echo "wrong" >> test-file.txt 
+git add *
+git commit --message 'commit 4 - wrong'
+git log --oneline
+
+
+echo "5" >> test-file.txt 
+git add *
+git commit --message 'commit 5'
+git log --oneline
+
+echo "6" >> test-file.txt 
+git add *
+git commit --message 'commit 6'
+git log --oneline
+
+# will not work: short commit like ce66b4f 
+# will not work: variable instead of commit hash WRONG_COMMIT=ce66b4f6065c754a2c3dbc436bc82498dd04d722
+#                if [ $GIT_COMMIT = $WRONG_COMMIT ]; 
+git filter-branch --commit-filter 'if [ $GIT_COMMIT = ce66b4f6065c754a2c3dbc436bc82498dd04d722 ]; then skip_commit "$@"; else git commit-tree "$@"; fi' -- --all
+
+git push --force 
+```
+
 ## github workflow ( pipeline )
 [github marketplace - collections of actions `to use`](https://github.com/marketplace?type=)  
 ```mermaid
