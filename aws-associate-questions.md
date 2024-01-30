@@ -12,3 +12,6 @@
 ![195-207](https://i.postimg.cc/L58rprdN/aws-associate-195-207.png)
 ![209-229](https://i.postimg.cc/QxPv24fJ/aws-associate-209-229.png)
 ![232-250](https://i.postimg.cc/4x9js6Mk/aws-associate-232-250.png)
+![252-268](https://i.ibb.co/GvDw00F/aws-associate-252-268.png)
+![269-283](https://i.ibb.co/yXyNkJ3/aws-associate-269-283.png)
+![284-292](https://i.ibb.co/Kj4mLxd/aws-associate-284-292.png)
