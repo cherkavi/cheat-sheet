@@ -1605,6 +1605,40 @@ git config --global --edit
 4. clone your repo with https
 
 ## Code Build
+```mermaid
+flowchart RL;
+    subgraph buildtime
+        pr[project] --o cb[Code Build]
+        r[role] --o pr
+        pl[policy] --o r
+        s3[s3] --o pr
+
+        git[git 
+            repo] -.->|w| pr
+
+        pr -.-> 
+        i[container 
+        image]
+
+        i --o ecr[ECR]
+
+        i -.-> d[deployment]
+    end
+
+    subgraph runtime
+        p[pod] --o n[node]
+
+        n --o 
+        ng[node 
+           group]
+
+        ng --o eks
+        c[Cluster] --o eks[EKS]
+    end
+
+    d ----|service| p
+
+```
 [orchestration tool](https://pypi.org/project/aws-codeseeder/)
 [orchestration tool documentation]( https://seed-farmer.readthedocs.io/en/latest)
 ```sh
