@@ -23,12 +23,10 @@ graph LR;
 
 ## Necessary knowledges
 ```mermaid
-graph LR>
-
+graph LR;
     d[design] --> md[model <br>development] --> o[operations]
     md --> d 
     o --> md
-    );    
 ```
 ### design
   * Requirement engineering
@@ -47,4 +45,3 @@ graph LR>
 * ['double' ML](https://github.com/py-why/EconML/blob/main/README.md)
   `pip install econml`
 * [Google Jupyter Notebook](https://colab.research.google.com/)
-* 
