@@ -364,7 +364,7 @@ copy to ```~/.config/vifm/colors``` [color scheme](https://vifm.info/colorscheme
 # ctrl+p
 # common
 ext install nick-rudenko.back-n-forth
-ext install alefragnani.Bookmarks
+ext install alefragnani.numbered-bookmarks
 ext install rockingskier.copy-copy-paste
 ext install mksafi.find-jump
 ext install jacobdufault.fuzzy-search
@@ -378,6 +378,7 @@ ext install ms-vscode-remote.remote-ssh-edit
 ext install liximomo.remotefs
 ext install visualstudioexptteam.vscodeintellicode
 ext install foam.foam-vscode
+ext install devwright.vscode-terminal-capture
 
 # json
 ext install mohsen1.prettify-json

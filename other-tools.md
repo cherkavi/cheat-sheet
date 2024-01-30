@@ -543,6 +543,7 @@ application permissions: r_emailaddress
 [documentation](https://docs.microsoft.com/en-us/linkedin/shared/integrations/people/primary-contact-api)  
 
 ## e-commerce
+TODO: Telegram bot 
 ### shopify
 ```sh
 x-www-browser https://$SHOPIFY_SHOP_NAME.myshopify.com &

@@ -36,6 +36,18 @@ easy_install.main( ["termcolor"] )
 easy_install.main( ["-U","termcolor"] )
 ```
 
+## [package manager poetry](https://python-poetry.org/)
+* isolation
+* dependency resolver
+* good cli
+```sh
+poetry new my_own_project
+poetry add selenium
+poetry show --tree
+
+poetry run my_script_name
+```
+
 ## package manager pip
 ### [find package in browser](https://pypi.org/)
 ### find package by name
@@ -175,6 +187,9 @@ index-url = https://cc-artifactory.myserver.net/artifactory/api/pypi/adp-pypi-vi
 ```
 pip install tornado==2.1.1
 ```
+
+### [install artifacts in isolated environments pipx](https://github.com/pypa/pipx)
+> pipx creates an isolated environment for each application and its associated packages
 
 ### [virtual environment manager](https://github.com/pypa/pipenv)
 ```sh

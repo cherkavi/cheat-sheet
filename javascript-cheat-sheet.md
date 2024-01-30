@@ -62,3 +62,14 @@ vim src/app.ts
 # start app
 npm start
 ```
+
+## Terminal sh/bash replacement
+```sh
+npm install -g bun
+```
+
+```javascript
+import { $ } from "bun";
+
+const output = await $`ls *.js`.arrayBuffer();
+```

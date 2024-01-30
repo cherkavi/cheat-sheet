@@ -3,17 +3,18 @@ TODO: python framework mataflow `from metaflow import FlowSpec, step `
 TODO: python framework sklearn `from sklearn.pipeline import Pipeline`
 
 ```mermaid
-graph LR
+graph LR;
     A[<b>Data In</b>
     * filtered
     * cleaned
     * labeled
-    ] ----> 
+    ] --> 
     B(<b>ML Algorithm</b>
     * frameworks
     * algorithms
     🔄️
-    )
+    );
+
     B --> 
     C(<b>Data out</b>
     ✅️ example 🆗️
@@ -22,11 +23,12 @@ graph LR
 
 ## Necessary knowledges
 ```mermaid
-graph LR
+graph LR>
 
     d[design] --> md[model <br>development] --> o[operations]
     md --> d 
     o --> md
+    );    
 ```
 ### design
   * Requirement engineering
@@ -40,3 +42,9 @@ graph LR
   * ML Model Deployment
   * CI/CD pipelines
   * Monitoring & triggering
+
+## Frameworks
+* ['double' ML](https://github.com/py-why/EconML/blob/main/README.md)
+  `pip install econml`
+* [Google Jupyter Notebook](https://colab.research.google.com/)
+* 
