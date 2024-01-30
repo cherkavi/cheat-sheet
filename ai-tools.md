@@ -1,4 +1,5 @@
 # Collection of AI tools
+TODO: vector database
 ## chat bots
 * https://www.perplexity.ai/
 * https://bard.google.com/chat
