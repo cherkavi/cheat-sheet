@@ -359,78 +359,77 @@ vim anyfile.txt
 copy to ```~/.config/vifm/colors``` [color scheme](https://vifm.info/colorschemes.shtml)  
 ```:colorscheme <tab>```
 
-## visual code plugins
+## visual code extensions
 ```sh
-# ctrl+p
-# common
-ext install nick-rudenko.back-n-forth
-ext install alefragnani.numbered-bookmarks
-ext install rockingskier.copy-copy-paste
-ext install mksafi.find-jump
-ext install jacobdufault.fuzzy-search
-ext install GitHub.copilot # don't install for pytest
-ext install atlassian.atlascode
-ext install qcz.text-power-tools
-ext install redhat.vscode-commons
-ext install ms-vscode-remote.remote-containers
-ext install ms-vscode-remote.remote-ssh
-ext install ms-vscode-remote.remote-ssh-edit
-ext install liximomo.remotefs
-ext install visualstudioexptteam.vscodeintellicode
-ext install foam.foam-vscode
-ext install devwright.vscode-terminal-capture
-
-# json
-ext install mohsen1.prettify-json
-ext install vthiery.prettify-selected-json
-ext install richie5um2.vscode-statusbar-json-path
-
+## common
+codium --install-extension nick-rudenko.back-n-forth
+codium --install-extension alefragnani.numbered-bookmarks
+codium --install-extension rockingskier.copy-copy-paste
+codium --install-extension mksafi.find-jump
+codium --install-extension jacobdufault.fuzzy-search
+codium --install-extension qcz.text-power-tools
+codium --install-extension redhat.vscode-commons
+codium --install-extension visualstudioexptteam.vscodeintellicode
+codium --install-extension foam.foam-vscode
+codium --install-extension devwright.vscode-terminal-capture
 # markdown
-ext install tchayen.markdown-links
-ext install kortina.vscode-markdown-notes
-ext install yzhang.markdown-all-in-one
-ext install gera2ld.markmap-vscode
+codium --install-extension tchayen.markdown-links
+codium --install-extension kortina.vscode-markdown-notes
+codium --install-extension yzhang.markdown-all-in-one
+codium --install-extension gera2ld.markmap-vscode
+# json
+codium --install-extension mohsen1.prettify-json
+codium --install-extension vthiery.prettify-selected-json
+codium --install-extension richie5um2.vscode-statusbar-json-path
 
-# git
-ext install donjayamanne.githistory
-ext install qezhu.gitlink
-ext install TeamHub.teamhub
+## common-ext
+codium --install-extension GitHub.copilot # don't install for pytest
+codium --install-extension atlassian.atlascode
+codium --install-extension ms-vscode-remote.remote-containers
+codium --install-extension ms-vscode-remote.remote-ssh
+codium --install-extension ms-vscode-remote.remote-ssh-edit
+codium --install-extension liximomo.remotefs
 
-# containers
-ext install peterjausovec.vscode-docker
-ext install ms-azuretools.vscode-docker
+## git
+codium --install-extension donjayamanne.githistory
+codium --install-extension qezhu.gitlink
+codium --install-extension TeamHub.teamhub
 
-# shell 
-ext install inu1255.easy-shell
-ext install ryu1kn.edit-with-shell
-ext install ms-toolsai.jupyter-renderers
-ext install devwright.vscode-terminal-capture
-ext install miguel-savignano.terminal-runner
-ext install tyriar.terminal-tabs
+## containers
+codium --install-extension peterjausovec.vscode-docker
+codium --install-extension ms-azuretools.vscode-docker
 
-# jupyter
-ext install ms-toolsai.jupyter
-ext install ms-toolsai.jupyter-keymap
+## shell 
+codium --install-extension inu1255.easy-shell
+codium --install-extension ryu1kn.edit-with-shell
+codium --install-extension ms-toolsai.jupyter-renderers
+codium --install-extension devwright.vscode-terminal-capture
+codium --install-extension miguel-savignano.terminal-runner
+codium --install-extension tyriar.terminal-tabs
 
-# java
-ext install vscjava.vscode-java-dependency
-ext install vscjava.vscode-java-pack
-ext install vscjava.vscode-java-test
-ext install redhat.java
-ext install vscjava.vscode-maven
-ext install vscjava.vscode-java-debug
+## jupyter
+codium --install-extension ms-toolsai.jupyter
+codium --install-extension ms-toolsai.jupyter-keymap
 
-# python
-ext install ms-python.python
-ext install ms-python.vscode-pylance
-ext install ms-pyright.pyright
+## java
+codium --install-extension vscjava.vscode-java-dependency
+codium --install-extension vscjava.vscode-java-pack
+codium --install-extension vscjava.vscode-java-test
+codium --install-extension redhat.java
+codium --install-extension vscjava.vscode-maven
+codium --install-extension vscjava.vscode-java-debug
 
-# scala 
-ext install scala-lang.scala
+## python
+codium --install-extension ms-python.python
+codium --install-extension ms-python.vscode-pylance
+codium --install-extension ms-pyright.pyright
 
-# sql
-ext install mtxr.sqltools
-ext install mtxr.sqltools-driver-mysql
+## scala 
+codium --install-extension scala-lang.scala
+
+## sql
+codium --install-extension mtxr.sqltools
+codium --install-extension mtxr.sqltools-driver-mysql
 ```
 
 ## taskwarrior
@@ -786,12 +785,18 @@ efibootmgr -v
 # boot order, boot descriptions
 efibootmgr
 
-# original 
-# efibootmgr --bootorder 0003,0000,0004,0007,0002,0006
+## set bootorder
+# read
+efibootmgr | grep BootOrder
+# write 
 sudo efibootmgr --bootorder 0002,0000,0004,0007,0003,0006
 
-
+```
+if you have lost ability to start bootloader from current drive or you can't see anymore normal boot loader
+```sh
 sudo apt install grub-efi
+sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ```sh

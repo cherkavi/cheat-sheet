@@ -2,6 +2,68 @@
 
 ## [android OS architecture - layers](https://lineageos.org/engineering/HowTo-Debugging/)
 
+## Odin
+### Odin for Linux
+1. install [heimdall](https://glassechidna.com.au/heimdall/)
+    ```sh
+    ubuntu_version=$(lsb_release -rs | cut -d. -f1)
+    if [ "$ubuntu_version" -ge 22 ]; then 
+        sudo apt install heimdall-flash heimdall-flash-frontend
+        heimdall print-pit
+    fi
+    ```
+2. download release of [JOdin3](https://github.com/GameTheory-/jodin3) and run JOdin3CASUAL
+    ```sh
+    soft; mkdir odin3; cd odin3
+    wget https://github.com/GameTheory-/jodin3/releases/download/v1.0/Jodin3.zip
+    unzip Jodin3.zip
+    ls -la Jodin3/JOdin3CASUAL
+    ```
+## [ADB](https://developer.android.com/tools/adb) 
+> Android Debug Bridge
+> creates a connection (bridge) between the device and computer.
+**should be activated:**
+1. developer mode
+2. USB debug
+### [download from google](https://dl.google.com/android/repository/platform-tools-latest-linux.zip)
+### adb install via Debian APT
+```sh
+sudo apt -y install adb
+adb version
+adb devices
+```
+
+### [list of some adb all commands](https://www.getdroidtips.com/basic-adb-command/): 
+```sh
+adb push test.apk /sdcard
+adb pull /sdcard/demo.mp4 e:\
+
+adb reboot
+adb reboot recovery
+```
+```sh
+adb shell pm list packages -f
+```
+
+```sh
+adb shell
+
+pm list packages
+pm list packages -f
+pm list features
+```
+
+## [Fastboot](https://source.android.com/docs/setup/build/running)
+> works only in "bootloader" or "fastboot" or "download" mode.
+> boot your Android device into the bootloader mode
+### [download from google](https://dl.google.com/android/repository/platform-tools-latest-linux.zip)
+### fastboot install via Debian APT
+```sh
+sudo apt -y install fastboot
+fastboot version
+```
+
+
 ## check connected phone 
 ```sh
 sudo apt install adb 

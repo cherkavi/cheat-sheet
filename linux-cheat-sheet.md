@@ -3448,13 +3448,18 @@ sudo dd bs=4M if=/home/my-user/Downloads/archlinux-2019.07.01-x86_64.iso of=/dev
 ```
 
 ### startup/bootable usb with persistence, create usb live with persistence, usb persistence, stick persistence
+> for parallel disk solution Parrot is highly recommended ( good bootloader )
 ```sh
 sudo add-apt-repository universe
 sudo add-apt-repository ppa:mkusb/ppa
 sudo apt-get update
 sudo apt install --install-recommends mkusb mkusb-nox usb-pack-efi
-mkusb
+
+# https://parrotsec.org/download/
+wget https://deb.parrot.sh/parrot/iso/6.0/Parrot-home-6.0_amd64.iso; cd ~/Downloads
+mkusb Parrot-home-6.0_amd64.iso
 # Install, persistent live, uefi
+# steps: p(persistent), p(dus-Persistent)
 ```
 
 ## split usb drive, split disk
