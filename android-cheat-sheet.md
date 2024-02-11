@@ -2,8 +2,11 @@
 
 ## [android OS architecture - layers](https://lineageos.org/engineering/HowTo-Debugging/)
 
-## Odin
-### Odin for Linux
+## [Run Android OS without phone](https://github.com/cherkavi/solutions/blob/master/android-os-without-phone/README.md)
+
+## PC software for managing Android device
+### Odin
+#### Odin for Linux
 1. install [heimdall](https://glassechidna.com.au/heimdall/)
     ```sh
     ubuntu_version=$(lsb_release -rs | cut -d. -f1)
@@ -19,21 +22,21 @@
     unzip Jodin3.zip
     ls -la Jodin3/JOdin3CASUAL
     ```
-## [ADB](https://developer.android.com/tools/adb) 
+### [ADB](https://developer.android.com/tools/adb) 
 > Android Debug Bridge
 > creates a connection (bridge) between the device and computer.
 **should be activated:**
 1. developer mode
 2. USB debug
-### [download from google](https://dl.google.com/android/repository/platform-tools-latest-linux.zip)
-### adb install via Debian APT
+#### [download from google](https://dl.google.com/android/repository/platform-tools-latest-linux.zip)
+#### adb install via Debian APT
 ```sh
 sudo apt -y install adb
 adb version
 adb devices
 ```
 
-### [list of some adb all commands](https://www.getdroidtips.com/basic-adb-command/): 
+#### [list of some adb all commands](https://www.getdroidtips.com/basic-adb-command/): 
 ```sh
 adb push test.apk /sdcard
 adb pull /sdcard/demo.mp4 e:\
@@ -53,18 +56,17 @@ pm list packages -f
 pm list features
 ```
 
-## [Fastboot](https://source.android.com/docs/setup/build/running)
+### [Fastboot](https://source.android.com/docs/setup/build/running)
 > works only in "bootloader" or "fastboot" or "download" mode.
 > boot your Android device into the bootloader mode
-### [download from google](https://dl.google.com/android/repository/platform-tools-latest-linux.zip)
-### fastboot install via Debian APT
+#### [download from google](https://dl.google.com/android/repository/platform-tools-latest-linux.zip)
+#### fastboot install via Debian APT
 ```sh
 sudo apt -y install fastboot
 fastboot version
 ```
 
-
-## check connected phone 
+### check connected phone 
 ```sh
 sudo apt install adb 
 
@@ -75,7 +77,7 @@ lsusb
 ```
 
 
-## fix issue with root:root usb access 
+### fix issue with root:root usb access 
 ```sh
 ls -l /dev/bus/usb/001/013
 # crw-rw-r--+ 1 root plugdev 189, 10 Mai 21 13:50 /dev/bus/usb/001/011
