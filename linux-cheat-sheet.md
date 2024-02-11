@@ -3216,12 +3216,19 @@ sha384sum filename
 sha512sum filename
 ```
 
-### check pgp signature
+### check pgp signature check control sum
 ```sh
 sig_file=`ls ~/Downloads/*.sig`
 original_file="${sig_file%.sig}"
 gpg --verify $sig_file $original_file
 ``` 
+### check open pgp signature
+```sh
+# tails-amd64-5.22.img   tails-amd64-5.22.img.sig   tails-signing.key
+gpg --import tails-signing.key
+gpg --verify tails-amd64-5.22.img.sig tails-amd64-5.22.img
+```
+
 
 ## driver install hardware
 ```sh
@@ -3429,7 +3436,7 @@ df -ha
 ncdu
 ```
 
-## create startup disk, write iso image, usb stick, bootable drive
+## create startup disk, write iso image, usb stick, bootable drive, restore disk image 
 ### default ubuntu disk startup disk creator
 > for CD iso images
 ```sh
@@ -3443,7 +3450,6 @@ usb-creator-gtk
 # list of all hard drives, disk list
 sudo lshw -class disk -short
 # write image
-
 sudo dd bs=4M if=/home/my-user/Downloads/archlinux-2019.07.01-x86_64.iso of=/dev/sdb status=progress && sync
 ```
 
