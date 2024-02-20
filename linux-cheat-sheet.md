@@ -3323,6 +3323,7 @@ barcode -o 1112.pdf -e "code39" -b "1112" -u "mm" -g 50x50
 
 ### pdf file merge, pdf join
 ```sh
+# -dAutoRotatePages=/None 
 gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf test-pdf2.pdf test-pdf3.pdf test-pdf4.pdf
 ```
 
