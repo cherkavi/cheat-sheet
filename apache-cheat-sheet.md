@@ -122,3 +122,12 @@ SSLCertificateKeyFile "/path/to/www.example.com.key"
     MaxConnectionsPerChild 0
 </IfModule>
 ```
+
+## Apache in OpenShift/Kubernetes
+```mermaid
+flowchart LR
+    client --> or[ocp route] --> os[ocp service] --> op[ocp pod] --> a[apache]
+    cm[config map] -.->|read| a
+    a --> os2[ocp service 2]
+    a --> os3[ocp service 3]
+```
