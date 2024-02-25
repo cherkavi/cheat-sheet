@@ -3264,6 +3264,8 @@ convert input.png -crop $WIDTHx$HEIGHT+$X+$Y output.jpg
 ```sh
 http://goqr.me/api/doc/create-qr-code/
 http://api.qrserver.com/v1/create-qr-code/?data=HelloWorld!&size=100x100
+https://qr-creator.com/url.php
+https://qrgenerator.org/
 ```
 
 ### qr code generator
