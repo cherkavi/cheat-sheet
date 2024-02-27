@@ -88,6 +88,16 @@ seedfarmer destroy rff-$NAMESPACE
 # seedfarmer destroy rff-$NAMESPACE --region $AWS_REGION --env-file config/local.env
 ```
 
+## Source code abstractions
+```mermaid
+flowchart LR
+    p[project] --> d[deployment] --> g[group] --> m[module]
+
+    p -.- s[seed manager]
+    m -.- cb[code build]
+    p ~~~ cb
+```
+
 ## How to build it
 ```mermaid
 flowchart LR
