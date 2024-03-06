@@ -406,8 +406,11 @@ curl --location --request GET 'https://api.yelp.com/v3/businesses/law-office-of-
 #### links
 * [Main manual](https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow/)
 * [facebook SDK](https://facebook-sdk.readthedocs.io/en/latest/install.html)
-* [business-sdk python](https://github.com/facebook/facebook-python-business-sdk) 
+* [business-sdk python](https://github.com/facebook/facebook-python-business-sdk)
+* [business sdk](https://developers.facebook.com/docs/business-sdk)
 * Developer guide
+  * [guides](https://developers.facebook.com/docs/pages/guides)
+  * [webhooks](https://developers.facebook.com/docs/pages-api/webhooks-for-pages)
   * [business-sdk](https://developers.facebook.com/docs/business-sdk)
   * [graph API Explorer](https://developers.facebook.com/tools/explorer/)
   * [facebook login web](https://developers.facebook.com/docs/facebook-login/web)
@@ -427,6 +430,7 @@ curl --location --request GET 'https://api.yelp.com/v3/businesses/law-office-of-
   * [test app add product](https://developers.facebook.com/apps/$APP_ID/dashboard/#addProduct)
 * [pulling review](https://stackoverflow.com/questions/23380533/facebook-api-for-pulling-reviews)
 * [create test app  ( upper left corner )](https://www.facebook.com/pg/$PROFILE_NAME-$PROFILE_ID/reviews/?ref=page_internal)
+* [puuling reviews](https://stackoverflow.com/questions/23380533/facebook-api-for-pulling-reviews)
 
 #### get profile_id from facebook page
 ```sh
