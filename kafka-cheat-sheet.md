@@ -1,4 +1,6 @@
 # Kafka cheat sheet
+[position in architecture ](https://github.com/cherkavi/cheat-sheet/blob/master/architecture-cheat-sheet.md#communication-between-applications)
+
 ## [source code](https://kafka.apache.org/code)
 ```sh
 git clone https://github.com/apache/kafka.git kafka
