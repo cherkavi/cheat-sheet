@@ -143,3 +143,7 @@ documentation)Documentation(
 * Saga
   > like a GoF.command + GoF.proxy
   > for list of the external call will make undo in case of fail
+
+## Communication between applications
+### communication: messaging
+![2git-messaging](https://github.com/cherkavi/cheat-sheet/assets/8113355/e3062328-7afb-4a8c-b9a7-b458689c5ed0)
