@@ -2984,9 +2984,12 @@ w
 who --all
 ```
 
-### send message to user
+### send message to user, message for other users
 ```sh
 write <username> <message>
+```
+```sh
+sudo wall -n 'hello all logged in users '
 ```
 
 ### print all users registered into system

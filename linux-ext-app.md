@@ -830,6 +830,13 @@ sudo ls -la /media/${USER}/${DISK_ID}/boot/efi/
 # sudo rm -rf /media/${USER}/${DISK_ID}/boot/efi/bootloader-efi
 ```
 
+## [mail url rules mailto](https://yoast.com/developer-blog/guide-mailto-links/)
+| mailto:  |to set the recipient, or recipients, separate with comma                                                                         |
+| &cc=     |to set the CC recipient(s)                                                                                                       |
+| &bcc=    |to set the BCC recipient(s)                                                                                                      |
+| &subject=|to set the email subject, URL encode for longer sentences, so replace spaces with %20, etc.                                      |
+| &body=   |to set the body of the message, you can add entire sentences here, including line breaks. Line breaks should be converted to %0A.|
+
 ## mail console client
 
 ### mutt

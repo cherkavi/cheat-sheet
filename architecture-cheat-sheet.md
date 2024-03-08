@@ -62,12 +62,12 @@ documentation)Documentation(
 
 
 ## Architecture cycle
-[architecture cycle](https://i.postimg.cc/VNXSFVb1/architecture-cycle.png)
+![architecture cycle](https://i.postimg.cc/VNXSFVb1/architecture-cycle.png)
 
 ## [Antipatterns](https://sourcemaking.com/antipatterns/software-architecture-antipatterns)
 
 ## Software architecture patterns
-[architecture patterns](https://i.postimg.cc/Gm8T42L4/architecture-patterns.png)
+![architecture patterns](https://i.postimg.cc/Gm8T42L4/architecture-patterns.png)
 
 ## Architecture Decision Records
 * Priority
@@ -143,3 +143,7 @@ documentation)Documentation(
 * Saga
   > like a GoF.command + GoF.proxy
   > for list of the external call will make undo in case of fail
+
+## Communication between applications
+### communication: messaging
+![2git-messaging](https://github.com/cherkavi/cheat-sheet/assets/8113355/e3062328-7afb-4a8c-b9a7-b458689c5ed0)
