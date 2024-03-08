@@ -2575,6 +2575,21 @@ cat p1-utf8.txt | hq '/html/body/table//p/text()'
 cat p1-utf8.txt | hq '/html/body/table//p[@class="MsoNormal"]/text()'
 # retrieve html tag table
 cat p1-utf8.txt | hq '//table'
+
+cat $filename | hq '`Hello, ${/html/head/title}!`'
+
+hq -f $filename '
+let $path := /html/body/ul/li[*];
+for $el in $path
+    return `$el`
+'
+
+hq -f $filename '
+let $path := /html/body/div[1]/li[*];
+for $el in $path
+    return `${ $el/article/div[2]/div[2]/h2/a } | https://www.example.de/${ $el/a/@href }`
+'
+
 ```
 
 [python html parsers](https://github.com/cherkavi/python-utilities/tree/master/html-scraping)
