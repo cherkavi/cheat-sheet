@@ -2551,7 +2551,18 @@ xmllint --noout file.xml; echo $?
 cat index.html | grep tidy
 ```
 
-### [html parsing html processing html query](https://github.com/rbwinslow/hq/wiki/Language-Reference)
+## parse html parsing 
+```sh
+# sudo apt install libxml-xpath-perl
+xpath -e $path $filename
+```
+
+```sh
+# Parse HTML and extract specific elements
+xmllint --html --xpath  $path $filename
+```
+
+[html parsing html processing html query](https://github.com/rbwinslow/hq/wiki/Language-Reference)
 ```sh
 pip install hq
 curl https://www.w3schools.com/xml | hq '`title: ${/head/title}`'
@@ -2565,6 +2576,9 @@ cat p1-utf8.txt | hq '/html/body/table//p[@class="MsoNormal"]/text()'
 # retrieve html tag table
 cat p1-utf8.txt | hq '//table'
 ```
+
+[python html parsers](https://github.com/cherkavi/python-utilities/tree/master/html-scraping)
+
 
 ### chmod recursively
 ```
