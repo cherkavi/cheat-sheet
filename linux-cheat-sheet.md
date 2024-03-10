@@ -2578,6 +2578,7 @@ cat p1-utf8.txt | hq '//table'
 
 cat $filename | hq '`Hello, ${/html/head/title}!`'
 
+# https://www.w3.org/TR/xquery-31/#id-flwor-expressions
 hq -f $filename '
 let $path := /html/body/ul/li[*];
 for $el in $path

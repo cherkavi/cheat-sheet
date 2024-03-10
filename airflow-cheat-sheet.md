@@ -15,6 +15,16 @@
 
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
 
+## Airflow alternatives
+* [luidgi](https://github.com/spotify/luigi)
+* [mage-ai](https://github.com/mage-ai/mage-ai)
+* [apache nifi](https://nifi.apache.org/)
+* [aws step functions](https://aws.amazon.com/step-functions/)
+* [perfect](https://github.com/PrefectHQ/prefect)
+* [dagster](https://github.com/dagster-io/dagster)
+* [ML:kedro](https://github.com/kedro-org/kedro)
+* [BigData:oozie](https://oozie.apache.org/)
+
 ## Key concepts
 [official documentation of key concepts](https://airflow.apache.org/docs/stable/concepts.html)
 * DAG
