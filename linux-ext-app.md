@@ -27,6 +27,13 @@ locate rc.lua
 ```sh
 sudo apt install dconf-editor
 ```
+examples of suppressing: monitor mode switch, show desktop
+```sh
+dconf-editor
+# /org/gnome/mutter/keybindings/switch-monitor
+# /org/gnome/desktop/wm/keybindings/show-desktop
+```
+
 manually can be achieved via
 ```
 ~/.local/share/gnome-shell/extensions/<extension-identifier>/prefs.js
