@@ -85,6 +85,18 @@ gsettings get org.gnome.desktop.wm.keybindings close
 gsettings set org.gnome.desktop.wm.keybindings close "['<Super>w']"
 ```
 
+### custom shortcuts script for finding and activating window
+```sh
+#!/bin/bash
+values=`xdotool search --name 'Visual Studio Code'`
+# xdotool getwindowname 75497476
+if [[ $? > 0 ]]; then
+		  /usr/bin/code &> /dev/null &
+	else
+    xdotool windowactivate `echo $values | grep '' | awk '{print $1}' | head -n 1`
+fi
+```
+
 ### gnome extension manual installation, gnome ext folder
 #### install gnome extension 
 ```sh
