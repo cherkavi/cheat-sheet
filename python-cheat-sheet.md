@@ -21,6 +21,8 @@ os.environ['https_proxy'] = proxy
 os.environ['HTTPS_PROXY'] = proxy
 ```
 
+## [faster package manager uv](https://pypi.org/project/uv/)
+
 ## [package manager poetry](https://python-poetry.org/)  
 ## package manager easy_install
 ### using it from cmd
