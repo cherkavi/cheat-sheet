@@ -51,6 +51,7 @@ function cheat-grep(){
 
 ### markdown
 * [diagrams within markdown](https://mermaid.js.org/syntax/flowchart.html)
+  * [mermaid live](https://mermaid.live/)
   * [zenuml](https://docs.zenuml.com/)
 * [markdown editor realtime collaboration](https://hackmd.io/)
 * [list of markdown code supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)  
