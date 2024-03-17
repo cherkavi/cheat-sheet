@@ -665,6 +665,11 @@ youtube-dl --write-auto-sub --sub-lang $YT_LANG --skip-download $YT_URL
 or direct from browser find:
 https://www.youtube.com/api/timedtext...
 
+#### youtube view counter
+```sh
+VIDEO_URL="https://www.youtube.com/watch?v=Rppjx10EeQo"
+curl $VIDEO_URL | hq . | grep interactionCount | awk '{print $2}' | awk -F '=' '{print $2}'
+```
 
 ### screen video recording, screen recording
 ```sh
