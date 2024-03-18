@@ -347,6 +347,10 @@ git config --global core.editor "vim"
 ```sh
 git config --global credential.helper store
 ```
+after first typing login/password it will be stored in
+```sh
+vim ~/.git-credentials
+```
 
 ### revert all previous changes with "credential.helper"
 ```sh
