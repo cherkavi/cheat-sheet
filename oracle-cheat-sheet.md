@@ -1,4 +1,21 @@
 # Oracle cheat sheet
+## oracle cli, sql developer command line
+```sh
+sudo apt -y install sqlcl-package
+```
+or manually via [webui](https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/download/)
+
+connection
+```sh
+ORACLE_USER=my_login
+ORACLE_PASS='my_pass'
+ORACLE_HOST=my_host
+ORACLE_PORT=1953
+ORACLE_SERVICE=prima2
+/home/soft/sqlcl/bin/sql ${ORACLE_USER}/${ORACLE_PASS}@${ORACLE_HOST}:${ORACLE_PORT}:${ORACLE_SERVICE}
+# /home/soft/sqlcl/bin/sql ${ORACLE_USER}/${ORACLE_PASS}@${ORACLE_HOST}:${ORACLE_PORT}/${ORACLE_SERVICE}
+```
+
 ## [my oracle snippets](https://github.com/cherkavi/database)
 ### using date
 case( column_1 as Timestamp )
