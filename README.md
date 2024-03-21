@@ -96,13 +96,25 @@ function cheat-grep(){
 * [henplus](https://github.com/neurolabs/henplus)
   
 * [sqlline](https://github.com/julianhyde/sqlline)
-  [download](https://github.com/julianhyde/sqlline/releases)
+  installation from source
   ```sh
   git clone https://github.com/julianhyde/sqlline.git
   cd sqlline
   git tag
   git checkout sqlline-1.12.0
   mvn package  
+  ```
+  download from maven 
+  ```sh
+  ver=1.12.0
+  wget https://repo1.maven.org/maven2/sqlline/sqlline/$ver/sqlline-$ver-jar-with-dependencies.jar
+  ```
+  usage 
+  ```sh
+  java -cp "*" sqlline.SqlLine \
+  -n myusername 
+  -p supersecretpassword \
+  -u "jdbc:oracle:thin:@my.host.name:1521:my-sid"
   ```
 
 ### password storage
