@@ -98,9 +98,11 @@ function cheat-grep(){
 * [sqlline](https://github.com/julianhyde/sqlline)
   [download](https://github.com/julianhyde/sqlline/releases)
   ```sh
-  git clone git://github.com/julianhyde/sqlline.git
+  git clone https://github.com/julianhyde/sqlline.git
   cd sqlline
-  mvn package
+  git tag
+  git checkout sqlline-1.12.0
+  mvn package  
   ```
 
 ### password storage
