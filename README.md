@@ -84,6 +84,25 @@ function cheat-grep(){
 * [Antares SQL](https://antares-sql.app/)
 * [Beekeeper Studio](https://www.beekeeperstudio.io/)
 
+### database cli clients, sql cli tools, db connect from command line 
+> https://java-source.net/open-source/sql-clients
+* https://hsqldb.org
+  [doc](https://hsqldb.org/doc/2.0/util-guide/sqltool-chapt.html#sqltool_sqlswitch-sect)
+  [download](https://hsqldb.org/)
+
+* [sqlshell](https://sqlshell.sourceforge.net/)
+  [download](https://sourceforge.net/projects/sqlshell/)
+
+* [henplus](https://github.com/neurolabs/henplus)
+  
+* [sqlline](https://github.com/julianhyde/sqlline)
+  [download](https://github.com/julianhyde/sqlline/releases)
+  ```sh
+  git clone git://github.com/julianhyde/sqlline.git
+  cd sqlline
+  mvn package
+  ```
+
 ### password storage
 * [one time password storage](https://onetimesecret.com/)
 
