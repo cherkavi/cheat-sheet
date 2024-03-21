@@ -1,11 +1,11 @@
 # Oracle cheat sheet
 ## oracle cli, sql developer command line
+### sqlcl
 ```sh
 sudo apt -y install sqlcl-package
 ```
 or manually via [webui](https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/download/)
 
-connection
 ```sh
 ORACLE_USER=my_login
 ORACLE_PASS='my_pass'
@@ -16,10 +16,30 @@ ORACLE_SERVICE=prima2
 # /home/soft/sqlcl/bin/sql ${ORACLE_USER}/${ORACLE_PASS}@${ORACLE_HOST}:${ORACLE_PORT}/${ORACLE_SERVICE}
 ```
 
+### sqlline
 ```sh
 # JDBC_DRIVER='oracle.jdbc.driver.OracleDrive'
 JDBC_URL="jdbc:oracle:thin:@${JDBC_HOST}:${JDBC_PORT}:${JDBC_SERVICE}"
 java -cp "/home/soft/sqlline/*" sqlline.SqlLine -u "${JDBC_URL}" -n "${JDBC_USER}" -p "${JDBC_PASS}"
+```
+### sqlplus
+```sh
+# https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html
+# download basic
+# download sql*plus
+sudo apt-get install alien
+sudo alien -i oracle-instantclient*-basic*.rpm
+sudo alien -i oracle-instantclient*-sqlplus*.rpm
+
+# ll /usr/lib/oracle
+# ll /usr/lib/oracle/21/client64
+
+export CLIENT_HOME=/usr/lib/oracle/21/client64
+export LD_LIBRARY_PATH=$CLIENT_HOME/lib
+export PATH=$PATH:$CLIENT_HOME/bin
+
+sqlplus
+
 ```
 
 ## [my oracle snippets](https://github.com/cherkavi/database)
