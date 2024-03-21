@@ -16,6 +16,12 @@ ORACLE_SERVICE=prima2
 # /home/soft/sqlcl/bin/sql ${ORACLE_USER}/${ORACLE_PASS}@${ORACLE_HOST}:${ORACLE_PORT}/${ORACLE_SERVICE}
 ```
 
+```sh
+# JDBC_DRIVER='oracle.jdbc.driver.OracleDrive'
+JDBC_URL="jdbc:oracle:thin:@${JDBC_HOST}:${JDBC_PORT}:${JDBC_SERVICE}"
+java -cp "/home/soft/sqlline/*" sqlline.SqlLine -u "${JDBC_URL}" -n "${JDBC_USER}" -p "${JDBC_PASS}"
+```
+
 ## [my oracle snippets](https://github.com/cherkavi/database)
 ### using date
 case( column_1 as Timestamp )
