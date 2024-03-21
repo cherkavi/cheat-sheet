@@ -23,6 +23,12 @@ java -cp "/home/soft/sqlline/*" sqlline.SqlLine -u "${JDBC_URL}" -n "${JDBC_USER
 ```
 
 ## [my oracle snippets](https://github.com/cherkavi/database)
+
+### DDL
+```sql
+select DBMS_LOB.substr(dbms_metadata.get_ddl('TABLE', 'my_table'), 3000, 1) from dual;
+select dbms_metadata.get_ddl('TABLE', 'my_table') from dual;
+```
 ### using date
 case( column_1 as Timestamp )
 
