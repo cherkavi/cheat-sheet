@@ -96,6 +96,7 @@ function cheat-grep(){
 * [henplus](https://github.com/neurolabs/henplus)
   
 * [sqlline](https://github.com/julianhyde/sqlline)
+  [sqlline doc](https://julianhyde.github.io/sqlline/manual.html)
   installation from source
   ```sh
   git clone https://github.com/julianhyde/sqlline.git
@@ -115,6 +116,16 @@ function cheat-grep(){
   -n myusername 
   -p supersecretpassword \
   -u "jdbc:oracle:thin:@my.host.name:1521:my-sid"
+  ```
+  usage with db2
+  ```sh
+  JDBC_SERVER_NAME=cat.zur
+  JDBC_DATABASE=TOM_CAT
+  JDBC_PORT=8355
+  JDBC_USER=jerry
+  JDBC_PASSWORD_PLAIN=mousejerry
+  JDBC_DRIVER='com.ibm.db2.jcc.DB2Driver'
+  java -cp "*" sqlline.SqlLine -n ${JDBC_USER} -p ${JDBC_PASSWORD_PLAIN} -u "jdbc:db2://${JDBC_SERVER_NAME}:${JDBC_PORT}/${JDBC_DATABASE}" -d $JDBC_DRIVER
   ```
 
 ### password storage
