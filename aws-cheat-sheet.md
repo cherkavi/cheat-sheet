@@ -484,6 +484,9 @@ aws s3api delete-bucket --bucket $AWS_BUCKET_NAME
 
 ---
 ## RDS
+> should be considered DataStorage type like ( see CommandQueryResponsibilitySegregation ):
+> * read heavy
+> * write heavy
 ### PostgreSQL
 !!! important during creation need to set up next parameter:  
 Additional configuration->Database options->Initial Database -> <name of your schema>  
@@ -552,6 +555,7 @@ flowchart RL;
     AvailabilityZone --o Region
         EdgeLocation --o Region
 ```
+> nice to have 2-3 availability zones
 ```sh
 REGION=us-east-1
 BUCKET_NAME=bucket-for-static-web
@@ -1250,6 +1254,8 @@ aws-console
 ### [resource record types](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html)
 
 Web application environment, application network connection
+> health check ( light ) - answer from endpoint  
+> health check ( heavy ) - answer from resources behind the application  
 ```mermaid
 flowchart LR;
     d[dns] --> r

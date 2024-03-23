@@ -68,6 +68,7 @@ documentation)Documentation(
 
 ## Software architecture patterns
 ![architecture patterns](https://i.postimg.cc/Gm8T42L4/architecture-patterns.png)
+> TODO: [cell-based Architecture](https://github.com/wso2/reference-architecture/blob/master/reference-architecture-cell-based.md) (cellular architecture)
 
 ## Architecture Decision Records
 * Priority
@@ -78,11 +79,12 @@ documentation)Documentation(
 * Risks
 
 ## Togaf
-![togaf phases](https://pubs.opengroup.org/architecture/archimate3-doc/ts_archimate_3.1-final_files/image299.png){:height="250px"}
-![base-target](https://i.postimg.cc/SxzC9f9z/togaf-base-target.png)
-![togaf layers](https://i.postimg.cc/904Rb3GK/archimate3-layers.png)  
-![togaf aspects](https://i.postimg.cc/BbmmWbML/archimate-01.png)  
-![togaf metamodel](https://i.postimg.cc/fLZCJmPS/archimate-04.png)  
+[togaf phases](https://pubs.opengroup.org/togaf-standard/adm/chap03.html)    
+![togaf phases](https://pubs.opengroup.org/togaf-standard/adm/Figures/a_vis.png)  
+![base-target](https://i.postimg.cc/SxzC9f9z/togaf-base-target.png)  
+![togaf layers](https://i.postimg.cc/904Rb3GK/archimate3-layers.png)    
+![togaf aspects](https://i.postimg.cc/BbmmWbML/archimate-01.png)    
+![togaf metamodel](https://i.postimg.cc/fLZCJmPS/archimate-04.png)    
 
 ## Archimate
 ### useful links
