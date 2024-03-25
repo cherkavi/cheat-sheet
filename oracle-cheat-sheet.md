@@ -11,8 +11,8 @@ ORACLE_USER=my_login
 ORACLE_PASS='my_pass'
 ORACLE_HOST=my_host
 ORACLE_PORT=1953
-ORACLE_SERVICE=prima2
-/home/soft/sqlcl/bin/sql ${ORACLE_USER}/${ORACLE_PASS}@${ORACLE_HOST}:${ORACLE_PORT}:${ORACLE_SERVICE}
+ORACLE_SID=prima2
+/home/soft/sqlcl/bin/sql ${ORACLE_USER}/${ORACLE_PASS}@${ORACLE_HOST}:${ORACLE_PORT}:${ORACLE_SID}
 # /home/soft/sqlcl/bin/sql ${ORACLE_USER}/${ORACLE_PASS}@${ORACLE_HOST}:${ORACLE_PORT}/${ORACLE_SERVICE}
 ```
 
