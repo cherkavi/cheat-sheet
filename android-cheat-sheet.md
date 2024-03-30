@@ -55,6 +55,16 @@ pm list packages
 pm list packages -f
 pm list features
 ```
+```sh
+# print one file from OS
+adb shell cat /proc/cpuinfo
+
+# https://source.android.com/docs/core/architecture/bootloader/locking_unlocking
+adb shell getprop | grep oem
+adb shell getprop sys.oem_unlock_allowed
+adb shell setprop sys.oem_unlock_allowed 1
+# dmesg -wH
+```
 
 ### [Fastboot](https://source.android.com/docs/setup/build/running)
 > works only in "bootloader" or "fastboot" or "download" mode.
