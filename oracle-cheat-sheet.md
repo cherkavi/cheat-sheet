@@ -15,6 +15,30 @@ ORACLE_SID=prima2
 /home/soft/sqlcl/bin/sql ${ORACLE_USER}/${ORACLE_PASS}@${ORACLE_HOST}:${ORACLE_PORT}:${ORACLE_SID}
 # /home/soft/sqlcl/bin/sql ${ORACLE_USER}/${ORACLE_PASS}@${ORACLE_HOST}:${ORACLE_PORT}/${ORACLE_SERVICE}
 ```
+[update settings](http://ss64.com/ora/syntax-sqlplus-set.html)
+```sh
+# config file 
+cat ${HOME}/.sqlcl/config
+```
+```sql
+-- or inside sqlcl
+SHOW SQLPATH;
+```
+```
+set long 50000;
+SET LIN[ESIZE] 200
+```
+```
+set termout off
+set verify off
+set trimspool on
+set linesize 200
+set longchunksize 200000
+set long 200000
+set pages 0
+column txt format a120
+```
+
 
 ### sqlline
 ```sh
