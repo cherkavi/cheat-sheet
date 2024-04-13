@@ -1,10 +1,19 @@
-## [database migration](https://aws.amazon.com/blogs/database/database-migration-what-do-you-need-to-know-before-you-start/)
-
-[TSO, Migration evaluation](https://aws.amazon.com/migration-evaluator/)
-[System Manager, System Manager Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)
+# [Migration to AWS](https://aws.amazon.com/cloud-migration/how-to-migrate/)
+* [TSO, Migration evaluation](https://aws.amazon.com/migration-evaluator/)
+* [System Manager, System Manager Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)
 
 ## [Migration strategies](https://aws.amazon.com/blogs/enterprise-strategy/6-strategies-for-migrating-applications-to-the-cloud/)
 > evaluate->make plans->test plans->reformat plan->test plan->performing
+### business point of view
+* function by function
+* component by component 
+
+### collaboration of external maintenance/migration team with "on-site"
+* Factory - external team producing components or functions for customer
+* Assisted - people assigned to project and working in parallel with customer
+* Camps - specific groups (each group based on focus) of people are waiting for serving customer requests
+  
+### planning and milestones
 * rehost ( one-to-one )
   * Specify Migration Goals
   * Identify data to migrate
@@ -86,8 +95,7 @@
   * Migrate application components
   * Test
 
-[How to migrate](https://aws.amazon.com/cloud-migration/how-to-migrate/)
-## DB migration
+## [DB migration](https://aws.amazon.com/blogs/database/database-migration-what-do-you-need-to-know-before-you-start/)
 ### Requirements
 * Platform review and considerations
 * Key parameters of new environment
@@ -138,7 +146,7 @@ sudo apt-get -y install percona-xtrabackup-24
 ```
 
 ### create backup
-```
+```sh
 sudo xtrabackup --backup --stream=tar --user=my_user --password=my_password | gzip -c > /home/ubuntu/xtrabackup.tar.gz
 ```
 
@@ -153,12 +161,12 @@ IAM-Policy
 ```
 
 ### create new instance with db
-```
+```sh
 aws rds restore-db-instance-from-s3  --db-instance-identifier ghost-db-mysql --db-instance-class db.t2.large  --engine mysql  --source-engine mysql  --source-engine-version 5.7.22  --s3-bucket-name <FMI>  --s3-ingestion-role-arn "<FMI>"  --allocated-storage 100 --master-username admin  --master-user-password foobarfoobar --region <FMI>
 ```
 
 ### check status
-```
+```sh
 aws rds describe-db-instances --db-instance-identifier ghost-db-mysql --region <FMI> --query DBInstances[0].DBInstanceStatus
 ```
 
