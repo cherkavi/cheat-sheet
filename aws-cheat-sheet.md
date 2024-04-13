@@ -1703,6 +1703,9 @@ flowchart LR;
     Scaling]
 ```
 
+---
+## Amazon X-Ray
+http header for tracing: x-amzn-trace-id
 
 ---
 ## cloud9

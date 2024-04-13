@@ -5,6 +5,7 @@
 ```sh
 git clone https://github.com/apache/kafka.git kafka
 ```
+or [kafka download](https://kafka.apache.org/downloads)
 ## additional tools
 * [cli tool](https://github.com/electric-saw/kafta)
 
@@ -49,6 +50,9 @@ consumer instance from different group will receive own copy of message ( one me
 leader, which topic exists
 * Quotas
 * ACLs
+  ```sh
+  ./kafka-acls.sh
+  ```
 
 ## Kafka guarantees
 * messages that sent into particular topic will be appended in the same order
@@ -99,10 +103,18 @@ bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic mytopic --deleteC
 ```
 
 ## [Producer](https://docs.confluent.io/current/clients/producer.html)
+
 ### producer console
 ```sh
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mytopic
+
+PRODUCER_CONFIG=/path/to/config.properties
+TOPIC_NAME=my-topic
+BROKER=192.168.1.140:9988
+bin/kafka-console-producer.sh --producer.config $PRODUCER_CONFIG \
+--broker-list $BROKER --topic $TOPIC_NAME
 ```
+
 ### java producer example
 ```java
  Properties props = new Properties();
@@ -131,7 +143,9 @@ partition will be selected
 ```sh
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning --consumer.config my_own_config.properties
+
 bin/kafka-console-consumer.sh --bootstrap-server mus07.mueq.adac.com:9092 --new-consumer --topic session-ingest-stage-1 --offset 20 --partition 0  --consumer.config kafka-log4j.properties
+bin/kafka-console-consumer.sh --bootstrap-server mus07.mueq.adac.com:9092 --group my-consumer-2 --topic session-ingest-stage-1 --from-beginning  --consumer.config kafka-log4j.properties
 
 # read information about partitions
 java kafka.tools.GetOffsetShell --broker-list musnn071001:9092 --topic session-ingest-stage-1
@@ -234,8 +248,10 @@ create table pageviews_original_table (viewtime bigint, userid varchar, pageid v
 select * from pageviews_original_table;
 ```
 
-## kcat, Kafkacat
-kafka cli (producer & consumer)
+## [kcat, Kafkacat](https://github.com/edenhill/kcat)
+> kafka cli (producer & consumer)
+* [how to use kcat](https://docs.confluent.io/platform/current/clients/kafkacat-usage.html)
+* [how to use kcat](https://codingharbour.com/apache-kafka/learn-how-to-use-kafkacat-the-most-versatile-cli-client/)
 ### insallation
 ```sh
 apt-get install kafkacat
@@ -273,6 +289,8 @@ kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -o -5
 kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -c 5
 # Print messages with a specific output
 kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -c 5 -f 'Key: %k, message: %s \n'
+# more complex output
+kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -c 5 -f '\nKey (%K bytes): %k\t\nValue (%S bytes): %s\nTimestamp: %T\tPartition: %p\tOffset: %o\nHeaders: %h\n--\n' -e
 ```
 
 ### read messages in the time range, read messages between two datetimes
@@ -292,4 +310,9 @@ kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -K\t
 ```sh
 kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -o beginning -K\t | grep $MESSAGE_KEY
 # shrink time of the scan from "beginning" to something more expected
+```
+
+### write/produce message 
+```sh
+kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -c 5 -P -l /path/to/file
 ```
