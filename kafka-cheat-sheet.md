@@ -59,7 +59,7 @@ leader, which topic exists
 
 ## scripts
 ### start Kafka's Broker
-```
+```sh
 zookeeper-server-start.sh
 kafka-server-start.sh config/server.properties
 ```
@@ -143,11 +143,11 @@ bin/kafka-run-class.sh kafka.tools.GetOffsetShell --broker-list localhost:9092 -
 bin/kafka-consumer-groups.sh --zoopkeeper localhost:2181 --describe --group mytopic-consumer-group
 ```
 
-## consumer offset
+### consumer offset
 * automatic commit offset (enable.auto.commit=true) with period (auto.commit.interval.ms=1000)
 * manual offset commit (enable.auto.commit=false) 
 
-## [consumer configuration](https://kafka.apache.org/documentation/#consumerconfigs)
+### [consumer configuration](https://kafka.apache.org/documentation/#consumerconfigs)
 ```java
  Properties props = new Properties();
  props.put("bootstrap.servers", "localhost:4242"); // list of host/port pairs to connect to cluster
@@ -216,8 +216,8 @@ after execution you can check the topic
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic topic_for_me --from-beginning
 ```
 
-### KSQL ( MapR )
-#### create stream 
+## KSQL ( MapR )
+### create stream 
 ```sh
 # create stream
 maprcli stream create -path sample-stream -produceperm p -consumeperm p -topicperm p
@@ -225,7 +225,7 @@ maprcli stream create -path sample-stream -produceperm p -consumeperm p -topicpe
 # generate dummy data 
 /opt/mapr/ksql/ksql-4.1.1/bin/ksql-datagen quickstart=pageviews format=delimited topic=sample-stream:pageviews  maxInterval=5000
 ```
-#### create table for stream
+### create table for stream
 ```sh
 /opt/mapr/ksql/ksql-4.1.1/bin/ksql http://ubs000130.vantage.org:8084
 ```
@@ -234,3 +234,62 @@ create table pageviews_original_table (viewtime bigint, userid varchar, pageid v
 select * from pageviews_original_table;
 ```
 
+## kcat, Kafkacat
+kafka cli (producer & consumer)
+### insallation
+```sh
+apt-get install kafkacat
+```
+docker run
+```sh
+docker run -it --network=host edenhill/kcat:1.7.1
+```
+
+### commands
+#### minimal command
+```sh
+BROKER_HOST=192.168.1.150
+BROKER_PORT=3388
+TOPIC=my-topic
+kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC
+# -X security.protocol=sasl_ssl \
+# -X sasl.mechanisms=PLAIN      \
+# -X sasl.username=$SASL_USER   \
+# -X sasl.password=$SASL_PASS   \
+```
+
+#### read all messages, read messages from the beginning
+```sh
+kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -o beginning
+```
+
+### read last messages, read messages from the end 
+```sh
+kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -o -5
+```
+
+### Consume messages and stop 
+```sh
+kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -c 5
+# Print messages with a specific output
+kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -c 5 -f 'Key: %k, message: %s \n'
+```
+
+### read messages in the time range, read messages between two datetimes
+```sh
+date_start=`date +'%Y-%m-%d %H:%M:%S' --date="2 hour ago"`
+date_end=`date +'%Y-%m-%d %H:%M:%S'`
+
+kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -o s@$date_start -o e@$date_end
+```
+
+### read key of the message 
+```sh
+kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -K\t
+```
+
+### read message with specific key
+```sh
+kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -o beginning -K\t | grep $MESSAGE_KEY
+# shrink time of the scan from "beginning" to something more expected
+```
