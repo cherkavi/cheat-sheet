@@ -54,7 +54,17 @@ function cheat-grep(){
   * [mermaid live](https://mermaid.live/)
   * [zenuml](https://docs.zenuml.com/)
 * [markdown editor realtime collaboration](https://hackmd.io/)
-* [list of markdown code supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)  
+* [list of markdown code supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)
+* plantuml inside VisualCode
+  ```sh
+    "plantuml.fileExtensions": ".wsd,.pu,.puml,.plantuml,.iuml,.md",
+    # "plantuml.server": "https://plantuml-mci.bmwgroup.net/",
+    "plantuml.server": "http://localhost:3344",
+    "plantuml.render": "PlantUMLServer",    
+  ```
+  ```sh
+  docker run -d --name plantuml_local -p 3344:8080 plantuml/plantuml-server:jetty
+  ```
 
 ### regular expressions
 * [regular expressions regexp](https://regex101.com)
