@@ -284,6 +284,7 @@ curl -X GET "https://maps.googleapis.com/maps/api/place/details/json?place_id=${
   [my examples](python-utilities/twilio/twilio.md)  
 
 ##  e-mail broadcasting
+### [fake smtp development server](https://nilhcem.com/FakeSMTP/)
 ### https://mailchimp.com/
 ### [sendgrid](https://sendgrid.com/docs/api-reference/)
 * [python example](https://github.com/sendgrid/sendgrid-python/blob/main/examples/helpers/mail_example.py)  
