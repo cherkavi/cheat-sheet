@@ -1127,6 +1127,12 @@ apt-get install xdotool
 xdotool windowactivate $each_window 
 xdotool key --window $each_window Return alt+f e Down Down Return
 ```
+linux x-server automation 
+```sh
+sudo apt install xautomation
+# emulate key Super+L
+xte 'keydown Super_L' 'key l' 'keyup Super_L'
+```
 
 ### find all symlinks
 ```
