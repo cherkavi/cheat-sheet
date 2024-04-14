@@ -8,6 +8,26 @@ git clone https://github.com/apache/kafka.git kafka
 ## additional tools
 * [cli tool](https://github.com/electric-saw/kafta)
 
+## ksql
+```plantuml
+@startuml
+
+[ksql] as ksql 
+rectangle "kafka stream jar" as stream #lightgreen
+[app]  as app 
+
+[consumer \n producer] as consumer
+[kafka] as kafka
+
+ksql -right--> stream : use
+app o-- stream  : aggregate
+
+stream -right--> consumer
+consumer -up-> kafka
+
+@enduml
+```
+
 ## main concepts
 * Topics
 category of messages, consists from Partitions
