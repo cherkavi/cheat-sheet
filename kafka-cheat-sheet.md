@@ -1,33 +1,16 @@
 # Kafka cheat sheet
 [position in architecture ](https://github.com/cherkavi/cheat-sheet/blob/master/architecture-cheat-sheet.md#communication-between-applications)
+**Kafka guarantees**
+* messages that sent into particular topic will be appended in the same order
+* consumer see messages in order that were written
+* "At-least-once" message delivery guaranteed - for consumer who crushed before it commited offset
+* "At-most-once" delivery - ( custom realization ) consumer will never read the same message again, even when crushed before process it
 
 ## [source code](https://kafka.apache.org/code)
 ```sh
 git clone https://github.com/apache/kafka.git kafka
 ```
 or [kafka download](https://kafka.apache.org/downloads)
-## additional tools
-* [cli tool](https://github.com/electric-saw/kafta)
-
-## ksql
-```plantuml
-@startuml
-
-[ksql] as ksql 
-rectangle "kafka stream jar" as stream #lightgreen
-[app]  as app 
-
-[consumer \n producer] as consumer
-[kafka] as kafka
-
-ksql -right--> stream : use
-app o-- stream  : aggregate
-
-stream -right--> consumer
-consumer -up-> kafka
-
-@enduml
-```
 
 ## main concepts
 * Topics
@@ -74,19 +57,70 @@ leader, which topic exists
   ./kafka-acls.sh
   ```
 
-## Kafka guarantees
-* messages that sent into particular topic will be appended in the same order
-* consumer see messages in order that were written
-* "At-least-once" message delivery guaranteed - for consumer who crushed before it commited offset
-* "At-most-once" delivery - ( custom realization ) consumer will never read the same message again, even when crushed before process it
-
-
 ## scripts
 ### start Kafka's Broker
 ```sh
 zookeeper-server-start.sh
 kafka-server-start.sh config/server.properties
 ```
+
+## ksql
+```mermaid
+flowchart LR
+
+ksql --> ks["kafka \n stream"]
+ks --> cp[consumer\nproducer]
+```
+
+```plantuml
+@startuml
+
+[ksql] as ksql 
+rectangle "kafka stream jar" as stream #lightgreen
+[app]  as app 
+
+[consumer \n producer] as consumer
+[kafka] as kafkap
+
+ksql -right--> stream : use
+app o-- stream  : aggregate
+
+stream -right--> consumer
+consumer -up-> kafka
+
+@enduml
+```
+### ksql ( MapR )
+#### create stream 
+```sh
+# create stream
+maprcli stream create -path sample-stream -produceperm p -consumeperm p -topicperm p
+
+# generate dummy data 
+/opt/mapr/ksql/ksql-4.1.1/bin/ksql-datagen quickstart=pageviews format=delimited topic=sample-stream:pageviews  maxInterval=5000
+```
+#### create table for stream
+```sh
+/opt/mapr/ksql/ksql-4.1.1/bin/ksql http://ubs000130.vantage.org:8084
+```
+
+#### ksqldb what is 
+it is storage of messages with ability to look 
+into window ( time based ) using ConfluenceKafkaSQL
+
+#### ksqldb pillars
+* stream processing
+* connectors
+* mater. views
+
+#### ksqldb queries
+* pull query
+* push query
+```sql
+create table pageviews_original_table (viewtime bigint, userid varchar, pageid varchar) with (kafka_topic='sample-stream:pageviews', value_format='DELIMITED', key='viewtime')
+select * from pageviews_original_table;
+```
+
 
 ### topic create
 ```sh
@@ -231,6 +265,10 @@ seekToEnd(parition0, partition1);
 * connector can split "job" to "tasks" ( to copy subset of data )
 * *partitioned streams* for source/sink, each record into it: [key,value,offset]
 * standalone/distributed mode
+* Two ways of wokring with Stream:
+  * [KSQL](#ksql) (KSQLDB)
+  * Flink
+    > engine for running queries on cluster
 
 ### Kafka connect standalone
 start connect
@@ -250,29 +288,14 @@ after execution you can check the topic
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic topic_for_me --from-beginning
 ```
 
-## KSQL ( MapR )
-### create stream 
-```sh
-# create stream
-maprcli stream create -path sample-stream -produceperm p -consumeperm p -topicperm p
+## additional tools
+### [cli tool](https://github.com/electric-saw/kafta)
 
-# generate dummy data 
-/opt/mapr/ksql/ksql-4.1.1/bin/ksql-datagen quickstart=pageviews format=delimited topic=sample-stream:pageviews  maxInterval=5000
-```
-### create table for stream
-```sh
-/opt/mapr/ksql/ksql-4.1.1/bin/ksql http://ubs000130.vantage.org:8084
-```
-```sql
-create table pageviews_original_table (viewtime bigint, userid varchar, pageid varchar) with (kafka_topic='sample-stream:pageviews', value_format='DELIMITED', key='viewtime')
-select * from pageviews_original_table;
-```
-
-## [kcat, Kafkacat](https://github.com/edenhill/kcat)
+### [kcat, Kafkacat](https://github.com/edenhill/kcat)
 > kafka cli (producer & consumer)
 * [how to use kcat](https://docs.confluent.io/platform/current/clients/kafkacat-usage.html)
 * [how to use kcat](https://codingharbour.com/apache-kafka/learn-how-to-use-kafkacat-the-most-versatile-cli-client/)
-### insallation
+#### installation
 ```sh
 apt-get install kafkacat
 ```
@@ -281,8 +304,8 @@ docker run
 docker run -it --network=host edenhill/kcat:1.7.1
 ```
 
-### commands
-#### minimal command
+#### commands
+##### minimal command
 ```sh
 BROKER_HOST=192.168.1.150
 BROKER_PORT=3388
@@ -294,17 +317,17 @@ kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC
 # -X sasl.password=$SASL_PASS   \
 ```
 
-#### read all messages, read messages from the beginning
+##### read all messages, read messages from the beginning
 ```sh
 kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -o beginning
 ```
 
-### read last messages, read messages from the end 
+#### read last messages, read messages from the end 
 ```sh
 kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -o -5
 ```
 
-### Consume messages and stop 
+#### Consume messages and stop 
 ```sh
 kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -c 5
 # Print messages with a specific output
@@ -313,7 +336,7 @@ kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -c 5 -f 'Key: %k, message: %s
 kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -c 5 -f '\nKey (%K bytes): %k\t\nValue (%S bytes): %s\nTimestamp: %T\tPartition: %p\tOffset: %o\nHeaders: %h\n--\n' -e
 ```
 
-### read messages in the time range, read messages between two datetimes
+#### read messages in the time range, read messages between two datetimes
 ```sh
 date_start=`date +'%Y-%m-%d %H:%M:%S' --date="2 hour ago"`
 date_end=`date +'%Y-%m-%d %H:%M:%S'`
@@ -321,18 +344,18 @@ date_end=`date +'%Y-%m-%d %H:%M:%S'`
 kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -o s@$date_start -o e@$date_end
 ```
 
-### read key of the message 
+#### read key of the message 
 ```sh
 kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -K\t
 ```
 
-### read message with specific key
+#### read message with specific key
 ```sh
 kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -o beginning -K\t | grep $MESSAGE_KEY
 # shrink time of the scan from "beginning" to something more expected
 ```
 
-### write/produce message 
+#### write/produce message 
 ```sh
 kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -c 5 -P -l /path/to/file
 ```
