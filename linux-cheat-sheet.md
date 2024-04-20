@@ -1120,6 +1120,19 @@ sudo startx
 sudo service lightdm start
 ```
 
+### xbind catch shortcuts, custom shortcuts
+> doesn't work with "super"/"win" button
+```sh
+# "echo 'pressed' > ~/out.txt"
+# "xdotool getactivewindow key ctrl+c"
+xte 'keydown Control_L' 'key c' 'keyup Control_L'
+    release + Control_L + c
+
+```
+```sh
+xbindkeys --key
+```
+
 ### xserver automation
 [keymap](https://gitlab.com/cunidev/gestures/wikis/xdotool-list-of-key-codes)
 ```
