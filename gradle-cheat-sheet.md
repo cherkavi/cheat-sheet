@@ -10,7 +10,15 @@ echo 'source $HOME_SOFT/gradle/bash_completion/gradle-completion.bash' >> ~/.bas
 ```
 ## gradle commands 
 ### print all dependencies for project, dependency tree
-gradlew dependencies
+`gradlew dependencies`
+
+### download dependencies to separate folder
+```groovy
+task downloadDependenciesToRuntime(type: Copy) {
+    from sourceSets.main.runtimeClasspath
+    into 'runtime/'
+}
+```
 
 ### execute gradle with specific build.gradle file
 gradlew.bat -b migration-job/build.gradle build
