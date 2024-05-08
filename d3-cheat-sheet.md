@@ -1,5 +1,16 @@
 # D3 cheat sheet
 * [d3 documentation](https://d3-wiki.readthedocs.io/)
+
+## alternatives
+* https://g.js.org/
+* https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API
+* https://konvajs.org/
+* https://vectorjs.org/
+* https://github.com/pixijs/pixijs
+* https://p5js.org/
+
+## Examples
+* [my own examples](https://github.com/cherkavi/javascripting/tree/master/d3)
 * [galery with examples](https://github.com/d3/d3/wiki/Gallery)
 * [d3 extension plottable](https://github.com/palantir/plottable) with [plottable examples](http://plottablejs.org/examples/)
 * [d3 scale](https://github.com/d3/d3-scale)
