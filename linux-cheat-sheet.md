@@ -1122,6 +1122,7 @@ sudo service lightdm start
 
 ### xbind catch shortcuts, custom shortcuts
 > doesn't work with "super"/"win" button
+> should be activated in "startup"/service
 ```sh
 # "echo 'pressed' > ~/out.txt"
 # "xdotool getactivewindow key ctrl+c"
