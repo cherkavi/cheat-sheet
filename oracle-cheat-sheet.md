@@ -40,7 +40,7 @@ column txt format a120
 ```
 
 
-### sqlline
+### [sqlline](https://github.com/julianhyde/sqlline?tab=readme-ov-file#building)
 ```sh
 # JDBC_DRIVER='oracle.jdbc.driver.OracleDrive'
 JDBC_URL="jdbc:oracle:thin:@${JDBC_HOST}:${JDBC_PORT}:${JDBC_SERVICE}"
