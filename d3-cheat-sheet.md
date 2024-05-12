@@ -2,12 +2,23 @@
 * [d3 documentation](https://d3-wiki.readthedocs.io/)
 
 ## alternatives
-* https://g.js.org/
-* https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API
 * https://konvajs.org/
-* https://vectorjs.org/
-* https://github.com/pixijs/pixijs
+  + vectors
+  + events
 * https://p5js.org/
+  + vectors
+  + events
+* https://vectorjs.org/
+  + vectors
+  + svg elements 
+* https://g.js.org/
+  + vectors
+  - no events
+* https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API
+  - too cumbersome
+* https://github.com/pixijs/pixijs
+  * games oriented
+
 
 ## Examples
 * [my own examples](https://github.com/cherkavi/javascripting/tree/master/d3)

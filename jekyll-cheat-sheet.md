@@ -2,6 +2,24 @@
 > translate yaml/markdown/liquid to html pages
 > Transform your plain text into static websites and blogs.
 
+## Other static sites generators, blogging tool
+- [Hexo](https://hexo.io/docs/)
+- [Hugo](https://gohugo.io/documentation/)
+- [Gatsby](https://www.gatsbyjs.com/docs/)
+- [Pelican](https://docs.getpelican.com/)
+- [MkDocs](https://www.mkdocs.org/#documentation)
+- [Lektor](https://www.getlektor.com/docs/)
+- [Eleventy/11ty](https://www.11ty.dev/docs/)
+- [Gridsome](https://gridsome.org/docs/)
+- [Docusaurus](https://docusaurus.io/docs)
+  - [docusaurus playground](https://docusaurus.io/docs/playground)
+- [Metalsmith](https://metalsmith.io/#documentation)
+- [Middleman](https://middlemanapp.com/basics/install/)
+- [Sculpin](https://sculpin.io/documentation/)
+- [Publish](https://github.com/JohnSundell/Publish) 
+- [VuePress](https://vuepress.vuejs.org/guide/)
+
+
 ## Template language Liquid
 * [liquid + jekyll](https://jekyllrb.com/docs/liquid/)
 * [liquid shopify doc](https://shopify.github.io/liquid/)
@@ -28,7 +46,7 @@ bundle add webrick
 
 ### check versions 
 ruby --version
-# ruby 3.1.1p18 (2022-02-18 revision 53f5fc4236) [x86_64-linux-musl]
+# ruby 3.1.1p18
 gem --version
 # 3.3.25
 ```
@@ -41,7 +59,7 @@ DOCKER_IMG_TAG=3.8
 # DOCKER_IMG_TAG=latest
 DOCKER_JEKYLL=jekyll
 
-# start server with caching gem's (/usr/local/bundle)
+# start server with caching gem's
 docker run --rm --name $DOCKER_JEKYLL --volume="$PWD:/srv/jekyll:Z" --volume="$PWD/vendor/bundle:/usr/local/bundle:Z" --publish [::1]:4000:4000 $DOCKER_IMG_NAME:$DOCKER_IMG_TAG jekyll serve --force_polling
 # connect to running container 
 # docker exec -it `docker ps | grep jekyll/jekyll | awk '{print $1}'` /bin/sh
@@ -83,7 +101,7 @@ x-www-browser localhost:4000
 ```
 
 ## possible issues
-* `require': cannot load such file -- webrick (LoadError)
+* `require': cannot load such file -- webrick
 ```sh
 # gem install webrick # didn't work
 bundle add webrick
