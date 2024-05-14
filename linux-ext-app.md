@@ -193,6 +193,10 @@ nc -kdl localhost 8000
 # Sample request maker on another shell:
 wget http://localhost:8000
 ```
+```sh
+npm -g install http-server
+http-server
+```
 
 ## Utilities 
 * [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
