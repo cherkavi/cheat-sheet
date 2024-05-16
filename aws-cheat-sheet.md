@@ -263,6 +263,7 @@ aws ec2 describe-instances \
 aws configservice select-resource-config --expression "SELECT resourceId WHERE resourceType='AWS::EC2::Instance'"
 ```
 ## cost management, budget cost explorer
+> price/cost formation: write - free, read - payable
 ```sh
 aws_service_abbr="cost-management"
 x-www-browser https://${AWS_REGION}.console.aws.amazon.com/cost-management/home?region=${AWS_REGION}#/dashboard
