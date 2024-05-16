@@ -74,3 +74,11 @@ import { $ } from "bun";
 
 const output = await $`ls *.js`.arrayBuffer();
 ```
+
+## JS Obfuscator
+```sh
+npm install --save-dev javascript-obfuscator
+
+javascript-obfuscator input_file_name.js [options]
+javascript-obfuscator input_file_name.js --output output_file_name.js [options]
+```
