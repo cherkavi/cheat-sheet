@@ -1216,7 +1216,7 @@ git filter-branch --commit-filter 'if [ $GIT_COMMIT = ce66b4f6065c754a2c3dbc436b
 git push --force 
 ```
 
-## github workflow ( pipeline )
+## github actions (workflow, pipeline )
 [github marketplace - collections of actions `to use`](https://github.com/marketplace?type=)  
 ```mermaid
 flowchart LR
@@ -1236,7 +1236,7 @@ e[event] --> p
   * auto
   * schedule
 
-### [git workflows environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment)  
+### [git actions/workflows environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment)  
 place for workflows  
 ```sh
 touch .github/workflows/workflow-1.yml
@@ -1378,3 +1378,4 @@ jobs:
         aws configure set default.region us-east-1      
         aws elasticbeanstalk delete-environment --environment-name my-node-app-pr-${{ github.event.pull_request.number }}
 ```
+### TODO: Github Action how to connect localhost runner to github.action ?
