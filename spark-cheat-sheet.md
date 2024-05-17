@@ -317,7 +317,7 @@ val someDF = spark.createDF(
 ```
 
 
-### read data, load data
+### read data, load data, data format
 * load with format
 ```scala
 val df=spark.read.format("parquet").load(pathToFile)
@@ -399,11 +399,31 @@ val sqlDF = spark.sql("""
 sqlDF.show()
 ```
 
+* Iceberg format
+```py
+import pyspark
+from pyspark.sql import SparkSession
+
+conf = (
+    pyspark.SparkConf()
+        .setAppName('iceberg')
+        .set('spark.jars.packages', 'org.apache.iceberg:iceberg-spark-runtime-3.3_2.12:1.0.0')
+        .set('spark.sql.extensions', 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions')
+        .set('spark.sql.catalog.iceberg', 'org.apache.iceberg.spark.SparkCatalog')
+        .set('spark.sql.catalog.iceberg.type', 'hadoop')
+        .set('spark.sql.catalog.iceberg.warehouse', 'iceberg-warehouse')
+)
+
+## Start Spark Session
+spark = SparkSession.builder.config(conf=conf).getOrCreate()
+
+print(spark)
+```
+
 ### save data, write data
 * with format
 ```
 df.write.format("csv").mode("override").save(filepath)
-
 ```
 * csv
 ```
