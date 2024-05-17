@@ -109,3 +109,15 @@ union all
 intersect
 minus
 ```
+
+### create backup of the table
+```sql
+EXECUTE IMMEDIATE 'CREATE TABLE my_table AS SELECT * FROM my_original_table';
+/
+```
+
+### copy all records from the table 
+```sql
+EXECUTE IMMEDIATE 'INSERT INTO my_table AS SELECT * FROM my_original_table';
+/
+```
