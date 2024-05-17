@@ -2,6 +2,10 @@
 ## Repositories
 * https://mvnrepository.com/  
 
+## maven phases
+![image](https://github.com/cherkavi/cheat-sheet/assets/8113355/65d7ef18-91ae-4ecf-95f9-43bac76174a1)
+
+
 ## maven scope explanations
 ![maven scopes](https://user-images.githubusercontent.com/8113355/143955154-eab903a5-a069-4773-a217-e0472c0c621f.png)
 
