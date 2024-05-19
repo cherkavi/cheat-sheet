@@ -176,6 +176,10 @@ mvn -DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.4.0 dependency:ge
 ```sh
 mvn clean package --batch-mode --no-transfer-progress -Dmaven.repo.local=/my/own/path/.m2/repository
 ```
+### install missed jar in local repo
+```sh
+mvn install:install-file -Dfile=jaaf-core-jee7-1.05.00.jar -DgroupId=net.ubs.security.jaaf -DartifactId=jaaf-core -Dversion=1.05.00 -Dpackaging=jar
+```
 
 ### security settings
 ~/.m2/settings.xml
