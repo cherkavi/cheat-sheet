@@ -1,9 +1,9 @@
-# groovy
+# groovy lang
 
 ## links
-[my examples](https://github.com/cherkavi/groovy-examples)
+* [my examples](https://github.com/cherkavi/groovy-examples)
 
-## [groovy repl](http://groovy-lang.org/groovysh.html)
+## [groovy repl](http://groovy-lang.org/groovysh.html) 
 ```sh
 groovysh
 ```
@@ -13,12 +13,13 @@ groovysh
 $HOME/.groovy/lib
 ```
 
-### to parse json
+## parse json
 JSON slurper
 
-### string
-```groovy
+## strings 
+```Groovy
 def singleQuote = 'Single quote string'
 def doubleQuote = "Double quote string"
 def slashy = /Slashy string/
 ```
+
