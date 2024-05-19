@@ -84,6 +84,13 @@ gsettings list-keys org.gnome.desktop.wm.keybindings
 gsettings get org.gnome.desktop.wm.keybindings close
 gsettings set org.gnome.desktop.wm.keybindings close "['<Super>w']"
 ```
+find shortcuts in the settings
+```sh
+## for suppressing Super + P 
+gsettings list-recursively | grep "<Super>p"
+
+dconf-editor
+```
 
 ### custom shortcuts script for finding and activating window
 ```sh
