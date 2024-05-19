@@ -89,7 +89,11 @@ find shortcuts in the settings
 ## for suppressing Super + P 
 gsettings list-recursively | grep "<Super>p"
 
-dconf-editor
+# UI tool: dconf-editor
+gsettings set org.gnome.mutter.keybindings switch-monitor "['XF86Display']"
+gsettings set org.gnome.mutter.keybindings switch-monitor "['']"
+
+gsettings reset org.gnome.mutter.keybindings switch-monitor
 ```
 
 ### custom shortcuts script for finding and activating window
