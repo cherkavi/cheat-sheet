@@ -987,6 +987,9 @@ regex=^[A-Z].{0,71}[^?!.,:; ]
 
 
 ## advices
+### migration from another git repo
+![image](https://github.com/cherkavi/cheat-sheet/assets/8113355/fc4d2b19-7155-4245-bf0c-361bd3d942ab)  
+
 ### big monorepo increase git responsivnes
 ```sh
 git config core.fsmonitor true
