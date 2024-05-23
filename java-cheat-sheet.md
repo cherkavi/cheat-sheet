@@ -11,6 +11,34 @@
 * [byte code transformation](https://bytebuddy.net/#/)
 * [docker container creator](https://github.com/GoogleContainerTools/jib)
 
+## java ecosystem applications
+> for quarkus & payara PID=1
+
+### command diagnostic request
+```sh
+jcmd $PID VM.flags
+jcmd $PID VM.heap_info
+jcmd $PID VM.system_properties
+```
+
+### statistic over time
+```sh
+# print all options
+jstat -options
+# garbage collector statistic
+jstat -gs $PID
+jstat -gs -t $PID 5000 10 # each 5 sec, 10 times
+```
+### Java process print thread stack traces
+```sh
+jstack $PID
+```
+
+### system properties
+```sh
+jinfo $PID
+```
+
 ### heap dump, [jmap](https://docs.oracle.com/en/java/javase/14/docs/specs/man/jmap.html)
 ```bash
 # find process id for target java process
