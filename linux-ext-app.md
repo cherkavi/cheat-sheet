@@ -224,6 +224,31 @@ sphinx-build "/path/to/source" "/path/to/build" .
 sudo add-apt-repository ppa:jtaylor/keepass
 sudo apt-get update && sudo apt-get install keepass2
 ```
+keepassxc-cli
+* https://www.mankier.com/1/keepassxc-cli
+* https://wiki.gentoo.org/wiki/KeePassXC/cli
+```sh
+## set key file instead of password
+KEEPASS_KEY=/home/projects/keepass.keyx
+# create key file: openssl rand -out $KEEPASS_KEY 256
+ll $KEEPASS_KEY
+# set key file 
+keepassxc-cli db-edit --set-key-file  $KEEPASS_KEY  $KEEPASS_FILE 
+# check key file with entering password
+keepassxc-cli ls --key-file $KEEPASS_KEY $KEEPASS_FILE 
+# unset password 
+keepassxc-cli db-edit --key-file $KEEPASS_KEY  $KEEPASS_FILE  --unset-password
+keepassxc-cli ls --key-file $KEEPASS_KEY $KEEPASS_FILE --no-password
+
+# unset key file 
+# keepassxc-cli db-edit --unset-key-file  $KEEPASS_KEY  $KEEPASS_FILE 
+
+
+# get password
+keepassxc-cli show -s -k $KEEPASS_KEY $KEEPASS_FILE  'Client1/Order Value'  --no-password
+
+```
+
 * vnc
  * vnc installation
 ```sh
