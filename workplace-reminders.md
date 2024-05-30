@@ -7,6 +7,9 @@
 * [remote server utility](https://github.com/subhra74/snowflake)
 
 ## JIRA
+### JIRA REST API applications
+* [all my open issues](https://github.com/cherkavi/python-utilities/blob/master/jira/jira-open-issues.py)
+* [read comments with my name](https://github.com/cherkavi/python-utilities/blob/master/jira/jira-comments-with-my-name.py)
 ### Jira Query Language, JQL
 [jql search](https://www.atlassian.com/blog/jira-software/jql-the-most-flexible-way-to-search-jira-14)
 ```
@@ -19,7 +22,7 @@ text ~ "is_abstract" and project = "Brand Configuration Management"
 [REST API](https://docs.getxray.app/display/XRAY/Import+Execution+Results+-+REST#ImportExecutionResultsREST-JUnitXMLresults)
 [how to create token](https://www.resolution.de/post/how-to-create-api-tokens-for-jira-server-s-rest-api/)
 ```sh
-curl -X POST -H "Content-Type: multipart/form-data" -u ${JIRA_USER}:${JIRA_PASSWORD} -F "file=@cypress/results/testresult.xml" "https://atc.ubsgroup.net/jira/rest/raven/1.0/import/execution/junit?projectKey=EXTRACT&testPlanKey=EXTRACT-219&testEnvironments=${CYPRESS_BASEURL}"
+curl -X POST -H "Content-Type: multipart/form-data" -u ${JIRA_USER}:${JIRA_PASSWORD} -F "file=@cypress/results/testresult.xml" "https://atc.ubsgroup.net/jira/rest/raven/1.0/import/execution/junit?projectKey=EXTRACT&testPlanKey=EXTRACT-219&testEnvironments=${CYPRESS_BASEURL}"
 
 curl -H "Authorization: Bearer $JIRA_TOKEN" $JIRA_URL/rest/api/latest/issue/SSBBCC-2050?fields=summary
 ```
@@ -35,33 +38,33 @@ curl -v --insecure -X GET "https://codebeamer.ubsgroup.net:8443/cb/api/v3/wikipa
 if you are sending json encoded data to CB over the swagger API, check the definitions of the expected payloads – they might have changed without notice, breaking you calls  
 CB rejects all requests with unknown information in the payload  
 With some “methods” available over swagger the expected payload has changed  
- 
+ 
 Example: POST /v3/projects/{projectId}/content
 ```json
 {
-  "password": "xxx",
-  "skipTrackerItems": false,
-  "skipWikiPages": false,
-  "skipAssociations": false,
-  "skipDocuments": false,
-  "skipReports": false,
-  "skipBranches": false,
-  "selectedTrackerIds": [
-    0
-  ]
+  "password": "xxx",
+  "skipTrackerItems": false,
+  "skipWikiPages": false,
+  "skipAssociations": false,
+  "skipDocuments": false,
+  "skipReports": false,
+  "skipBranches": false,
+  "selectedTrackerIds": [
+    0
+  ]
 }
 ```
 or
 ```json
 {
-  "password": "xxx",
-  "skipTrackerItems": false,
-  "skipWikiPages": true,
-  "skipAssociations": false,
-  "skipReports": false,
-  "selectedTrackerIds": [
-    0
-  ]
+  "password": "xxx",
+  "skipTrackerItems": false,
+  "skipWikiPages": true,
+  "skipAssociations": false,
+  "skipReports": false,
+  "selectedTrackerIds": [
+    0
+  ]
 }
 ```
 
