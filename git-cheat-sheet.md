@@ -1240,7 +1240,7 @@ e[event] --> p
   * schedule
 
 ### [git actions/workflows environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment)  
-place for workflows  
+* place for workflows  
 ```sh
 touch .github/workflows/workflow-1.yml
 ```
@@ -1380,5 +1380,40 @@ jobs:
       run: |
         aws configure set default.region us-east-1      
         aws elasticbeanstalk delete-environment --environment-name my-node-app-pr-${{ github.event.pull_request.number }}
+```
+* run python application, install oracle client, hide password, use variables
+```yaml
+      - name: Install Oracle Instant Client
+        run: |
+          sudo apt-get update
+          sudo apt-get install libaio1 wget unzip
+          wget https://download.oracle.com/otn_software/linux/instantclient/2340000/instantclient-basiclite-linux.x64-23.4.0.24.05.zip
+          unzip instantclient-basiclite-linux.x64-23.4.0.24.05.zip
+          echo ">>>"$(pwd)"instantclient_23_4"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Oracle sql request
+        run:  echo "SELECT *
+                from dual
+              " > query.sql
+
+      - name: Set new environment variable
+        run: | 
+          echo "ORACLE_USER=${{ vars.ORACLE_INT_USER }}" >> $GITHUB_ENV
+          echo "ORACLE_HOST=${{ vars.ORACLE_INT_HOST }}" >> $GITHUB_ENV
+          echo "ORACLE_PORT=${{ vars.ORACLE_INT_PORT }}" >> $GITHUB_ENV
+          echo "ORACLE_SERVICE=${{ vars.ORACLE_INT_SERVICE }}" >> $GITHUB_ENV
+          echo "OUTPUT_FILE=report.csv" >> $GITHUB_ENV
+          echo "ORACLE_REQUEST=query.sql" >> $GITHUB_ENV
+      
+      - name: Run Python script
+        run: |
+          # ls "$(pwd)"/instantclient_23_4
+          ORACLE_PASS=${{ secrets.ORACLE_INT_PASS }} LD_LIBRARY_PATH=$(pwd)"/instantclient_23_4" python oracle-select-to-csv.py
+
 ```
 ### TODO: Github Action how to connect localhost runner to github.action ?
