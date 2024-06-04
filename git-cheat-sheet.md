@@ -1219,6 +1219,20 @@ git filter-branch --commit-filter 'if [ $GIT_COMMIT = ce66b4f6065c754a2c3dbc436b
 git push --force 
 ```
 
+## gh cli command line tool
+```sh
+gh auth login --hostname $GIT_HOST
+gh auth status
+
+gh workflow list
+gh workflow list
+gh workflow view --ref $GIT_BRANCH_NAME $WORKFLOW_FILE_NAME
+gh workflow run $WORKFLOW_FILE_NAME --ref $GIT_BRANCH_NAME
+
+gh variable list
+gh variable set $VARIABLE_NAME --body $VARIABLE_VALUE
+```
+
 ## github actions (workflow, pipeline )
 [github marketplace - collections of actions `to use`](https://github.com/marketplace?type=)  
 ```mermaid
