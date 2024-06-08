@@ -122,6 +122,10 @@ documentation)Documentation(
 ### Archimate with Sequence diagram
 ![image](https://user-images.githubusercontent.com/8113355/206921007-21643c2b-da3f-4930-a79c-4462562017e1.png)
 
+### Archimate with Class diagram 
+![image](https://github.com/cherkavi/cheat-sheet/assets/8113355/a567541c-1535-4ad6-a837-087f4d807b8d)
+
+
 ### Examples
 ![Big Data cluster](https://github.com/cherkavi/cheat-sheet/assets/8113355/e44f9068-97d1-4e96-a2b7-acbf4f0edac5)
 
