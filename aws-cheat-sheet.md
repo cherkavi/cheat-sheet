@@ -871,7 +871,7 @@ aws-faq
 ```mermaid
 flowchart LR;
     r[Request] --> lb
-    l[Listener] --o lb[Load Balaner]
+    l[Listener] --o lb[Load Balancer]
 
     lr[Listener
        Rule] --o l
@@ -896,6 +896,8 @@ flowchart LR;
     end
     
 ```
+![autoscaling group](https://github.com/cherkavi/cheat-sheet/assets/8113355/c2688e3f-ded4-4ca6-99a6-b5fe1ba4d34a)
+
 
 [ELB troubleshooting](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html)
 ```sh
