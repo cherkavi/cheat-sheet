@@ -9,7 +9,6 @@
 * [podcast](https://soundcloud.com/the-airflow-podcast)
 * [tutorial](https://github.com/hgrif/airflow-tutorial)
 * [blog](https://marclamberti.com/blog/)
-* [examples](https://github.com/cherkavi/docker-images/blob/master/airflow/airflow-dag-examples.zip)
 * [best practices](https://marclamberti.com/blog/apache-airflow-best-practices-1/)
 * [task additional button on UI](https://airflow.apache.org/docs/apache-airflow/stable/howto/define_extra_link.html)
 * [dag visualisation](https://github.com/feluelle/airflow-diagrams)
@@ -1480,3 +1479,5 @@ solution is: change airflow.cfg
 ~~auth_backend = airflow.api.auth.backend.default~~
 auth_backend = airflow.api.auth.backend.basic_auth
 
+## Architecture examples
+![shopify](https://github.com/cherkavi/cheat-sheet/assets/8113355/f5abb887-c636-4fae-9abc-1ff667eb5117)  
