@@ -122,6 +122,10 @@ documentation)Documentation(
 ### Archimate with Sequence diagram
 ![image](https://user-images.githubusercontent.com/8113355/206921007-21643c2b-da3f-4930-a79c-4462562017e1.png)
 
+### Examples
+![Big Data cluster](https://github.com/cherkavi/cheat-sheet/assets/8113355/e44f9068-97d1-4e96-a2b7-acbf4f0edac5)
+
+
 ## UML diagrams
 ### Structure 
 ### Behavior
@@ -167,3 +171,4 @@ documentation)Documentation(
 ## Communication between applications
 ### communication: messaging
 ![2git-messaging](https://github.com/cherkavi/cheat-sheet/assets/8113355/e3062328-7afb-4a8c-b9a7-b458689c5ed0)
+
