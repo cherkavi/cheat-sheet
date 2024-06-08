@@ -1726,6 +1726,10 @@ http header for tracing: x-amzn-trace-id
 ## personal health dashboard
 
 ---
+## examples
+![image](https://github.com/cherkavi/cheat-sheet/assets/8113355/658be5b5-2898-413e-ae46-d5fb81ac1add)  
+
+---
 ## upcoming courses todo
 * https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner
 * https://aws.amazon.com/certification/certified-cloud-practitioner/
