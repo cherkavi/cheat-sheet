@@ -1481,3 +1481,6 @@ auth_backend = airflow.api.auth.backend.basic_auth
 
 ## Architecture examples
 ![shopify](https://github.com/cherkavi/cheat-sheet/assets/8113355/f5abb887-c636-4fae-9abc-1ff667eb5117)  
+![e-commerce](https://github.com/cherkavi/cheat-sheet/assets/8113355/daa2245c-8ace-4b7b-a13c-bec834bc7e93)  
+![celery worker on AWS](https://github.com/cherkavi/cheat-sheet/assets/8113355/b9e343a1-8ae8-46ae-bc4b-75525fe7c167)  
+![airflow-centric solution ](https://github.com/cherkavi/cheat-sheet/assets/8113355/990f0034-b257-42dd-b88f-d504d70c481c)  
