@@ -40,6 +40,14 @@ for each_file in `find $CHROME_CONFIG | grep -i Extensions | grep manifest.json$
     cat $each_file | grep '"name": '
 done
 ```
+## application 
+```sh
+## folder
+ll "$HOME/snap/chromium/common/chromium/Default/Web Applications/Manifest Resources/"
+
+## start application
+/snap/bin/chromium --profile-directory=Default --app-id=cifhbcnohmdccbgoicgdjpfamggdegmo
+```
 
 ## highlight text on the page, find text on the page, [text fragments](https://developer.mozilla.org/en-US/docs/Web/Text_fragments)
 ```sh
