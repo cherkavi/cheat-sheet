@@ -8,7 +8,8 @@
 ## commands
 whoami
 ```sh
-ldapwhoami -x -v -D "CN=Vitalii Cherkashyn,OU=Users,OU=UBS,OU=Accounts,DC=vantage,DC=org" -H ldaps://ubsinfesv0015.vantage.org:636 -W
+ldapwhoami -x -v -H $LDAP_HOST -D $LDAP_USER -w $LDAP_PASSWORD
+ldapwhoami -x -v -D "CN=Vitalii,OU=Users,OU=UBS,OU=Accounts,DC=vantage,DC=org" -H ldaps://ubsinfesv0015.vantage.org:636 -W
 # CN - Common Name
 # OU - Organizational Unit
 # DC - Domain Component
@@ -17,6 +18,9 @@ ldapwhoami -x -v -D "CN=Vitalii Cherkashyn,OU=Users,OU=UBS,OU=Accounts,DC=vantag
 find owner of account
 ```sh
 LDAP_HOST=ubsinfesv0015.vantage.org
+LDAP_USER="uid=Vitali,ou=people,dc=group,dc=zur"
+
+ldapsearch -LLL -o ldif-wrap=no -H $LDAP_HOST -b $BASE_DN -D $LDAP_USER -w $LDAP_PASSWORD 
 ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "DC=vantage,DC=org" samaccountname=pen_import-s
 ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "OU=Accounts,DC=vantage,DC=org" samaccountname=cherkavi
 ldapsearch -LLL -o ldif-wrap=no -h $LDAP_HOST -b "OU=Accounts,DC=vantage,DC=org" -s sub "displayName=Vitalii Cherkashyn"

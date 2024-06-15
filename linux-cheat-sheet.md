@@ -453,6 +453,7 @@ ssh-add $HOME/.ssh/id_rsa
 ```sh
 # ssh
 sshpass -p my_password ssh my_user@192.178.192.10
+sshpass -p my_password ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null my_user@192.178.192.10
 # ftp 
 sshpass -p $CHINA_PASS sftp -P $CHINA_JUMP_SERVER_PORT $CHINA_USER@$CHINA_JUMP_SERVER
 ```

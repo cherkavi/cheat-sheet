@@ -1330,6 +1330,33 @@ runs:
       run: echo "random was generated ${{steps.blue_status.outputs.status}}"
       if: steps.output-value.outputs.random-id != ''
 ```
+* workflow with input parameter
+```yaml
+name: ping ip-address
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'target address'
+        required: true
+
+jobs:
+  ping_and_traceroute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run commands
+        run: |
+          sudo apt update
+          sudo apt install -y traceroute 
+          ping -c 5 ${{ github.event.inputs.target }}
+          traceroute ${{ github.event.inputs.target }}
+        shell: bash
+```
+```sh
+gh workflow run ping.yaml --ref main -f target=8.8.8.8
+```
+
 [workflow specific variables like github.xxxxx](https://docs.github.com/en/actions/learn-github-actions/contexts#github-context)  
 [workflow specific variables like jobs.xxxxx](https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability)  
 [workflow environment variables](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables)
