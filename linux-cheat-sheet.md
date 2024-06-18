@@ -1086,8 +1086,10 @@ managing services
 # alternative of chkconfig
 # alternative of sysv-rc-conf
 
-# list all services
+# list all services, service list 
 systemctl --all
+systemctl list-units --type=service --all
+
 # in case of any changes in service file 
 systemctl enable YOUR_SERVICE_NAME
 
