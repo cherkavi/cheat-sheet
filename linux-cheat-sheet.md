@@ -431,6 +431,7 @@ oathtool -b --totp $CODE_2FA
 ```
 # generate new RSA keys, create RSA, generate keys
 ssh-keygen -t rsa
+ssh-keygen -t rsa -b 4096 -f /tmp/my_ssh_key
 ```
 ( check created file /home/{user}/.ssh/id_rsa )
 ```sh
