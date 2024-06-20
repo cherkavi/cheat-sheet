@@ -1705,6 +1705,17 @@ flowchart LR;
     as[Auto
     Scaling]
 ```
+---
+## Glue
+```mermaid
+flowchart LR;
+
+s[source] -.-> gc[Glue Crawler] -.-> gdc[Glue  Data Catalog] -.-> etl[ETL jobs] -.-> d[dest]
+
+rds[RDS] --extend--> s
+S3 --extend--> d
+rds ~~~ d
+```
 
 ---
 ## Amazon X-Ray
