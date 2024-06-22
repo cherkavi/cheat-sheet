@@ -37,23 +37,37 @@ adb devices
 ```
 
 #### [list of some adb all commands](https://www.getdroidtips.com/basic-adb-command/): 
+copy files 
 ```sh
 adb push test.apk /sdcard
 adb pull /sdcard/demo.mp4 e:\
-
+```
+restart device in recovery mode 
+```sh
 adb reboot
 adb reboot recovery
 ```
+
+list of all applications/packages
 ```sh
 adb shell pm list packages -f
+adb shell pm list packages -f | awk -F '.apk=' '{printf "%-50s | %s\n", $2, $1}'
+# adb shell; 
+# pm list packages -f
+```
+permission by package
+```sh
+PACKAGE_NAME=com.google.android.youtube
+adb shell dumpsys package $PACKAGE_NAME | grep -i permission | grep -i granted=true
+```
+list of all permissions
+```sh
+adb shell pm list permissions
 ```
 
+list of all features
 ```sh
-adb shell
-
-pm list packages
-pm list packages -f
-pm list features
+adb shell pm list features
 ```
 ```sh
 # print one file from OS
@@ -64,6 +78,14 @@ adb shell getprop | grep oem
 adb shell getprop sys.oem_unlock_allowed
 adb shell setprop sys.oem_unlock_allowed 1
 # dmesg -wH
+```
+
+list of all settings
+```sh
+adb shell service list
+adb shell settings list --user current secure 
+adb shell settings get secure location_providers_allowed
+adb shell settings get secure enabled_accessibility_services
 ```
 
 ### [Fastboot](https://source.android.com/docs/setup/build/running)
