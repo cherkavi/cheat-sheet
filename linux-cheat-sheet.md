@@ -431,6 +431,7 @@ oathtool -b --totp $CODE_2FA
 ```
 # generate new RSA keys, create RSA, generate keys
 ssh-keygen -t rsa
+ssh-keygen -t rsa -b 4096 -f /tmp/my_ssh_key
 ```
 ( check created file /home/{user}/.ssh/id_rsa )
 ```sh
@@ -1085,8 +1086,10 @@ managing services
 # alternative of chkconfig
 # alternative of sysv-rc-conf
 
-# list all services
+# list all services, service list 
 systemctl --all
+systemctl list-units --type=service --all
+
 # in case of any changes in service file 
 systemctl enable YOUR_SERVICE_NAME
 

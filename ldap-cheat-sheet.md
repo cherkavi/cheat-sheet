@@ -14,6 +14,19 @@ ldapwhoami -x -v -D "CN=Vitalii,OU=Users,OU=UBS,OU=Accounts,DC=vantage,DC=org" -
 # OU - Organizational Unit
 # DC - Domain Component
 ```
+perform user search
+```sh
+LDAP_HOST="ldaps://ldap.ubshost.net:5522"
+LDAP_USER="uid=techuserldap,ou=people,dc=ubshost,dc=com"
+LDAP_PASSWORD='' 
+
+# log from ldap
+# SEARCH conn=61392 op=3 msgID=4 base="ou=groups,dc=com" scope=sub filter="(uid=normaluser)" attrs="ismemberof" requestControls=2.26.140.2.2730.4.1.0 result=0 nentries=0 entrySize=975 authDN="uid=techuserldap,ou=people,dc=ubshost,dc=com" etime=372222
+BASE_DN="ou=groups,dc=com"; 
+LDAP_FILTER="uid=normaluser"; 
+
+ldapsearch -LLL -o ldif-wrap=no -H $LDAP_HOST -b $BASE_DN -D $LDAP_USER -w $LDAP_PASSWORD $LDAP_FILTER
+```
 
 find owner of account
 ```sh

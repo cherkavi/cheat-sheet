@@ -89,7 +89,7 @@ echo exit | sqlplus user/pass@connect @scriptfilename
 ### length of blob, len of clob
 dbms_lob.getlength()
 
-### order by records desc, last record from table
+### order by records desc, last record from table, limit amount of records to show
 select * from table(select * from table ORDER BY ROWNUM DESC) where rownum=1
 
 ### search into all tab columns

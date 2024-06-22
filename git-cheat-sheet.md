@@ -1280,6 +1280,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3 
 ```
+checkout with submodules ( avoid issue with not visible "last commit" ) :
+```
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Checkout module update
+      run: git submodule update --remote
+```
+
 * workflow with env variable
 ```yaml
 env:
