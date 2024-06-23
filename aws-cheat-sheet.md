@@ -263,6 +263,7 @@ aws ec2 describe-instances \
 aws configservice select-resource-config --expression "SELECT resourceId WHERE resourceType='AWS::EC2::Instance'"
 ```
 ## cost management, budget cost explorer
+> price/cost formation: write - free, read - payable
 ```sh
 aws_service_abbr="cost-management"
 x-www-browser https://${AWS_REGION}.console.aws.amazon.com/cost-management/home?region=${AWS_REGION}#/dashboard
@@ -870,7 +871,7 @@ aws-faq
 ```mermaid
 flowchart LR;
     r[Request] --> lb
-    l[Listener] --o lb[Load Balaner]
+    l[Listener] --o lb[Load Balancer]
 
     lr[Listener
        Rule] --o l
@@ -895,6 +896,8 @@ flowchart LR;
     end
     
 ```
+![autoscaling group](https://github.com/cherkavi/cheat-sheet/assets/8113355/c2688e3f-ded4-4ca6-99a6-b5fe1ba4d34a)
+
 
 [ELB troubleshooting](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-troubleshooting.html)
 ```sh
@@ -1702,6 +1705,17 @@ flowchart LR;
     as[Auto
     Scaling]
 ```
+---
+## Glue
+```mermaid
+flowchart LR;
+
+s[source] -.-> gc[Glue Crawler] -.-> gdc[Glue  Data Catalog] -.-> etl[ETL jobs] -.-> d[dest]
+
+rds[RDS] --extend--> s
+S3 --extend--> d
+rds ~~~ d
+```
 
 ---
 ## Amazon X-Ray
@@ -1721,6 +1735,10 @@ http header for tracing: x-amzn-trace-id
 
 ---
 ## personal health dashboard
+
+---
+## examples
+![image](https://github.com/cherkavi/cheat-sheet/assets/8113355/658be5b5-2898-413e-ae46-d5fb81ac1add)  
 
 ---
 ## upcoming courses todo

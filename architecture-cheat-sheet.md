@@ -9,6 +9,24 @@
 * [12 factors app](https://12factor.net/)
 * [system design descriptions](https://github.com/ByteByteGoHq/system-design-101)
 * [design patterns](https://github.com/DovAmir/awesome-design-patterns)
+* Quality control ( intentionally in russian due to lack of information in other languages )
+  **[семь инструментов контроля качества](https://stump.ru/types/sem-instrumentov-kachestva-sem-novyh-metodov-upravleniya-kachestvom/)**
+  * [диаграмма ishikawa](https://ru.wikipedia.org/wiki/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0_%D0%98%D1%81%D0%B8%D0%BA%D0%B0%D0%B2%D1%8B)
+  * [контрольная карта](https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D0%BA%D0%B0%D1%80%D1%82%D0%B0_%D0%A8%D1%83%D1%85%D0%B0%D1%80%D1%82%D0%B0)
+  * [диаграмма Парето](https://ru.wikipedia.org/wiki/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0_%D0%9F%D0%B0%D1%80%D0%B5%D1%82%D0%BE)
+  * [гистограмма](https://ru.wikipedia.org/wiki/%D0%93%D0%B8%D1%81%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0)
+  * [контрольный лист](https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA)
+  * [расслоение](https://ru.wikipedia.org/w/index.php?title=%D0%A0%D0%B0%D1%81%D1%81%D0%BB%D0%BE%D0%B5%D0%BD%D0%B8%D0%B5_(%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F)&action=edit&redlink=1)
+  * [диаграмма рассеяния](https://ru.wikipedia.org/wiki/%D0%94%D0%B8%D0%B0%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0_%D1%80%D0%B0%D1%81%D1%81%D0%B5%D1%8F%D0%BD%D0%B8%D1%8F)
+  * [дополнительные 7 инструментов контроля качества](https://dzen.ru/a/ZaQAos7VpGMZqodh)
+    * диаграмма сродства
+    * диаграмма зависимостей ( связей )
+    * системная (древовидная) диаграмма
+    * матричная диаграмма
+    * стрелочная диаграмма
+    * диаграмма планирования оценки процесса
+    * анализ матричных данных
+    * схема потока
 
 ## [books](https://www.goodreads.com/shelf/show/software-architecture)
 * Clean Architecture ( Robet C. Martin )
@@ -21,7 +39,7 @@
 * 37 Things One Architect Knows ( Gregor Hohpe )
 * Software Architecture Patterns ( Mark Richards )
 
-## What is architecture
+## What architecture is:
 * Architecture != Tools & Frameworks
 * Postponing decisions about Tooling and frameworks
 * Focus on customer, not environment
@@ -104,6 +122,14 @@ documentation)Documentation(
 ### Archimate with Sequence diagram
 ![image](https://user-images.githubusercontent.com/8113355/206921007-21643c2b-da3f-4930-a79c-4462562017e1.png)
 
+### Archimate with Class diagram 
+![image](https://github.com/cherkavi/cheat-sheet/assets/8113355/a567541c-1535-4ad6-a837-087f4d807b8d)
+
+
+### Examples
+![Big Data cluster](https://github.com/cherkavi/cheat-sheet/assets/8113355/e44f9068-97d1-4e96-a2b7-acbf4f0edac5)
+
+
 ## UML diagrams
 ### Structure 
 ### Behavior
@@ -149,3 +175,4 @@ documentation)Documentation(
 ## Communication between applications
 ### communication: messaging
 ![2git-messaging](https://github.com/cherkavi/cheat-sheet/assets/8113355/e3062328-7afb-4a8c-b9a7-b458689c5ed0)
+

@@ -2,7 +2,17 @@
 * [tutorial](https://alphacodingskills.com/sqlite/sqlite-tutorial.php)
 * [sqlite browser](https://github.com/sqlitebrowser/sqlitebrowser#ubuntu-and-derivatives)
 
-## install 
+## Alternatives
+### [h2](https://h2database.com/html/download.html)
+```sh
+sudo apt install h2database
+```
+### [hsqldb](http://hsqldb.org/)
+```sh
+sudo apt install hsqldb-utils
+```
+
+## sqlite install 
 ```sh
 sudo apt-get install sqlite3 sqlite3-doc sqlite3-tool
 ```

@@ -1,5 +1,6 @@
 # JavaScript
 ## [url to main cheat sheet with examples](https://github.com/cherkavi/javascripting)
+## [Browser Graphics](d3-cheat-sheet.md)
 ## [from JS to any language with single codebase](https://github.com/aws/jsii)
 
 ## Typescript cheat sheet
@@ -72,4 +73,12 @@ npm install -g bun
 import { $ } from "bun";
 
 const output = await $`ls *.js`.arrayBuffer();
+```
+
+## JS Obfuscator
+```sh
+npm install --save-dev javascript-obfuscator
+
+javascript-obfuscator input_file_name.js [options]
+javascript-obfuscator input_file_name.js --output output_file_name.js [options]
 ```

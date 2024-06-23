@@ -31,7 +31,7 @@ for each_file in `find $EXT_PATH -name "manifest.json"`; do
 done
 ```
 
-alternative way of finding names of all installed plugins
+alternative way of finding names of all installed plugins/extensions
 ```sh
 CHROME_CONFIG=$HOME/.config/google-chrome
 IFS=$'\n'
@@ -39,4 +39,23 @@ for each_file in `find $CHROME_CONFIG | grep -i Extensions | grep manifest.json$
     echo $each_file
     cat $each_file | grep '"name": '
 done
+```
+## application 
+```sh
+## folder
+ll "$HOME/snap/chromium/common/chromium/Default/Web Applications/Manifest Resources/"
+
+## start application
+/snap/bin/chromium --profile-directory=Default --app-id=cifhbcnohmdccbgoicgdjpfamggdegmo
+```
+
+## highlight text on the page, find text on the page, [text fragments](https://developer.mozilla.org/en-US/docs/Web/Text_fragments)
+```sh
+x-www-browser https://github.com/cherkavi/cheat-sheet/blob/master/architecture-cheat-sheet.md#:~:text=Architecture cheat sheet&text=Useful links
+
+# also possible to say prefix before the text
+x-www-browser https://github.com/cherkavi/cheat-sheet/blob/master/architecture-cheat-sheet.md#:~:text=Postponing,%20about
+
+# aslo possible to say previx and suffix around the destination text
+
 ```

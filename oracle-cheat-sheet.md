@@ -40,7 +40,7 @@ column txt format a120
 ```
 
 
-### sqlline
+### [sqlline](https://github.com/julianhyde/sqlline?tab=readme-ov-file#building)
 ```sh
 # JDBC_DRIVER='oracle.jdbc.driver.OracleDrive'
 JDBC_URL="jdbc:oracle:thin:@${JDBC_HOST}:${JDBC_PORT}:${JDBC_SERVICE}"
@@ -89,7 +89,7 @@ echo exit | sqlplus user/pass@connect @scriptfilename
 ### length of blob, len of clob
 dbms_lob.getlength()
 
-### order by records desc, last record from table
+### order by records desc, last record from table, limit amount of records to show
 select * from table(select * from table ORDER BY ROWNUM DESC) where rownum=1
 
 ### search into all tab columns
@@ -108,4 +108,16 @@ union
 union all
 intersect
 minus
+```
+
+### create backup of the table
+```sql
+EXECUTE IMMEDIATE 'CREATE TABLE my_table AS SELECT * FROM my_original_table';
+/
+```
+
+### copy all records from the table 
+```sql
+EXECUTE IMMEDIATE 'INSERT INTO my_table AS SELECT * FROM my_original_table';
+/
 ```

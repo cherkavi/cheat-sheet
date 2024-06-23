@@ -431,6 +431,7 @@ oathtool -b --totp $CODE_2FA
 ```
 # generate new RSA keys, create RSA, generate keys
 ssh-keygen -t rsa
+ssh-keygen -t rsa -b 4096 -f /tmp/my_ssh_key
 ```
 ( check created file /home/{user}/.ssh/id_rsa )
 ```sh
@@ -453,6 +454,7 @@ ssh-add $HOME/.ssh/id_rsa
 ```sh
 # ssh
 sshpass -p my_password ssh my_user@192.178.192.10
+sshpass -p my_password ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null my_user@192.178.192.10
 # ftp 
 sshpass -p $CHINA_PASS sftp -P $CHINA_JUMP_SERVER_PORT $CHINA_USER@$CHINA_JUMP_SERVER
 ```
@@ -1084,8 +1086,10 @@ managing services
 # alternative of chkconfig
 # alternative of sysv-rc-conf
 
-# list all services
+# list all services, service list 
 systemctl --all
+systemctl list-units --type=service --all
+
 # in case of any changes in service file 
 systemctl enable YOUR_SERVICE_NAME
 
@@ -1118,6 +1122,20 @@ sudo startx
 ```
 ```
 sudo service lightdm start
+```
+
+### xbind catch shortcuts, custom shortcuts
+> doesn't work with "super"/"win" button
+> should be activated in "startup"/service
+```sh
+# "echo 'pressed' > ~/out.txt"
+# "xdotool getactivewindow key ctrl+c"
+xte 'keydown Control_L' 'key c' 'keyup Control_L'
+    release + Control_L + c
+
+```
+```sh
+xbindkeys --key
 ```
 
 ### xserver automation

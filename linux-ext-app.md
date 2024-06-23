@@ -84,6 +84,17 @@ gsettings list-keys org.gnome.desktop.wm.keybindings
 gsettings get org.gnome.desktop.wm.keybindings close
 gsettings set org.gnome.desktop.wm.keybindings close "['<Super>w']"
 ```
+find shortcuts in the settings
+```sh
+## for suppressing Super + P 
+gsettings list-recursively | grep "<Super>p"
+
+# UI tool: dconf-editor
+gsettings set org.gnome.mutter.keybindings switch-monitor "['XF86Display']"
+gsettings set org.gnome.mutter.keybindings switch-monitor "['']"
+
+gsettings reset org.gnome.mutter.keybindings switch-monitor
+```
 
 ### custom shortcuts script for finding and activating window
 ```sh
@@ -193,6 +204,10 @@ nc -kdl localhost 8000
 # Sample request maker on another shell:
 wget http://localhost:8000
 ```
+```sh
+npm -g install http-server
+http-server
+```
 
 ## Utilities 
 * [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
@@ -209,6 +224,31 @@ sphinx-build "/path/to/source" "/path/to/build" .
 sudo add-apt-repository ppa:jtaylor/keepass
 sudo apt-get update && sudo apt-get install keepass2
 ```
+keepassxc-cli
+* https://www.mankier.com/1/keepassxc-cli
+* https://wiki.gentoo.org/wiki/KeePassXC/cli
+```sh
+## set key file instead of password
+KEEPASS_KEY=/home/projects/keepass.keyx
+# create key file: openssl rand -out $KEEPASS_KEY 256
+ll $KEEPASS_KEY
+# set key file 
+keepassxc-cli db-edit --set-key-file  $KEEPASS_KEY  $KEEPASS_FILE 
+# check key file with entering password
+keepassxc-cli ls --key-file $KEEPASS_KEY $KEEPASS_FILE 
+# unset password 
+keepassxc-cli db-edit --key-file $KEEPASS_KEY  $KEEPASS_FILE  --unset-password
+keepassxc-cli ls --key-file $KEEPASS_KEY $KEEPASS_FILE --no-password
+
+# unset key file 
+# keepassxc-cli db-edit --unset-key-file  $KEEPASS_KEY  $KEEPASS_FILE 
+
+
+# get password
+keepassxc-cli show -s -k $KEEPASS_KEY $KEEPASS_FILE  'Client1/Order Value'  --no-password
+
+```
+
 * vnc
  * vnc installation
 ```sh

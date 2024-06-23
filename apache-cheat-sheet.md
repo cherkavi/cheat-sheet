@@ -131,3 +131,5 @@ flowchart LR
     a --> os2[ocp service 2]
     a --> os3[ocp service 3]
 ```
+## Apache with Keycloak
+![image](https://github.com/cherkavi/cheat-sheet/assets/8113355/b43ddccd-ef3f-452e-b77b-b979faf6b2fc)

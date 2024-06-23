@@ -27,7 +27,8 @@
 
 ## tools
 * [deployment simplification](https://github.com/cyclops-ui/cyclops)
-* [cli manager](https://github.com/derailed/k9s)
+* [k9s cli manager](https://github.com/derailed/k9s)
+   * https://k9scli.io/
 * [smart shell for kubectl](https://github.com/cloudnativelabs/kube-shell)
 * [log collector](https://github.com/wercker/stern)
 * [prompt for K8S](https://github.com/jonmosco/kube-ps1)

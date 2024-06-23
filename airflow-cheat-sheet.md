@@ -9,9 +9,9 @@
 * [podcast](https://soundcloud.com/the-airflow-podcast)
 * [tutorial](https://github.com/hgrif/airflow-tutorial)
 * [blog](https://marclamberti.com/blog/)
-* [examples](https://github.com/cherkavi/docker-images/blob/master/airflow/airflow-dag-examples.zip)
 * [best practices](https://marclamberti.com/blog/apache-airflow-best-practices-1/)
 * [task additional button on UI](https://airflow.apache.org/docs/apache-airflow/stable/howto/define_extra_link.html)
+* [dag visualisation](https://github.com/feluelle/airflow-diagrams)
 
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
 
@@ -1479,3 +1479,8 @@ solution is: change airflow.cfg
 ~~auth_backend = airflow.api.auth.backend.default~~
 auth_backend = airflow.api.auth.backend.basic_auth
 
+## Architecture examples
+![shopify](https://github.com/cherkavi/cheat-sheet/assets/8113355/f5abb887-c636-4fae-9abc-1ff667eb5117)  
+![e-commerce](https://github.com/cherkavi/cheat-sheet/assets/8113355/daa2245c-8ace-4b7b-a13c-bec834bc7e93)  
+![celery worker on AWS](https://github.com/cherkavi/cheat-sheet/assets/8113355/b9e343a1-8ae8-46ae-bc4b-75525fe7c167)  
+![airflow-centric solution ](https://github.com/cherkavi/cheat-sheet/assets/8113355/990f0034-b257-42dd-b88f-d504d70c481c)  
