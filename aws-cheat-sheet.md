@@ -1584,6 +1584,7 @@ aws sts get-caller-identity --query UserId
 ---
 ## [Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
 > logic orchestrator
+> AWS Glue can be one of the step ( similar service )
 * [workflow studio for building step functions](https://docs.aws.amazon.com/step-functions/latest/dg/workflow-studio.html)
 * [state between calls - execution history](https://docs.aws.amazon.com/step-functions/latest/apireference/API_GetExecutionHistory.html)
 
