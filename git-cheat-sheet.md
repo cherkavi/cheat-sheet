@@ -305,6 +305,13 @@ git show-branch -r
 git checkout -t remotes/origin/release
 ```
 
+### show file from another branch, show file by branch
+```sh
+BRANCH_NAME=feature_1234
+FILE_NAME=src/main/java/EnterPoint.java
+git show $BRANCH_NAME:$FILE_NAME
+```
+
 ### copy file from another branch
 ```sh
 git checkout experiment -- deployment/connection_pool.py                                 
