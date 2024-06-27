@@ -1111,6 +1111,30 @@ for PULL_REQUEST_NUMBER in "${PULL_REQUESTS[@]}"; do
     echo "--------------------"
 done
 ```
+## github credentials
+### start page
+* _octo
+### login page
+* _octo
+* logged_in
+* preferred_color_mode
+* tz
+* _gh_sess
+### after login 
+* _octo
+* color_mode
+* dotcom_user
+* logged_in
+* preferred_color_mode
+* tz
+  
+* __Host-user_session_same_site  
+* _device_id
+* _gh_sess
+* has_recent_activity
+* saved_user_sessions
+* tz
+* user_session
 
 ## github rest api 
 [github rest api ](https://docs.github.com/en/rest/guides/getting-started-with-the-rest-api)
