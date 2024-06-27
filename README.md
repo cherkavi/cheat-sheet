@@ -45,6 +45,10 @@ function cheat-grep(){
 * [white board for collaboration](https://miro.com/)
 * [drawing tool](https://excalidraw.com/)
 
+### editor
+* https://code.visualstudio.com/
+* https://lite-xl.com/
+
 ### diagram drawing 
 * [ascii graphics for drawing Architecture Diagrams in text](http://asciiflow.com/)  
 * [uml, sysml, archimate tool](https://online.visual-paradigm.com/)
