@@ -1497,4 +1497,21 @@ jobs:
           ORACLE_PASS=${{ secrets.ORACLE_INT_PASS }} LD_LIBRARY_PATH=$(pwd)"/instantclient_23_4" python oracle-select-to-csv.py
 
 ```
+* action to use cache
+```yaml
+- name: cache file 
+  id: cache-ext-file
+  uses: actions/cache@v3
+  with:
+    path: folder_with_file
+    key: extfile-${{ hashFiles('**/archive.tar.gz') }}
+    restore-keys: |
+      extfile-
+- name: download and extract
+  if: steps.cache-ext-file.outputs.cache-hit != 'true'
+  run: |
+    mkdir -p folder_with_file
+    curl -O https://archive.com/application/archive.tar.gz
+    tar -xzf archive.tar.gz -C foldeer_with_file
+```
 ### TODO: Github Action how to connect localhost runner to github.action ?
