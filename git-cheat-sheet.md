@@ -1514,4 +1514,21 @@ jobs:
     curl -O https://archive.com/application/archive.tar.gz
     tar -xzf archive.tar.gz -C foldeer_with_file
 ```
+* communicate with next step
+```sh
+      - name: list files on SSH 
+        id: ssh_step
+        run: |
+          csv_file_count=`ls *.csv | wc -l`
+          if [[ $csv_file_count > 0 ]]; then
+            file_name="report_"$(date +"%Y-%m-%d-%H-%M-%S")".zip"
+            zip -r  $file_name . -i \*.csv
+            echo "::set-output name=file_name::$file_name"
+          fi
+
+      - name: print archive file
+        if: steps.ssh_step.outputs.file_name != ''        
+        run: |
+          echo "path: ${{ steps.ssh_step.outputs.file_name }}"
+```
 ### TODO: Github Action how to connect localhost runner to github.action ?
