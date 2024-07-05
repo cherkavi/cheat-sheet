@@ -1503,7 +1503,7 @@ jobs:
   id: cache-ext-file
   uses: actions/cache@v3
   with:
-    path: folder_with_file
+    path: ~/    # folder with file 
     key: extfile-${{ hashFiles('**/archive.tar.gz') }}
     restore-keys: |
       extfile-
