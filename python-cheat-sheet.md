@@ -310,9 +310,12 @@ export PYTHONPATH=$PYTHONPATH:"/home/projects/wondersign/integration-prototype"
 /home/projects/integration-prototype/list-comparator/venv/bin/python /home/projects/integration-prototype/list-comparator/list_comparator/data_api/tools/data_api_reader.py
 ```
 
-### create executable environment
+### create executable environment, executable file 
 ```sh
 pex --python=python3 flask requests tornado -o samplepkg.pex
+```
+```sh
+pyinstaller --onefile app.py
 ```
 
 ### path to python, obtain python interpreter path
