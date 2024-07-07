@@ -1,4 +1,6 @@
 # Oracle cheat sheet
+[jdbc driver to download](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
+
 ## oracle cli, sql developer command line
 ### sqlcl
 ```sh

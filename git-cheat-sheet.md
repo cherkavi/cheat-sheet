@@ -305,6 +305,13 @@ git show-branch -r
 git checkout -t remotes/origin/release
 ```
 
+### show file from another branch, show file by branch
+```sh
+BRANCH_NAME=feature_1234
+FILE_NAME=src/main/java/EnterPoint.java
+git show $BRANCH_NAME:$FILE_NAME
+```
+
 ### copy file from another branch
 ```sh
 git checkout experiment -- deployment/connection_pool.py                                 
@@ -1489,5 +1496,39 @@ jobs:
           # ls "$(pwd)"/instantclient_23_4
           ORACLE_PASS=${{ secrets.ORACLE_INT_PASS }} LD_LIBRARY_PATH=$(pwd)"/instantclient_23_4" python oracle-select-to-csv.py
 
+```
+* action to use cache
+```yaml
+- name: cache file 
+  id: cache-ext-file
+  uses: actions/cache@v3
+  with:
+    path: ~/    # folder with file 
+    key: extfile-${{ hashFiles('**/archive.tar.gz') }}
+    restore-keys: |
+      extfile-
+- name: download and extract
+  if: steps.cache-ext-file.outputs.cache-hit != 'true'
+  run: |
+    mkdir -p folder_with_file
+    curl -O https://archive.com/application/archive.tar.gz
+    tar -xzf archive.tar.gz -C foldeer_with_file
+```
+* communicate with next step
+```sh
+      - name: list files on SSH 
+        id: ssh_step
+        run: |
+          csv_file_count=`ls *.csv | wc -l`
+          if [[ $csv_file_count > 0 ]]; then
+            file_name="report_"$(date +"%Y-%m-%d-%H-%M-%S")".zip"
+            zip -r  $file_name . -i \*.csv
+            echo "::set-output name=file_name::$file_name"
+          fi
+
+      - name: print archive file
+        if: steps.ssh_step.outputs.file_name != ''        
+        run: |
+          echo "path: ${{ steps.ssh_step.outputs.file_name }}"
 ```
 ### TODO: Github Action how to connect localhost runner to github.action ?
