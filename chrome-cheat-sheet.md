@@ -49,7 +49,7 @@ ll "$HOME/snap/chromium/common/chromium/Default/Web Applications/Manifest Resour
 /snap/bin/chromium --profile-directory=Default --app-id=cifhbcnohmdccbgoicgdjpfamggdegmo
 ```
 
-## highlight text on the page, find text on the page, [text fragments](https://developer.mozilla.org/en-US/docs/Web/Text_fragments)
+## link anchor, link to text, highlight text on the page, find text on the page, [text fragments](https://developer.mozilla.org/en-US/docs/Web/Text_fragments)
 ```sh
 x-www-browser https://github.com/cherkavi/cheat-sheet/blob/master/architecture-cheat-sheet.md#:~:text=Architecture cheat sheet&text=Useful links
 
