@@ -26,6 +26,20 @@ see [documentation](http://tomcat.apache.org/maven-plugin-trunk/tomcat7-maven-pl
 mvn  org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:redeploy -Dmaven.test.skip -Dmaven.tomcat.url=http://{host}:8080/manager/text -Dtomcat.username=root -Dtomcat.password=root
 ```
 
+### Tomcat fast application start
+[simple web servlet application](https://github.com/cherkavi/java-web/tree/master/simple-echo-server)  
+```sh
+TOMCAT_HOME=/home/soft/tomcat/apache-tomcat-9.0.91
+WAR_ASSEMBLED=/home/projects/temp/java-web-echo/target/echo-webapp.war
+
+$TOMCAT_HOME/bin/startup.sh      
+cp $WAR_ASSEMBLED $TOMCAT_HOME/webapps
+sleep 10
+x-www-browser http://localhost:8080/echo-webapp/echo
+rm $TOMCAT_HOME/webapps/echo-webapp.war
+/home/soft/tomcat/apache-tomcat-9.0.91/bin/shutdown.sh
+```
+
 ### Tomcat debug
 > update file: setenv.sh
 * for linux:
