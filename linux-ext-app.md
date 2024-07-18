@@ -96,8 +96,17 @@ gsettings set org.gnome.mutter.keybindings switch-monitor "['']"
 gsettings reset org.gnome.mutter.keybindings switch-monitor
 ```
 
+### windows information, window control
+http://mirrors.kernel.org/ubuntu/pool/universe/w/wmctrl/wmctrl_1.07-7build1_amd64.deb
+```sh
+# get current window id
+CURRENT_WINDOW_ID=$(xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)" | cut -d ' ' -f 5)
+echo "Window ID: $CURRENT_WINDOW_ID, Border Width: $BORDER_WIDTH"
+# get window properties 
+xprop -id $CURRENT_WINDOW_ID _NET_FRAME_EXTENTS
+```
+
 ### custom shortcuts script for finding and activating window, simulate actions by human 
-control window: http://mirrors.kernel.org/ubuntu/pool/universe/w/wmctrl/wmctrl_1.07-7build1_amd64.deb
 ```sh
 #!/bin/bash
 values=`xdotool search --name 'Visual Studio Code'`
