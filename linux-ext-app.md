@@ -97,6 +97,7 @@ gsettings reset org.gnome.mutter.keybindings switch-monitor
 ```
 
 ### windows information, window control
+https://www.freedesktop.org/wiki/Software/wmctrl/
 http://mirrors.kernel.org/ubuntu/pool/universe/w/wmctrl/wmctrl_1.07-7build1_amd64.deb
 ```sh
 # get current window id
