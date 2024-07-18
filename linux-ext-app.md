@@ -97,7 +97,7 @@ gsettings reset org.gnome.mutter.keybindings switch-monitor
 ```
 
 ### custom shortcuts script for finding and activating window, simulate actions by human 
-also useful tool: https://packages.ubuntu.com/focal/amd64/wmctrl/download
+control window: http://mirrors.kernel.org/ubuntu/pool/universe/w/wmctrl/wmctrl_1.07-7build1_amd64.deb
 ```sh
 #!/bin/bash
 values=`xdotool search --name 'Visual Studio Code'`
