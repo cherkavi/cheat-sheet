@@ -92,10 +92,10 @@ echo exit | sqlplus user/pass@connect @scriptfilename
 dbms_lob.getlength()
 
 ### order by records desc, last record from table, limit amount of records to show
-select * from table(select * from table ORDER BY ROWNUM DESC) where rownum=1
+select * from ( SELECT * FROM TABLE order by rownum desc) where rownum=1;
 
 ### search into all tab columns
-select * from all_tab_columns
+select * from all_tab_columns;
 select * from all_triggers where trigger_name like upper('enum_to_fee_service');
 
 ### dbms output enable
