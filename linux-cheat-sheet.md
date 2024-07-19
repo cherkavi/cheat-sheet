@@ -165,7 +165,7 @@ remotely: /etc/ssh/sshd_config
 ```sh
 AcceptEnv MY_LOCAL_VAR
 ```
-#### ssh environment
+#### ssh environment, execute on remote server bash file after login
 ```sh
 echo "VAR1=Hello" > sshenv
 echo "VAR2=43" >> sshenv
