@@ -337,11 +337,18 @@ aws-cli-doc
 aws-faq
 aws-console
 ```
-### static web site
+### s3 static web site
 * [static web site solution](https://github.com/cherkavi/udacity-cloud-devops/blob/main/08-static-web-site.md#static-web-site)
 * [static web site doc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html)
 * [static web site endpoints](https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteEndpoints.html)
-
+* alternative solutions for making static website hosting
+  * Backblaze B2
+  * DigitalOcean
+  * Oracle Cloud Infrastructure Object Storage
+  * IBM Cloud Object Storage
+  * Alibaba Cloud OSS
+  * Microsoft Azure Blob Storage
+  * Google Cloud Storage
 ### s3 operations
 ```sh
 # make bucket - create bucket with globally unique name
