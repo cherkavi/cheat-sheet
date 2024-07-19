@@ -1738,6 +1738,9 @@ http header for tracing: x-amzn-trace-id
 ## personal health dashboard
 
 ---
+## app sync
+
+---
 ## examples
 ![image](https://github.com/cherkavi/cheat-sheet/assets/8113355/658be5b5-2898-413e-ae46-d5fb81ac1add)  
 
