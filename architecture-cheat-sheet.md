@@ -43,7 +43,6 @@
 * Architecture != Tools & Frameworks
 * Postponing decisions about Tooling and frameworks
 * Focus on customer, not environment
---- 
 
 ## Architecture trade-offs
 * Build vs Buy
@@ -68,10 +67,8 @@ documentation)Documentation(
     {{interchange responsibility}}
         split hard tasks
         real Agile
-
-
 ```
---- 
+
 ![architecture phases](https://i.postimg.cc/brdDyd37/architecture-phases.png)
 ![architecture context](https://i.postimg.cc/3rG2VYKf/architecture-context.png)
 ![architecture styles](https://i.postimg.cc/5yD8PZcn/architecture-types.png)
@@ -81,6 +78,27 @@ documentation)Documentation(
 
 ## Architecture cycle
 ![architecture cycle](https://i.postimg.cc/VNXSFVb1/architecture-cycle.png)
+
+## Waterfall++ - [V-Model system design](https://en.wikipedia.org/wiki/V-model_(software_development))
+![v-model](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Systems_Engineering_Process_II.svg/599px-Systems_Engineering_Process_II.svg.png)
+
+## Design thinking
+* emphasize
+  * hot points
+  * who is asking
+  * no tech discussions
+  * goals ( business, tech )
+* define
+  * deep understanding
+  * questions
+  * use cases
+* idea
+  * how to 
+  * solution architecture
+* prototype
+  * implementation
+* test
+
 
 ## [Antipatterns](https://sourcemaking.com/antipatterns/software-architecture-antipatterns)
 
