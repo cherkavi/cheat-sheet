@@ -1,6 +1,6 @@
 # Kafka cheat sheet
-[position in architecture ](https://github.com/cherkavi/cheat-sheet/blob/master/architecture-cheat-sheet.md#communication-between-applications)
-**Kafka guarantees**
+[position in architecture ](https://github.com/cherkavi/cheat-sheet/blob/master/architecture-cheat-sheet.md#communication-between-applications)  
+## **Kafka guarantees**
 * messages that sent into particular topic will be appended in the same order
 * consumer see messages in order that were written
 * "At-least-once" message delivery guaranteed - for consumer who crushed before it commited offset
