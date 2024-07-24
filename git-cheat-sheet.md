@@ -20,6 +20,7 @@
 * [complex search in github ui](https://docs.github.com/en/enterprise-server@3.3/search-github/searching-on-github/searching-issues-and-pull-requests)
   > '-label:merge' - exclude label merge
   > 'NOT text-not-in-body'
+* if you want to see for your pull request 'git diff' in raw text - just add '.diff" prefix at the end of the pull request number like 'https://gihub.com/.....lambdas/pull/95.diff'
 
 ### git autocomplete
 ```sh
