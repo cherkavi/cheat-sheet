@@ -21,6 +21,7 @@
   > '-label:merge' - exclude label merge
   > 'NOT text-not-in-body'
 * if you want to see for your pull request 'git diff' in raw text - just add '.diff" prefix at the end of the pull request number like 'https://gihub.com/.....lambdas/pull/95.diff'
+* similar to '.diff' also exists '.patch'
 
 ### git autocomplete
 ```sh
