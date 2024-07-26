@@ -230,6 +230,12 @@ git log -5 develop
 git log -10 --author "Frank Newman" -- my-sub-folder-in-repo
 ```
 
+### get last versions of the file, get file history as snapshots
+```sh
+FILE_PATH=./1.md
+git log -n 20 --pretty=format:"%h" -- $FILE_PATH | xargs -I{} git show {} -- $FILE_PATH > out.txt
+```
+
 ### log pretty print log oneline
 ```sh
 git relog -5
