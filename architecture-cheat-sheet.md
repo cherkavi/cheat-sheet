@@ -47,37 +47,10 @@
 ## Architecture trade-offs
 * Build vs Buy
 * Coding vs Configuration
-* Product customisation
+* Product customization
 
-## Why to make a documentation:
-```mermaid
-mindmap
-documentation)Documentation(
-    {{one common vision}}
-        common bird-eye view
-        naming conventions
-        decrease sketching time for each meeting
-    {{part of DefinitionOfDone}}
-        visibility
-        knowledge sharing
-    {{one point of truth}}
-        new team member
-        existing team memeber
-        external teams
-    {{interchange responsibility}}
-        split hard tasks
-        real Agile
-```
-
-![architecture phases](https://i.postimg.cc/brdDyd37/architecture-phases.png)
+## Architecture context
 ![architecture context](https://i.postimg.cc/3rG2VYKf/architecture-context.png)
-![architecture styles](https://i.postimg.cc/5yD8PZcn/architecture-types.png)
-![software architecture](https://i.postimg.cc/D0cMGPPc/software-architecture.png)
-![architecture antipatterns](https://i.postimg.cc/Kz3gQFy8/architecture-antipatterns.png)
-
-
-## Architecture cycle
-![architecture cycle](https://i.postimg.cc/VNXSFVb1/architecture-cycle.png)
 
 ## Waterfall++ - [V-Model system design](https://en.wikipedia.org/wiki/V-model_(software_development))
 ![v-model](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Systems_Engineering_Process_II.svg/599px-Systems_Engineering_Process_II.svg.png)
@@ -100,12 +73,6 @@ documentation)Documentation(
 * test
 
 
-## [Antipatterns](https://sourcemaking.com/antipatterns/software-architecture-antipatterns)
-
-## Software architecture patterns
-![architecture patterns](https://i.postimg.cc/Gm8T42L4/architecture-patterns.png)
-> TODO: [cell-based Architecture](https://github.com/wso2/reference-architecture/blob/master/reference-architecture-cell-based.md) (cellular architecture)
-
 ## Architecture Decision Records
 * Priority
 * Stakeholders
@@ -114,45 +81,12 @@ documentation)Documentation(
 * Assumptions
 * Risks
 
-## Togaf
-[togaf phases](https://pubs.opengroup.org/togaf-standard/adm/chap03.html)    
-![togaf phases](https://pubs.opengroup.org/togaf-standard/adm/Figures/a_vis.png)  
-![base-target](https://i.postimg.cc/SxzC9f9z/togaf-base-target.png)  
-![togaf layers](https://i.postimg.cc/904Rb3GK/archimate3-layers.png)    
-![togaf aspects](https://i.postimg.cc/BbmmWbML/archimate-01.png)    
-![togaf metamodel](https://i.postimg.cc/fLZCJmPS/archimate-04.png)    
-
-## Archimate
-### useful links
-* [specification](https://pubs.opengroup.org/architecture/archimate3-doc/)
-* [guide](https://www.visual-paradigm.com/guide/archimate/full-archimate-viewpoints-guide/)
-* [how to draw diagrams](https://www.visual-paradigm.com/support/documents/vpuserguide/4455/4409/86421_howtodrawarc.html)
-* [blog about modeling](http://renewableplus.blogspot.com/2017/03/modeling-applications-technology-in.html)
-* [blog examples](https://www.hosiaisluoma.fi/blog/archimate-examples/)
-
-### resilient architecture
+## resilient architecture
 * Timeouts
 * Graceful Degradation
 * Retries
 * Exponential Backoff
 * Circuit Breakers
-
-### Archimate with Sequence diagram
-![image](https://user-images.githubusercontent.com/8113355/206921007-21643c2b-da3f-4930-a79c-4462562017e1.png)
-
-### Archimate with Class diagram 
-![image](https://github.com/cherkavi/cheat-sheet/assets/8113355/a567541c-1535-4ad6-a837-087f4d807b8d)
-
-
-### Examples
-![Big Data cluster](https://github.com/cherkavi/cheat-sheet/assets/8113355/e44f9068-97d1-4e96-a2b7-acbf4f0edac5)
-
-
-## UML diagrams
-### Structure 
-### Behavior
-#### Behavior of itself
-#### Behavior with other / Interaction 
 
 ## Application general schema, application demands
 * development
@@ -163,34 +97,28 @@ documentation)Documentation(
   * L3
 * data migration ( for evolution/revolution )
 
+# Why software architecture
+![software architecture](https://i.postimg.cc/D0cMGPPc/software-architecture.png)
+## Why to make a documentation:
+```mermaid
+mindmap
+documentation)Documentation(
+    {{one common vision}}
+        common bird-eye view
+        naming conventions
+        decrease sketching time for each meeting
+    {{part of DefinitionOfDone}}
+        visibility
+        knowledge sharing
+    {{one point of truth}}
+        new team member
+        existing team memeber
+        external teams
+    {{interchange responsibility}}
+        split hard tasks
+        real Agile
+```
 
-## Architecture style: Microservice
-### Microservices Benefits:
-* Independent Deployments
-* Fault Isolation
-* Enchanced Scalability
-### Microservices importance of design patterns:
-* Scalability
-* Reducing Complexity
-* Distributed Data Management
-* Enhancing Communication
-### Microservices Design patterns:
-* API Gateway
-  > like GoF.facade
-  > single entry point for all client requests
-* Database per Service
-  > like a GoF.memento ( partially )
-  > single databank per service, data isolation
-* Circuit Breaker
-  > prevent overwhelming of the calls to outdated external resource
-* Event-Driven
-  > like GoF.observer
-  > publish event ( notify ), when own state has changed
-* Saga
-  > like a GoF.command + GoF.proxy
-  > for list of the external call will make undo in case of fail
-
-## Communication between applications
-### communication: messaging
-![2git-messaging](https://github.com/cherkavi/cheat-sheet/assets/8113355/e3062328-7afb-4a8c-b9a7-b458689c5ed0)
+## Examples
+![Big Data cluster](https://github.com/cherkavi/cheat-sheet/assets/8113355/e44f9068-97d1-4e96-a2b7-acbf4f0edac5)
 
