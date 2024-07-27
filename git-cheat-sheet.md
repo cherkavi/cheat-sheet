@@ -20,6 +20,8 @@
 * [complex search in github ui](https://docs.github.com/en/enterprise-server@3.3/search-github/searching-on-github/searching-issues-and-pull-requests)
   > '-label:merge' - exclude label merge
   > 'NOT text-not-in-body'
+* if you want to see for your pull request 'git diff' in raw text - just add '.diff" prefix at the end of the pull request number like 'https://gihub.com/.....lambdas/pull/95.diff'
+* similar to '.diff' also exists '.patch'
 
 ### git autocomplete
 ```sh
@@ -226,6 +228,12 @@ git log -5 develop
 ### check last commits for subfolder, check last commits for author, last commit in folder
 ```sh
 git log -10 --author "Frank Newman" -- my-sub-folder-in-repo
+```
+
+### get last versions of the file, get file history as snapshots
+```sh
+FILE_PATH=./1.md
+git log -n 20 --pretty=format:"%h" -- $FILE_PATH | xargs -I{} git show {} -- $FILE_PATH > out.txt
 ```
 
 ### log pretty print log oneline
