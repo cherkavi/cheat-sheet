@@ -223,12 +223,21 @@ http-server
 ## Utilities 
 * [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
 * automation for browsers, automate repited actions: iMacros
-* md2html, markdown to html
+* md2html, markdown to html, markdown tool 
 ```sh
 sudo apt-get update
 sudo apt-get install -y python3-sphinx
 pip3 install recommonmark sphinx-markdown-tables --user
 sphinx-build "/path/to/source" "/path/to/build" .
+```
+```sh
+pandoc README.md | lynx -stdin
+```
+```sh
+markdown-it README.md
+```
+```sh
+glow README.md
 ```
 * keepass
 ```sh
