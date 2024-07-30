@@ -32,3 +32,37 @@
 * [how to draw diagrams](https://www.visual-paradigm.com/support/documents/vpuserguide/4455/4409/86421_howtodrawarc.html)
 * [blog about modeling](http://renewableplus.blogspot.com/2017/03/modeling-applications-technology-in.html)
 * [blog examples](https://www.hosiaisluoma.fi/blog/archimate-examples/)
+
+# Start drawing
+## [Perspectives](http://weblog.tetradian.com/2012/06/06/inside-in-inside-out-outside-in-outside-out/)
+* **inside-in**
+  > develop a broad understanding of what clean-up would be required    
+  > _within each domain in scope_   
+* **outside-out**
+  > develop a broad understanding of the  
+  > _overall business-ecosystem_, in its own terms,   
+  > independent of our own organisation  
+* **outside-in**
+  > develop a broad to detailed understanding of  
+  > _how others would interact and transact with our organisation_, from their perspective  
+* **inside-out**
+  > (usually together with a detailed _inside-in_): develop a detailed architecture     
+  > for each domain, each from its own perspective,    
+  > drawing on each of _outside-in_ perspectives for guidance    
+
+## Purpose/Viewpoints
+inside-in
+* **Informing** achieve understanding or obtain commitment.
+  > The main goal is to elicit feedback to make sure that the communication is effective.
+* **Deciding** support the process of decision-making and often target managers
+  > The main goal is to obtain a decision or a choice between several options.
+* **Designing** support the design process from initial sketch to detailed design
+  > The main goal is usually to define or refine a target.
+
+## Content
+* **Overview** - helicopter view on a subject which usually mixes multiples domains 
+  > targets decision-makers or enterprise architects.
+* **Coherence/Collaboration** - focus on one specific topic, but seen through multiple complementary angles.
+  > collaboration between people, processes or tools.
+* **Details** - focus on one specific topic and zoom in only one of its aspects.
+  > subject matter experts or software engineers.
