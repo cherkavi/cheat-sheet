@@ -5,6 +5,10 @@
 * [get started](https://www.pulumi.com/docs/get-started/)
 * [api index](https://www.pulumi.com/registry/packages/aws/api-docs/)
 
+## alternatives
+* terraform
+* multy.dev
+
 ## pulumi python 
 ```sh
 pip3 install pulumi
