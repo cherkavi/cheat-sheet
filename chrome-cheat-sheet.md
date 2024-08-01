@@ -10,6 +10,7 @@ sudo dpkg -i ~/Downloads/google-chrome-stable_current_amd64.deb
 ```
 
 ## [internal links](chrome://chrome-urls/)
+> firefox system links `about:about`
 * [system settings ](chrome://system/)  
 * [applications](chrome://apps/)
 * [extensions](chrome://extensions-internals/)

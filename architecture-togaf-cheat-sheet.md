@@ -66,3 +66,9 @@ inside-in
   > collaboration between people, processes or tools.
 * **Details** - focus on one specific topic and zoom in only one of its aspects.
   > subject matter experts or software engineers.
+
+## Drawing 
+* avoid line crossing
+* bigger elements will be understood as being more important
+* Align elements on a grid and between each other.
+* Use whitespace instead of actually using a visual group.
