@@ -3674,6 +3674,11 @@ interactive calculator
 ```sh
 bc -l -i
 ```
+interactive arithmethic calculator 
+```sh
+calc
+qalc
+```
 
 ### sudo without password, apple keyboard, sudo script without password
 ```
