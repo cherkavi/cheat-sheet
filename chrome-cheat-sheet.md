@@ -36,7 +36,7 @@ alternative way of finding names of all installed plugins/extensions
 ```sh
 CHROME_CONFIG=$HOME/.config/google-chrome
 IFS=$'\n'
-for each_file in `find $CHROME_CONFIG | grep -i Extensions | grep manifest.json$`; do
+for each_file in `find $CHROME_CONFIG | grep manifest.json$`; do
     echo $each_file
     cat $each_file | grep '"name": '
 done

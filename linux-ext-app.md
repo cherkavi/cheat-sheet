@@ -922,6 +922,16 @@ sudo ls -la /media/${USER}/${DISK_ID}/boot/efi/
 | &body=   |to set the body of the message, you can add entire sentences here, including line breaks. Line breaks should be converted to %0A.|
 
 ## mail console client
+### aerc
+```sh
+## create application password: https://myaccount.google.com/u/1/apppasswords
+## vim ~/.config/aerc/accounts.conf
+
+## vim ~/.config/aerc/aerc.conf
+# [filters]
+# text/html = "w3m -T text/html"
+sudo apt install aerc 
+```
 
 ### mutt
 ```sh
