@@ -3401,7 +3401,7 @@ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQ
 libreoffice --headless --convert-to pdf "/home/path/Dativ.doc" --outdir /tmp/output
 ```
 
-### pdf to text, extract text from pdf
+### pdf to text, extract text from pdf, convert pdf to text
 ```sh
 pdftotext file.pdf -
 ```
