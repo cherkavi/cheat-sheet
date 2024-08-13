@@ -116,16 +116,32 @@ npm config ls
 npm config list
 ```
 ## npm registry
+### remove registry
+```sh
+npm config delete registry
+```
+### set registry
 ```sh
 # how to set registry
-# npm config set strict-ssl false
+npm config set strict-ssl false
 npm config set registry https://registry.npmjs.org/
-npm config delete registry
 ```
 or adjust environment
 ```sh
 NPM_CONFIG_REGISTRY=https://registry.npmjs.org/
 ```
+### add additional registry
+```sh
+npm config set @my-personal-repo:registry https://ci.ubs.com/nexus/repository/cds-npm
+```
+or update your .npmrc
+```sh
+@my-personal-repo:registry=https://ci.ubs.com/nexus/repository/cds-npm
+```
+```sh
+npm install @my-personal-repo/my-component
+```
+
 ## proxy
 ```sh
 npm config set proxy [url:port]
