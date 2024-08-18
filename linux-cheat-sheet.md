@@ -2833,6 +2833,11 @@ ifconfig
 nmcli d
 ```
 
+### print all wifi passwords
+```sh
+sudo cat /etc/NetworkManager/system-connections/* | grep -e ^ssid -e ^psk
+```
+
 ### switch on and off network interface
 ```
 sudo ifdown lo && sudo ifup lo
