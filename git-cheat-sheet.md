@@ -1270,6 +1270,9 @@ gh workflow run $WORKFLOW_FILE_NAME --ref $GIT_BRANCH_NAME
 
 gh variable list
 gh variable set $VARIABLE_NAME --body $VARIABLE_VALUE
+
+# search pull request via CLI, search not opened pull requests
+gh pr list -S 'author:cherkavi is:merged'
 ```
 
 ## github actions (workflow, pipeline )
