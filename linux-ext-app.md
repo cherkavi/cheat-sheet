@@ -564,7 +564,23 @@ smbclient -U $SAMBA_CLIENT_GROUP//$SAMBA_CLIENT_USER \
 //europe.ubs.corp/win_drive/xchange/Zurich/some/folder
 ```
 
-## i3wm, i3 desktop 
+## tiling window manager i3wm, i3 desktop
+Alternatives:
+* [Awesome](https://awesomewm.org/) 
+* [Bspwm](https://github.com/baskerville/bspwm) 
+* [dwm](https://dwm.suckless.org/) 
+* [EXWM](https://github.com/ch11ng/exwm) 
+* [Herbstluftwm](https://herbstluftwm.org/) 
+* [NotionWM](https://notionwm.net/) 
+* [Qtile](https://github.com/qtile/qtile) 
+* [spectrwm](https://github.com/conformal/spectrwm) 
+* [StumpWM](https://stumpwm.github.io/) 
+* [Sway](https://swaywm.org/) 
+* [wmii](https://github.com/0intro/wmii) 
+* [Hyprland](https://hyprland.org/) 
+* [River](https://github.com/riverwm/river)
+* [xmonad](https://xmonad.org/)
+* 
 ### [custom status bar](https://py3status.readthedocs.io/en/latest/intro.html#installation)
 ### config file
 ```sh
