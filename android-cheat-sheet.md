@@ -120,3 +120,18 @@ SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", ATTR{idProduct}=="6860", MODE="0660", 
 
 sudo service udev status
 ```
+
+## decompilation, opening Android apk 
+### [jadx](https://github.com/skylot/jadx)
+#### download latest release
+```sh
+GIT_ACCOUNT=skylot
+GIT_PROJECT=jadx
+version=`wget -v https://github.com/${GIT_ACCOUNT}/${GIT_PROJECT}/releases/latest/download/$GIT_RELEASE_ARTIFACT 2>&1 | grep following | awk '{print $2}' | awk -F '/' '{print $8}'`
+GIT_RELEASE_ARTIFACT=jadx-${version:1}.zip
+wget -v https://github.com/${GIT_ACCOUNT}/${GIT_PROJECT}/releases/latest/download/$GIT_RELEASE_ARTIFACT
+```
+#### start gui 
+```sh
+./bin/jadx-gui
+```

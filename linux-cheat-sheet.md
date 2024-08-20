@@ -2833,6 +2833,11 @@ ifconfig
 nmcli d
 ```
 
+### print all wifi passwords
+```sh
+sudo cat /etc/NetworkManager/system-connections/* | grep -e ^ssid -e ^psk
+```
+
 ### switch on and off network interface
 ```
 sudo ifdown lo && sudo ifup lo
@@ -3401,7 +3406,7 @@ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQ
 libreoffice --headless --convert-to pdf "/home/path/Dativ.doc" --outdir /tmp/output
 ```
 
-### pdf to text, extract text from pdf
+### pdf to text, extract text from pdf, convert pdf to text
 ```sh
 pdftotext file.pdf -
 ```
@@ -3673,6 +3678,11 @@ bc <<< 4+5
 interactive calculator
 ```sh
 bc -l -i
+```
+interactive arithmethic calculator 
+```sh
+calc
+qalc
 ```
 
 ### sudo without password, apple keyboard, sudo script without password

@@ -4,6 +4,10 @@
 * [download/install](https://developer.hashicorp.com/terraform/downloads)  
 * [cli commands](https://www.terraform.io/docs/commands/index.html)
 
+### alternatives
+* [multy.dev](https://multy.dev/)
+* pulumi
+
 ### language 
 * [documentation](https://www.terraform.io/docs/index.html)
 * [terraform core](https://github.com/hashicorp/terraform)

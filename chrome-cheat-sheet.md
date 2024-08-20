@@ -10,6 +10,7 @@ sudo dpkg -i ~/Downloads/google-chrome-stable_current_amd64.deb
 ```
 
 ## [internal links](chrome://chrome-urls/)
+> firefox system links `about:about`
 * [system settings ](chrome://system/)  
 * [applications](chrome://apps/)
 * [extensions](chrome://extensions-internals/)
@@ -35,7 +36,7 @@ alternative way of finding names of all installed plugins/extensions
 ```sh
 CHROME_CONFIG=$HOME/.config/google-chrome
 IFS=$'\n'
-for each_file in `find $CHROME_CONFIG | grep -i Extensions | grep manifest.json$`; do
+for each_file in `find $CHROME_CONFIG | grep manifest.json$`; do
     echo $each_file
     cat $each_file | grep '"name": '
 done
