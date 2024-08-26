@@ -1199,6 +1199,29 @@ https://api.github.com/repos/OWNER/REPO/actions/secrets/SECRET_NAME
 curl -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/repos/$OWNER/$REPO/actions/secrets/$SECRET_NAME
 ```
 
+## github render/run html/js/javascript files from github
+
+### githack.com
+Development
+```
+https://raw.githack.com/[user]/[repository]/[branch]/[filename.ext]
+```
+Production (CDN)
+```
+https://rawcdn.githack.com/[user]/[repository]/[branch]/[filename.ext]
+```
+```
+https://raw.githack.com/cherkavi/javascripting/master/d3/d3-bar-chart.html
+```
+
+### github.io
+```
+http://htmlpreview.github.io/?[full path to html page]
+
+http://htmlpreview.github.io/?https://github.com/cherkavi/javascripting/blob/master/d3/d3-bar-chart.html
+http://htmlpreview.github.io/?https://github.com/twbs/bootstrap/blob/gh-pages/2.3.2/index.html
+```
+
 ## git find bad commit, check bad commits in the log
 ```sh
 git bisect start.
