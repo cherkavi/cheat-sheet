@@ -18,7 +18,13 @@
 * [interactive course](https://www.katacoda.com/courses/kubernetes)
 * [interactive course](https://www.katacoda.com/contino/courses/kubernetes)
 
-## playground and examples
+## local playgrounds
+* [kind](#kind)
+* [k3s](#k3s)
+* [microk8s](#microk8s)
+* [minikube](#minikube)
+
+## remote playground and examples
 * [playground](https://labs.play-with-k8s.com/)
 * [kubeadm cluster](https://killercoda.com/playgrounds/scenario/kubernetes)
 * [k8s examples](https://github.com/wardviaene/kubernetes-course)
@@ -91,6 +97,8 @@ pip install kubernetes
 6. A Kubelet on a node detects a pod with an assignment to itself and deploys the requested containers through the container runtime, for example, Docker. Each node watches the storage to see what pods it is assigned to run. The node takes necessary actions on the resources assigned to it such as to create or delete pods.
 7. Kubeproxy manages network traffic for the pods, including service discovery and load balancing. Kubeproxy is responsible for communication between pods that want to interact.
 
+---
+## [kind](https://kind.sigs.k8s.io/)
 ---
 ## [k3s](https://k3s.io/)
 > Lightweight Kubernetes distribution
