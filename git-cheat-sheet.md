@@ -1297,6 +1297,10 @@ gh variable set $VARIABLE_NAME --body $VARIABLE_VALUE
 # search pull request via CLI, search not opened pull requests
 gh pr list -S 'author:cherkavi is:merged'
 ```
+gh complete
+```sh
+eval "$(gh completion -s bash)"
+```
 
 ## github actions (workflow, pipeline )
 [github marketplace - collections of actions `to use`](https://github.com/marketplace?type=)  
