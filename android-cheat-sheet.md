@@ -87,6 +87,18 @@ adb shell settings list --user current secure
 adb shell settings get secure location_providers_allowed
 adb shell settings get secure enabled_accessibility_services
 ```
+ 
+ send keyboard event
+```sh
+adb shell input keyevent KEYCODE_HOME
+
+# KEYCODE_A: A
+# KEYCODE_B: B
+# KEYCODE_ENTER: Enter
+# KEYCODE_SPACE: Space
+# KEYCODE_BACK: Back button
+# KEYCODE_HOME: Home button
+```
 
 ### [Fastboot](https://source.android.com/docs/setup/build/running)
 > works only in "bootloader" or "fastboot" or "download" mode.
