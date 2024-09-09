@@ -1,4 +1,6 @@
 # MongoDB cheat sheet
+* [my own mongo examples](https://github.com/cherkavi/mongo-examples)
+
 ### original docker container
 ```
 docker pull mongo
