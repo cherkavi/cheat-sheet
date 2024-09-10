@@ -439,6 +439,13 @@ copy to ```~/.config/vifm/colors``` [color scheme](https://vifm.info/colorscheme
 ```:colorscheme <tab>```
 
 ## visual code extensions
+[create custom](https://code.visualstudio.com/api/get-started/your-first-extension)
+```sh
+npx --package yo --package generator-code -- yo code
+```
+select option "open in code"  
+run in "debug" mode - will open another 'code' with your extension
+
 ```sh
 ## common
 codium --install-extension nick-rudenko.back-n-forth
