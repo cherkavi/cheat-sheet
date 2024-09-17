@@ -69,8 +69,16 @@ check "manager" application, username/password
 
 # Payara ( GlassFish )
 ## folders
-* conf.d
-* operations
+* $PAYARA_ROOT_FOLDER/config/conf.d/
+  * 10_global.xml
+* $PAYARA_ROOT_FOLDER/config/
+  * admin-keyfile
+  * passwordfile
+  * role-mappings.xml
+## properties
+```sh
+env | grep -i payara
+```
 ## commands
 ```sh
 ./GFserver4 stop -A
@@ -91,4 +99,17 @@ check "manager" application, username/password
 
 ./GFserver4 start -A
 ./GFserver4 status
+
+## encrypt passwords for configuration ( salt file must be accessible, otherwise just create it with the same content for all nodes )
+./GFserver4 encrypt-password
+```
+## issues
+### wrong version of config
+```sh
+./GFserver5 status
+# FATAL: gfv4 no longer supported by this script
+
+vim 10_global.xml
+# <config-version>v082:20xxxxx</config-version>
+# change it to: v100:20xxxxx
 ```
