@@ -75,20 +75,25 @@ check "manager" application, username/password
   * admin-keyfile
   * passwordfile
   * role-mappings.xml
+
 ## properties
 ```sh
 env | grep -i payara
 ```
-## commands
-```sh
-./GFserver4 stop -A
-./GFserver4 start -i0
-./GFserver4 start --all
-./GFserver4 sync
-./GFserver4 reconfigure # in case of changes (salt file ... ) 
-./GFserver4 -V
-./GFserver4 remove-config
 
+## manual redeploy
+```sh
+./GFserver5 stop --all  # make that for all the servers
+./GFserver5 status
+
+# all deployment files must be inside your deployment folder
+./GFserver5 remove-domain
+./GFserver5 --verbose restore # even if it was ended with exit code >0
+
+./GFserver5 start --all
+./GFserver5 status
+```
+```sh
 ## start of the application
 ./GFserver4 stop -A
 # ./GFserver4 kill -A
@@ -99,8 +104,19 @@ env | grep -i payara
 
 ./GFserver4 start -A
 ./GFserver4 status
+```
+
+## commands
+```sh
+./GFserver4 start -i0
+./GFserver4 start --all
+./GFserver4 sync
+./GFserver4 reconfigure # in case of changes (salt file ... ) 
+./GFserver4 -V
+./GFserver4 remove-config
 
 ## encrypt passwords for configuration ( salt file must be accessible, otherwise just create it with the same content for all nodes )
+# config/salt file must exists ( or just create it with random text and put on all nodes ) 
 ./GFserver4 encrypt-password
 ```
 ## issues
