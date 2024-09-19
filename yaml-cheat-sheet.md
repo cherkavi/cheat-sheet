@@ -159,3 +159,12 @@ should be defined inside metadata
 location: !DE_MUC Cosimabad   
 ```
 ### local tag ( reference inside document )
+
+# JSON
+## [JSON specification](https://json-schema.org/draft/2020-12/release-notes)
+## [JSON schema](https://json-schema.org/draft/2020-12/json-schema-core)
+JSON Hyper-Schema keyword: 
+* "$id"
+* "$ref"
+* "$dynamicRef"
+
