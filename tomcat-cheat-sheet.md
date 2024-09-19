@@ -81,9 +81,18 @@ check "manager" application, username/password
 env | grep -i payara
 ```
 
+## manual init
+```sh
+./GFserver5 stop --all  
+./GFserver5 status
+
+./GFserver5 remove-domain 
+./GFserver5 create-domain 
+```
+
 ## manual redeploy
 ```sh
-./GFserver5 stop --all  # make that for all the servers
+./GFserver5 stop --all  
 ./GFserver5 status
 
 # all deployment files must be inside your deployment folder
