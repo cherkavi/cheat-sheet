@@ -2300,6 +2300,10 @@ curl 'http://localhost:8000/members/json-api/auth/user' -H 'Cookie: PHPSESSID=5c
 # collect cookie from remote url and save in file
 curl -c cookie-from-url-com.txt -X GET url.com
 ```
+### curl binary
+```sh
+python3 ${HOME_PROJECTS_GITHUB}/python-utilities/html-scraping/binary-html/beautifulsoup.py https://amazon.de
+```
 
 ### string encoding for http
 ```sh
