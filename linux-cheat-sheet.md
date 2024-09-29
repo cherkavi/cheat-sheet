@@ -2587,7 +2587,7 @@ xpath -e $path $filename
 xmllint --html --xpath  $path $filename
 ```
 
-[html parsing html processing html query](https://github.com/rbwinslow/hq/wiki/Language-Reference)
+[html parsing html processing html query, hq tool](https://github.com/rbwinslow/hq/wiki/Language-Reference)
 ```sh
 pip install hq
 curl https://www.w3schools.com/xml | hq '`title: ${/head/title}`'
@@ -2607,14 +2607,18 @@ cat $filename | hq '`Hello, ${/html/head/title}!`'
 hq -f $filename '
 let $path := /html/body/ul/li[*];
 for $el in $path
-    return `$el`
-'
+    let $title:=`${ $el/span/div/div/div/div[2]/div[3]/div/div[1]/div/div[1]/div[1]/h2 }`
+    let $price1:=`${ $el/span/div/div/div/div[2]/div[3]/div/div[1]/div/div[1]/div[2]/div[1]/div/span/span[1] }`
+    let $price2:=`${ $el/span/div/div/div/div[2]/div[3]/div/div[1]/div/div[1]/div[2]/div[2]/div/span[1]/span[1] }`
+
+    let $price:=if ($price1) then $price1 else $price2
+
+    return `$title | $price `'
 
 hq -f $filename '
 let $path := /html/body/div[1]/li[*];
 for $el in $path
-    return `${ $el/article/div[2]/div[2]/h2/a } | https://www.example.de/${ $el/a/@href }`
-'
+    return `${ $el/article/div[2]/div[2]/h2/a } | https://www.example.de/${ $el/a/@href }`'
 
 ```
 
