@@ -69,18 +69,40 @@ check "manager" application, username/password
 
 # Payara ( GlassFish )
 ## folders
-* conf.d
-* operations
-## commands
-```sh
-./GFserver4 stop -A
-./GFserver4 start -i0
-./GFserver4 start --all
-./GFserver4 sync
-./GFserver4 reconfigure # in case of changes (salt file ... ) 
-./GFserver4 -V
-./GFserver4 remove-config
+* $PAYARA_ROOT_FOLDER/config/conf.d/
+  * 10_global.xml
+* $PAYARA_ROOT_FOLDER/config/
+  * admin-keyfile
+  * passwordfile
+  * role-mappings.xml
 
+## properties
+```sh
+env | grep -i payara
+```
+
+## manual init
+```sh
+./GFserver5 stop --all  
+./GFserver5 status
+
+./GFserver5 remove-domain 
+./GFserver5 create-domain 
+```
+
+## manual redeploy
+```sh
+./GFserver5 stop --all  
+./GFserver5 status
+
+# all deployment files must be inside your deployment folder
+./GFserver5 remove-domain
+./GFserver5 --verbose restore # even if it was ended with exit code >0
+
+./GFserver5 start --all
+./GFserver5 status
+```
+```sh
 ## start of the application
 ./GFserver4 stop -A
 # ./GFserver4 kill -A
@@ -91,4 +113,28 @@ check "manager" application, username/password
 
 ./GFserver4 start -A
 ./GFserver4 status
+```
+
+## commands
+```sh
+./GFserver4 start -i0
+./GFserver4 start --all
+./GFserver4 sync
+./GFserver4 reconfigure # in case of changes (salt file ... ) 
+./GFserver4 -V
+./GFserver4 remove-config
+
+## encrypt passwords for configuration ( salt file must be accessible, otherwise just create it with the same content for all nodes )
+# config/salt file must exists ( or just create it with random text and put on all nodes ) 
+./GFserver4 encrypt-password
+```
+## issues
+### wrong version of config
+```sh
+./GFserver5 status
+# FATAL: gfv4 no longer supported by this script
+
+vim 10_global.xml
+# <config-version>v082:20xxxxx</config-version>
+# change it to: v100:20xxxxx
 ```
