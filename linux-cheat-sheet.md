@@ -3390,6 +3390,14 @@ barcode -o 1112.pdf -e "code39" -b "1112" -u "mm" -g 50x50
 ```sh
 # -dAutoRotatePages=/None 
 gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf test-pdf2.pdf test-pdf3.pdf test-pdf4.pdf
+rm finished.pdf; gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf -dDEVICEWIDTH=612 -dDEVICEHEIGHT=792 *.pdf
+rm finished.pdf; gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf -dDEVICEWIDTH=612 -dDEVICEHEIGHT=792 -dPAGEWIDTH=612 -dPAGEHEIGHT=792 -dFIXEDMEDIA *.pdf
+
+for each_file in `*.pdf`; do
+    gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$each_file-resized" "$each_file"
+done
+
+rm finished.pdf; pdftk *.pdf cat output finished.pdf
 ```
 
 ### pdf file decrease size pdf compression
