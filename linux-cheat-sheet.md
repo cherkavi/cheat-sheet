@@ -3196,24 +3196,38 @@ sudo snap search visual
 
 ## mapping keys, keymap, assign actions to key
 ### show key codes
-```
+```sh
 xmodmap -pke
 # or take a look into "keycode ... " 
 xev 
 ```
 
 ### remap key 'Druck' to 'Win'
-```
+```sh
 xmodmap -e "keycode 107 = Super_L"
 ```
 to reset
-```
+```sh
 setxkbmap
 ```
 
-### save to use during each reboot
+### make ctrl+alt the same as alt+ctrl, make ctrl+shift the same as shift+ctrl
+```Xmodmap
+keycode 50 = Shift_L NoSymbol Shift_L
+keycode 62 = Shift_R NoSymbol Shift_R
+keycode 37 = Control_L NoSymbol Control_L
+keycode 105 = Control_R NoSymbol Control_R
+
+keycode 64 = Alt_L Meta_L Alt_L Meta_L
+keycode 108 = Alt_R Meta_R Alt_R Meta_R
+keycode 37 = Control_L NoSymbol Control_L
+keycode 105 = Control_R NoSymbol Control_R
 ```
-create file '~/.Xmodmap'
+
+### save to use during each reboot
+```sh
+echo "keycode 107 = Super_L" >> ~/.Xmodmap
+echo "xmodmap ~/.Xmodmap" >> ~/.xprofile
 ```
 
 ### find key code
