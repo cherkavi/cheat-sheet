@@ -38,12 +38,13 @@ function cheat-grep(){
 ### [list of online tools](https://github.com/goabstract/Awesome-Design-Tools)
 ### [free hosted applications, locally started applications](https://github.com/awesome-selfhosted/awesome-selfhosted)
 ### collaboration whiteboard drawing
+* [miro: white board for collaboration](https://webwhiteboard.com/)
+* [draw chat: white board with chat](https://draw.chat)
 * [excalidraw](https://excalidraw.com/)
     * [using razer-keypad with excalidraw](https://github.com/cherkavi/solutions/blob/master/razer-keypad/README.md)
 * [local drawing tool](https://github.com/tldraw/tldraw)
-* [white board for collaboration](https://sketchtogether.com/)
-* [white board for collaboration](https://miro.com/)
-* [drawing tool](https://excalidraw.com/)
+
+
 
 ### editor
 * https://code.visualstudio.com/
