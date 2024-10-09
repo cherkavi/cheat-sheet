@@ -8,6 +8,7 @@
 
 ## Best practice
 * it is better to have many small messages instead of big one
+* Integration tests should have real-world messages
 
 ## [source code](https://kafka.apache.org/code)
 ```sh
