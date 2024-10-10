@@ -103,6 +103,7 @@ cd plantuml-stdlib
 # components
 grep -r '^!define' | grep archimate
 ```
+archimate
 ```plantuml
 ' https://github.com/plantuml/plantuml-stdlib/blob/master/archimate/Archimate.puml  
 '                                                         archimate/Archimate.puml
@@ -111,6 +112,19 @@ Application_Component(c1, "app1")
 Technology_Artifact(f1, "file1")
 Rel_Access_r(c1,f1)
 ```
+c4 diagram 
+```plantuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+ 
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!include FONTAWESOME/users.puml
+!include DEVICONS/angular.puml
+!include DEVICONS/java.puml
+!include DEVICONS/msql_server.puml
+```
+
 ### include symbols add sprites
 ```sh
 git clone https://github.com/plantuml/plantuml-stdlib.git
