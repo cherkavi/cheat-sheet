@@ -533,9 +533,11 @@ git fetch --all --prune
 git log --all --grep "BCM-642"
 ```
 
-### find by diff source, find through all text changes in repo
-```
+### find by diff source, find through all text changes in repo, full text search with grep
+```sh
 git grep '^test$'
+# test against all branches
+git grep -e '^test$' $(git rev-list --all)
 ```
 
 ### current comment
