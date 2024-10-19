@@ -269,7 +269,7 @@ seekToEnd(parition0, partition1);
 
 ## Kafka connect
 * manage copying data between Kafka and another system
-* connector either a source or sink
+* connector either a source or a sink
 * connector can split "job" to "tasks" ( to copy subset of data )
 * *partitioned streams* for source/sink, each record into it: [key,value,offset]
 * standalone/distributed mode

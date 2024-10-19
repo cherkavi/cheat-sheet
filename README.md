@@ -26,7 +26,7 @@ function cheat-grep(){
 * [tldr](https://tldr.sh/)
 * [how2](https://how2terminal.com/download)
 
-## Other cheat sheets:
+## other cheat sheets:
 * [root/entrypoint to different resources](https://github.com/sindresorhus/awesome)
 * [cheat sheets collection](https://lzone.de/cheat-sheet/)
 * [cheat sheets](https://www.cheatography.com)
@@ -44,11 +44,30 @@ function cheat-grep(){
     * [using razer-keypad with excalidraw](https://github.com/cherkavi/solutions/blob/master/razer-keypad/README.md)
 * [local drawing tool](https://github.com/tldraw/tldraw)
 
-
-
 ### editor
+* https://vscode.dev
 * https://code.visualstudio.com/
 * https://lite-xl.com/
+
+### render/run html/js/javascript files from github
+
+#### githack.com
+* Development
+`https://raw.githack.com/[user]/[repository]/[branch]/[filename.ext]`
+* Production (CDN)
+`https://rawcdn.githack.com/[user]/[repository]/[branch]/[filename.ext]`
+example:
+`https://raw.githack.com/cherkavi/javascripting/master/d3/d3-bar-chart.html`
+
+#### github.io
+`http://htmlpreview.github.io/?[full path to html page]`
+example
+`http://htmlpreview.github.io/?https://github.com/cherkavi/javascripting/blob/master/d3/d3-bar-chart.html`  
+`http://htmlpreview.github.io/?https://github.com/twbs/bootstrap/blob/gh-pages/2.3.2/index.html`
+
+#### rawgit
+`https://rawgit.com/[user]/[repository]/master/index.html`
+`https://rawgit.com/cherkavi/javascripting/master/d3/d3-bar-chart.html`
 
 ### diagram drawing 
 * [ascii graphics for drawing Architecture Diagrams in text](http://asciiflow.com/)  
@@ -139,7 +158,6 @@ function cheat-grep(){
 
 ### text/password exchange
 * [online clipboard](https://copypaste.me/)
-
 
 ### [list of opensource api tools](https://openapi.tools/)
 
