@@ -261,7 +261,7 @@ seekToEnd(parition0, partition1);
 ```
 
 ## Kafka Stream State Stores
-TODO: in-memory DB ( Rocks DB )
+:TODO: in-memory DB ( Rocks DB )
 
 ## Kafka connect
 * manage copying data between Kafka and another system

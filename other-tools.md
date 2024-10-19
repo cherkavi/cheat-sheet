@@ -333,7 +333,7 @@ email-data.json
 ## redirect
 * Easyredir - https://www.easyredir.com/
 * Redirection.io - https://redirection.io/
-* SiteDetour - https://sitedetour.com/  
+* SiteDetour - https://sitedetour.com/  
 
 ## screenshots
 * site-shot.com
@@ -548,7 +548,8 @@ application permissions: r_emailaddress
 [documentation](https://docs.microsoft.com/en-us/linkedin/shared/integrations/people/primary-contact-api)  
 
 ## e-commerce
-TODO: Telegram bot 
+:TODO: Telegram bot 
+
 ### shopify
 ```sh
 x-www-browser https://$SHOPIFY_SHOP_NAME.myshopify.com &

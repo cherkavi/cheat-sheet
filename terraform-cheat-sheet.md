@@ -55,8 +55,8 @@
 
 ## Terraform commands description
 ![commands](https://i.postimg.cc/RZ8khXTJ/terraform-commands.png)
-TODO: templating
-TODO: metaarguments  
+:TODO: templating
+:TODO: metaarguments  
 ```sh
 # download plugins into folder .terraform
 terraform init 

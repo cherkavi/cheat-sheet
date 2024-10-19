@@ -1,6 +1,6 @@
 # Machine Learning
-TODO: python framework mataflow `from metaflow import FlowSpec, step `
-TODO: python framework sklearn `from sklearn.pipeline import Pipeline`
+:TODO: python framework mataflow `from metaflow import FlowSpec, step `
+:TODO: python framework sklearn `from sklearn.pipeline import Pipeline`
 
 ```mermaid
 graph LR;
