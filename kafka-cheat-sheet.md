@@ -6,6 +6,10 @@
 * "At-least-once" message delivery guaranteed - for consumer who crushed before it commited offset
 * "At-most-once" delivery - ( custom realization ) consumer will never read the same message again, even when crushed before process it
 
+## Best practice
+* it is better to have many small messages instead of big one
+* Integration tests should have real-world messages
+
 ## [source code](https://kafka.apache.org/code)
 ```sh
 git clone https://github.com/apache/kafka.git kafka
