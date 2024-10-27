@@ -2592,8 +2592,15 @@ xmllint --html --xpath  $path $filename
 ```
 
 [html parsing html processing html query, hq tool](https://github.com/rbwinslow/hq/wiki/Language-Reference)
+hq installation
 ```sh
 pip install hq
+
+# or https://pypi.org/project/hq/0.0.4/#files
+# sudo python3 setup.py install
+```
+hq usage
+```sh
 curl https://www.w3schools.com/xml | hq '`title: ${/head/title}`'
 cat index.html | hq '/html/body/table/tr/td[2]/a/text()'
 # retrieve all classes
