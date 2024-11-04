@@ -218,7 +218,8 @@ bin/kafka-consumer-groups.sh --zoopkeeper localhost:2181 --describe --group myto
 
 ### consumer offset
 * automatic commit offset (enable.auto.commit=true) with period (auto.commit.interval.ms=1000)
-* manual offset commit (enable.auto.commit=false) 
+* manual offset commit (enable.auto.commit=false)
+* property "auto.offset.reset=latest" start with consuming only newly appeared messages in the topic after connection/creation
 
 ### [consumer configuration](https://kafka.apache.org/documentation/#consumerconfigs)
 ```java
