@@ -6,8 +6,8 @@
 - [course](https://aka.ms/CourseAZ-900)
 
 ## Trainings 
-- [azure trainings](https://azure.microsoft.com/en-us/trainings/)
 - [trainings for playing](https://learn.microsoft.com/en-us/training/)
+- [azure trainings](https://learn.microsoft.com/en-us/training/azure/)
 - [shell](https://aka.ms/cli_ref)
 - [training for basics in cli](https://learn.microsoft.com/en-us/training/modules/introduction-to-azure-developer-cli/)
 - [training create resources via cli](https://learn.microsoft.com/en-us/training/modules/create-azure-resources-by-using-azure-cli/)
