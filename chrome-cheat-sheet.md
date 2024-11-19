@@ -60,3 +60,16 @@ x-www-browser https://github.com/cherkavi/cheat-sheet/blob/master/architecture-c
 # aslo possible to say previx and suffix around the destination text
 
 ```
+
+# firefox
+## prevent to open in private mode
+```sh
+sudo mkdir -p /etc/firefox/policies
+echo '
+{
+  "policies": {
+    "DisablePrivateBrowsing": true
+  }
+}
+' >> /etc/firefox/policies/policies.json
+```
