@@ -293,6 +293,31 @@ startxfce4 &
 xsetroot -solid grey
 vncconfig -iconic &
 ```
+ * vnc start local server
+```sh
+# check your active display 
+DISPLAY=:1 xrandr  --current
+DISPLAY=:2 xrandr  --current
+DISPLAY=:3 xrandr  --current
+```
+
+```sh
+# run
+x11vnc -display :1 -rfbport 5902
+# stop
+x11vnc -R stop
+```
+
+```sh
+# run 
+tightvncserver :1 -geometry 1920x1080 -rfbport 5902
+ps aux | grep tightvnc
+
+# stop 
+tightvncserver -kill :1
+tightvncserver -kill :2
+```
+
  * vnc commands
 ```sh
 # start server
@@ -332,7 +357,7 @@ x11vnc
 # !!! don't use Remmina !!!
 sudo apt install xvnc4viewer
 ```
-* timer, terminal timer, console timer
+##  timer, terminal timer, console timer
 ```
 sudo apt install sox libsox-fmt-mp3
 https://github.com/rlue/timer
