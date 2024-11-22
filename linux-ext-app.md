@@ -195,8 +195,6 @@ openssl req -x509 \
 -keyout cherkavideveloper.pem \
 -subj "/C=DE/ST=Bavaria/L=München/O=cherkavi/CN=cherkavi developer"
 ```
-
-
 ## console browsers
 * `sudo apt install w3m`
 * `sudo apt install linx`
@@ -221,9 +219,13 @@ http-server
 ```
 
 ## Utilities 
-* [web-based terminal](https://github.com/butlerx/wetty), terminal window in browser
-* automation for browsers, automate repited actions: iMacros
-* md2html, markdown to html, markdown tool 
+### [web-based terminal](https://github.com/butlerx/wetty)
+terminal window in browser
+
+### automation for browsers, 
+automate repited actions: iMacros
+
+### md2html, markdown to html, markdown tool 
 ```sh
 sudo apt-get update
 sudo apt-get install -y python3-sphinx
@@ -239,7 +241,8 @@ markdown-it README.md
 ```sh
 glow README.md
 ```
-* keepass
+
+### keepass
 ```sh
 sudo add-apt-repository ppa:jtaylor/keepass
 sudo apt-get update && sudo apt-get install keepass2
@@ -266,21 +269,26 @@ keepassxc-cli ls --key-file $KEEPASS_KEY $KEEPASS_FILE --no-password
 
 # get password
 keepassxc-cli show -s -k $KEEPASS_KEY $KEEPASS_FILE  'Client1/Order Value'  --no-password
-
 ```
 
-* vnc
- * vnc installation
+### vnc
+#### vnc installation
 ```sh
-sudo apt install xfce4
 sudo apt install tightvncserver
-# only for specific purposes
 sudo apt install x11vnc
 ```
- * ~/.vnc/xstartup, file for starting vncserver
- chmod +x ~/.vnc/xstartup
+
+#### ~/.vnc/xstartup, file for starting vncserver
+[for starting Docker container with UI, vnc with docker](https://github.com/cherkavi/docker-images/blob/master/vnc/docker-virtual-display-vnc.md)
+
+```sh
+chmod +x ~/.vnc/xstartup
 ```
+
+```sh
 #!/bin/sh
+
+# sudo apt install xfce4
 
 # Fix to make GNOME and GTK stuff work
 export XKL_XMODMAP_DISABLE=1
@@ -293,7 +301,8 @@ startxfce4 &
 xsetroot -solid grey
 vncconfig -iconic &
 ```
- * vnc start local server
+
+#### vnc start local server
 ```sh
 # check your active display 
 DISPLAY=:1 xrandr  --current
@@ -318,7 +327,69 @@ tightvncserver -kill :1
 tightvncserver -kill :2
 ```
 
- * vnc commands
+#### vnc server local start
+```sh
+# vnc server 
+sudo apt install tigervnc-standalone-server
+# tigervncserver
+
+## issue on Ubuntu 22.04
+# sudo apt install tightvncserver
+# tightvncserver
+
+# vncserver -passwordfile ~/.vnc/passwd -rfbport 5900 -display :0
+vncserver
+# for changing password
+vncpasswd
+# list of vnc servers 
+vncserver -list
+# stop vnc server
+vncserver -kill :1
+# configuration
+
+vim ~/.vnc/xstartup
+# xrdb $HOME/.Xresources
+# startxfce4 &
+```
+
+#### vnc server with connecting to existing X session
+```sh
+# https://github.com/sebestyenistvan/runvncserver
+sudo apt install tigervnc-scraping-server
+
+## password for VNC server
+vncpasswd
+
+## start vnc server 
+X0tigervnc -PasswordFile ~/.vnc/passwd
+# the same as: `x0vncserver -display :0`
+x0vncserver -passwordfile ~/.vnc/passwd -rfbport 5900 -display :0
+
+## list of the servers
+x0vncserver -list
+
+## log files 
+ls $HOME/.vnc/*.log
+
+x0vncserver -kill :1
+```
+
+#### vnc start, x11vnc start, connect to existing display, vnc for existing display
+```sh
+# export DISPLAY=:0
+# Xvfb $DISPLAY -screen 0 1920x1080x16 &
+# Xvfb $DISPLAY -screen 0 1920x1080x24 # not more that 24 bit for color
+
+# startxfce4 --display=$DISPLAY &
+
+# sleep 1
+x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
+
+# just show current desktop 
+x11vnc
+```
+
+#### vnc commands
 ```sh
 # start server
 vncserver -geometry 1920x1080
@@ -337,27 +408,15 @@ ps aux | grep vnc
 # kill server
 vncserver -kill :1
 ```
-  
-  * vnc start, x11vnc start, connect to existing display, vnc for existing display
-```
-#export DISPLAY=:0
-#Xvfb $DISPLAY -screen 0 1920x1080x16 &
-#Xvfb $DISPLAY -screen 0 1920x1080x24 # not more that 24 bit for color
 
-#startxfce4 --display=$DISPLAY &
-
-# sleep 1
-x11vnc -quiet -localhost -viewonly -nopw -bg -noxdamage -display $DISPLAY &
-
-# just show current desktop 
-x11vnc
-```
-* vnc client, vnc viewer, vnc player
+#### vnc client, vnc viewer, vnc player
 ```sh
 # !!! don't use Remmina !!!
 sudo apt install xvnc4viewer
 ```
-##  timer, terminal timer, console timer
+
+
+###  timer, terminal timer, console timer
 ```
 sudo apt install sox libsox-fmt-mp3
 https://github.com/rlue/timer
