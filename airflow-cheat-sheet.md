@@ -16,6 +16,12 @@
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
 
 ## Airflow alternatives
+* [flyte](https://flyte.org/)
+  * for ML pipelines 
+  * python centric
+  * good CLI
+  * [flyte cheat sheet](https://bit.ly/airflow-vs-flyte-cheat-sheet)
+  * [flyte github](https://github.com/flyteorg/flyte)
 * [luidgi](https://github.com/spotify/luigi)
 * [mage-ai](https://github.com/mage-ai/mage-ai)
 * [apache nifi](https://nifi.apache.org/)
