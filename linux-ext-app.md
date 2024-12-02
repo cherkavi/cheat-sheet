@@ -226,6 +226,13 @@ terminal window in browser
 automate repited actions: iMacros
 
 ### md2html, markdown to html, markdown tool 
+-   [Sphinx](https://www.sphinx-doc.org/en/master/usage/markdown.html)
+-   [docsify](https://docsify.js.org/)
+-   [hugo](https://gohugo.io/getting-started/quick-start/)
+-   [jekyll](https://jekyllrb.com/)
+-   [eleventy](https://www.11ty.dev/)
+-   [pelican](https://blog.getpelican.com/)
+-   [hexo](https://hexo.io/)
 ```sh
 sudo apt-get update
 sudo apt-get install -y python3-sphinx
