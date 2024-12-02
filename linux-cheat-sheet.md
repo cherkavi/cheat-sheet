@@ -2797,9 +2797,17 @@ sudo apt-get install {package name}={version}
 ```
 
 ### Debian system cleanup
-```
+```sh
+# clean cache
+sudo du -sh /var/cache/apt
 sudo apt-get clean
+
+# remove unused packages
 sudo apt-get autoremove --purge
+
+# remove old journal records
+journalctl --disk-usage
+sudo journalctl --vacuum-time=5d
 ```
 
 ### uninstall specific app
