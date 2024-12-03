@@ -3364,10 +3364,14 @@ inxi -CfxCa
 
 ## images
 
-### convert image from jpg to jpg, transform image from one format to another
+### convert image like png or gif or jpeg... to jpg, transform image from one format to another
 ```sh
 convert input.png output.jpg
 convert input.png -crop $WIDTHx$HEIGHT+$X+$Y output.jpg
+convert input.png -resize 50% output.jpg
+convert input.png -quality 75 output.jpg
+convert input.png -background white -flatten output.jpg
+
 ```
 
 ### qr code online generator
