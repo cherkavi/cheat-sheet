@@ -1,6 +1,10 @@
 # Collection of AI tools
 :TODO: vector database
 :TODO: https://github.com/explodinggradients/ragas
+
+## AI platforms
+* [union](https://www.union.ai/)
+
 ## chat bots
 * https://www.perplexity.ai/
 * https://bard.google.com/chat
