@@ -76,8 +76,12 @@ example
 ### markdown
 * [diagrams within markdown](https://mermaid.js.org/syntax/flowchart.html)
   * [mermaid live](https://mermaid.live/)
+    * [mermaid cli](https://github.com/mermaid-js/mermaid-cli)
+    * [mermaid architecture icons logos:s3](https://icones.js.org/collection/logos) or [mermaid architecture icons logos:s3](https://icon-sets.iconify.design/logos/)
+      * https://github.com/gilbarbara/logos
   * [fond awesome fa:fa-user](https://fontawesome.com/icons)
   * [zenuml](https://docs.zenuml.com/)
+  * [kroki - collection of diagrams](https://kroki.io/)
 * [markdown editor realtime collaboration](https://hackmd.io/)
 * [list of markdown code supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)
 
