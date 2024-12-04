@@ -79,6 +79,7 @@ example
     * [mermaid cli](https://github.com/mermaid-js/mermaid-cli)
     * [mermaid architecture icons logos:s3](https://icones.js.org/collection/logos) or [mermaid architecture icons logos:s3](https://icon-sets.iconify.design/logos/)
       * https://github.com/gilbarbara/logos
+    * [mermaid flowchart shapes](https://mermaid.js.org/syntax/flowchart.html#complete-list-of-new-shapes)
   * [fond awesome fa:fa-user](https://fontawesome.com/icons)
   * [zenuml](https://docs.zenuml.com/)
   * [kroki - collection of diagrams](https://kroki.io/)
