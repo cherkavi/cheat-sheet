@@ -1,6 +1,10 @@
 # Spark cheat sheet
 :TODO: apache Flink
 
+## Alternatives
+* [Ray](https://docs.ray.io/en/master/ray-overview/getting-started.html)
+* [Dask](https://docs.dask.org/en/latest/10-minutes-to-dask.html)
+
 ## Cheat sheet
 * [main documentation](https://spark.apache.org/docs/latest/)
 * [app examples](https://mvnrepository.com/artifact/org.apache.spark/spark-examples)
