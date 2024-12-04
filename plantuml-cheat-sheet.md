@@ -18,6 +18,10 @@
   * https://plantuml.com/deployment-diagram
   * https://plantuml.com/timing-diagram
   * https://plantuml.com/archimate-diagram
+
+## Free alternatives
+* [many online diagrams to render](https://kroki.io/)
+
 ## local start
 ### [start in docker](https://github.com/plantuml/plantuml-server)
 ```sh
