@@ -433,6 +433,10 @@ java -jar liquibase-core-3.5.5.jar  --driver=org.h2.Driver --classpath=h2-1.4.19
 ```
 
 ### flyway
+* In database Flyway operates with "schema_version" table only ( no knowledge about the rest of DB, doesn't make scan of the DB .... )
+* SQL files: SQL.DDL and/or SQL.DML 
+* Manual changes SQL.DML is not dangerous
+* Manual changes SQL.DDL is dangerous 
 [commandline documentation](https://flywaydb.org/documentation/commandline/)
 ---
 folder structure
