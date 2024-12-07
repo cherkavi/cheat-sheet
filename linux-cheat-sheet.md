@@ -3366,12 +3366,23 @@ inxi -CfxCa
 
 ### convert image like png or gif or jpeg... to jpg, transform image from one format to another
 ```sh
+# sudo apt-get install imagemagick
 convert input.png output.jpg
 convert input.png -crop $WIDTHx$HEIGHT+$X+$Y output.jpg
 convert input.png -resize 50% output.jpg
 convert input.png -quality 75 output.jpg
 convert input.png -background white -flatten output.jpg
+```
 
+### convert image to vector graphics
+```sh
+# sudo apt-get install potrace
+INPUT_IMAGE=strategy-Decision-de-centralized.jpg
+OUTPUT_IMAGE=$INPUT_IMAGE".pgm"
+convert $INPUT_IMAGE -depth 8 -colorspace Gray -format pgm $OUTPUT_IMAGE
+
+rifle $OUTPUT_IMAGE
+potrace $OUTPUT_IMAGE -s
 ```
 
 ### qr code online generator

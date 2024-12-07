@@ -7,6 +7,7 @@
 ### alternatives
 * [multy.dev](https://multy.dev/)
 * pulumi
+* [kcl config lang](https://www.kcl-lang.io/docs/user_docs/getting-started/intro)
 
 ### language 
 * [documentation](https://www.terraform.io/docs/index.html)

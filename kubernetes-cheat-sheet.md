@@ -439,6 +439,7 @@ GitVersion:"v1.11.1"
 ```sh
 kustomize build config/default | kubectl apply -f-
 ```
+### [customization, templating, config language](https://www.kcl-lang.io/docs/user_docs/getting-started/intro#vs-kustomize)
 
 ### kubectl template, inline code
 ```sh
