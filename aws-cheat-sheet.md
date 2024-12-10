@@ -23,6 +23,7 @@
 * [hand on](https://aws.amazon.com/getting-started/hands-on/)
 
 ### trainings
+* [workshops aws](https://workshops.aws)
 * [online trainings](https://www.aws.training/)
 * [online trainings free](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
 * [online trainings, current education](https://www.aws.training/Account/Transcript/Current)
@@ -976,6 +977,7 @@ aws lambda list-functions --function-version ALL --region us-east-1 --output tex
 
 ### remove function
 ```sh
+# aws lambda update-function-configuration --function-name my-function --environment "Variables={FIRST=1,SECOND=2}"
 # aws lambda list-functions --query 'Functions[].FunctionName'
 FUNCTION_NAME=back2ussr-user-get
 aws lambda delete-function --function-name $FUNCTION_NAME
@@ -1125,6 +1127,7 @@ def lambda_handler(event, context):
 #### aws sam aws tools for devops
 for building serverless applications 
 ```bash
+# https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html
 pip3 install aws-sam-cli
 sam --version
 
