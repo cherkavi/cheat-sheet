@@ -962,6 +962,10 @@ aws sqs delete-message --receipt-handle $MESSAGE_ID1 $MESSAGE_ID2 $MESSAGE_ID3 -
 
 ---
 ## Lambda
+* java - best choice ( price, exec.time ), GraalVM?
+* python - 35x time slower!!! than java
+* rust - not for business applications
+* tradeoff: lambda vs k8s(EC2)
 ```sh
 aws_service_abbr="lambda"
 aws-cli-doc
