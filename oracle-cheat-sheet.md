@@ -1,5 +1,12 @@
+
 # Oracle cheat sheet
 [jdbc driver to download](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
+
+## ddl er diagrams schema visualizer
+* [drawdb](https://drawdb.vercel.app)
+* [chartdb](https://chartdb.io)
+* [Diagrams, ex Draw.io](https://Diagrams.net)
+* [dbdiagram](https://dbdiagram.io)
 
 ## oracle cli, sql developer command line
 ### sqlcl
