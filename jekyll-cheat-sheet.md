@@ -19,14 +19,16 @@
 - [Publish](https://github.com/JohnSundell/Publish) 
 - [VuePress](https://vuepress.vuejs.org/guide/)
 
-
-## Template language Liquid
+## Jekyll Templates
+### Template language Liquid
 * [liquid + jekyll](https://jekyllrb.com/docs/liquid/)
 * [liquid shopify doc](https://shopify.github.io/liquid/)
 
-## Templates for dynamic web page creation
+### Templates for dynamic web page creation
 * [https://jekyllthemes.io/](https://jekyllthemes.io/theme)
 * [cv theme](https://github.com/sharu725/online-cv)
+* [business landing page, agency page](https://jekyllthemes.io/jekyll-business-themes)
+* https://jekyllthemes.dev/
 
 ## How to start with Jekyll
 ```sh

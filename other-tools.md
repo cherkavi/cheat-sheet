@@ -1,9 +1,3 @@
-# Frameworks
-## Scrum
-* [SAFe](http://scaleagileframework.com/)
-* [LeSS](https://less.works/)
-  * [LeSS book](https://less.works/user-content/member/Learning-Resources/less_book.html)
-
 # Tools
 ## tasks automation & business flows & connections between applications
 * https://integromat.com
@@ -489,7 +483,7 @@ possible fields:
   * [php integration](https://github.com/matomo-org/matomo-php-tracker)
   * [php integration](https://github.com/heiglandreas/piwik#readme)
 
-## external data
+## external data sources
 ### [global reestr of data](https://www.data.gov/)
 ### [Census API](https://www.census.gov/data/developers/updates/new-discovery-tool.html)
 * [list of all datasets](https://api.census.gov/data.html)
@@ -516,6 +510,9 @@ possible fields:
 * https://shepherdjs.dev/
 * https://introjs.com/
 * https://www.npmjs.com/package/guidechimp
+
+## messengers
+:TODO: Telegram bot 
 
 ## social networks
 ### linkedin 
@@ -547,8 +544,12 @@ application permissions: r_emailaddress
 [documentation](https://developer.linkedin.com/docs/v1/people/email-lookup-api)  
 [documentation](https://docs.microsoft.com/en-us/linkedin/shared/integrations/people/primary-contact-api)  
 
+## web engine cms detector
+* https://w3techs.com/
+* https://cmsdetect.com/
+* https://www.wappalyzer.com/
+
 ## e-commerce
-:TODO: Telegram bot 
 
 ### shopify
 ```sh
