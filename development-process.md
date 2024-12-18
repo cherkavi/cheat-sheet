@@ -1,7 +1,10 @@
 [Architecture Decision Records](https://github.com/joelparkerhenderson/architecture_decision_record)  
 ## Reactive Principles
-![reactive principles](https://i.postimg.cc/GtW80TS9/reactive-principles.png)  
-![reactive without actors](https://i.postimg.cc/kMztRLX9/reactive-systems-without-actors.png)  
+* ![reactive principles](https://i.postimg.cc/GtW80TS9/reactive-principles.png)  
+* ![reactive without actors](https://i.postimg.cc/kMztRLX9/reactive-systems-without-actors.png)
+* [reactive ( streams ) graphical explanation](https://reactivex.io/tutorials.html)
+  * https://github.com/ReactiveX/RxJava/wiki
+  * https://reactivex.io/RxJava/2.x/javadoc/2.0.8/io/reactivex/Single.html
 
 ## Concurrency vs Parallelism
 * concurent system - multiply actions in progress ( can be/not executed in the same time )  
