@@ -1,5 +1,6 @@
 # java cheat sheet
 ## links
+* [my own java code examples/gists/parts](https://github.com/cherkavi/java-code-example/)
 * [java 8 download](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html)
 * [java decompiler, class decompile](http://java-decompiler.github.io/)
 * [useful links](http://www.programcreek.com/2012/11/top-100-java-developers-blogs/)
@@ -11,6 +12,9 @@
 * [byte code transformation](https://bytebuddy.net/#/)
 * [docker container creator](https://github.com/GoogleContainerTools/jib)
 * [quarkus project creator](https://code.quarkus.redhat.com/)
+* [reactive ( streams ) graphical explanation](https://reactivex.io/tutorials.html)
+  * https://github.com/ReactiveX/RxJava/wiki
+  * https://reactivex.io/RxJava/2.x/javadoc/2.0.8/io/reactivex/Single.html
 
 ## java ecosystem applications
 > for quarkus & payara PID=1
