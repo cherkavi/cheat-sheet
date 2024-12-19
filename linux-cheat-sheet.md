@@ -1448,7 +1448,7 @@ find . | xargs -I % sh -c 'md5sum %; ls -la %;'
 bash --norc
 ```
 
-### capture terminal output to file, save output of the commands to file
+### capture terminal output to file, save output of the commands to file, save log/history of terminal output
 ```sh
 script output-file-name.txt
 
