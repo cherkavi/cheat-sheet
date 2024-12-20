@@ -104,9 +104,18 @@ x-www-browser localhost:4000
 
 ## possible issues
 * `require': cannot load such file -- webrick
-```sh
-# gem install webrick # didn't work
-bundle add webrick
-bundle exec jekyll serve
-```
+  ```sh
+  # gem install webrick # didn't work
+  bundle add webrick
+  bundle exec jekyll serve
+  ```
 
+* ‘ruby3.0’: No such file or directory
+  ```sh
+  ❯ jekyll build
+  /usr/bin/env: ‘ruby3.0’: No such file or directory
+  ```
+  ```sh
+  ll /usr/bin/ruby3.0
+  ln -s /usr/bin/ruby3.2 /usr/bin/ruby3.0
+  ```
