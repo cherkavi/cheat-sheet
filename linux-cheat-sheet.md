@@ -3482,6 +3482,12 @@ libreoffice --headless --convert-to pdf "/home/path/Dativ.doc" --outdir /tmp/out
 pdftotext file.pdf -
 ```
 
+### epub to pdf
+```sh
+apt install calibre
+ebook-convert input.epub output.pdf
+```
+
 ## zip
 ### unzip bz2
 ```sh
