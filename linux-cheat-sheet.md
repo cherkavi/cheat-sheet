@@ -2321,9 +2321,12 @@ sudo apt install gridsite-clients
 urlencode "- - -"
 ```
 	
-### curl with encoding to another codepage, from win1251 to utf8
+### curl with encoding to another codepage, translate/convert from win1251 to utf8
 ```sh
 curl "http://some.resource/read_book.php?id=66258&p=1" | iconv --from-code WINDOWS-1251 --to-code UTF-8
+
+iconv --list
+cat "$INPUT_FILE" | iconv -t UNICODE//IGNORE
 ```
 
 ### [curl with parsing, curl part of the page ](https://github.com/cherkavi/python-utilities/blob/master/html-scraping/lxml/curl-output-html-parser.py#L10)
