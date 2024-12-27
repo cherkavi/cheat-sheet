@@ -3802,11 +3802,17 @@ x-www-browser http://localhost:9090
 ### alternatives
 set default browser
 ```sh
+# display
 sudo update-alternatives --display x-www-browser
 sudo update-alternatives --query x-www-browser
+sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/chromium-browser 90
+
+# config
+sudo update-alternatives --config x-www-browser
+
+# remove
 sudo update-alternatives --remove x-www-browser /snap/bin/chromium
 sudo update-alternatives --remove x-www-browser /usr/bin/chromium
-sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/chromium-browser 90
 ```
 java set default
 ```sh
