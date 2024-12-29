@@ -402,6 +402,12 @@ sudo mkfs -t xfs /dev/xvdb
 sudo mke2fs /dev/xvdb
 ```
 
+### Network Attached Storage ( NAS ), Network File System ( NFS ), RAID
+![zfs](https://www.techtarget.com/rms/onlineimages/the_zpool_structure-h.png)
+* [zfs](https://www.techtarget.com/searchstorage/definition/ZFS)
+* [zfs how to install and use](https://www.howtogeek.com/175159/an-introduction-to-the-z-file-system-zfs-for-linux/)
+
+
 ### gpg signature check, asc signature check, crt signature check
 ```sh
 kgpg --keyserver keyserver.ubuntu.com --recv-keys 9032CAE4CBFA933A5A2145D5FF97C53F183C045D
