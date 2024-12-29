@@ -18,6 +18,8 @@
     
 * [Security cheat sheet](https://www.jaiminton.com/cheatsheet/DFIR)
 
+## common
+
 ### commands gnu commands
 ```sh
 time 
@@ -1427,7 +1429,7 @@ exec <&-
 cat output-file.txt
 ```
 
-## output to file with variable, output to variable
+### output to file with variable, output to variable
 ```sh
 gen_version="5.2.1"
 $(find /mapr/dp.prod/vantage/data/processed/gen/$gen_version/ -maxdepth 5 -mindepth 5 | awk -F '/' '{print $14}' > gt-$gen_version.list)
@@ -1870,7 +1872,7 @@ unzip -l $ARCHIVE_NAME
 unzip $ARCHIVE_NAME path/to/file/inside
 ```
 
-## 7zip
+### 7zip
 ```sh
 sudo apt install p7zip-full
 
@@ -1878,7 +1880,6 @@ sudo apt install p7zip-full
 7za x archive.7z	
 ```
 	
-## tar
 ### tar archiving tar compression 
 ```sh
 # tar create
@@ -2599,7 +2600,7 @@ xmllint --noout file.xml; echo $?
 cat index.html | grep tidy
 ```
 
-## parse html parsing 
+### parse html parsing 
 ```sh
 # sudo apt install libxml-xpath-perl
 xpath -e $path $filename
@@ -2680,7 +2681,7 @@ mkdir -p some-folder/{1..10}/{one,two,three}
 ONE="this is a test"; echo $ONE
 ```
 
-# activate environment variables from file, env file, export env, export all env, all variable from file, all var export, env var file
+### activate environment variables from file, env file, export env, export all env, all variable from file, all var export, env var file
 ```bash
 FILE_WITH_VAR=.env.local
 source $FILE_WITH_VAR
@@ -3904,6 +3905,15 @@ cd /var/cache/apt/archives
 ### apt force install 
 ```sh
 sudo apt install --fix-broken -o Dpkg::Options::="--force-overwrite" {package name}
+```
+
+## LD Library
+### extend path and check it
+```sh
+# /snap/core20/2434/usr/lib/x86_64-linux-gnu/libssl.so.1.1
+export LD_LIBRARY_PATH=/snap/core20/2434/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+
+ldconfig -p | grep libssl
 ```
 
 ## Issues
