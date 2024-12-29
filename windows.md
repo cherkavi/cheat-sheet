@@ -1,4 +1,14 @@
 # Windows OS 
+
+## run linux on Windows - WSL
+* [wsl installation](https://learn.microsoft.com/en-us/windows/wsl/install)
+```shell
+# list of all available distributions
+wsl.exe -l -o
+# install distribution 
+wsl.exe --install -d <Distribution Name>
+```
+
 ## CMD automation
 ```sh
 start C:\soft\Open-Sankore\Open-Sankore.exe
