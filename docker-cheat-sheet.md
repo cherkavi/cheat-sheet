@@ -6,6 +6,7 @@
 * [docker debug](https://github.com/ktock/buildg)
 * [docker dashboard](https://github.com/benphelps/homepage/pkgs/container/homepage)
 * [container optimized OS](https://fedoraproject.org/coreos/)
+* [server management platform VM's and Containers with Web Interface](https://www.proxmox.com/en/proxmox-virtual-environment/overview)
 
 ### Ecosystem
 * Docker Daemon

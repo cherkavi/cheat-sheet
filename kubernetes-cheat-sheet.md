@@ -41,6 +41,7 @@
 * [realtime changes in cluster](https://github.com/pulumi/kubespy)
 * [edge router, load balancer](https://doc.traefik.io/traefik/)
 * [kubernetes dashboard](https://kubeapps.dev/)
+* [k8s manager](https://www.civo.com/kubernetes)
 
 ## kubectl installation
 ```
@@ -359,9 +360,9 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 # !!! install flannel ( or weave.... )
 # kubectl get nodes
-```sh
+```
 
-# install via rancher
+## install via rancher
 ```bash
 docker stop rancher
 docker rm rancher
