@@ -918,6 +918,7 @@ kubectl get pvc
 ```
 
 ### [container lifecycle](https://v1-18.docs.kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/)
+be aware about conception [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) - any pod will be started only when all "init container(s)" will be finished properly
 ```yaml
 apiVersion: v1
 kind: Pod
