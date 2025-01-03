@@ -3328,10 +3328,12 @@ printf "just a text string " | base64
 
 ### md5 digest
 ```
-echo -n foobar | sha256sum
-
 md5sum filename
+# check control sum 
+echo "$(cat $filename) $filename" | md5sum -c
+
 sha224sum filename
+echo -n foobar | sha256sum
 sha384sum filename
 sha512sum filename
 ```
