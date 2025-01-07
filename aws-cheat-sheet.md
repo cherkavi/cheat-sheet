@@ -23,6 +23,7 @@
 * [hand on](https://aws.amazon.com/getting-started/hands-on/)
 
 ### trainings
+* [skill builder](https://explore.skillbuilder.aws/learn)
 * [workshops aws](https://workshops.aws)
 * [online trainings](https://www.aws.training/)
 * [online trainings free](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
@@ -490,6 +491,58 @@ aws s3api delete-bucket --bucket $AWS_BUCKET_NAME
 }
 ```
 
+---
+## datasync
+>  move large amounts of data between on-premises storage and AWS storage services  
+>  DataSync configuration can be set up via AWS Management Console  
+
+### datasync links
+* [install agent VM](https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#create-vmw-agent)
+* [activate endpoint](https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html)
+* [activate agent VM](https://docs.aws.amazon.com/datasync/latest/userguide/activate-agent.html)
+* [workshop big migration](https://catalog.us-east-1.prod.workshops.aws/datasync-migrate-millions-of-files/en-US) 
+* [workshop windows migration](https://catalog.us-east-1.prod.workshops.aws/datasync-fsx-windows-migration/en-US) 
+
+### steps
+1. create datasync agent
+2. deploy datasync agent
+3. activate datasync agent
+4. configure DataSync storage locations 
+5. configure DataSync options.
+6. Start, monitor, and review the DataSync task.
+
+
+### Agent
+* An agent is a virtual machine (VM) used to read data from or write data to a location. 
+* An agent is used on premises(in cloud) to manage both read and write operations.
+* Agent status: online/offline
+  [A location](https://docs.aws.amazon.com/datasync/latest/userguide/working-with-locations.html) is a:
+  * endpoint of a task
+  * source
+  * destination 
+  * service 
+  used in the data transfer task.
+### Task 
+[Task management/configuration](https://docs.aws.amazon.com/datasync/latest/userguide/create-task-how-to.html) can be set up via:
+* AWS Management Console
+* AWS Command Line Interface (AWS CLI)
+* DataSync API 
+Task configuration settings includes:
+* source 
+* destination 
+* options
+* filtering (include/exclude)
+* scheduling 
+* frequency
+* tags
+* logging
+Task phases
+* queuing 
+* launching
+* preparing
+* transferring
+* verifying (VerifyMode)
+* success/failure
 
 ---
 ## RDS
@@ -1437,7 +1490,7 @@ aws cloudformation describe-stacks --region us-east-1
 ### [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
 
 ---
-## CodeBuild: 
+## CodeBuild
 A fully managed continuous integration service ( to build, test, and package source code )
 ```sh
 aws_service_abbr="codebuild"
@@ -1533,6 +1586,11 @@ coredns
 kube-proxy
 metrics-server
 ```
+
+---
+## ECS Elastic Container Service 
+![ecs](https://i.ibb.co/gJwP5vm/aws-2023-08-27-ecs.jpg)  
+![ecs](https://i.ibb.co/MM6jvJY/2023-08-27-2git-aws-ecs.jpg)  
 
 ---
 ## ECR AWS Elastic Container Registry: 
@@ -1686,11 +1744,6 @@ pip3 install pyOpenSSL --upgrade
 ---
 ## [Fargate](https://aws.amazon.com/fargate/)
 > run containers as Lambda functions
-
----
-## ECS Elastic Container Service 
-![ecs](https://i.ibb.co/gJwP5vm/aws-2023-08-27-ecs.jpg)  
-![ecs](https://i.ibb.co/MM6jvJY/2023-08-27-2git-aws-ecs.jpg)  
 
 ---
 ## Shield
