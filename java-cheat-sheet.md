@@ -273,7 +273,7 @@ CERT_ALIAS=metrics
 TRUST_STORE=myTrustStore
 keytool -import -file $CERT_FILE -alias $CERT_ALIAS -keystore $TRUST_STORE
 
-# list of certificates in truststore 
+# list of certificates in truststore, jks keystore info
 keytool -list -keystore $TRUST_STORE
 
 # export and print certificate
