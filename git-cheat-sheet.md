@@ -212,7 +212,9 @@ git branch --all --contains | grep {name-of-the-branch}
 
 ### is commit included in another, commit before, commit after, if commit in branch
 ```sh
-git merge-base --is-ancestor <commit_or_branch> <is_commit_in_branch>; if [[ 1 -eq "$?" ]]; then echo "NOT included"; else echo "included"; fi
+HASH='222333111'
+BRANCH_NAME='release/7.4'
+git merge-base --is-ancestor $HASH $BRANCH_NAME; if [[ 1 -eq "$?" ]]; then echo "NOT included"; else echo "included"; fi
 ```
 
 ### check log by hash, message by hash
