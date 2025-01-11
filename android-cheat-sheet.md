@@ -27,7 +27,9 @@
 > creates a connection (bridge) between the device and computer.
 **should be activated:**
 1. developer mode
+   Settings -> About phone -> 5 times type on it 
 2. USB debug
+   Settings -> find word "develop" -> activate "USB debugging"
 #### [download from google](https://dl.google.com/android/repository/platform-tools-latest-linux.zip)
 #### adb install via Debian APT
 ```sh
@@ -51,7 +53,12 @@ adb reboot recovery
 list of all applications/packages
 ```sh
 adb shell pm list packages -f
-adb shell pm list packages -f | awk -F '.apk=' '{printf "%-50s | %s\n", $2, $1}'
+# list of all installed applications with name of packages
+adb shell pm list packages -f | awk -F '.apk=' '{printf "%-60s | %s\n", $2, $1}' | sort
+# list of all non-system/installed applications
+# | grep -v "package:/system" | grep -v "package:/vendor" | grep -v "package:/product" | grep -v "package:/apex"
+adb shell pm list packages -f | awk -F '.apk=' '{printf "%-60s | %s\n", $2, $1}' | grep "package:/data/app/" | sort
+
 # adb shell; 
 # pm list packages -f
 ```
