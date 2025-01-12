@@ -34,7 +34,7 @@ strings /usr/share/teams/libEGL.so | grep git
 ```
 
 ### place for scripts, permanent script
-```
+```sh
 ### system wide for all users
 ### /etc/profile is only run at login
 ### ~/.profile file runs each time a new shell is started 
@@ -1223,6 +1223,16 @@ done
 find $FOLDER -maxdepth 4 -mindepth 4 | xargs ls -lad
 ```
 
+### calculcate size of files by type
+```
+find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
+```
+
+### calculcate size of files by type, list of files, sort files by size
+```sh
+du -hs * | sort -h
+```
+
 ### real path to link
 ```
 readlink 'path to symlink'
@@ -2068,21 +2078,6 @@ zip --encrypt 1.zip 1.html
 zip --junk_paths bcm-1003.zip *
 ```
 
-### encrypt decrypt
-```sh
-sudo apt install ccrypt
-# encrypt file
-ccencrypt file1.txt
-# ccencrypt file1.txt --key mysecretkey
-# print decrypted content
-ccat file1.txt.cpt
-# decrypt file
-ccdecrypt file1.txt.cpt
-# ccdecrypt file1.txt.cpt --key mysecretkey
-# try to guess password
-# ccguess file1.txt.xpt
-```
-
 ### using parameters for aliases
 ```sh
 alias sublime_editor=/Applications/SublimeEditor/Sublime
@@ -2157,507 +2152,9 @@ find -cmin -2
 ```sh
 mktemp
 ```
-	
-## cURL command
-### [curl without password](https://everything.curl.dev/usingcurl/netrc)
-~/.netrc
-```sh
-machine my-secret-host.com login my-secret-login password my-secret-password
-machine my-secret-host2.com login my-secret-login2 password my-secret-password2
-```
-```sh
-curl --netrc --request GET my-secret-host.com/storage/credentials 
-```
-### return code 0 if 200, curl return code 
-```sh
-curl --fail --request GET 'https://postman-echo.com/get?foo1=bar1&foo2=bar2'
-```
-### curl with authentication
-```sh
-curl --request POST \
---data "client_id=myClient" \
---data "grant_type=client_credentials" \
---data "scope=write" \
---data "response_type=token" \
---cert "myClientCertificate.pem" \
---key "myClientCertificate.key.pem" \
-"https://openam.example.com:8443/openam/oauth2/realms/root/access_token"
-{
-  "access_token": "sbQZ....",
-  "scope": "write",
-  "token_type": "Bearer",
-  "expires_in": 3600
-}
-	
-### echo server mock server 
-```sh
-curl --location --request GET 'https://postman-echo.com/get?foo1=bar1&foo2=bar2'
-```
-
-### curl username, curl with user and password, curl credentials
-```sh
-curl -u username:password http://example.com
-# basic authentication
-echo -n "${username}:${password}" | base64
-curl -v --insecure -X GET "https://codebeamer.ubsgroup.net:8443/cb/api/v3/wikipages/21313" -H "accept: application/json" -H "Authorization: Basic "`echo -n $TSS_USER:$TSS_PASSWORD | base64`
-
-# bearer authentication
-curl --insecure --location --oauth2-bearer $KEYCLOAK_TOKEN "https://portal.apps.devops.vantage.org/session-lister/v1/sessions/cc17d9f8-0f96-43e0-a0dc-xxxxxxx"
-
-# or with certificate 
-curl  --cacert /opt/CA.cer --location --oauth2-bearer $KEYCLOAK_TOKEN "https://portal.apps.devops.vantage.org/session-lister/v1/sessions/cc17d9f8-0f96-43e0-a0dc-xxxxxxx"
-```
-
-### curl head
-```
-curl --head http://example.com
-```
-
-### curl redirect, redirect curl, curl 302
-```
-curl -L http://example.com
-```
-
-### curl PUT example with file
-```
-curl -X PUT --header "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charset=ISO-8859-1" -H "x-username: cherkavi" -d@put-request.data http://q-brands-app01.wirecard.sys:9000/draft/brands/229099017/model/country-configurations
-```
-
-### curl POST example POST request
-```sh
-curl -X POST http://localhost:8983/solr/collection1/update?commit=true \
--H "Content-Type: application/json" --data '{"add":"data"}'
-
-curl -X POST http://localhost:8983/solr/collection1/update?commit=true \
--H "Content-Type: application/json" --data-raw '{"add":"data"}'
-
-curl -X POST http://localhost:8983/solr/collection1/update?commit=true \
--H "Content-Type: application/json" --data-binary '{"add":"data"}'
-
-# encoding special symbols curl special symbols
-curl -X POST http://localhost:8983/solr/collection1/update?commit=true \
--H "Content-Type: application/json" --data-urlencode '{"add":"Tom&Jerry"}'
-
-# or with bash variable
-SOME_DATA="my_personal_value"
-curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: application/json" --data-binary '{"add":"'$SOME_DATA'"}'
-
-# or with data from file
-curl -X POST http://localhost:8983/test -H "Content-Type: application/json" --data-binary '@/path/to/file.json'
-
-# or with multipart body
-curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "userid=1234" http://mysuperserver/media/upload/
-
-# multiline body
-curl -X 'POST' $SOME_HOST \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "bdcTimestamp": 6797571559111,
-  "comment": "Some comment",
-  "loggerTimestamp": 1623247031477189001,
-  }'
-
-# curl with inline data curl here document curl port document here pipe
-json_mappings=`cat some_file.json`
-response=`curl -X POST $SOME_HOST -H 'Content-Type: application/json' \
--d @- << EOF
-{
-	"mappings": $json_mappings,
-	"settings" : {
-        "index" : {
-            "number_of_shards" : 1,
-            "number_of_replicas" : 0
-        }
-    }
-}
-EOF
-`
-echo $response
-
-# POST request GET style
-curl -X POST "http://localhost:8888/api/v1/notification/subscribe?email=one%40mail.ru&country=2&state=517&city=qWkbs&articles=true&questions=true&listings=true" -H "accept: application/json"
-```
-### curl escape, curl special symbols
-```sh
-# https://kb.objectrocket.com/elasticsearch/elasticsearch-cheatsheet-of-the-most-important-curl-requests-252
-curl -X GET "https://elasticsearch-label-search-prod.vantage.org/autolabel/_search?size=100&q=moto:*&pretty"
-```
-
-### escape single quotas
-```
-echo "'" 'sentence' "'"
-```
-
-### curl without progress, curl silent
-* curl -s -X GET http://google.com
-* curl --silent -X GET http://google.com
-* curl  http://google.com 2>/dev/null
-
-### curl certificate skipping, curl ssl, curl https, curl skip ssl
-```
-curl --insecure -s -X GET http://google.com
-```
-### curl with additional output, curl verbosive mode
-```sh
-curl --verbose --insecure -s -X GET http://google.com
-```
-### curl cookie, curl header cookie
-chrome extension ```cookies.txt```
-```sh
-# send predefined cookie to url
-curl -b path-to-cookie-file.txt -X GET url.com
-
-# send cookie from command line
-curl --cookie "first_cookie=123;second_cookie=456;third_cookie=789" -X GET url.com
-
-# send cookie from command line 
-curl 'http://localhost:8000/members/json-api/auth/user' -H 'Cookie: PHPSESSID=5c5dddcd96b9f2f41c2d2f87e799feac'
-
-# collect cookie from remote url and save in file
-curl -c cookie-from-url-com.txt -X GET url.com
-```
-### curl binary
-```sh
-python3 ${HOME_PROJECTS_GITHUB}/python-utilities/html-scraping/binary-html/beautifulsoup.py https://amazon.de
-```
-
-### string encoding for http
-```sh
-sudo apt install gridsite-clients
-urlencode "- - -"
-```
-	
-### curl with encoding to another codepage, translate/convert from win1251 to utf8
-```sh
-curl "http://some.resource/read_book.php?id=66258&p=1" | iconv --from-code WINDOWS-1251 --to-code UTF-8
-
-iconv --list
-cat "$INPUT_FILE" | iconv -t UNICODE//IGNORE
-```
-
-### [curl with parsing, curl part of the page ](https://github.com/cherkavi/python-utilities/blob/master/html-scraping/lxml/curl-output-html-parser.py#L10)
-
-### curl status code, curl response code, curl duration
-```sh
-airflow_trigger(){
-  SESSION_ID=$1
-  ENDPOINT=$2
-  BODY='{"conf":{"session_id":"'$SESSION_ID'","branch":"merge_labels"}}'
-  curl --silent -w "response-code: %{http_code}\n   time: %{time_starttransfer}" --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT
-  return $?
-}
-DAG_NAME='labeling'
-airflow_trigger $each_session "https://airflow.vantage.org/api/experimental/dags/$DAG_NAME/dag_runs"
-```
-
-```sh
-curl --show-error "http://some.resource/read_book.php?id=66258&p=1"
-```
-
-### curl execution time
-```
-curl --max-time 10 -so /dev/null -w '%{time_total}\n' google.com
-```
-
-### curl script curl replacement
-```sh
-curl "https://{foo,bar}.com/file_[1-4].webp" --output "#1_#2.webp"
-```
-
-### [json parser output to json pipe json](https://pypi.org/project/jc/)
-```sh
-# installation 
-pip3 install jc
-apt-get install jc
-
-# parse general output to json
-jc --pretty ls -la
-# using predefined parser
-dig www.google.com | jc --dig --pretty
-```
-
-### [json xml sql yaml converter](https://github.com/dcmoura/spyql)
-* [spyql doc](https://spyql.readthedocs.io/en/latest/recipes.html)
-* https://danielcmoura.com/blog/2022/spyql-cell-towers/
-```sh
-echo '{"a": 10, "b": "kitchen"}' | spyql -Otable=my_table "SELECT  json.a as indicator_value, json.b as place FROM json TO sql" 
-```
-
-### [jq json navigator json parser json parsing parse json parsing json json processing json query](https://stedolan.github.io/jq/manual/)
-* [json query doc](https://stedolan.github.io/jq/)  
-* [json tool json walk json analyzer](https://github.com/antonmedv/fx)
-  > `snap install fx`
-* [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})  
-WARNING: jq round up big numbers ( for version <=1.6 ), use [use 1.7+](https://github.com/jqlang/jq/releases/download/jq-1.7/jq-linux-amd64) instead `sudo mv /usr/bin/jq-linux-amd64 /usr/bin/jq`:
-```sh
-echo '{"loggerTimestamp": 1657094097468421888}' | jq .
-# {
-#  "loggerTimestamp": 1657094097468422000
-# }
-```
-
-
-> jq is not working properly with "-" character in property name !!!  
-jq is not working sometimes with "jq any properties", need to split them to two commands
-```sh
-docker network inspect mysql_web_default | jq '.[0].Containers' | jq .[].Name
-```
-```bash
-echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
-jq ".[] | .name"
-
-# json output pretty print, json pretty print, json sort
-echo output.json | jq .
-# sort by keys
-echo output.json | jq -S .
-
-# jq select with condition
-jq -e 'select(.[].name == "CP_END")' $SESSION_METADATA_FOLDER/$SESSION_ID
-echo $? # return 0 only when met the condition, otherwise - 1
-
-# .repositories[].repositoryName
-aws ecr describe-repositories | jq '.repositories[] | select(.repositoryName == "cherkavi-udacity-github-action-fe")'
-
-# jq filter by condition
-docker network inspect mysql_web_default | jq '.[0].Containers' | jq '.[] | select(.Name=="web_mysql_ui")' | jq .IPv4Address
-
-# jq create another document filter json transform json
-echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq '[.[] | {id, name} ]'
-echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq '[.[] | {number:.id, warrior:.name} ]'
-	
-# jq convert to csv
-echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
-jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
-
-# jq as a table
-echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq -r '["ID","NAME"], ["--","------"], (.[] | [.id,.name]) | @tsv' 
-	
-# jq get first element
-echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq '.[0] | [.name, .age] | @csv'
-
-# convert from yaml to json, retrieve values from json, convert to csv
-cat temp-pod.yaml | jq -r -j --prettyPrint | jq '[.metadata.namespace, .metadata.name, .spec.template.spec.nodeSelector."kubernetes.io/hostname"] | @csv'
-
-# multiply properties from sub-element
-aws s3api list-object-versions --bucket $AWS_S3_BUCKET_NAME --prefix $AWS_FILE_KEY | jq '.Versions[] | [.Key,.VersionId]'
-
-echo '{"smart_collections":[{"id":270378401973},{"id":270378369205}]}' | jq '. "smart_collections" | .[] | .id'
-
-jq 'if .attributes[].attribute == "category" and (.attributes[].normalizedValues != null) and (.attributes[].normalizedValues | length )>1 then . else empty end'
-	
-# jq remove quotas raw text
-jq -r ".DistributionList.Items[].Id"
-
-# jq escape symbols
-kubectl get nodes -o json | jq -r '.items[].metadata.annotations."alpha.kubernetes.io/provided-node-ip"'
-
-# edit variables inside JSON file
-ENV_DATA=abcde
-jq --arg var_a "$ENV_DATA" '.ETag = $var_a' cloud_front.json
-jq '.Distribution.DistributionConfig.Enabled = false' cloud_front.json
-```
-
-### json compare json diff
-```sh
-cmp <(jq -cS . A.json) <(jq -cS . B.json)
-diff <(jq --sort-keys . A.json) <(jq --sort-keys . B.json)
-```
-### [json deep compare](https://github.com/cherkavi/python-utilities/blob/master/json/compare-json.py)
-```sh
-# export JSON_COMPARE_SUPPRESS_OUTPUT=""
-export JSON_COMPARE_SUPPRESS_OUTPUT="true"
-python3 jsoncompare.py  $FOLDER_CSV/$SESSION_ID $FOLDER/$SESSION_ID
-```
-
-### [parsing yaml, yaml processing yaml query](https://mikefarah.gitbook.io/yq/)
-### [yaml tool edit yaml xpath](https://pypi.org/project/yamlpath/)
-```sh
-pip install yamlpath
-```
-
-#### yaml get value by xpath 
-```sh
-echo '
-first: 
-  f_second: one_one
-second: 2
-' | yaml-get -p first.f_second
-# one_one
-```
-
-#### yaml search for xpath, print files with values in xpath
-```sh
-echo '
-first: 
-  f_second: one_one
-second: 2
-' | yaml-paths --search=%one
-```
-
-#### yaml edit by xpath ( scalars only )
-```sh
-echo '
-first: one
-second: 2 
-' | yaml-set -g first --value=1
-# ---
-# first: 1
-# second: 2
-```
-
-#### yaml difference between two yaml files 
-```sh
-echo '
-second: 2
-first: 
-  f_second: one_one
-' > temp_1.yaml
-echo '
-first: 
-  f_second: one_two
-second: 2
-' > temp_2.yaml
-yaml-diff temp_1.yaml temp_2.yaml
-# < "one_one"
-# ---
-# > "one_two"
-```
-
-### [yq doc](https://mikefarah.gitbook.io/yq/operators)
-#### [yq examples](https://metacpan.org/pod/distribution/ETL-Yertl/bin/yq)
-```sh
-# read value
-cat k8s-pod.yaml | yq r - --printMode pv  "metadata.name"
-
-# convert to JSON
-cat k8s-pod.yaml | yq - r -j --prettyPrint
-# convert yaml to json|props|xml|tsv|csv
-cat k8s-pod.yaml | yq --output-format json
-
-# yaml remove elements clear ocp fields
-yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.spec.clusterIP,.spec.clusterIP)' service-data-api-mdf4download-service.yaml
-
-# yaml editor 
-yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.spec.clusterIP,.spec.clusterIP),(.metadata.namespace="ttt")' service-data-api-mdf4download-service.yaml
-```
-#### yq converter
-```sh
-# convert yaml to json|props|xml|tsv|csv
-cat file.yaml | yq --output-format json
-```
-
-### parsing xml parsing xml processing
-### xq 
-```sh
-# installation
-pip3 install xq
-# xq usage ??? is it not working as expected ????
-```
-#### parse xml with xpath 
-```sh
-# installation
-sudo apt install libxml-xpath-perl
-# parse xml from stdin
-curl -s https://www.w3schools.com/xml/note.xml | xpath -e '/note/to | /note/from'
-curl -s https://www.w3schools.com/xml/note.xml | xpath -e '/note/to/text()'
-```
-
-#### parse xml with xmllint
-```sh
-# installation
-sudo apt  install libxml2-utils
-
-## usage
-TEMP_FILE=$(mktemp)
-curl -s https://www.w3schools.com/xml/note.xml > $TEMP_FILE
-xmllint --xpath '//note/from' $TEMP_FILE
-xmllint --xpath 'string(//note/to)' $TEMP_FILE
-xmllint --xpath '//note/to/text()' $TEMP_FILE
-
-# avoid xmllint namespace check
-xmllint --xpath "//*[local-name()='project']/*[local-name()='modules']/*[local-name()='module']/text()" pom.xml
-# avoid issue with xmllint namespace
-cat pom.xml | sed '2 s/xmlns=".*"//g' | xmllint --xpath "/project/modules/module/text()" -
-
-# debug xml xpath debug 
-xmllint --shell  $TEMP_FILE
-rm $TEMP_FILE
-```
-	
-### xml pretty print, xml format
-```
-xmllint --format /path/to/file.xml > /path/to/file-formatted.xml
-```
-
-### xml validation
-```sh
-xmllint --noout file.xml; echo $?
-```
-
-### html prettifier
-```sh
-cat index.html | grep tidy
-```
-
-### parse html parsing 
-```sh
-# sudo apt install libxml-xpath-perl
-xpath -e $path $filename
-```
-
-```sh
-# Parse HTML and extract specific elements
-xmllint --html --xpath  $path $filename
-```
-
-[html parsing html processing html query, hq tool](https://github.com/rbwinslow/hq/wiki/Language-Reference)
-hq installation
-```sh
-pip install hq
-
-# or https://pypi.org/project/hq/0.0.4/#files
-# sudo python3 setup.py install
-```
-hq usage
-```sh
-curl https://www.w3schools.com/xml | hq '`title: ${/head/title}`'
-cat index.html | hq '/html/body/table/tr/td[2]/a/text()'
-# retrieve all classes
-cat p1-utf8.txt | hq '/html/body/table//p/@class'
-# retrieve all texts from 'p'
-cat p1-utf8.txt | hq '/html/body/table//p/text()'
-# retrieve all texts from 'p' with condition
-cat p1-utf8.txt | hq '/html/body/table//p[@class="MsoNormal"]/text()'
-# retrieve html tag table
-cat p1-utf8.txt | hq '//table'
-
-cat $filename | hq '`Hello, ${/html/head/title}!`'
-
-# https://www.w3.org/TR/xquery-31/#id-flwor-expressions
-hq -f $filename '
-let $path := /html/body/ul/li[*];
-for $el in $path
-    let $title:=`${ $el/span/div/div/div/div[2]/div[3]/div/div[1]/div/div[1]/div[1]/h2 }`
-    let $price1:=`${ $el/span/div/div/div/div[2]/div[3]/div/div[1]/div/div[1]/div[2]/div[1]/div/span/span[1] }`
-    let $price2:=`${ $el/span/div/div/div/div[2]/div[3]/div/div[1]/div/div[1]/div[2]/div[2]/div/span[1]/span[1] }`
-
-    let $price:=if ($price1) then $price1 else $price2
-
-    return `$title | $price `'
-
-hq -f $filename '
-let $path := /html/body/div[1]/li[*];
-for $el in $path
-    return `${ $el/article/div[2]/div[2]/h2/a } | https://www.example.de/${ $el/a/@href }`'
-
-```
-
-[python html parsers](https://github.com/cherkavi/python-utilities/tree/master/html-scraping)
-
 
 ### chmod recursively
-```
+```sh
 chmod -R +x <folder name>
 
 # remove world access 
@@ -2667,17 +2164,17 @@ chmod -R g-rwx /opt/sm-metrics/grafana-db/data
 # add rw access for current user
 chmod u+rw screenshot_overlayed.png
 ```
-```
+```sh
 find . -iname "*.sql" -print0 | xargs -0 chmod 666
 ```
 
 ### create dozen of folders using one-line command
-```
+```sh
 mkdir -p some-folder/{1..10}/{one,two,three}
 ```
 
 ### execute command with environment variable, new environment variable for command
-```
+```sh
 ONE="this is a test"; echo $ONE
 ```
 
@@ -2700,7 +2197,7 @@ export `cat $FILE_WITH_VAR | awk -F= '{if($1 !~ "#"){print $1}}'`
 ```
 sudo http_proxy='http://user:@proxy.muc:8080' apt install meld
 ```
-#### proxy places, change proxy, update proxy, system proxy
+### proxy places, change proxy, update proxy, system proxy
 > remember about escaping bash spec chars ( $,.@.... )
 * .bashrc
 * /etc/environment
@@ -2748,6 +2245,19 @@ sudo apt-get install libglib2.0-0:i386 libgtk2.0-0:i386
 ```
 apt list <name of package>
 apt show <name of package>
+```
+
+### apt package description 
+```sh
+apt-cache show terminator
+```
+### apt cache
+```sh
+cd /var/cache/apt/archives
+```
+### apt force install 
+```sh
+sudo apt install --fix-broken -o Dpkg::Options::="--force-overwrite" {package name}
 ```
 
 ### package update package mark 
@@ -2845,17 +2355,615 @@ echo $?
 sudo vmware-installer -u vmware-player
 ```
 
-### pdf watermark, merge pdf files into one
-```
-pdftk original.pdf stamp watermark.pdf output output.pdf
-```
-
 ### version of OS linux version os information distribution name OS name
 * lsb_release -a
 * cat /etc/*-release
 * uname -a
 * `. /etc/os-release` 
 
+### sudo without password, apple keyboard, sudo script without password
+```
+echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode" 2>/dev/null
+```
+
+### default type, detect default browser, mime types, default application set default app
+```sh
+xdg-mime query default x-scheme-handler/http
+
+## where accessible types
+# echo $XDG_DATA_DIRS # avaialible in applications
+# locate google-chrome.desktop
+# /usr/share/applications/google-chrome.desktop
+
+## set default browser 
+xdg-mime default firefox.desktop x-scheme-handler/http
+xdg-mime default firefox.desktop x-scheme-handler/https
+xdg-settings set default-web-browser firefox.desktop
+
+## check default association
+cat ~/.config/mimeapps.list
+cat /usr/share/applications/defaults.list
+```
+or change your alternatives
+```sh
+locate x-www-browser
+# /etc/alternatives/x-www-browser
+```
+
+open in default browser
+```sh
+x-www-browser http://localhost:9090
+```
+### alternatives
+set default browser
+```sh
+# display
+sudo update-alternatives --display x-www-browser
+sudo update-alternatives --query x-www-browser
+sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/chromium-browser 90
+
+# config
+sudo update-alternatives --config x-www-browser
+
+# remove
+sudo update-alternatives --remove x-www-browser /snap/bin/chromium
+sudo update-alternatives --remove x-www-browser /usr/bin/chromium
+```
+java set default
+```sh
+update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 10
+```
+
+### open file with default editor, default viewer, with more appropriate viewr
+```sh
+# ranger should be installed 
+rifle <path to file>
+```
+
+### cat replacement bat
+```sh
+# apt install bat - not working sometimes
+cargo install bat
+batcat textfile
+# alias bat=batcat
+bat textfile
+```
+
+### install haskell
+```
+sudo apt-get install haskell-stack
+stack upgrade
+stack install toodles
+```
+[get started with hackell](https://haskell.fpcomplete.com/get-started)
+
+### check architecture
+```sh
+dpkg --add-architecture i386
+dpkg --print-architecture
+dpkg --print-foreign-architectures
+```
+
+### calendar, week number
+```sh
+gcal --with-week-number
+```
+
+## cURL command
+
+### [curl without password](https://everything.curl.dev/usingcurl/netrc)
+~/.netrc
+```sh
+machine my-secret-host.com login my-secret-login password my-secret-password
+machine my-secret-host2.com login my-secret-login2 password my-secret-password2
+```
+```sh
+curl --netrc --request GET my-secret-host.com/storage/credentials 
+```
+
+### return code 0 if 200, curl return code 
+```sh
+curl --fail --request GET 'https://postman-echo.com/get?foo1=bar1&foo2=bar2'
+```
+
+### curl with authentication
+```sh
+curl --request POST \
+--data "client_id=myClient" \
+--data "grant_type=client_credentials" \
+--data "scope=write" \
+--data "response_type=token" \
+--cert "myClientCertificate.pem" \
+--key "myClientCertificate.key.pem" \
+"https://openam.example.com:8443/openam/oauth2/realms/root/access_token"
+
+# {
+#   "access_token": "sbQZ....",
+#   "scope": "write",
+#   "token_type": "Bearer",
+#   "expires_in": 3600
+# }
+```	
+
+### echo server mock server 
+```sh
+curl --location --request GET 'https://postman-echo.com/get?foo1=bar1&foo2=bar2'
+```
+
+### curl username, curl with user and password, curl credentials
+```sh
+curl -u username:password http://example.com
+# basic authentication
+echo -n "${username}:${password}" | base64
+curl -v --insecure -X GET "https://codebeamer.ubsgroup.net:8443/cb/api/v3/wikipages/21313" -H "accept: application/json" -H "Authorization: Basic "`echo -n $TSS_USER:$TSS_PASSWORD | base64`
+
+# bearer authentication
+curl --insecure --location --oauth2-bearer $KEYCLOAK_TOKEN "https://portal.apps.devops.vantage.org/session-lister/v1/sessions/cc17d9f8-0f96-43e0-a0dc-xxxxxxx"
+
+# or with certificate 
+curl  --cacert /opt/CA.cer --location --oauth2-bearer $KEYCLOAK_TOKEN "https://portal.apps.devops.vantage.org/session-lister/v1/sessions/cc17d9f8-0f96-43e0-a0dc-xxxxxxx"
+```
+
+### curl head
+```sh
+curl --head http://example.com
+```
+
+### curl redirect, redirect curl, curl 302 response
+```sh
+curl -L http://example.com
+```
+
+### curl PUT example with file
+```sh
+curl -X PUT --header "Content-Type: application/vnd.wirecard.brand.apis-v1+json;charset=ISO-8859-1" -H "x-username: cherkavi" -d@put-request.data http://q-brands-app01.wirecard.sys:9000/draft/brands/229099017/model/country-configurations
+```
+
+### curl POST example POST request
+```sh
+curl -X POST http://localhost:8983/solr/collection1/update?commit=true \
+-H "Content-Type: application/json" --data '{"add":"data"}'
+
+curl -X POST http://localhost:8983/solr/collection1/update?commit=true \
+-H "Content-Type: application/json" --data-raw '{"add":"data"}'
+
+curl -X POST http://localhost:8983/solr/collection1/update?commit=true \
+-H "Content-Type: application/json" --data-binary '{"add":"data"}'
+
+# encoding special symbols curl special symbols
+curl -X POST http://localhost:8983/solr/collection1/update?commit=true \
+-H "Content-Type: application/json" --data-urlencode '{"add":"Tom&Jerry"}'
+
+# or with bash variable
+SOME_DATA="my_personal_value"
+curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: application/json" --data-binary '{"add":"'$SOME_DATA'"}'
+
+# or with data from file
+curl -X POST http://localhost:8983/test -H "Content-Type: application/json" --data-binary '@/path/to/file.json'
+
+# or with multipart body
+curl -i -X POST -H "Content-Type: multipart/form-data" -F "data=@test.mp3" -F "userid=1234" http://mysuperserver/media/upload/
+```
+
+```sh
+# multiline body
+curl -X 'POST' $SOME_HOST \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "bdcTimestamp": 6797571559111,
+  "comment": "Some comment",
+  "loggerTimestamp": 1623247031477189001,
+  }'
+```
+
+```sh
+# curl with inline data curl here document curl port document here pipe
+json_mappings=`cat some_file.json`
+response=`curl -X POST $SOME_HOST -H 'Content-Type: application/json' \
+-d @- << EOF
+{
+	"mappings": $json_mappings,
+	"settings" : {
+        "index" : {
+            "number_of_shards" : 1,
+            "number_of_replicas" : 0
+        }
+    }
+}
+EOF
+`
+echo $response
+```
+
+```sh
+# POST request GET style
+curl -X POST "http://localhost:8888/api/v1/notification/subscribe?email=one%40mail.ru&country=2&state=517&city=qWkbs&articles=true&questions=true&listings=true" -H "accept: application/json"
+```
+
+### curl escape, curl special symbols
+```sh
+# https://kb.objectrocket.com/elasticsearch/elasticsearch-cheatsheet-of-the-most-important-curl-requests-252
+curl -X GET "https://elasticsearch-label-search-prod.vantage.org/autolabel/_search?size=100&q=moto:*&pretty"
+```
+
+### escape single quotas
+```sh
+echo "'" 'sentence' "'"
+```
+
+### curl without progress, curl silent
+* curl -s -X GET http://google.com
+* curl --silent -X GET http://google.com
+* curl  http://google.com 2>/dev/null
+
+### curl certificate skipping, curl ssl, curl https, curl skip ssl
+```sh
+curl --insecure -s -X GET http://google.com
+```
+### curl with additional output, curl verbosive mode
+```sh
+curl --verbose --insecure -s -X GET http://google.com
+```
+### curl cookie, curl header cookie
+chrome extension ```cookies.txt```
+```sh
+# send predefined cookie to url
+curl -b path-to-cookie-file.txt -X GET url.com
+
+# send cookie from command line
+curl --cookie "first_cookie=123;second_cookie=456;third_cookie=789" -X GET url.com
+
+# send cookie from command line 
+curl 'http://localhost:8000/members/json-api/auth/user' -H 'Cookie: PHPSESSID=5c5dddcd96b9f2f41c2d2f87e799feac'
+
+# collect cookie from remote url and save in file
+curl -c cookie-from-url-com.txt -X GET url.com
+```
+### curl binary
+```sh
+python3 ${HOME_PROJECTS_GITHUB}/python-utilities/html-scraping/binary-html/beautifulsoup.py https://amazon.de
+```
+
+### string encoding for http
+```sh
+sudo apt install gridsite-clients
+urlencode "- - -"
+```
+	
+### curl with encoding to another codepage, translate/convert from win1251 to utf8
+```sh
+curl "http://some.resource/read_book.php?id=66258&p=1" | iconv --from-code WINDOWS-1251 --to-code UTF-8
+
+iconv --list
+cat "$INPUT_FILE" | iconv -t UNICODE//IGNORE
+```
+
+### [curl with parsing, curl part of the page ](https://github.com/cherkavi/python-utilities/blob/master/html-scraping/lxml/curl-output-html-parser.py#L10)
+
+### curl status code, curl response code, curl duration
+```sh
+airflow_trigger(){
+  SESSION_ID=$1
+  ENDPOINT=$2
+  BODY='{"conf":{"session_id":"'$SESSION_ID'","branch":"merge_labels"}}'
+  curl --silent -w "response-code: %{http_code}\n   time: %{time_starttransfer}" --data-binary $BODY -u $AIRFLOW_USER:$AIRFLOW_PASSWORD -X POST $ENDPOINT
+  return $?
+}
+DAG_NAME='labeling'
+airflow_trigger $each_session "https://airflow.vantage.org/api/experimental/dags/$DAG_NAME/dag_runs"
+```
+
+```sh
+curl --show-error "http://some.resource/read_book.php?id=66258&p=1"
+```
+
+### curl execution time
+```sh
+curl --max-time 10 -so /dev/null -w '%{time_total}\n' google.com
+```
+
+### curl script curl replacement
+```sh
+curl "https://{foo,bar}.com/file_[1-4].webp" --output "#1_#2.webp"
+```
+
+## json
+### [json parser output to json pipe json](https://pypi.org/project/jc/)
+```sh
+# installation 
+pip3 install jc
+apt-get install jc
+
+# parse general output to json
+jc --pretty ls -la
+# using predefined parser
+dig www.google.com | jc --dig --pretty
+```
+
+### [json xml sql yaml converter](https://github.com/dcmoura/spyql)
+* [spyql doc](https://spyql.readthedocs.io/en/latest/recipes.html)
+* https://danielcmoura.com/blog/2022/spyql-cell-towers/
+```sh
+echo '{"a": 10, "b": "kitchen"}' | spyql -Otable=my_table "SELECT  json.a as indicator_value, json.b as place FROM json TO sql" 
+```
+
+### [jq json navigator json parser json parsing parse json parsing json json processing json query](https://stedolan.github.io/jq/manual/)
+* [json query doc](https://stedolan.github.io/jq/)  
+* [json tool json walk json analyzer](https://github.com/antonmedv/fx)
+  > `snap install fx`
+* [jq playground](https://jqplay.org/jq?q=.[%22foo%22]&j={%22foo%22%3A%2042})  
+WARNING: jq round up big numbers ( for version <=1.6 ), use [use 1.7+](https://github.com/jqlang/jq/releases/download/jq-1.7/jq-linux-amd64) instead `sudo mv /usr/bin/jq-linux-amd64 /usr/bin/jq`:
+```sh
+echo '{"loggerTimestamp": 1657094097468421888}' | jq .
+# {
+#  "loggerTimestamp": 1657094097468422000
+# }
+```
+
+> jq is not working properly with "-" character in property name !!!  
+jq is not working sometimes with "jq any properties", need to split them to two commands
+```sh
+docker network inspect mysql_web_default | jq '.[0].Containers' | jq .[].Name
+```
+```bash
+echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
+jq ".[] | .name"
+
+# json output pretty print, json pretty print, json sort
+echo output.json | jq .
+# sort by keys
+echo output.json | jq -S .
+
+# jq select with condition
+jq -e 'select(.[].name == "CP_END")' $SESSION_METADATA_FOLDER/$SESSION_ID
+echo $? # return 0 only when met the condition, otherwise - 1
+
+# .repositories[].repositoryName
+aws ecr describe-repositories | jq '.repositories[] | select(.repositoryName == "cherkavi-udacity-github-action-fe")'
+
+# jq filter by condition
+docker network inspect mysql_web_default | jq '.[0].Containers' | jq '.[] | select(.Name=="web_mysql_ui")' | jq .IPv4Address
+
+# jq create another document filter json transform json
+echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq '[.[] | {id, name} ]'
+echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq '[.[] | {number:.id, warrior:.name} ]'
+	
+# jq convert to csv
+echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | \
+jq '.[] | if .name == "Richard" then . else empty end | [.id, .name] | @csv'
+
+# jq as a table
+echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq -r '["ID","NAME"], ["--","------"], (.[] | [.id,.name]) | @tsv' 
+	
+# jq get first element
+echo '[{"id": 1, "name": "Arthur", "age": "21"},{"id": 2, "name": "Richard", "age": "32"}]' | jq '.[0] | [.name, .age] | @csv'
+
+# convert from yaml to json, retrieve values from json, convert to csv
+cat temp-pod.yaml | jq -r -j --prettyPrint | jq '[.metadata.namespace, .metadata.name, .spec.template.spec.nodeSelector."kubernetes.io/hostname"] | @csv'
+
+# multiply properties from sub-element
+aws s3api list-object-versions --bucket $AWS_S3_BUCKET_NAME --prefix $AWS_FILE_KEY | jq '.Versions[] | [.Key,.VersionId]'
+
+echo '{"smart_collections":[{"id":270378401973},{"id":270378369205}]}' | jq '. "smart_collections" | .[] | .id'
+
+jq 'if .attributes[].attribute == "category" and (.attributes[].normalizedValues != null) and (.attributes[].normalizedValues | length )>1 then . else empty end'
+	
+# jq remove quotas raw text
+jq -r ".DistributionList.Items[].Id"
+
+# jq escape symbols
+kubectl get nodes -o json | jq -r '.items[].metadata.annotations."alpha.kubernetes.io/provided-node-ip"'
+
+# edit variables inside JSON file
+ENV_DATA=abcde
+jq --arg var_a "$ENV_DATA" '.ETag = $var_a' cloud_front.json
+jq '.Distribution.DistributionConfig.Enabled = false' cloud_front.json
+```
+
+### json compare json diff
+```sh
+cmp <(jq -cS . A.json) <(jq -cS . B.json)
+diff <(jq --sort-keys . A.json) <(jq --sort-keys . B.json)
+```
+
+### [json deep compare](https://github.com/cherkavi/python-utilities/blob/master/json/compare-json.py)
+```sh
+# export JSON_COMPARE_SUPPRESS_OUTPUT=""
+export JSON_COMPARE_SUPPRESS_OUTPUT="true"
+python3 jsoncompare.py  $FOLDER_CSV/$SESSION_ID $FOLDER/$SESSION_ID
+```
+
+## yaml
+### [parsing yaml, yaml processing yaml query](https://mikefarah.gitbook.io/yq/)
+
+### [yaml tool edit yaml xpath](https://pypi.org/project/yamlpath/)
+```sh
+pip install yamlpath
+```
+
+#### yaml get value by xpath 
+```sh
+echo '
+first: 
+  f_second: one_one
+second: 2
+' | yaml-get -p first.f_second
+# one_one
+```
+
+#### yaml search for xpath, print files with values in xpath
+```sh
+echo '
+first: 
+  f_second: one_one
+second: 2
+' | yaml-paths --search=%one
+```
+
+#### yaml edit by xpath ( scalars only )
+```sh
+echo '
+first: one
+second: 2 
+' | yaml-set -g first --value=1
+# ---
+# first: 1
+# second: 2
+```
+
+#### yaml difference between two yaml files 
+```sh
+echo '
+second: 2
+first: 
+  f_second: one_one
+' > temp_1.yaml
+echo '
+first: 
+  f_second: one_two
+second: 2
+' > temp_2.yaml
+yaml-diff temp_1.yaml temp_2.yaml
+# < "one_one"
+# ---
+# > "one_two"
+```
+
+### [yq doc](https://mikefarah.gitbook.io/yq/operators)
+#### [yq examples](https://metacpan.org/pod/distribution/ETL-Yertl/bin/yq)
+```sh
+# read value
+cat k8s-pod.yaml | yq r - --printMode pv  "metadata.name"
+
+# convert to JSON
+cat k8s-pod.yaml | yq - r -j --prettyPrint
+# convert yaml to json|props|xml|tsv|csv
+cat k8s-pod.yaml | yq --output-format json
+
+# yaml remove elements clear ocp fields
+yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.spec.clusterIP,.spec.clusterIP)' service-data-api-mdf4download-service.yaml
+
+# yaml editor 
+yq 'del(.metadata.managedFields,.status,.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.spec.clusterIP,.spec.clusterIP),(.metadata.namespace="ttt")' service-data-api-mdf4download-service.yaml
+```
+#### yq converter
+```sh
+# convert yaml to json|props|xml|tsv|csv
+cat file.yaml | yq --output-format json
+```
+
+## xml
+### parsing xml parsing xml processing
+#### xq 
+```sh
+# installation
+pip3 install xq
+# xq usage ??? is it not working as expected ????
+```
+#### parse xml with xpath 
+```sh
+# installation
+sudo apt install libxml-xpath-perl
+# parse xml from stdin
+curl -s https://www.w3schools.com/xml/note.xml | xpath -e '/note/to | /note/from'
+curl -s https://www.w3schools.com/xml/note.xml | xpath -e '/note/to/text()'
+```
+
+#### parse xml with xmllint
+```sh
+# installation
+sudo apt  install libxml2-utils
+
+## usage
+TEMP_FILE=$(mktemp)
+curl -s https://www.w3schools.com/xml/note.xml > $TEMP_FILE
+xmllint --xpath '//note/from' $TEMP_FILE
+xmllint --xpath 'string(//note/to)' $TEMP_FILE
+xmllint --xpath '//note/to/text()' $TEMP_FILE
+
+# avoid xmllint namespace check
+xmllint --xpath "//*[local-name()='project']/*[local-name()='modules']/*[local-name()='module']/text()" pom.xml
+# avoid issue with xmllint namespace
+cat pom.xml | sed '2 s/xmlns=".*"//g' | xmllint --xpath "/project/modules/module/text()" -
+
+# debug xml xpath debug 
+xmllint --shell  $TEMP_FILE
+rm $TEMP_FILE
+```
+	
+### xml pretty print, xml format
+```
+xmllint --format /path/to/file.xml > /path/to/file-formatted.xml
+```
+
+### xml validation
+```sh
+xmllint --noout file.xml; echo $?
+```
+
+## html
+
+### html prettifier
+```sh
+cat index.html | grep tidy
+```
+
+### parse html parsing 
+```sh
+# sudo apt install libxml-xpath-perl
+xpath -e $path $filename
+```
+
+```sh
+# Parse HTML and extract specific elements
+xmllint --html --xpath  $path $filename
+```
+
+### [html parsing html processing html query, hq tool](https://github.com/rbwinslow/hq/wiki/Language-Reference)
+hq installation
+```sh
+pip install hq
+
+# or https://pypi.org/project/hq/0.0.4/#files
+# sudo python3 setup.py install
+```
+hq usage
+```sh
+curl https://www.w3schools.com/xml | hq '`title: ${/head/title}`'
+cat index.html | hq '/html/body/table/tr/td[2]/a/text()'
+# retrieve all classes
+cat p1-utf8.txt | hq '/html/body/table//p/@class'
+# retrieve all texts from 'p'
+cat p1-utf8.txt | hq '/html/body/table//p/text()'
+# retrieve all texts from 'p' with condition
+cat p1-utf8.txt | hq '/html/body/table//p[@class="MsoNormal"]/text()'
+# retrieve html tag table
+cat p1-utf8.txt | hq '//table'
+
+cat $filename | hq '`Hello, ${/html/head/title}!`'
+
+# https://www.w3.org/TR/xquery-31/#id-flwor-expressions
+hq -f $filename '
+let $path := /html/body/ul/li[*];
+for $el in $path
+    let $title:=`${ $el/span/div/div/div/div[2]/div[3]/div/div[1]/div/div[1]/div[1]/h2 }`
+    let $price1:=`${ $el/span/div/div/div/div[2]/div[3]/div/div[1]/div/div[1]/div[2]/div[1]/div/span/span[1] }`
+    let $price2:=`${ $el/span/div/div/div/div[2]/div[3]/div/div[1]/div/div[1]/div[2]/div[2]/div/span[1]/span[1] }`
+
+    let $price:=if ($price1) then $price1 else $price2
+
+    return `$title | $price `'
+
+hq -f $filename '
+let $path := /html/body/div[1]/li[*];
+for $el in $path
+    return `${ $el/article/div[2]/div[2]/h2/a } | https://www.example.de/${ $el/a/@href }`'
+```
+
+### [python html parsers](https://github.com/cherkavi/python-utilities/tree/master/html-scraping)
+
+## network 
 ### [cidr calculator](https://cidr.xyz/)
 
 ### ip address of the site show ip address of remote host ip address
@@ -2865,7 +2973,7 @@ dig mail.ru
 ```
 	
 ### print all networks
-```
+```sh
 ip -4 a
 ip -6 a
 ```
@@ -2883,12 +2991,12 @@ sudo cat /etc/NetworkManager/system-connections/* | grep -e ^ssid -e ^psk
 ```
 
 ### switch on and off network interface
-```
+```sh
 sudo ifdown lo && sudo ifup lo
 ```
 
 ### restart network, switch off all interfaces
-```
+```sh
 sudo service network-manager restart
 ```
 ### vpn connection, connect to network
@@ -2957,7 +3065,8 @@ keytool -genkeypair -keystore -keystore ./src/main/resources/com/ubs/crm/data/ap
 ## Importing ( updating, adding ) trusted SSL certificates
 keytool -import -file ~/Downloads/certificate.crt -keystore ./src/main/resources/com/ubs/crm/data/api/rest/server/keystore_server -alias my-magic-number
 ```
-#### in other words, rsa certificate rsa from url x509 url: 
+
+in other words, rsa certificate rsa from url x509 url: 
 1. Download the certificate by opening the url in the browser and downloading it there manually.  
 2. Run the following command: ```keytool -import -file <name-of-downloaded-certificate>.crt -alias <alias for exported file> -keystore myTrustStore```  
 
@@ -2985,24 +3094,121 @@ options edns0 trust-ad
 search ec2.internal
 ```
 
-
-### encrypt file, decrypt file, encode/decode
+### proxy
+#### proxy local, proxy for user /etc/profile.d/proxy.sh
 ```
-gpg --symmetric {filename}
-gpg --decrypt {filename}
-```
-```bash
-# encrypt
-# openssl [encryption type] -in [original] -out [output file]
-openssl des3 -in original.txt -out original.txt.encrypted
-# decrypt
-# openssl [encryption type] -d -in [encrypted file] -out [original file]
-openssl des3 -d -in original.txt.encrypted -out original.txt
-
-# list of encryptors (des3):
-openssl enc -list
+export HTTP_PROXY=http://webproxy.host:3128
+export http_proxy=http://webproxy.host:3128
+export HTTPS_PROXY=http://webproxy.host:3128
+export https_proxy=http://webproxy.host:3128
+export NO_PROXY="localhost,127.0.0.1,.host,.viola.local"
+export no_proxy="localhost,127.0.0.1,.host,.viola.local"
 ```
 
+#### global proxy, proxy global, system proxy, proxy system /etc/apt/apt.conf 
+```
+Acquire::http::proxy "http://proxy.company.com:80/";
+Acquire::https::proxy "https://proxy.company.com:80/";
+Acquire::ftp::proxy "ftp://proxy.company.com:80/";
+Acquire::socks5::proxy "socks://127.0.0.1:1080/";
+```
+
+#### global proxy, proxy global, system proxy, proxy system /etc/environment
+```
+http_proxy=http://webproxy.host:3128
+no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
+```
+
+#### for application
+create environment for http
+```
+sudo gedit /etc/systemd/system/{service name}.service.d/http-proxy.conf
+
+[Service]
+Environment="http_proxy=http://user:passw@webproxy.host:8080"
+```
+
+create environment for https
+```
+sudo gedit /etc/systemd/system/{service name}.service.d/https-proxy.conf
+[Service]
+Environment="https_proxy=http://user:passw@webproxy.host:8080"
+```
+
+service list of services
+```sh
+systemctl list-unit-files --type=service
+```
+
+restart service restart service stop service start
+```
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart {service name}
+# or
+sudo service {service name} stop
+sudo service {service name} start
+```
+
+check service status
+```sh
+sudo systemctl is-active {service name}
+```
+
+enable automatic start disable autostart disable service
+```
+sudo systemctl enable {service name}
+sudo systemctl disable {service name}
+```
+
+service check logs
+```
+systemctl status {service name}
+journalctl -u {service name} -e
+# print all units
+journalctl -F _SYSTEMD_UNIT
+
+# system log
+journalctl -f -l 
+# system log for app log
+$ journalctl -f -l -u python -u mariadb
+# system log since 300 second
+$ journalctl -f -l -u httpd -u mariadb --since -300
+```
+
+check settings
+```
+systemctl show {service name} | grep proxy
+```
+
+#### for snapd 
+```
+# export SYSTEM_EDITOR="vim"
+# export SYSTEMD_EDITOR="vim"
+sudo systemctl edit snapd.service
+# will edit: /etc/systemd/system/snapd.service.d/override.conf
+```
+add next lines
+```
+[Service]
+Environment=http_proxy=http://proxy:port
+Environment=https_proxy=http://proxy:port
+```
+restart service
+```
+sudo systemctl daemon-reload
+sudo systemctl restart snapd.service
+```
+
+#### snap proxy settings
+```
+sudo snap set system proxy.http="http://user:password@proxy.muc:8080"
+sudo snap set system proxy.https="http://user:password@proxy.muc:8080"
+export proxy_http="http://user:password@proxy.muc:8080"
+export proxy_https="http://user:password@proxy.muc:8080"
+sudo snap search visual 
+```
+
+## users/group
 ### add user into special group, add user to group
 * adduser {username} {destination group name}
 * edit file /etc/group
@@ -3081,9 +3287,17 @@ write <username> <message>
 sudo wall -n 'hello all logged in users '
 ```
 
-### print all users registered into system
+### print all users registered users into system
 ```
 cat /etc/passwd | cut --delimiter=: --fields=1
+```
+
+### copy users, import/export users
+```
+sudo awk -F: '($3>=LIMIT) && ($3!=65534)' /etc/passwd > passwd-export
+sudo awk -F: '($3>=LIMIT) && ($3!=65534)' /etc/group > /opt/group-export
+sudo awk -F: '($3>=LIMIT) && ($3!=65534) {print $1}' /etc/passwd | tee - | egrep -f - /etc/shadow > /opt/shadow-export
+sudo cp /etc/gshadow /opt/gshadow-export
 ```
 
 ### issue with ssh, ssh connection issue
@@ -3102,121 +3316,7 @@ or
 rm ~/.ssh/known_hosts
 ```
 
-### proxy
-* proxy local, proxy for user /etc/profile.d/proxy.sh
-```
-export HTTP_PROXY=http://webproxy.host:3128
-export http_proxy=http://webproxy.host:3128
-export HTTPS_PROXY=http://webproxy.host:3128
-export https_proxy=http://webproxy.host:3128
-export NO_PROXY="localhost,127.0.0.1,.host,.viola.local"
-export no_proxy="localhost,127.0.0.1,.host,.viola.local"
-```
-
-* #### global proxy, proxy global, system proxy, proxy system /etc/apt/apt.conf 
-```
-Acquire::http::proxy "http://proxy.company.com:80/";
-Acquire::https::proxy "https://proxy.company.com:80/";
-Acquire::ftp::proxy "ftp://proxy.company.com:80/";
-Acquire::socks5::proxy "socks://127.0.0.1:1080/";
-```
-
-* #### global proxy, proxy global, system proxy, proxy system /etc/environment
-```
-http_proxy=http://webproxy.host:3128
-no_proxy="localhost,127.0.0.1,.host.de,.viola.local"
-```
-
-* #### for application
-create environment for http
-```
-sudo gedit /etc/systemd/system/{service name}.service.d/http-proxy.conf
-
-[Service]
-Environment="http_proxy=http://user:passw@webproxy.host:8080"
-```
-
-create environment for https
-```
-sudo gedit /etc/systemd/system/{service name}.service.d/https-proxy.conf
-[Service]
-Environment="https_proxy=http://user:passw@webproxy.host:8080"
-```
-
-service list of services
-```sh
-systemctl list-unit-files --type=service
-```
-
-restart service restart service stop service start
-```
-$ sudo systemctl daemon-reload
-$ sudo systemctl restart {service name}
-# or
-sudo service {service name} stop
-sudo service {service name} start
-```
-
-check service status
-```sh
-sudo systemctl is-active {service name}
-```
-
-enable automatic start disable autostart disable service
-```
-sudo systemctl enable {service name}
-sudo systemctl disable {service name}
-```
-
-service check logs
-```
-systemctl status {service name}
-journalctl -u {service name} -e
-# print all units
-journalctl -F _SYSTEMD_UNIT
-
-# system log
-journalctl -f -l 
-# system log for app log
-$ journalctl -f -l -u python -u mariadb
-# system log since 300 second
-$ journalctl -f -l -u httpd -u mariadb --since -300
-```
-
-check settings
-```
-systemctl show {service name} | grep proxy
-```
-
-* #### for snapd 
-```
-# export SYSTEM_EDITOR="vim"
-# export SYSTEMD_EDITOR="vim"
-sudo systemctl edit snapd.service
-# will edit: /etc/systemd/system/snapd.service.d/override.conf
-```
-add next lines
-```
-[Service]
-Environment=http_proxy=http://proxy:port
-Environment=https_proxy=http://proxy:port
-```
-restart service
-```
-sudo systemctl daemon-reload
-sudo systemctl restart snapd.service
-```
-
-### snap proxy settings
-```
-sudo snap set system proxy.http="http://user:password@proxy.muc:8080"
-sudo snap set system proxy.https="http://user:password@proxy.muc:8080"
-export proxy_http="http://user:password@proxy.muc:8080"
-export proxy_https="http://user:password@proxy.muc:8080"
-sudo snap search visual 
-```
-
-### tools:
+## tools
 - [ETL](www.talend.com)
 - [ETL](https://hekad.readthedocs.io)
 - web management - atomicproject.io, cockpit
@@ -3225,7 +3325,7 @@ sudo snap search visual
   * [after installation](https://127.0.0.1:9090)
   * use your own user/password
 
-### virtual machines
+## virtual machines
 * [images](http://osboxes.org)
 * [app with infrastructure](https://bitnami.com/stacks)
 
@@ -3298,10 +3398,36 @@ execute re-mapping, permanent solution
 xmodmap $HOME/.config/xmodmap-hjkl
 ```
 
-## remap reset, reset xmodmap
+### remap reset, reset xmodmap
 ```sh
 setxkbmap -option
 ```
+
+## move mouse, control X server
+```
+apt-get install xdotool
+# move the mouse  x    y
+xdotool mousemove 1800 500
+# left click
+xdotool click 1
+```
+pls, check that you are using Xorg and not Wayland (Window system):
+```sh
+# uncomment false
+cat /etc/gdm3/custom.conf | grep WaylandEnable
+```
+how to check your current display server(window system):
+```sh
+# x11 - xorg
+# wayland
+echo $XDG_SESSION_TYPE
+```
+another possible solution for moving mouse cursor
+```sh
+apt-get install xautomation
+xte 'mousemove 200 200'
+```
+[another possible solution for moving mouse cursor](https://github.com/ReimuNotMoe/ydotool)
 
 ## terminal title
 ```
@@ -3315,6 +3441,39 @@ set-title "my title for terminal"
 ```
 
 ## code/decode
+
+### encrypt decrypt 
+#### encrypt file, decrypt file, encode/decode
+```
+gpg --symmetric {filename}
+gpg --decrypt {filename}
+```
+```bash
+# encrypt
+# openssl [encryption type] -in [original] -out [output file]
+openssl des3 -in original.txt -out original.txt.encrypted
+# decrypt
+# openssl [encryption type] -d -in [encrypted file] -out [original file]
+openssl des3 -d -in original.txt.encrypted -out original.txt
+
+# list of encryptors (des3):
+openssl enc -list
+```
+#### encrypt decrypt
+```sh
+sudo apt install ccrypt
+# encrypt file
+ccencrypt file1.txt
+# ccencrypt file1.txt --key mysecretkey
+# print decrypted content
+ccat file1.txt.cpt
+# decrypt file
+ccdecrypt file1.txt.cpt
+# ccdecrypt file1.txt.cpt --key mysecretkey
+# try to guess password
+# ccguess file1.txt.xpt
+```
+
 ### base64
 ```sh
 # !!! important !!! will produce line with suffix "\n" 
@@ -3344,13 +3503,13 @@ sig_file=`ls ~/Downloads/*.sig`
 original_file="${sig_file%.sig}"
 gpg --verify $sig_file $original_file
 ``` 
+
 ### check open pgp signature
 ```sh
 # tails-amd64-5.22.img   tails-amd64-5.22.img.sig   tails-signing.key
 gpg --import tails-signing.key
 gpg --verify tails-amd64-5.22.img.sig tails-amd64-5.22.img
 ```
-
 
 ## driver install hardware
 ```sh
@@ -3397,6 +3556,21 @@ rifle $OUTPUT_IMAGE
 potrace $OUTPUT_IMAGE -s
 ```
 
+### convert text to image
+```sh
+# list of all fonts: `fc-list`
+# transparent background: xc:none
+convert -size 800x600     xc:white -font "Garuda" -pointsize 20 -fill black -annotate +50+50 "some text\n and more \n lines" $OUTPUT_FILE
+```
+
+### insert image into another image, image composition
+```sh
+convert input_image.jpg output_image.png -composite overlay_image.png -gravity center
+convert input_image.jpg output_image.png -composite overlay_image.png -geometry 50%x50%+0+0
+```
+
+## qr, bar-codes
+
 ### qr code online generator
 ```sh
 http://goqr.me/api/doc/create-qr-code/
@@ -3429,19 +3603,6 @@ zbarimg <file>
 ### [image file with bar code ](https://github.com/cherkavi/python-utilities/blob/master/barcode/barcode-generator.py)
 > barcode - for pdf only
 
-### convert text to image
-```sh
-# list of all fonts: `fc-list`
-# transparent background: xc:none
-convert -size 800x600     xc:white -font "Garuda" -pointsize 20 -fill black -annotate +50+50 "some text\n and more \n lines" $OUTPUT_FILE
-```
-
-### insert image into another image, image composition
-```sh
-convert input_image.jpg output_image.png -composite overlay_image.png -gravity center
-convert input_image.jpg output_image.png -composite overlay_image.png -geometry 50%x50%+0+0
-```
-
 ## pdf
 ### convert pdf to image
 ```sh
@@ -3458,6 +3619,11 @@ convert -geometry 400x600 -density 100x100 -quality 100 test-pdf.pdf test-pdf.jp
 ### bar code create into pdf
 ```sh
 barcode -o 1112.pdf -e "code39" -b "1112" -u "mm" -g 50x50
+```
+
+### pdf watermark, merge pdf files into one
+```
+pdftk original.pdf stamp watermark.pdf output output.pdf
 ```
 
 ### pdf file merge, pdf join
@@ -3729,24 +3895,7 @@ ffmpeg -i 1.wav -i 2.wav -i 3.wav output.wav
 mp3splt -s -p nt=10 album.mp3
 ```
 
-## copy users, import/export users
-```
-sudo awk -F: '($3>=LIMIT) && ($3!=65534)' /etc/passwd > passwd-export
-sudo awk -F: '($3>=LIMIT) && ($3!=65534)' /etc/group > /opt/group-export
-sudo awk -F: '($3>=LIMIT) && ($3!=65534) {print $1}' /etc/passwd | tee - | egrep -f - /etc/shadow > /opt/shadow-export
-sudo cp /etc/gshadow /opt/gshadow-export
-```
-
-### calculcate size of files by type
-```
-find . -name "*.java" -ls | awk '{byte_size += $7} END{print byte_size}'
-```
-### calculcate size of files by type, list of files, sort files by size
-```sh
-du -hs * | sort -h
-```
-
-### calculator arithmethic operations add sub div multiply evaluation 
+## calculator arithmethic operations add sub div multiply evaluation 
 ```bash
 expr 30 / 5
 myvar=$(expr 1 + 1)
@@ -3774,139 +3923,10 @@ calc
 qalc
 ```
 
-### sudo without password, apple keyboard, sudo script without password
-```
-echo 'password' | sudo -S bash -c "echo 2 > /sys/module/hid_apple/parameters/fnmode" 2>/dev/null
-```
-
-### default type, detect default browser, mime types, default application set default app
-```sh
-xdg-mime query default x-scheme-handler/http
-
-## where accessible types
-# echo $XDG_DATA_DIRS # avaialible in applications
-# locate google-chrome.desktop
-# /usr/share/applications/google-chrome.desktop
-
-## set default browser 
-xdg-mime default firefox.desktop x-scheme-handler/http
-xdg-mime default firefox.desktop x-scheme-handler/https
-xdg-settings set default-web-browser firefox.desktop
-
-## check default association
-cat ~/.config/mimeapps.list
-cat /usr/share/applications/defaults.list
-```
-or change your alternatives
-```sh
-locate x-www-browser
-# /etc/alternatives/x-www-browser
-```
-
-open in default browser
-```sh
-x-www-browser http://localhost:9090
-```
-
-### alternatives
-set default browser
-```sh
-# display
-sudo update-alternatives --display x-www-browser
-sudo update-alternatives --query x-www-browser
-sudo update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/chromium-browser 90
-
-# config
-sudo update-alternatives --config x-www-browser
-
-# remove
-sudo update-alternatives --remove x-www-browser /snap/bin/chromium
-sudo update-alternatives --remove x-www-browser /usr/bin/chromium
-```
-java set default
-```sh
-update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 10
-```
-
-### open file with default editor, default viewer, with more appropriate viewr
-```sh
-# ranger should be installed 
-rifle <path to file>
-```
-
-### cat replacement bat
-```sh
-# apt install bat - not working sometimes
-cargo install bat
-batcat textfile
-# alias bat=batcat
-bat textfile
-```
-
-## install haskell
-```
-sudo apt-get install haskell-stack
-stack upgrade
-stack install toodles
-```
-[get started with hackell](https://haskell.fpcomplete.com/get-started)
-
 ## shell examples
 ### byobu
 ```
 sudo apt install byobu
-```
-
-### check architecture
-```sh
-dpkg --add-architecture i386
-dpkg --print-architecture
-dpkg --print-foreign-architectures
-```
-
-## move mouse, control X server
-```
-apt-get install xdotool
-# move the mouse  x    y
-xdotool mousemove 1800 500
-# left click
-xdotool click 1
-```
-pls, check that you are using Xorg and not Wayland (Window system):
-```sh
-# uncomment false
-cat /etc/gdm3/custom.conf | grep WaylandEnable
-```
-how to check your current display server(window system):
-```sh
-# x11 - xorg
-# wayland
-echo $XDG_SESSION_TYPE
-```
-another possible solution for moving mouse cursor
-```sh
-apt-get install xautomation
-xte 'mousemove 200 200'
-```
-[another possible solution for moving mouse cursor](https://github.com/ReimuNotMoe/ydotool)
-
-### calendar, week number
-```sh
-gcal --with-week-number
-```
-
-## apt 
-### apt package description 
-```sh
-apt-cache show terminator
-```
-### apt cache
-```sh
-cd /var/cache/apt/archives
-```
-### apt force install 
-```sh
-sudo apt install --fix-broken -o Dpkg::Options::="--force-overwrite" {package name}
 ```
 
 ## LD Library
