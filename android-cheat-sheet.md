@@ -27,7 +27,7 @@
 > creates a connection (bridge) between the device and computer.
 **should be activated:**
 1. developer mode
-   Settings -> About phone -> 5 times type on it 
+   Settings -> About phone -> build number -> type 5 times on it 
 2. USB debug
    Settings -> find word "develop" -> activate "USB debugging"
 #### [download from google](https://dl.google.com/android/repository/platform-tools-latest-linux.zip)
@@ -58,6 +58,9 @@ adb shell pm list packages -f | awk -F '.apk=' '{printf "%-60s | %s\n", $2, $1}'
 # list of all non-system/installed applications
 # | grep -v "package:/system" | grep -v "package:/vendor" | grep -v "package:/product" | grep -v "package:/apex"
 adb shell pm list packages -f | awk -F '.apk=' '{printf "%-60s | %s\n", $2, $1}' | grep "package:/data/app/" | sort
+
+# package_name=org.mozilla.firefox
+# x-www-browser https://play.google.com/store/search?q=${package_name}&c=apps
 
 # adb shell; 
 # pm list packages -f

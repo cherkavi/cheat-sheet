@@ -7,8 +7,9 @@
 * [draw.io](https://draw.io)
 
 ## links
-### [ CodeCatalyst cloud based collaboration space ](https://codecatalyst.aws/explore)
-### [AI code suggestion](https://aws.amazon.com/codewhisperer/)
+
+### [ CodeCatalyst - build and deliver app on AWS ](https://codecatalyst.aws/explore)
+
 ### DOCUMENTATION
 * [official documentation](https://docs.aws.amazon.com/)  
 * [whitepapers](https://aws.amazon.com/whitepapers)  
@@ -16,23 +17,24 @@
 * [cli ec2](https://docs.aws.amazon.com/cli/latest/reference/ec2/)
 * [cli s3](https://docs.aws.amazon.com/cli/latest/reference/s3/)
 * [cli sns](https://docs.aws.amazon.com/cli/latest/reference/sns/)
+* [icons for plantUML](https://github.com/awslabs/aws-icons-for-plantuml)
 
 ### examples
+* [architecture examples and explanations](https://serverlessland.com/)
 * [udacity AWS DevOps course](https://github.com/cherkavi/udacity-cloud-devops/blob/main/README.md)
 * [samples](https://github.com/aws-samples)
 * [hand on](https://aws.amazon.com/getting-started/hands-on/)
+* [AI code suggestion](https://aws.amazon.com/codewhisperer/)
 
 ### trainings
 * [skill builder](https://explore.skillbuilder.aws/learn)
 * [workshops aws](https://workshops.aws)
 * [online trainings](https://www.aws.training/)
-* [online trainings free](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
-* [online trainings, current education](https://www.aws.training/Account/Transcript/Current)
-* [online trainings skill builder](https://explore.skillbuilder.aws/learn)
+  * [online trainings free](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
+  * [online trainings, current education](https://www.aws.training/Account/Transcript/Current)
 * [youtube videos](https://hackmd.io/@gekart)
 * [certification preparation](https://aws.amazon.com/certification/certification-prep/)
 * [labs](https://github.com/awslabs)
-* [workshops](https://www.workshops.aws/)
 
 ### others
 * [serverless](https://serverlessland.com/)
@@ -203,6 +205,13 @@ function aws-faq(){
         return 1
     fi
     x-www-browser "https://aws.amazon.com/${aws_service_abbr}/faqs/" &
+}
+function aws-feature(){
+    if [[ -z $aws_service_abbr ]]; then
+        echo 'pls, specify the env var: aws_service_abbr'
+        return 1
+    fi    
+    x-www-browser "https://aws.amazon.com/${aws_service_abbr}/features/" &
 }
 function aws-console(){
     if [[ -z $aws_service_abbr ]]; then
@@ -1012,6 +1021,35 @@ aws sqs receive-message --region us-east-1  --queue-url $AWS_QUEUE_URL --max-num
 
 aws sqs delete-message --receipt-handle $MESSAGE_ID1 $MESSAGE_ID2 $MESSAGE_ID3 --queue-url $AWS_QUEUE_URL --region $AWS_REGION
 ```
+
+---
+## EventBridge
+> Event hub that receives, collects, filters, routes events ( message with body and head ) based on rules   
+> to receiver back, to another serviceS, to apiS ...   
+> Similar to SQS but wider.
+> Offers comprehensive monitoring and auditing capabilities.  
+
+### terms
+* Event  
+  A JSON-formatted message that represents a change in state or occurrence in an application or system
+* Event bus
+  A pipeline that receives events from various sources and routes them to targets based on defined rules
+* Event source
+  The origin of events, which can be AWS services, custom applications, or third-party SaaS providers
+* Event pattern
+  A JSON-based structure that is used in rules to define criteria for matching events
+* Schema
+  A structured definition of an event's format, which can be used for code generation and validation
+* Rule
+  Criteria that are used to match incoming events and determine how they should be processed or routed
+* Archive
+  A feature that makes it possible for you to store events for later analysis or replay
+* Target
+  The destination where matched events are sent, which offers options for event transformation, further processing, and reliable delivery mechanisms, including dead-letter queues
+
+### links
+* https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html
+* https://aws.amazon.com/blogs/compute/category/application-integration/amazon-eventbridge/
 
 ---
 ## Lambda

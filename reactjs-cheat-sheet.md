@@ -2,6 +2,11 @@
 * [react code examples/explanations](https://github.com/cherkavi/javascripting/tree/master/react)  
 * [create project](https://github.com/cherkavi/javascripting/tree/master/react/README.md#create-react-app)
 
+## alternatives
+* Svelte
+* SolidJS
+* Qwik
+
 ## cheat sheets
 * https://devhints.io/react
 * https://www.freecodecamp.org/news/the-react-cheatsheet-for-2020/
