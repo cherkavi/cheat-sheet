@@ -504,6 +504,13 @@ aws s3api delete-bucket --bucket $AWS_BUCKET_NAME
 ## datasync
 >  move large amounts of data between on-premises storage and AWS storage services  
 >  DataSync configuration can be set up via AWS Management Console  
+```sh
+aws_service_abbr="datasync"
+aws-cli-doc
+aws-faq
+aws-console
+aws-feature
+```
 
 ### datasync links
 * [install agent VM](https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#create-vmw-agent)
@@ -513,13 +520,38 @@ aws s3api delete-bucket --bucket $AWS_BUCKET_NAME
 * [workshop windows migration](https://catalog.us-east-1.prod.workshops.aws/datasync-fsx-windows-migration/en-US) 
 
 ### steps
-1. create datasync agent
-2. deploy datasync agent
-3. activate datasync agent
-4. configure DataSync storage locations 
+1. download datasync agent image 
+   DataSync -> Agents -> Create agent -> Deploy Agent
+   1. download image
+   2. start image in player 
+      1. install  Oracle VM Virtual Box
+        ```sh
+        sudo apt install virtualbox
+        ```
+      2. File > Import Appliance…
+      3. for entering into VM (ssh): 
+         ```sh
+         DATASYNC_AGENT_IP=192.168.178.48
+         DATASYNC_SSH_USER=admin
+         DATASYNC_SSH_PASS=password
+         sshpass -p ${DATASYNC_SSH_PASS} ssh ${DATASYNC_SSH_USER}@${DATASYNC_AGENT_IP}
+         ```        
+2. [activate datasync agent](https://docs.aws.amazon.com/datasync/latest/userguide/activate-agent.html#get-activation-key)
+   1. via ssh
+   2. via curl ( select CLI )
+   ```sh
+   DATASYNC_AGENT_IP=192.168.178.48
+   ACTIVATION_REGION=eu-central-1
+   curl "http://${DATASYNC_AGENT_IP}/?gatewayType=SYNC&activationRegion=${ACTIVATION_REGION}&no_redirect"
+   
+   # key 5C6V2-zzzz-yyyy-xxxx-xxxx
+   ```
+3. register/create DataSync via [aws console](https://console.aws.amazon.com/datasync)
+   DataSync -> Agents -> create agent
+   enter your key 
+4. [DataSync -> Tasks -> Create task](https://console.aws.amazon.com/datasync)
 5. configure DataSync options.
 6. Start, monitor, and review the DataSync task.
-
 
 ### Agent
 * An agent is a virtual machine (VM) used to read data from or write data to a location. 
@@ -531,6 +563,28 @@ aws s3api delete-bucket --bucket $AWS_BUCKET_NAME
   * destination 
   * service 
   used in the data transfer task.
+* [DataSync agent overview](https://docs.aws.amazon.com/datasync/latest/userguide/managing-datasync.html)
+  1. TCP: 80 (HTTP)
+     Used by your computer to obtain the agent activation key. After successful activation, DataSync closes the agent's port 80.  
+  2. TCP: 443 (HTTPS)
+     * Used by the DataSync agent to activate with your AWS account. This is for agent activation only. You can block the endpoints after activation.
+     * For communication between the DataSync agent and the AWS service endpoint.
+     API endpoints: datasync.$region.amazonaws.com  
+     Data transfer endpoints: $taskId.datasync-dp.$region.amazonaws.com cp.datasync.$region.amazonaws.com  
+     Data transfer endpoints for FIPS: cp.datasync-fips.$region.amazonaws.com  
+     Agent updates: repo.$region.amazonaws.com repo.default.amazonaws.com packages.$region.amazonaws.com  
+  3. TCP/UDP: 53 (DNS)
+     For communication between DataSync agent and the DNS server.
+  4. TCP: 22
+     Allows AWS Support to access your DataSync to help you with troubleshooting DataSync issues. You don't need this port open for normal operation, but it is required for troubleshooting.
+  5. UDP: 123 (NTP)
+     Used by local systems to synchronize VM time to the host time.
+     NTP
+     0.amazon.pool.ntp.org
+     1.amazon.pool.ntp.org
+     2.amazon.pool.ntp.org
+     3.amazon.pool.ntp.org                                 
+
 ### Task 
 [Task management/configuration](https://docs.aws.amazon.com/datasync/latest/userguide/create-task-how-to.html) can be set up via:
 * AWS Management Console
