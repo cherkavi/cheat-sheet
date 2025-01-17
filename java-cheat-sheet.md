@@ -410,7 +410,40 @@ PropertyConfigurator.configure(props);
 </Configuration>
 ```
 
+### Oracle connection
+```java
+// METHOD #1 - Using no service
+String dbURL1 = "jdbc:oracle:thin:ubs_client_connect_check/mypassword@tldr.ubsgroup.net:1530:tstdha01";
+conn1 = DriverManager.getConnection(dbURL1);
+if (conn1 != null) {
+    conn1.setClientInfo("OCSID.MODULE", "Connection 1 - NO Service");
+    Statement stmt1 = conn1.createStatement();
+    stmt1.execute("select 1 from dual");
+}
 
+
+// METHOD #2 - using the service
+String dbURL2 = "jdbc:oracle:thin:ubs_client_connect_check/mypassword@//tldr.ubsgroup.net:1530/pdb_tstdha01.UBS";
+conn2 = DriverManager.getConnection(dbURL2);
+if (conn2 != null) {
+    conn2.setClientInfo("OCSID.MODULE", "Connection 2 - Service");
+    Statement stmt2 = conn2.createStatement();
+    stmt2.execute("select 1 from dual");
+}
+
+
+// METHOD #3 - using tns entry
+String dbURL3 = "jdbc:oracle:oci:@tldr01";
+Properties properties = new Properties();
+properties.put("user", "ubs_client_connect_check");
+properties.put("password", "password");
+properties.put("defaultRowPrefetch", "20");
+conn3 = DriverManager.getConnection(dbURL3, properties);
+
+
+// METHOD #4 - using LDAP
+// jdbc:oracle:thin:@ldap://oraid1.zur:389/orainv,cn=oraclecontext,dc=zur,dc=ubs,dc=de ldap://oraid2.zur:389/orainv,cn=oraclecontext,dc=zur,dc=ubs,dc=de
+```
 
 ### hsqldb Oracle dialect
 ```
