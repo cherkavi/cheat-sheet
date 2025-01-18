@@ -3895,6 +3895,27 @@ ffmpeg -i 1.wav -i 2.wav -i 3.wav output.wav
 mp3splt -s -p nt=10 album.mp3
 ```
 
+### speach to text
+* https://github.com/kaldi-asr/kaldi
+
+### text to speach, text to voice
+* https://github.com/synesthesiam/opentts
+* https://github.com/marytts/marytts
+* cli tools
+```sh
+## more or less
+sudo apt install libttspico-utils
+pico2wave -w output.wav "this is text-to-speech conversion"; rifle output.wav
+
+# too metallic 
+sudo apt install espeak
+espeak -w output.wav "Just a text"
+
+## also too metallic
+sudo apt install festival
+echo "This is text saved as audio." | text2wave -o output.wav; rifle output.wav
+```
+
 ## calculator arithmethic operations add sub div multiply evaluation 
 ```bash
 expr 30 / 5
