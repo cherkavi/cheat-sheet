@@ -44,6 +44,13 @@ function cheat-grep(){
     * [using razer-keypad with excalidraw](https://github.com/cherkavi/solutions/blob/master/razer-keypad/README.md)
 * [local drawing tool](https://github.com/tldraw/tldraw)
 
+### tools for developers on localhost
+* [sdkman](https://sdkman.io/)
+  > switch SDK of you favorite language fastly   
+  > show additional info in your console prompt  
+* [flox](https://github.com/flox/flox)
+  > create virtual environment with dependencies    
+
 ### editor
 * https://vscode.dev
 * https://code.visualstudio.com/
