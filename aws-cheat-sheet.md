@@ -333,6 +333,11 @@ VPC: 172.31.0.0
 Subnetwork: 172.31.0.0/16, 172.31.0.0/26, 172.31.0.64/26
 ```
 
+### VPC endpoint
+when you are creating target endpoint (to access S3, for instance) and want to use it from ec2, then add also
+* SSMMessagesEndpoint
+* EC2MessagesEndpoint
+
 ---
 ## IGW
 public access internet outside access
