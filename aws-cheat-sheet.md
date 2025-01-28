@@ -925,6 +925,12 @@ curl http://169.254.169.254/latest/meta-data/public-ipv4
 curl http://169.254.169.254/latest/dynamic/instance-identity/document
 ```
 
+create token from ec2 instance
+```sh
+TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+export AWS_REGION=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
+```
+
 connect to launched instance without ssh
 ```sh
 # ssm role should be provided for account
