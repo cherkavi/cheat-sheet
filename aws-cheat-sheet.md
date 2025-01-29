@@ -348,6 +348,15 @@ Security Group
 1. inbound rules -> source 0.0.0.0/0
 
 ---
+## Transit Gateway
+1. Create Transit Gateway
+2. Create Transit Gateway attachment
+3. Create Transit Gateway route table
+4. Create Transit Gateway route table association
+5. Create Transit Gateway route table propagation
+6. Update VPC's route tables
+
+---
 ## S3 - object storage 
 ```sh
 aws_service_abbr='s3'
