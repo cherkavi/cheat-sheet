@@ -1706,6 +1706,31 @@ metrics-server
 ![ecs](https://i.ibb.co/gJwP5vm/aws-2023-08-27-ecs.jpg)  
 ![ecs](https://i.ibb.co/MM6jvJY/2023-08-27-2git-aws-ecs.jpg)  
 
+ECS on Fargate
+1. create docker image
+2. create repository 
+```sh
+  aws ecr create-repository --repository-name my-name;    
+  aws ecr describe-repositories --query 'repositories[].[repositoryName, repositoryUri]' --output table
+  export REPOSITORY_URI=$(aws ecr describe-repositories --query 'repositories[].[repositoryUri]' --output text)
+  echo ${REPOSITORY_URI}
+```
+3. docker login
+```sh
+export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
+TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+export AWS_REGION=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
+aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
+```
+4. tag docker image `docker tag my-image:latest ${REPOSITORY_URI}:latest`
+5. push docker image: `docker push ${REPOSITORY_URI}:latest`  
+   `aws ecr describe-images --repository-name my-image`
+6. `aws ecs create-cluster --cluster-name my-cluster`
+7. `aws ecs register-task-definition --cli-input-json file://task_definition.json`
+8. `aws ecs create-service --cli-input-json file://service.json`
+9. `aws ecs describe-clusters --cluster my-cluster`
+   "runningTasksCount": 1
+   
 ---
 ## ECR AWS Elastic Container Registry: 
 A fully managed Docker container registry ( store, manage, and deploy docker images for EKS)
