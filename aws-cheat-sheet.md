@@ -1932,6 +1932,20 @@ http header for tracing: x-amzn-trace-id
 ## cloud9
 
 ---
+## Code Services
+* source
+  * code repository
+  * vscode: aws toolkits, amazon q
+* build
+  * codePipeline
+    * codeguru
+    * codebuild
+    * codeartifacts
+* deploy
+  * codedeploy
+* monitor
+  * X-Ray
+---
 ## QuickSight
 
 ---
