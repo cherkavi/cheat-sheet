@@ -12,7 +12,7 @@
 
 ### DOCUMENTATION
 * [official documentation](https://docs.aws.amazon.com/)  
-* [whitepapers](https://aws.amazon.com/whitepapers)  
+* [whitepapers](https://aws.amazon.com/whitepapers)
 * [interactive documentation example](https://interactive.linuxacademy.com/diagrams/ProjectOmega2.html)   
 * [cli ec2](https://docs.aws.amazon.com/cli/latest/reference/ec2/)
 * [cli s3](https://docs.aws.amazon.com/cli/latest/reference/s3/)
@@ -28,6 +28,7 @@
 
 ### trainings
 * [skill builder](https://explore.skillbuilder.aws/learn)
+* [training materials bookshelf](https://online.vitalsource.com/home/my-library)
 * [workshops aws](https://workshops.aws)
 * [online trainings](https://www.aws.training/)
   * [online trainings free](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
