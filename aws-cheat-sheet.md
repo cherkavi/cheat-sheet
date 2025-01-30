@@ -33,9 +33,11 @@
 * [online trainings](https://www.aws.training/)
   * [online trainings free](https://www.aws.training/LearningLibrary?filters=language%3A1&search=&tab=digital_courses)  
   * [online trainings, current education](https://www.aws.training/Account/Transcript/Current)
+  * [training confirmation/certificate](https://www.aws.training/Account/Transcript/Archived)
 * [youtube videos](https://hackmd.io/@gekart)
 * [certification preparation](https://aws.amazon.com/certification/certification-prep/)
 * [labs](https://github.com/awslabs)
+
 
 ### others
 * [serverless](https://serverlessland.com/)
