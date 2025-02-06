@@ -1085,7 +1085,19 @@ aws sqs help
 aws sqs list-queues --region $AWS_REGION
 
 AWS_QUEUE_URL=https://queue.amazonaws.com/3877777777/MyQueue 
+```
 
+```sh
+aws sqs send-message --queue-url ${QUEUE_NAME} --message-body '{"test":00001}'
+# status of the message - available 
+aws sqs receive-message --queue-url ${QUEUE_NAME}
+# status of the message - message in flight
+RECEIPT_HANDLE=$(echo $RECEIVE_MESSAGE_OUTPUT | jq -r '.Messages[0].ReceiptHandle')
+aws sqs delete-message --queue-url ${QUEUE_NAME} --receipt-handle $RECEIPT_HANDLE
+# status of the message - not available 
+```
+
+```sh
 # send a message
 aws sqs send-message help
 aws sqs send-message --queue-url $AWS_QUEUE_URL --region $AWS_REGION --message-body "my test message"
@@ -1094,7 +1106,7 @@ aws sqs send-message --queue-url $AWS_QUEUE_URL --region $AWS_REGION --message-b
 aws sqs receive-message help
 aws sqs receive-message --region $AWS_REGION  --queue-url $AWS_QUEUE_URL --max-number-of-messages 10 --visibility-timeout 30 --wait-time-seconds 20
 
-# delete a message
+# delete a message ( confirmation of receiving !!! )
 aws sqs delete-message help
 aws sqs receive-message --region us-east-1  --queue-url $AWS_QUEUE_URL --max-number-of-messages 10 --visibility-timeout 30 --wait-time-seconds 20
 
