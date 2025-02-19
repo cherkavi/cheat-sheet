@@ -173,6 +173,9 @@ example
 
 ### [list of opensource api tools](https://openapi.tools/)
 
+### Software test containers/emulators for development
+* [Test Instances for communication with "prod-like containers"](https://testcontainers.com/modules/)
+
 ### REST api test frameworks
 * [karate](https://github.com/karatelabs/karate)
     * [tutorial](https://www.softwaretestinghelp.com/api-testing-with-karate-framework/)
