@@ -759,8 +759,10 @@ shutdown -r now
 
 ### sort, order
 ```sh
-# simple sort
-sort <filename>
+# sort for human readable 
+sort -h
+sort -n
+sort -v 
 
 #  sort by column ( space delimiter )
 sort -k 3 <filename>
