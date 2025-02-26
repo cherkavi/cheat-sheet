@@ -379,6 +379,7 @@ aws-faq
 aws-console
 ```
 ### s3 static web site
+* [S3 api](https://docs.aws.amazon.com/pdfs/AmazonS3/latest/API/s3-api.pdf)
 * [static web site solution](https://github.com/cherkavi/udacity-cloud-devops/blob/main/08-static-web-site.md#static-web-site)
 * [static web site doc](https://docs.aws.amazon.com/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html)
 * [static web site endpoints](https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteEndpoints.html)
