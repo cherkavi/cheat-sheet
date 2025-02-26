@@ -311,7 +311,7 @@ aws iam attach-role-policy --policy-arn $POLICY_ARN --role-name $ROLE_NAME
 * IAM based
 
 ### Policy parts:
-* Principal ( User, Group )
+* [Principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html) ( User, Group )
 * Action
 * Resource
 * Condition  
