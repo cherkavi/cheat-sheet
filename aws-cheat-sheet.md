@@ -25,6 +25,7 @@
 * [samples](https://github.com/aws-samples)
 * [hand on](https://aws.amazon.com/getting-started/hands-on/)
 * [AI code suggestion](https://aws.amazon.com/codewhisperer/)
+* [Cloud Adoption Framework - best practices to help for going to cloud](https://aws.amazon.com/cloud-adoption-framework/)
 
 ### trainings
 * [skill builder](https://explore.skillbuilder.aws/learn)
@@ -37,7 +38,7 @@
 * [youtube videos](https://hackmd.io/@gekart)
 * [certification preparation](https://aws.amazon.com/certification/certification-prep/)
 * [labs](https://github.com/awslabs)
-
+* [well Architected Labs - how to build more secure, resilient, high-performance applications](https://www.wellarchitectedlabs.com/?ref=wellarchitected-wp)
 
 ### others
 * [serverless](https://serverlessland.com/)
