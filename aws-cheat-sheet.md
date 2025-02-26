@@ -8,7 +8,7 @@
 
 ## links
 
-### [ CodeCatalyst - build and deliver app on AWS ](https://codecatalyst.aws/explore)
+### [CodeCatalyst - build and deliver app on AWS ](https://codecatalyst.aws/explore)
 
 ### DOCUMENTATION
 * [official documentation](https://docs.aws.amazon.com/)  
@@ -60,6 +60,7 @@
 all the resources in cloud have `arn:` name
 
 ## [sdk - for diff prog.languages](https://aws.amazon.com/tools/) 
+### [sdk endpoint, aws service endpoint](https://docs.aws.amazon.com/general/latest/gr/rande.html)
 ### sdk commands:
 * low level commands
 * high level commands
@@ -179,6 +180,7 @@ eval "$(aws configure export-credentials --profile RefDataFrame-cicd --format en
 
 
 ### debugging collaboration verbosity full request
+> for API level debugging you should use CloudTrail
 ```sh
 aws --debug s3 ls --profile $AWS_PROFILE
 ```
@@ -259,6 +261,7 @@ aws ec2 describe-instances \
 ```sh
 aws configservice select-resource-config --expression "SELECT resourceId WHERE resourceType='AWS::EC2::Instance'"
 ```
+
 ## budget limit, cost management, budget cost explorer
 > price/cost formation: write - free, read - payable
 ```sh
@@ -271,9 +274,13 @@ x-www-browser https://${AWS_REGION}.console.aws.amazon.com/billing/home?region=$
 Type of the access:
 * Temporary - role
 * Permanently - user
-![iam](https://i.ibb.co/LCHWKqc/aws-2023-08-27-aws-identity-access-management-png.jpg)  
-[IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)  
-[relations between entities](#shared-responsibility-model)
+![iam](https://i.ibb.co/LCHWKqc/aws-2023-08-27-aws-identity-access-management-png.jpg)
+* [AWS Policies and permissions in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)
+* [IAM best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
+* [IAM roles - AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)
+* [AWS Identity and Access Management Access Analyzer](https://aws.amazon.com/iam/access-analyzer/)
+* [Service control policies SCP](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html)
+* [relations between entities](#shared-responsibility-model)
 ```sh
 aws_service_abbr="iam"
 aws-cli-doc
@@ -305,6 +312,7 @@ aws iam attach-role-policy --policy-arn $POLICY_ARN --role-name $ROLE_NAME
 [example of role with policy creation with awscli](https://github.com/cherkavi/udacity-aws-devops-eks/blob/main/README-for-users.md#create-codebuild-role)
 
 ## Policy
+* [AWS Policies and permissions in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html)
 
 ### Policy types
 * Resource based
@@ -312,7 +320,7 @@ aws iam attach-role-policy --policy-arn $POLICY_ARN --role-name $ROLE_NAME
 
 ### Policy parts:
 * [Principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html) ( User, Group )
-* Action
+* Action (example for s3 [keys and action](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazons3.html))
 * Resource
 * Condition  
   tag of the resource can be involved in condition 
@@ -1629,8 +1637,25 @@ aws cloudformation describe-stacks --region us-east-1
 ![cloud formation macros](https://i.postimg.cc/BQMY5xmx/aws-cloud-formation-macros.png)
 
 ---
-## Security
-### [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
+## Security  
+### security links
+* [Actions, resources and condition keys](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazons3.html)
+* [AWS Security Documentation](https://docs.aws.amazon.com/security/)
+* [AWS re:Invent 2022 - A day in the life of a billion requests (SEC404)](https://youtu.be/tPr1AgGkvc4)
+* [Security best practices](https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Best_Practices.pdf)
+
+### Sign api request
+* [how to sign your AWS API request, AWS Signature Version 4 for API requests](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html)
+* [How to Create a signed AWS API request](https://docs.aws.amazon.com/pdfs/IAM/latest/UserGuide/iam-ug.pdf#create-signed-request)
+* [Authenticating Requests](https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html)
+
+### Threat model 
+* [The Ultimate Beginner's Guide to Threat Modeling](https://shostack.org/resources/threat-modeling)
+* [Thread model](https://catalog.workshops.aws/threatmodel/en-US/introduction)
+* [open source tool for threat modeling](https://awslabs.github.io/threat-composer/workspaces/Threat%20Composer/dashboard)
+* [Threat Modeling Workshop - build your ThreatModel](https://catalog.workshops.aws/threatmodel/)
+* [how to integrate threat modeling into your organization’s application development lifecycle ](https://aws.amazon.com/blogs/security/how-to-approach-threat-modeling/)
+* [How to approach threat modelling (AWS Summit ANZ 2021)](https://youtu.be/GuhIefIGeuA)
 
 ---
 ## CodeBuild
@@ -1907,6 +1932,10 @@ pip3 install pyOpenSSL --upgrade
 
 ---
 ## Cognito
+* [Amazon Cognito](https://youtu.be/1vYUt2u2EB0)
+* [How to create an Amazon Cognito user pool](https://youtu.be/SZqZ3dXO7Jo)
+* [Getting Started with Amazon Cognito](https://youtu.be/OAR4ZHP8DEg)
+
 > authentication, authorization, user pool, identity pool
 
 ---
