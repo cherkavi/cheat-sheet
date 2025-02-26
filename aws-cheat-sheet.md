@@ -1,7 +1,7 @@
 # AWS cheat sheet
 
 ## Visual tools for drawing architecture
-* CloudFormation
+* [CloudFormation](https://aws.amazon.com/cloudformation/)
 * [CloudCraft](https://cloudcraft.co/)
 * [VisualOps](https://visualops.readthedocs.io/)
 * [draw.io](https://draw.io)
@@ -55,6 +55,9 @@
 ![shared model](https://i.postimg.cc/y8GYP0Kh/aws-shared-model.png)  
 ### serverless
 ![serverless](https://i.postimg.cc/PxNrBPf9/aws-serverless.png)
+
+## ARN - Amazon Resource Name
+all the resources in cloud have `arn:` name
 
 ## [sdk - for diff prog.languages](https://aws.amazon.com/tools/) 
 ### sdk commands:
@@ -244,26 +247,6 @@ aws configure get $AWS_PROFILE.aws_secret_access_key
 export aws_service_abbr="sns"
 ```
 
-## Policy
-Resource Based Policy:
-* Principal ( User, Group )
-* Action
-* Resource
-* Condition
-
-
-### create policy from error output of aws-cli command:
->User is not authorized to perform
-> AccessDeniedException
-```sh
-aws iam list-groups 2>&1 | /home/projects/bash-example/awk-policy-json.sh
-# or just copy it
-echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-example/awk-policy-json.sh
-```
-### [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
-### [policy simulator](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html)
-> test sandbox for the policy
-
 ---
 ## resource query, jsonpath query, aws json output path, aws json xpath
 ```sh
@@ -320,6 +303,34 @@ aws iam list-attached-role-policies --role-name $ROLE_NAME
 aws iam attach-role-policy --policy-arn $POLICY_ARN --role-name $ROLE_NAME
 ```
 [example of role with policy creation with awscli](https://github.com/cherkavi/udacity-aws-devops-eks/blob/main/README-for-users.md#create-codebuild-role)
+
+## Policy
+
+### Policy types
+* Resource based
+* IAM based
+
+### Policy parts:
+* Principal ( User, Group )
+* Action
+* Resource
+* Condition  
+  tag of the resource can be involved in condition 
+
+### create policy from error output of aws-cli command:
+>User is not authorized to perform
+> AccessDeniedException
+```sh
+aws iam list-groups 2>&1 | /home/projects/bash-example/awk-policy-json.sh
+# or just copy it
+echo "when calling the ListFunctions operation: Use..." | /home/projects/bash-example/awk-policy-json.sh
+```
+
+### [policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
+
+### [policy simulator](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_testing-policies.html)
+> test sandbox for the policy
+
 
 ---
 ## VPC
@@ -1261,7 +1272,7 @@ x-www-browser "https://"$AWS_REGION".console.aws.amazon.com/cloudwatch/home?regi
 * install plugin: AWS Toolkit, 
 * right bottom corner - select Region, select Profile
     > profile must have: 
-    ```json
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -1297,7 +1308,7 @@ x-www-browser "https://"$AWS_REGION".console.aws.amazon.com/cloudwatch/home?regi
         }
     ]
 }
-    ```
+```
 * New->Project->AWS
 * create new Python file from template ( my_aws_func.py )
 ```python
@@ -1533,6 +1544,8 @@ aws-console
 ```
 ---
 ## CloudTrail
+> control/log input/output API calls  
+> can be activated inside VPC  
 ![cloud-trail](https://i.ibb.co/NWXWMtD/aws-2023-08-27-cloud-trail.jpg)  
 
 ---
