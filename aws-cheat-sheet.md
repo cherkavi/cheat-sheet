@@ -21,6 +21,7 @@
 
 ### examples
 * [architecture examples and explanations](https://serverlessland.com/)
+* [ready to use Solutions](https://aws.amazon.com/solutions/)
 * [udacity AWS DevOps course](https://github.com/cherkavi/udacity-cloud-devops/blob/main/README.md)
 * [samples](https://github.com/aws-samples)
 * [hand on](https://aws.amazon.com/getting-started/hands-on/)
