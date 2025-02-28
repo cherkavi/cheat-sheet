@@ -470,6 +470,12 @@ sed "s|<NODE_INSTANCE_IP>|$NODE_1_IP|" eks-localstorage.yaml-template >  | kubec
 kubectl --namespace namespace-metrics --kubeconfig=config-rancher exec -ti sm-grafana-deployment-5bdb64-6dnb8 -- /bin/sh
 ```
 
+### copy from remote machine
+```sh
+# will fail if no `tar` in container !!!
+kubectl --namespace "$KUBECONFIG_ENV" cp "$KUBECONFIG_ENV/$STREAM_POD_NAME:/deployment/app/cloud-application-kafka-streams*.jar" cloud-application-kafka-streams.jar
+```
+
 ### check namespaces
 ```sh
 kubectl get namespaces
