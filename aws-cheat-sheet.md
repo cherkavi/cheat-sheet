@@ -22,6 +22,7 @@
 ### examples
 * [architecture examples and explanations](https://serverlessland.com/)
 * [ready to use Solutions](https://aws.amazon.com/solutions/)
+* [aws cloud coach, instructor led sessions](https://pages.awscloud.com/GLB_TRAINCERT_AWS_Cloud_Coach.html)
 * [udacity AWS DevOps course](https://github.com/cherkavi/udacity-cloud-devops/blob/main/README.md)
 * [samples](https://github.com/aws-samples)
 * [hand on](https://aws.amazon.com/getting-started/hands-on/)
