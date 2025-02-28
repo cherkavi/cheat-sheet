@@ -653,6 +653,7 @@ Task phases
 > should be considered DataStorage type like ( see CommandQueryResponsibilitySegregation ):
 > * read heavy
 > * write heavy
+> [jdbc wrapper](https://github.com/aws/aws-advanced-jdbc-wrapper)
 ### PostgreSQL
 !!! important during creation need to set up next parameter:  
 Additional configuration->Database options->Initial Database -> <name of your schema>  
