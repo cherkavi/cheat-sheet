@@ -191,3 +191,10 @@ aws rds describe-db-instances --db-instance-identifier ghost-db-mysql --region <
 * CloudEndure->LaunchTargetMachines->TestMode ( check JobProgress )
 * EC2 instance list
 * check ip addresses in new EC2
+
+## Secret Manager
+> secrets store  
+> pay attention to Parameter Store  
+
+## Systems Manager Parameter Store
+> Primarily used for storing configuration data and parameters ( database connection strings, passwords, license codes )  
