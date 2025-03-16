@@ -157,3 +157,15 @@ wget -v https://github.com/${GIT_ACCOUNT}/${GIT_PROJECT}/releases/latest/downloa
 ```sh
 ./bin/jadx-gui
 ```
+
+## adb usage
+### print all applications with full set of granted permissions 
+```sh
+for each_app in `adb shell pm list packages -f | grep 'package:/data/app' | awk -F 'base.apk=' '{print $2}' | sort `; do
+    echo ">>> $each_app"
+    # each_app=com.google.android.youtube
+    # adb shell pm dump $each_app | clipboard
+    adb shell pm dump $each_app | awk '/runtime permissions:/,/disabledComponents:/ { if ($0 ~ /disabledComponents:/ || $0 ~ /enabledComponents:/) exit; else print }' | grep "granted=true"
+    echo ""
+done
+```
