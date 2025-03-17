@@ -3040,6 +3040,15 @@ sudo openvpn file_config.ovpn
 sudo openvpn --config 1.ovpn --auth-user-pass $DIR_PROJECT/vpn-auth.txt
 ```
 
+### deactivate ipv6 
+> warning: can lead to "black screen" on ubuntu
+/etc/sysctl.d/60-ipv6-disable.conf
+```sh
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+```
+
 ### debug network collaboration, ip packages
 example with reading redis collaboration ( package sniffer )
 ```sh
