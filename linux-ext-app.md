@@ -23,9 +23,10 @@ locate rc.lua
 
 
 ### gnome settings 
-#### gnome settings editor
+#### gnome settings configuration customization adjuster
 ```sh
 sudo apt install dconf-editor
+dconf
 ```
 examples of suppressing: monitor mode switch, show desktop
 ```sh
