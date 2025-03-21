@@ -880,7 +880,11 @@ aws-cli-doc
 aws-faq
 aws-console
 ```
-[boto3 python lib](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/secretsmanager.html#SecretsManager.Client.describe_secret)
+[boto3 python lib](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/secretsmanager.html#SecretsManager.Client.describe_secret)  
+see:  
+* [aws config tool](https://aws.amazon.com/config/)
+  > sends SNS onChange
+* [aws parameters store](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-working-with.html)
 
 ```sh
 ### CLI example
