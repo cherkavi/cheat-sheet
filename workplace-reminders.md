@@ -32,6 +32,15 @@ curl -H "Authorization: Bearer $JIRA_TOKEN" $JIRA_URL/rest/api/latest/issue/SSBB
 curl -H "Authorization: Bearer $JIRA_TOKEN" $JIRA_URL/rest/api/latest/issue/SSBBCC-2050?fields=summary
 ```
 
+print all your open issues in format: `jira 171455 # In Progress  # [PROD] Kafka: Workflow - Boardliteratur`
+```sh
+    curl -H "Authorization: Bearer $JIRA_TOKEN" \
+         -H "Content-Type: application/json" \
+         --silent \
+         --data '{"jql":"assignee = currentUser() AND resolution = Unresolved AND status != Pending"}' \
+     "$JIRA_URL/rest/api/2/search" | jq -r '.issues[] | "jira \(.key | split("-")[1]) # \(.fields.status.name)  # \(.fields.summary)"'
+```
+
 ## CodeBeamer
 ### CodeBeamer REST API
 [swagger example](https://codebeamer.ubsgroup.net:8443/cb/v3/swagger/editor.spr)
