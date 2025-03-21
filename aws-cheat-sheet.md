@@ -357,6 +357,8 @@ example of creating subnetwork:
 VPC: 172.31.0.0    
 Subnetwork: 172.31.0.0/16, 172.31.0.0/26, 172.31.0.64/26
 ```
+### VPC Flow logs
+like Wireshark for VPC
 
 ### VPC endpoint
 it is internal tunnel betweeen VPC and the rest of AWS resources  
@@ -402,6 +404,7 @@ aws-console
   * Alibaba Cloud OSS
   * Microsoft Azure Blob Storage
   * Google Cloud Storage
+* TODO: how to add WAF to S3
 ### s3 operations
 ```sh
 # make bucket - create bucket with globally unique name
@@ -883,6 +886,7 @@ aws-console
 [boto3 python lib](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/secretsmanager.html#SecretsManager.Client.describe_secret)  
 see:  
 * [aws config tool](https://aws.amazon.com/config/)
+  > autoupdate changes 
   > sends SNS onChange
 * [aws parameters store](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-working-with.html)
 
@@ -1143,10 +1147,10 @@ aws sqs delete-message --receipt-handle $MESSAGE_ID1 $MESSAGE_ID2 $MESSAGE_ID3 -
 
 ---
 ## EventBridge
-> Event hub that receives, collects, filters, routes events ( message with body and head ) based on rules   
-> to receiver back, to another serviceS, to apiS ...   
-> Similar to SQS but wider.
-> Offers comprehensive monitoring and auditing capabilities.  
+> Event hub that receives, collects, filters, routes events ( message with body and head ) based on rules     
+> to receiver back, to another serviceS, to apiS ...     
+> Similar to SQS but wider.   
+> Offers comprehensive monitoring and auditing capabilities.    
 
 ### terms
 * Event  
