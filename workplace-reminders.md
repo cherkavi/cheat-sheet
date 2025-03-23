@@ -24,7 +24,21 @@ text ~ "is_abstract" and project = "Brand Configuration Management"
 ```sh
 curl -X POST -H "Content-Type: multipart/form-data" -u ${JIRA_USER}:${JIRA_PASSWORD} -F "file=@cypress/results/testresult.xml" "https://atc.ubsgroup.net/jira/rest/raven/1.0/import/execution/junit?projectKey=EXTRACT&testPlanKey=EXTRACT-219&testEnvironments=${CYPRESS_BASEURL}"
 
+curl -H "Authorization: Bearer ${JIRA_TOKEN}" -X GET ${JIRA_URL}/rest/api/2/myself
+curl -H "Authorization: Bearer ${JIRA_TOKEN}" -X GET ${JIRA_URL}/rest/agile/1.0/board/66453 | jq .
+
+curl -H "Authorization: Bearer $JIRA_TOKEN" $JIRA_URL/rest/api/latest/issue/SSBBCC-2050?expand=renderedFields | jq .
+curl -H "Authorization: Bearer $JIRA_TOKEN" $JIRA_URL/rest/api/latest/issue/SSBBCC-2050?fields=status | jq .fields.status.name
 curl -H "Authorization: Bearer $JIRA_TOKEN" $JIRA_URL/rest/api/latest/issue/SSBBCC-2050?fields=summary
+```
+
+print all your open issues in format: `jira 171455 # In Progress  # [PROD] Kafka: Workflow - Boardliteratur`
+```sh
+    curl -H "Authorization: Bearer $JIRA_TOKEN" \
+         -H "Content-Type: application/json" \
+         --silent \
+         --data '{"jql":"assignee = currentUser() AND resolution = Unresolved AND status != Pending"}' \
+     "$JIRA_URL/rest/api/2/search" | jq -r '.issues[] | "jira \(.key | split("-")[1]) # \(.fields.status.name)  # \(.fields.summary)"'
 ```
 
 ## CodeBeamer

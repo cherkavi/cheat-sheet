@@ -92,25 +92,35 @@ env | grep -i payara
 
 ## manual redeploy
 ```sh
-./GFserver5 stop --all  
-./GFserver5 status
+## Step 1: create salt file (or in local tar):
+cd $PAYARA_HOME/config
+dd if=/dev/urandom count=2 | tr -cd "[:alnum:]" | head -c 32 > $PAYARA_HOME/config/salt
 
-# all deployment files must be inside your deployment folder
-./GFserver5 remove-domain
-./GFserver5 --verbose restore # even if it was ended with exit code >0
+## Step 2: encrypt each password, update $PAYARA_HOME/config/conf.d/int.xml
+./GFserver4 encrypt-password
 
-./GFserver5 start --all
-./GFserver5 status
-```
-```sh
-## start of the application
+## Step 3: Take backup of config and cluster domain
+cp -r $PAYARA_HOME/config $PAYARA_HOME/config.$(date +%F).bak
+cp -r $PAYARA_HOME/clusterDomain $PAYARA_HOME/clusterDomain.$(date +%F).bak
+
+## Step 4: stop server (all instances)
 ./GFserver4 stop -A
-# ./GFserver4 kill -A
+./GFserver4 status
 
+## Step 5: remove domain
 ./GFserver4 remove-domain
-./GFserver4 extract-tar -f configuration_20231024.tar
-# ./GFserver4 restore
 
+## Step 6: remove config:
+./GFserver4 remove-config
+
+## Step 7: unpack tar file
+cd $PAYARA_HOME
+tar -xvf tmp/application.tar
+
+## Step 8: restore
+./GFserver4 restore
+
+## Step 9: Start the server
 ./GFserver4 start -A
 ./GFserver4 status
 ```

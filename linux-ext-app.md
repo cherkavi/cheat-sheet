@@ -23,7 +23,7 @@ locate rc.lua
 
 
 ### gnome settings 
-#### gnome settings editor
+#### gnome settings configuration customization adjuster
 ```sh
 sudo apt install dconf-editor
 ```
@@ -33,12 +33,21 @@ dconf-editor
 # /org/gnome/mutter/keybindings/switch-monitor
 # /org/gnome/desktop/wm/keybindings/show-desktop
 ```
-
 manually can be achieved via
 ```
 ~/.local/share/gnome-shell/extensions/<extension-identifier>/prefs.js
 ~/.local/share/gnome-shell/extensions/<extension-identifier>/settings.js
 ```
+
+remove HP default display mode switching
+```sh
+dconf-editor
+# /org/gnome/mutter/keybindings/switch-monitor
+# ['<Super>p', 'XF86Display']
+# replace to
+# []
+```
+
 #### gnome list of settings
 ```sh
 # all gnome settings
