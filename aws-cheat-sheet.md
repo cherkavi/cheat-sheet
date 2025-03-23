@@ -365,7 +365,13 @@ when you are creating target endpoint (to access S3, for instance) and want to u
 * EC2MessagesEndpoint
 
 ---
+## NAT 
+> NAT Gateway (NGW) allows instances with no public IPs to access the internet.
+
+---
 ## IGW
+> Internet Gateway (IGW) allows instances with public IPs to access the internet.
+
 public access internet outside access
 1. create gateway
 2 .vpc -> route tables -> add route 
@@ -381,8 +387,12 @@ Security Group
 5. Create Transit Gateway route table propagation
 6. Update VPC's route tables
 
+## Storage Gateway
+> is a service that connects an on-premises software appliance with cloud-based storage to provide seamless and secure integration between your on-premises IT environment and the AWS storage infrastructure in the AWS Cloud
+
 ---
 ## S3 - object storage 
+> there are S3 Filegateway 
 ```sh
 aws_service_abbr='s3'
 aws-cli-doc
@@ -651,10 +661,12 @@ Task phases
 
 ---
 ## RDS
-> should be considered DataStorage type like ( see CommandQueryResponsibilitySegregation ):
-> * read heavy
-> * write heavy
-> [jdbc wrapper](https://github.com/aws/aws-advanced-jdbc-wrapper)
+> should be considered DataStorage type like ( see CommandQueryResponsibilitySegregation ):  
+> * read heavy  
+> * write heavy  
+> [jdbc wrapper](https://github.com/aws/aws-advanced-jdbc-wrapper)  
+> there are "Database Migration Service"
+
 ### PostgreSQL
 !!! important during creation need to set up next parameter:  
 Additional configuration->Database options->Initial Database -> <name of your schema>  
@@ -969,6 +981,7 @@ export AWS_REGION=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254
 ```
 
 connect to launched instance without ssh
+> using SSM-agent installed in 
 ```sh
 # ssm role should be provided for account
 aws ssm start-session --target i-00ac7eee --profile awsstudent --region us-east-1
@@ -1095,7 +1108,8 @@ sudo mount -t efs fs-yourid:/ /efs
 ```
 
 ---
-## SQS
+## SQS - Queue Service
+> types: standart, fifo
 ```sh
 aws_service_abbr="sqs"
 aws-cli-doc
@@ -1641,6 +1655,10 @@ aws cloudformation describe-stacks --region us-east-1
 ![cloud formation macros](https://i.postimg.cc/BQMY5xmx/aws-cloud-formation-macros.png)
 
 ---
+## OpsWorks
+> configuration management service that helps you configure and operate applications in a cloud enterprise by using Puppet or Chef. 
+
+---
 ## Security  
 ### security links
 * [Actions, resources and condition keys](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazons3.html)
@@ -1976,6 +1994,8 @@ flowchart LR;
 ```
 ---
 ## Glue
+> Extract Transform Load 
+> see: Data Pipeline
 ```mermaid
 flowchart LR;
 
@@ -2023,6 +2043,10 @@ http header for tracing: x-amzn-trace-id
 ## app sync
 
 ---
+## FIS - Fault Injection Service
+> stress an application by creating disruptive events so that you can observe how your application responds ( chaos engineering ).  
+
+---
 ## examples
 ![image](https://github.com/cherkavi/cheat-sheet/assets/8113355/658be5b5-2898-413e-ae46-d5fb81ac1add)  
 
@@ -2040,3 +2064,4 @@ http header for tracing: x-amzn-trace-id
   * http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html
   * https://aws.amazon.com/aup/
 * https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/tutorials.html
+* [redshift](https://aws.amazon.com/redshift/)
