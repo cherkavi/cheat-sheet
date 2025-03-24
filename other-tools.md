@@ -170,6 +170,14 @@ json_body='{"grant_type":"authorization_code","code":"****my_token","client_id":
 curl -X POST https://oauth2.googleapis.com/token --data ${json_body}
 ```
 
+### google [youtube rest api](https://developers.google.com/youtube/v3)
+```sh
+# Cloud Console: Enable the YouTube Data API v3 for your project and get your API key.
+YOUR_VIDEO_ID=....
+YOUR_API_KEY=....
+curl -X GET https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${YOUR_VIDEO_ID}&key=${YOUR_API_KEY}
+```
+
 ## captcha
 ### google captcha
 [reCaptcha client code](https://developers.google.com/recaptcha/docs/v3)
