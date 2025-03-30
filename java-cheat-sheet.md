@@ -100,6 +100,17 @@ js> t.start()
 -Xloggc:/usr/src/bin/log/jvm-gc.log 
 ```
 
+### jps - java process status
+```sh
+jps -v
+
+# process arguments
+jps -m 
+
+# Main class of the process
+jps -l 
+```
+
 ### JMX java inspect java state java stuck
 ```bash
 # command line argument

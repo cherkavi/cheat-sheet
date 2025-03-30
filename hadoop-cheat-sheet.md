@@ -13,6 +13,11 @@
 * Hortonworks
 * Cloudera
 
+## Hadoop run mode
+* standalone ( 1:1 )
+* pseudo-distributed ( 1:many )
+* distributed ( many:many )
+
 ### [couldera container start](https://www.cloudera.com/documentation/enterprise/latest/topics/quickstart_docker_container.html#cloudera_docker_container)
 ```
 docker run --hostname=quickstart.cloudera --privileged=true -t -i -p 7180 4239cd2958c6 /usr/bin/docker-quickstart
@@ -50,10 +55,17 @@ hdfs dfsadmin -report
 ```
 
 ### list of namenodes, list of secondary nodes
-```
+> no data, not a part of hadoop cluster  
+> Heartbeat: DataNode ---> NameNode  
+```sh
 hdfs getconf -namenodes
 hdfs getconf -secondaryNameNodes
 hdfs getconf -confKey dfs.namenode.name.dir
+
+stop-all.sh
+start-all.sh
+/etc/init.d/ha
+/etc/init.d/hadoop-name
 ```
 confKey:
 * dfs.namenode.name.dir
@@ -267,10 +279,13 @@ hdfs dfsadmin -backup
 
 
 ### job execution
-```
+> Job Tracker  *---- Task Tracker  
+> Heartbeat: TaskTracker ---> JobTracker  
+```sh
 hadoop jar {path to jar} {classname}
 jarn jar {path to jar} {classname}
 ```
+
 ### application list on YARN
 ```
 yarn application --list
