@@ -3040,13 +3040,32 @@ sudo openvpn file_config.ovpn
 sudo openvpn --config 1.ovpn --auth-user-pass $DIR_PROJECT/vpn-auth.txt
 ```
 
-### deactivate ipv6 
+### ipv6 
 > warning: can lead to "black screen" on ubuntu
 /etc/sysctl.d/60-ipv6-disable.conf
 ```sh
 net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
 net.ipv6.conf.lo.disable_ipv6 = 1
+```
+or
+```sh
+nmcli con show # select target network
+nmcli con show 'target-network'
+
+## disable/diactivate ivp6
+# nmcli con modify 'target-network' ipv6.method disabled
+# nmcli con modify 'target-network' ipv6.method ignore
+# sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+
+## enable/activate  ivp6
+nmcli con show 'target-network'
+nmcli con modify 'target-network' ipv6.method auto
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=0
+nmcli con show 'target-network' | grep ipv6.method
+
+## apply settings
+sudo systemctl restart NetworkManager
 ```
 
 ### debug network collaboration, ip packages
