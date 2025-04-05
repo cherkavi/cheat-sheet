@@ -20,6 +20,44 @@ graph LR;
     ✅️ example 🆗️
     )    
 ```
+---
+```mermaid
+graph 
+
+m[<b>model</b>]
+t[training]
+i[inference]
+t --associate--> m
+i --associate--> m
+
+r[regression
+  model]
+c[classification
+  model]
+c --extend--> m
+r --extend--> m
+
+l[label]
+l --assign 
+    to -->m
+
+id[input data]
+f[feature]
+f --o id
+
+idl[ <b>input data</b>
+     labeled
+     for training]
+idnl[<b>input data</b>
+    not labeled
+    for prediction]
+idl --extend--> id
+
+idnl --extend--> id 
+l --o idl
+
+id ~~~ i
+```
 
 ## Necessary knowledges
 ```mermaid
