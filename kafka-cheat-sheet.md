@@ -1,5 +1,18 @@
 # Kafka cheat sheet
 [position in architecture ](https://github.com/cherkavi/cheat-sheet/blob/master/architecture-cheat-sheet.md#communication-between-applications)  
+```mermaid
+graph
+
+m[messaging]
+
+pc[producer  -- one --> consumer]
+ps[publisher -- many --> subscriber]
+
+pc --extends-->m
+ps --extends-->m
+
+```
+
 ## **Kafka guarantees**
 * messages that sent into particular topic will be appended in the same order
 * consumer see messages in order that were written
