@@ -7,6 +7,57 @@
 
 ## Theory
 ![what data is](https://i.ibb.co/Zg26wmq/2023-08-27-data-what-is-it.jpg)  
+### Map-Reduce pattern
+```mermaid
+graph LR
+
+m[<b>MAP</b>]--> c(combine)
+c --> s(shuffle 
+        'sort') --> r[<b>REDUCE</b>]
+
+```
+
+### YARN
+Yet Another Resource Negotiator
+
+### Nodes
+* Namenode
+  > namespace, meta-info, file blocks  
+  > single point of failure
+* Datanode
+  > data block, send heartbeat to Namenode
+
+### Daemons
+* Primary Node
+* Secondary Node
+* Data Node
+
+### file workflow
+```mermaid
+graph LR
+
+is([input 
+    splitter])
+f[[file]]
+s[[split]]
+rr([record 
+    reader])
+r[[record]]
+kv[[key
+   value]]
+
+if([input
+    format])
+
+f -.read
+     one.-> is -.write 
+                 many
+                 (each mapper).-> s 
+s -.read.-> rr -.create.-> r
+r -.-> if
+if -.-> kv
+```
+
 
 ## Hadoop into Docker container 
 * MapR
