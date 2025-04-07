@@ -809,10 +809,13 @@ kubectl describe service {name of service}
 kubectl describe pod {name of the pod}
 ```
 
-## describe users, user token
+## describe secret, user token
 ```sh
 kubectl --namespace kube-system describe secret admin-user
 ```
+### [External Secret Operator](https://external-secrets.io/latest/)
+The operator reads information from external APIs (AWS Secrets Manager, HashiCorp Vault, Google Secrets Manager...)   
+and automatically injects the values into a Kubernetes Secret.
 
 ## get resources
 ```sh
