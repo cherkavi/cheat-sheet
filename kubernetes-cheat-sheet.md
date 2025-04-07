@@ -756,6 +756,11 @@ kubectl run http --image=katacoda/docker-http-server:latest --replicas=1
 ```
 
 ### scale deployment 
+
+#### scaling types
+* horizontal
+* vertical ( scaling up )
+#### scaling example
 ```sh
 deployment_name=my_deployment_name
 ## scale pod to amount of replicas
