@@ -11,11 +11,11 @@
 ```mermaid
 graph LR
 
-m[<b>MAP</b>]--> c(combine)
+m[<b>MAP</b>] ==> c(combine)
 c --> s(shuffle 
         'sort') --> r[<b>REDUCE</b>]
-
 ```
+❕ shuffle when all mappers are done   
 
 ### YARN
 Yet Another Resource Negotiator
@@ -23,9 +23,12 @@ Yet Another Resource Negotiator
 ### Nodes
 * Namenode
   > namespace, meta-info, file blocks  
-  > single point of failure
+  > single point of failure  
+  > single point of communication for external clients
 * Datanode
-  > data block, send heartbeat to Namenode
+  > data block, send **heartbeat** to Namenode  
+  > **worker** executed on DataNode
+  > worker associated with **slot** in DataNode
 
 ### Daemons
 * Primary Node
@@ -70,16 +73,17 @@ if -.-> kv
 * distributed ( many:many )
 
 ### [couldera container start](https://www.cloudera.com/documentation/enterprise/latest/topics/quickstart_docker_container.html#cloudera_docker_container)
-```
+```sh
 docker run --hostname=quickstart.cloudera --privileged=true -t -i -p 7180 4239cd2958c6 /usr/bin/docker-quickstart
 ```
 
 ### couldera run:
-```docker run -v /tmp:/home/root/tmp --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -t -i sequenceiq/hadoop-docker 
+```sh
+docker run -v /tmp:/home/root/tmp --net docker.local.network --ip 172.18.0.100 --hostname hadoop-local --network-alias hadoop-docker -t -i sequenceiq/hadoop-docker 
 ```
 
 ### IBM education container start
-```
+```sh
 docker run -it --name bdu_spark2 -P -p 4040:4040 -p 4041:4041 -p 8080:8080 -p8081:8081 bigdatauniversity/spark2:latest
 -- /etc/bootstrap.sh -bash 
 ```
@@ -94,6 +98,9 @@ docker run -it --name bdu_spark2 -P -p 4040:4040 -p 4041:4041 -p 8080:8080 -p808
 ![sensor use case](https://i.postimg.cc/8PwtTX8B/Kafka-usecase-06.png)
 
 ## HDFS common commands
+> there are two possibilities for communication - shell(below), API  
+> communication goes via NameNode 
+
 ### MapR implementation
 ```sh
 # hdfs dfs -ls
@@ -101,7 +108,7 @@ hadoop fs -ls
 ```
 
 ### admin command, cluster settings
-```
+```sh
 hdfs dfsadmin -report
 ```
 
@@ -144,7 +151,7 @@ confKey:
 * io.seqfile.local.dir
 
 ### help ( Distributed File System )
-```
+```sh
 hdfs dfs -help
 hdfs dfs -help copyFromLocal
 hdfs dfs -help ls
@@ -154,17 +161,14 @@ hdfs dfs -help setrep
 
 
 ### list files
-```
+```sh
 hdfs dfs -ls /user/root/input
 hdfs dfs -ls hdfs://hadoop-local:9000/data
-```
-output example:
-```
--rw-r--r--   1 root supergroup       5107 2017-10-27 12:57 hdfs://hadoop-local:9000/data/Iris.csv
-             ^ factor of replication
+# -rw-r--r--   1 root supergroup       5107 2017-10-27 12:57 hdfs://hadoop-local:9000/data/Iris.csv
+#              ^ factor of replication
 ```
 ### files count
-```
+```sh
 hdfs dfs -count /user/root/input
 ```
 where 1-st column - amount of folder ( +1 current ),
@@ -172,110 +176,110 @@ where 2-nd column - amount of files into folder
 where 3-rd column - size of folder
 
 ### check if folder exists
-```
+```sh
 hdfs dfs -test -d /user/root/some_folder
 echo $?
+# 0 - exists
+# 1 - not exits
 ```
-0 - exists
-1 - not exits
 
 ### checksum ( md5sum )
-```
+```sh
 hdfs dfs -checksum <path to file>
 ```
 [hdfs logic emulator](https://github.com/srch07/HDFSChecksumForLocalfile)
-```
+```sh
 java -jar HadoopChecksumForLocalfile-1.0.jar V717777_MDF4_20190201.MF4 0 512 CRC32C
 ```
 locally only
-```
+```sh
 hdfs dfs -cat <path to file> | md5sum
 ```
 
 ### find folders ( for cloudera only !!! )
-```
+```sh
 hadoop jar /opt/cloudera/parcels/CDH/jars/search-mr-1.0.0-cdh5.14.4-job.jar org.apache.solr.hadoop.HdfsFindTool -find hdfs:///data/ingest/ -type d -name "some-name-of-the-directory"
 ```
 
 ### find files ( for cloudera only !!! )
-```
+```sh
 hadoop jar /opt/cloudera/parcels/CDH/jars/search-mr-1.0.0-cdh5.14.4-job.jar org.apache.solr.hadoop.HdfsFindTool -find hdfs:///data/ingest/ -type f -name "some-name-of-the-file"
 ```
 
 ### change factor of replication 
-```
+```sh
 hdfs dfs -setrep -w 4 /data/file.txt
 ```
 
 ### create folder
-```
+```sh
 hdfs dfs -mkdir /data 
 ```
 
 ### copy files from local filesystem to remote
-```
+```sh
 hdfs dfs -put /home/root/tmp/Iris.csv /data/
 hdfs dfs -copyFromLocal /home/root/tmp/Iris.csv /data/
 ```
 
 ### copy files from local filesystem to remote with replication factor
-```
+```sh
 hdfs dfs -Ddfs.replication=2 -put /path/to/local/file /path/to/hdfs
 ```
 
 ### copy ( small files only !!! ) from local to remote ( read from DataNodes and write to DataNodes !!!)
-```
+```sh
 hdfs dfs -cp /home/root/tmp/Iris.csv /data/
 ```
 
 ### remote copy ( not used client as pipe )
-```
+```sh
 hadoop distcp /home/root/tmp/Iris.csv /data/
 ```
 
 ### read data from DataNode
-```
+```sh
 hdfs get /path/to/hdfs /path/to/local/file
 hdfs dfs -copyToLocal /path/to/hdfs /path/to/local/file
 ```
 
 ### remove data from HDFS ( to Trash !!! special for each user)
-```
+```sh
 hdfs rm -r /path/to/hdfs-folder
 ```
 
 ### remove data from HDFS
-```
+```sh
 hdfs rm -r -skipTrash /path/to/hdfs-folder
 ```
 
 ### clean up trash bin
-```
+```sh
 hdfs dfs -expunge
 ```
 
 ### file info ( disk usage )
-```
+```sh
 hdfs dfs -du -h /path/to/hdfs-folder
 ```
 
 ### is file/folder exists ? 
-```
+```sh
 hdfs dfs -test /path/to/hdfs-folder
 ```
 
 ### list of files ( / - root )
-```
+```sh
 hdfs dfs -ls /
 hdfs dfs -ls hdfs://192.168.1.10:8020/path/to/folder
 ```
 the same as previous but with fs.defalut.name = hdfs://192.168.1.10:8020
-```
+```sh
 hdfs dfs -ls /path/to/folder
 hdfs dfs -ls file:///local/path   ==   (ls /local/path)
 ```
 show all sub-folders
-```
+```sh
 hdfs dfs -ls -r 
 ```
 
@@ -284,7 +288,7 @@ hdfs dfs -ls -r
 -touchz, -cat (-text), -tail, -mkdir, -chmod, -chown, -count ....
 ```
 ### java application run, java run, java build
-```
+```sh
 hadoop classpath
 hadoop classpath glob
 # javac -classpath `hadoop classpath` MyProducer.java
@@ -330,8 +334,24 @@ hdfs dfsadmin -backup
 
 
 ### job execution
-> Job Tracker  *---- Task Tracker  
-> Heartbeat: TaskTracker ---> JobTracker  
+```mermaid
+flowchart RL
+
+TT@{ shape: rect, label: "Task Tracker", color: red }
+
+TT[Task Tracker] --o|composite| JT[Job Tracker]
+
+JT -->|create| TT
+
+TT -.->|send 
+        hearbeat| JT
+```
+**Task Tracker**: 
+* run Job Tracker
+* MapReduce governance
+* monitoring
+* restart tasks
+
 ```sh
 hadoop jar {path to jar} {classname}
 jarn jar {path to jar} {classname}
