@@ -69,5 +69,5 @@
   <script>
     'use strict';
 ```
-
-
+![](https://i.ibb.co/2YmVWPtk/cheat-react-01.jpg)
+![](https://i.ibb.co/hxQp06xK/cheat-react-02.jpg)
