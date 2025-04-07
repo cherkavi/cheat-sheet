@@ -11,11 +11,14 @@
 ```mermaid
 graph LR
 
-m[<b>MAP</b>] ==> c(combine)
-c --> s(shuffle 
-        'sort') --> r[<b>REDUCE</b>]
+m[🗺️ <b>MAP</b>] ==> c(combine)
+c --> s(🔄 shuffle 
+        📑 'sort') --> r[🧮 <b>REDUCE</b>]
 ```
-❕ shuffle when all mappers are done   
+* ❕ shuffle when all mappers are done   
+* [examples of MapReduce](#)
+
+
 
 ### YARN
 Yet Another Resource Negotiator
@@ -447,10 +450,6 @@ IPYTHON and IPYTHON_OPTS are removed in Spark 2.0+. Remove these from the enviro
 just set variable to using Spart1 inside script: SPARK_MAJOR_VERSION=1
 ```
 
-# Sqoop ( SQl to/from hadOOP )
-JDBC driver for jdbc url must present: $SQOOP_HOME/lib
---- 
-
 ### import
 Import destinations:
 * text files
@@ -529,7 +528,8 @@ mdf = MDF("file.MF4")
 ```
 ---
 # HCatalog
-[documentation](https://cwiki.apache.org/confluence/display/Hive/HCatalog)
+> [documentation](https://cwiki.apache.org/confluence/display/Hive/HCatalog)  
+> using for saving Hive metastore ( schema )
 
 ### table description
 ```
@@ -538,6 +538,9 @@ hcat -e "describe formatted school_explorer"
 ```
 ---
 # SQL engines
+- Hive ( HiveQL )
+  > for executing SQL-like queries  
+  > transform the request to DirectAcyclingGraph  
 - Impala
 - Phoenix ( HBase )
 - Drill ( schema-less sql )
@@ -573,10 +576,102 @@ TBD
 ## Druid
 TBD
 
+## Sqoop ( SQl to/from hadOOP )
+> command line tool  
+> JDBC driver for jdbc url must present: $SQOOP_HOME/lib
+
+## Flume
+> a Flume agent is a JVM process that hosts the components responsible for moving data. 
+```
+(Event is generated)
+        ↓
+[ Source ]  → converts incoming data → [ Event ]
+        ↓
+[ Channel ]  ← holds the event temporarily
+        ↓
+[ Sink ]  → writes it to HDFS (or other systems)
+```
+
+---
 # Cluster management
 ## [ambari](http://localhost:8080)
 * cloudera manager
 
+---
+# examples of map reduce
+## "Inverted Index":  
+0. input data:
+```
+youtube.com: dog, gaming, music, video  
+amazon.com: gaming, music, book  
+safari.com: book, video
+```
+1. map:
+```
+("dog", "youtube.com")
+("gaming", "youtube.com")
+("music", "youtube.com")
+("video", "youtube.com")
+("gaming", "amazon.com")
+("music", "amazon.com")
+("book", "amazon.com")
+("book", "safari.com")
+("video", "safari.com")
+```
+2. shuffle:
+```
+dog: [youtube.com]  
+gaming: [youtube.com, amazon.com]  
+music: [youtube.com, amazon.com]  
+video: [youtube.com, safari.com]  
+book: [amazon.com, safari.com]
+```
+3. sort
+```
+book: [amazon.com, safari.com]  
+dog: [youtube.com]  
+gaming: [amazon.com, youtube.com]  
+music: [amazon.com, youtube.com]  
+video: [safari.com, youtube.com]
+```
+4. reduce
+```
+book: 2
+dog: 1
+gaming: 2
+music: 2
+video: 2
+```
+
+## max value
+0. input data
+```
+london 9c time: 10:12
+kiev 5c time: 14:15
+vienna 5c time 20:07
+london 11c time: 10:12
+kiev 7c wind 3ms
+```
+1. map 
+```
+london 9
+kiev 5
+vienna 5
+london 11
+kiev 7
+```
+2. shuffle
+```
+london 9,11
+kiev 5,7
+vienna 5
+```
+3. reduce
+```
+london 11
+kiev 7
+vienna 5
+```
 
 ---
 # TODO
