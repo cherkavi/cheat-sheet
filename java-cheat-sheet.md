@@ -634,6 +634,19 @@ body("brands.size()")
 ```
 @java.lang.SuppressWarnings("squid:S3655")
 ```
+```
+  -Dsonar.projectVersion=${{ env.POM_PROJECT_VERSION }}
+            -Dsonar.projectKey=${{ env.SONAR_PROJECT_KEY }}
+            -Dsonar.branch.name=${{ steps.extract_branch.outputs.branch }}
+            -Dsonar.language=java 
+            -Dsonar.java.source=17
+            -Dsonar.exclusions=**/*DTO.java,**/exception/**/*.java,**/serdes/*.java,src/main/python/**
+            -Dsonar.java.binaries=target
+            -Dsonar.java.sources=src/main/java
+            -Dsonar.sources=src/main
+            -Dsonar.java.tests=src/test/java
+            -Dsonar.coverage.jacoco.xmlReportPaths=target/jacoco-report/jacoco.xml
+```
 
 ## Hibernate
 ### @Modifying
