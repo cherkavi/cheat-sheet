@@ -572,7 +572,8 @@ aws-feature
 * [activate endpoint](https://docs.aws.amazon.com/datasync/latest/userguide/choose-service-endpoint.html)
 * [activate agent VM](https://docs.aws.amazon.com/datasync/latest/userguide/activate-agent.html)
 * [workshop big migration](https://catalog.us-east-1.prod.workshops.aws/datasync-migrate-millions-of-files/en-US) 
-* [workshop windows migration](https://catalog.us-east-1.prod.workshops.aws/datasync-fsx-windows-migration/en-US) 
+* [workshop windows migration](https://catalog.us-east-1.prod.workshops.aws/datasync-fsx-windows-migration/en-US)
+* [alternative solution](https://aws.amazon.com/fsx/)
 
 ### steps
 1. download datasync agent image 
