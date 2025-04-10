@@ -574,6 +574,7 @@ aws-feature
 * [workshop big migration](https://catalog.us-east-1.prod.workshops.aws/datasync-migrate-millions-of-files/en-US) 
 * [workshop windows migration](https://catalog.us-east-1.prod.workshops.aws/datasync-fsx-windows-migration/en-US)
 * [alternative solution](https://aws.amazon.com/fsx/)
+  > based on [FlexCache](https://www.netapp.com/data-storage/what-is-flex-cache/)
 
 ### steps
 1. download datasync agent image 
