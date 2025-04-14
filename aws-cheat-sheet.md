@@ -664,6 +664,16 @@ Task phases
 * verifying (VerifyMode)
 * success/failure
 
+### DataSync operations
+```sh
+your_account_id=802320....
+task_id=task-292234306
+execution_id=exec-00ab121a437a222
+
+aws datasync list-task-executions --task-arn arn:aws:datasync:eu-central-1:$your_account_id:task/$task_id
+aws datasync describe-task-execution --task-execution-arn arn:aws:datasync:eu-central-1:$your_account_id:task/$task_id/execution/$execution_id | jq '.Includes[].Value, .FilesTransferred, .BytesTransferred'
+```
+
 ---
 ## RDS
 > should be considered DataStorage type like ( see CommandQueryResponsibilitySegregation ):  
