@@ -42,6 +42,10 @@ function cheat-grep(){
 * [draw chat: white board with chat](https://draw.chat)
 * [excalidraw](https://excalidraw.com/)
     * [using razer-keypad with excalidraw](https://github.com/cherkavi/solutions/blob/master/razer-keypad/README.md)
+    * [your hand-made drawing convert to vector svg](https://github.com/cherkavi/bash-example/blob/master/image-convert-to-vector.sh)
+    * [vector svg to excalidraw online](https://svgtoexcalidraw.com/)
+    * [vector svg to excalidraw src](https://github.com/excalidraw/svg-to-excalidraw)
+
 * [local drawing tool](https://github.com/tldraw/tldraw)
 
 ### tools for developers on localhost
