@@ -528,6 +528,8 @@ example of project structure ( otherwise your custom classes woun't be added )
                 </configuration>
             </plugin>
 
+            <!-- Error: A JNI error has occurred, please check your installation and try again
+Exception in thread "main" java.lang.SecurityException: Invalid signature file digest for Manifest main attributes -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
