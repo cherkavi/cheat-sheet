@@ -63,6 +63,74 @@ consumer instance from different group will receive own copy of message ( one me
 
 [Error Handling](https://eng.uber.com/reliable-reprocessing/)
 
+### consumer messages processing
+[code examples](https://dzone.com/articles/kafka-clients-at-most-once-at-least-once-exactly-o)
+#### At most once
+```
+enable.auto.commit=true;     # Kafka would auto commit offset at the specified interval.
+# !!! do not make call to consumer.commitSync(); from the consumer. With this configuration of consumer, 
+auto.commit.interval.ms=1;   # set it to lower timeframe
+```
+
+#### At-least-once 
+scenario happens when consumer processes a message and commits the message into its persistent store and consumer crashes at that point, haven't commit to kafka broker
+Duplicate message delivery could happen in the following scenario.
+```quarkus.kafka-streams.processing-guarantee=at_least_once```
+```
+enable.auto.commit=false  #  enable.auto.commit=true and auto.commit.interval.ms=999999999999999
+# consumer.commitSync(); # After reading. Consumer should now then take control of the message offset commits
+```
+```mermaid
+sequenceDiagram
+
+broker ->> consumer:  read message A315
+
+consumer ->> processing:  process message
+processing -->> consumer: done
+
+consumer --> consumer: commitSync 
+
+destroy consumer
+processing -x consumer: die
+
+broker ->> broker: no response
+```
+
+```mermaid
+sequenceDiagram
+
+broker ->> consumer:  read message A315 ( duplication )
+
+consumer ->> processing:  process message A315
+processing -->> consumer: done
+
+consumer -->> consumer: commitSync
+
+consumer -->> broker: commit offset
+
+broker ->> consumer:  read message A316
+consumer ->> processing:  process message A316
+
+```
+
+
+#### Exactly once
+```quarkus.kafka-streams.processing-guarantee=exactly_once # exactly_once_v2```
+```
+enable.auto.commit=false
+# !!! do not make call to consumer.commitSync(); 
+# use new KafkaConsumer<String, String>(props).subscribe("topic", ConsumerRebalancerListener)
+
+```
+
+```mermaid
+flowchart RL
+c --o cs[Consumer]
+of[OffsetManager] --o c[ConsumerRebalancerListener]
+of <-.->|rw| es[offset ExternalStorage ]
+
+```
+
 ## ZoopKeeper ( one instance per cluster )
 * must be started before using Kafka ( zookeeper-server-start.sh, kafka-server-start.sh )
 * cluster membership
