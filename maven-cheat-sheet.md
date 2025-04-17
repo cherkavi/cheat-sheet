@@ -418,7 +418,7 @@ mvn javadoc:javadoc
 mkdir src/main/java
 ```
 
-### uber jar plugin, fat jar, jar with all dependencies, shade plugin
+### executable jar, uber jar plugin, fat jar, jar with all dependencies, shade plugin
 example of project structure ( otherwise your custom classes woun't be added )
 ```
 ├── pom.xml
