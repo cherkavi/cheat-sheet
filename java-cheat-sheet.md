@@ -358,6 +358,8 @@ Reentrant lock == Semaphore
 jar cf WC2.jar *.class
 ```
 
+### [create executable jar, fatjar, uberjar](https://github.com/cherkavi/cheat-sheet/blob/master/maven-cheat-sheet.md#executable-jar-uber-jar-plugin-fat-jar-jar-with-all-dependencies-shade-plugin)
+
 ### take a look into jar, list all files into jar
 ```
 jar tvf WC2.jar
