@@ -130,8 +130,13 @@ enable.auto.commit=false
 flowchart RL
 c --o cs[Consumer]
 of[OffsetManager] --o c[ConsumerRebalancerListener]
-of <-.->|rw| es[offset ExternalStorage ]
+of <-.->|rw| es[offset 
+                ExternalStorage ]
 
+SQL   -->|extends| es
+NoSQL -->|extends| es
+Kafka[Kafka 
+     exactly_once_v2] -->|extends| es
 ```
 
 ## ZoopKeeper ( one instance per cluster )
