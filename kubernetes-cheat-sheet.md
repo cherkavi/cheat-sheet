@@ -448,7 +448,8 @@ sed "s|<NODE_INSTANCE_IP>|$NODE_1_IP|" eks-localstorage.yaml-template >  | kubec
 ```
 
 ### access cluster
-* reverse proxy 
+* reverse proxy
+  > using for cache, security, load balancing ( forward proxy - just a 'proxy' ) 
   activate proxy from current node
   ```sh
   kubectl proxy --port 9090
