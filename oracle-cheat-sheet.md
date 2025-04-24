@@ -47,6 +47,15 @@ set long 200000
 set pages 0
 column txt format a120
 ```
+capture/catch/write output of sql query to file via terminal
+```sh
+script sql-command.output
+
+sql .... 
+
+exit
+cat sql-command.output
+```
 
 
 ### [sqlline](https://github.com/julianhyde/sqlline?tab=readme-ov-file#building)
