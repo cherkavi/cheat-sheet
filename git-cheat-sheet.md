@@ -1506,18 +1506,33 @@ jobs:
 ```
 * run python application, install oracle client, hide password, use variables
 ```yaml
-      - name: Install Oracle Instant Client
+      - name: cache file 
+        id: cache-oracle-client-zip
+        uses: actions/cache@v3
+        with:
+          path: ~/
+          key: extfile-${{ hashFiles('**/instantclient-basiclite-linux.x64-23.4.0.24.05.zip') }}
+          restore-keys: |
+            oraclezipfile-
+
+      - name: Download Instant Client
+        if: steps.cache-oracle-client-zip.outputs.cache-hit != 'true'
         run: |
           sudo apt-get update
           sudo apt-get install libaio1 wget unzip
           wget https://download.oracle.com/otn_software/linux/instantclient/2340000/instantclient-basiclite-linux.x64-23.4.0.24.05.zip
-          unzip instantclient-basiclite-linux.x64-23.4.0.24.05.zip
-          echo ">>>"$(pwd)"instantclient_23_4"
+
+      - name: Unzip archive file 
+        run: |
+          rm -rf instantclient_23_4
+          unzip -o instantclient-basiclite-linux.x64-23.4.0.24.05.zip
+          # sudo mv instantclient_23_4 /opt/oracle  # libclntsh.so
+          echo "export LD_LIBRARY_PATH=$(pwd)/instantclient_23_4:$LD_LIBRARY_PATH" >> $GITHUB_ENV 
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements.txt   # cx_Oracle
 
       - name: Oracle sql request
         run:  echo "SELECT *
