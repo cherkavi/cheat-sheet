@@ -1463,9 +1463,9 @@ echo "ls" | xargs -i sh -c "{}"
 find . | xargs -I % sh -c 'md5sum %; ls -la %;'
 ```
 
-### run naked terminal without bashrc 
+### run clear/naked/without_scripts/empty/zero terminal without bashrc 
 ```sh
-bash --norc
+bash --norc --noprofile
 ```
 
 ### capture terminal output to file, save output of the commands to file, save log/history of terminal output
