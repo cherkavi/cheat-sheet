@@ -8,7 +8,7 @@
 * [Diagrams, ex Draw.io](https://Diagrams.net)
 * [dbdiagram](https://dbdiagram.io)
 
-## oracle cli, sql developer command line
+## oracle cli, sql developer command line console cli
 ### sqlcl
 ```sh
 sudo apt -y install sqlcl-package
@@ -46,6 +46,11 @@ set longchunksize 200000
 set long 200000
 set pages 0
 column txt format a120
+```
+```
+set heading off
+spool out.txt
+spool off
 ```
 capture/catch/write output of sql query to file via terminal
 ```sh
