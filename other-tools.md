@@ -285,6 +285,9 @@ curl -X GET "https://maps.googleapis.com/maps/api/place/details/json?place_id=${
   [doc, examples](https://pypi.org/project/twilio/)  
   [my examples](python-utilities/twilio/twilio.md)  
 
+## email tools
+* [check dns, email utilities](https://zohomail.tools/)
+
 ##  e-mail broadcasting
 ### [fake smtp development server](https://nilhcem.com/FakeSMTP/)
 ### https://mailchimp.com/
@@ -333,9 +336,10 @@ email-data.json
 
 
 ## redirect
-* Easyredir - https://www.easyredir.com/
-* Redirection.io - https://redirection.io/
-* SiteDetour - https://sitedetour.com/  
+* [ngrok - redirect, gateway, m2m connection](https://ngrok.com/)
+* [Easyredir](https://www.easyredir.com/)
+* [Redirection.io](https://redirection.io/)
+* [SiteDetour](https://sitedetour.com/)
 
 ## screenshots
 * site-shot.com
