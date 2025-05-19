@@ -415,6 +415,50 @@ aws-console
   * Microsoft Azure Blob Storage
   * Google Cloud Storage
 * TODO: how to add WAF to S3
+  * option1: create cloudfront distribution 
+
+### s3 static web site DNS
+> for instance your DNS name is: my.service
+1. create bucket with name: my.service.s3-website.{your region}.amazonaws.com
+2. create bucket with name: www.my.service.s3-website.{your region}.amazonaws.com
+3. create DNS record:
+   type: CNAME, name: www, value www.my.service.s3-website.{your region}.amazonaws.com
+
+### s3 static web site SSL (HTTPS) certificate
+> for instance your DNS name is: my.service
+> create cloudfront distribution: https://us-east-1.console.aws.amazon.com/cloudfront
+1. origin domain: your www.my.service.s3-website.{your region}.amazonaws.com
+   > important to have www prefix
+2. protocol: HTTP only 
+3. Viewer protocol policy: HTTPS only 
+4. Custom SSL certificate - optional
+   1. request a public certificate
+      > https://us-east-1.console.aws.amazon.com/acm - AWS Certificate Manager -> Certificates
+   2. domain name 
+      *.my.service  
+      > add '*.' as a prefix 
+   3. create new
+   4. copy CNAME name, CNAME value
+   5. open your external ( non AWS ) DNS console and create/update record with type: CNAME 
+   6. validation will come later
+5. select newly created acm resource name ( SSL certificate )
+6. Alternative domain name (CNAME) - optional
+   www.my.service
+7. Supported HTTP versions:
+   HTTP/2
+   HTTP/3
+8. waiting for the "SSL validation"
+9. change DNS 
+   1. type: CNAME, name: www, value: {Distribution domain name like: d365erk6waf21.cloudfront.net}
+   2. waiting for propogation
+10. visit your https://www.my.service
+
+**possible issues:**
+* SSL_ERROR_NO_CYPHER_OVERLAP
+  > cloudfront.Alternative domain name (CNAME)
+  > Custom SSL Certificate.domain name
+
+
 ### s3 operations
 ```sh
 # make bucket - create bucket with globally unique name
