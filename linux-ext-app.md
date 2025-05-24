@@ -117,6 +117,7 @@ xprop -id $CURRENT_WINDOW_ID _NET_FRAME_EXTENTS
 ```
 
 ### custom shortcuts script for finding and activating window, simulate actions by human 
+> for windows customization(change position, size, title ... ): https://www.nongnu.org/devilspie2/ (https://github.com/dsalt/devilspie2)
 ```sh
 #!/bin/bash
 values=`xdotool search --name 'Visual Studio Code'`
