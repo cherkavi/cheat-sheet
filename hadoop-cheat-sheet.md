@@ -6,7 +6,8 @@
 * [Hortonworks ecosystems](https://hortonworks.com/ecosystems/)
 
 ## Theory
-![what data is](https://i.ibb.co/Zg26wmq/2023-08-27-data-what-is-it.jpg)  
+![what data, information, knowledge, experience are](https://i.ibb.co/Zg26wmq/2023-08-27-data-what-is-it.jpg)  
+
 ### Map-Reduce pattern
 ```mermaid
 graph LR
