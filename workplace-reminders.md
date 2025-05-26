@@ -41,6 +41,25 @@ print all your open issues in format: `jira 171455 # In Progress  # [PROD] Kafka
      "$JIRA_URL/rest/api/2/search" | jq -r '.issues[] | "jira \(.key | split("-")[1]) # \(.fields.status.name)  # \(.fields.summary)"'
 ```
 
+create sub-task
+```sh
+function create-sub-task(){
+curl -X POST "$JIRA_URL/rest/api/2/issue" \
+  -H "Authorization: Bearer $JIRA_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fields": {
+      "project": { "key": "IOO" },
+      "parent": { "key": "'"$PARENT_JIRA"'" },   
+      "summary": "'"$SUMMARY"'",
+      "issuetype": { "name": "Sub-task" }
+    }
+  }'
+}
+export PARENT_JIRA="IOO-308"
+export SUMMARY="sub task description"; create-sub-task
+```
+
 ## CodeBeamer
 ### CodeBeamer REST API
 [swagger example](https://codebeamer.ubsgroup.net:8443/cb/v3/swagger/editor.spr)
