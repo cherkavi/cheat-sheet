@@ -1290,10 +1290,20 @@ git push --force
 gh auth login --hostname $GIT_HOST
 gh auth status
 
-gh workflow list
+WORKFLOW_FILE_NAME=tools.yaml
+
 gh workflow list
 gh workflow view --ref $GIT_BRANCH_NAME $WORKFLOW_FILE_NAME
 gh workflow run $WORKFLOW_FILE_NAME --ref $GIT_BRANCH_NAME
+gh run list --workflow=$WORKFLOW_NAME
+
+# run workflow by name from last branch
+gh workflow run $WORKFLOW_FILE_NAME --ref $(git branch --show-current)
+
+# print out last log output of the workflow by name
+gh run view --log $(gh run list --json databaseId --jq '.[0].databaseId')
+
+
 
 gh variable list
 gh variable set $VARIABLE_NAME --body $VARIABLE_VALUE
