@@ -4,6 +4,12 @@
 
 ## [Run Android OS without phone](https://github.com/cherkavi/solutions/blob/master/android-os-without-phone/README.md)
 
+## connect phone to a computer ( Linux )
+> for reading links like: mtp://motorola_moto_g52_xxxxxx
+Settings -> Connected devices -> USB
+  * Use USB for: File Transfer
+  * Optional: USB controlled by connected device
+
 ## PC software for managing Android device
 ### Odin
 #### Odin for Linux
