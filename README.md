@@ -1,6 +1,21 @@
 # cheat sheet
 
-## useful search function for using whole cheat sheet
+## other cheat sheets:
+* [cheat sheet for enterprise architects](https://github.com/cherkavi/enterprise-architect-toolbox/tree/main/)
+* [root/entrypoint to different resources](https://github.com/sindresorhus/awesome)
+* [cheat sheets collection](https://lzone.de/cheat-sheet/)
+* [cheat sheets](https://www.cheatography.com)
+
+## other cheat-tools
+* [cht.sh](https://github.com/chubin/cheat.sh)
+* [tldr](https://tldr.sh/)
+* [how2](https://how2terminal.com/download)
+
+## [documentation examples, how to write good documentation, documentation tools](https://github.com/matheusfelipeog/beautiful-docs)
+
+## useful tools:
+
+### useful search function for using whole cheat sheet
 ```sh
 function cheat-grep(){
     if [[ $1 == "" ]]; then
@@ -20,20 +35,6 @@ function cheat-grep(){
     grep -r $search_line -i -A 2 $HOME_PROJECTS/cheat-sheet/*.md $HOME_PROJECTS/bash-example/*
 }
 ```
-
-## other cheat-tools
-* [cht.sh](https://github.com/chubin/cheat.sh)
-* [tldr](https://tldr.sh/)
-* [how2](https://how2terminal.com/download)
-
-## other cheat sheets:
-* [root/entrypoint to different resources](https://github.com/sindresorhus/awesome)
-* [cheat sheets collection](https://lzone.de/cheat-sheet/)
-* [cheat sheets](https://www.cheatography.com)
-
-## [documentation examples, how to write good documentation, documentation tools](https://github.com/matheusfelipeog/beautiful-docs)
-
-## useful tools:
 ### [free online resources for developers](https://github.com/ripienaar/free-for-dev?tab=readme-ov-file#web-hosting)
 ### [list of online tools](https://github.com/goabstract/Awesome-Design-Tools)
 ### [free hosted applications, locally started applications](https://github.com/awesome-selfhosted/awesome-selfhosted)
