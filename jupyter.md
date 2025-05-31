@@ -21,6 +21,19 @@ source jupyter_env/bin/activate
 jupyter notebook
 ```
 
+## jupyter skip token
+```sh
+jupyter notebook password
+```
+```sh
+jupyter notebook --generate-config
+```
+```sh
+vim ~/.jupyter/jupyter_notebook_config.py
+# c.NotebookApp.token = ''
+# c.NotebookApp.password = ''
+```
+
 
 ## jupyter commands
 bash command execution
