@@ -50,6 +50,7 @@ ollama list
 * G-RAG
 
 ## MCP
+![mcp sequence](https://i.ibb.co/s9ywRss4/mcp-workflow.jpg)
 - [Model Context Protocol documentation](https://modelcontextprotocol.io)
 - [Model Context Protocol specification](https://spec.modelcontextprotocol.io)
 - [Python SDK GitHub repository](https://github.com/modelcontextprotocol/python-sdk)
