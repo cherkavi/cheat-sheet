@@ -51,6 +51,8 @@ topics subscriber
 * Consumer Group
 group of consumers, have one Load Balancer for one group, 
 consumer instance from different group will receive own copy of message ( one message per group )
+* convert message - change format
+* transform message - change internal data 
 
 ![concepts](https://i.postimg.cc/3Nnfbfkk/2git-kafka-01.png)  
 ![workflow](https://i.postimg.cc/TY34Wxsg/2git-kafka-02.png)  
