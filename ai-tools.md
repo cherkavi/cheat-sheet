@@ -22,11 +22,12 @@
   > `pip install -U openai-whisper` and then `whisper japanese.wav --language Japanese --task translate`
 
 ## Large Language Model ( LLM )
-### models ready to use
+### models hub ready to use
 * https://huggingface.co/models
 * https://ollama.com/library
 
 ### Ollama
+#### ollama installation
 [linux installation](https://github.com/ollama/ollama/blob/main/docs/linux.md)
 ```sh
 curl -fsSL https://ollama.com/install.sh | sh
@@ -47,12 +48,36 @@ ollama pull mistral
 ollama list
 ```
 
-### Ollama REST API commands
+#### Ollama cli
+```sh
+MODEL_NAME="sqlcoder"
+ollama run $MODEL_NAME
+```
+
+#### Ollama REST API commands
 ```sh
 curl -X POST http://localhost:11434/api/generate -d '{
   "model": "sqlcoder",
   "prompt":"insert user_id=1, name='ehlo' into table users "
  }'
+```
+#### [Ollama python](https://pypi.org/project/ollama/)
+```python
+# pip3 install --break-system-packages  ollama
+
+from ollama import chat
+from ollama import ChatResponse
+
+response: ChatResponse = chat(model='sqlcoder', messages=[
+  {
+    'role': 'user',
+    'content': "insert user_id=1, name='ehlo' into table users ",
+  },
+])
+print(response['message']['content'])
+# or access fields directly from the response object
+print(response.message.content)
+
 ```
 
 ## LLM update
