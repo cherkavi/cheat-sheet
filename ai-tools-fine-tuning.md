@@ -1,8 +1,31 @@
 # [Fine tuning](./ai-tools-fine-tuning.md)
 
 ## fine tuning Use Case:
+* Domain adaptation
 * Specialized tasks (e.g., legal, medical, proprietary dialogue styles)
 * Performance tuning on consistent tasks (classification, summarization)
+* ❗for totally new knowledge - RAG
+* ❗small set of training data - find out more, but not too much 
+* quality vs quantity - clear, consistence, focused
+* consistence in format and style 
+* free of errors and contradictions
+* each example should correspond to your use case
+* choose proper base model
+  * model size ( consider to use: Lama 3.2:3b, 3.1.8b )
+    > "do not use a truck for pizze delivery"
+  * license
+
+## fine tuning parameters:
+* LOw Ranked Adaptation
+  * Quantized LOw Ranked Adaptation
+* Learning Rate
+  > size each step during the learing to reach out the goal ( distance )
+* Batch Size
+  > how many expamples to take at once, before knowledge update ( more examples at once - more memory )
+* Number of Epochs
+  > number of complete passes through the training dataset.
+* Optimizer Selection
+  > different teaching methods
 
 ## fine tuning Tools:
 
@@ -43,12 +66,16 @@ ollama run mistral-update
 ```
 
 ### 🦥 [Unsloth](https://www.unsloth.ai)
+> fast, works in limit resources
 > Unsloth is a library that enables fast and memory-efficient fine-tuning of large language models, such as LLaMA 3, Qwen2, Mistral, and more — especially with QLoRA.
 - **GitHub**: [https://github.com/unslothai/unsloth](https://github.com/unslothai/unsloth)
 
 ### 🦎 [Axolotl](https://axolotl.ai)
+> a lot of parameters - you should know what you are doing 
 > Axolotl is a flexible and scalable framework for fine-tuning LLMs using YAML config files. Supports multi-GPU setups, LoRA, QLoRA, and various backends.
-- **GitHub**: [https://github.com/OpenAccess-AI-Collective/axolotl](https://github.com/OpenAccess-AI-Collective/axolotl)
+- [axolotl GitHub](https://github.com/axolotl-ai-cloud/axolotl)
+- [axolotl doc](https://docs.axolotl.ai/docs/getting-started.html)
+- **Steps:** azolotl ( finetuning )  --> llama-cpp (export) --> ollam ( run model )
 
 ## fine tuning Steps:
 
