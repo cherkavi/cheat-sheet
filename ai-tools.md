@@ -22,7 +22,11 @@
   > `pip install -U openai-whisper` and then `whisper japanese.wav --language Japanese --task translate`
 
 ## Large Language Model ( LLM )
-### Ollama Facebook
+### models ready to use
+* https://huggingface.co/models
+* https://ollama.com/library
+
+### Ollama
 [linux installation](https://github.com/ollama/ollama/blob/main/docs/linux.md)
 ```sh
 curl -fsSL https://ollama.com/install.sh | sh
@@ -39,15 +43,38 @@ ollama --version
 ```sh
 x-www-browser https://ollama.com/search
 ollama pull llama4
+ollama pull mistral
 ollama list
 ```
 
-## RAG
+### Ollama REST API commands
+```sh
+curl -X POST http://localhost:11434/api/generate -d '{
+  "model": "sqlcoder",
+  "prompt":"insert user_id=1, name='ehlo' into table users "
+ }'
+```
+
+## LLM update
+### RAG
+> RAG is a technique where an LLM retrieves relevant external data at query time  
+> and uses that information to generate responses.   
+> It does not modify the model’s parameters.
+### RAG Use Case:
+* Frequently changing data (e.g., documentation, support FAQs)
+* Domain-specific tasks where knowledge is stored outside the model
+
+### RAG Types
 * Agentic RAG - for creating scalable workflow of tasks
 * Enhancement tools: 
   * LangGraph
   * Phoenix Arize
 * G-RAG
+
+### [Fine tuning](./ai-tools-fine-tuning.md)
+> updating the weights/parameters of the base LLM  
+> using additional labeled data  
+> model extending
 
 ## MCP
 ![mcp sequence](https://i.ibb.co/s9ywRss4/mcp-workflow.jpg)

@@ -175,3 +175,10 @@ for each_app in `adb shell pm list packages -f | grep 'package:/data/app' | awk 
     echo ""
 done
 ```
+
+## Android applications
+### WhatsApp
+internal storage for documents 
+```sh
+mtp://${YOUR_PHONE}/Internal%20shared%20storage/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp%20Documents
+```
