@@ -21,47 +21,77 @@
 * [whisper - translate mp3 to text](https://github.com/openai/whisper)
   > `pip install -U openai-whisper` and then `whisper japanese.wav --language Japanese --task translate`
 
-## Large Language Model ( LLM )
-### models hub ready to use
+## Large Language Model ( LLM ) hubs
 * https://huggingface.co/models
 * https://ollama.com/library
 
-### Ollama
+## Large Language Model ( LLM ) local clients
+
+### [Ollama](https://ollama.com)
 #### ollama installation
 [linux installation](https://github.com/ollama/ollama/blob/main/docs/linux.md)
 ```sh
 curl -fsSL https://ollama.com/install.sh | sh
+```
+check installation
+```sh
 # /usr/local/bin/ollama
 # /etc/systemd/system/default.target.wants/ollama.service → /etc/systemd/system/ollama.service.
 # sudo find /usr/share/ollama/.ollama
+# ls /usr/share/ollama
 ```
 
+#### ollama first commands 
 ```sh
 x-www-browser http://127.0.0.1:11434/api/version
 journalctl -e -u ollama
 ollama --version
 ```
+
+#### ollama models 
 ```sh
 x-www-browser https://ollama.com/search
 ollama pull llama4
 ollama pull mistral
 ollama list
+
+# your models local storage
+find /usr/share/ollama/.ollama/models
 ```
 
-#### Ollama cli
+#### ollama models import/convert from: 
+1. [download your gguf file](https://huggingface.co/models?library=gguf)
+   > your file, for instance, is placed in: /models/mistral.gguf
+2. create Modelfile
+   ```sh
+   echo 'FROM llama2
+   PARAMETER model /models/mistral.gguf' > Modelfile
+   ```
+   ```sh
+   echo 'FROM /models/mistral.gguf' > Modelfile
+   ```
+3. create model
+   ```sh
+   MODEL_NEW_NAME=mistral-custom
+   ollama create $MODEL_NEW_NAME -f Modelfile
+   ollama run $MODEL_NEW_NAME
+   ```
+
+#### Ollama run/prompt via cli
 ```sh
 MODEL_NAME="sqlcoder"
 ollama run $MODEL_NAME
 ```
 
-#### Ollama REST API commands
+#### Ollama run/prompt via REST API commands
 ```sh
 curl -X POST http://localhost:11434/api/generate -d '{
   "model": "sqlcoder",
   "prompt":"insert user_id=1, name='ehlo' into table users "
  }'
 ```
-#### [Ollama python](https://pypi.org/project/ollama/)
+
+#### [Ollama run/prompt via python](https://pypi.org/project/ollama/)
 ```python
 # pip3 install --break-system-packages  ollama
 
@@ -74,10 +104,82 @@ response: ChatResponse = chat(model='sqlcoder', messages=[
     'content': "insert user_id=1, name='ehlo' into table users ",
   },
 ])
-print(response['message']['content'])
-# or access fields directly from the response object
-print(response.message.content)
+print(response['message']['content'])    # print(response.message.content)
+```
 
+### [Huggingface](https://huggingface.co)
+* [Browse compatible GGUF models](https://huggingface.co/models?library=gguf)
+#### [huggingface cli installation](https://huggingface.co/docs/huggingface_hub/en/guides/cli)
+1. cli installation
+   ```sh
+   pip3 install -U --break-system-packages "huggingface_hub[cli]"
+   huggingface-cli version   
+   
+   find ~/.cache/huggingface
+   huggingface-cli env
+   ```
+2. [create your token](https://huggingface.co/settings/tokens)
+3. set env variable 
+   ```sh
+   export HF_TOKEN="hf_xxxxxxxxxxxxx"
+   huggingface-cli whoami   
+   ```
+   or make 
+   ```sh
+   huggingface-cli login
+   ```
+
+### [llama cpp](https://github.com/ggerganov/llama.cpp)
+> local llama-server
+```sh
+# Use a local model file
+llama-cli -m my_model.gguf
+
+# Or download and run a model directly from Hugging Face
+llama-cli -hf ggml-org/gemma-3-1b-it-GGUF
+
+# Launch OpenAI-compatible API server
+llama-server -hf ggml-org/gemma-3-1b-it-GGUF
+```
+
+### [Jan ](https://jan.ai/)
+> client for running your local model
+
+### [Jellybox ](https://jellybox.com/)
+> client for running your local model
+
+### [RecurseChat ](https://recurse.chat/)
+> client for running your local model
+> mac only, $
+
+### [Msty ](https://msty.app/)
+> client for running locally AI models
+
+### [Sanctum ](https://sanctum.ai/)
+> client for running locally AI models
+
+### [LocalAI ](https://github.com/mudler/LocalAI)
+> client for running locally AI models
+ 
+### [vLLM ](https://docs.vllm.ai/)
+> client for running locally AI models
+
+### [node llama-cpp](https://node-llama-cpp.withcat.ai/)
+> client for running locally AI models
+
+
+### [MLX LM](https://github.com/ml-explore/mlx-lm)
+> cli client for running locally AI models
+```sh
+# pip install mlx-lm
+
+mlx_lm.chat
+mlx_lm.generate --prompt "who you are ?"
+```
+
+```sh
+ls ~/.local/bin/mlx*
+find ~/.cache/huggingface
 ```
 
 ## LLM update
