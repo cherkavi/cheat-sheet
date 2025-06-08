@@ -1,7 +1,6 @@
 # Collection of AI tools
-[my own AI cheat sheet](https://github.com/cherkavi/ai)
-:TODO: vector database  
-:TODO: https://github.com/explodinggradients/ragas  
+* [my own AI cheat sheet](https://github.com/cherkavi/ai)
+* :TODO: https://github.com/explodinggradients/ragas  
 
 ## AI platforms
 * [union](https://www.union.ai/)
