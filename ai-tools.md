@@ -182,15 +182,16 @@ find ~/.cache/huggingface
 ```
 
 ## LLM update
-### RAG
+### Retrieval Augemented Generation
 > RAG is a technique where an LLM retrieves relevant external data at query time  
 > and uses that information to generate responses.   
 > It does not modify the model’s parameters.
-### RAG Use Case:
+
+#### RAG Use Case:
 * Frequently changing data (e.g., documentation, support FAQs)
 * Domain-specific tasks where knowledge is stored outside the model
 
-### RAG Types
+#### RAG Types
 * Agentic RAG - for creating scalable workflow of tasks
 * Enhancement tools: 
   * LangGraph
