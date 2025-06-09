@@ -1,4 +1,6 @@
 # NodeJS cheat sheet
+## nodejs alternatives
+* [deno](https://deno.com/)
 
 ## installation
 * [install NodeJS](https://github.com/nodejs/help/wiki/Installation)
