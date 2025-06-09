@@ -1,5 +1,6 @@
 # Collection of AI tools
 * [my own AI cheat sheet](https://github.com/cherkavi/ai)
+* [vector DB comparison](https://superlinked.com/vector-db-comparison)
 * :TODO: https://github.com/explodinggradients/ragas  
 
 ## AI platforms
@@ -82,6 +83,7 @@ MODEL_NAME="sqlcoder"
 ollama run $MODEL_NAME
 ```
 
+#### [Ollama REST API commands](https://github.com/ollama/ollama/blob/main/docs/api.md)
 #### Ollama run/prompt via REST API commands
 ```sh
 curl -X POST http://localhost:11434/api/generate -d '{
