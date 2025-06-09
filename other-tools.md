@@ -137,6 +137,7 @@ encodedStr = str(encodedBytes, "utf-8")
 
 ## google rest api services, collaboration with google rest api service 
 [example of using via rest client postman](https://blog.postman.com/how-to-access-google-apis-using-oauth-in-postman/)
+
 ### Links 
 * [project main dashboard](https://console.cloud.google.com/home/dashboard)
 * [credentials ](https://console.cloud.google.com/apis/credentials)
@@ -147,6 +148,18 @@ encodedStr = str(encodedBytes, "utf-8")
   * [list files](https://developers.google.com/drive/api/reference/rest/v3/files/list)
 * [OAuth authentication for curl request](https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow)
 
+
+### google rest api token
+1. [activate Youtube REST API for your project](https://console.cloud.google.com/apis/api/youtube.googleapis.com)
+2. https://console.cloud.google.com/apis/credentials
+3. select "project"
+4. select "create credentials" 
+5. select "api key"
+6. restrict to Youtube
+!!! will be activated in ~20+ min
+
+
+### google gdrive rest api 
 ```sh
 GDRIVE_URL=https://www.googleapis.com
 
@@ -171,11 +184,21 @@ curl -X POST https://oauth2.googleapis.com/token --data ${json_body}
 ```
 
 ### google [youtube rest api](https://developers.google.com/youtube/v3)
+* [youtube rest api](https://developers.google.com/youtube/v3/getting-started)
+* [youtube api cost limit](https://developers.google.com/youtube/v3/determine_quota_cost)
+* [youtube quickstart api python](https://developers.google.com/youtube/v3/quickstart/python)
+
+#### google youtube rest api token
 ```sh
 # Cloud Console: Enable the YouTube Data API v3 for your project and get your API key.
-YOUR_VIDEO_ID=....
-YOUR_API_KEY=....
-curl -X GET https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${YOUR_VIDEO_ID}&key=${YOUR_API_KEY}
+YOUR_VIDEO_ID=....   # like I51ay99999 from https://www.youtube.com/watch?v=I51ay99999
+YOUR_API_KEY=$GOOGLE_API_TOKEN
+
+# youtube video info
+curl "https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=$YOUR_VIDEO_ID&key=$YOUR_API_KEY"
+curl "https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId=$YOUR_VIDEO_ID&key=$YOUR_API_KEY"  
+
+# Not possible to read Transcript from the video, that is not belong to you !!!
 ```
 
 ## captcha
