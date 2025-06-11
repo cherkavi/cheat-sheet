@@ -200,6 +200,13 @@ find ~/.cache/huggingface
   * Phoenix Arize
 * G-RAG
 
+#### Embeddings
+* chunk size
+  > 300+ has not sence
+  > 100 is more or less optimal
+* chunk overlaping 
+  > small effect, not more than 5 
+
 ### [Fine tuning](./ai-tools-fine-tuning.md)
 > updating the weights/parameters of the base LLM  
 > using additional labeled data  
