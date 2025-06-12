@@ -2230,7 +2230,7 @@ systemctl enable snapd.service
 systemctl start snapd.service
 ```
 
-### install version of app, install specific version, accessible application version
+### install version of app, install specific version, accessible application version, lib version, pkg show version
 ```sh
 sudo apt list -a [name of the package]
 sudo apt list -a kubeadm
