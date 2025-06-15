@@ -16,8 +16,8 @@
   * license
 
 ## fine tuning parameters:
-* LOw Ranked Adaptation
-  * Quantized LOw Ranked Adaptation
+* LORA - LOw Ranked Adaptation
+  * QLORA - Quantized LOw Ranked Adaptation
 * Learning Rate
   > size each step during the learing to reach out the goal ( distance )
 * Batch Size
@@ -39,13 +39,26 @@
 ```
 
 #### mlx train
-> https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3
+##### select one model, for instance:
+   > https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3
+##### run command like
 ```sh
 mlx_lm.lora --train \
 --model mistralai/Mistral-7B-Instruct-v0.2 \
---data path/to/jsonl-file \
+--data path/to/folder-with-files \
 --batch-size 2  # how much examples in each iteration 
-```
+```  
+where `path/to/folder-with-files` contains:
+* train.jsonl
+  > The model sees these examples and adjusts its internal parameters to minimize error on this data.
+* valid.jsonl 
+  > optional
+  > The model does not learn from this data, but you check its performance here during training to decide when to stop, which settings are best, etc.
+* test.jsonl 
+  > optional
+  > The model never sees this data during training or validation. It is only used once, after all training and tuning are done, to measure true, unbiased accuracy.
+
+ Directory with { files or the name of a Hugging Face dataset (e.g., 'mlx-community/wikisql')
 
 #### mlx train result
 ```sh
@@ -110,16 +123,49 @@ PARAMETER stop <|endoftext|>
 
 ### 2. create JSONLines file
 > each line - separate json document 
-```json:data.jsonl
-echo '
-{"prompt": "What is the capital of France?", "response": "Paris."}
-{"prompt": "What is 2 + 2?", "response": "4."}
-' > data.jsonl
+#### jsonl "mistral" model example:
+template
+```json
+{
+    "messages": 
+        [
+            {
+                "role": "user", 
+                "content": "YOUR QUESTION"
+            }, 
+            {
+                "role": "assistant", 
+                "content": "YOUR ANSWER"
+            }
+        ]
+}
 ```
-**Ideally you should create three files:**  
+dummy example
+```json:data.jsonl
+{"messages": [{"role": "user", "content": "What is AI?"},       {"role": "assistant", "content": "AI stands for Artificial Intelligence."}]}
+{"messages": [{"role": "user", "content": "Who wrote Hamlet?"}, {"role": "assistant", "content": "William Shakespeare wrote Hamlet."}]}
+```  
+
+#### jsonl possible extension
+your "question" can be more complex like (with description, steps, question parts):
+```json
+{"messages": [
+  {"role": "user", "content": "{\"description\": \"This function ....\", \"steps\": [\"Initialize ...\", \"Call ...\", \"Return ...\"], \"question\": \"How can I ... ?\"}"},
+  {"role": "assistant", "content": "You can ..."}
+]}
+```
+or even simpler
+```json
+{"messages": [
+  {"role": "user", "content": "description: This function ....\n\n steps:\n Initialize ...\n Call ...\n Return ...\n\n question: How can I ... ?}"},
+  {"role": "assistant", "content": "You can ..."}
+]}
+```
+
+#### Ideally you should create three files:
 | train.jsonl | Practice problems | learn from these               |  
 | valid.jsonl | Quizzes           | check progress while studying  |  
 | test.jsonl  | Final exam        | used to measure final ability  |  
 
-### go to:
-* [mlx train](#mlx-train)
+### 3. train
+#### [train with mlx](#mlx-train)
