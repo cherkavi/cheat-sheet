@@ -82,6 +82,8 @@ find /usr/share/ollama/.ollama/models
 ```sh
 MODEL_NAME="sqlcoder"
 ollama run $MODEL_NAME
+# ask question/prompt via cli
+ollama run $MODEL_NAME --input "how to ... "
 ```
 
 #### [Ollama REST API commands](https://github.com/ollama/ollama/blob/main/docs/api.md)
