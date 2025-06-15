@@ -12,7 +12,7 @@
 * each example should correspond to your use case
 * choose proper base model
   * model size ( consider to use: Lama 3.2:3b, 3.1.8b )
-    > "do not use a truck for pizze delivery"
+    > "do not use a truck for a pizza delivery"
   * license
 
 ## fine tuning parameters:

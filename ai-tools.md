@@ -1,6 +1,7 @@
 # Collection of AI tools
 * [my own AI cheat sheet](https://github.com/cherkavi/ai)
 * [vector DB comparison](https://superlinked.com/vector-db-comparison)
+  * [cosine simularity](https://en.wikipedia.org/wiki/Cosine_similarity)
 * :TODO: https://github.com/explodinggradients/ragas  
 
 ## AI platforms
@@ -202,7 +203,7 @@ find ~/.cache/huggingface
 
 #### Embeddings
 * chunk size
-  > 300+ has not sence
+  > 300+ has no sence
   > 100 is more or less optimal
 * chunk overlaping 
   > small effect, not more than 5 
