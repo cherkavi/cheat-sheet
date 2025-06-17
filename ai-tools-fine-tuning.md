@@ -166,26 +166,14 @@ PARAMETER stop <|endoftext|>
 > each line - separate json document 
 #### jsonl "mistral" model example:
 template
-```json
-{
-    "messages": 
-        [
-            {
-                "role": "user", 
-                "content": "YOUR QUESTION"
-            }, 
-            {
-                "role": "assistant", 
-                "content": "YOUR ANSWER"
-            }
-        ]
-}
+```jsonl
+{"role": "user", "content": "question1"}
+{"role": "assistant", "content": "answer1"}
+{"role": "user", "content": "question2"}
+{"role": "assistant", "content": "answer2"}
+{"role": "user", "content": "question3"}
+{"role": "assistant", "content": "answer3"}
 ```
-dummy example
-```json:data.jsonl
-{"messages": [{"role": "user", "content": "What is AI?"},       {"role": "assistant", "content": "AI stands for Artificial Intelligence."}]}
-{"messages": [{"role": "user", "content": "Who wrote Hamlet?"}, {"role": "assistant", "content": "William Shakespeare wrote Hamlet."}]}
-```  
 
 #### jsonl possible extension
 your "question" can be more complex like (with description, steps, question parts):
