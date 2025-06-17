@@ -43,11 +43,19 @@
    > https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3
 ##### run command like
 ```sh
+# huggingface-cli whoami  
+
+### model 
+## remote
+# --model mistralai/Mistral-7B-Instruct-v0.3 \
+## local folder
+# --model $HOME/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.3/snapshots/e0bc86c23ce5aae1db576c8cca6f06f1f73af2db \
+
 mlx_lm.lora --train \
 --model mistralai/Mistral-7B-Instruct-v0.2 \
 --data path/to/folder-with-files \
 --batch-size 2  # how much examples in each iteration 
-```  
+```
 where `path/to/folder-with-files` contains:
 * train.jsonl
   > The model sees these examples and adjusts its internal parameters to minimize error on this data.
@@ -57,13 +65,41 @@ where `path/to/folder-with-files` contains:
 * test.jsonl 
   > optional
   > The model never sees this data during training or validation. It is only used once, after all training and tuning are done, to measure true, unbiased accuracy.
-**Issues with running:**
+
+##### **Issues with running:**
 * if you see: `You must have access to it and be authenticated to access it. Please log in.`  
   > [install cli and login to huggingface](https://github.com/cherkavi/cheat-sheet/blob/master/ai-tools.md#huggingface)
 * if you see: `Access to model mistralai/Mistral-7B-Instruct-v0.2 is restricted and you are not in the authorized list. Visit https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2 to ask for access.`
   > https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3, login and click button "agree"
 * in case of: `Connection broken: IncompleteRead`
   > execute command one more time
+* in case of: `ValueError: Training set not found or empty. Must provide training set for fine-tuning.`
+  > check path to folder! and file train.jsonl inside
+
+* resolve via huggingface
+```sh
+huggingface-cli download mistralai/Mistral-7B-Instruct-v0.3
+huggingface-cli scan-cache -vvv
+# huggingface-cli delete-cache 
+```
+
+* manual run of the dataset loading
+  * `None of PyTorch, TensorFlow >= 2.0, or Flax have been found.`
+  * `Dataset 'mistralai/Mistral-7B-Instruct-v0.3' doesn't exist on the Hub or cannot be accessed.`
+```sh
+pip3 install -U --break-system-packages "datasets"
+pip3 install -U --break-system-packages "tensorflow" 
+# pip3 install -U --break-system-packages "tensorflow-gpu"
+```
+```py
+# python3
+from transformers import Trainer, TrainingArguments, AutoModelForSequenceClassification, AutoTokenizer
+from datasets import load_dataset
+import os
+home_directory = os.path.expanduser("~")
+dataset = load_dataset(home_directory+"/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.3")
+print(dataset)
+```
 
 #### mlx train result
 ```sh
