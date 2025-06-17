@@ -62,6 +62,8 @@ where `path/to/folder-with-files` contains:
   > [install cli and login to huggingface](https://github.com/cherkavi/cheat-sheet/blob/master/ai-tools.md#huggingface)
 * if you see: `Access to model mistralai/Mistral-7B-Instruct-v0.2 is restricted and you are not in the authorized list. Visit https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2 to ask for access.`
   > https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3, login and click button "agree"
+* in case of: `Connection broken: IncompleteRead`
+  > execute command one more time
 
 #### mlx train result
 ```sh
