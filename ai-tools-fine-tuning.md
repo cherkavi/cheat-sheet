@@ -185,12 +185,9 @@ PARAMETER stop <|endoftext|>
 #### jsonl "mistral" model example:
 template
 ```jsonl
-{"role": "user", "content": "question1"}
-{"role": "assistant", "content": "answer1"}
-{"role": "user", "content": "question2"}
-{"role": "assistant", "content": "answer2"}
-{"role": "user", "content": "question3"}
-{"role": "assistant", "content": "answer3"}
+{"messages":[{"role": "user", "content": "question1"},{"role": "assistant", "content": "answer1"}]}
+{"messages":[{"role": "user", "content": "question2"},{"role": "assistant", "content": "answer2"}]}
+{"messages":[{"role": "user", "content": "question3"},{"role": "assistant", "content": "answer3"}]}
 ```
 
 #### jsonl possible extension
