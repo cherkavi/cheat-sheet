@@ -66,6 +66,22 @@ where `path/to/folder-with-files` contains:
   > optional
   > The model never sees this data during training or validation. It is only used once, after all training and tuning are done, to measure true, unbiased accuracy.
 
+##### jsonl data checker
+```py
+# export train_file=train_file.json
+# python3
+import json
+import os
+path = os.environ.get("train_file")
+
+with open(path, "r") as fid:
+    data=[]
+    for l in fid:
+        print(l)
+        data.append(json.loads(l))
+    # print(data)
+```
+
 ##### **Issues with running:**
 * if you see: `You must have access to it and be authenticated to access it. Please log in.`  
   > [install cli and login to huggingface](https://github.com/cherkavi/cheat-sheet/blob/master/ai-tools.md#huggingface)
