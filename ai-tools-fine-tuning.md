@@ -58,7 +58,8 @@ where `path/to/folder-with-files` contains:
   > optional
   > The model never sees this data during training or validation. It is only used once, after all training and tuning are done, to measure true, unbiased accuracy.
 
- Directory with { files or the name of a Hugging Face dataset (e.g., 'mlx-community/wikisql')
+if you see: `You must have access to it and be authenticated to access it. Please log in.`  
+then need to [install cli and login to huggingface](https://github.com/cherkavi/cheat-sheet/blob/master/ai-tools.md#huggingface)
 
 #### mlx train result
 ```sh
