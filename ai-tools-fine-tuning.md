@@ -43,6 +43,14 @@
    > https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3
 ##### run command like
 [mlx_lm.lora doc](https://github.com/ml-explore/mlx-lm/blob/main/mlx_lm/LORA.md#Data)  
+
+check ability to train your model
+```sh
+# python3
+import mlx
+mlx.core.metal.is_available()
+```
+
 ```sh
 # huggingface-cli whoami  
 
@@ -51,7 +59,6 @@
 # --model mistralai/Mistral-7B-Instruct-v0.3 \
 ## local folder
 # --model $HOME/.cache/huggingface/hub/models--mistralai--Mistral-7B-Instruct-v0.3/snapshots/e0bc86c23ce5aae1db576c8cca6f06f1f73af2db \
-
 
 mlx_lm.lora --train \
 --model mistralai/Mistral-7B-Instruct-v0.2 \
