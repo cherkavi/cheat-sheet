@@ -57,9 +57,11 @@ where `path/to/folder-with-files` contains:
 * test.jsonl 
   > optional
   > The model never sees this data during training or validation. It is only used once, after all training and tuning are done, to measure true, unbiased accuracy.
-
-if you see: `You must have access to it and be authenticated to access it. Please log in.`  
-then need to [install cli and login to huggingface](https://github.com/cherkavi/cheat-sheet/blob/master/ai-tools.md#huggingface)
+**Issues with running:**
+* if you see: `You must have access to it and be authenticated to access it. Please log in.`  
+  > [install cli and login to huggingface](https://github.com/cherkavi/cheat-sheet/blob/master/ai-tools.md#huggingface)
+* if you see: `Access to model mistralai/Mistral-7B-Instruct-v0.2 is restricted and you are not in the authorized list. Visit https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2 to ask for access.`
+  > https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3, login and click button "agree"
 
 #### mlx train result
 ```sh
