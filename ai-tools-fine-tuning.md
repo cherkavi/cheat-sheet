@@ -15,9 +15,14 @@
     > "do not use a truck for a pizza delivery"
   * license
 
-## fine tuning parameters:
+## fine tuning types/approaches:
+* Full funetuning
+  > rewrite model everything
 * LORA - LOw Ranked Adaptation
+  > add additional information granurarly 
   * QLORA - Quantized LOw Ranked Adaptation
+
+## fine tuning parameters:
 * Learning Rate
   > size each step during the learing to reach out the goal ( distance )
 * Batch Size
