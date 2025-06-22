@@ -1,4 +1,9 @@
 # Drill cheat sheet
+## alternatives
+* [Trino](https://trino.io/)
+  * [PrestoSQL](https://prestodb.io/)
+
+
 ## official doc
 * [core modules](http://drill.apache.org/docs/core-modules/)
 * [how to use docker](https://drill.apache.org/docs/use/)
