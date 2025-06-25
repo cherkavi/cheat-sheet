@@ -115,6 +115,27 @@ PACKAGE_NAME=electrum
 sudo -H pip3 install https://download.electrum.org/4.1.2/Electrum-4.1.2.tar.gz#egg=${PACKAGE_NAME}[fast]
 ```
 
+### pip install from remote index
+```sh
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+```
+
+### pip install artifact from git
+```
+pip install git+https://github.com/django-extensions/django-extensions
+pip install git+https://github.com/django-extensions/django-extensions.git
+pip install -e git+https://github.com/django-extensions/django-extensions.git#egg=django-extensions
+pip install https://github.com/django/django/archive/stable/1.7.x.zip
+pip install git+ssh://git@github.com/myuser/foo.git@my_version
+```
+
+### pip install package to specific folder
+```
+pip install --target=/home/user/my/python/packages package_name
+export PYTHONPATH=$PYTHONPATH:"/home/ubuntu/.local/lib/python3.8/site-packages/gunicorn"
+```
+
+
 ### setup.py
 #### install
 ```sh
@@ -242,20 +263,6 @@ enum34==1.1.6
 flask-restful==0.3.7
 ```
 
-### install artifact from git
-```
-pip install git+https://github.com/django-extensions/django-extensions
-pip install git+https://github.com/django-extensions/django-extensions.git
-pip install -e git+https://github.com/django-extensions/django-extensions.git#egg=django-extensions
-pip install https://github.com/django/django/archive/stable/1.7.x.zip
-pip install git+ssh://git@github.com/myuser/foo.git@my_version
-```
-
-### install package to specific folder
-```
-pip install --target=/home/user/my/python/packages package_name
-export PYTHONPATH=$PYTHONPATH:"/home/ubuntu/.local/lib/python3.8/site-packages/gunicorn"
-```
 ### load package from specific folder inline
 ```
 import sys
