@@ -153,6 +153,33 @@ ollama run mistral-update
 > fast, works in limit resources
 > Unsloth is a library that enables fast and memory-efficient fine-tuning of large language models, such as LLaMA 3, Qwen2, Mistral, and more — especially with QLoRA.
 - **GitHub**: [https://github.com/unslothai/unsloth](https://github.com/unslothai/unsloth)
+#### unsloth installation
+```sh
+temp; cd jira-stories
+
+python_env=unsloth-env;echo $python_env
+# virtualenv $python_env
+source $python_env/bin/activate
+
+# source envname/bin/activate
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+pip install git+https://github.com/unslothai/unsloth.git
+pip install bitsandbytes
+pip install unsloth_zoo
+```
+
+#### unsloth launch
+```python
+from unsloth import FastLanguageModel
+
+model, tokenizer = FastLanguageModel.from_pretrained(    
+    model_name="unsloth/llama-3-8b-Instruct",  # model will be downloaded from HuggingFace and saved locally: $HOME/.cache/huggingface/hub/
+    max_seq_length=2048,
+    # llm_int8_enable_fp32_cpu_offload=True,     # dispatch the model on the CPU or the disk while keeping these modules in 32-bit
+    load_in_4bit=True                          # Reduces memory usage significantly
+)
+```
 
 ### 🦎 [Axolotl](https://axolotl.ai)
 > a lot of parameters - you should know what you are doing 
