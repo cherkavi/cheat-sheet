@@ -650,6 +650,47 @@ body("brands.size()")
             -Dsonar.coverage.jacoco.xmlReportPaths=target/jacoco-report/jacoco.xml
 ```
 
+## XA Transaction, Two phase Commit 
+
+### XA transaction java side
+maven dependency
+```xml
+<dependency>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-narayana-jta</artifactId>
+</dependency>
+```
+
+application properties
+```properties
+quarkus.datasource.jdbc.transactions=xa
+```
+
+jdbc drivers
+* PostgreSQL: quarkus.datasource.jdbc.driver=org.postgresql.xa.PGXADataSource
+* Oracle: quarkus.datasource.jdbc.driver=oracle.jdbc.xa.client.OracleXADataSource
+
+java usage
+```java
+@Transactional
+public void makeChangesInBothConnections() {
+    // PostgreSQL : records manipulation
+    // Oracle : records manipulation
+}
+```
+
+### XA transaction DB side
+PostgreSQL
+```sql
+-- size of connection pool 
+show MAX_CONNECTIONS;
+-- should be less than MAX_CONNECTIONS 
+-- * to always have a free slot from "MAX_CONNECTIONS"
+-- * for each transaction potentionally have ability to start XA transaction (start prepared phase)
+show MAX_PREPARED_TRANSACTIONS;
+```
+
+
 ## Hibernate
 ### @Modifying
 ```
