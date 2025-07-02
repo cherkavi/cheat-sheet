@@ -41,7 +41,19 @@ for each_file in `find $CHROME_CONFIG | grep manifest.json$`; do
     cat $each_file | grep '"name": '
 done
 ```
-## application 
+## chrome application 
+Google Chrome
+```sh
+x-www-browser chrome://app-settings/dnfpoenibinnbbckgbhendmlljoobcfg
+
+APP_ID=dnfpoenibinnbbckgbhendmlljoobcfg
+
+ls "$HOME/.config/google-chrome/Default/Web Applications/Manifest Resources/$APP_ID"
+cat $HOME/.gnome/apps/chrome-$APP_ID-Default.desktop
+cat $HOME/Desktop/chrome-$APP_ID-Default.desktop
+```
+
+Chromium 
 ```sh
 ## folder
 ll "$HOME/snap/chromium/common/chromium/Default/Web Applications/Manifest Resources/"
