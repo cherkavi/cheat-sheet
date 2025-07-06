@@ -55,3 +55,71 @@ echo '
 }
 ' >> /etc/firefox/policies/policies.json
 ```
+
+## firefox create extension
+
+### minimal set of files
+
+```js:content.js
+(function() {
+    const box = document.createElement('div');
+    box.innerHTML = "<b>hello</b>";
+    document.body.appendChild();
+})
+```
+
+```sh
+# generate id 
+uuidgen
+
+# 0ee3ef96-92c9-4486-ae32-bf42c2e814b4
+```
+
+```json:manifest.json
+{
+  "manifest_version": 2,
+  "name": "Some info",
+  "version": "1.0",
+  "applications":{
+    "gecko": {
+        "id": "{0ee3ef96-92c9-4486-ae32-bf42c2e814b4}"
+    }
+  },
+  "description": "Finds and displays phrases like 'baujahr 1985' on the page.",
+  "permissions": [],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
+```
+```sh
+zip 1.zip *
+mv 1.zip '{0ee3ef96-92c9-4486-ae32-bf42c2e814b4}.xpi'
+```
+
+### plugin installation
+#### temporary
+```sh
+firefox about:debugging#/runtime/this-firefox
+```
+#### via UI
+```sh
+firefox about:config
+```
+```properties
+xpinstall.signatures.required=false
+```
+```sh
+about:addons
+```
+#### copy to folder
+```sh
+locate firefox | grep '.mozilla' | grep extensions$
+
+# $HOME/snap/firefox/common/.mozilla/firefox/{profile-id}.{profile-name}/extensions/
+cp '{0ee3ef96-92c9-4486-ae32-bf42c2e814b4}.xpi' ${FIREFOX_EXTENSIONS_FOLDER}
+```
