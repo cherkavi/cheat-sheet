@@ -91,8 +91,15 @@ example
     * [mermaid cli](https://github.com/mermaid-js/mermaid-cli)
     * [mermaid architecture icons logos:s3](https://icones.js.org/collection/logos) or [mermaid architecture icons logos:s3](https://icon-sets.iconify.design/logos/)
       * https://github.com/gilbarbara/logos
+    * [font awesome fa:fa-user](https://fontawesome.com/icons)
     * [mermaid flowchart shapes](https://mermaid.js.org/syntax/flowchart.html#complete-list-of-new-shapes)
-  * [fond awesome fa:fa-user](https://fontawesome.com/icons)
+    * [mermaid theme: default, neutral, dark, forest, base](https://mermaid.js.org/config/theming.html#available-themes)
+      ```mermaid
+---
+config:
+  theme: 'default'
+---
+      ```
   * [zenuml](https://docs.zenuml.com/)
   * [kroki - collection of diagrams](https://kroki.io/)
 * [markdown editor realtime collaboration](https://hackmd.io/)
