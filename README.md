@@ -87,8 +87,9 @@ example
 
 ### markdown
 * [diagrams within markdown](https://mermaid.js.org/syntax/flowchart.html)
-  * [mermaid live](https://mermaid.live/)
+  * [mermaid live](https://mermaid.live/), [mermaid playground](https://www.mermaidchart.com/play)
     * [mermaid cli](https://github.com/mermaid-js/mermaid-cli)
+      > Convert Mermaid mmd Diagram File To SVG
     * [mermaid architecture icons logos:s3](https://icones.js.org/collection/logos) or [mermaid architecture icons logos:s3](https://icon-sets.iconify.design/logos/)
       * https://github.com/gilbarbara/logos
     * [font awesome fa:fa-user](https://fontawesome.com/icons)
