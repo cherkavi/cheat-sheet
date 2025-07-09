@@ -101,6 +101,11 @@ rectangle "Information" <<$archimate/business-collaboration>> #Business
 rectangle "File" <<$archimate/technology-artifact>> #Technology
 ```
 ### include elements from standard libraries
+```plantuml
+@startuml
+stdlib
+@enduml
+```
 ```sh
 git clone https://github.com/plantuml/plantuml-stdlib.git
 cd plantuml-stdlib
@@ -200,6 +205,13 @@ note right of a /' top, left, right, bottom, '/
   line
   description
 end note
+```
+### [links](https://plantuml.com/link)
+```plantuml
+@startuml
+state state1 [[http://plantuml.com/link]]
+state state2 [[http://plantuml.com/link {this is a tooltip\nand a link to "plantuml/state"} link in plantuml ]]
+@enduml
 ```
 ### colors
 ```plantuml
