@@ -370,6 +370,11 @@ SELECT pg_stat_activity.pid FROM pg_stat_activity WHERE pg_stat_activity.datname
 SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'postgres' AND pid != pg_backend_pid();
 ```
 
+### max amount of parallel transactions/sessions
+```sql
+SHOW max_connections;
+```
+
 ### amount of prepared XA transactions
 ```sql
 show max_prepared_transactions;
