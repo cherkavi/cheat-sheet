@@ -1,6 +1,9 @@
 
 # Oracle cheat sheet
-[jdbc driver to download](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
+## links
+* [jdbc driver to download](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
+* [linux client local installation]
+* [oracle docker]()
 
 ## ddl er diagrams schema visualizer
 * [drawdb](https://drawdb.vercel.app)
@@ -9,6 +12,14 @@
 * [dbdiagram](https://dbdiagram.io)
 
 ## oracle cli, sql developer command line console cli
+### linux client
+```sh
+sudo apt-get update; sudo apt-get install libaio1 wget unzip
+wget https://download.oracle.com/otn_software/linux/instantclient/2340000/instantclient-basiclite-linux.x64-23.4.0.24.05.zip
+unzip instantclient-basiclite-linux.x64-23.4.0.24.05.zip
+# sudo mv instantclient_23_4 /opt/oracle  # libclntsh.so
+# echo "export LD_LIBRARY_PATH=$(pwd)/instantclient_23_4:$LD_LIBRARY_PATH" >> $GITHUB_ENV 
+```
 ### sqlcl
 ```sh
 sudo apt -y install sqlcl-package
