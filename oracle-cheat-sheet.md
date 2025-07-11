@@ -2,7 +2,7 @@
 # Oracle cheat sheet
 ## links
 * [jdbc driver to download](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
-* [linux client local installation]
+* [linux client local installation](https://github.com/cherkavi/docker-images/blob/master/oracle/Dockerfile)
 * [oracle docker]()
 
 ## ddl er diagrams schema visualizer
