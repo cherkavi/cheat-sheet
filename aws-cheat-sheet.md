@@ -494,6 +494,15 @@ aws s3 cp test.txt s3://a-bucket/test.txt --metadata '{"x-amz-meta-cms-id":"3453
 # read metadata
 aws s3api head-object --bucket a-bucketbucket --key img/dir/legal-global/zach-walsh.jpeg
 
+## upload huge files, multipart upload
+split -b 20M -d $FILENAME $FILENAME-part
+aws s3api create-multipart-upload --bucket $AWS_BUCKET_NAME --key $FILENAME --checksum-algorithm crc32 | jq .UploadId
+aws s3api upload-part             --bucket $AWS_BUCKET_NAME --key $FILENAME --checksum-algorithm crc32 --upload-id ${UploadId} \
+--part-number 1 --body $FILENAME-part00
+
+# get attributes
+aws s3api get-object-attributes --bucket $AWS_BUCKET_NAME --key $FILENAME --object-attributes Checksum,ObjectParts
+
 # copy from s3 to s3
 aws s3 cp s3://$AWS_BUCKET_NAME/index.html s3://$AWS_BUCKET_NAME/index2.html
 
@@ -511,24 +520,26 @@ aws s3 sync /path/to/some/folder s3://my-bucket-name/some/folder --acl public-re
 # sync folder with remote s3 bucket and remove all not existing files locally but existing in bucket
 aws s3 sync s3://my-bucket-name/some/folder /path/to/some/folder --delete
 # list of all objects
-aws s3 ls --recursive s3://my-bucket-name 
+aws s3 ls --recursive s3://$AWS_BUCKET_NAME
 # list of all object by specified path ( / at the end must be )
-aws s3 ls --recursive s3://my-bucket-name/my-sub-path/
+aws s3 ls --recursive s3://$AWS_BUCKET_NAME/my-sub-path/
 # download file
-aws s3api head-object --bucket my-bucket-name --key file-name.with_extension
+aws s3api head-object --bucket $AWS_BUCKET_NAME --key $FILE_KEY
+aws s3api head-object --bucket $AWS_BUCKET_NAME --key $FILE_KEY --checksum-mode ENABLED
+
 # move file 
 aws s3 mv s3://$AWS_BUCKET_NAME/index.html s3://$AWS_BUCKET_NAME/index2.html
 # remove file remove object
 aws s3 rm  s3://$AWS_BUCKET_NAME/file-name.with_extension 
-aws s3api delete-object --bucket $AWS_BUCKET_NAME --key file-name.with_extension 
+aws s3api delete-object --bucket $AWS_BUCKET_NAME --key $FILE_KEY
 # remove all objects
 aws s3 rm s3://$AWS_S3_BUCKET_NAME --recursive --exclude "account.json" --include "*"
 #!!! using only '--include "test-file*"' - will remove all files, not only specified in include section !!!, use instead of:
 
 # upload file and make it public
-aws s3api put-object-acl --bucket <bucket name> --key <path to file> --acl public-read
+aws s3api put-object-acl --bucket $AWS_BUCKET_NAME --key $FILE_KEY --acl public-read
 # read file 
-aws s3api get-object --bucket <bucket-name> --key=<path on s3> <local output file>
+aws s3api get-object --bucket $AWS_BUCKET_NAME --key $FILE_KEY <local output file>
 
 # read version of object on S3
 aws s3api list-object-versions --bucket $AWS_BUCKET_NAME --prefix $FILE_KEY
