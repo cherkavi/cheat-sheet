@@ -1287,6 +1287,8 @@ git push --force
 
 ## gh cli command line tool
 ```sh
+sudo apt install gh
+
 gh auth login --hostname $GIT_HOST
 gh auth status
 
