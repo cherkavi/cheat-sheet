@@ -674,6 +674,12 @@ git reset --soft origin/master
 git diff 
 ```
 
+### fetch pull from another repo 
+```sh
+# git remote -v
+git pull $remote_name
+```
+
 ### using authentication token personal access token, git remote set, git set remote
 example of using github.com
 ```sh
