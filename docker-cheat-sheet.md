@@ -1376,8 +1376,7 @@ docker volume rm typo3_db_data
 ```
 
 
-[RKT](https://coreos.com/rkt/docs/latest/)
-======
+# [RKT](https://coreos.com/rkt/docs/latest/)
 * [getting started fastly](https://coreos.com/blog/getting-started-with-rkt-1-0.html)
 * [gettings started](https://coreos.com/rkt/docs/latest/getting-started-guide.html)
 * [documenation](https://coreos.com/rkt/docs/latest/)
@@ -1390,3 +1389,9 @@ docker volume rm typo3_db_data
 sudo apt install podman
 ```
 # [Buildah](https://github.com/containers/buildah)
+
+
+# Kaniko
+> the tool to build container images from a Dockerfile without needing a Docker daemon
+* [how to install it in K8S](https://cloud.google.com/blog/products/containers-kubernetes/introducing-kaniko-build-container-images-in-kubernetes-and-google-container-builder-even-without-root-access)
+* [github](https://github.com/GoogleContainerTools/kaniko)
