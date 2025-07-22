@@ -91,9 +91,34 @@ where index_cn.field_type != index_de.field_type
 .exit
 ```
 
-## sqlite import sql write to db
+## sqlite import, read from file, write to db
+### read data from command line
 ```sh
 cat src/scripts.sql | sqlite3 src/db.sqlite
+```
+### read data from sql
+```sql
+INSERT INTO authors (id, name) VALUES (1, 'Author One');
+INSERT INTO authors (id, name) VALUES (2, 'Author Two');
+INSERT INTO authors (id, name) VALUES (3, 'Author Three');
+
+INSERT INTO books (id, title, author_id) VALUES (1, 'Book One', 1);
+INSERT INTO books (id, title, author_id) VALUES (2, 'Book Two', 1);
+INSERT INTO books (id, title, author_id) VALUES (3, 'Book Three', 1);
+INSERT INTO books (id, title, author_id) VALUES (4, 'Book Four', 2);
+INSERT INTO books (id, title, author_id) VALUES (5, 'Book Four', 99);
+```
+```sh
+sqlite3 test_database.db
+```
+```sql
+.read src/create_tables.sql
+.read src/insert_data.sql
+```
+```sql
+SELECT a.id, a.name, b.id, b.title FROM authors a inner JOIN books b ON a.id = b.author_id;
+SELECT a.id, a.name, b.id, b.title FROM authors a left  JOIN books b ON a.id = b.author_id;
+SELECT a.id, a.name, b.id, b.title FROM authors a full  JOIN books b ON a.id = b.author_id;
 ```
 
 ## constraint example
