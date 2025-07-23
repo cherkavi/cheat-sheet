@@ -12,3 +12,7 @@ GRAFANA_URL=https://$GRAFANA_HOST
 TOKEN=866d56cc....
 curl -X GET -H "Authorization: Bearer $TOKEN" ${GRAFANA_URL}/api/users?perpage=10&page=1
 ```
+
+## traces
+* traceql
+* instrumentation lib --> Agent ( emitter ) --> Temp ( DB, collector ) --> Grafana ( visual )
