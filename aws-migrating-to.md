@@ -197,4 +197,9 @@ aws rds describe-db-instances --db-instance-identifier ghost-db-mysql --region <
 > pay attention to Parameter Store  
 
 ## Systems Manager Parameter Store
-> Primarily used for storing configuration data and parameters ( database connection strings, passwords, license codes )  
+> Primarily used for storing configuration data and parameters ( database connection strings, passwords, license codes )
+
+## Lessons learned
+* Latency between onPremise and AWS services
+* Ingress/Egress is not a free
+* Oracle Exadata is not an Oracle 
