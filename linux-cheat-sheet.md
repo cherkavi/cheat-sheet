@@ -2541,6 +2541,7 @@ SOME_DATA="my_personal_value"
 curl -X POST http://localhost:8983/solr/collection1/update?commit=true -H "Content-Type: application/json" --data-binary '{"add":"'$SOME_DATA'"}'
 
 # or with data from file
+curl -X POST http://localhost:8983/test -H "Content-Type: application/json" --data        @/path/to/file.json
 curl -X POST http://localhost:8983/test -H "Content-Type: application/json" --data-binary '@/path/to/file.json'
 
 # or with multipart body
