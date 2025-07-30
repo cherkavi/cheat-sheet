@@ -24,6 +24,8 @@ curl -H "Authorization: Bearer ${JIRA_TOKEN}" -X GET ${JIRA_URL}/rest/api/2/myse
 curl -H "Authorization: Bearer ${JIRA_TOKEN}" -X GET ${JIRA_URL}/rest/agile/1.0/board/66453 | jq .
 
 curl -H "Authorization: Bearer $JIRA_TOKEN" $JIRA_URL/rest/api/latest/issue/SSBBCC-2050?expand=renderedFields | jq .
+# expand=*all
+# expand=renderedFields,names,schema,transitions,operations,editmeta,changelog,fields,attachment,comment,versionedRepresentations
 curl -H "Authorization: Bearer $JIRA_TOKEN" $JIRA_URL/rest/api/latest/issue/SSBBCC-2050?fields=status | jq .fields.status.name
 curl -H "Authorization: Bearer $JIRA_TOKEN" $JIRA_URL/rest/api/latest/issue/SSBBCC-2050?fields=summary
 ```
