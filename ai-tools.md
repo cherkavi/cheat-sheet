@@ -226,6 +226,10 @@ find ~/.cache/huggingface
 - [Officially supported servers](https://github.com/modelcontextprotocol/servers)
 - [MCP Core Architecture](https://modelcontextprotocol.io/docs/concepts/architecture)
 
+## Documents retrieval, documents recognizing ocr and parsing
+* [compari](https://github.com/illuin-tech/colpali)
+* [docling](https://github.com/docling-project/docling)
+
 ## Find out
 * Text2SQL
 * Quantization

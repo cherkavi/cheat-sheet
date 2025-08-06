@@ -1,4 +1,5 @@
 # cheat sheet
+[![Chat with Dosu](https://dosu.dev/dosu-chat-badge.svg)](https://app.dosu.dev/ask)
 
 ## other cheat sheets:
 * [cheat sheet for enterprise architects](https://github.com/cherkavi/enterprise-architect-toolbox/tree/main/)
