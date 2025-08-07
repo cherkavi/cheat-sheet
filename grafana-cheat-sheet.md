@@ -13,6 +13,7 @@
   > can store metrics from Prometheus, Graphite
 * Loki - open source log aggregator
   > can store logs to S3, Google Cloud
+  > [how to run faster loki queries](https://grafana.com/blog/2023/07/05/how-to-run-faster-loki-metric-queries-with-more-accurate-results/)
 * Tempo - open source tracing backend
   > can be used with: OpenTelemetry, Jaeger, Zipkin ...
 
@@ -54,6 +55,20 @@ A[Application
 * Data Sources
 * Applications
 * Panels
+
+## LogQL
+### general
+<img width="1489" height="752" alt="ksnip_20250807-145708" src="https://github.com/user-attachments/assets/fbe325cd-d4f1-433e-b6ec-11dffb4b8767" />
+### aggregation operators
+* sum
+* avg
+* min
+* max
+* stddev
+* stdvar
+* count
+* topk
+* bottomk
 
 ## Docker images
 * [standalone grafana](https://github.com/cherkavi/docker-images/blob/master/grafana/README.md)
