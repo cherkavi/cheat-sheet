@@ -16,6 +16,8 @@
   > [how to run faster loki queries](https://grafana.com/blog/2023/07/05/how-to-run-faster-loki-metric-queries-with-more-accurate-results/)
 * Tempo - open source tracing backend
   > can be used with: OpenTelemetry, Jaeger, Zipkin ...
+* [Beyla](https://grafana.com/oss/beyla-ebpf/) - Instrumentation (application observability)
+  > [beyla git](https://github.com/grafana/beyla)
 
 ## [Grafana sources](https://grafana.com/grafana/plugins)
 ```mermaid
