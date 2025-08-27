@@ -220,6 +220,40 @@ find ~/.cache/huggingface
 
 ## MCP
 ![mcp sequence](https://i.ibb.co/s9ywRss4/mcp-workflow.jpg)
+```mermaid
+graph LR
+    U[user]
+
+    subgraph mcp_host
+        MH[mcp host]
+    end
+
+    subgraph LLM
+        L[LLM]
+    end
+
+    subgraph mcp_server
+        MS[mcp server]
+    end
+
+    subgraph External Systems
+        A[API]
+        D[DB]
+        F[File System]
+    end
+
+    U -- 1 --> MH
+    MH -- 2.get list of tools --> MS
+    MH -- 3.request + tools --> L
+    L -- 4.selected tool --> MH
+    MH -- 5.use tool --> MS
+    MH -- 6.msp response --> L
+    MH -- 7.response --> U
+    MS -- accesses --> A
+    MS -- accesses --> D
+    MS -- accesses --> F
+    
+```
 - [Model Context Protocol documentation](https://modelcontextprotocol.io)
 - [Model Context Protocol specification](https://spec.modelcontextprotocol.io)
 - [Python SDK GitHub repository](https://github.com/modelcontextprotocol/python-sdk)
