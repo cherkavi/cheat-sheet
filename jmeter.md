@@ -44,3 +44,12 @@ jmeter -n -t archiving_post_test_plan.jmx -JARCHIVING_HOST="$ARCHIVING_HOST" -JB
             <stringProp name="ThreadGroup.ramp_time">1</stringProp>
             <boolProp name="ThreadGroup.scheduler">true</boolProp>            
 ```
+
+## collaboration with running jmeter instance
+> only with jmeter-server ( not with jmeter -n instance )
+```sh
+echo Shutdown | nc localhost 4445
+echo StopTestNow | nc localhost 4445
+echo ThreadDump | nc localhost 4445
+echo HeapDump | nc localhost 4445 -O 8
+```
