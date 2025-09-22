@@ -425,8 +425,11 @@ PropertyConfigurator.configure(props);
 
 ### Oracle connection
 ```java
+Class.forName("oracle.jdbc.OracleDriver");
+
 // METHOD #1 - Using no service
 String dbURL1 = "jdbc:oracle:thin:ubs_client_connect_check/mypassword@tldr.ubsgroup.net:1530:tstdha01";
+// String url = String.format("jdbc:oracle:thin:@%s:%s:%s", oracleHost, oraclePort, oracleService);
 conn1 = DriverManager.getConnection(dbURL1);
 if (conn1 != null) {
     conn1.setClientInfo("OCSID.MODULE", "Connection 1 - NO Service");
