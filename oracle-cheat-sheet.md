@@ -58,12 +58,19 @@ set long 200000
 set pages 0
 column txt format a120
 ```
-```
+#### capture/catch/write output result of sql query to file
+```sql
 set heading off
 spool out.txt
 spool off
 ```
-capture/catch/write output of sql query to file via terminal
+```sql
+set heading off
+set sqlformat csv
+spool out.csv
+spool off
+```
+#### capture/catch/write output result of sql query to file via terminal 
 ```sh
 script sql-command.output
 
