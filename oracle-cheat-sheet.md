@@ -48,16 +48,35 @@ SHOW SQLPATH;
 set long 50000;
 SET LIN[ESIZE] 200
 ```
-```
+```sql
 set termout off
 set verify off
 set trimspool on
 set linesize 200
 set longchunksize 200000
 set long 200000
+
 set pages 0
+set pagesize 0            -- No page breaks, useful for scripting
 column txt format a120
+
+set sqlformat csv         -- Output in CSV format
+set heading off           -- Do not print column headers
+set heading on            -- Print column headers
+set feedback off          -- Suppress "X rows selected" message
+set feedback on           -- Show "X rows selected" message
+
+set linesize 1000         -- Set max line width for output
+set trimspool on          -- Remove trailing spaces in spooled output
+set colsep ','            -- Set column separator (for plain text output)
+set termout off           -- Do not display output on screen (only spool)
+set termout on            -- Display output on screen
+set echo off              -- Do not echo commands
+set echo on               -- Echo commands
+set timing on             -- Show timing for each command
+set timing off            -- Hide timing
 ```
+
 #### capture/catch/write output result of sql query to file
 ```sql
 set heading off
