@@ -60,9 +60,9 @@ bot.send_message(chat_id=chat_id, text="my app:", reply_markup=reply_markup)
 10. update your bot:
    'mybots' -> '<select your bot>' -> 'bot settings' -> 'configure menu button' -> <set url to https resource>
 11. create Telegram Channel (write new message -> new channel)
-   * add your bot as an admin
-   * set rights for it
-12. send message to channel ( for opening as external URL )
+  * add your bot as an admin
+  * set rights for it
+12. send message to channel ( for opening as external URL )  
 ```sh
 CHAT_ID='-10031409999999'
 APP_URL='https://some-url.com/'
