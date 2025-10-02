@@ -11,6 +11,7 @@
 * https://www.perplexity.ai/
 * https://bard.google.com/chat
 * https://openai.com/blog/chatgpt
+* [generator of flash cards for learning](https://notegpt.io/ai-flashcard-maker)
 
 ## general purposes tools
 * [cli tool for interacting with LLM](https://github.com/simonw/llm)
