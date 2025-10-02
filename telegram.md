@@ -12,6 +12,8 @@
 * https://core.telegram.org/bots/faq
 * [create simple bot application](https://core.telegram.org/bots/tutorial)
 * [telegram bot api commands](https://core.telegram.org/bots/api)
+* [java bot TMA hello world](https://core.telegram.org/bots/tutorial)  
+  [java bot project](https://core.telegram.org/bots/tutorial#create-your-project)
 
 ### Bot API commands
 ```sh
@@ -33,8 +35,6 @@ bot.send_message(chat_id=chat_id, text="my app:", reply_markup=reply_markup)
 ## Telegram Mini App
 
 ### TMA - Telegram Mini App - how to create simple application 
-* [java TMA hello world](https://core.telegram.org/bots/tutorial)  
-  [java project](https://core.telegram.org/bots/tutorial#create-your-project)
 * [JS TMA basic example](https://docs.ton.org/v3/guidelines/dapps/tma/tutorials/app-examples)  
   [JavaScript source code](https://github.com/telegram-mini-apps-dev/vanilla-js-boilerplate/blob/master/index.html)
 * [how to build tma](https://adsgram.ai/mini-application-in-telegram-what-it-is-and-how-to-create-it/)
