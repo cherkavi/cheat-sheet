@@ -39,9 +39,22 @@ bot.send_message(chat_id=chat_id, text="my app:", reply_markup=reply_markup)
   [JavaScript source code](https://github.com/telegram-mini-apps-dev/vanilla-js-boilerplate/blob/master/index.html)
 * [how to build tma](https://adsgram.ai/mini-application-in-telegram-what-it-is-and-how-to-create-it/)
 
+### direct link to app
+1. /newapp
+2. @mysecret_bot  
+   name of the bot
+3. title of the app
+4. description of the app
+5. 640x360 image
+6. /empty
+7. https://my-html-app.com
+   direct link to the html resource with app
+8. myapp
+   url path for your app
+9. https://t.me/mysecret_bot/myapp
+
 ### java sdk
 * [telegram bot java library](https://github.com/rubenlagus/TelegramBots)
-
 
 ### TMA build example
 > just an example of building simple application based on https existing web page
