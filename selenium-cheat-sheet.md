@@ -103,3 +103,42 @@ driver.find_element(By.CLASS_NAME,"js-convert-btn").click()
 driver.find_element(By.CLASS_NAME,"js-download-btn").click()
 driver.quit()
 ```
+
+## shadow dom example
+```python
+from selenium import webdriver
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import sys
+import time
+
+
+url='https://your domain'
+webdriver_path='/home/soft/selenium_driver/geckodriver'
+
+driver = webdriver.Firefox(service=Service(webdriver_path))
+
+driver.get(url)
+
+## direct detection will not work 
+# button = driver.find_element(By.XPATH, "//button[text()='Alle erlauben']")
+button.click()
+driver.execute_script('return arguments[0].click()', button)
+
+## algorithm
+# 1. Get the host element
+host_element = driver.find_element(By.ID, "usercentrics-root")
+
+# 2. Get the shadow_root
+shadow_root = driver.execute_script('return arguments[0].shadowRoot', host_element)   # host_element/shadowRoot
+# driver.execute_script('return arguments[0].shadowRoot.innerHTML', host_element)
+
+# 3. Find the element within the shadow root and interact with it
+#    Warning: Shadow DOMs do not support XPath queries
+button_inside_shadow = shadow_root.find_element(By.CSS_SELECTOR, '[data-testid="uc-accept-all-button"]')
+
+# 4. usage of the element after detection 
+button_inside_shadow.click()
+```

@@ -1572,6 +1572,13 @@ output to log stop process
 rm -rf  -- !(exclude-filename.sh)
 ```
 
+### unremove undelete restore rm
+```sh
+sudo apt install extundelete
+lsblk -f
+sudo extundelete /dev/sda2 --restore-file /home/my-user/1000042.heic
+```
+
 ### cron
 **You have to escape the % signs with \%**
 where is file located
