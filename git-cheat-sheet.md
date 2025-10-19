@@ -157,7 +157,7 @@ git reset --hard origin/$current_branch
 git branch -d $current_branch_ghost
 ```
 
-### squash commit, replace batch of commits, shrink commits
+### squash commit, replace batch of commits, shrink commits, rollback commits but not changes
 [interactive rebase](https://garrytrinder.github.io/2020/03/squashing-commits-using-interactive-rebase)  
 ```sh
 git checkout my_branch
@@ -165,8 +165,10 @@ git checkout my_branch
 git reset --soft HEAD~4
 # in case of having external changes and compress commits: git rebase --interactive HEAD~4
 
+git add * 
 git commit # your files should be staged before
-git push --force-with-lease origin my_branch
+
+git push --force-with-lease origin $(git rev-parse --abbrev-ref HEAD)
 ```
 
 ### check hash-code of the branch, show commit hash code 
