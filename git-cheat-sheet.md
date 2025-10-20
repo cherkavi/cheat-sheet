@@ -790,7 +790,7 @@ git worktree prune
 ```
 
 
-### [git lfs](https://git-lfs.com/)
+### [git lfs - Large File Storage](https://git-lfs.com/)
 [package update](https://packagecloud.io/github/git-lfs/install)
 ```sh
 echo 'deb http://http.debian.net/debian wheezy-backports main' > /etc/apt/sources.list.d/wheezy-backports-main.list
@@ -798,16 +798,18 @@ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.s
 ```
 tool installation
 ```sh
+# execute on system 
 sudo apt-get install git-lfs
+# execute in git folder
 git lfs install
 git lfs pull
 ```
 if you are using SSH access to git, you should specify http credentials ( lfs is using http access ), to avoid possible errors: "Service Unavailable...", "Smudge error...", "Error downloading object"
-```bash
+```sh
 git config --global credential.helper store
 ```
 file .gitconfig will have next section
-```
+```ini
 [credential]
         helper = store
 ```
@@ -824,10 +826,30 @@ NO_PROXY=localhost,127.0.0.1,.localdomain,.advantage.org
 HTTP_PROXY=muc.proxy
 HTTPS_PROXY=muc.proxy
 ```
+#### git lfs init 
+```sh
+git lfs install
+
+git lfs track "*.zip"
+
+git add .gitattributes large_file.zip
+
+git commit -m "Add large zip file via LFS"
+git push
+```
+
 #### git lfs check 
 ```sh
 git lfs env
 git lfs status
+```
+
+#### git lfs uninstall/revert
+```sh
+git lfs uninstall
+git lfs untrack "*.zip"
+git rm --cached large_file.zip
+git add --renormalize large_file.zip
 ```
 
 #### issue with git lfs
