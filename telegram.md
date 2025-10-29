@@ -7,13 +7,12 @@
 ## Telegram Bot
 
 ### [Bot API](https://core.telegram.org/bots)
-* [bot api](https://core.telegram.org/bots/api)
-* https://core.telegram.org/bots
-* https://core.telegram.org/bots/faq
-* [create simple bot application](https://core.telegram.org/bots/tutorial)
+* [create simple bot via BotFather](https://core.telegram.org/bots/tutorial)
+  * [java bot TMA hello world](https://core.telegram.org/bots/tutorial)  
+  * [java bot project](https://core.telegram.org/bots/tutorial#create-your-project)
 * [telegram bot api commands](https://core.telegram.org/bots/api)
-* [java bot TMA hello world](https://core.telegram.org/bots/tutorial)  
-  [java bot project](https://core.telegram.org/bots/tutorial#create-your-project)
+  * https://core.telegram.org/bots
+  * https://core.telegram.org/bots/faq
 
 ### Bot API commands
 ```sh
@@ -38,6 +37,9 @@ bot.send_message(chat_id=chat_id, text="my app:", reply_markup=reply_markup)
 * [JS TMA basic example](https://docs.ton.org/v3/guidelines/dapps/tma/tutorials/app-examples)  
   [JavaScript source code](https://github.com/telegram-mini-apps-dev/vanilla-js-boilerplate/blob/master/index.html)
 * [how to build tma](https://adsgram.ai/mini-application-in-telegram-what-it-is-and-how-to-create-it/)
+
+### TMA singularities
+* size: 509x690
 
 ### direct link to app
 1. /newapp
