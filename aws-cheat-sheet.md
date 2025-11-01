@@ -85,112 +85,128 @@ npm install aws-cdk@2.118.1
 
 ## [AWS cli](https://docs.aws.amazon.com/cli/latest/index.html)  
 > [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
-### [installation of AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+### installation of AWS
+#### [installation of AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 > aws cli is a python application
 ```sh
 # installation
 sudo apt install awscli
 pip install awscli
-# set up user
-aws configuration
+
+aws --version
 ```
-### [use aws cli from docker image, aws cli without installation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-docker.html#cliv2-docker-share-files)
+
+#### [use aws cli from docker image, aws cli without installation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-docker.html#cliv2-docker-share-files)
 ```sh
 docker run --rm -it  -v $(pwd):/aws  public.ecr.aws/aws-cli/aws-cli --version
 # share local credentials with docker container 
 docker run --rm -it  -v $(pwd):/aws  -v ~/.aws:/root/.aws public.ecr.aws/aws-cli/aws-cli command
 ```
 
-### console command completion, console completion
+#### console command completion, console completion
 ```sh
 pip3 install awscli
 # complete -C `locate aws_completer` aws
 complete -C aws_completer aws
 ```
 
-### [aws cli config](https://docs.aws.amazon.com/cli/latest/topic/config-vars.html)
-be aware about precedence:
-1. Credentials from environment variables have precedence over credentials from the shared credentials and AWS CLI config file.   
-   env variables: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
-2. Credentials specified in the shared credentials file have precedence over credentials in the AWS CLI config file. 
-> botocore.exceptions.ProfileNotFound: The config profile (cherkavi-user) could not be found
-```sh
-vim ~/.aws/credentials
-```
-```properties
-[cherkavi-user]
-aws_access_key_id = AKI...
-aws_secret_access_key = ur1DxNvEn...
-aws_session_token = FwoG....
-```
-or 
-```sh
-aws configure set aws_session_token "Your-value" --profile cherkavi-user
-# or
-aws configure set cherkavi-user.aws_session_token "Your-value" 
-```
-check configuration: `vim ~/.aws/config`
+### aws cli configuration places
+configuration precedence:
+1. `--profile` in command
+   ```sh
+   aws configure list-profiles
+   aws s3 ls --profile $AWS_PROFILE
+   ```
+2. [env variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+   * AWS_ACCESS_KEY_ID
+   * AWS_SECRET_ACCESS_KEY
+   * AWS_PROFILE - default profile name 
+   * ....
+3. shared credentials    
+   ```ini:~/.aws/credentials
+   [default]
+   aws_access_key_id = AKIAIOSFODNN7EXAMPLE
+   aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfi....
+   [dev-user]
+   aws_access_key_id = ASIAV3W37905U38EXAMPLE
+   aws_secret_access_key = sR/Gz9yQf+WzI89Y32J1zQ0K3eQe.....
+   aws_session_token = 
+   ```
+4. [AWS CLI config file](https://docs.aws.amazon.com/cli/latest/topic/config-vars.html)
+   > botocore.exceptions.ProfileNotFound: The config profile (cherkavi-user) could not be found
+   ```ini:~/.aws/config
+   [default]
+   region = us-east-1
+   output = json
+   
+   [profile dev-user]
+   region = us-west-2
+   output = text
+   
+   [profile prod-role]
+   region = eu-central-1
+   output = json
+   role_arn = arn:aws:iam::123456789012:role/ProductionReadOnlyRole
+   source_profile = dev-user   
+   ```
 
-using profiling
->  --region, --output, --profile 
+### aws cli set configuration
 ```sh
-aws configure list-profiles
-# default profile will be used from env variable AWS_PROFILE
-aws s3 ls --profile $AWS_PROFILE
-```
-### login: set AWS credentials via env variables
-```sh
-# source file_with_credentials.sh
+### set AWS credentials via env variables
 export AWS_REGION=us-east-1
 export AWS_ACCESS_KEY_ID=AKIA...
 export AWS_SECRET_ACCESS_KEY=SEP6...
-```
-### login: set AWS credentials via config file
-```sh
-# aws cli version 2
-aws configure set aws_access_key_id <yourAccessKey>
-aws configure set aws_secret_access_key <yourSecretKey>
-# aws configure set aws_session_token <yourToken>
 
-# aws cli version 1
-aws configure set ${AWS_PROFILE}.aws_access_key_id ...
-aws configure set ${AWS_PROFILE}.aws_secret_access_key ...
-# aws configure set ${AWS_PROFILE}.aws_session_token ...
+### set AWS credentials via config file
+aws configure set aws_secret_access_key <yourSecretKey>  # ${AWS_PROFILE}.aws_secret_access_key
+aws configure set aws_access_key_id <yourAccessKey> --profile <your_profile>
+aws configure set <your_profile>.aws_session_token "Your-value" 
 ```
 
-### login: get AWS credentials via config file
+### aws cli check configuration
 ```sh
+# profiles list 
+aws configure list-profiles
+
+# print default profile name
+echo $AWS_PROFILE
+
+# check configuration
+cat ~/.aws/config
+cat ~/.aws/credentials
+
+# check existing profiles
+aws s3 ls --profile cherkavi-user
+aws s3 ls --profile cherkavi-s3-full
+
+# check single config parameter
 aws configure get aws_access_key_id
 ```
 
-### login: sso 
+### aws cli export configuration
+```sh
+aws configure export-credentials --profile <your_profile> --format env
+```
+
+### aws login sso 
 ```sh
 aws configure sso
 
-# check configuration:
-cat ~/.aws/config | grep sso-session
-```
-#### activate profile
-```sh
+## activate profile
 aws sso login --sso-session $SSO-SESSION_NAME
 aws sso login --profile $AWS_PROFILE_DEV
 ```
-or
-```sh
-# aws configure export-credentials --profile RefDataFrame-cicd --format env
-eval "$(aws configure export-credentials --profile RefDataFrame-cicd --format env)"
-```
 
-
-### debugging collaboration verbosity full request
+### debug collaboration/connection verbosity full request
 > for API level debugging you should use CloudTrail
 ```sh
 aws --debug s3 ls --profile $AWS_PROFILE
 ```
 
-## init variables
+## init variables to work with current cheat sheet 
 ### inline initialization
-or put the same in separated file: `. /home/projects/current-project/aws.sh`
+or put the same in separated file (like): `. /home/projects/current-project/aws.sh`
 ```sh
 # export HOME_PROJECTS_GITHUB - path to the folder with cloned repos from https://github.com/cherkavi
 export AWS_SNS_TOPIC_ARN=arn:aws:sns:eu-central-1:85153298123:gmail-your-name

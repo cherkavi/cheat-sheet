@@ -157,7 +157,7 @@ git reset --hard origin/$current_branch
 git branch -d $current_branch_ghost
 ```
 
-### squash commit, replace batch of commits, shrink commits
+### squash commit, replace batch of commits, shrink commits, rollback commits but not changes
 [interactive rebase](https://garrytrinder.github.io/2020/03/squashing-commits-using-interactive-rebase)  
 ```sh
 git checkout my_branch
@@ -165,8 +165,10 @@ git checkout my_branch
 git reset --soft HEAD~4
 # in case of having external changes and compress commits: git rebase --interactive HEAD~4
 
+git add * 
 git commit # your files should be staged before
-git push --force-with-lease origin my_branch
+
+git push --force-with-lease origin $(git rev-parse --abbrev-ref HEAD)
 ```
 
 ### check hash-code of the branch, show commit hash code 
@@ -788,7 +790,7 @@ git worktree prune
 ```
 
 
-### [git lfs](https://git-lfs.com/)
+### [git lfs - Large File Storage](https://git-lfs.com/)
 [package update](https://packagecloud.io/github/git-lfs/install)
 ```sh
 echo 'deb http://http.debian.net/debian wheezy-backports main' > /etc/apt/sources.list.d/wheezy-backports-main.list
@@ -796,16 +798,18 @@ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.s
 ```
 tool installation
 ```sh
+# execute on system 
 sudo apt-get install git-lfs
+# execute in git folder
 git lfs install
 git lfs pull
 ```
 if you are using SSH access to git, you should specify http credentials ( lfs is using http access ), to avoid possible errors: "Service Unavailable...", "Smudge error...", "Error downloading object"
-```bash
+```sh
 git config --global credential.helper store
 ```
 file .gitconfig will have next section
-```
+```ini
 [credential]
         helper = store
 ```
@@ -822,10 +826,30 @@ NO_PROXY=localhost,127.0.0.1,.localdomain,.advantage.org
 HTTP_PROXY=muc.proxy
 HTTPS_PROXY=muc.proxy
 ```
+#### git lfs init 
+```sh
+git lfs install
+
+git lfs track "*.zip"
+
+git add .gitattributes large_file.zip
+
+git commit -m "Add large zip file via LFS"
+git push
+```
+
 #### git lfs check 
 ```sh
 git lfs env
 git lfs status
+```
+
+#### git lfs uninstall/revert
+```sh
+git lfs uninstall
+git lfs untrack "*.zip"
+git rm --cached large_file.zip
+git add --renormalize large_file.zip
 ```
 
 #### issue with git lfs
