@@ -16,6 +16,7 @@
 * [components](https://github.com/astronomer/airflow-guides/blob/master/guides/airflow-components.md)
 
 ## Airflow alternatives
+* [perfect](https://www.datacamp.com/tutorial/ml-workflow-orchestration-with-prefect)
 * [flyte](https://flyte.org/)
   * for ML pipelines 
   * python centric
