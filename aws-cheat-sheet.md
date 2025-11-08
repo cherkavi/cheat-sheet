@@ -12,6 +12,7 @@
 
 ### DOCUMENTATION
 * [official documentation](https://docs.aws.amazon.com/)  
+* [obsolete services retirement end of life ](https://aws.amazon.com/products/lifecycle/)
 * [whitepapers](https://aws.amazon.com/whitepapers)
 * [interactive documentation example](https://interactive.linuxacademy.com/diagrams/ProjectOmega2.html)   
 * [cli ec2](https://docs.aws.amazon.com/cli/latest/reference/ec2/)
