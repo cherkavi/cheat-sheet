@@ -502,10 +502,11 @@ aws s3api list-buckets --query 'Buckets[?contains(Name, `my_bucket_name`) == `tr
 aws s3api get-bucket-location --bucket $AWS_BUCKET_NAME
 
 # put object
-aws s3api put-object --bucket $AWS_BUCKET_NAME --key file-name.with_extension --body /path/to/file-name.with_extension
+aws s3api put-object --bucket $AWS_BUCKET_NAME --key file-name.with_extension --body /path/to/file-name.with_extension --checksum-algorithm CRC32
 # copy to s3, upload file less than 5 Tb
 aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME
 aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME/path/on/s3/filename.ext
+aws s3 cp /path/to/file-name.with_extension s3://$AWS_BUCKET_NAME/path/on/s3/filename.ext --checksum-algorithm CRC32
 # update metadata
 aws s3 cp test.txt s3://a-bucket/test.txt --metadata '{"x-amz-meta-cms-id":"34533452"}'
 # read metadata
@@ -516,6 +517,9 @@ split -b 20M -d $FILENAME $FILENAME-part
 aws s3api create-multipart-upload --bucket $AWS_BUCKET_NAME --key $FILENAME --checksum-algorithm crc32 | jq .UploadId
 aws s3api upload-part             --bucket $AWS_BUCKET_NAME --key $FILENAME --checksum-algorithm crc32 --upload-id ${UploadId} \
 --part-number 1 --body $FILENAME-part00
+# check the uploaded parts
+aws s3api list-parts --bucket $AWS_BUCKET_NAME --key $FILENAME --upload-id ${UploadId} \
+--query '{Parts: Parts[*].{PartNumber: PartNumber, ETag: ETag, ChecksumCRC32: Checks}}' --output json > parts.json
 
 # get attributes
 aws s3api get-object-attributes --bucket $AWS_BUCKET_NAME --key $FILENAME --object-attributes Checksum,ObjectParts
@@ -543,6 +547,7 @@ aws s3 ls --recursive s3://$AWS_BUCKET_NAME/my-sub-path/
 # download file
 aws s3api head-object --bucket $AWS_BUCKET_NAME --key $FILE_KEY
 aws s3api head-object --bucket $AWS_BUCKET_NAME --key $FILE_KEY --checksum-mode ENABLED
+aws s3api head-object --bucket $AWS_BUCKET_NAME --key $FILE_KEY --checksum ENABLED
 
 # move file 
 aws s3 mv s3://$AWS_BUCKET_NAME/index.html s3://$AWS_BUCKET_NAME/index2.html
@@ -626,6 +631,7 @@ aws s3api delete-bucket --bucket $AWS_BUCKET_NAME
   ]
 }
 ```
+#### [s3 table operations](https://github.com/cherkavi/bash-example/blob/master/aws/aws-s3-table-iceberg.md)
 
 ---
 ## datasync
