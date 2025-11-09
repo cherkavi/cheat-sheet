@@ -43,6 +43,8 @@
 * [labs](https://github.com/awslabs)
 * [well Architected Labs - how to build more secure, resilient, high-performance applications](https://www.wellarchitectedlabs.com/?ref=wellarchitected-wp)
 
+### [local playground for AWS - LocalStack](https://github.com/cherkavi/docker-images/tree/master/aws/mock-local/)
+
 ### others
 * [serverless](https://serverlessland.com/)
 * [Architecture](https://wa.aws.amazon.com/index.en.html)
