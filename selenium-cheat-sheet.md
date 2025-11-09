@@ -54,7 +54,6 @@ $output_dir/$file_name --version
 ```sh
 python3
 ```
-
 ```python
 # connect to driver
 from selenium import webdriver

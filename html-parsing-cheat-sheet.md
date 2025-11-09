@@ -2,20 +2,22 @@
 
 ## 1. **Headless Browsers & Automation Frameworks**
 
-### **Puppeteer** (Node.js)
-- Headless Chrome/Chromium automation.
-- Excellent for rendering JS-heavy pages.
-- [GitHub](https://github.com/puppeteer/puppeteer)
-
 ### **Selenium** (Multiple languages)
+- [selenium cheat sheet](./selenium-cheat-sheet.md)
 - Automation for all major browsers.
 - Can be run headless.
 - [Website](https://www.selenium.dev/)
 
 ### **Playwright** (Node.js, Python, Java, .NET)
+- [playwright cheat sheet](./playwright-cheat-sheet.md)
 - Multi-browser support (Chromium, WebKit, Firefox).
 - Feature-rich, modern alternative to Puppeteer.
 - [GitHub](https://github.com/microsoft/playwright)
+
+### **Puppeteer** (Node.js)
+- Headless Chrome/Chromium automation.
+- Excellent for rendering JS-heavy pages.
+- [GitHub](https://github.com/puppeteer/puppeteer)
 
 ### **Nightmare.js** (Node.js)
 - Headless automation for Electron.
