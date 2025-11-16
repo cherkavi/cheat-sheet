@@ -1,21 +1,29 @@
 # PostgreSQL cheat sheet
+
+## PostgreSQL Query 
+### show all records
+```sql
+-- The result was limited to 1000 rows
+select * from my_table limit ALL;
+```
+
 ## Tools
 * [cli for databases](https://github.com/dbcli)  
 * [binaries to download](https://www.enterprisedb.com/download-postgresql-binaries)
 * [online tuning advices](https://pgtune.leopard.in.ua/#/)
 
 ### chmod for exec files
-```
+```sh
 chmod +x %pgsql%/bin/*
 ```
 
 ### replace 'text link' with files 
-```
+```sh
 %pgsql%/lib/*.so
 ```
 
 ### create cluster
-```
+```sh
 ./initdb -U postgres -A password -E utf8 -W -D /dev/shm/pgsql-data/data
 ```
 The command line parameters of the initdb command are described in following:
@@ -26,15 +34,15 @@ The command line parameters of the initdb command are described in following:
 * -D /dev/shm/pgsql-data/data specifies the data directory of your PostgreSQL installation.
 
 Issue:
-```
+```sh
 /initdb: /lib64/libc.so.6: version `GLIBC_2.12' not found (required by /dev/shm/pgsql/bin/../lib/libldap_r-2.4.so.2)
 ```
 solution:
-```
+```sh
 version of your glibc is older than compiled code - decrease version of postgres
 ```
 must work:
-```
+```sh
 ./postgres -V
 ```
 

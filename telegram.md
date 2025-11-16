@@ -23,7 +23,11 @@ curl https://api.telegram.org/bot$TELEGRAM_TOKEN_BOT/getMe
 ```sh
 pip3 install --break-system-packages telegram-bot
 # sudo apt install python3-telegram-bot
+
+# Issue: python setup.py egg_info did not run successfully.
+pip install git+https://github.com/python-telegram-bot/python-telegram-bot.git
 ```
+
 ```python
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup 
 keyboard = [[InlineKeyboardButton("Open App", web_app=WebAppInfo(url="https://url.com"))]] 

@@ -271,8 +271,12 @@ import extra_component
 ```
 
 ### update package
-```
+```sh
 pip install tornado --update
+
+# pip update pip
+python3 -m pip install --upgrade pip
+sudo apt install --upgrade python3-pip
 ```
 
 ### remove package, uninstall package
