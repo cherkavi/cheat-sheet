@@ -3734,6 +3734,15 @@ screenshot(){
 }
 ```
 
+## scanner 
+```sh
+# list of devices
+scanimage -L
+
+# scan image to file 
+scanimage --device epson2:net:192.168.172.86 --format jpeg resolution 300 --mode color > my_scan.jpeg
+```
+
 ## printer managing ( add/remote/edit )
 * [printer installation](http://cups.org)
 * [admin page](http://localhost:631/admin)
