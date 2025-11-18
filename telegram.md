@@ -1,8 +1,4 @@
 # Telegram 
-## [Telegram API](https://core.telegram.org/api) steps:
-1. [create credentials](https://my.telegram.org/auth?to=apps)
-2. [show your personal api id and api_hash](https://my.telegram.org/apps)
-3. api_id and api_hash
 
 ## Telegram Bot
 
@@ -76,11 +72,15 @@ bot.send_message(chat_id=chat_id, text="my app:", reply_markup=reply_markup)
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 ```
 9. host it ( you just need to provide https:// link )
-10. update your bot:
-   'mybots' -> '<select your bot>' -> 'bot settings' -> 'configure menu button' -> <set url to https resource>
+10. update your bot:  
+    . 'mybots' ->  
+    ..  'select your bot' ->  
+    ...    'bot settings' ->  
+    ....      'configure menu button' ->  
+    .....        'set url to https resource'  
 11. create Telegram Channel (write new message -> new channel)
   * add your bot as an admin
-  * set rights for it
+  * set rights (except admins) for it
 12. send message to channel ( for opening as external URL )  
 ```sh
 CHAT_ID='-10031409999999'
@@ -124,14 +124,21 @@ curl -X POST "https://api.telegram.org/bot$TELEGRAM_TOKEN_BOT/sendMessage" \
   }'
 ```
     
+## [Telegram API](https://core.telegram.org/api)
+1. [create credentials](https://my.telegram.org/auth?to=apps)
+2. [show your personal api_id and api_hash](https://my.telegram.org/apps)
+3. credentials:
+   * api_id -> $TELEGRAM_API_ID 
+   * api_hash -> $TELEGRAM_API_HASH
+4. [examples of communication](https://github.com/cherkavi/python-utilities/tree/master/telegram)
+5. Telegram API
+   - [Getting Started](https://core.telegram.org/api#getting-started)
+   - [Security](https://core.telegram.org/api#security)
+   - [Optimization](https://core.telegram.org/api#optimization)
+   - [API methods](https://core.telegram.org/api#api-methods)
 
 ## TDLib - Telegram Database Library to build Telegram App ( like CLI )
 * [Telegram Database Library](https://core.telegram.org/tdlib)
-* Telegram API - steps
-  - [Getting Started](https://core.telegram.org/api#getting-started)
-  - [Security](https://core.telegram.org/api#security)
-  - [Optimization](https://core.telegram.org/api#optimization)
-  - [API methods](https://core.telegram.org/api#api-methods)
 * [using library in diff projects](https://github.com/tdlib/td/blob/master/example/README.md)
   * [python](https://github.com/alexander-akhmetov/python-telegram)
   * [java](https://github.com/tdlib/td/tree/master/example/java)
