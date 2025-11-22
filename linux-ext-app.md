@@ -831,7 +831,23 @@ sudo mount -av
 ```
 
 ### youtube
+#### youtube installation
 * [installation](https://ytdl-org.github.io/youtube-dl/download.html)  
+* yt-dlp
+  ```sh
+  ## installation
+  # https://github.com/yt-dlp/yt-dlp/release
+  sudo wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O yt-dlp; chmod a+rx yt-dlp
+  curl -fsSL https://deno.land/install.sh | sh
+
+  # usage
+  URL_TO_VIDEO=https://www.youtube.com/shorts/KP4cUVKQ8Jo
+
+  ./yt-dlp https://www.youtube.com/playlist?list=example
+  ./yt-dlp $URL_TO_VIDEO
+  ./yt-dlp -x --audio-format mp3 $URL_TO_VIDEO
+  ./yt-dlp -x --js-runtimes deno --list-subs $URL_TO_VIDEO
+  ```
 * [alternative installation](https://github.com/ytdl-org/youtube-dl/releases)
   ```sh
   chmod +x youtube-dl
