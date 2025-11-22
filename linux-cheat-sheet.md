@@ -3740,7 +3740,7 @@ screenshot(){
 scanimage -L
 
 # scan image to file 
-scanimage --device epson2:net:192.168.172.86 --format jpeg resolution 300 --mode color > my_scan.jpeg
+scanimage --device epson2:net:192.168.172.86 --format jpeg --resolution 300 --mode color > my_scan.jpeg
 ```
 
 ## printer managing ( add/remote/edit )
