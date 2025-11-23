@@ -1,11 +1,14 @@
-# Selenium cheat sheet
+j# Selenium cheat sheet
 ## links
-* [pip](https://www.selenium.dev/selenium/docs/api/py/)
-* [enter point](https://www.selenium.dev/)
-* [virtual screen example: ](http://github.com/cherkavi/python-utilitites/tree/master/selenium/)
+* [selenium pip](https://www.selenium.dev/selenium/docs/api/py/)
+* [selenium enter point](https://www.selenium.dev/)
+* [selenium with virtual screen example ](http://github.com/cherkavi/python-utilitites/tree/master/selenium/)
+* [selenium python scripts with additional parameters](http://github.com/cherkavi/python-utilitites/tree/master/selenium/README.md)
 
 ## installation
-### Firefox
+
+### Selenium with Firefox
+#### Firefox 
 ```sh
 # !!! do not install firefox via SNAP !!!
 x-www-browser https://www.mozilla.org/en-US/firefox/linux/?utm_medium=referral&utm_source=support.mozilla.org
@@ -14,41 +17,47 @@ tar xjf firefox-*.tar.bz2
 
 sudo mv firefox /opt
 sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
-
 ```
+
+#### geko driver for Firefox 
+```sh
+function gecko-driver-update(){
+    GIT_ACCOUNT=mozilla
+    GIT_PROJECT=geckodriver
+    download_url=`curl -s https://api.github.com/repos/$GIT_ACCOUNT/$GIT_PROJECT/releases/latest | jq -r '.[]' | grep browser_download | grep "linux64" | grep -v "asc" | awk -F ": " '{print $2}' | sed s/\"//g` 
+    wget $download_url -O gekodriver.tar.gz
+    tar -xf gekodriver.tar.gz -C "${HOME_SOFT}/selenium_driver"
+    rm gekodriver.tar.gz
+}
+
+if [ ! -f $HOME_SOFT"/selenium_driver/geckodriver" ]; then
+    echo "download gecko driver from last release"
+    mkdir "${HOME_SOFT}/selenium_driver"
+    gecko-driver-update
+    $GECKO_DRIVER --version
+fi
+```
+
+### Selenium with Chrome
+#### [install chrome](https://www.google.com/chrome/)
+
+#### [chrome driver for Chrome](https://googlechromelabs.github.io/chrome-for-testing)
+installed chrome and chrome driver must have the same version !!!
+```
+google-chrome --new-widnow "chrome://settings/help"  
+google-chrome https://googlechromelabs.github.io/chrome-for-testing/#stable  
+```
+
+
 ### [selenium](https://www.selenium.dev/downloads/)
 ```sh
 pip3 install selenium
 pip3 list | grep selenium
+
+# update selenium
+pip3 install -U --break-system-packages selenium
 ```
-### geko driver
-```sh
 
-GIT_ACCOUNT=mozilla
-GIT_PROJECT=geckodriver
-RELEASE_FILE_BEFORE_TAG="geckodriver-"
-RELEASE_FILE_AFTER_TAG="-linux64.tar.gz"
-
-release_url=https://github.com/${GIT_ACCOUNT}/${GIT_PROJECT}/releases/latest
-latest_release_url=$(curl -s -I -L -o /dev/null -w '%{url_effective}' $release_url)
-release_tag=`echo $latest_release_url | awk -F '/' '{print $NF}'`
-release_file=$RELEASE_FILE_BEFORE_TAG$release_tag$RELEASE_FILE_AFTER_TAG
-
-release_download="https://github.com/${GIT_ACCOUNT}/${GIT_PROJECT}/releases/download/${release_tag}/$release_file"
-
-# Create a directory for downloads
-output_dir="/home/soft/selenium-drivers"
-file_name=gekodriver-mozilla
-# Create the output directory if it doesn't exist
-mkdir -p "$output_dir"
-# Download the latest release
-curl -L -o $output_dir/${file_name}.tar.gz "$release_download"
-
-tar -xzf $output_dir/${file_name}.tar.gz -C $output_dir
-mv $output_dir/geckodriver $output_dir/$file_name
-chmod +x $output_dir/$file_name
-$output_dir/$file_name --version
-```
 
 ## [minimal example](https://www.selenium.dev/documentation/webdriver/troubleshooting/upgrade_to_selenium_4/)
 ```sh
