@@ -400,6 +400,16 @@ $PANTS_PATH/pants --pants-distdir=$PANTS_OUTPUT binary src/path/to/package:packa
 
 ```
 
+### debug via Visual Code
+```json
+            "justMyCode": false,
+            "args": [
+                "--url=spaceMin",
+                "--output_file=/tmp/immo_mering.html"
+             ]
+```
+
+
 ### (debug with cli)[https://docs.python.org/3/library/pdb.html]
 ```python
 import pdb
