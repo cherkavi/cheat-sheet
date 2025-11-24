@@ -3648,7 +3648,8 @@ FILE_SOURCE="certificate_Vitalii.pdf"
 pdftoppm -png $FILE_SOURCE  $FILE_SOURCE
 # pdftoppm -mono -jpeg $FILE_SOURCE $FILE_SOURCE
 
-# tesseract $FILE_SOURCE-1.png - -l eng
+# sudo apt install tesseract-ocr tesseract-ocr-deu
+# tesseract $FILE_SOURCE-1.png - -l eng   # deu
 ```
 ```sh
 convert -geometry 400x600 -density 100x100 -quality 100 test-pdf.pdf test-pdf.jpg
