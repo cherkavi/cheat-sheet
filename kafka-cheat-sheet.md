@@ -404,8 +404,37 @@ docker run
 docker run -it --network=host edenhill/kcat:1.7.1
 ```
 
-#### commands
-##### minimal command
+#### kcat commands
+```sh
+export KAFKA_BROKER='pzu-p21.useast1.azure.confluent:9092'
+export KAFKA_USER=PVHfdasfasd
+export KAFKA_PASS=dfakljfljdalkjfdlkasfjlasdj
+export KAFKA_CLUSTER=DEV
+
+export KAFKA_TOPIC='horus.order.v1'
+
+# file should be like key:{<body of message>}
+#                 5234317:{"value":5, "value_2":"hello", "value_3":"world"}
+PATH_TO_FILE=output_line_5.json
+ls -la $PATH_TO_FILE
+
+## write 
+kcat -v -X sasl.username=${KAFKA_USER} -X sasl.password="${KAFKA_PASS}" -b ${KAFKA_BROKER} -t ${KAFKA_TOPIC} -X security.protocol=SASL_SSL -X enable.ssl.certificate.verification=false -X sasl.mechanisms=PLAIN -P -K: -l ${PATH_TO_FILE}
+
+## read 
+# Read last 'count' messages
+count=5
+# p -1: all partitions, -o 0: offset from the beginning, or number of offset to start, or negative number - from the end ; -e: exit after reading; -f '%T\tp-%p\to-%o\t key-%k\t value-%s\n': format of output
+kcat -X sasl.username=${KAFKA_USER} -X sasl.password="${KAFKA_PASS}" -b ${KAFKA_BROKER} -t ${KAFKA_TOPIC} -X security.protocol=SASL_SSL -X enable.ssl.certificate.verification=false -X sasl.mechanisms=PLAIN -e
+kcat -X sasl.username=${KAFKA_USER} -X sasl.password="${KAFKA_PASS}" -b ${KAFKA_BROKER} -t ${KAFKA_TOPIC} -X security.protocol=SASL_SSL -X enable.ssl.certificate.verification=false -X sasl.mechanisms=PLAIN -p -1 -o -${count} -e -f '%T\tp-%p\to-%o\t key-%k\t value-%s\n' # -c ${count} 
+kcat -X sasl.username=${KAFKA_USER} -X sasl.password="${KAFKA_PASS}" -b ${KAFKA_BROKER} -t ${KAFKA_TOPIC} -X security.protocol=SASL_SSL -X enable.ssl.certificate.verification=false -X sasl.mechanisms=PLAIN -o 0 -e 
+# Read from partition by number
+partition=2
+kcat -X sasl.username=${KAFKA_USER} -X sasl.password="${KAFKA_PASS}" -b ${KAFKA_BROKER} -t ${KAFKA_TOPIC} -p $partition -X security.protocol=SASL_SSL -X enable.ssl.certificate.verification=false -X sasl.mechanisms=PLAIN -o -${count} -c ${count} -e
+```
+
+#### kafkacat commands
+##### kafkacat minimal command
 ```sh
 BROKER_HOST=192.168.1.150
 BROKER_PORT=3388
