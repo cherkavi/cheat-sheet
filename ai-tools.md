@@ -12,6 +12,18 @@
 * https://bard.google.com/chat
 * https://openai.com/blog/chatgpt
 * [generator of flash cards for learning](https://notegpt.io/ai-flashcard-maker)
+### photo generator
+* https://artlist.io/
+* https://pixpal.chat/
+* https://chat-photo.com/
+* https://www.meta.ai/ai-image-generator/
+* https://openart.ai/image/chat
+* https://www.fotor.com/ai-assistant/
+* https://chatgpt.com/features/images/
+* https://miniapps.ai/photo-maker
+* https://www.chatphoto.org/en-US
+* https://www.usebrushy.com/
+* https://deevid.ai/de/ai-image-generator
 
 ## general purposes tools
 * [cli tool for interacting with LLM](https://github.com/simonw/llm)
