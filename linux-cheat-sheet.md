@@ -3581,6 +3581,11 @@ convert input.png -crop $WIDTHx$HEIGHT+$X+$Y output.jpg
 convert input.png -resize 50% output.jpg
 convert input.png -quality 75 output.jpg
 convert input.png -background white -flatten output.jpg
+
+# put watermark on the image
+magick input.jpg -pointsize 36 -draw "gravity south-east fill white  text 20,20 'Copyright 2025'" output.jpg
+magick input.jpg -pointsize 36 -draw "gravity south-east fill rgba(255,255,255,0.5) text 10,10 'Copyright 2025'" output.jpg
+magick composite -dissolve 30% -gravity center logo.png input.jpg output.jpg
 ```
 
 ### convert image to vector graphics
