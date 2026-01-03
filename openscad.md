@@ -1,4 +1,6 @@
 # OpenSCAD
+## alternatives
+* [freecad](https://www.freecad.org/downloads.php?lang=en)
 ## [installation](https://openscad.org/downloads.html)
 ```sh
 sudo apt install openscad
