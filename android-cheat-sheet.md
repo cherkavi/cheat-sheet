@@ -177,8 +177,18 @@ done
 ```
 
 ## Android applications
+
 ### WhatsApp
 internal storage for documents 
 ```sh
 mtp://${YOUR_PHONE}/Internal%20shared%20storage/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp%20Documents
 ```
+
+### Applications for managing phone remotely
+* Scrcpy ( SCReen CoPY )
+* Vysor ( aka Scrcpy )
+* AirDroid: remote access over the internet
+* TeamViewer QuickSupport
+
+### custom java applications
+* [minimal app](https://github.com/cherkavi/java-code-example/tree/master/android/android-app-curl-with-two-buttons/)

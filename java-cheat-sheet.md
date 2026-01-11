@@ -281,11 +281,12 @@ keytool -printcert -rfc -file $CERT_FILE
 keytool -printcert -file $CERT_FILE
 
 CERT_ALIAS=metrics
-TRUST_STORE=myTrustStore
+TRUST_STORE=myTrustStore.jks
 keytool -import -file $CERT_FILE -alias $CERT_ALIAS -keystore $TRUST_STORE
 
 # list of certificates in truststore, jks keystore info
 keytool -list -keystore $TRUST_STORE
+keytool -list -keystore $TRUST_STORE -storepass your_secret_password
 
 # export and print certificate
 keytool -exportcert -keystore $TRUST_STORE -alias $CERT_ALIAS -file out.crt
