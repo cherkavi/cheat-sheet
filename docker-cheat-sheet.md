@@ -822,13 +822,16 @@ ENV https_proxy http://user:passw@proxy.url:8080
 
 ```
 
-## Build
+## docker Build
+* [docker build alternatives](#build-alternatives)
+
+### build features
 * docker cache: `docker build --no-cache`
 * docker base image: `FROM ...`
 * docker ignore files - ignore files from build process: `.dockerignore`
 * docker build time argument `docker build --build-arg KEY=VALUE`
 * docker runtime variables `docker run --env KEY=VALUE` 
-* 
+ 
 ### build from file
 ```
 docker build -t {name of my own image}:latest {name of docker file | . } --no-cache
@@ -960,6 +963,8 @@ curl --unix-socket /var/run/docker.sock -X POST http://localhost/v${docker_api_v
 ### [docker sdk python](https://github.com/cherkavi/python-utilities/blob/master/docker/docker_list.py)
 
 ## Docker security
+* [root less containers](https://rootlesscontaine.rs/)
+* [unprivileged container](https://github.com/genuinetools/img)
 
 ### user namespace
 * /proc/pid
@@ -1410,8 +1415,15 @@ docker volume rm typo3_db_data
 ```sh
 sudo apt install podman
 ```
-# [Buildah](https://github.com/containers/buildah)
 
+# build alternatives
+* [buildkit](https://docs.docker.com/build/buildkit/)
+  * [buildctl github](https://github.com/moby/buildkit/blob/master/docs/reference/buildctl.md)
+* [build OCI container images](https://buildah.io/)
+  * [buildah github](https://github.com/containers/buildah)
+* [docker image generator](https://orca-build.io/)
+* [build OCI containers from alpine images](https://github.com/chainguard-dev/apko?tab=readme-ov-file)
+* [build OCI images](https://github.com/project-stacker/stacker)
 
 # Kaniko
 > the tool to build container images from a Dockerfile without needing a Docker daemon
