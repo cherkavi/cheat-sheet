@@ -959,6 +959,28 @@ curl --unix-socket /var/run/docker.sock -X POST http://localhost/v${docker_api_v
 ```
 ### [docker sdk python](https://github.com/cherkavi/python-utilities/blob/master/docker/docker_list.py)
 
+## Docker security
+
+### user namespace
+* /proc/pid
+* /proc/bus
+* /fs
+* /sys
+
+### security in command line 
+```sh
+# restrict to gain new privileges via `setuid` and `setgid`
+docker run --security-opt no-new-privileges:true alpine
+
+# block system calls
+docker run --security-opt seccomp=unconfined alpine
+
+
+docker run --security-opt systempaths=unconfined --security-opt proc-allow-unmask-procs=true alpine
+```
+
+
+
 ## Examples
 ### simple start
 ```sh
