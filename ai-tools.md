@@ -233,7 +233,9 @@ find ~/.cache/huggingface
 
 ## [MCP ModelContextProtocol](https://modelcontextprotocol.io/docs/getting-started/intro)
 ### mcp servers
-* [mcp servers](https://github.com/modelcontextprotocol/servers)
+* [mcp servers collection](https://github.com/modelcontextprotocol/servers)
+* [mcp servers and clients collection](https://www.pulsemcp.com/)
+* [mcp servers and clients collection](https://mcp.so/)
 
 ### architecture
 ![mcp sequence](https://i.ibb.co/s9ywRss4/mcp-workflow.jpg)
