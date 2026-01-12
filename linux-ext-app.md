@@ -689,6 +689,7 @@ smbclient -U $SAMBA_CLIENT_GROUP//$SAMBA_CLIENT_USER \
 
 ## tiling window manager i3wm, i3 desktop
 Alternatives:
+* [miracle](https://wiki.miracle-wm.org/latest/)
 * [Awesome](https://awesomewm.org/) 
 * [Bspwm](https://github.com/baskerville/bspwm) 
 * [dwm](https://dwm.suckless.org/) 

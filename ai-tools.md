@@ -231,7 +231,11 @@ find ~/.cache/huggingface
 > using additional labeled data  
 > model extending
 
-## MCP
+## [MCP ModelContextProtocol](https://modelcontextprotocol.io/docs/getting-started/intro)
+### mcp servers
+* [mcp servers](https://github.com/modelcontextprotocol/servers)
+
+### architecture
 ![mcp sequence](https://i.ibb.co/s9ywRss4/mcp-workflow.jpg)
 ```mermaid
 graph LR
