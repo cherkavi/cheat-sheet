@@ -35,6 +35,20 @@
 * [whisper - translate mp3 to text](https://github.com/openai/whisper)
   > `pip install -U openai-whisper` and then `whisper japanese.wav --language Japanese --task translate`
 
+## Custom Agentic Solutions
+* https://github.com/langgenius/dify
+
+## Solutions for developer
+- [Kestra – Create and manage event-driven workflows](https://github.com/kestra-io/kestra)
+- [Microlink - Extract data from websites](https://github.com/microlinkhq)
+- [Keploy - Generate test cases with AI](https://github.com/keploy/keploy)
+- [Typesense - Perform searches on large data](https://github.com/typesense/typesense)
+- [Milvus - Build apps using a vector database](https://github.com/milvus-io/milvus)
+- [Tailscale - Create secure private networks](https://github.com/tailscale/tailscale)
+- [PalaCMS - Build static sites visually](https://github.com/palacms/PalaCMS)
+- [Vrite - Create technical content in a team](https://github.com/vriteio/vrite)
+- [Papermark - Share documents and pitch decks](https://github.com/mfts/papermark)
+
 ## Large Language Model ( LLM ) hubs
 * https://huggingface.co/models
 * https://ollama.com/library
@@ -232,11 +246,6 @@ find ~/.cache/huggingface
 > model extending
 
 ## [MCP ModelContextProtocol](https://modelcontextprotocol.io/docs/getting-started/intro)
-### mcp servers
-* [mcp servers collection](https://github.com/modelcontextprotocol/servers)
-* [mcp servers and clients collection](https://www.pulsemcp.com/)
-* [mcp servers and clients collection](https://mcp.so/)
-
 ### architecture
 ![mcp sequence](https://i.ibb.co/s9ywRss4/mcp-workflow.jpg)
 ```mermaid
@@ -279,12 +288,61 @@ graph LR
 - [Officially supported servers](https://github.com/modelcontextprotocol/servers)
 - [MCP Core Architecture](https://modelcontextprotocol.io/docs/concepts/architecture)
 
-## Documents retrieval, documents recognizing ocr and parsing
+### mcp servers
+#### collections
+- [mcp servers collection](https://github.com/modelcontextprotocol/servers)
+- [mcp servers and clients collection](https://www.pulsemcp.com/)
+- [mcp servers and clients collection](https://mcp.so/)
+
+#### Documents retrieval, documents recognizing ocr and parsing
 * [compari](https://github.com/illuin-tech/colpali)
 * [docling](https://github.com/docling-project/docling)
 
-## Find out
-* Text2SQL
-* Quantization
-* Reranker
-* Table Augmented Generation
+#### SQL
+- servers/src/postgres # A powerful MCP server built for PostgreSQL, enabling AI models to interact with relational database systems.
+- servers/src/sqlite # Lightweight and efficient, this server brings SQLite functionality to MCP.
+- kiliczsh/mcp-mongo-server # A robust MCP server for MongoDB, great for NoSQL database integration.
+- ClickHouse/mcp-clickhouse # Tap into the power of ClickHouse with this high-performance MCP server for analytical databases.
+
+#### Search Servers
+- nickclyde/duckduckgo-mcp-server # Search privately and efficiently using DuckDuckGo with this MCP server.
+- tavily-ai/tavily-mcp # Use Tavily's MCP server for fast and free search results in the JSON format.
+- ChanMeng666/server-google-news # Access news articles and headlines with this Google News MCP server.
+- servers/src/brave-search # Integrate Brave’s privacy-focused search engine into your AI workflows.
+
+#### Finance Servers
+- ferdousbhai/investor-agent # It provides financial insights and analysis to LLMs. 
+- QuantGeekDev/coincap-mcp # Fetch cryptocurrency data from the Coincap API.
+- anjor/coinmarket-mcp-server # Access CoinMarketCap’s API to retrieve real-time market insights.
+- berlinbra/alpha-vantage-mcp # Provides real-time access to financial market data through the free Alpha Vantage API. #  
+
+#### Communication Servers
+- servers/src/slack # Interact with Slack workspaces and streamline messaging.
+- chaindead/telegram-mcp # Manage Telegram chats, messages, and more with this feature-rich server.
+- MarkusPfundstein/mcp-gsuite # Interact with Google GSuite products, such as Gmail, Calendar, and Drive.
+- lharries/whatsapp-mcp # This server adds MCP functionality to WhatsApp, enabling message management and conversation tracking.
+
+#### Knowledge Memory Servers
+- CheMiguel23/MemoryMesh # A knowledge graph server for structured memory persistence.
+- graphlit/graphlit-mcp-server # Use Graphlit’s platform for organizing and retrieving structured knowledge.
+- mem0ai/mem0-mcp # Simplify knowledge storage and retrieval with Mem0.
+- servers/src/memory # The perfect solution for embedding memory functions into your AI systems.
+
+#### Productivity Servers
+- MarkusPfundstein/mcp-obsidian # Connect with Obsidian’s note-taking app using this server.
+- danhilse/notion_mcp # Manage your Notion tasks and to-do lists with ease.
+- githejie/mcp-server-calculator # A handy server for performing quick calculations.
+- inbox-zero/apps/mcp-server # Keep your inbox organized and achieve productivity bliss.
+
+#### Filesystem Servers
+- servers/src/filesystem  # Perform essential filesystem operations through MCP.
+- servers/src/gdrive # Integrate Google Drive into your workflows with this server.
+- exoticknight/mcp-file-merger # Merge multiple files into one with this utility.
+- mark3labs/mcp-filesystem-server # A Go-based implementation of filesystem operations using MCP.
+
+#### Coding Servers
+- pydantic-ai/mcp-run-python # Execute Python code and manage runtime environments with this server.
+- yepcode/mcp-server->js # Enable JavaScript coding workflows with this server.
+- wonderwhy-er/DesktopCommanderMCP # A versatile tool to manage desktop commands and workflows.
+- oraios/serena # A coding agent toolkit with semantic retrieval and editing capabilities.
+
