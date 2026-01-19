@@ -176,6 +176,14 @@ for each_app in `adb shell pm list packages -f | grep 'package:/data/app' | awk 
 done
 ```
 
+## Android hardware
+
+### phone specifications
+* https://gsmarena.com
+
+### external display
+is possible to connect when Phone has "USB Type-C 3.1"
+
 ## Android applications
 
 ### WhatsApp

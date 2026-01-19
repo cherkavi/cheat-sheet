@@ -1397,7 +1397,7 @@ docker build -t $IMAGE_NAME --file $FULL_PATH/$DOCKER_FILE $FULL_PATH/$BUILD_SUB
 ```
 Error response from daemon: remove typo3_db_data: volume is in use 
 ```
-```
+```sh
 docker system prune -af --volumes
 docker volume rm typo3_db_data
 ```
