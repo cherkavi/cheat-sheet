@@ -12,7 +12,8 @@
 * https://bard.google.com/chat
 * https://openai.com/blog/chatgpt
 * [generator of flash cards for learning](https://notegpt.io/ai-flashcard-maker)
-### photo generator
+
+### photo/image generators
 * https://artlist.io/
 * https://pixpal.chat/
 * https://chat-photo.com/
@@ -24,6 +25,15 @@
 * https://www.chatphoto.org/en-US
 * https://www.usebrushy.com/
 * https://deevid.ai/de/ai-image-generator
+* https://www.krea.ai 
+* https://promptbase.com/
+* https://huggingface.co/spaces?category=image-generation
+* https://docs.midjourney.com/hc/en-us/articles/33329261836941-Getting-Started-Guide
+* https://civitai.com
+
+## customization/flexible prompt
+* [deploy custom models and run them ](https://replicate.com/)
+
 
 ## general purposes tools
 * [cli tool for interacting with LLM](https://github.com/simonw/llm)
