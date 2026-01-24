@@ -22,8 +22,10 @@ n exec 20.3 node --version
 ```
 #### [run diff version of node locally](https://github.com/nvm-sh/nvm#installing-and-updating)
 ```sh
-nvm install 12;
-nvm use 12;
+nvm ls 
+nvm install 20;
+nvm use 20;
+nvm alias default 20  # apply it permanently ( after closing current terminal )
 node -v
 ```
 
