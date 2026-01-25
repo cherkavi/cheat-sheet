@@ -56,7 +56,15 @@ echo '
 ' >> /etc/firefox/policies/policies.json
 ```
 
+
 ## firefox create extension
+
+### firefox developer edition
+1. Install [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/).
+2. Type `about:config` in the address bar and click through the warning.
+3. Search for: `xpinstall.signatures.required`.
+4. Double-click it to set it to **false**.
+5. Now, any local `.xpi` file you install will remain active after a restart.
 
 ### minimal set of files
 
@@ -96,6 +104,7 @@ uuidgen
   ]
 }
 ```
+create XPI file extension (for firefox installation) as a development package
 ```sh
 zip 1.zip *
 mv 1.zip '{0ee3ef96-92c9-4486-ae32-bf42c2e814b4}.xpi'

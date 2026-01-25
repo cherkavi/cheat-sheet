@@ -666,6 +666,17 @@ sudo cpan JSON
 * https://github.com/gstavrinos/terminator-jump-up
 * https://github.com/mikeadkison/terminator-google/blob/master/google.py
 
+## file manager 
+### ranger
+#### ranger rifle
+```sh
+ls -la ~/.config/ranger/rifle.conf
+## create if, if not exist
+# ranger --copy-config=rifle
+
+## example of making default pdf reader
+ext pdf, has okular,   X, flag f = okular -- "$@"
+```
 
 ## bluejeans installation ubuntu 18+
 ```sh
