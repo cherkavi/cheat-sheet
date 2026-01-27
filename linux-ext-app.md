@@ -1,6 +1,7 @@
 # Linux applications
 
 ## useful links:
+* [list of self hosted application instead of SoftwareAsAService in Cloud](https://github.com/awesome-selfhosted/awesome-selfhosted)
 * [gnu applications](https://www.gnu.org/software/)
 * [how to install ubuntu on USB stick](https://ubuntuhandbook.org/index.php/2014/11/install-real-ubuntu-os-usb-drive/)
 * [rust command line tools](https://gist.github.com/sts10/daadbc2f403bdffad1b6d33aff016c0a)
