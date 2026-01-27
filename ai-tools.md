@@ -14,6 +14,7 @@
 * [generator of flash cards for learning](https://notegpt.io/ai-flashcard-maker)
 
 ### photo/image generators
+* https://firefly.adobe.com/generate/image
 * https://artlist.io/
 * https://pixpal.chat/
 * https://chat-photo.com/
