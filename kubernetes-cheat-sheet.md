@@ -180,6 +180,14 @@ minikube completion bash
 minikube start
 ```
 
+### determinate cluster 'hostIP' to reach out application(s)
+```sh
+minikube ip
+```
+open 'kube-dns-....'/hostIP  
+open 'kube-proxy-....'/hostIP  
+
+
 ### uninstall kube, uninstall kubectl, uninstall minikube
 ```sh
 kubectl delete node --all
@@ -551,11 +559,6 @@ kubectl describe {pod-name} limits
 kubectl describe {pod-name} limits --namespace my-own-namespace
 ```
 
-## delete namespace
-```sh
-kubectl delete namespace {name of namespace}
-```
-
 ## users
 * normal user
   * client certificates
@@ -617,101 +620,10 @@ etcdctl  get / --prefix --keys-only | grep permis
 etcdctl  get /registry/namespaces/permission-manager -w=json
 ```
 
-
-## configuration, configmap
-### create configmap
-#### example of configuration
-```properties
-color.ok=green
-color.error=red
-textmode=true
-security.user.external.login_attempts=5
-```
-#### create configuration on cluster
-```sh
-kubectl create configmap my-config-file --from-env-file=/local/path/to/config.properties
-```
-#### will be created next configuration
-```yaml
-...
-data:
-color.ok=green
-color.error=red
-textmode=true
-security.user.external.login_attempts=5
-```
-#### or configuration with additional key, additional abstraction over the properties ( like Map of properties )
-```sh
-kubectl create configmap my-config-file --from-file=name-or-key-of-config=/local/path/to/config.properties
-```
-created file is:
-```yaml
-data:
-name-or-key-of-config:
-    color.ok=green
-    color.error=red
-    textmode=true
-    security.user.external.login_attempts=5
-```
-#### or configuration with additional key based on filename ( key will be a name of file )
-```sh
-kubectl create configmap my-config-file --from-file=/local/path/to/
-```
-created file is:
-```yaml
-data:
-config.properties:
-    color.ok=green
-    color.error=red
-    textmode=true
-    security.user.external.login_attempts=5
-```
-#### or inline creation
-```sh
-kubectl create configmap special-config --from-literal=color.ok=green --from-literal=color.error=red
-```
-
-### get configurations, read configuration in specific format
-```sh
-kubectl get configmap 
-kubectl get configmap --namespace kube-system 
-kubectl get configmap --namespace kube-system kube-proxy --output json
-```
-
-### using configuration, using of configmap
-* one variable from configmap
-  ```yaml
-  spec:
-    containers:
-      - name: test-container
-        image: k8s.gcr.io/busybox
-        command: [ "/bin/sh", "echo $(MY_ENVIRONMENT_VARIABLE)" ]
-        env:
-          - name: MY_ENVIRONMENT_VARIABLE
-            valueFrom:
-              configMapKeyRef:
-                name: my-config-file
-                key: security.user.external.login_attempts
-  ```
-* all variables from configmap
-   ```yaml
-   ...
-        envFrom:
-        - configMapRef:
-            name: my-config-file
-   ```
-
 ## cluster information
 ```sh
 kubectl cluster-info
 kubectl cluster-info dump
-```
-
-## start readiness, check cluster
-```sh
-kubectl get node
-kubectl get pods
-minikube dashboard
 ```
 
 ## addons
@@ -720,58 +632,28 @@ minikube addons list
 minikube addons enable ingress
 ```
 
-## labels
-### show labels for each node
-```sh
-kubectl get nodes --show-labels
+## PV/PVC
+```mermaid
+classDiagram 
+
+PV <|-- NAS
+PV <|-- S3
+
+PVC --> PV : ref, class
+
+POD o-- PVC
+
+
 ```
 
-### add label to Node
+### delete PV/PVC
 ```sh
-kubectl label nodes {node name} my_label=my_value
-```
-
-### remove label from Node
-```sh
-kubectl label nodes {node name} my_label-
+oc delete pvc/pvc-scenario-output-prod
 ```
 
 
-## deployment
-to see deployment from external world, remote access to pod, deployment access:  
-user ----> Route -----> Service ----> Deployment
-![main schema](https://i.postimg.cc/6pfGpWvN/deployment-high-level.png)
 
-### start dummy container
-```sh
-kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
-```
-### start ubuntu and open shell
-```sh
-kubectl run --restart=Never --rm -it --image=ubuntu --limits='memory=123Mi' -- sh
-```
-
-### create deployment ( with replica set )
-```sh
-kubectl run http --image=katacoda/docker-http-server:latest --replicas=1
-```
-
-### scale deployment 
-
-#### scaling types
-* horizontal
-* vertical ( scaling up )
-#### scaling example
-```sh
-deployment_name=my_deployment_name
-## scale pod to amount of replicas
-kubectl scale --replicas=3 deployment $deployment_name
-
-## conditional scaling 
-kubectl autoscale deployment $deployment_name --cpu-percent=50 --min=1 --max=3
-# check Horizonal Pod Autoscaling
-kubectl get hpa 
-```
+## kubectl commands, manipulation with domain objects
 
 ### create from yaml file
 ```sh
@@ -780,156 +662,6 @@ kubectl create -f /path/to/controller.yml
 ### create/update yaml file
 ```sh
 kubectl apply -f /path/to/controller.yml
-```
-
-## create service, expose service, inline service fastly
-```sh
-kubectl expose deployment helloworld-deployment --type=NodePort --name=helloworld-service
-kubectl expose deployment helloworld-deployment --external-ip="172.17.0.13" --port=8000 --target-port=80
-```
-### port forwarding, expose service
-```bash
-kubectl port-forward svc/my_service 8080 --namespace my_namespace
-```
-
-### reach out service
-```sh
-minikube service helloworld-service
-minikube service helloworld-service --url
-```
-
-### service port range
-```sh
-kube-apiserver --service-node-port-range=30000-40000
-```
-
-## describe resources, information about resources, inspect resources, inspect pod
-```sh
-kubectl describe deployment {name of deployment}
-kubectl describe service {name of service}
-kubectl describe pod {name of the pod}
-```
-
-## describe secret, user token
-```sh
-kubectl --namespace kube-system describe secret admin-user
-```
-### [External Secret Operator](https://external-secrets.io/latest/)
-The operator reads information from external APIs (AWS Secrets Manager, HashiCorp Vault, Google Secrets Manager...)   
-and automatically injects the values into a Kubernetes Secret.
-
-## get resources
-```sh
-kubectl get all --all-namespaces
-# check pod statuses 
-kubectl get pods
-kubectl get pods --namespace kube-system
-kubectl get pods --show-labels
-kubectl get pods --output=wide --selector="run=load-balancer-example" 
-kubectl get pods --namespace training --field-selector="status.phase==Running,status.phase!=Unknown"
-kubectl get service --output=wide
-kubectl get service --output=wide --selector="app=helloworld"
-kubectl get deployments
-kubectl get replicasets
-kubectl get nodes
-kubectl get cronjobs
-kubectl get daemonsets
-kubectl get pods,deployments,services,rs,cm,pv,pvc -n demo
-
-kubectl list services
-kubectl describe service my_service_name
-```
-
-## determinate cluster 'hostIP' to reach out application(s)
-```sh
-minikube ip
-```
-open 'kube-dns-....'/hostIP
-open 'kube-proxy-....'/hostIP
-
-### edit configuration of controller
-```sh
-kubectl edit pod hello-minikube-{some random hash}
-kubectl edit deploy hello-minikube
-kubectl edit ReplicationControllers helloworld-controller
-kubectl set image deployment/helloworld-deployment {name of image}
-```
-
-### rollout status
-```sh
-kubectl rollout status  deployment/helloworld-deployment
-```
-
-### rollout history
-```sh
-kubectl rollout history  deployment/helloworld-deployment
-kubectl rollout undo deployment/helloworld-deployment
-kubectl rollout undo deployment/helloworld-deployment --to-revision={number of revision from 'history'}
-```
-
-### delete running container
-```sh
-kubectl delete pod hello-minikube-6c47c66d8-td9p2
-```
-
-### delete deployment
-```sh
-kubectl delete deploy hello-minikube
-```
-### delete ReplicationController
-```sh
-kubectl delete rc helloworld-controller
-```
-### delete PV/PVC
-```sh
-oc delete pvc/pvc-scenario-output-prod
-```
-
-### port forwarding from local to pod/deployment/service
-next receipts allow to redirect 127.0.0.1:8080 to pod:6379
-```
-kubectl port-forward redis-master-765d459796-258hz      8080:6379 
-kubectl port-forward pods/redis-master-765d459796-258hz 8080:6379
-kubectl port-forward deployment/redis-master            8080:6379 
-kubectl port-forward rs/redis-master                    8080:6379 
-kubectl port-forward svc/redis-master                   8080:6379
-```
-
-### NodeSelector for certain host
-```yaml
-spec:
-   template:
-      spec:
-         nodeSelector: 
-            kubernetes.io/hostname: gtxmachine1-ev
-```
-
-### persistent volume
-```yaml
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: pv-volume3
-  labels:
-    type: local
-spec:
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data3"
-```
-
-to access created volume
-```sh
-ls /mnt/data3
-```
-
-list of existing volumes
-```sh
-kubectl get pv 
-kubectl get pvc
 ```
 
 ### [container lifecycle](https://v1-18.docs.kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/)
@@ -968,15 +700,296 @@ containers:
           port: 8080
 ```
 
-### Serverless
-* OpenFaas
-* Kubeless
-* Fission
-* OpenWhisk
+### describe resources, information about resources, inspect resources, inspect pod
+```sh
+kubectl describe deployment {name of deployment}
+kubectl describe service {name of service}
+kubectl describe pod {name of the pod}
+```
+
+### describe secret, user token
+```sh
+kubectl --namespace kube-system describe secret admin-user
+```
+
+#### [External Secret Operator](https://external-secrets.io/latest/)
+The operator reads information from external APIs (AWS Secrets Manager, HashiCorp Vault, Google Secrets Manager...)   
+and automatically injects the values into a Kubernetes Secret.
+
+### configuration, configmap
+#### create configmap
+##### example of configuration
+```properties
+color.ok=green
+color.error=red
+textmode=true
+security.user.external.login_attempts=5
+```
+##### create configuration on cluster
+```sh
+kubectl create configmap my-config-file --from-env-file=/local/path/to/config.properties
+```
+##### will be created next configuration
+```yaml
+...
+data:
+color.ok=green
+color.error=red
+textmode=true
+security.user.external.login_attempts=5
+```
+##### or configuration with additional key, additional abstraction over the properties ( like Map of properties )
+```sh
+kubectl create configmap my-config-file --from-file=name-or-key-of-config=/local/path/to/config.properties
+```
+created file is:
+```yaml
+data:
+name-or-key-of-config:
+    color.ok=green
+    color.error=red
+    textmode=true
+    security.user.external.login_attempts=5
+```
+##### or configuration with additional key based on filename ( key will be a name of file )
+```sh
+kubectl create configmap my-config-file --from-file=/local/path/to/
+```
+created file is:
+```yaml
+data:
+config.properties:
+    color.ok=green
+    color.error=red
+    textmode=true
+    security.user.external.login_attempts=5
+```
+##### or inline creation
+```sh
+kubectl create configmap special-config --from-literal=color.ok=green --from-literal=color.error=red
+```
+
+#### get configurations, read configuration in specific format
+```sh
+kubectl get configmap 
+kubectl get configmap --namespace kube-system 
+kubectl get configmap --namespace kube-system kube-proxy --output json
+```
+
+#### using configuration, using of configmap
+* one variable from configmap
+  ```yaml
+  spec:
+    containers:
+      - name: test-container
+        image: k8s.gcr.io/busybox
+        command: [ "/bin/sh", "echo $(MY_ENVIRONMENT_VARIABLE)" ]
+        env:
+          - name: MY_ENVIRONMENT_VARIABLE
+            valueFrom:
+              configMapKeyRef:
+                name: my-config-file
+                key: security.user.external.login_attempts
+  ```
+* all variables from configmap
+   ```yaml
+   ...
+        envFrom:
+        - configMapRef:
+            name: my-config-file
+   ```
+
+### start readiness, check cluster
+```sh
+kubectl get node
+kubectl get pods
+minikube dashboard
+```
+
+### delete namespace
+```sh
+kubectl delete namespace {name of namespace}
+```
 
 
+### get resources
+```sh
+kubectl get all --all-namespaces
+# check pod statuses 
+kubectl get pods
+kubectl get pods --namespace kube-system
+kubectl get pods --show-labels
+kubectl get pods --output=wide --selector="run=load-balancer-example" 
+kubectl get pods --namespace training --field-selector="status.phase==Running,status.phase!=Unknown"
+kubectl get service --output=wide
+kubectl get service --output=wide --selector="app=helloworld"
+kubectl get deployments
+kubectl get replicasets
+kubectl get nodes
+kubectl get cronjobs
+kubectl get daemonsets
+kubectl get pods,deployments,services,rs,cm,pv,pvc -n demo
 
-### deploy Pod on Node with label
+kubectl list services
+kubectl describe service my_service_name
+```
+
+#### edit configuration of controller
+```sh
+kubectl edit pod hello-minikube-{some random hash}
+kubectl edit deploy hello-minikube
+kubectl edit ReplicationControllers helloworld-controller
+kubectl set image deployment/helloworld-deployment {name of image}
+```
+
+#### rollout status
+```sh
+kubectl rollout status  deployment/helloworld-deployment
+```
+
+#### rollout history
+```sh
+kubectl rollout history  deployment/helloworld-deployment
+kubectl rollout undo deployment/helloworld-deployment
+kubectl rollout undo deployment/helloworld-deployment --to-revision={number of revision from 'history'}
+```
+
+#### delete running container
+```sh
+kubectl delete pod hello-minikube-6c47c66d8-td9p2
+```
+
+#### delete deployment
+```sh
+kubectl delete deploy hello-minikube
+```
+#### delete ReplicationController
+```sh
+kubectl delete rc helloworld-controller
+```
+
+#### port forwarding from local to pod/deployment/service
+next receipts allow to redirect 127.0.0.1:8080 to pod:6379
+```sh
+kubectl port-forward redis-master-765d459796-258hz      8080:6379 
+kubectl port-forward pods/redis-master-765d459796-258hz 8080:6379
+kubectl port-forward deployment/redis-master            8080:6379 
+kubectl port-forward rs/redis-master                    8080:6379 
+kubectl port-forward svc/redis-master                   8080:6379
+```
+
+#### NodeSelector for certain host
+```yaml
+spec:
+   template:
+      spec:
+         nodeSelector: 
+            kubernetes.io/hostname: gtxmachine1-ev
+```
+
+#### persistent volume
+```yaml
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-volume3
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data3"
+```
+
+to access created volume
+```sh
+ls /mnt/data3
+```
+
+list of existing volumes
+```sh
+kubectl get pv 
+kubectl get pvc
+```
+
+### deployment
+to see deployment from external world, remote access to pod, deployment access:  
+user ----> Route -----> Service ----> Deployment
+![main schema](https://i.postimg.cc/6pfGpWvN/deployment-high-level.png)
+
+#### start dummy container
+```sh
+kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
+```
+#### start ubuntu and open shell
+```sh
+kubectl run --restart=Never --rm -it --image=ubuntu --limits='memory=123Mi' -- sh
+```
+
+#### create deployment ( with replica set )
+```sh
+kubectl run http --image=katacoda/docker-http-server:latest --replicas=1
+```
+
+#### scale deployment 
+
+##### scaling types
+* horizontal
+* vertical ( scaling up )
+##### scaling example
+```sh
+deployment_name=my_deployment_name
+## scale pod to amount of replicas
+kubectl scale --replicas=3 deployment $deployment_name
+
+## conditional scaling 
+kubectl autoscale deployment $deployment_name --cpu-percent=50 --min=1 --max=3
+# check Horizonal Pod Autoscaling
+kubectl get hpa 
+```
+
+### create service, expose service, inline service fastly
+service is a used for exposing pods  ( load balancer ... )
+```sh
+kubectl expose deployment helloworld-deployment --type=NodePort --name=helloworld-service
+kubectl expose deployment helloworld-deployment --external-ip="172.17.0.13" --port=8000 --target-port=80
+```
+#### port forwarding, expose service
+```bash
+kubectl port-forward svc/my_service 8080 --namespace my_namespace
+```
+
+#### reach out service
+```sh
+minikube service helloworld-service
+minikube service helloworld-service --url
+```
+
+#### service port range
+```sh
+kube-apiserver --service-node-port-range=30000-40000
+```
+
+### labels
+#### show labels for each node
+```sh
+kubectl get nodes --show-labels
+```
+
+#### add label to Node
+```sh
+kubectl label nodes {node name} my_label=my_value
+```
+
+#### remove label from Node
+```sh
+kubectl label nodes {node name} my_label-
+```
+
+#### deploy Pod on Node with label
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -1000,7 +1013,7 @@ spec:
     my_label=my_value
 ```
 
-### resolving destination node
+#### resolving destination node
 ![when label was not found](https://i.postimg.cc/mDjTpWw3/type-affinity-anti-affinity.png)
 
 * nodeAffinity
@@ -1049,13 +1062,24 @@ spec:
   * required
   `spec.affinity.podAntiAffinity.requiredDuringSchedulingIgnoredDuringExecution`
 
-## delete node from cluster
+### DaemonSet
+All nodes will have it. Use Case: monitoring
+
+### Job
+```mermaid
+flowchart LR
+
+CronJob -->|starts| Job -->|create| POD
+```
+
+## Nodes
+### delete node from cluster
 ```sh
 kubectl get nodes
 kubectl delete {node name}
 ```
 
-## add node to cluster
+### add node to cluster
 ```sh
 ssh {master node}
 kubeadm token create --print-join-command  --ttl 0
@@ -1092,12 +1116,21 @@ systemctl restart kubelet
 kubectl logs <name of pod>
 ```
 
-## create dashboard 
+## Troubleshooting
+### issue with PV / PVC
+```
+pod has unbound immediate PersistentVolumeClaims. preemption: 0/2 nodes are available: 2 No preemption victims found for incoming pod..
+```
+create - check PV & PVC capacities (requested space) - PVC should have not more than PV
+
+
+## K8S dashboard
+### create dashboard 
 ```sh
 kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
-## access dashboard
+### access dashboard
 ```sh
 kubectl -n kube-system describe secret admin-user
 http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=default
@@ -1111,6 +1144,13 @@ kubectl exec -it {name of a pod}  -- bash -c "echo hi > /path/to/output/test.txt
 ```
 
 # Extending 
+
+## Serverless
+* OpenFaas
+* Kubeless
+* Fission
+* OpenWhisk
+
 ## [custom controller](https://github.com/kubernetes/sample-controller)
 
 ## Weave
@@ -1365,11 +1405,3 @@ openssl x509 -in /etc/kubernetes/pki/apiserver.crt  -noout -text  | grep "Not Af
 ## template frameworks
 * [go template](https://godoc.org/text/template)
 * [sprig template](https://godoc.org/github.com/Masterminds/sprig)
-
-
-## Troubleshooting
-### issue with PV / PVC
-```
-pod has unbound immediate PersistentVolumeClaims. preemption: 0/2 nodes are available: 2 No preemption victims found for incoming pod..
-```
-create - check PV & PVC capacities (requested space) - PVC should have not more than PV
