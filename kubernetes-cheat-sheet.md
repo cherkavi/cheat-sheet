@@ -1,4 +1,5 @@
 # Kubernetes cheat sheet
+
 ## useful links
 * [cheat sheet OpenShift](https://github.com/cherkavi/cheat-sheet/tree/master/openshift.md)
 * [cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
@@ -87,7 +88,7 @@ pip install kubernetes
 ![kubernetes](https://i.postimg.cc/CL1Z9Lnv/kubernetes.png)
 
 ---
-## workflow
+## typycal workflow, K8S manipulation 
 ![deployment workflow](https://i.postimg.cc/bvJn06Tz/update-workflow.png)
 
 1. The user deploys a new app by using the kubectl CLI. Kubectl sends the request to the API server.
@@ -98,8 +99,68 @@ pip install kubernetes
 6. A Kubelet on a node detects a pod with an assignment to itself and deploys the requested containers through the container runtime, for example, Docker. Each node watches the storage to see what pods it is assigned to run. The node takes necessary actions on the resources assigned to it such as to create or delete pods.
 7. Kubeproxy manages network traffic for the pods, including service discovery and load balancing. Kubeproxy is responsible for communication between pods that want to interact.
 
+--- 
+## bird eye view on installation
+```mermaid
+flowchart LR
+
+group1(( api 
+         group1 )) --o Interface
+group2(( api
+         group2 )) --o Interface
+group3(( api
+         group3 )) --o Interface
+
+
+subgraph k8s[kubernetes]
+    worker   --> node
+    controlplane[controlplane:
+                 etcd
+                 controller
+                 scheduler
+                 api server]   --> node
+end
+
+POD[POD:
+    ip/hostname] --o worker
+kubelet --o POD
+kubeproxy[kube 
+          proxy] --o POD
+customdocker1[custom 
+             docker] --o POD
+customdocker2[custom 
+             docker] --o POD
+
+Interface(("Kube 
+            API  " )) ---o k8s
+                            
+k8s ----o node[nodeS]                               
+
+node -- "installed on" ---> cloud[Cloud / virtual]
+node -- "installed on" ---> baremetal[Baremetal / physical]
+
+style node fill:green,stroke:#82823c,color:black
+style cloud fill:green,stroke:#82823c,color:black
+style baremetal fill:green,stroke:#82823c,color:black
+
+style worker fill:cyan,color:black
+style controlplane fill:cyan,color:black
+
+style group1 fill:cyan,color:black
+style group2 fill:cyan,color:black
+style group3 fill:cyan,color:black
+
+style Interface fill:#00CED1,color:black
+style POD fill:cyan,color:black
+style kubelet fill:cyan,color:black
+style kubeproxy fill:cyan,color:black
+style customdocker1 fill: #0e98ba, color:black
+style customdocker2 fill: #0e98ba, color:black
+```
+
 ---
 ## [kind](https://kind.sigs.k8s.io/)
+
 ---
 ## [k3s](https://k3s.io/)
 > Lightweight Kubernetes distribution
@@ -651,9 +712,8 @@ POD o-- PVC
 oc delete pvc/pvc-scenario-output-prod
 ```
 
-
-
 ## kubectl commands, manipulation with domain objects
+K8S accept commands and trying to achive/resolve state from actual to desired ( the command send desired state )
 
 ### create from yaml file
 ```sh

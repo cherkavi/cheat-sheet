@@ -14,7 +14,16 @@
 
 ## [documentation examples, how to write good documentation, documentation tools](https://github.com/matheusfelipeog/beautiful-docs)
 
-## useful tools:
+## landscapes/radars
+* [cloud native landscape](https://landscape.cncf.io/)  
+  built using an open-source tool called the **Interactive Landscape**
+* [AI & Data Landscape](https://landscape.lfaidata.foundation/)
+* [FinOps Landscape](https://landscape.finops.org/)
+* [Continuous Delivery Foundation (CDF)](https://landscape.cd.foundation/)
+* [OpenJS Foundation Landscape](https://landscape.openjsf.org/)
+* [GraphQL Landscape](https://landscape.graphql.org/)
+
+## useful tools
 
 ### useful search function for using whole cheat sheet
 ```sh
@@ -61,9 +70,15 @@ function cheat-grep(){
 * https://vscode.dev
 * https://code.visualstudio.com/
 * https://lite-xl.com/
+* [editor colors](https://www.eggradients.com/cyan-colors)
 
 ### render/run html/js/javascript files from github
 
+#### start locally markdown files as html
+```sh
+# sudo npm install markserv
+markserv .
+```
 #### githack.com
 * Development
 `https://raw.githack.com/[user]/[repository]/[branch]/[filename.ext]`
@@ -96,12 +111,13 @@ example
     * [font awesome fa:fa-user](https://fontawesome.com/icons)
     * [mermaid flowchart shapes](https://mermaid.js.org/syntax/flowchart.html#complete-list-of-new-shapes)
     * [mermaid theme: default, neutral, dark, forest, base](https://mermaid.js.org/config/theming.html#available-themes)
-      ```mermaid
+```mermaid
 ---
 config:
-  theme: 'default'
+theme: 'default'
 ---
-      ```
+flowchart LR
+```
   * [zenuml](https://docs.zenuml.com/)
   * [kroki - collection of diagrams](https://kroki.io/)
 * [markdown editor realtime collaboration](https://hackmd.io/)
