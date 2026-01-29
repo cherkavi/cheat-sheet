@@ -80,7 +80,8 @@ auto.commit.interval.ms=1;   # set it to lower timeframe
 scenario happens when consumer processes a message and commits the message into its persistent store and consumer crashes at that point, haven't commit to kafka broker
 Duplicate message delivery could happen in the following scenario.
 ```quarkus.kafka-streams.processing-guarantee=at_least_once```
-```
+
+```sh
 enable.auto.commit=false  #  enable.auto.commit=true and auto.commit.interval.ms=999999999999999
 # consumer.commitSync(); # After reading. Consumer should now then take control of the message offset commits
 ```
@@ -289,6 +290,12 @@ bin/kafka-console-producer.sh --producer.config $PRODUCER_CONFIG \
 partition will be selected 
 
 ## Consumer
+### [consumer/producer docker container ](https://github.com/conduktor/conduktor-gateway-demos/blob/main/data-masking/docker-compose.yaml)
+```sh
+docker compose exec -T kafka-client kafka-console-producer --bootstrap-server ... 
+# docker exec confluentinc/cp-kafka:latest kafka-console-producer --bootstrap-server ... 
+```
+
 ### [consumer console](https://github.com/apache/kafka/blob/trunk/core/src/main/scala/kafka/tools/ConsoleConsumer.scala) ( console consumer )
 ```sh
 bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning
@@ -488,3 +495,22 @@ kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -o beginning -K\t | grep $MES
 ```sh
 kafkacat -C -b $BROKER_HOST:$BROKER_PORT -t $TOPIC -c 5 -P -l /path/to/file
 ```
+
+### conduktor - encryption/decryption, masking of message(s)/field(s)
+* [conduktor github](https://github.com/conduktor)
+* [conduktor kafka online course](https://github.com/conduktor/kafka-beginners-course?tab=readme-ov-file)
+* [encryption/decryption core library](https://developers.google.com/tink)
+* [conduktor gateway demo](https://github.com/conduktor/conduktor-gateway-demos/blob/main/data-masking/Readme.md)
+```mermaid
+graph LR
+
+up([producer]) -.->|1| c[conduktor] 
+c -.->|2| k[(kafka topic)]
+
+k -.->|3.1| uc([consumer]) 
+
+c -.->|3.2.2| uc
+k -.->|3.2.1| c
+```
+* 3.1 - read raw data with encryption/masking
+* 3.2 - read decrypted/unmasked data 
