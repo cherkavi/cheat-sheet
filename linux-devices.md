@@ -198,6 +198,9 @@ xsetwacom --get "$DEVICE_NAME" all
 
 ## get certain parameter
 xsetwacom --get "$DEVICE_NAME" Gesture 
+xsetwacom --get "$DEVICE_NAME" Area
+xsetwacom --get "$DEVICE_NAME" MapToOutput
+
 ## set parameter by name 
 xsetwacom set "$DEVICE_NAME" Touch off
 ```
