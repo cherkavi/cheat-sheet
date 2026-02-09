@@ -143,25 +143,66 @@ Right move-right 10
 ## Touch screen
 ### calibration
 tool installation
-```
+```sh
 sudo apt install xinput-calibrator
 ```
 configuration
-```
+```sh
 xinput_calibration
 ```
 list of all devices, device list, list of devices
-```
+```sh
 xinput --list
 cat /proc/bus/input/devices
 ```
 permanent applying
-```
+```sh
 vi /usr/share/X11/xorg.conf.d/80-touch.conf
 ```
 disable device
-```
+```sh
 xinput --disable {number from command --list}
+```
+
+## Wacom tablet
+```sh
+### installation
+sudo apt install xserver-xorg-input-wacom
+
+## list of all attached 
+xsetwacom --list devices
+
+DEVICE_NAME="Wacom Intuos BT S Pad pad"
+DEVICE_NAME="Wacom Intuos PT S 2 Finger touch" 
+
+##########################################################
+# Touch          Enables or disables touch functionality.
+# Area           Sets the active area of the tablet. Format: xsetwacom set "device name" Area 0 0 width height
+# Button         Configures the behavior of the tablet buttons. E.g., xsetwacom set "device name" Button 1 "function"
+# PressureCurve  Adjusts the pressure sensitivity curve. E.g., xsetwacom set "device name" PressureCurve 0 50 100 100
+# Scroll         Enables or disables scrolling functions.
+# Rotate         Rotates the tablet input. Used for specific orientations.
+# Mode           Defines whether the tablet is in absolute or relative mode.
+# DeviceType     Sets the type of device; e.g., stylus or eraser.
+# Sensititivity  Adjusts sensitivity settings.
+# Invert         Inverts the pressure sensitivity.
+# MapToOutput    Maps the tablet to a specific display output.
+# ToolType       Specifies the tool type (e.g., pen, eraser).
+# Speed          Adjusts the speed of the cursor movement.
+
+
+## list of all parameters
+xsetwacom list parameters "$DEVICE_NAME"
+xsetwacom --get "$DEVICE_NAME" all
+
+
+## get certain parameter
+xsetwacom --get "$DEVICE_NAME" Gesture 
+xsetwacom --get "$DEVICE_NAME" Area
+xsetwacom --get "$DEVICE_NAME" MapToOutput
+
+## set parameter by name 
+xsetwacom set "$DEVICE_NAME" Touch off
 ```
 
 ## Keyboard Lenovo
