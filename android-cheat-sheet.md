@@ -176,6 +176,25 @@ for each_app in `adb shell pm list packages -f | grep 'package:/data/app' | awk 
 done
 ```
 
+## Android regular cleanup
+```sh
+## collect files
+find .  -printf "%p %s %TY-%Tm-%Td %TH:%TM:%TS\n" > ~/phone.files
+
+## consider files
+cat ~/phone.files  | awk '{print $1}' | grep -v gallery_disk_cache/ | grep -v Pictures/Viber | grep -v DCIM/Camera
+
+## print all files
+cat ~/redmi-9t.files.txt | awk '{print $1}' | awk -F '/' '{for(i=1; i<NF; i++) printf "%s%s", $i, (i<NF-1 ? "/" : ""); print ""}' > ~/phone.files.txt.dirs
+
+## move viber files
+DEST=/media/$USER/DEFA-5D32
+for each_file in `cat ~/phone.files  | awk '{print $1}' | grep Movies/Viber | grep mp4 `;do
+    echo $each_file
+    mv $each_file $DEST/Viber
+done
+```
+
 ## Android hardware
 
 ### phone specifications
