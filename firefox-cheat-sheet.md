@@ -33,6 +33,20 @@ print(element.text)
 marionette.delete_session()
 ```
 
+## firefox start in debug mode
+```sh
+## firefox setup 
+# about:config
+# devtools.debugger.remote-enabled
+# devtools.debugger.prompt-connection
+
+## start in debug 
+firefox --start-debugger-server 6000
+
+## check connection
+x-www-browser http://localhost:6000
+```
+
 ## firefox profile list
 ```sh
 cat $HOME/.mozilla/firefox/profiles.ini

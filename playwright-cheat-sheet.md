@@ -70,6 +70,8 @@ from playwright.sync_api import sync_playwright
 # Manual / inline way
 p = sync_playwright().start()
 browser = p.chromium.launch(headless=False, slow_mo=50)
+## alternative browser creation:
+# browser = p.chromium.connect_over_cdp("http://localhost:9222") # where 9222 - --remote-debugging-port=9222
 context = browser.new_context()
 page = context.new_page()
 page.goto("https://example.com")

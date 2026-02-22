@@ -41,8 +41,9 @@ for each_file in `find $CHROME_CONFIG | grep manifest.json$`; do
     cat $each_file | grep '"name": '
 done
 ```
+
 ## chrome application 
-Google Chrome
+### Google Chrome
 ```sh
 x-www-browser chrome://app-settings/dnfpoenibinnbbckgbhendmlljoobcfg
 
@@ -53,13 +54,23 @@ cat $HOME/.gnome/apps/chrome-$APP_ID-Default.desktop
 cat $HOME/Desktop/chrome-$APP_ID-Default.desktop
 ```
 
-Chromium 
+### Chromium 
 ```sh
 ## folder
 ll "$HOME/snap/chromium/common/chromium/Default/Web Applications/Manifest Resources/"
 
 ## start application
 /snap/bin/chromium --profile-directory=Default --app-id=cifhbcnohmdccbgoicgdjpfamggdegmo
+```
+
+## chrome in debug mode
+ℹ️ [example of usage via selenium driver](https://github.com/cherkavi/python-utilities/blob/master/selenium/selenium_headless_stealth.py)  
+```sh
+killall chrome
+# start in debug, user-data-dir must be provided
+google-chrome --remote-debugging-port=9933 --user-data-dir=/tmp/chrome-temp-folder & echo $! # > $google_chrome_pid_file
+# check start
+curl localhost:9933/json
 ```
 
 ## link anchor, link to text, highlight text on the page, find text on the page, [text fragments](https://developer.mozilla.org/en-US/docs/Web/Text_fragments)
