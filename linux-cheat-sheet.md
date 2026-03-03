@@ -962,6 +962,20 @@ pwdx <process id>
 original.sh $*
 ```
 
+### app image run start AppImage
+put content 
+```c
+abi <abi/4.0>,
+include <tunables/global>
+
+profile getsession.org "/home/soft/messanger-getsession/session-desktop-linux-x86_64-1.17.12.AppImage" flags=(unconfined) {
+  userns,
+  include if exists <local/getsession.org>
+}
+```
+to file `sudo vim /etc/apparmor.d/getsession.org`  
+and reload `sudo systemctl reload apparmor`
+
 ### ubuntu install python
 ```
 # ubuntu 18 python 3.8
