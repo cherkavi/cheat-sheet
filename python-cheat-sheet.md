@@ -22,6 +22,40 @@ os.environ['https_proxy'] = proxy
 os.environ['HTTPS_PROXY'] = proxy
 ```
 
+## python multiple environments, diff versions of python in the same OS, aka `sdk`
+```sh
+### Install build dependencies
+sudo apt update
+sudo apt install -y build-essential curl git \
+  libssl-dev zlib1g-dev libbz2-dev libreadline-dev \
+  libsqlite3-dev libffi-dev liblzma-dev tk-dev \
+  python3-openssl
+
+### Install pyenv
+curl https://pyenv.run | bash
+
+### extend bash
+cat <<'EOF' >> ~/.bashrc
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+EOF
+source ~/.bashrc
+
+### check installation
+pyenv doctor
+
+### Install versions
+pyenv install 3.10.14
+pyenv install 3.12.4
+pyenv versions
+
+### Switch versions
+pyenv global 3.12.4      # default for all shells
+pyenv local 3.10.14       # per-folder (creates .python-version)
+pyenv shell 3.12.4        # for current shell only
+```
+
 ## [faster package manager uv](https://pypi.org/project/uv/)
 
 ## [package manager poetry](https://python-poetry.org/)  

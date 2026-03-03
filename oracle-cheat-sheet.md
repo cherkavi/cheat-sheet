@@ -125,6 +125,39 @@ export PATH=$PATH:$CLIENT_HOME/bin
 sqlplus
 ```
 
+### python connection
+```py
+# sqlplus user/pass@host:port:sid
+dsn = oracledb.makedsn(ORACLE_HOST, int(ORACLE_PORT), sid=ORACLE_SID) #  print(dsn)
+conn = oracledb.connect(user=ORACLE_USER, password=ORACLE_PASS, dsn=dsn)
+
+############## SERVICE NAME
+# sqlplus user/pass@host:port/service_name
+dsn = oracledb.makedsn(ORACLE_HOST, int(ORACLE_PORT), service_name=ORACLE_SERVICE)
+conn = oracledb.connect(user=ORACLE_USER, password=ORACLE_PASS, dsn=dsn)
+# ----
+dsn = f"{ORACLE_HOST}:{ORACLE_PORT}/{ORACLE_SERVICE}"
+conn = oracledb.connect(user=ORACLE_USER, password=ORACLE_PASS, dsn=dsn)
+# ----
+dsn = f"{ORACLE_USER}/{ORACLE_PASS}@{ORACLE_HOST}:{ORACLE_PORT}/{ORACLE_SERVICE}"
+connection = oracledb.connect(dsn)
+# ----
+conn = oracledb.connect(user=ORACLE_USER, password=ORACLE_PASS, service_name=ORACLE_SERVICE)
+
+############## SID
+# sql ${ORACLE_USER}/${ORACLE_PASS}@${ORACLE_HOST}:${ORACLE_PORT}:${ORACLE_SID} 
+dsn = f"(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={ORACLE_HOST})(PORT={ORACLE_PORT}))(CONNECT_DATA=(SID={ORACLE_SID})))"
+conn = oracledb.connect(user=ORACLE_USER, password=ORACLE_PASS, dsn=dsn)
+# ----
+dsn = f"{ORACLE_HOST}:{ORACLE_PORT}:{ORACLE_SID}"
+conn = oracledb.connect(user=ORACLE_USER, password=ORACLE_PASS, dsn=dsn)
+# ----
+dsn = f"{ORACLE_USER}/{ORACLE_PASS}@{ORACLE_HOST}:{ORACLE_PORT}:{ORACLE_SID}"
+connection = oracledb.connect(dsn)
+# ----
+conn = oracledb.connect(user=ORACLE_USER, password=ORACLE_PASS, sid=ORACLE_SID)
+```
+
 ### how to export tables ( fast way )
 #### installation 
 ```sh
