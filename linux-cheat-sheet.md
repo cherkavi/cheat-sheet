@@ -976,6 +976,16 @@ profile getsession.org "/home/soft/messanger-getsession/session-desktop-linux-x8
 to file `sudo vim /etc/apparmor.d/getsession.org`  
 and reload `sudo systemctl reload apparmor`
 
+additional tools:
+```sh
+sudo aa-status
+
+sudo app-get install apparmor-utils
+
+aa-enforce /path/to/profile
+aa-complain /path/to/profile
+```
+
 ### ubuntu install python
 ```
 # ubuntu 18 python 3.8
