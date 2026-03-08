@@ -80,15 +80,23 @@ set timing off            -- Hide timing
 #### capture/catch/write output result of sql query to file
 ```sql
 set heading off
-spool out.txt
-spool off
-```
-```sql
-set heading off
 set sqlformat csv
 spool out.csv
 spool off
 ```
+```sql
+COLUMN spool_file NEW_VALUE spool_file
+SELECT '/home/myuser/Downloads/archiving-tables/output_from_sql' ||
+       TO_CHAR(SYSDATE, 'YYYYMMDD_HH24MISS') || '.sql' AS spool_file
+FROM dual;
+
+SET HEADING OFF
+SET FEEDBACK OFF
+SPOOL &spool_file
+-- execute your queries
+SPOOL OFF
+```
+
 #### capture/catch/write output result of sql query to file via terminal 
 ```sh
 script sql-command.output
@@ -98,6 +106,8 @@ sql ....
 exit
 cat sql-command.output
 ```
+
+#### capture
 
 
 ### [sqlline](https://github.com/julianhyde/sqlline?tab=readme-ov-file#building)

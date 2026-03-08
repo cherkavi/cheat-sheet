@@ -170,6 +170,12 @@ aws rds restore-db-instance-from-s3  --db-instance-identifier ghost-db-mysql --d
 aws rds describe-db-instances --db-instance-identifier ghost-db-mysql --region <FMI> --query DBInstances[0].DBInstanceStatus
 ```
 
+## Database migration analysis
+### [oracle to rds migration](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_SupportScripts.Oracle.html#CHAP_SupportScripts.Oracle.Awsdms_Support_Collector_Oracle_Script)  
+### oracle migration hot points, pay attention to:
+DATABASE_LINKS, JOB, SYNONYM, SEQUENCE, PACKAGE_PROCEDURE, PACKAGE_FUNCTION, PACKAGE, FUNCTION, PROCEDURE, MATERIALIZED_VIEW, VIEW, TRIGGER, INDEX, CONSTRAINT, TABLE
+
+
 ## Database migration service
 * create replication instance
 * create source endpoint

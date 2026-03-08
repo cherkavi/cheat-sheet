@@ -13,6 +13,9 @@
 * https://openai.com/blog/chatgpt
 * [generator of flash cards for learning](https://notegpt.io/ai-flashcard-maker)
 
+## general purposes AI
+* https://openclaw.ai/
+
 ### photo/image generators
 * https://firefly.adobe.com/generate/image
 * https://artlist.io/
