@@ -1240,6 +1240,28 @@ kubectl proxy
 kubectl exec -it {name of a pod}  -- bash -c "echo hi > /path/to/output/test.txt" 
 ```
 
+## ☸️ K8s Deployment & Resilience
+---
+
+### 📦 1. Workload & Deployment
+* **Modular Units:** Design small, decoupled pods for easier management.
+* **Resource Limits:** Set CPU/RAM `requests` and `limits` to stop "noisy neighbors."
+* **Placement Strategy:** Use **Node Affinity** (Taints/Tolerations are restricted).
+* **Affinity Rules:** Match pods to nodes based on hardware or geography.
+
+---
+### 🛡️ 2. Resilience & Scaling
+
+* **PDBs:** Define `PodDisruptionBudgets` to guarantee uptime during updates.
+* **HPA:** Enable **Horizontal Pod Autoscaling** to handle traffic spikes.
+* **Node Pools:** Group nodes by function to isolate failure domains.
+* **Workload Isolation:** Separate critical apps to prevent resource contention.
+* **Alerting:** Use Helm-based monitoring to catch resource exhaustion early.
+* **Health Checks:** Configure `liveness` and `readiness` probes for self-healing.
+* **KubeLinter:** Run static analysis in CI/CD to block misconfigurations.
+* **Chaos Engineering:** Inject failures manually to verify system recovery.
+* **App Tiering:** Classify workloads (Tier 1 vs. 2) to prioritize resources.
+
 # Extending 
 
 ## Serverless
