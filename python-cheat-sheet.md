@@ -22,7 +22,7 @@ os.environ['https_proxy'] = proxy
 os.environ['HTTPS_PROXY'] = proxy
 ```
 
-## python multiple environments, diff versions of python in the same OS, aka `sdk`
+## python multiple environments, diff versions of python in the same OS, aka `sdk/sdkman`
 ```sh
 ### Install build dependencies
 sudo apt update
@@ -38,7 +38,7 @@ curl https://pyenv.run | bash
 cat <<'EOF' >> ~/.bashrc
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+eval "$(pyenv init - bash)"
 EOF
 source ~/.bashrc
 
@@ -54,6 +54,14 @@ pyenv versions
 pyenv global 3.12.4      # default for all shells
 pyenv local 3.10.14       # per-folder (creates .python-version)
 pyenv shell 3.12.4        # for current shell only
+
+### Virtual environments
+pyenv virtualenvs               # list of environments
+pyenv virtualenv ai-tools       # create virtual env: $HOME/.pyenv/versions/ai-tools/
+eval $(pyenv virtualenv-init ai-tools)  # activate virtual env
+
+pyenv activate ai-tools
+pyenv virtualenv-prefix 
 ```
 
 ## [faster package manager uv](https://pypi.org/project/uv/)
@@ -90,6 +98,12 @@ poetry run my_script_name
 ### find package by name
 ```sh
 pip search {search key}
+
+pip install pip-search 
+python -m pip_search "your-query-search"
+
+pip install pypisearch
+pypisearch "your query"
 ```
 
 ### install pip

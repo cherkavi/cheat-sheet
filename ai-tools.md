@@ -4,16 +4,15 @@
   * [cosine simularity](https://en.wikipedia.org/wiki/Cosine_similarity)
 * :TODO: https://github.com/explodinggradients/ragas  
 
-## AI platforms
-* [union](https://www.union.ai/)
+## Online AI Tools, ready to use prompts
 
-## chat bots
+### chat bots
 * https://www.perplexity.ai/
 * https://bard.google.com/chat
 * https://openai.com/blog/chatgpt
 * [generator of flash cards for learning](https://notegpt.io/ai-flashcard-maker)
 
-## general purposes AI
+### general purposes AI
 * https://openclaw.ai/
 
 ### photo/image generators
@@ -35,17 +34,14 @@
 * https://docs.midjourney.com/hc/en-us/articles/33329261836941-Getting-Started-Guide
 * https://civitai.com
 
+## AI platforms
+* [union](https://www.union.ai/)
+
 ## customization/flexible prompt
 * [deploy custom models and run them ](https://replicate.com/)
 
-
 ## general purposes tools
-* [cli tool for interacting with LLM](https://github.com/simonw/llm)
-  * llm-youtube
-    ```sh
-    llm install llm-youtube
-    llm -f yt:zv72WMmVkPw 'Please summarize this video'
-    ```
+* [llm](#llm---cli-tool-for-interacting-with-llm)
 * [whisper - translate mp3 to text](https://github.com/openai/whisper)
   > `pip install -U openai-whisper` and then `whisper japanese.wav --language Japanese --task translate`
 
@@ -68,6 +64,35 @@
 * https://ollama.com/library
 
 ## Large Language Model ( LLM ) local clients
+
+### [llm - cli tool for interacting with LLM](https://github.com/simonw/llm)
+```sh
+pip3 install llm 
+
+alias llm-list-of-plugins='x-www-browser https://llm.datasette.io/en/stable/plugins/directory.html'
+alias llm-doc='x-www-browser https://llm.datasette.io/en/stable/index.html#'
+
+## llm-youtube
+llm install llm-youtube
+llm -f yt:zv72WMmVkPw 'Please summarize this video'
+```
+
+### [anythingLLM](https://docs.anythingllm.com/installation-desktop/linux#install-using-the-installer-script)
+> get local LLMs, RAG, and Agents with little to zero configuration and full privacy
+```sh
+# Download the installer script to wherever you want to run it from
+curl -fsSL https://cdn.anythingllm.com/latest/installer.sh -o installer.sh
+
+# Make the script executable
+chmod +x installer.sh
+
+# Run the script
+./installer.sh
+
+$HOME/AnythingLLMDesktop.AppImage
+# Upload files to Workspace
+# use Query Mode: The AI is forced to only answer based on your documents.
+```
 
 ### [Ollama](https://ollama.com)
 #### ollama installation
