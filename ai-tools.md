@@ -7,6 +7,8 @@
 ## Online AI Tools, ready to use prompts
 
 ### chat bots
+* https://github.com/copilot  
+  [copilot SDK](https://github.com/github/copilot-sdk)
 * https://www.perplexity.ai/
 * https://bard.google.com/chat
 * https://openai.com/blog/chatgpt
