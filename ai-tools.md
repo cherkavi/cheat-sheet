@@ -1,7 +1,6 @@
 # Collection of AI tools
 * [my own AI cheat sheet](https://github.com/cherkavi/ai)
-* [vector DB comparison](https://superlinked.com/vector-db-comparison)
-  * [cosine simularity](https://en.wikipedia.org/wiki/Cosine_similarity)
+* [my own VectorDB cheat sheet](./vectordb-cheat-sheet.md)
 * :TODO: https://github.com/explodinggradients/ragas  
 
 ## Online AI Tools, ready to use prompts
