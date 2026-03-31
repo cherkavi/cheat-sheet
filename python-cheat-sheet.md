@@ -673,3 +673,22 @@ pip3 install psycopg2-binary
 # need to execute: yum install rpm-build
 pip3 install -U pip
 ```
+
+# MessageQueue 
+## IBM MQ
+installation on Ubuntu
+```sh
+1. https://www.ibm.com/support/pages/mqc91-ibm-mq-clients?mhsrc=ibmsearch_a&mhq=mq%20client%20download
+2. IBM MQ 9.1.0.20 LTS Clients
+3. https://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm%7EWebSphere&product=ibm/WebSphere/WebSphere+MQ&release=9.1.0.20&platform=All&function=fixId&fixids=9.1.0.20-IBM-MQC-*,9.1.0.20-IBM-MQ-Install-Java-All,9.1.0.20-IBM-MQ-Java-InstallRA&useReleaseAsTarget=true&includeSupersedes=0&source=fc
+4. https://www.ibm.com/docs/en/ibm-mq/9.1.x?topic=mq-installing-uninstalling
+5. https://www.ibm.com/docs/en/ibm-mq/9.1.x?topic=uninstalling-installing-mq-linux
+6. unzip 
+7. installation 
+   sudo ./mqlicense.sh
+   sudo dpkg -i ibmmq-runtime_9.1.0.20_amd64.deb
+   sudo dpkg -i ibmmq-client_9.1.0.20_amd64.deb
+   sudo dpkg -i ibmmq-sdk_9.1.0.20_amd64.deb
+   ll /opt/mqm
+   python -m pip install pymqi
+```
