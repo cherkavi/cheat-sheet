@@ -61,10 +61,12 @@
 - [Papermark - Share documents and pitch decks](https://github.com/mfts/papermark)
 
 ## Solutions for text recognition (OCR)
-- [Amazon Textract](https://aws.amazon.com/textract/) + ( Claude Opus 4.5 | Claude Sonnet 4.5 )
+- [Amazon Textract](https://aws.amazon.com/textract/) + ( Claude Opus 4.5 | Claude Sonnet 4.5 )  
+  Amazon Textract is an AWS service that uses machine learning to automatically extract text, handwriting, and data from scanned documents.
   - Merges cells with faint borders.
   - Double borders in tables are often misunderstood.
-- [Amazon Bedrock Data Automation](https://aws.amazon.com/bedrock/data-automation/)
+- [Amazon Bedrock Data Automation](https://aws.amazon.com/bedrock/data-automation/)  
+  Amazon Bedrock is a fully managed service that offers a choice of high-performing foundation models (FMs) from leading AI companies via an API.
   - Limited accuracy with German language medical documents.
 - [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
   - No semantic understanding of table structure.
@@ -283,6 +285,20 @@ find ~/.cache/huggingface
   * LangGraph
   * Phoenix Arize
 * G-RAG
+
+#### Cohere & FAISS DB
+These are often used together to build **Retrieval-Augmented Generation (RAG)** systems. Cohere provides the "brain" (embeddings/LLM), while FAISS provides the "memory" (vector storage).
+* **Cohere (AI Models):**
+* **Official Website:** [Cohere.com](https://cohere.com/)
+* **Developer Docs:** [Cohere Documentation](https://docs.cohere.com/)
+* **FAISS (Vector Database):**
+* **GitHub Repository:** [facebookresearch/faiss](https://github.com/facebookresearch/faiss)
+* **Official Wiki/Docs:** [FAISS Documentation](https://faiss.ai/)
+* **Integration Example:**
+
+#### Langchain
+* [Building RAG with LangChain, Cohere, and FAISS](https://zilliz.com/tutorials/rag/langchain-and-faiss-and-cohere-command-r-and-cohere-embed-multilingual-light-v3.0)
+* [langgraph](https://www.langchain.com/langgraph)
 
 #### Embeddings
 * chunk size

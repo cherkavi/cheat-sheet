@@ -4,6 +4,9 @@
 
 ## [Run Android OS without phone](https://github.com/cherkavi/solutions/blob/master/android-os-without-phone/README.md)
 
+## [flutter platform](https://docs.flutter.dev/platform-integration/android/setup)
+multiplatform apps from a single codebase
+
 ## connect phone to a computer ( Linux )
 > for reading links like: mtp://motorola_moto_g52_xxxxxx
 Settings -> Connected devices -> USB
