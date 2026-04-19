@@ -60,6 +60,17 @@
 - [Vrite - Create technical content in a team](https://github.com/vriteio/vrite)
 - [Papermark - Share documents and pitch decks](https://github.com/mfts/papermark)
 
+## Solutions for text recognition (OCR)
+- [Amazon Textract](https://aws.amazon.com/textract/) + ( Claude Opus 4.5 | Claude Sonnet 4.5 )
+  - Merges cells with faint borders.
+  - Double borders in tables are often misunderstood.
+- [Amazon Bedrock Data Automation](https://aws.amazon.com/bedrock/data-automation/)
+  - Limited accuracy with German language medical documents.
+- [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
+  - No semantic understanding of table structure.
+  - Poor German medical terminology accuracy.
+- [Docling](https://github.com/docling-project/docling) - IBM's tool for parsing PDF/Docx into Markdown/JSON.
+
 ## Large Language Model ( LLM ) hubs
 * https://huggingface.co/models
 * https://ollama.com/library
