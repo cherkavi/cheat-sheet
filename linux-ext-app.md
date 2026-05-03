@@ -40,7 +40,7 @@ manually can be achieved via
 ~/.local/share/gnome-shell/extensions/<extension-identifier>/settings.js
 ```
 
-remove HP default display mode switching
+remove HP default display mode switching, suppress button shortcut win/super + p 
 ```sh
 dconf-editor
 # /org/gnome/mutter/keybindings/switch-monitor
