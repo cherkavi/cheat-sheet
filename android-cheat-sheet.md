@@ -179,6 +179,80 @@ for each_app in `adb shell pm list packages -f | grep 'package:/data/app' | awk 
 done
 ```
 
+## Android test codes
+
+### Universal Android Secret Codes (2024–2025)
+
+| Secret Code        | Function                                              |
+| :---               | :---                                                  |
+| `*#06#`            | Show IMEI number                                      |
+| `*#*#4636#*#*`     | Phone info, battery info, usage stats, and Wi-Fi info |
+| `*#*#7780#*#*`     | Factory reset (Soft reset – keeps OS)                 |
+| `*2767*3855#`      | Full factory reset (Hard reset – erases everything)   |
+| `*#*#7594#*#*`     | Change power button behavior                          |
+| `*#*#34971539#*#*` | Camera firmware and details                           |
+| `*#*#232339#*#*`   | Wireless LAN test                                     |
+| `*#*#0842#*#*`     | Vibration and backlight test                          |
+| `*#*#2664#*#*`     | Touchscreen test                                      |
+| `*#*#0588#*#*`     | Proximity sensor test                                 |
+| `*#*#0*#*#*`       | LCD display test                                      |
+| `*#*#7262626#*#*`  | Field test (Network signal)                           |
+| `*#*#232331#*#*`   | Bluetooth test                                        |
+| `*#*#1472365#*#*`  | GPS test                                              |
+| `*#12580*369#`     | Software and hardware information                     |
+| `*#9090#`          | Diagnostic configuration                              |
+| `*#872564#`        | USB logging control                                   |
+| `*#9900#`          | System dump mode (primarily Samsung)                  |
+| `*#301279#`        | Network control (UMTS/GSM settings)                   |
+
+---
+
+### Samsung
+| Secret Code | Function                                    |
+| :---        | :---                                        |
+| `*#0*#`     | General test mode (LCD, vibration, sensors) |
+| `*#0228#`   | Battery status                              |
+| `*#0283#`   | Audio loopback test                         |
+| `*#1111#`   | FTA software version                        |
+| `*#2222#`   | FTA hardware version                        |
+
+### Xiaomi / Redmi / POCO
+| Secret Code     | Function                     |
+| :---            | :---                         |
+| `*#*#6484#*#*`  | Hardware test mode (CIT)     |
+| `*#*#4636#*#*`  | Usage and battery info       |
+| `*#*#86583#*#*` | Disable VoLTE carrier check  |
+| `*#*#86943#*#*` | Disable VoWiFi carrier check |
+
+###  OnePlus
+| Secret Code    | Function                                             |
+| :---           | :---                                                 |
+| `*#808#`       | Engineering Mode (Touchscreen, sensors, audio, etc.) |
+| `*#1234#`      | Software version                                     |
+| `*#*#4636#*#*` | Phone info and statistics                            |
+
+### Realme / Oppo
+| Secret Code    | Function               |
+| :---           | :---                   |
+| `*#899#`       | Engineer mode          |
+| `*#36446337#`  | Hardware test          |
+| `*#*#4636#*#*` | Battery and usage info |
+
+### Vivo
+| Secret Code    | Function              |
+| :---           | :---                  |
+| `*#558#`       | Hardware test         |
+| `*#*#4636#*#*` | Device & battery info |
+
+### Motorola
+| Secret Code    | Function                       |
+| :---           | :---                           |
+| `*#*#2486#*#*` | CQATest – Hardware diagnostics |
+| `*#*#4636#*#*` | Phone & usage info             |
+
+---
+
+
 ## Android regular cleanup
 ```sh
 ## collect files
