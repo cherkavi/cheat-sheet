@@ -13,9 +13,6 @@
 * https://openai.com/blog/chatgpt
 * [generator of flash cards for learning](https://notegpt.io/ai-flashcard-maker)
 
-### general purposes AI
-* https://openclaw.ai/
-
 ### photo/image generators
 * https://firefly.adobe.com/generate/image
 * https://artlist.io/
@@ -77,7 +74,13 @@
 * https://huggingface.co/models
 * https://ollama.com/library
 
-## Large Language Model ( LLM ) local clients
+## Large Language Model ( LLM ) local clients ( run locally )
+
+### opencode - ai coding agent
+* https://opencode.ai/
+
+### openclaw - ai assistant for general purposes 
+* https://openclaw.ai/
 
 ### [llm - cli tool for interacting with LLM](https://github.com/simonw/llm)
 ```sh
@@ -92,7 +95,7 @@ llm -f yt:zv72WMmVkPw 'Please summarize this video'
 ```
 
 ### [anythingLLM](https://docs.anythingllm.com/installation-desktop/linux#install-using-the-installer-script)
-> get local LLMs, RAG, and Agents with little to zero configuration and full privacy
+> get local LLMs, RAG and Agents with little to zero configuration and full privacy
 ```sh
 # Download the installer script to wherever you want to run it from
 curl -fsSL https://cdn.anythingllm.com/latest/installer.sh -o installer.sh
