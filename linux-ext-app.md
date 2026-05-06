@@ -165,7 +165,7 @@ raise InitError("Failed to unlock the collection!")
 ```sh
 # kill all "keyring-daemon" sessions
 # clean up all previous runs
-rm ~/.local/share/keyrings/*
+rm ~/.local/share/keyrings/*        # save this folder before removing
 ls -la ~/.local/share/keyrings/
 
 dbus-run-session -- bash
