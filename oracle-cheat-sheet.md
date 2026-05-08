@@ -168,6 +168,11 @@ connection = oracledb.connect(dsn)
 conn = oracledb.connect(user=ORACLE_USER, password=ORACLE_PASS, sid=ORACLE_SID)
 ```
 
+### how to import csv to table, upload csv as a table
+```sql
+LOAD temp_table_001 /home/user/Downloads/package.csv NEW
+```
+
 ### how to export tables ( fast way )
 #### installation 
 ```sh
