@@ -3,6 +3,9 @@
 * [my own VectorDB cheat sheet](./vectordb-cheat-sheet.md)
 * :TODO: https://github.com/explodinggradients/ragas  
 
+## General info
+* each time during the asking question in one prompt you are sending all the previous questions/answers to the server
+
 ## Online AI Tools, ready to use prompts
 
 ### chat bots
