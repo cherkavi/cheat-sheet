@@ -18,7 +18,7 @@
 * Docker Cloud
 ### [docker code checker](https://www.checkov.io/2.Basics/Installing%20Checkov.html)
 
-### installation ( Debian )
+### installation ( ubuntu <=20.04 )
 [docker desktop](https://docs.docker.com/desktop/install/ubuntu/)
 ```sh
 sudo apt install docker.io
@@ -38,6 +38,32 @@ apt-get install -y docker-ce
 
 usermod -aG docker ubuntu
 docker run -p 8080:8080 tomcat:8.0
+```
+
+### installation ( update 22.04+ )
+```sh
+# download certificates
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg
+
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo $VERSION_CODENAME) stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# update docker to latest version on ubuntu
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+
+## remove unused ( obsolete ) docker-compose, if everything before was successfull 
+docker compose version 
+sudo rm -f /usr/local/bin/docker-compose /usr/bin/docker-compose
 ```
 
 #### docker manager
