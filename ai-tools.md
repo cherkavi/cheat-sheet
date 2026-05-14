@@ -6,6 +6,77 @@
 ## General info
 * each time during the asking question in one prompt you are sending all the previous questions/answers to the server
 
+## vendor agnostic CLI tools
+### [opencode](https://opencode.ai)
+```sh
+curl -fsSL https://opencode.ai/install | bash
+```
+
+### [aider](https://aider.chat/docs/install.html)
+```sh
+python -m pip install aider-install
+aider-install
+```
+
+### crush
+
+### llxprt-code
+
+## vendors CLI tools
+
+### [copilot cli](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli)
+```sh
+curl -fsSL https://gh.io/copilot-install | bash
+copilot
+```
+* [features](https://github.com/features/copilot/cli)
+
+### [gemini cli](https://geminicli.com/docs/get-started/installation/)
+```sh
+gemini
+```
+
+### claude cli 
+```sh
+curl -fsSL https://claude.ai/install.sh | bash
+claude 
+```
+- [cli commands](https://code.claude.com/docs/en/cli-reference)
+
+### [chatgpt / openai ](https://developers.openai.com/codex/cli)
+```sh
+npm i -g @openai/codex
+codex
+# non official, alternative 
+brew tap kardolus/chatgpt-cli && brew install chatgpt-cli
+```
+
+### deep seek  ( non official )
+```sh
+npm install -g run-deepseek-cli
+# alternative
+pip install deepseek-cli
+
+deepseek 
+```
+
+### groq
+```sh
+# non official
+npm install -g groq-ai-cli
+```
+### cohere
+```sh
+# non official
+curl -sL https://raw.githubusercontent.com/plyght/cohere-cli/main/install.sh | bash
+```
+
+### perplexity
+```sh
+# non official
+pipx install git+https://github.com/zahidoverflow/perplexity-cli.git
+```
+
 ## Online AI Tools, ready to use prompts
 
 ### chat bots
