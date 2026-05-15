@@ -546,11 +546,17 @@ vim anyfile.txt
 copy to ```~/.config/vifm/colors``` [color scheme](https://vifm.info/colorschemes.shtml)  
 ```:colorscheme <tab>```
 
+## [online github dev env](https://github.dev/)
+
+## [online visual code](https://vscode.dev/)
+
+## visual code community version - codium [/usr/share/codium/bin/codium](https://github.com/VSCodium/vscodium/releases)
+* extension folder: `~/.vscode-oss/extensions`
+
 ## [visual code marketplace alternative](https://open-vsx.org)
 
-
 ## visual code extensions
-* [/usr/share/codium/bin/codium](https://github.com/VSCodium/vscodium/releases)
+* extension folder: `~/.vscode/extensions`
 * [create custom](https://code.visualstudio.com/api/get-started/your-first-extension)
 ```sh
 npx --package yo --package generator-code -- yo code
