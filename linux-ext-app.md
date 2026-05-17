@@ -552,6 +552,16 @@ copy to ```~/.config/vifm/colors``` [color scheme](https://vifm.info/colorscheme
 
 ## visual code community version - codium [/usr/share/codium/bin/codium](https://github.com/VSCodium/vscodium/releases)
 * extension folder: `~/.vscode-oss/extensions`
+```sh
+echo -e 'Types: deb\nURIs: https://download.vscodium.com/debs\nSuites: vscodium\nComponents: main\nArchitectures: amd64 arm64\nSigned-by: /usr/share/keyrings/vscodium-archive-keyring.gpg' | sudo tee /etc/apt/sources.list.d/vscodium.sources
+
+wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+    | gpg --dearmor \
+    | sudo tee /usr/share/keyrings/vscodium-archive-keyring.gpg > /dev/null
+
+sudo apt update
+sudo apt install codium
+```
 
 ## [visual code marketplace alternative](https://open-vsx.org)
 
