@@ -83,6 +83,15 @@ set heading off
 set sqlformat csv
 spool out.csv
 spool off
+
+-- alternative 
+set echo off
+set heading off
+set sqlformat csv
+set sqlformat quote off
+set trimout on
+SPOOL out.csv
+
 ```
 ```sql
 COLUMN spool_file NEW_VALUE spool_file
