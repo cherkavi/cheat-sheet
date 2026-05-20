@@ -1,5 +1,6 @@
 # Collection of AI tools
 * [copilot community](https://github.com/github/awesome-copilot)
+  * [copilot alternative education](https://github.com/DanWahlin/github-copilot-get-started)
 * [my own AI cheat sheet](https://github.com/cherkavi/ai)
 * [my own VectorDB cheat sheet](./vectordb-cheat-sheet.md)
 * :TODO: https://github.com/explodinggradients/ragas  
