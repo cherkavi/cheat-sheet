@@ -33,6 +33,7 @@ curl -H "Authorization: Bearer $JIRA_TOKEN" $JIRA_URL/rest/api/latest/issue/SSBB
 ### jira REST API requests
 print all your open issues in format: `jira 171455 # In Progress  # [PROD] Kafka: Workflow - Boardliteratur`
 ```sh
+    #                      !!!warning !!!: do not use '' for wrapping token
     curl -H "Authorization: Bearer $JIRA_TOKEN" \
          -H "Content-Type: application/json" \
          --silent \
