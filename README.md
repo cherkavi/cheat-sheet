@@ -66,6 +66,10 @@ function cheat-grep(){
 * [flox](https://github.com/flox/flox)
   > create virtual environment with dependencies    
 
+### CLI tools creation rules
+* [clig guidelines](https://clig.dev)
+* [Command Line Interface Guidelines](https://github.com/cli-guidelines/cli-guidelines)
+
 ### editor
 * https://vscode.dev
 * https://code.visualstudio.com/
