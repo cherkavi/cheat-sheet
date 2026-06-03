@@ -618,3 +618,54 @@ graph LR
 - wonderwhy-er/DesktopCommanderMCP # A versatile tool to manage desktop commands and workflows.
 - oraios/serena # A coding agent toolkit with semantic retrieval and editing capabilities.
 
+
+## Prompt Engineering
+```mermaid
+graph TD
+
+    %% Nodes
+    InternetData[Internet Data]
+    LLM[LLM]
+    ChatPrompt[Chat Prompt]
+    Retriever[Retriever <br> Vector DB]
+    DomainKnowledge[Domain Specific Knowledge]
+    Generator[Generator]
+    
+    %% Relationships
+    InternetData -->|via training| LLM
+    LLM -.->|used by| Generator
+    LLM -.->|used by| ChatPrompt
+    
+    ChatPrompt -->|triggers| LLM
+    
+    %% RAG Sequence Steps
+    ChatPrompt -->|1: triggers| Retriever
+    Retriever -->|2: triggers| DomainKnowledge
+    DomainKnowledge -->|3: returns to| Retriever
+    Retriever -->|4: goes to| Generator
+    Retriever -->|5: goes to| ChatPrompt
+
+    %% Styling for clarity
+    style InternetData fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style LLM fill:#d1e7dd,stroke:#0f5132,stroke-width:2px
+    style ChatPrompt fill:#fff3cd,stroke:#664d03,stroke-width:1px
+    style Retriever fill:#cff4fc,stroke:#087990,stroke-width:1px
+    style DomainKnowledge fill:#f8d7da,stroke:#842029,stroke-width:1px
+    style Generator fill:#e2e3e5,stroke:#41464b,stroke-width:1px
+
+```
+
+Based on the diagram, the system outlines two paths—the traditional **Prompt Engineering** path (which is vulnerable to false results and hallucinations) and the enhanced **Retrieval-Augmented Generation (RAG)** path:
+
+1. **The Core LLM Foundation:** * **Internet Data** serves as the initial raw foundation, ingested directly into the **LLM** via **training**.
+* Once trained, the **LLM** is utilized as the underlying intelligence driving both the **Chat Prompt** interface and the final **Generator**.
+
+
+2. **Standard Prompt Engineering Interaction:** * A user interacts directly through a **Chat Prompt**, which **triggers the LLM** to respond based purely on its static, pre-trained internet knowledge. As highlighted on the whiteboard, relying purely on this path frequently introduces issues like *false results* and *hallucinations*.
+3. **The Optimized RAG Workflow (Steps 1–4):**
+To fix these hallucinations, the diagram illustrates a 4-step factual grounding pipeline:
+   * **Step 1:** The user's input via the **Chat Prompt triggers the Retriever (Vector DB)** instead of just relying on the LLM's memory.
+   * **Step 2:** The **Retriever triggers a search** within the curated **Domain Specific Knowledge** repository to find accurate, up-to-date documentation.
+   * **Step 3:** The factual documents matching the query are **returned to the Retriever**.
+   * **Step 4:** The Retriever bundles the user's original query along with this verified context and **goes to the Generator**, allowing the LLM to write an accurate, hallucination-free response grounded in proprietary knowledge.
+   * **Step 5:** Back to Prompt
