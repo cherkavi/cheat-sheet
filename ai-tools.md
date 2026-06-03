@@ -669,3 +669,88 @@ To fix these hallucinations, the diagram illustrates a 4-step factual grounding 
    * **Step 3:** The factual documents matching the query are **returned to the Retriever**.
    * **Step 4:** The Retriever bundles the user's original query along with this verified context and **goes to the Generator**, allowing the LLM to write an accurate, hallucination-free response grounded in proprietary knowledge.
    * **Step 5:** Back to Prompt
+
+## Prompt Engineering techniques
+
+### Chain of Thought (COT) 
+
+```mermaid
+graph TD
+    %% Styling
+    classDef title text-align:center,font-size:16pt,font-weight:bold,fill:#eee,stroke:#333;
+    classDef mainNode fill:#ffe6cc,stroke:#d79b00,color:black,stroke-width:1px;
+    classDef textNode fill:none,stroke:none,text-align:left,color:black;
+
+    %% Top Section (Chain of Thought - COT)
+    ChatPrompt[chat Prompt]:::mainNode --> Q[Q: Question]:::mainNode
+    
+    Q -.-> SQ1(subQ 1)
+    Q -.-> SQ2(subQ 2)
+    Q -.-> SQ3(subQ 3)
+    
+    SQ1 -.-> SA1(sA 1)
+    SQ2 -.-> SA2(sA 2)
+    SQ3 -.-> SA3(sA 3)
+    
+    SA1 --> FinalAnsw(Answ: Final Answer):::mainNode
+    SA2 --> FinalAnsw
+    SA3 --> FinalAnsw
+
+    %% COT Annotation
+    subgraph COTDesc ["Chain of Thought (COT) Process"]
+    Q --> FinalAnsw
+    end
+```
+
+#### The Top Section (Chain of Thought - COT)
+* **The Flow:** It shows a step-by-step process. A **"chat Prompt"** goes into a box with a **"Q"** (for "Question").
+* **Branching:** This single question then branches out into three parallel sub-paths, each labeled **"subQ"** (for "sub-question").
+* **Solving:** Each subQ points to a corresponding **"sA"** (for "sub-answer").
+* **Synthesis:** All three sub-answers merge into a final box labeled **"Answ"** (Answer).
+* **Text Label:** To the right, there is a text block that says **"COT Chain Of Thought provide examples"**. This label is linked to the overall process above it, indicating this entire branching flow is an example of COT.
+
+#### Chain of Thought (COT): The "Break it Down" Method
+Instead of expecting them to know the answer instantly, 
+you teach them to take small steps. This whiteboard diagram shows how we do that for an AI.
+1. Takes the big **question (Q)**.
+2. Breaks it into three smaller, easier-to-solve **sub-questions (subQ)**.
+3. Finds a mini-**answer (sA)** for each small question.
+4. Comes up with the **final answer (Answ)** by combining those three mini-answers.
+*Think of it as breaking down a messy room into smaller tasks like 'make the bed', 'pick up toys', and 'dust the desk' to make the big job manageable.*
+This method works best when you **provide examples** to the AI of how to solve similar problems.
+
+###  ReAct: The "Detective" Method
+Instead of solving a problem in a straight line like the COT diagram above, 
+ReAct is an interactive loop:
+1. The system (either the main **LLM** or a helper program called 'dsp') generates a small **sub-question (subQ)** about what knowledge it needs.
+2. It uses RAG to "act" and find an outside source to create a **sub-answer (subA)**.
+3. It then uses COT to look at that new answer and decide what to do next, repeating the loop.
+*Think of ReAct like a detective: they look at a clue (the subA), reason about what it means (COT), and then use that reasoning to decide what clue to look for next (the dynamic loop).*
+
+```mermaid
+graph TD
+    %% Styling
+    classDef title text-align:center,font-size:16pt,font-weight:bold,fill:#eee,stroke:#333;
+    classDef mainNode fill:#ffe6cc,stroke:#d79b00,color:black,stroke-width:1px;
+    classDef textNode fill:none,stroke:none,text-align:left,color:black;
+    
+    %% Bottom Section (ReAct and Loop)
+    subgraph ReActLoop ["ReAct Loop (iterative) "]
+
+    direction BT
+    LLMdsp[LLM or dsp]:::mainNode
+    sub_Q(subQ)
+    sub_A(subA)
+    
+    LLMdsp -.-> sub_Q
+    LLMdsp -.-> sub_A
+    sub_A -.-> LLMdsp
+    sub_Q --- sub_A
+    end
+
+    %% ReAct Description
+    ReActText[ReAct<br>mix RAG & COT]:::textNode --- LLMdsp
+    
+    %% Connection few-shot to ReAct
+    FewShot -..-> ReActText
+```
