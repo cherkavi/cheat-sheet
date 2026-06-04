@@ -36,7 +36,21 @@ copilot
 
 ### [gemini cli](https://geminicli.com/docs/get-started/installation/)
 ```sh
+# via NPM package 
+sudo npm install -g @google/gemini-cli
+# npm install -g @google/gemini-cli@0.45.0
+sudo npm remove -g @google/gemini-cli
+
+# via SNAP
+sudo snap install gemini-cli
+
 gemini
+```
+```
+/chat share session-name.md
+/chat save checkpoint-1
+/resume
+!ls ~/.gemini/tmp/<project_hash>/chats/
 ```
 
 ### claude cli 
