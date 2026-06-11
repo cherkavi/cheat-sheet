@@ -83,3 +83,10 @@ x-www-browser https://github.com/cherkavi/cheat-sheet/blob/master/architecture-c
 # aslo possible to say previx and suffix around the destination text
 
 ```
+
+## chrome history as sqlite 
+```sh
+cp ~/.config/google-chrome/Default/History ./History_copy
+
+sqlite3 -header -csv History_copy "SELECT url, title, last_visit_time FROM urls;" > history.csv
+```
