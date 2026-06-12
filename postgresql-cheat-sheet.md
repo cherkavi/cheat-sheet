@@ -153,55 +153,13 @@ url:
 </dependency>
 ```
 
-## DB structure
-![image](https://user-images.githubusercontent.com/8113355/178947493-39da3c5e-5e0b-48b2-8fbc-d704ddc5ca75.png)
+## psql CLI client
 
-
-## DB requests
 ### install client
 ```
 sudo apt install postgresql-client-common
 sudo apt-get install postgresql-client-12
 ```
-
-### list of all databases, ad-hoc
-```sh
-psql --username postgres --list
-```
-
-### print current user
-```sql
-select current_user;
-```
-
-### execute query, ad-hoc check connection 
-```sh
-psql -w -U user_name -d database_name -c "SELECT 1"
-# select from dual, check connection
-# select 'hello' as 'message';
-```
-### execute prepared sql file
-```
-psql -w -U user_name -d database_name -a -f /path/to/file.sql
-psql -h ${DB_VARIANT_HOST} -p ${DB_VARIANT_PORT} -U ${DB_VARIANT_USERNAME} -f query.sql
-# sql output as csv
-psql -h ${DB_VARIANT_HOST} -p ${DB_VARIANT_PORT} -U ${DB_VARIANT_USERNAME} -f query.sql --csv
-```
-
-### execute sql file without password 
-```sh
-# option 1 - via pgpass file
-echo "${DB_VARIANT_HOST}:${DB_VARIANT_PORT}:${DB_VARIANT_DATABASE}:${DB_VARIANT_USERNAME}:${DB_VARIANT_PASSWORD}" > ~/.pgpass
-chmod 0600 ~/.pgpass
-
-# option 2 - via export variable - has precedence over pgpass file
-unset PGPASSWORD
-export PGPASSWORD=$DB_VARIANT_PASSWORD
-echo $PGPASSWORD
-
-psql -h ${DB_VARIANT_HOST} -p ${DB_VARIANT_PORT} -d ${DB_VARIANT_DATABASE} -U ${DB_VARIANT_USERNAME} -f clean-airflow.sql
-```
-
 ### connect to db 
 ```sh
 # connect
@@ -241,6 +199,53 @@ SELECT table_name FROM information_schema.tables WHERE table_schema = 'my_schema
 \i 
 -- execute command line
 \!
+```
+
+
+
+
+## DB structure
+![image](https://user-images.githubusercontent.com/8113355/178947493-39da3c5e-5e0b-48b2-8fbc-d704ddc5ca75.png)
+
+
+## DB requests
+
+### list of all databases, ad-hoc
+```sh
+psql --username postgres --list
+```
+
+### print current user
+```sql
+select current_user;
+```
+
+### execute query, ad-hoc check connection 
+```sh
+psql -w -U user_name -d database_name -c "SELECT 1"
+# select from dual, check connection
+# select 'hello' as 'message';
+```
+### execute prepared sql file
+```
+psql -w -U user_name -d database_name -a -f /path/to/file.sql
+psql -h ${DB_VARIANT_HOST} -p ${DB_VARIANT_PORT} -U ${DB_VARIANT_USERNAME} -f query.sql
+# sql output as csv
+psql -h ${DB_VARIANT_HOST} -p ${DB_VARIANT_PORT} -U ${DB_VARIANT_USERNAME} -f query.sql --csv
+```
+
+### execute sql file without password 
+```sh
+# option 1 - via pgpass file
+echo "${DB_VARIANT_HOST}:${DB_VARIANT_PORT}:${DB_VARIANT_DATABASE}:${DB_VARIANT_USERNAME}:${DB_VARIANT_PASSWORD}" > ~/.pgpass
+chmod 0600 ~/.pgpass
+
+# option 2 - via export variable - has precedence over pgpass file
+unset PGPASSWORD
+export PGPASSWORD=$DB_VARIANT_PASSWORD
+echo $PGPASSWORD
+
+psql -h ${DB_VARIANT_HOST} -p ${DB_VARIANT_PORT} -d ${DB_VARIANT_DATABASE} -U ${DB_VARIANT_USERNAME} -f clean-airflow.sql
 ```
 
 ### get version
@@ -388,7 +393,7 @@ SHOW max_connections;
 show max_prepared_transactions;
 ```
 
-## Specific types
+### specific types
 ```sql
 -- varying is alias for varchar
 ADD COLUMN IF NOT EXISTS modifiedBy character varying(10485760) COLLATE pg_catalog."default"
@@ -402,6 +407,41 @@ ADD COLUMN IF NOT EXISTS modifiedBy character varying COLLATE pg_catalog."defaul
 EXPLAIN ANALYSE
 select * from my_table;
 ```
+
+### amount of active connections to a specific table
+```sql
+SELECT 
+    pid,
+    usename,
+    client_addr,
+    state,
+    now() - query_start AS duration,
+    wait_event_type,
+    wait_event,
+    query
+FROM pg_stat_activity
+WHERE state = 'active'
+  AND query ILIKE '%your_table_name%'
+  AND pid != pg_backend_pid();
+```
+
+### check/show locks/blocks for a table 
+```sql
+SELECT 
+    l.pid,
+    a.usename,
+    a.client_addr,
+    l.mode,
+    l.granted,
+    a.state,
+    a.query
+FROM pg_locks l
+JOIN pg_stat_activity a ON l.pid = a.pid
+JOIN pg_class c ON l.relation = c.oid
+WHERE c.relname = 'your_table_name'
+ORDER BY l.granted DESC;
+```
+
 
 ## Postgre Settings
 take in consideration in case of unstable behavior in container
