@@ -801,8 +801,11 @@ tool installation
 # execute on system 
 sudo apt-get install git-lfs
 # execute in git folder
-git lfs install
+git lfs install # --skip-smudge
+# git config --global credential.helper store
+# cat ~/.git-credentials # git lfs use the same
 git lfs pull
+# cat .lfsconfig
 ```
 if you are using SSH access to git, you should specify http credentials ( lfs is using http access ), to avoid possible errors: "Service Unavailable...", "Smudge error...", "Error downloading object"
 ```sh
