@@ -149,6 +149,20 @@ pipx install git+https://github.com/zahidoverflow/perplexity-cli.git
 - [Vrite - Create technical content in a team](https://github.com/vriteio/vrite)
 - [Papermark - Share documents and pitch decks](https://github.com/mfts/papermark)
 
+## Solutions for local text wiki/knowledgebase
+| Approach            | Core Mechanism                               | Primary Use Case                                     | Example Tools                                                                                                   |
+| ---                 | ---                                          | ---                                                  | ---                                                                                                             |
+| **Wiki LLM**        | Automated synthesis & markdown generation    | Compounding personal research and note-taking        | `llm_wiki`, [cli](https://github.com/Pratiyush/llm-wiki), [nashsu/llm_wiki](https://github.com/nashsu/llm_wiki) |
+| **Vector DB + MCP** | Standardized API connecting DB to LLM client | Connecting custom local databases to Claude/Cursor   | SQLite [MCP](https://modelcontextprotocol.io), Chroma MCP                                                       |
+| **Knowledge Graph** | Explicit relationship mapping (Nodes/Edges)  | Large codebases, complex architectures, debugging    | [Graphify](https://github.com/safishamsi/graphify), [GraphRAG](https://microsoft.github.io/graphrag)            |
+| **GUI RAG Apps**    | Bundled UI, Vector DB, and LLM runner        | Easy, zero-code document querying for standard users | [AnythingLLM](https://anythingllm.com), [Chatd](https://chatd.ai), [lmstudio.ai](https://lmstudio.ai/)          |
+| **CLI RAG Tools**   | Python scripts, LangChain/LlamaIndex         | Terminal-based privacy-first document analysis       | [LocalGPT](https://github.com/PromtEngineer/localGPT), [PrivateGPT](https://github.com/zylon-ai/private-gpt)    |
+| **IDE Indexing**    | Workspace chunking and embedding             | Software development and code documentation          | [Cursor](https://cursor.com/), [Continue.dev](https://www.continue.dev/)                                        |
+| **PKM Plugins**     | Vault embedding within a note app            | Zettelkasten, personal diaries, connected thought    | [Khoj](https://khoj.dev/), [Smart Connections](https://github.com/brianpetro/obsidian-smart-connections)        |
+
+
+
+
 ## Solutions for text recognition (OCR)
 - [Amazon Textract](https://aws.amazon.com/textract/) + ( Claude Opus 4.5 | Claude Sonnet 4.5 )  
   Amazon Textract is an AWS service that uses machine learning to automatically extract text, handwriting, and data from scanned documents.
