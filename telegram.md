@@ -137,6 +137,8 @@ curl -X POST "https://api.telegram.org/bot$TELEGRAM_TOKEN_BOT/sendMessage" \
    - [Optimization](https://core.telegram.org/api#optimization)
    - [API methods](https://core.telegram.org/api#api-methods)
 
+## [Telegram crawler, scrabber, parser](https://github.com/openclaw/telecrawl)
+
 ## TDLib - Telegram Database Library to build Telegram App ( like CLI )
 * [Telegram Database Library](https://core.telegram.org/tdlib)
 * [using library in diff projects](https://github.com/tdlib/td/blob/master/example/README.md)

@@ -32,7 +32,8 @@ aider-install
 curl -fsSL https://gh.io/copilot-install | bash
 copilot
 ```
-* [features](https://github.com/features/copilot/cli)
+* [features](https://github.com/features/copilot/cli)  
+* [awesome copilot](https://github.com/github/awesome-copilot)
 
 ### [gemini cli](https://geminicli.com/docs/get-started/installation/)
 ```sh
