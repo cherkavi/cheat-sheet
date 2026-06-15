@@ -96,12 +96,26 @@ pipx install git+https://github.com/zahidoverflow/perplexity-cli.git
 ```
 
 ## Online AI Tools, ready to use prompts
+### chat bots 
+| Tool                                         | Use Case                                                                                  |
+| :------------------------------------------- | :---------------------------------------------------------------------------------------- |
+| [ChatGPT](https://chatgpt.com)               | General-purpose assistant for writing, brainstorming, coding, and analysis.               |
+| [Gemini](https://gemini.google.com)          | Research and reasoning, integrating with Google services.                                 |
+| [Claude](https://claude.ai)                  | Long-form writing, complex reasoning, and safe, nuanced conversations.                    |
+| [Grok](https://grok.com)                     | Real-time information access and "witty" responses with minimal safety filters, integrated with X. |
+| [Qwen](https://chat.qwen.ai)                 | Business applications, analysis of long documents, and multilingual tasks.                |
+| [DeepSeek](https://chat.deepseek.com)        | Complex reasoning and coding assistance with a massive 1M token context window.           |
+| [Mistral](https://chat.mistral.ai)           | Developer-focused tasks and coding assistance.                                            |
+| [Kimi](https://kimi.com)                     | Processing and analyzing extremely long documents (e.g., 200,000+ characters).            |
+| [GLM](https://chat.z.ai)                     | General-purpose tasks with a free tier; useful for coding, writing, and translation.      |
+| [Perplexity](https://perplexity.ai)          | Research and fact-finding with citations and real-time web search.                        |
+| [Llama](https://www.meta.ai)                 | Private, offline experimentation and development of custom applications.                  |
+| [Gemma](https://ai.google.dev/gemma)         | On-device AI applications, mobile development, and fine-tuning.                           |
 
 ### chat bots
 * https://github.com/copilot  
   [copilot SDK](https://github.com/github/copilot-sdk)
 * https://www.perplexity.ai/
-* https://bard.google.com/chat
 * https://openai.com/blog/chatgpt
 * [generator of flash cards for learning](https://notegpt.io/ai-flashcard-maker)
 
