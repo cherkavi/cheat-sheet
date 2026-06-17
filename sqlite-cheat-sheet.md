@@ -76,6 +76,11 @@ CREATE TABLE index_cn(field_name TEXT NOT NULL, field_type TEXT NOT NULL );
 .import autolabel-merge.elk-index.de-prod.fields.csv index_de
 ```
 
+## table system info
+```sql
+pragma table_info(my_table);
+```
+
 ## [sqlite export to file](https://sqlite.org/cli.html#export_to_csv)
 ```sql
 .output autolabel-merge.fields
