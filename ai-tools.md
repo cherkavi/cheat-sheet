@@ -7,7 +7,9 @@
 * :TODO: https://github.com/explodinggradients/ragas  
 
 ## General info
+* [how AI works, what context window is, how token count](https://swnger.github.io/innerloop/#agent-loop)
 * each time during the asking question in one prompt you are sending all the previous questions/answers to the server
+* [AI model comparison](https://docs.github.com/en/copilot/reference/ai-models/model-comparison)
 
 ## vendor agnostic CLI tools
 ### [opencode](https://opencode.ai)
@@ -26,6 +28,7 @@ aider-install
 ### llxprt-code
 
 ## vendors CLI tools
+[tool for saving tokens](https://github.com/rtk-ai/rtk)
 
 ### [copilot cli](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli)
 ```sh
@@ -114,7 +117,8 @@ pipx install git+https://github.com/zahidoverflow/perplexity-cli.git
 
 ### chat bots
 * https://github.com/copilot  
-  [copilot SDK](https://github.com/github/copilot-sdk)
+  * [copilot SDK](https://github.com/github/copilot-sdk)
+  * [copilot debug activation, copilot prompt log explanation](https://code.visualstudio.com/docs/agents/agent-troubleshooting/chat-debug-view#_agent-debug-log-panel)
 * https://www.perplexity.ai/
 * https://openai.com/blog/chatgpt
 * [generator of flash cards for learning](https://notegpt.io/ai-flashcard-maker)
