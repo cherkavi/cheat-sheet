@@ -276,7 +276,10 @@ SPOOL OFF
 
 ### DDL
 ```sql
+desc my_table;
+
 select DBMS_LOB.substr(dbms_metadata.get_ddl('TABLE', 'my_table'), 3000, 1) from dual;
+
 select dbms_metadata.get_ddl('TABLE', 'my_table') from dual;
 ```
 ### using date
