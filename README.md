@@ -102,19 +102,20 @@ example
 `https://rawgit.com/cherkavi/javascripting/master/d3/d3-bar-chart.html`
 
 ### diagram drawing 
-* [ascii graphics for drawing Architecture Diagrams in text](http://asciiflow.com/)  
-* [uml, sysml, archimate tool](https://online.visual-paradigm.com/)
-
-### markdown
-* [diagrams within markdown](https://mermaid.js.org/syntax/flowchart.html)
-  * [mermaid live](https://mermaid.live/), [mermaid playground](https://www.mermaidchart.com/play)
-    * [mermaid cli](https://github.com/mermaid-js/mermaid-cli)
-      > Convert Mermaid mmd Diagram File To SVG
-    * [mermaid architecture icons logos:s3](https://icones.js.org/collection/logos) or [mermaid architecture icons logos:s3](https://icon-sets.iconify.design/logos/)
-      * https://github.com/gilbarbara/logos
-    * [font awesome fa:fa-user](https://fontawesome.com/icons)
-    * [mermaid flowchart shapes](https://mermaid.js.org/syntax/flowchart.html#complete-list-of-new-shapes)
-    * [mermaid theme: default, neutral, dark, forest, base](https://mermaid.js.org/config/theming.html#available-themes)
+#### [ascii graphics for drawing Architecture Diagrams in text](http://asciiflow.com/)  
+#### [uml, sysml, archimate tool](https://online.visual-paradigm.com/)
+#### [mermaid console diagrams ](termaid.com)  
+     https://github.com/fasouto/termaid
+#### [diagrams within markdown - mermaid](https://mermaid.js.org/syntax/flowchart.html)
+* [mermaid live](https://mermaid.live/), [mermaid playground](https://www.mermaidchart.com/play)
+* [mermaid cli](https://github.com/mermaid-js/mermaid-cli)
+  > Convert Mermaid mmd Diagram File To SVG
+* [mermaid architecture icons logos:s3](https://icones.js.org/collection/logos) or [mermaid architecture icons logos:s3](https://icon-sets.iconify.design/logos/)
+  * https://github.com/gilbarbara/logos
+* [font awesome fa:fa-user](https://fontawesome.com/icons)
+* [mermaid flowchart shapes](https://mermaid.js.org/syntax/flowchart.html#complete-list-of-new-shapes)
+* [mermaid theme: default, neutral, dark, forest, base](https://mermaid.js.org/config/theming.html#available-themes)
+* [markdown editor realtime collaboration](https://hackmd.io/)
 ```mermaid
 ---
 config:
@@ -122,11 +123,10 @@ theme: 'default'
 ---
 flowchart LR
 ```
-  * [zenuml](https://docs.zenuml.com/)
-  * [kroki - collection of diagrams](https://kroki.io/)
-* [markdown editor realtime collaboration](https://hackmd.io/)
-* [list of markdown code supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)
-* [symbols for showing on markdown sheet, dollar wrapped symbols](https://detexify.kirelabs.org/classify.html)
+#### [diagrams zenuml](https://docs.zenuml.com/)
+#### [diagrams kroki ](https://kroki.io/)
+#### [list of markdown code supported languages](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml)
+#### [symbols for showing on markdown sheet, dollar wrapped symbols](https://detexify.kirelabs.org/classify.html)
 
 ### regular expressions
 * [regular expressions regexp](https://regex101.com)

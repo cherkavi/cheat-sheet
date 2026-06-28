@@ -166,6 +166,7 @@ pipx install git+https://github.com/zahidoverflow/perplexity-cli.git
 - [PalaCMS - Build static sites visually](https://github.com/palacms/PalaCMS)
 - [Vrite - Create technical content in a team](https://github.com/vriteio/vrite)
 - [Papermark - Share documents and pitch decks](https://github.com/mfts/papermark)
+- whisper - AWS ( amazon services )
 
 ## Solutions for local text wiki/knowledgebase
 | Approach            | Core Mechanism                               | Primary Use Case                                     | Example Tools                                                                                                   |
