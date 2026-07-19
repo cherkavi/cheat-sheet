@@ -38,6 +38,11 @@ copilot
 * [features](https://github.com/features/copilot/cli)  
 * [awesome copilot](https://github.com/github/awesome-copilot)
 
+### [antigraviti cli](https://antigravity.google/download)
+```sh
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+```
+
 ### [gemini cli](https://geminicli.com/docs/get-started/installation/)
 ```sh
 # via NPM package 
