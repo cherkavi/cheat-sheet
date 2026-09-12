@@ -3370,8 +3370,49 @@ rm ~/.ssh/known_hosts
 ```
 
 
+## history
+### history control 
+| Command                        | Action                                                   |
+| ---                            | ---                                                      |
+| `history -a`                   | Write current session to disk immediately                |
+| `history -c`                   | Clear in-memory list                                     |
+| `history -r`                   | Reload history from file                                 |
+| `history -d 497`               | Delete entry 497 from memory                             |
+| `history -d 497 && history -w` | Delete and write change to disk                          |
+| `history -c && history -w`     | Wipe the entire history file                             |
+| `set +o history`               | Stop recording for this session                          |
+| `set -o history`               | Resume recording                                         |
+| `unset HISTFILE`               | Prevent write to disk at exit (commands still in memory) |
 
-## bash shortcuts for previous commands execution 
+
+### history variables 
+Bash stores commands in an in-memory list during a session. On exit, the list is written to `~/.bash_history`, and loaded back in the next shell
+
+| Variable       | Purpose                                                                 | Check Current Value    |
+| ---            | ---                                                                     | ---                    |
+| `HISTSIZE`     | Commands kept in memory                                                 | `echo $HISTSIZE`       |
+| `HISTFILESIZE` | Lines kept in the history file                                          | `echo $HISTFILESIZE`   |
+| `HISTFILE`     | Path to the history file                                                | `echo $HISTFILE`       |
+| `HISTCONTROL`  | Controls which commands are saved: `ignorespace`, `ignoredups`, `ignoreboth`, `erasedups` | `echo $HISTCONTROL`    |
+| `HISTIGNORE`   | Colon-separated patterns of commands to **not** save                    | `echo $HISTIGNORE`     |
+
+```bash
+# Ignore duplicate commands and commands starting with a space
+HISTCONTROL=ignorespace # – skip commands that start with a space.
+HISTCONTROL=ignoredups  # – skip consecutive duplicates.
+HISTCONTROL=ignoreboth  # – combine `ignorespace` and `ignoredups`.
+HISTCONTROL=erasedups   # – remove all previous lines matching a new command before saving it.
+# HISTIGNORE` uses `:` as a separator; `ls` alone will **not** ignore `ls -l` — list both: `ls:ls *`.
+
+# Ignore common throwaway commands (patterns must match the whole line)
+HISTIGNORE="ls:ll:la:cd:cd -:pwd:exit:date:clear:history"
+
+# Real-time sync across terminals (append, clear, reload)
+PROMPT_COMMAND="history -a; history -c; history -r${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+```
+
+
+### bash shortcuts for previous commands execution 
 
 | Command             | Meaning                                   |
 | ---------           | ---------                                 |
