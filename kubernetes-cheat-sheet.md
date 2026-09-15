@@ -1234,6 +1234,48 @@ systemctl restart kubelet
 kubectl logs <name of pod>
 ```
 
+
+## Kubernetes Probes, 3 Types of Probes
+
+| Probe Type    | Checks for...             | What Happens if It Fails         |
+| ------------  | ---------------           | ---------------------------      |
+| **Liveness**  | Is the app alive?         | Pod is restarted                 |
+| **Readiness** | Is the app traffic-ready? | Pod is removed from Service list |
+| **Startup**   | Is the app done booting?  | Delays liveness until it's ready |
+
+- **Liveness** – Detects deadlocks; kubelet restarts the container.
+- **Readiness** – Controls traffic; pod stays running but is removed from Service endpoints.
+- **Startup** – For slow-starting containers; disables liveness/readiness until it succeeds.
+```yaml
+# Liveness probe (HTTP)
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: 8080
+  initialDelaySeconds: 3
+  periodSeconds: 5
+
+# Readiness probe (TCP)
+readinessProbe:
+  tcpSocket:
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+# Startup probe (Exec)
+startupProbe:
+  exec:
+    command: ["cat", "/tmp/ready"]
+  failureThreshold: 30
+  periodSeconds: 10
+```
+```bash
+## Useful Commands
+kubectl describe pod <pod>      # See probe status and events
+kubectl get pod <pod> -o yaml   # View probe configuration
+kubectl logs <pod>              # Check app logs for probe failures
+```
+
 ## Troubleshooting
 ### issue with PV / PVC
 ```
