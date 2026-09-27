@@ -826,6 +826,25 @@ exec "setxkbmap -layout us,de"
 exec "setxkbmap -option 'grp:alt_shift_toggle'"
 ```
 
+## remote access
+### anydesk
+```sh
+# 1. Install prerequisites
+sudo apt update && sudo apt install -y ca-certificates curl apt-transport-https gnupg
+
+# 2. Add the AnyDesk GPG key to the trusted keyring
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo gpg --dearmor -o /usr/share/keyrings/anydesk.gpg
+sudo chmod a+r /usr/share/keyrings/anydesk.gpg
+
+# 3. Add the APT repository
+echo "deb [signed-by=/usr/share/keyrings/anydesk.gpg] http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
+
+# 4. Update index and install AnyDesk
+sudo apt update
+sudo apt install -y anydesk
+```
+
 ## icaclient citrix 
 ### [download receiver](https://www.citrix.de/downloads/citrix-receiver/)
 ### [download for linxu](https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html)
