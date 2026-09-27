@@ -22,6 +22,330 @@ os.environ['https_proxy'] = proxy
 os.environ['HTTPS_PROXY'] = proxy
 ```
 
+## Python Project/Dependency Management Frameworks
+
+| Framework      | Purpose                                         | URL                         | Notes                                                  |
+| -----------    | ---------                                       | -----                       | -------                                                |
+| **uv**         | Fast Python package installer & project manager | https://docs.astral.sh/uv/  | Modern, Rust-based, replaces pip/venv/poetry           |
+| **Poetry**     | Dependency management & packaging               | https://python-poetry.org/  | Declarative `pyproject.toml`, lock files, virtual envs |
+| **pip**        | Package installer                               | https://pip.pypa.io/        | Standard Python package manager                        |
+| **pipenv**     | Dependency management & virtual environments    | https://pipenv.pypa.io/     | Combines pip + virtualenv, uses Pipfile                |
+| **conda**      | Package & environment manager                   | https://docs.conda.io/      | Handles non-Python dependencies, anaconda/miniconda    |
+| **hatch**      | Modern Python project manager                   | https://hatch.pypa.io/      | Project scaffolding, virtual envs, build/publish       |
+| **pdm**        | PEP 582 compliant dependency manager            | https://pdm-project.org/    | No virtual env needed, local packages                  |
+| **setuptools** | Build & distribution tool                       | https://setuptools.pypa.io/ | Legacy, used for building packages                     |
+| **flit**       | Simple Python packaging                         | https://flit.pypa.io/       | Minimal configuration, focuses on simplicity           |
+| **pex**        | Python EXecutable creator                       | https://docs.pex-tool.org/  | Creates executable Python packages                     |
+| **rye**        | Python version & project manager                | https://rye.astral.sh/      | All-in-one tool, from Astral (uv creators)             |
+
+
+### [package manager uv](https://pypi.org/project/uv/)
+
+#### Initialize in the current directory
+```bash
+uv init my-project
+### the same 
+mkdir my-project
+cd my-project
+uv init
+
+### to run the project 
+uv run main.py
+```
+```text
+my-project/
+├── pyproject.toml
+├── README.md
+└── main.py
+```
+
+#### Specify a specific Python version
+```bash
+uv init --python 3.12 my-project
+uv init --python 3.12
+```
+
+#### Create a library project
+```bash
+uv init --lib my-library
+```
+This typically creates a package layout:
+```text
+my-library/
+├── pyproject.toml
+├── README.md
+└── src/
+    └── my_library/
+        └── __init__.py
+```
+
+#### Create an installable application package
+```bash
+uv init --package my-app
+```
+
+#### Useful options
+```bash
+uv init --help
+uv init --bare              # Create only the minimal project files
+uv init --no-readme         # Do not create README.md
+uv init --python 3.11       # Select the Python version
+uv init --lib               # Initialize a library
+uv init --package           # Create a packaged application
+```
+After initialization, add dependencies with:
+```bash
+uv add requests
+uv add fastapi
+```
+Run Python commands inside the project environment with:
+```bash
+uv run python
+uv run main.py
+```
+
+### package manager easy_install
+#### using it from cmd
+```sh
+%PYTHON%/Scripts/easy_install.exe <package name>
+```
+#### using easy_install from script
+```python
+from setuptools.command import easy_install
+# install package
+easy_install.main( ["termcolor"] )
+# update package
+easy_install.main( ["-U","termcolor"] )
+```
+
+### [package manager poetry](https://python-poetry.org/)
+* isolation
+* dependency resolver
+* good cli
+```sh
+poetry new my_own_project
+poetry add selenium
+poetry show --tree
+
+poetry run my_script_name
+```
+
+### package manager pip
+#### [find package in browser](https://pypi.org/)
+#### find package by name
+```sh
+pip search {search key}
+
+pip install pip-search 
+python -m pip_search "your-query-search"
+
+pip install pypisearch
+pypisearch "your query"
+```
+
+#### install pip
+```sh
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+```
+issue:
+```
+ImportError: cannot import name 'sysconfig'
+```
+solution
+```sh
+# pip install
+# sudo apt install python3-distutils
+sudo apt install python3-pip
+```
+
+#### upgrade pip
+```sh
+pip3 install --upgrade pip
+pip install -U pip
+```
+debian
+```sh
+apt-get install -y --no-install-recommends python3-pip
+```
+
+#### setup pip remote index
+```sh
+NEXUS_HOST=some.host.com
+python3 -m pip config --user set global.index-url https://${NEXUS_USER}:${NEXUS_PASS}@${NEXUS_HOST}
+python3 -m pip config --user set global.trusted-host ${NEXUS_HOST}
+```
+
+#### [pip install git svn folder](https://pip.pypa.io/en/stable/cli/pip_install/)
+
+#### pip install packages selenium, virtualdisplay
+```
+sudo pip install selenium
+sudo pip install xvfbwrapper
+sudo pip install pyvirtualdisplay
+sudo apt-get install xvfb
+wget https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux64.tar.gz
+chmod +x geckodriver
+sudo cp geckodriver /usr/local/bin/
+```
+
+#### pip install with proxy, pip install proxy, pip proxy, pip via proxy
+```sh
+pip install --proxy=http://proxy.muc:8080
+```
+
+#### pip install with specific proxy
+```sh
+pip install --index-url http://cc-artifactory.mynetwork.net my_own_package
+```
+#### install package into home of current user ( do not use for virtual environment )
+```sh
+pip install --user .
+```
+#### pip install from package install from zip
+```sh
+pip3 install --user ~/Downloads/PyGUI-2.5.4.tar.gz
+```
+#### pip install from remote archive
+```sh
+PACKAGE_NAME=electrum
+sudo -H pip3 install https://download.electrum.org/4.1.2/Electrum-4.1.2.tar.gz#egg=${PACKAGE_NAME}[fast]
+```
+
+#### pip install from remote index
+```sh
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+```
+
+#### pip install artifact from git
+```
+pip install git+https://github.com/django-extensions/django-extensions
+pip install git+https://github.com/django-extensions/django-extensions.git
+pip install -e git+https://github.com/django-extensions/django-extensions.git#egg=django-extensions
+pip install https://github.com/django/django/archive/stable/1.7.x.zip
+pip install git+ssh://git@github.com/myuser/foo.git@my_version
+```
+
+#### pip install package to specific folder
+```
+pip install --target=/home/user/my/python/packages package_name
+export PYTHONPATH=$PYTHONPATH:"/home/ubuntu/.local/lib/python3.8/site-packages/gunicorn"
+```
+
+#### setup.py install
+```sh
+python setup.py install
+```
+##### uninstall
+```sh
+python setup.py install --record list_of_files.txt
+cat list_of_files.txt | xargs sudo rm -rf
+```
+
+#### list of packages
+```sh
+pip list
+```
+
+#### list of all installed libraries, installed modules
+```sh
+pip freeze
+```
+```python
+import sys
+sys.modules
+```
+#### path to library path to import package
+```python
+mapr.ojai.storage.__path__
+dir(mapr.ojai.storage)
+```
+
+#### list of all folders with source code, installed packages
+```python
+# path to folder with all packages
+import sys
+print(sys.prefix)
+```
+for easy_install, pip
+```python
+import site
+print(site.getsitepackages())
+```
+
+#### using pip from interpreter ( install wheels package)
+```python
+import pip
+pip.__version__
+pip.main(["install", "wheels"])
+#pip.main("install", "wheels")
+```
+fix for version 9 and 10
+```
+error message: AttributeError: 'module' object has no attribute 'main'
+```
+solution:
+```
+try:
+    from pip import main as pipmain
+except:
+    from pip._internal import main as pipmain
+pipmain(["install", "wheels"]);
+```
+
+#### path to external artifacts, external index, pip configuration
+```bash
+cat /etc/pip.conf 
+```
+```properties
+[global]
+index-url = https://cc-artifactory.myserver.net/artifactory/api/pypi/adp-pypi-virtual/simple
+```
+
+#### install certain version of artifact
+```
+pip install tornado==2.1.1
+```
+
+#### install list of artifacts
+```sh
+pip install -r requirements.txt
+# sometimes after installation not working
+# 'pip list' & 'pip freeze' are not consistent
+cat requirements.txt | xargs -I {} ./pip3 install {}
+```
+where requirements.txt is:
+```
+-r requirements-base.txt
+docker==3.7.0
+enum34==1.1.6
+flask-restful==0.3.7
+```
+
+#### update package
+```sh
+pip install tornado --update
+
+# pip update pip
+python3 -m pip install --upgrade pip
+sudo apt install --upgrade python3-pip
+```
+
+#### remove package, uninstall package
+```sh
+pip uninstall {package name}
+```
+
+#### print dependency tree, dependencies tree
+```python3
+pip install pipdeptree
+pipdeptree
+```
+
+for transitive dependency:
+* constraints.txt file should be considered  `pip install -c constraints.txt`
+* poetry ( under the hood uses pip )
+
 ## python multiple environments, diff versions of python in the same OS, aka `sdk/sdkman`
 ```sh
 ### Install build dependencies
@@ -64,217 +388,21 @@ pyenv activate ai-tools
 pyenv virtualenv-prefix 
 ```
 
-## [faster package manager uv](https://pypi.org/project/uv/)
-
-## [package manager poetry](https://python-poetry.org/)  
-## package manager easy_install
-### using it from cmd
-```sh
-%PYTHON%/Scripts/easy_install.exe <package name>
-```
-### using easy_install from script
-```python
-from setuptools.command import easy_install
-# install package
-easy_install.main( ["termcolor"] )
-# update package
-easy_install.main( ["-U","termcolor"] )
-```
-
-## [package manager poetry](https://python-poetry.org/)
-* isolation
-* dependency resolver
-* good cli
-```sh
-poetry new my_own_project
-poetry add selenium
-poetry show --tree
-
-poetry run my_script_name
-```
-
-## package manager pip
-### [find package in browser](https://pypi.org/)
-### find package by name
-```sh
-pip search {search key}
-
-pip install pip-search 
-python -m pip_search "your-query-search"
-
-pip install pypisearch
-pypisearch "your query"
-```
-
-### install pip
-```sh
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py
-```
-issue:
-```
-ImportError: cannot import name 'sysconfig'
-```
-solution
-```sh
-# pip install
-# sudo apt install python3-distutils
-sudo apt install python3-pip
-```
-
-### upgrade pip
-```sh
-pip3 install --upgrade pip
-pip install -U pip
-```
-debian
-```sh
-apt-get install -y --no-install-recommends python3-pip
-```
-
-### setup pip remote index
-```sh
-NEXUS_HOST=some.host.com
-python3 -m pip config --user set global.index-url https://${NEXUS_USER}:${NEXUS_PASS}@${NEXUS_HOST}
-python3 -m pip config --user set global.trusted-host ${NEXUS_HOST}
-```
-
-## [pip install git svn folder](https://pip.pypa.io/en/stable/cli/pip_install/)
-### pip install with proxy, pip install proxy, pip proxy, pip via proxy
-```sh
-pip install --proxy=http://proxy.muc:8080
-```
-
-### pip install with specific proxy
-```sh
-pip install --index-url http://cc-artifactory.mynetwork.net my_own_package
-```
-### install package into home of current user ( do not use for virtual environment )
-```sh
-pip install --user .
-```
-### pip install from package install from zip
-```sh
-pip3 install --user ~/Downloads/PyGUI-2.5.4.tar.gz
-```
-### pip install from remote archive
-```sh
-PACKAGE_NAME=electrum
-sudo -H pip3 install https://download.electrum.org/4.1.2/Electrum-4.1.2.tar.gz#egg=${PACKAGE_NAME}[fast]
-```
-
-### pip install from remote index
-```sh
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-```
-
-### pip install artifact from git
-```
-pip install git+https://github.com/django-extensions/django-extensions
-pip install git+https://github.com/django-extensions/django-extensions.git
-pip install -e git+https://github.com/django-extensions/django-extensions.git#egg=django-extensions
-pip install https://github.com/django/django/archive/stable/1.7.x.zip
-pip install git+ssh://git@github.com/myuser/foo.git@my_version
-```
-
-### pip install package to specific folder
-```
-pip install --target=/home/user/my/python/packages package_name
-export PYTHONPATH=$PYTHONPATH:"/home/ubuntu/.local/lib/python3.8/site-packages/gunicorn"
-```
-
-
-### setup.py
-#### install
-```sh
-python setup.py install
-```
-#### uninstall
-```sh
-python setup.py install --record list_of_files.txt
-cat list_of_files.txt | xargs sudo rm -rf
-```
-
-### list of packages
-```sh
-pip list
-```
-
-### list of all installed libraries, installed modules
-```sh
-pip freeze
-```
-```python
-import sys
-sys.modules
-```
-### path to library path to import package
-```python
-mapr.ojai.storage.__path__
-dir(mapr.ojai.storage)
-```
-
-### list of all folders with source code, installed packages
-```python
-# path to folder with all packages
-import sys
-print(sys.prefix)
-```
-for easy_install, pip
-```python
-import site
-print(site.getsitepackages())
-```
-
-### using pip from interpreter ( install wheels package)
-```python
-import pip
-pip.__version__
-pip.main(["install", "wheels"])
-#pip.main("install", "wheels")
-```
-fix for version 9 and 10
-```
-error message: AttributeError: 'module' object has no attribute 'main'
-```
-solution:
-```
-try:
-    from pip import main as pipmain
-except:
-    from pip._internal import main as pipmain
-pipmain(["install", "wheels"]);
-```
-
-### path to external artifacts, external index, pip configuration
-```bash
-cat /etc/pip.conf 
-```
-```properties
-[global]
-index-url = https://cc-artifactory.myserver.net/artifactory/api/pypi/adp-pypi-virtual/simple
-```
-
-### install certain version of artifact
-```
-pip install tornado==2.1.1
-```
-
-### [install artifacts in isolated environments pipx](https://github.com/pypa/pipx)
+## [install artifacts in isolated environments pipx](https://github.com/pypa/pipx)
 > pipx creates an isolated environment for each application and its associated packages
 
-### [virtual environment manager](https://github.com/pypa/pipenv)
+## [virtual environment manager](https://github.com/pypa/pipenv)
 ```sh
 pip install pipenv
 ```
-### virtual environment installation
+## virtual environment installation
 ```sh
 pip install virtualenv
 apt install python3-env
 sudo apt install python3-virtualenv
 ```
 
-### create virtual environment, dedicated env
+## create virtual environment, dedicated env
 ```sh
 ## create
 # pyenv virtualenv 3.9.12 dev
@@ -296,59 +424,19 @@ echo $VIRTUAL_ENV
 deactivate
 ```
 
-### install list of artifacts
-```sh
-pip install -r requirements.txt
-# sometimes after installation not working
-# 'pip list' & 'pip freeze' are not consistent
-cat requirements.txt | xargs -I {} ./pip3 install {}
-```
-where requirements.txt is:
-```
--r requirements-base.txt
-docker==3.7.0
-enum34==1.1.6
-flask-restful==0.3.7
-```
-
-### load package from specific folder inline
+## load package from specific folder inline
 ```
 import sys
 sys.path.append("/path/to/your/my_extra_component")
 import extra_component
 ```
 
-### update package
-```sh
-pip install tornado --update
-
-# pip update pip
-python3 -m pip install --upgrade pip
-sudo apt install --upgrade python3-pip
-```
-
-### remove package, uninstall package
-```
-pip uninstall {package name}
-```
-
-### print dependency tree, dependencies tree
-```python3
-pip install pipdeptree
-pipdeptree
-```
-
-for transitive dependency:
-* constraints.txt file should be considered  `pip install -c constraints.txt`
-* poetry ( under the hood uses pip )
-
-
-### import package by string name
+## import package by string name
 ```
 target = __import__("data-migration")
 ```
 
-### import package in protected block
+## import package in protected block
 ```
 try:
     import json
@@ -356,7 +444,7 @@ except ImportError:
     import simplejson as json
 ```
 
-### script execution ModuleNotFoundError
+## script execution ModuleNotFoundError
 when you execute your own project locally
 ```text
 ModuleNotFoundError: No module named 'list_comparator'
@@ -368,7 +456,7 @@ export PYTHONPATH=$PYTHONPATH:"/home/projects/wondersign/integration-prototype"
 /home/projects/integration-prototype/list-comparator/venv/bin/python /home/projects/integration-prototype/list-comparator/list_comparator/data_api/tools/data_api_reader.py
 ```
 
-### create executable environment, executable file 
+## create executable environment, executable file 
 ```sh
 pex --python=python3 flask requests tornado -o samplepkg.pex
 ```
@@ -376,7 +464,7 @@ pex --python=python3 flask requests tornado -o samplepkg.pex
 pyinstaller --onefile app.py
 ```
 
-### path to python, obtain python interpreter path
+## path to python, obtain python interpreter path
 ```
 import sys
 sys.executable
@@ -386,49 +474,49 @@ also check
 sys.modules
 ```
 
-### execute command inline, base64 example
+## execute command inline, base64 example
 ```
 python -c "import base64;print(base64.encodestring('hello'.encode()));"
 # execute cmd inline with arguments -c with args, string url encode
 python -c 'import urllib.parse;import sys;print(urllib.parse.quote(sys.argv[1]))' "Hallo Björn@Python"
 ```
 
-### execute string as commands
+## execute string as commands
 ```
 a=10
 eval(" print(a)")
 ```
 
-### find vs index ( string find, string index )
+## find vs index ( string find, string index )
 ```
 find - return -1 if not found
 index - throw exception if not found
 ```
 
-### user libraries can be placed into the folder
+## user libraries can be placed into the folder
 ```
 python -m site --user-site
 ```
 
-### help
+## help
 ```
 help contextlib
 pydoc contextlib
 ```
 
-### special methods
+## special methods
 ```
 __call__  <class instance>()
 ```
 
-### special file name folder execution main execute main
+## special file name folder execution main execute main
 ```
 mkdir ./my_folder
 touch ./my_folder/__main__.py
 python3 ./my_folder
 ```
 
-### build rpm: python setup.py bdist_rpm
+## build rpm: python setup.py bdist_rpm
 ```
 	rpm -ba --define _topdir ...
 	-ba: unknown option
@@ -439,16 +527,15 @@ python3 ./my_folder
 need to execute: yum install rpm-build
 ```
 
-### build package usind pants with special folder
+## build package usind pants with special folder
 ```
 # BUILD PEX
 PANTS_PATH="../../../.."
 PANTS_OUTPUT=$CURRENT_PATH/dist
 $PANTS_PATH/pants --pants-distdir=$PANTS_OUTPUT binary src/path/to/package:package-name
-
 ```
 
-### debug via Visual Code
+## debug via Visual Code
 ```json
             "justMyCode": false,
             "args": [
@@ -458,7 +545,7 @@ $PANTS_PATH/pants --pants-distdir=$PANTS_OUTPUT binary src/path/to/package:packa
 ```
 
 
-### (debug with cli)[https://docs.python.org/3/library/pdb.html]
+## (debug with cli)[https://docs.python.org/3/library/pdb.html]
 ```python
 import pdb
 # ...
@@ -490,19 +577,7 @@ continues
 return
 ```
 
-## install packages
-### selenium, virtualdisplay
-```
-sudo pip install selenium
-sudo pip install xvfbwrapper
-sudo pip install pyvirtualdisplay
-sudo apt-get install xvfb
-wget https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux64.tar.gz
-chmod +x geckodriver
-sudo cp geckodriver /usr/local/bin/
-```
-
-### [virtual environment automation, tox tool](https://tox.readthedocs.io/en/latest/)
+## [virtual environment automation, tox tool](https://tox.readthedocs.io/en/latest/)
 tox.ini
 ```
 commands = pex . -c download_symbolic_link_creation.py --disable-cache -i {env:PIP_INDEX_URL} -r requirements.txt -o {env:PEX_OUTPUT_PATH} --python-shebang="/usr/bin/env python3.8"
@@ -518,7 +593,7 @@ setup(
 )
 ```
 
-## JIT
+## JIT - just in time compiler
 ### just in time compiler pypy
 ```sh
 pip install pypy
@@ -588,7 +663,7 @@ pip3 install tox
 python -m unittest airflow_shopify.shopify.test_shopify_common
 ```
 
-# Alembic 
+# [Alembic](https://alembic.sqlalchemy.org/) - database migration tool 
 ![migration schema](https://i.postimg.cc/tJSJWfFc/alembic.png)
 ## migration
 ```bash
