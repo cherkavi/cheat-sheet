@@ -40,10 +40,24 @@ os.environ['HTTPS_PROXY'] = proxy
 
 
 ### [package manager uv](https://pypi.org/project/uv/)
+#### uv installation 
+```sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv --version
+```
+uvx run applications
+```sh
+uvx ruff check .
+uvx black .
+uvx httpie https://example.com
+uvx cookiecutter https://github.com/example/template
+```
 
 #### Initialize in the current directory
 ```bash
 uv init my-project
+cd my-project
+
 ### the same 
 mkdir my-project
 cd my-project
