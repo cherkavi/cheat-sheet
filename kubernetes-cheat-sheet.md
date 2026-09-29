@@ -80,6 +80,7 @@ kubectl --kubeconfig=config-rancher  get pods -v=8
 kubectl explain pods
 kubectl explain pods --recursive
 kubectl explain pods --recursive --api-version=autoscaling/v2beta1
+kubectl explain deployment.spec.strategy.type 
 ```
 * python client
 ```bash
@@ -1273,7 +1274,9 @@ startupProbe:
 ## Useful Commands
 kubectl describe pod <pod>      # See probe status and events
 kubectl get pod <pod> -o yaml   # View probe configuration
-kubectl logs <pod>              # Check app logs for probe failures
+kubectl logs <pod>              # Check app logs 
+kubectl logs <pod> --previous   # Check app logs for previously crashed container 
+kubectl get event --sort-by=.metadata.creationTimestamp
 ```
 
 ## Troubleshooting
