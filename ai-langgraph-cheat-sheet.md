@@ -6,28 +6,27 @@
 
 ## create multi agent app
 ```sh
-# create project 
+## create project 
 uv init multi-agent
 cd multi-agent
 
-# add packages
-uv add langgraph langgraph-cli langgraph-api langgraph-openai cudf-cu13 python-dotenv
+## add packages
+# langgraph-openai
+uv add langgraph langgraph-cli langgraph-api  cudf-cu13 python-dotenv
 
-# obtain https://build.nvidia.com -> API Keys -> 
+## obtain https://build.nvidia.com -> API Keys -> 
 echo 'export NVIDIA_API_KEY="xxxxxxxx"' > .env 
 
-# download source code
+## download source code
 curl -Lo https://raw.githubusercontent.com/will-hill/Data-Science-Agents-Simplified/refs/heads/master/002_agent.py
 mv 002_agent.py agent.py
 
 curl -Lo https://raw.githubusercontent.com/will-hill/Data-Science-Agents-Simplified/refs/heads/master/003_multi_agent.py
 mv 003_multi_agent.py multi_agent.py
 
-curl -Lo https://raw.githubusercontent.com/will-hill/Data-Science-Agents-Simplified/refs/heads/master/004_langgraph.json
-mv 004_langgraph.json langgraph.json
+curl -L 'https://raw.githubusercontent.com/will-hill/Data-Science-Agents-Simplified/refs/heads/master/004_langgraph.json' > langgraph.json
 
-# start LangGraph UI 
+## start LangGraph UI 
 uv run langgraph dev
-
 ```
 
