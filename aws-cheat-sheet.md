@@ -93,10 +93,19 @@ npm install aws-cdk@2.118.1
 #### [installation of AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 > aws cli is a python application
 ```sh
-# installation
+## installation
+# apt
 sudo apt install awscli
+# python 
 pip install awscli
+# snap 
+snap install aws-cli
+# install awscli from zip 
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
 
+## check installed version 
 aws --version
 ```
 
@@ -109,9 +118,19 @@ docker run --rm -it  -v $(pwd):/aws  -v ~/.aws:/root/.aws public.ecr.aws/aws-cli
 
 #### console command completion, console completion
 ```sh
-pip3 install awscli
-# complete -C `locate aws_completer` aws
-complete -C aws_completer aws
+if [ ! -f /usr/local/bin/aws_completer ]; then
+    # snap package
+    if [ -f /snap/aws-cli/current/bin/aws_completer ]; then
+        complete -C /snap/aws-cli/current/bin/aws_completer aws
+    else
+        # awscli v1.x
+        complete -C aws_completer aws
+    fi
+else 
+    # awscli v2.x
+    complete -C /usr/local/bin/aws_completer aws    
+fi
+
 ```
 
 ### aws cli configuration places

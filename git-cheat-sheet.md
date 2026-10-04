@@ -1338,10 +1338,11 @@ gh workflow run $WORKFLOW_FILE_NAME --ref $(git branch --show-current)
 # print out last log output of the workflow by name
 gh run view --log $(gh run list --json databaseId --jq '.[0].databaseId')
 
-
-
 gh variable list
 gh variable set $VARIABLE_NAME --body $VARIABLE_VALUE
+
+# predefined default variable: owner, repo ... 
+gh api --paginate "repos/{owner}/{repo}/stargazers" --jq '.[].login' > all-stars-from-repo.txt
 
 # search pull request via CLI, search not opened pull requests
 gh pr list -S 'author:cherkavi is:merged'
