@@ -13,6 +13,7 @@
 
 ## vendor agnostic CLI tools
 ### [opencode](https://opencode.ai)
+[gitub opencode](https://github.com/anomalyco/opencode)
 ```sh
 curl -fsSL https://opencode.ai/install | bash
 ```
@@ -217,7 +218,7 @@ pipx install git+https://github.com/zahidoverflow/perplexity-cli.git
 ### opencode - ai coding agent
 * https://opencode.ai/
 
-### openclaw - ai assistant for general purposes 
+### openclaw - ai assistant for general purposes (mail, calendar, whatsapp, telegram ... )
 * https://openclaw.ai/
 
 ### [llm - cli tool for interacting with LLM](https://github.com/simonw/llm)
