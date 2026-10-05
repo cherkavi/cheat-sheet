@@ -12,6 +12,7 @@
 * [execute package manager](https://www.npmjs.com/package/npx)
 
 ### run different node version
+
 #### run different node versions locally
 ```sh
 sudo npm install -g n 
@@ -20,12 +21,73 @@ sudo n install 13.8
 n exec 13.8 node --version
 n exec 20.3 node --version
 ```
-#### [run diff version of node locally](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+#### [run diff version of node locally with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 ```sh
 nvm ls 
 nvm install 20;
+
+## use specific version of the node 
 nvm use 20;
 nvm alias default 20  # apply it permanently ( after closing current terminal )
+node -v
+
+## user specific version of the node automatically via config file
+echo "18.20.2" > .nvmrc
+nvm use
+```
+
+#### run diff version of node with fnm 
+```sh
+# List installed versions
+fnm list
+fnm ls
+
+# Install a specific version
+fnm install 20
+
+# Use a specific version of Node
+fnm use 20
+
+# Set a default version (applied permanently after closing current terminal)
+fnm default 20
+
+# Verify current version
+node -v
+
+# Use a specific version automatically via config file
+echo "18.20.2" > .nvmrc
+fnm use
+```
+for ~/.bashrc 
+```sh
+eval "$(fnm env --use-on-cd --shell bash)"
+```
+
+#### autoswitch version of node according to .nvmrc
+```sh
+# The universal script for macOS/Linux
+curl -fsSL https://fnm.vercel.app/install | bash
+```
+```sh
+# 1. Install anvs globally via npm
+npm install -g anvs
+
+# 2. Initialize anvs (this sets up the automatic shell hooks)
+anvs init
+
+# 3. Verify the setup
+anvs --version
+```
+usage 
+```sh
+# In your project folder, create the version file (same as nvm)
+echo "18.20.2" > .nvmrc
+
+# Now, simply cd into the folder
+cd /path/to/your/project
+
+# anvs will automatically detect .nvmrc and switch the Node version
 node -v
 ```
 
