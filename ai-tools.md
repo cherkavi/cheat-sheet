@@ -182,6 +182,15 @@ pipx install git+https://github.com/zahidoverflow/perplexity-cli.git
 - [Papermark - Share documents and pitch decks](https://github.com/mfts/papermark)
 - whisper - AWS ( amazon services )
 
+## Solutions for browser automation
+* [chrome browser automation](https://github.com/anomalyco/browser-control) 
+* [BrowserMCP/mcp](https://github.com/browsermcp/mcp) — MCP server and extension combo that connects AI agents (Claude, Cursor) directly to your existing logged-in Chrome profile.
+* [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp) — Google's official MCP server using Chrome DevTools Protocol to enable AI agents to automate and debug active Chrome sessions.
+* [hangwin/mcp-chrome](https://github.com/hangwin/mcp-chrome) — Feature-rich Chrome extension MCP server that allows agents to inspect network traffic, manipulate DOM, and manage browser history.
+* [browser-use/browser-use](https://github.com/browser-use/browser-use) — Python framework for agentic browser automation using Playwright, with support for connecting to pre-existing Chrome profile ports.
+* [nanobrowser/nanobrowser](https://github.com/nanobrowser/nanobrowser) — Open-source Chrome extension that runs an AI web-automation agent natively inside the browser side-panel using your own API keys.
+
+
 ## Solutions for local text wiki/knowledgebase
 | Approach            | Core Mechanism                               | Primary Use Case                                     | Example Tools                                                                                                   |
 | ---                 | ---                                          | ---                                                  | ---                                                                                                             |
