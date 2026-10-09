@@ -779,6 +779,24 @@ user: <empty>
 pass: <empty>
 ```
 
+## Quarkus
+### Quarkus DO NOT 
+* Don't assume Spring MVC semantics in Quarkus: Unannotated reactive handlers run on the event loop, so blocking there affects everyone.
+* Don't block the event loop: Avoid `Thread.sleep`, JDBC, file I/O, or sync HTTP inside `@NonBlocking` handlers.
+* Don't fake non-blocking: Returning `Uni` while performing blocking work inside still blocks the event loop.
+* Don't ping-pong threads: Avoid unnecessarily bouncing between reactive and blocking pools.
+* Don't rely on default timeouts: Since many clients default to "forever," set sane values explicitly.
+* Don't overprovision pools blindly: Bigger pools do not automatically mean faster execution; use metrics (queued tasks, utilization) before resizing.
+* Don't starve the DB/HTTP pools: While virtual threads allow many threads, downstream connection pools still limit concurrency.
+* Don't judge by single browser hits: Always test with at least two parallel requests to expose serialization issues.
+### Quarkus DO
+* Be explicit about the lane: Use `@NonBlocking` for reactive code, or `@Blocking` / `@RunOnVirtualThread` for anything that can block.
+* Prefer Virtual Threads for simple blocking I/O: They are a great fit with JDBC/sync SDKs on JDK 21+, but keep DB pool limits realistic.
+* Go reactive end-to-end when dependencies allow: Combine Mutiny (`Uni`/`Multi`) with reactive clients and databases like Hibernate Reactive or `reactive-pg-client`.
+* Turn on observability: Enable `quarkus.http.access-log.enabled=true`, Micrometer, and OpenTelemetry, and log the thread name during development.
+* Pick the right HTTP client: Use reactive clients (`rest-client-reactive`, Vert.x `WebClient`) for event-loop code, and sync clients for blocking style (Virtual Threads/worker threads).
+* Choose DB access by model: Use Hibernate Reactive for the reactive path, and Hibernate ORM + JDBC for the Virtual Threads/worker path.
+
 ## Activiti
 ### [user guide](https://www.activiti.org/userguide)
 ### [eclipse plugin](http://www.activiti.org/designer/update)
