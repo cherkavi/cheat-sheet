@@ -1,7 +1,43 @@
-# [Telegraf cheat sheet](https://github.com/influxdata/telegraf)
+# [Telegraf cheat sheet](https://github.com/influxdata/telegraf/tree/master)
+It collects, manages, processes, and aggregates metrics of a DevOps system or machine.  
 Telegraf is an open-source agent written in the Go.  
-It collects, manages, processes, and aggregates metrics of a DevOps system or machine  
 
+## Architecture 
+**Telegraf moves data through a configurable pipeline:**
+> plugin - implementation of the "abstract classes"
+* Input plugins collect metrics from systems, services, databases, and IoT sensors.
+* Processor plugins transform and filter metrics as they pass through the pipeline.
+* Aggregator plugins create aggregate metrics, such as running means, minimums, and maximums, over configurable periods.
+* Output plugins write metrics to InfluxDB and other destinations.
+
+```mermaid
+flowchart LR
+    subgraph Inputs["1. Input Plugins"]
+        direction TB
+        A1[Systems & OS]
+        A2[Services & APIs]
+        A3[Databases]
+        A4[IoT Sensors]
+    end
+
+    subgraph Pipeline["Telegraf Data Pipeline"]
+        direction LR
+        B["2. Processor Plugins\n(Transform & Filter)"]
+        C["3. Aggregator Plugins\n(Running Means, Min/Max, etc.)"]
+    end
+
+    subgraph Outputs["4. Output Plugins"]
+        direction TB
+        D1[InfluxDB]
+        D2[Other Destinations]
+    end
+
+    Inputs --> B
+    B --> C
+    C --> Outputs
+```
+
+## Plugins 
 [telegraf input plugins](https://www.influxdata.com/time-series-platform/telegraf/telegraf-input-plugin/)
 
 ## [docker containers of TICK stack](https://github.com/influxdata/influxdata-docker)
