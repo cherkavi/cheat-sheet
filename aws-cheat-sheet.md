@@ -652,7 +652,90 @@ aws s3api delete-bucket --bucket $AWS_BUCKET_NAME
   ]
 }
 ```
-#### [s3 table operations](https://github.com/cherkavi/bash-example/blob/master/aws/aws-s3-table-iceberg.md)
+### [s3 table operations](https://github.com/cherkavi/bash-example/blob/master/aws/aws-s3-table-iceberg.md)
+
+### AWS S3 Checksum CRC32
+| Checksum Algorithm | Full Object | Composite (Multipart) |
+| :---               | :---        | :---                  |
+| **CRC-64NVME**     | Yes         | No                    |
+| **CRC-32**         | Yes         | Yes                   |
+| **CRC-32C**        | Yes         | Yes                   |
+| **SHA-1**          | No          | Yes                   |
+| **SHA-256**        | No          | Yes                   |
+
+#### 1. Low-Level Multipart Upload (with CRC32)
+```bash
+##### Step 1: Create File and Split into Parts
+### Create 100MB file
+dd if=/dev/urandom of=census-data.bin bs=1M count=100
+
+### Split file into 20MB parts
+split -b 20M -d census-data.bin census-part
+
+##### Step 2: Initialize Multipart Upload
+aws s3api create-multipart-upload \
+    --bucket support-bmw-ivsr-ago \
+    --key census-data-multipart.bin \
+    --checksum-algorithm crc32
+
+##### Step 3: Upload Individual Parts
+### Upload Part 1
+aws s3api upload-part \
+    --bucket support-bmw-ivsr-ago \
+    --key census-data-multipart.bin \
+    --part-number 1 \
+    --upload-id <UPLOAD_ID> \
+    --body census-part00 \
+    --checksum-algorithm crc32
+
+### (Repeat for parts 2 to 5, incrementing --part-number and --body accordingly)
+##### Step 4: List Parts and Save to JSON
+aws s3api list-parts \
+    --bucket support-bmw-ivsr-ago \
+    --key census-data-multipart.bin \
+    --upload-id <UPLOAD_ID> \
+    --query '{Parts: Parts[*].{PartNumber: PartNumber, ETag: ETag, ChecksumCRC32: ChecksumCRC32}}' \
+    --output json > parts.json
+
+##### Step 5: Complete Multipart Upload
+aws s3api complete-multipart-upload \
+    --multipart-upload file://parts.json \
+    --bucket support-bmw-ivsr-ago \
+    --key census-data-multipart.bin \
+    --upload-id <UPLOAD_ID>
+```
+
+#### 2. High-Level CLI Multipart Upload (Auto)
+```bash
+aws s3 cp \
+    ./census-data.bin \
+    s3://support-bmw-ivsr-ago/census-data-multipartauto.bin \
+    --checksum-algorithm CRC32
+
+#### 3. Single File Upload (Without Multipart)
+aws s3api put-object \
+    --bucket support-bmw-ivsr-ago \
+    --key census-data-nomultipart.bin \
+    --body ./census-data.bin \
+    --checksum-algorithm CRC32
+```
+
+#### Verification & Attributes Retrieval
+
+##### Verify Upload & Get Checksum Using `head-object`
+```bash
+aws s3api head-object \
+    --bucket support-bmw-ivsr-ago \
+    --key census-data-multipart.bin \
+    --checksum-mode ENABLED
+```
+
+##### Get Detailed Object Attributes Using `get-object-attributes`
+```bash
+aws s3api get-object-attributes \
+    --bucket support-bmw-ivsr-ago \
+    --key census-data-multipart.bin \
+    --object-attributes Checksum, ObjectParts
 
 ---
 ## datasync
