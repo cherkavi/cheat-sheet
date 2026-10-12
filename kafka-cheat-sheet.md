@@ -374,7 +374,7 @@ seekToEnd(parition0, partition1);
 * standalone/distributed mode
 * Two ways of wokring with Stream:
   * [KSQL](#ksql) (KSQLDB)
-  * Flink
+  * [Flink](./flink-cheat-sheet.md)
     > engine for running queries on cluster
 
 ### Kafka connect standalone

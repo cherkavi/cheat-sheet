@@ -1,5 +1,4 @@
 # Spark cheat sheet
-:TODO: apache Flink
 
 ## Alternatives
 * [Ray](https://docs.ray.io/en/master/ray-overview/getting-started.html)

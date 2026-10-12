@@ -91,15 +91,6 @@ Column Store pioneer since 2002.
 #### [HPCC](http://www.hpccsystems.com/)
 from [LexisNexis](http://www.lexisnexis.com/), [article](http://wikibon.org/blog/lexisnexis-hpcc-takes-on-hadoop-as-battle-for-big-data-supremacy-heats-up/)
 
-#### [Apache Flink](http://flink.apache.org/)
-(formerly known as [Stratosphere](http://stratosphere.eu/)) 
-massively parallel & flexible data analytics platform,   
-* API: **Java, Scala**, 
-* Query Method: **expressive data flows (extended M/R, rich UDFs, iteration support)**, 
-* Data Store: **independent** (e.g., HDFS, S3, MongoDB), 
-* Written in: Java, License: Apache License V2.0, 
-* Misc: **good integration with Hadoop stack** (HDFS, YARN), source code on [Github](https://github.com/apache/flink)
-
 #### [IBM Informix](http://www-01.ibm.com/software/data/informix/)
 horizontally and vertically scalable, relational, partitioned row store, document store API / 
 * Query Method: **SQL (native, DRDA, JDBC, ODBC), MongoDB wire listener, mixed mode**, 
