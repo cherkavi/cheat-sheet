@@ -159,3 +159,26 @@ curl -X POST "https://api.telegram.org/bot$TELEGRAM_TOKEN_BOT/sendMessage" \
 * https://github.com/alexander-akhmetov/python-telegram
 * [python telegram doc](https://python-telegram.readthedocs.io/latest/tutorial.html)
 
+
+## telegram web shortcuts
+### 💬 Chat Navigation & Management
+| Action                            | Shortcut                                |
+| :---                              | :---                                    |
+| **Edit last message**             | `↑` (Up Arrow) while in the input field |
+| **Reply to the previous message** | `Ctrl` + `↑`                            |
+| **Exit current chat**             | `Esc`                                   |
+| **Next/Previous chat (Alt)**      | `Alt` + `↓` / `Alt` + `↑`               |
+| **Search in current chat**        | `Ctrl` + `F`                            |
+
+### ✍️ Text Formatting
+| Format               | Shortcut                        |
+| :---                 | :---                            |
+| **Bold**             | `Ctrl` + `B`                    |
+| **Italic**           | `Ctrl` + `I`                    |
+| **Underline**        | `Ctrl` + `U`                    |
+| **Strikethrough**    | `Ctrl` + `Shift` + `X`          |
+| **Monospace (code)** | `Ctrl` + `Shift` + `M`          |
+| **Spoiler**          | `Ctrl` + `Shift` + `P`          |
+| **Quote**            | `Ctrl` + `Shift` + `.` (period) |
+| **Insert Hyperlink** | `Ctrl` + `K`                    |
+
