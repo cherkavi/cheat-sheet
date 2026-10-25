@@ -3936,7 +3936,34 @@ sudo apt install --install-recommends mkusb mkusb-nox usb-pack-efi
 wget https://deb.parrot.sh/parrot/iso/6.0/Parrot-home-6.0_amd64.iso; cd ~/Downloads
 mkusb Parrot-home-6.0_amd64.iso
 # Install, persistent live, uefi
-# steps: p(persistent), p(dus-Persistent)
+# steps: 
+# d ( _dus, guidus, mkusb-dus ) - classic
+# p(persistent), p(dus-Persistent)
+```
+option #2
+```sh
+sudo lshw -class disk -short
+
+DEV=/dev/sdb
+ISO=/home/my-user/Downloads/Parrot-security-7.4_amd64.iso
+PERSIST_SIZE_GB=6
+PERSIST_LABEL=persistence
+
+# --- 1. write the ISO (destroys everything on $DEV) ---
+sudo dd bs=4M if="$ISO" of="$DEV" status=progress conv=fsync
+
+# --- 2. append a partition of exactly $PERSIST_SIZE_GB GiB ---
+sudo umount $DEV
+sudo sfdisk --force --append "$DEV" <<< ",${PERSIST_SIZE_GB}G,L"
+sudo partprobe "$DEV"
+sudo udevadm settle
+
+# --- 3. identify the new partition (2 on MBR, 3 on GPT) ---
+NEWPART=$(lsblk -lnpo NAME "$DEV" | tail -n 1)
+echo "New persistence partition: $NEWPART"
+
+# --- 4. format with the label archiso will look for ---
+sudo mkfs.ext4 -L "$PERSIST_LABEL" "$NEWPART"
 ```
 
 ## split usb drive, split disk
