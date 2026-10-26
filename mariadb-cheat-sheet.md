@@ -1,29 +1,29 @@
 # MariaDB cheat sheet
-### links 
+## links 
 * [documentation](https://mariadb.com/kb/en/)
 * [docker-compose: mariadb with GUI client](https://github.com/cherkavi/docker-images/blob/master/mariadb-mysql/README.md)
 
-### execute docker container ( utf8 ):
-```
+## execute docker container ( utf8 ):
+```sh
 docker pull mariadb
 
 docker run --name mysql-container --volume /my/local/folder/data:/var/lib/mysql --publish 3306:3306 --env MYSQL_ROOT_PASSWORD=root --detach mariadb --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 ```
 
-### execute docker container, create DB with specific name, execute all scripts in folder:
-```
+## execute docker container, create DB with specific name, execute all scripts in folder:
+```sh
 docker pull mariadb
 
 docker run --name mysql-container --volume /my/local/folder/data:/var/lib/mysql --volume /my/path/to/sql:/docker-entrypoint-initdb.d --publish 3306:3306 --env MYSQL_ROOT_PASSWORD=root --env MYSQL_DATABASE={databasename} --detach mariadb --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 ```
 
-### config file, conf file
+## config file, conf file
 ```sh
 cat /etc/mysql/mysql.conf.d/mysqld.cnf
 ```
 
-### connect to mysql using shell tool:
-```
+## connect to mysql using shell tool:
+```sh
 mysql --user=root --password=root
 mysql --user=root --password=root --host=127.0.0.1 --port=3306
 ```
@@ -31,19 +31,19 @@ mysql --user=root --password=root --host=127.0.0.1 --port=3306
 docker exec -it mysql-container  /usr/bin/mysql  --user=root --password=root
 ```
 
-### mycli connect
+## mycli connect
 ```bash
 mycli mysql://user_name:passw@mysql_host:mysql_port/schema
 # via ssh 
 mycli --ssh-user heritageweb --ssh-host 55.55.55.54 mysql://user_name:passw@mysql_host:mysql_port/schema
 #   --ssh-user, --ssh-password
 ```
-#### .myclirc settings for vertical output
+### .myclirc settings for vertical output
 ```properties
 auto_vertical_output = True
 ```
 
-#### mycli execute script, mycli 
+### mycli execute script, mycli 
 ```
 mycli mysql://user_name:passw@mysql_host:mysql_port/schema --execute "select * from dual"
 mycli mysql://user_name:passw@mysql_host:mysql_port/schema < some-sql.txt
@@ -55,7 +55,7 @@ source some-sql.txt;
 ```
 
 
-### import db export db, archive, backup db, restore db, recovery db
+## import db export db, archive, backup db, restore db, recovery db
 * [backup recovery](https://dev.mysql.com/doc/refman/8.0/en/backup-and-recovery.html)
 * [backup policies](https://dev.mysql.com/doc/refman/8.0/en/backup-policy.html):
 * [dump](https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html)
@@ -65,7 +65,7 @@ source some-sql.txt;
   * [replication notes and tips](https://dev.mysql.com/doc/refman/8.0/en/replication-notes.html)
   * [replication FAQ](https://dev.mysql.com/doc/refman/8.0/en/faqs-replication.html)
   * [replicating to slaves](https://dev.mysql.com/doc/refman/8.0/en/replication-solutions-partitioning.html)
-#### prerequisites
+### prerequisites
 ```sh
 ## try just to connect to db
 mysql --host=mysql-dev-eu.a.db.ondigitalocean.com --port=3060 --user=admin --password=my_passw --database=masterdb 
@@ -76,7 +76,8 @@ docker run -it mariadb mysql --host=mysql-dev-eu.a.db.ondigitalocean.com --port=
 ### log_bin = /var/log/mysql/mysql-bin.log
 sudo sed -i '/server-id/s/^#//g' /etc/mysql/mysql.conf.d/mysqld.cnf && sudo sed -i '/log_bin/s/^#//g' /etc/mysql/mysql.conf.d/mysqld.cnf
 ```
-#### mysql dump mariadb dump
+
+### mysql dump mariadb dump
 ```sh
 # mysqldump installation
 # sudo apt install mysql-client-core-8.0
@@ -111,7 +112,7 @@ use DATABASE
 source /home/user/backup.sql
 ```
 
-#### dump
+### dump
 * manual start and stop 
   * make the server ReadOnly
   ```bash
@@ -127,7 +128,7 @@ source /home/user/backup.sql
 * with one command without manual step
   * mysqldump --master-data --single-transaction > backup.sql
 
-#### dump tools
+### dump tools
 * [ubuntu utility: automysqlbackup](https://www.digitalocean.com/community/tutorials/how-to-backup-mysql-databases-on-an-ubuntu-vps)
 * raw solution via cron
   ```sh
@@ -144,7 +145,7 @@ source /home/user/backup.sql
   mysqldump --lock-tables
   ```
 
-#### cold backup (copy raw files)
+### cold backup (copy raw files)
 If you can shut down the MySQL server, 
 you can make a physical backup that consists of all files used by InnoDB to manage its tables. 
 Use the following procedure:
@@ -153,7 +154,7 @@ Use the following procedure:
 * Copy all InnoDB log files (ib_logfile files)
 * Copy your my.cnf configuration file
 
-#### backup issue: during backup strange message appears: "Enter password:" even with password in command line
+### backup issue: during backup strange message appears: "Enter password:" even with password in command line
 ```sh
 vim .my.cnf
 ```
@@ -167,7 +168,7 @@ password=secret
 mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 masterdb table_1 table_2 > backup.sql
 ```
 
-### execute sql file with mysqltool
+## execute sql file with mysqltool
 * inside mysql 
   ```sh
   source /path/to/file.sql
@@ -183,39 +184,39 @@ mysqldump --host=mysql-dev-eu.a.db.ondigitalocean.com --user=admin --port=3060 m
   source /work/zip-code-us.sql
   ```
 
-### show databases and switch to one of them:
+## show databases and switch to one of them:
 ```sql
 show databases;
 use {databasename};
 ```
 
-### user <-> role
+## user <-> role
 ![user role relationship](https://i.postimg.cc/bv0dRDrg/mysql-user-role.png)
 
-#### users 
+### users 
 ```sql
 show grants;
 SELECT host, user FROM mysql.user where user='www_admin'
 ```
 
-#### grant access
+### grant access
 ```sql
 GRANT ALL PRIVILEGES ON `www\_masterdb`.* TO `www_admin`@`%`;
 ```
 
-### print all tables
+## print all tables
 ```sql
 show tables;
 ```
 
-### print all tables and all columns
+## print all tables and all columns
 ```sql
 select table_name, column_name, data_type from information_schema.columns
  where TABLE_NAME like 'some_prefix%'
 order by TABLE_NAME, ORDINAL_POSITION
 ```
 
-### print all columns in table, show table structure
+## print all columns in table, show table structure
 ```sql
 describe table_name;
 show columns from table_name;
@@ -225,22 +226,25 @@ select * from information_schema.columns where TABLE_NAME='listings_dir' and COL
 mycli mysql://user:passw@host:port/schema --execute "select table_name, column_name, data_type  from information_schema.columns where TABLE_NAME like 'hlm%' order by TABLE_NAME, ORDINAL_POSITION;" | awk -F '\t' '{print $1","$2","$3}' > columns
 ```
 
-### add column 
+## add column 
 ```sql
 -- pay attention to quotas around names
 ALTER TABLE `some_table` ADD `json_source` varchar(32) NOT NULL DEFAULT '';
 -- don't use 'ALTER COLUMN'
 ALTER TABLE `some_table` MODIFY `json_source` varchar(32) NULL;
 ```
-### rename column
-```
+
+## rename column
+```sql
 alter table messages rename column sent_time to sent_email_time;
 ```
 
-### mysql version
+## mysql version
+```sql
 SELECT VERSION();
+```
 
-### example of spring config
+## example of spring config
 * MariaDB
   ```java
   ds.setMaximumPoolSize(20);
@@ -260,7 +264,7 @@ SELECT VERSION();
   jdbc:mysql://localhost:3306/bpmnui?serverTimezone=Europe/Brussels
   ```
 
-### maven dependency
+## maven dependency
 * MySQL
   ```java
   ds.setDriverClassName("com.mysql.jdbc.Driver");
@@ -284,7 +288,7 @@ SELECT VERSION();
   </dependency>
   ```
 
-### create database:
+## create database:
 ```sql
 DROP DATABASE IF EXISTS {databasename};
 CREATE DATABASE {databasename}
@@ -294,7 +298,7 @@ CREATE DATABASE {databasename}
 -- 'utf8_general_cs' - case sensitive
 ```
 
-### create table, autoincrement
+## create table, autoincrement
 ```sql
 create table IF NOT EXISTS `hlm_auth_ext`(
   `auth_ext_id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -302,27 +306,27 @@ create table IF NOT EXISTS `hlm_auth_ext`(
 )  ENGINE=InnoDB AUTO_INCREMENT=10001 DEFAULT CHARSET=utf8;
 ```
 
-### create column if not exists
+## create column if not exists
 ```
 ALTER TABLE test ADD COLUMN IF NOT EXISTS column_a VARCHAR(255);
 ```
 
-### show ddl, ddl for table, ddl table
+## show ddl, ddl for table, ddl table
 ```
 SHOW CREATE TABLE yourTableName;
 ```
 
-### table indexes of table
+## table indexes of table
 ```sql
 SHOW INDEX FROM my_table_name;
 ```
 
-### table constraints of table, show constraints
+## table constraints of table, show constraints
 ```sql
 select COLUMN_NAME, CONSTRAINT_NAME, REFERENCED_COLUMN_NAME, REFERENCED_TABLE_NAME from information_schema.KEY_COLUMN_USAGE where TABLE_NAME = 'my_table_name';
 ```
 
-### subquery returns more than one row, collect comma delimiter, join columns in one group columns
+## subquery returns more than one row, collect comma delimiter, join columns in one group columns
 ```sql
 select 
     u.name_f, 
@@ -334,7 +338,7 @@ from hlm_user u
 where u.user_id = 100;
 ```
 
-### date diff, compare date, datetime substraction
+## date diff, compare date, datetime substraction
 ```sql
 ----- return another date with shifting by interval
 -- (now() - interval 1 day)
@@ -342,7 +346,7 @@ where u.user_id = 100;
 -- datediff(now(), datetime_field_in_db )
 ```
 
-### value substitution string replace
+## value substitution string replace
 ```sql
 select (case when unsubscribed>0 then 'true' else 'false' end) from lm_user limit 5;
 ```
@@ -355,6 +359,12 @@ SELECT url FROM licenses WHERE length(url)>0 and url NOT REGEXP '^http*';
 SELECT subject FROM mails WHERE subject <> CONVERT(subject USING ASCII);
 -- check email address
 SELECT email FROM mails WHERE length(email)>0 and upper(email) NOT REGEXP '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$';
+```
+
+# check DB
+```sh
+# ~/.my.cnf
+curl -O https://raw.githubusercontent.com/haydenjames/mysqlmonitor-script/main/mysqlmonitor.sh && chmod +x mysqlmonitor.sh && ./mysqlmonitor.sh
 ```
 
 # Search
