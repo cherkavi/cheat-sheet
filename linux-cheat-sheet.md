@@ -28,6 +28,52 @@ time
 # or 
 \time 
 ```
+
+### environment variables
+```sh
+## View all environment variables
+env
+# or
+printenv
+printenv HOME
+
+## View all variables & functions 
+set 
+
+# Shell-only variable (not visible to child processes)
+MY_VAR="hello"
+
+# Exported environment variable (passed to child processes)
+export MY_VAR="hello"
+
+# Append to PATH (lower priority)
+export PATH="$PATH:/opt/myapp/bin"
+
+# Prepend to PATH (higher priority over system binaries)
+export PATH="/opt/myapp/bin:$PATH"
+
+# Run a command in a clean/empty environment (useful for testing dependencies)
+env -i PATH=/usr/bin:/bin bash --norc
+
+# Unset a variable for a single command
+env -u HOME printenv HOME
+
+## Reload changes in current terminal session:
+source ~/.bashrc
+# or
+. ~/.bashrc
+
+## Inspecting Running Processes by PID
+# View process environment (replace PID with target PID)
+cat /proc/<PID>/environ | tr '\0' '\n'
+
+# Inspect systemd service environment
+sudo systemctl show myapp | grep Environment
+
+# Inspect process environment of a systemd main PID
+sudo cat /proc/$(systemctl show -p MainPID --value myapp)/environ | tr '\0' '\n'
+```
+
 ### retrieve human readable information from binary files
 ```sh
 strings /usr/share/teams/libEGL.so | grep git
