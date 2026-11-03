@@ -11,6 +11,30 @@ opencode run --quiet "Your prompt here"
 opencode run --format json "Your prompt here"
 ```
 
+## opencode config
+```sh
+/debug
+```
+```json:~/.config/opencode/opencode.jsonc
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "openrouter/z-ai/glm-5.3-flashx-legal",
+  "providers": {
+    "openrouter": {
+      "models": {
+        "z-ai/glm-5.3-flashx-legal": {
+          "limit": {
+            "context": 128000,
+            "output": 16000
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+
 ## connect opencode to ollama locally  
 copy file to your workscpace and run `opencode`
 ```json
@@ -33,3 +57,19 @@ copy file to your workscpace and run `opencode`
   "model": "ollama/qwen2.5-coder:14b"
 }
 ```
+
+## providers
+* [OpenRouter](https://openrouter.ai/keys)
+* [Google Gemini (AI Studio)](https://aistudio.google.com/app/apikey)
+* [Groq](https://console.groq.com/keys)
+* [Cerebras,Free 1 Million tokens/day](https://cloud.cerebras.ai)
+* [Together AI](https://api.together.xyz/settings/api-keys)
+* [OpenAI](https://platform.openai.com/api-keys)  
+  need credits
+* [DeepSeek](https://platform.deepseek.com/api_keys)  
+  need credits
+* [Anthropic (Claude)](https://console.anthropic.com/settings/keys)
+* [Mistral](https://console.mistral.ai/api-keys/)
+* [Together](https://api.together.xyz/settings/api-keys)
+* [Perplexity](https://www.perplexity.ai/settings/api)
+* [OpenCode Go / Zen](https://opencode.ai/auth)
