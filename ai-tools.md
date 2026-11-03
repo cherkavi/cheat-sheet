@@ -13,9 +13,36 @@
 
 ## vendor agnostic CLI tools
 ### [opencode](https://opencode.ai)
-[gitub opencode](https://github.com/anomalyco/opencode)
+#### opencode installation [gitub opencode](https://github.com/anomalyco/opencode)
 ```sh
 curl -fsSL https://opencode.ai/install | bash
+```
+#### usages
+```sh
+opencode run --quiet "Your prompt here"
+opencode run --format json "Your prompt here"
+```
+#### connect ollama to opencode locally  
+copy file to your workscpace and run `opencode`
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen2.5-coder:14b": {
+          "name": "qwen2.5-coder:14b"
+        }
+      }
+    }
+  },
+  "model": "ollama/qwen2.5-coder:14b"
+}
 ```
 
 ### [aider](https://aider.chat/docs/install.html)
@@ -385,11 +412,15 @@ MODEL_NAME="sqlcoder"
 ollama run $MODEL_NAME
 # ask question/prompt via cli
 ollama run $MODEL_NAME --input "how to ... "
+
+ollama ps 
 ```
 
 #### [Ollama REST API commands](https://github.com/ollama/ollama/blob/main/docs/api.md)
 #### Ollama run/prompt via REST API commands
 ```sh
+curl -X GET http://localhost:11434
+
 curl -X POST http://localhost:11434/api/generate -d '{
   "model": "sqlcoder",
   "prompt":"insert user_id=1, name='ehlo' into table users "
