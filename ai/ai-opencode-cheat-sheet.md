@@ -59,7 +59,8 @@ copy file to your workscpace and run `opencode`
 ```
 
 ## providers
-* [OpenRouter](https://openrouter.ai/keys)
+* [OpenRouter](https://openrouter.ai/keys)  
+  [openrouter dashboard](https://openrouter.ai/workspaces/default/activity)
 * [Google Gemini (AI Studio)](https://aistudio.google.com/app/apikey)
 * [Groq](https://console.groq.com/keys)
 * [Cerebras,Free 1 Million tokens/day](https://cloud.cerebras.ai)
@@ -69,7 +70,11 @@ copy file to your workscpace and run `opencode`
 * [DeepSeek](https://platform.deepseek.com/api_keys)  
   need credits
 * [Anthropic (Claude)](https://console.anthropic.com/settings/keys)
-* [Mistral](https://console.mistral.ai/api-keys/)
-* [Together](https://api.together.xyz/settings/api-keys)
-* [Perplexity](https://www.perplexity.ai/settings/api)
-* [OpenCode Go / Zen](https://opencode.ai/auth)
+* [Mistral](https://console.mistral.ai/api-keys/)  
+  no free plan
+* [Together](https://api.together.xyz/settings/api-keys)  
+  no free plan
+* [Perplexity](https://www.perplexity.ai/settings/api)  
+  no free plan
+* [OpenCode Go / Zen](https://opencode.ai/auth)  
+  [opencode web console](https://opencode.ai/console)

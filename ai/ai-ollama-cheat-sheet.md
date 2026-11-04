@@ -6,10 +6,10 @@ curl -fsSL https://ollama.com/install.sh | sh
 ```
 check installation
 ```sh
-# /usr/local/bin/ollama
+# ls -la /usr/share/ollama
+# ls -la /usr/local/bin/ollama
 # /etc/systemd/system/default.target.wants/ollama.service → /etc/systemd/system/ollama.service.
 # sudo find /usr/share/ollama/.ollama
-# ls /usr/share/ollama
 ```
 
 ## ollama first commands 
@@ -20,20 +20,30 @@ ollama --version
 ```
 
 ## [ollama models](https://ollama.com/library) 
+### ollama list models 
 ```sh
+# list installed models 
+ollama list
+# your models in local storage
+sudo find /usr/share/ollama/.ollama/models
+
+# browse names 
 x-www-browser https://ollama.com/search
+```
+
+### ollama pull model by name
+```sh
+ollama pull deepseek-v4.1-flash:cloud
+ollama rm deepseek-v4.1-flash:cloud
+
+ollama pull qwen3.8
 ollama pull mistral
 ollama pull llama4
 # example of the direct url:
 # pulling 9d507a36062c # https://dd20bb891979d25aebc8bec07b2b3bbc.r2.cloudflarestorage.com/ollama/docker/registry/v2/blobs/sha256/9d/9d507a36062c2845dd3bb3e93364e9abc1607118acd8650727a700f72fb126e5/data?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=66040c77ac1b787c3af820529859349a%2F20250615%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250615T171841Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=d7ec6ee62468113a74f166dd732fd56751d38e5b9576d73a58237f49460e5ab9
-
-ollama list
-
-# your models local storage
-find /usr/share/ollama/.ollama/models
 ```
 
-## ollama models import/convert from: 
+### ollama models import/convert from: 
 1. [download your gguf file](https://huggingface.co/models?library=gguf)
    > your file, for instance, is placed in: /models/mistral.gguf
 2. create Modelfile
@@ -58,7 +68,16 @@ ollama run $MODEL_NAME
 # ask question/prompt via cli
 ollama run $MODEL_NAME --input "how to ... "
 
+# check runned models 
 ollama ps 
+```
+```sh
+# run model 
+MODEL_NAME="sqlcoder"
+# run model in cloud
+MODEL_NAME="deepseek-v4.1-flash:cloud"
+
+ollama run $MODEL_NAME
 ```
 
 ## [Ollama REST API commands](https://github.com/ollama/ollama/blob/main/docs/api.md)
