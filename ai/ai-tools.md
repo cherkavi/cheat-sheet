@@ -159,7 +159,7 @@ pipx install git+https://github.com/zahidoverflow/perplexity-cli.git
 * [whisper - translate mp3 to text](https://github.com/openai/whisper)
   > `pip install -U openai-whisper` and then `whisper japanese.wav --language Japanese --task translate`
 
-## ai agents
+## [ai agents](./ai-copilot-cheat-sheet.md)
 
 ## Custom Agentic Solutions
 * https://github.com/langgenius/dify
