@@ -4,17 +4,13 @@
 ```sh
 curl -fsSL https://ollama.com/install.sh | sh
 ```
-check installation
+## ollama check installation
 ```sh
 # ls -la /usr/share/ollama
 # ls -la /usr/local/bin/ollama
 # /etc/systemd/system/default.target.wants/ollama.service → /etc/systemd/system/ollama.service.
 # sudo find /usr/share/ollama/.ollama
-```
-
-## ollama first commands 
-```sh
-x-www-browser http://127.0.0.1:11434/api/version
+curl http://127.0.0.1:11434/api/version
 journalctl -e -u ollama
 ollama --version
 ```
@@ -24,6 +20,9 @@ ollama --version
 ```sh
 # list installed models 
 ollama list
+
+curl http://localhost:11434/v1/models | jq .
+
 # your models in local storage
 sudo find /usr/share/ollama/.ollama/models
 
@@ -31,16 +30,20 @@ sudo find /usr/share/ollama/.ollama/models
 x-www-browser https://ollama.com/search
 ```
 
-### ollama pull model by name
+### ollama pull/remove model by name
 ```sh
+ollama pull mistral
+ollama pull qwen3.8
+ollama pull llama4
+
 ollama pull deepseek-v4.1-flash:cloud
 ollama rm deepseek-v4.1-flash:cloud
+```
 
-ollama pull qwen3.8
-ollama pull mistral
-ollama pull llama4
+```sh
 # example of the direct url:
-# pulling 9d507a36062c # https://dd20bb891979d25aebc8bec07b2b3bbc.r2.cloudflarestorage.com/ollama/docker/registry/v2/blobs/sha256/9d/9d507a36062c2845dd3bb3e93364e9abc1607118acd8650727a700f72fb126e5/data?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=66040c77ac1b787c3af820529859349a%2F20250615%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250615T171841Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=d7ec6ee62468113a74f166dd732fd56751d38e5b9576d73a58237f49460e5ab9
+# pulling 9d507a36062c 
+# https://dd20bb891979d25aebc8bec07b2b3bbc.r2.cloudflarestorage.com/ollama/docker/registry/v2/blobs/sha256/9d/9d507a36062c2845dd3bb3e93364e9abc1607118acd8650727a700f72fb126e5/data?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=66040c77ac1b787c3af820529859349a%2F20250615%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250615T171841Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=d7ec6ee62468113a74f166dd732fd56751d38e5b9576d73a58237f49460e5ab9
 ```
 
 ### ollama models import/convert from: 
@@ -63,13 +66,18 @@ ollama pull llama4
 
 ## Ollama run/prompt via cli
 ```sh
+ollama list 
+
+MODEL_NAME="mistral"
 MODEL_NAME="sqlcoder"
+
 ollama run $MODEL_NAME
 # ask question/prompt via cli
 ollama run $MODEL_NAME --input "how to ... "
 
 # check runned models 
 ollama ps 
+ollama show $MODEL_NAME
 ```
 ```sh
 # run model 
@@ -81,7 +89,25 @@ ollama run $MODEL_NAME
 ```
 
 ## [Ollama REST API commands](https://github.com/ollama/ollama/blob/main/docs/api.md)
-## Ollama run/prompt via REST API commands
+
+### Ollama run/prompt via REST API commands: ask model for the answer via curl 
+```sh
+curl --max-time 180 \
+  http://127.0.0.1:11434/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "mistral:latest",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Reply with exactly: OK"
+      }
+    ],
+    "stream": false
+  }' | jq .
+```
+
+### Ollama run/prompt via REST API commands: ask model for the answer
 ```sh
 curl -X GET http://localhost:11434
 
@@ -91,7 +117,7 @@ curl -X POST http://localhost:11434/api/generate -d '{
  }'
 ```
 
-## [Ollama run/prompt via python](https://pypi.org/project/ollama/)
+### [Ollama run/prompt via python](https://pypi.org/project/ollama/)
 ```python
 # pip3 install --break-system-packages  ollama
 

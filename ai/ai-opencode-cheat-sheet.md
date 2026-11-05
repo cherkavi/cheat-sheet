@@ -9,6 +9,13 @@ curl -fsSL https://opencode.ai/install | bash
 ```sh
 opencode run --quiet "Your prompt here"
 opencode run --format json "Your prompt here"
+
+opencode --print-logs --log-level DEBUG --quiet "are you online ?"
+```
+
+## opencode logs
+```sh
+tail -f ~/.local/share/opencode/log/opencode.log
 ```
 
 ## opencode config
@@ -35,26 +42,42 @@ opencode run --format json "Your prompt here"
 ```
 
 
-## connect opencode to ollama locally  
+## connect opencode to ollama locally/localhost
 copy file to your workscpace and run `opencode`
-```json
+```json:~/.config/opencode/opencode.jsonc
 {
   "$schema": "https://opencode.ai/config.json",
-  "provider": {
-    "ollama": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Ollama",
-      "options": {
-        "baseURL": "http://localhost:11434/v1"
-      },
-      "models": {
-        "qwen2.5-coder:14b": {
-          "name": "qwen2.5-coder:14b"
+
+    "providers": {
+        "openrouter": {
+            "models": {
+                "z-ai/glm-5.3-flashx-legal": {
+                "limit": {
+                    "context": 128000,
+                    "output": 16000
+                }
+                }
+            }
+        },
+
+        "ollama": {
+            "name": "Ollama Local",
+            "package": "@opencode/ai/providers/openai-compatible",
+            "settings": {
+                "baseURL": "http://localhost:11434/v1"
+            },
+            "models": {
+                "mistral:latest": {
+                    "name": "Mistral Local",
+                    "modelID": "mistral:latest",
+                    "limit": {
+                        "context": 32768,
+                        "output": 8192
+                    }
+                }
+            }
         }
-      }
     }
-  },
-  "model": "ollama/qwen2.5-coder:14b"
 }
 ```
 
