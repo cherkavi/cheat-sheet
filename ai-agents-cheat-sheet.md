@@ -5,6 +5,7 @@
 ###  [Hermes Agent](https://github.com/NousResearch/hermes-agent)
 * [github](https://github.com/NousResearch/hermes-agent)
 * [documentation](https://hermes-agent.nousresearch.com/docs?categoryid=2826672)
+* [usage use cases](https://hermes-agent.nousresearch.com/docs/user-stories)
 
 ```sh
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
