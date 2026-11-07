@@ -69,7 +69,7 @@ gcloud services enable calendar-json.googleapis.com tasks.googleapis.com --proje
 gcloud services enable chat.googleapis.com  --project=$GPROJECT_NAME
 
 # see `gws` tool below 
-gws auth login --scopes "https://www.googleapis.com/auth/chat.spaces.readonly,https://www.googleapis.com/auth/chat.messages"
+gws auth login --scopes "https://www.googleapis.com/auth/chat.spaces.readonly,https://www.googleapis.com/auth/chat.messages&authuser=$GCP_EMAIL"
 ```
 
 
@@ -145,12 +145,31 @@ gws tasks tasks patch --params '{"task":"<TASK_ID>","tasklist":"<TASKLIST_ID>"}'
 ## list spaces 
 gws chat spaces list
 
+## search message in space
 SPACE_NAME="spaces/AAQAW"
-
 gws chat spaces messages list --params "{\"parent\": \"$SPACE_NAME\"}"
 gws chat spaces messages list --params "{\"parent\": \"$SPACE_NAME\", \"pageSize\": 1000}" --format json
 gws chat spaces messages search --params "{\"parent\": \"spaces/-\", \"filter\": \"space.name=$SPACE_NAME AND d946-11f1\"}" --format json
 gws chat spaces messages search --params "{\"parent\": \"spaces/-\", \"filter\": \"space.name=$SPACE_NAME and has_link() AND 6490-4854-b259\"}" --format json
+```
+
+For making possible to write messages in the chat: 
+* go to dashboard of the project
+* Enabled APIs & Services
+* Google Chat API
+* Configuration tab ( metrics, ... Credentials ... )
+* Feel application info
+  * App name - any 
+  * Avatar url - like: https://cdn-icons-png.magnific.com/256/11747/11747124.png
+  * Connection strings - HTTP Endpoint URL
+    * App command: https://examples.com/chat
+    * Addeed to space: https://examples.com/chat
+    * Message: https://examples.com/chat
+    * Removed from space: https://examples.com/chat
+```sh
+## write message in space
+THREAD_NAME=$SPACE_NAME/threads/f8gaCH
+gws chat spaces messages create --params '{"parent": "'$SPACE_NAME'", "messageReplyOption": "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD"}' --json '{"text": "new price: '$new_price'", "thread": {"name": "'$gchat_thread_id'"}}'
 ```
 
 ### gws discover 
