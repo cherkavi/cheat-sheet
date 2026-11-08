@@ -507,16 +507,16 @@ possible fields:
 ```
 
 ## user activities
-* Matomo
-  * [documentation](https://matomo.org/docs)
-  * [documentation for tags, triggers, variables](https://matomo.org/docs/tag-manager/)
-  * [import data from google analytics](https://matomo.org/docs/google-analytics-importer/)
-  * [installation](https://matomo.org/docs/installation/)
-  * [develop](https://developer.matomo.org/guides/tagmanager/introduction)
-  * [develop](https://developer.matomo.org/guides/tracking-api-clients)
-  * [develop](https://developer.matomo.org/guides/tagmanager/custom-tag)
-  * [php integration](https://github.com/matomo-org/matomo-php-tracker)
-  * [php integration](https://github.com/heiglandreas/piwik#readme)
+### Matomo
+* [documentation](https://matomo.org/docs)
+* [documentation for tags, triggers, variables](https://matomo.org/docs/tag-manager/)
+* [import data from google analytics](https://matomo.org/docs/google-analytics-importer/)
+* [installation](https://matomo.org/docs/installation/)
+* [develop](https://developer.matomo.org/guides/tagmanager/introduction)
+* [develop](https://developer.matomo.org/guides/tracking-api-clients)
+* [develop](https://developer.matomo.org/guides/tagmanager/custom-tag)
+* [php integration](https://github.com/matomo-org/matomo-php-tracker)
+* [php integration](https://github.com/heiglandreas/piwik#readme)
 
 ## external data sources
 ### [global reestr of data](https://www.data.gov/)
@@ -593,6 +593,72 @@ application permissions: r_emailaddress
 * https://w3techs.com/
 * https://cmsdetect.com/
 * https://www.wappalyzer.com/
+
+## web scrapping
+### FireCrawl
+#### [FireCrawl cli](https://docs.firecrawl.dev/sdks/cli)
+```sh
+## Install globally with npm
+npm install -g firecrawl-cli
+firecrawl login --api-key $FIRECRAWL_API_KEY
+
+## ai agent skill detection 
+# npx -y firecrawl-cli@latest init --all --browser
+
+firecrawl view-config
+firecrawl --status
+
+# Use a self-hosting (https://docs.firecrawl.dev/contributing/self-host) Firecrawl instance (no API key required)
+firecrawl --api-url http://localhost:3002 scrape https://example.com
+# export FIRECRAWL_API_URL=http://localhost:3002
+# firecrawl config --api-url http://localhost:3002
+
+firecrawl scrape https://example.com
+firecrawl https://example.com --html
+firecrawl https://example.com --format markdown,links
+firecrawl https://example.com --format images
+firecrawl https://example.com --format summary
+# Track changes on a page
+firecrawl https://example.com --format changeTracking
+                                     # markdown, html, rawHtml, links, screenshot, json, images, summary, changeTracking, attributes, branding, product
+
+firecrawl https://example.com --only-main-content   # (removes navs, footers)
+firecrawl https://example.com --wait-for 3000
+
+# Take a screenshot
+firecrawl https://example.com --screenshot
+firecrawl https://example.com --include-tags article,main
+firecrawl https://example.com --exclude-tags nav,footer
+firecrawl https://example.com -o output.md
+firecrawl https://example.com --format markdown,links --pretty
+firecrawl https://example.com --json
+firecrawl https://example.com --timing  # Show request timing information
+```
+
+#### simple operations
+```sh
+curl -X POST "https://api.firecrawl.dev/v2/scrape" \
+  -H "Authorization: Bearer $FIRECRAWL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://firecrawl.dev", "formats": ["markdown"]}'
+```
+
+### [Crawl4AI](https://crawl4ai.com/), [https://github.com/unclecode/crawl4ai](https://github.com/unclecode/crawl4ai), (CLI available)
+* [dashboard](https://crawl4ai.com/dashboard/)
+```sh
+# a page as Markdown
+curl -s https://api.crawl4ai.com/scrape -H "Authorization: Bearer $CRAWL4AI_API_KEY" \
+  -H "Content-Type: application/json" -d '{"url":"https://news.ycombinator.com"}'
+
+# Google's results for a keyword
+curl "https://api.crawl4ai.com/serp?q=coffee+grinder" -H "Authorization: Bearer $CRAWL4AI_API_KEY"
+# a web search as JSON
+curl "https://api.crawl4ai.com/search?q=web+crawler" -H "Authorization: Bearer $CRAWL4AI_API_KEY"  
+```
+### [Crawlee](https://crawlee.dev), (CLI available)
+### Jina AI Reader, [https://jina.ai/reader](https://jina.ai/reader)
+### Apify, [https://apify.com](https://apify.com), Yes (Apify CLI available)
+### Bright Data Web Unlocker, [https://brightdata.com/products/web-unlocker](https://brightdata.com/products/web-unlocker), Yes (API/CLI integrations available)
 
 ## e-commerce
 
