@@ -5,23 +5,47 @@
 ###  [Hermes Agent](https://github.com/NousResearch/hermes-agent)
 * [github](https://github.com/NousResearch/hermes-agent)
 * [documentation](https://hermes-agent.nousresearch.com/docs?categoryid=2826672)
+  * [running hermes on personal or work machine](https://hermes-agent.nousresearch.com/docs/guides/secure-hermes-on-a-work-machine)
 * [usage use cases](https://hermes-agent.nousresearch.com/docs/user-stories)
+* [using cli interface](https://hermes-agent.nousresearch.com/docs/user-guide/cli)
 
+#### hermes installation
 ```sh
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 
 hermes --version
 ```
+
+#### hermes configuration 
+```sh
+cat  ~/.hermes/config.yaml
+
+hermes config 
+hermes config edit
+hermes config set   # Set individual config values
+hermes config get   # Print individual config values
+
+hermes profile import
+hermes profile export
+```
+
+#### hermes setup 
+```sh
+hermes setup 
+hermes setup tools
+```
+
+#### other commands 
 ```sh
 hermes              # Interactive CLI — start a conversation
 hermes model        # Choose your LLM provider and model
 hermes tools        # Configure which tools are enabled
-hermes config set   # Set individual config values
-hermes config get   # Print individual config values
 hermes gateway      # Start the messaging gateway (Telegram, Discord, etc.)
-hermes setup        # Run the full setup wizard (configures everything at once)
 hermes update       # Update to the latest version
 hermes doctor       # Diagnose any issues
+
+hermes chat -q "are you online ?" 
+hermes chat --query-file prompt
 ```
 
 ### Letta
