@@ -596,6 +596,7 @@ application permissions: r_emailaddress
 
 ## web scrapping
 ### FireCrawl
+[firecrawl github](https://github.com/firecrawl)
 #### [FireCrawl cli](https://docs.firecrawl.dev/sdks/cli)
 ```sh
 ## Install globally with npm

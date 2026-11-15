@@ -109,12 +109,22 @@ x-www-browser "https://console.cloud.google.com/apis/credentials?project=$GPROJE
               # mv ~/.config/gws/token_cache.json ~/.config/gws/token_cache.json.backup
 
 ## for existing credentials map the scope 
+#  "token_error": "Token has been expired or revoked.",
+# rm ~/.config/gws/token_cache.json
+# rm -f ~/.config/gws/credentials.enc ~/.config/gws/credentials.json 
 gws auth login
               # ⚠️ check scopes !!!! otherwise repeat with deselecting all the elements !!!!
               # gws auth login --scopes "https://www.googleapis.com/auth/calendar,https://www.googleapis.com/auth/tasks,https://www.googleapis.com/auth/chat.spaces.readonly,https://www.googleapis.com/auth/chat.messages"
-
+## check authentication 
 gws auth status
+# ⚠️ check scopes !!!!
+gws auth export
 
+## open OAuth client id's
+gcloud projects list
+echo $GPROJECT_NAME
+
+echo $GCP_EMAIL
 x-www-browser "https://console.cloud.google.com/auth/clients?project=$GPROJECT_NAME&authuser=$GCP_EMAIL"
 ```
 
