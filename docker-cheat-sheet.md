@@ -106,7 +106,7 @@ docker system info
 /etc/systemd/system/docker.service.d/http-proxy.conf
 ```
 
-### how to skip typing "sudo" each time, without sudo
+### how to skip typing "sudo docker" each time, without sudo
 ```sh
 # new group in sudo for docker
 sudo groupadd docker

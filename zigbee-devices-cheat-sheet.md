@@ -26,11 +26,6 @@ sudo dmesg | grep -i -E 'ttyUSB|ttyACM|cp210|ch34'
 # [ 2362.309067] usbserial: USB Serial support registered for cp210x
 # [ 2362.309088] cp210x 1-13:1.0: cp210x converter detected
 # [ 2362.310840] usb 1-13: cp210x converter now attached to ttyUSB0
-
-
-## -------------------------
-## Check permissions
-groups
 ```
 
 ### initialize
