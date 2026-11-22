@@ -10,6 +10,13 @@
   * https://core.telegram.org/bots
   * https://core.telegram.org/bots/faq
 
+### bot creation
+* https://web.telegram.org/k/#@BotFather
+* /newbot 
+* <name>
+* <name>-bot ( unique name )
+* TELEGRAM_TOKEN_BOT='9011223914:BaHb......'
+
 ### Bot API commands
 ```sh
 curl https://api.telegram.org/bot$TELEGRAM_TOKEN_BOT/getMe

@@ -37,6 +37,8 @@ apt-get update
 apt-get install -y docker-ce
 
 usermod -aG docker ubuntu
+
+docker run --rm hello-world
 docker run -p 8080:8080 tomcat:8.0
 ```
 
