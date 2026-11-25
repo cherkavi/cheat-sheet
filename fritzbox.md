@@ -3,6 +3,9 @@
   * [XML SOAP collaboration](https://fritz.support/resources/TR-064_First_Steps.pdf)
 * [generating support information for the FritzBox with specific version](https://fritz.com/en/apps/knowledge-base/FRITZ-Box-7590/1426_Generating-support-information-for-the-FRITZ-Box?t_id=7241791)
 
+## [Experimental REST API](https://github.com/cherkavi/python-utilities/tree/master/fritzbox/rest-api-test)
+* [fritzbox -.-> MQTT](https://github.com/cherkavi/python-utilities/tree/master/fritzbox/rest-api-to-mqtt)
+
 ## Common part
 ```sh
 FRITZ_IP="fritz.box"

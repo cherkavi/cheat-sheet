@@ -5,6 +5,12 @@
 * [my own AI cheat sheet](https://github.com/cherkavi/ai)
 * [my own VectorDB cheat sheet](./vectordb-cheat-sheet.md)
 * :TODO: https://github.com/explodinggradients/ragas  
+* :TODO: https://github.com/screenpipe/screenpipe
+```
+┌──────────────────────────────────────────────┐
+│  capture → discover → review → run anywhere  │
+└──────────────────────────────────────────────┘
+```
 
 ## General info
 * [how AI works, what context window is, how token count](https://swnger.github.io/innerloop/#agent-loop)

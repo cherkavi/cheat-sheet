@@ -34,3 +34,6 @@ BD[Business
    Driven Requirements] --influent--> DM    
 
 ```
+
+## Links
+* [flat dataset overviews fast presentation](https://github.com/simonw/datasette)
